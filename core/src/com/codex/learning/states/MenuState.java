@@ -19,7 +19,7 @@ public class MenuState extends State {
         camera = new OrthographicCamera();
         b2dr = new Box2DDebugRenderer();
 
-        background = new TextureRegion(new Texture(Gdx.files.internal("background/mainmenu1.png")));
+        background = new TextureRegion(new Texture(Gdx.files.internal(Constants.BACKGROUND_PATH)));
         backgroundRegion = new TextureRegion(background, 0, 0, 1600, 900);
 
     }
