@@ -12,6 +12,7 @@ import com.codex.learning.utility.Manager;
 public class MenuState extends State {
 
     private TextureRegion mainMenu;
+    private Texture musicLogo, javaDeluxe, grandpaRecipe, jediTrial, quitGame;
     private TextureRegion background;
     private OrthographicCamera camera;
     private Box2DDebugRenderer b2dr;

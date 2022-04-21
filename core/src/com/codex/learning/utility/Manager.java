@@ -66,7 +66,6 @@ public class Manager {
         for(State s : states)
             s.dispose();
         world.dispose();
-
     }
 
     public OrthographicCamera getCamera() {
