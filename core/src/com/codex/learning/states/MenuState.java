@@ -10,7 +10,9 @@ import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
 public class MenuState extends State {
-    private TextureRegion background, backgroundRegion;
+
+    private TextureRegion mainMenu;
+    private TextureRegion background;
     private OrthographicCamera camera;
     private Box2DDebugRenderer b2dr;
 
@@ -19,8 +21,8 @@ public class MenuState extends State {
         camera = new OrthographicCamera();
         b2dr = new Box2DDebugRenderer();
 
-        background = new TextureRegion(new Texture(Gdx.files.internal(Constants.BACKGROUND_PATH)));
-        backgroundRegion = new TextureRegion(background, 0, 0, 1600, 900);
+        background = new TextureRegion(new Texture(Constants.BACKGROUND_PATH));
+        mainMenu = new TextureRegion(new Texture(Constants.MENU_TEXT_PATH));
 
     }
 
@@ -35,7 +37,7 @@ public class MenuState extends State {
         sprite.disableBlending();
         sprite.begin();
 
-        sprite.draw(backgroundRegion, 0, 0, (Constants.SCREEN_WIDTH - Constants.SCREEN_WIDTH / 2), (Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 2));
+        sprite.draw(background, 0, 0, (Constants.SCREEN_WIDTH - Constants.SCREEN_WIDTH / 2), (Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 2));
         sprite.end();
         sprite.enableBlending();
     }
