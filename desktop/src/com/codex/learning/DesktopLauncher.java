@@ -12,11 +12,10 @@ import com.codex.learning.utility.Constants;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
-//		Lwjgl3Window window = ((Lwjgl3Graphics)Gdx.graphics).getWindow();
-//
-//		window.setPosition(0, 0);
-		config.setTitle("Codex Learning");
-		config.setWindowedMode(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+
+
+		config.setTitle(Constants.GAME_TITLE);
+		config.setWindowedMode(Constants.SCREEN_WIDTH - Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 2);
 
 		config.setForegroundFPS(60);
 		new Lwjgl3Application(new Game(), config);

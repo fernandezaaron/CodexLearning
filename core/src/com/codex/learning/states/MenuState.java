@@ -35,7 +35,7 @@ public class MenuState extends State {
         sprite.disableBlending();
         sprite.begin();
 
-        sprite.draw(backgroundRegion, 0, 0, Constants.SCREEN_WIDTH - 225, Constants.SCREEN_HEIGHT - 150);
+        sprite.draw(backgroundRegion, 0, 0, (Constants.SCREEN_WIDTH - Constants.SCREEN_WIDTH / 2), (Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 2));
         sprite.end();
         sprite.enableBlending();
     }

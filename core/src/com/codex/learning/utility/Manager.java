@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.codex.learning.states.State;
 
 import java.util.Stack;
@@ -16,6 +17,7 @@ public class Manager {
     private final OrthographicCamera camera;
     private final Stack<State> states;
     private Box2DDebugRenderer b2dr;
+    private ExtendViewport extendViewport;
 
     public Manager(){
 
@@ -23,6 +25,7 @@ public class Manager {
 
 
         world = new World(new Vector2(0,-20),false);
+
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
