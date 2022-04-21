@@ -41,11 +41,11 @@ public class MenuState extends State {
         quitGame = new TextureRegion(mainMenu, Constants.QUIT_GAME_X, Constants.QUIT_GAME_Y, Constants.QUIT_GAME_WIDTH, Constants.QUIT_GAME_HEIGHT);
 
         touchpoint = new Vector3();
-        javaDeluxeBounds = new Rectangle((Constants.SCREEN_WIDTH - Constants.SCREEN_WIDTH / 2) + 200, (Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 2),Constants.JAVA_DELUXE_WIDTH , Constants.JAVA_DELUXE_HEIGHT);
-        recipeBounds = new Rectangle((Constants.SCREEN_WIDTH - Constants.SCREEN_WIDTH / 2) + 200, (Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 2),Constants.GRANDPA_RECIPE_WIDTH, Constants.GRANDPA_RECIPE_HEIGHT);
-        jediTrialBounds = new Rectangle((Constants.SCREEN_WIDTH - Constants.SCREEN_WIDTH / 2) + 200, (Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 2),Constants.JEDI_TRIAL_WIDTH, Constants.JEDI_TRIAL_HEIGHT);
-        quitGameBounds = new Rectangle((Constants.SCREEN_WIDTH - Constants.SCREEN_WIDTH / 2) + 200, (Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 2),Constants.QUIT_GAME_WIDTH, Constants.QUIT_GAME_HEIGHT);
-        soundBounds = new Rectangle((Constants.SCREEN_WIDTH - Constants.SCREEN_WIDTH / 2) + 200, (Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 2),Constants.MUSIC_LOGO_WIDTH, Constants.MUSIC_LOGO_HEIGHT);
+        javaDeluxeBounds = new Rectangle(Constants.TOUCH_POINT_X, Constants.TOUCH_POINT_Y,Constants.JAVA_DELUXE_WIDTH , Constants.JAVA_DELUXE_HEIGHT);
+        recipeBounds = new Rectangle(Constants.TOUCH_POINT_X, Constants.TOUCH_POINT_Y,Constants.GRANDPA_RECIPE_WIDTH, Constants.GRANDPA_RECIPE_HEIGHT);
+        jediTrialBounds = new Rectangle(Constants.TOUCH_POINT_X, Constants.TOUCH_POINT_Y,Constants.JEDI_TRIAL_WIDTH, Constants.JEDI_TRIAL_HEIGHT);
+        quitGameBounds = new Rectangle(Constants.TOUCH_POINT_X, Constants.TOUCH_POINT_Y,Constants.QUIT_GAME_WIDTH, Constants.QUIT_GAME_HEIGHT);
+        soundBounds = new Rectangle(Constants.TOUCH_POINT_X, Constants.TOUCH_POINT_Y,Constants.MUSIC_LOGO_WIDTH, Constants.MUSIC_LOGO_HEIGHT);
     }
 
     @Override
@@ -113,9 +113,6 @@ public class MenuState extends State {
         if(quitGameBounds.contains(touchpoint.x, touchpoint.y + 222)){
             sprite.draw(quitGame, quitGameBounds.x - 482, quitGameBounds.y - 337,Constants.QUIT_GAME_WIDTH / 2, Constants.QUIT_GAME_HEIGHT / 2);
         }
-
-
-
     }
 
 

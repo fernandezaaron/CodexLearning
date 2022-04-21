@@ -43,4 +43,8 @@ public class Constants {
     public static final int MUSIC_LOGO_WIDTH = 57;
     public static final int MUSIC_LOGO_HEIGHT = 60;
 
+    // MENUSTATE TOUCHPOINT X, Y
+    public static final int TOUCH_POINT_X = (SCREEN_WIDTH - SCREEN_WIDTH / 2) + 200;
+    public static final int TOUCH_POINT_Y = SCREEN_HEIGHT - SCREEN_HEIGHT / 2;
+
 }
