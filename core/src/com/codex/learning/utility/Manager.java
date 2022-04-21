@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.World;
 import com.codex.learning.states.State;
 
@@ -14,12 +15,12 @@ public class Manager {
     private final World world;
     private final OrthographicCamera camera;
     private final Stack<State> states;
-
     private Box2DDebugRenderer b2dr;
 
     public Manager(){
 
         b2dr = new Box2DDebugRenderer();
+
 
         world = new World(new Vector2(0,-20),false);
 
@@ -30,6 +31,7 @@ public class Manager {
     }
 
     public void push(State state){
+        System.out.println(state + " is pushed");
         states.push(state);
     }
     public void pop(){

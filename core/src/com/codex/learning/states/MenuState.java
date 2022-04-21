@@ -16,11 +16,11 @@ public class MenuState extends State {
 
     public MenuState(Manager manager) {
         super(manager);
-//        camera = new OrthographicCamera();
-//        b2dr = new Box2DDebugRenderer();
+        camera = new OrthographicCamera();
+        b2dr = new Box2DDebugRenderer();
 
-        background = new TextureRegion(new Texture(Constants.BACKGROUND_PATH));
-        backgroundRegion = new TextureRegion(background, 0, 0, 1500, 800);
+        background = new TextureRegion(new Texture(Gdx.files.internal("background/mainmenu1.png")));
+        backgroundRegion = new TextureRegion(background, 0, 0, 1600, 900);
 
     }
 
@@ -35,7 +35,7 @@ public class MenuState extends State {
         sprite.disableBlending();
         sprite.begin();
 
-        sprite.draw(backgroundRegion,manager.getCamera().position.x - 160, manager.getCamera().position.y - 240, 320, 480);
+        sprite.draw(backgroundRegion, 0, 0, 1600, 900);
         sprite.end();
         sprite.enableBlending();
     }
