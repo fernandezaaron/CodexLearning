@@ -1,5 +1,6 @@
 package com.codex.learning.utility;
 
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -21,7 +22,9 @@ public class Manager {
         b2dr = new Box2DDebugRenderer();
 
         world = new World(new Vector2(0,-20),false);
+
         camera = new OrthographicCamera();
+        camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 
         states = new Stack<State>();
     }
@@ -62,4 +65,7 @@ public class Manager {
     }
 
 
+    public Camera getCamera() {
+        return camera;
+    }
 }
