@@ -31,7 +31,7 @@ public class MenuState extends State {
 
     @Override
     public void render(SpriteBatch sprite) {
-//        sprite.setProjectionMatrix(manager.getCamera().combined);
+        sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.disableBlending();
         sprite.begin();
 
