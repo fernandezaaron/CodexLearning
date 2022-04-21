@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.codex.learning.utility.Constants;
 
 public class Game extends ApplicationAdapter {
 	SpriteBatch batch;
@@ -12,7 +13,7 @@ public class Game extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		img = new Texture(Constants.BACKGROUND_PATH);
 	}
 
 	@Override
