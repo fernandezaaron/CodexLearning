@@ -16,8 +16,8 @@ public class MenuState extends State {
 
     public MenuState(Manager manager) {
         super(manager);
-        camera = new OrthographicCamera();
-        b2dr = new Box2DDebugRenderer();
+//        camera = new OrthographicCamera();
+//        b2dr = new Box2DDebugRenderer();
 
         background = new TextureRegion(new Texture(Constants.BACKGROUND_PATH));
         backgroundRegion = new TextureRegion(background, 0, 0, 1500, 800);
@@ -31,7 +31,7 @@ public class MenuState extends State {
 
     @Override
     public void render(SpriteBatch sprite) {
-        sprite.setProjectionMatrix(manager.getCamera().combined);
+//        sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.disableBlending();
         sprite.begin();
 

@@ -64,8 +64,7 @@ public class Manager {
 
     }
 
-
-    public Camera getCamera() {
+    public OrthographicCamera getCamera() {
         return camera;
     }
 }

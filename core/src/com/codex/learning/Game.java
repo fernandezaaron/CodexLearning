@@ -12,7 +12,7 @@ import com.codex.learning.utility.Manager;
 public class Game extends ApplicationAdapter {
 	SpriteBatch batch;
 	Manager manager;
-	
+
 	Texture img;
 	
 	@Override
