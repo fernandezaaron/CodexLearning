@@ -23,8 +23,8 @@ public class MenuState extends State {
     private TextureRegion background;
     private OrthographicCamera camera;
     private Box2DDebugRenderer b2dr;
-    Vector3 touchpoint;
-    Rectangle javaDeluxeBounds, recipeBounds, jediTrialBounds, quitGameBounds, soundBounds;
+    private Vector3 touchpoint;
+    private Rectangle javaDeluxeBounds, recipeBounds, jediTrialBounds, quitGameBounds, soundBounds;
 
     public MenuState(Manager manager) {
         super(manager);
@@ -77,19 +77,19 @@ public class MenuState extends State {
     public void input(){
         if(Gdx.input.justTouched()){
             manager.getCamera().unproject(touchpoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
-            if(soundBounds.contains(touchpoint.x + 170, touchpoint.y)){
+            if(soundBounds.contains(touchpoint.x  + Constants.SOUND_BOUND_X, touchpoint.y)){
                 System.out.println("You clicked at Sounds!");
             }
             if(javaDeluxeBounds.contains(touchpoint.x, touchpoint.y)){
                 System.out.println("You clicked at Java Deluxe!");
             }
-            if(recipeBounds.contains(touchpoint.x + 138, touchpoint.y + 72)){
+            if(recipeBounds.contains(touchpoint.x + Constants.RECIPE_BOUND_X, touchpoint.y + Constants.RECIPE_BOUND_Y)){
                 System.out.println("You clicked at JediGrandpa's Recipe!");
             }
-            if(jediTrialBounds.contains(touchpoint.x, touchpoint.y + 150)){
+            if(jediTrialBounds.contains(touchpoint.x, touchpoint.y + Constants.TRIAL_BOUND_Y)){
                 System.out.println("You clicked at Jedi Trials!");
             }
-            if(quitGameBounds.contains(touchpoint.x, touchpoint.y + 222)){
+            if(quitGameBounds.contains(touchpoint.x, touchpoint.y + Constants.QUIT_BOUND_Y)){
                 System.out.println("You clicked at Quit Game!");
             }
         }
@@ -98,20 +98,20 @@ public class MenuState extends State {
     public void drawObject(SpriteBatch sprite){
         manager.getCamera().unproject(touchpoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
-        if(soundBounds.contains(touchpoint.x + 170, touchpoint.y)){
-            sprite.draw(musicLogo, soundBounds.x - 586, soundBounds.y - 228,Constants.MUSIC_LOGO_WIDTH / 2, Constants.MUSIC_LOGO_HEIGHT / 2);
+        if(soundBounds.contains(touchpoint.x + Constants.SOUND_BOUND_X, touchpoint.y)){
+            sprite.draw(musicLogo, soundBounds.x - Constants.SOUND_ON_SCREEN_X, soundBounds.y - Constants.SOUND_ON_SCREEN_Y,Constants.MUSIC_LOGO_WIDTH / 2, Constants.MUSIC_LOGO_HEIGHT / 2);
         }
         if(javaDeluxeBounds.contains(touchpoint.x, touchpoint.y)){
-            sprite.draw(javaDeluxe, javaDeluxeBounds.x - 496, javaDeluxeBounds.y - 222,Constants.JAVA_DELUXE_WIDTH / 2, Constants.JAVA_DELUXE_HEIGHT / 2);
+            sprite.draw(javaDeluxe, javaDeluxeBounds.x - Constants.DELUXE_ON_SCREEN_X, javaDeluxeBounds.y - Constants.DELUXE_ON_SCREEN_Y,Constants.JAVA_DELUXE_WIDTH / 2, Constants.JAVA_DELUXE_HEIGHT / 2);
         }
-        if(recipeBounds.contains(touchpoint.x + 138, touchpoint.y + 72)){
-            sprite.draw(grandpaRecipe, recipeBounds.x - 572, recipeBounds.y - 262,Constants.GRANDPA_RECIPE_WIDTH / 2, Constants.GRANDPA_RECIPE_HEIGHT / 2);
+        if(recipeBounds.contains(touchpoint.x + Constants.RECIPE_BOUND_X, touchpoint.y + Constants.RECIPE_BOUND_Y)){
+            sprite.draw(grandpaRecipe, recipeBounds.x - Constants.RECIPE_ON_SCREEN_X, recipeBounds.y - Constants.RECIPE_ON_SCREEN_Y,Constants.GRANDPA_RECIPE_WIDTH / 2, Constants.GRANDPA_RECIPE_HEIGHT / 2);
         }
-        if(jediTrialBounds.contains(touchpoint.x, touchpoint.y + 150)){
-            sprite.draw(jediTrial, jediTrialBounds.x - 498, jediTrialBounds.y - 298,Constants.JEDI_TRIAL_WIDTH / 2, Constants.JEDI_TRIAL_HEIGHT / 2);
+        if(jediTrialBounds.contains(touchpoint.x, touchpoint.y + Constants.TRIAL_BOUND_Y)){
+            sprite.draw(jediTrial, jediTrialBounds.x - Constants.TRIAL_ON_SCREEN_X, jediTrialBounds.y - Constants.TRIAL_ON_SCREEN_Y,Constants.JEDI_TRIAL_WIDTH / 2, Constants.JEDI_TRIAL_HEIGHT / 2);
         }
-        if(quitGameBounds.contains(touchpoint.x, touchpoint.y + 222)){
-            sprite.draw(quitGame, quitGameBounds.x - 482, quitGameBounds.y - 337,Constants.QUIT_GAME_WIDTH / 2, Constants.QUIT_GAME_HEIGHT / 2);
+        if(quitGameBounds.contains(touchpoint.x, touchpoint.y + Constants.QUIT_BOUND_Y)){
+            sprite.draw(quitGame, quitGameBounds.x - Constants.QUIT_ON_SCREEN_X, quitGameBounds.y - Constants.QUIT_ON_SCREEN_Y,Constants.QUIT_GAME_WIDTH / 2, Constants.QUIT_GAME_HEIGHT / 2);
         }
     }
 

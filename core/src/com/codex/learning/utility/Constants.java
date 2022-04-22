@@ -47,4 +47,22 @@ public class Constants {
     public static final int TOUCH_POINT_X = (SCREEN_WIDTH - SCREEN_WIDTH / 2) + 200;
     public static final int TOUCH_POINT_Y = SCREEN_HEIGHT - SCREEN_HEIGHT / 2;
 
+    public static final int SOUND_BOUND_X = 170;
+    public static final int RECIPE_BOUND_X = 138;
+    public static final int RECIPE_BOUND_Y = 72;
+    public static final int TRIAL_BOUND_Y = 150;
+    public static final int QUIT_BOUND_Y = 222;
+
+    public static final int SOUND_ON_SCREEN_X = 586;
+    public static final int SOUND_ON_SCREEN_Y = 228;
+    public static final int DELUXE_ON_SCREEN_X = 496;
+    public static final int DELUXE_ON_SCREEN_Y = 222;
+    public static final int RECIPE_ON_SCREEN_X = 572;
+    public static final int RECIPE_ON_SCREEN_Y = 262;
+    public static final int TRIAL_ON_SCREEN_X = 498;
+    public static final int TRIAL_ON_SCREEN_Y = 298;
+    public static final int QUIT_ON_SCREEN_X = 482;
+    public static final int QUIT_ON_SCREEN_Y = 337;
+
+
 }
