@@ -27,10 +27,9 @@ public class Manager {
         world = new World(new Vector2(0,-20),false);
 
 
-        camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-//        camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+
+        camera = new OrthographicCamera(Constants.SCREEN_WIDTH, Constants.SCREEN_WIDTH);
         camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-//        camera.position.set(camera.viewportWidth, camera.viewportHeight, 0);
 
         states = new Stack<State>();
     }
