@@ -33,8 +33,9 @@ public class StageSelectState extends State{
         stages[7] = new Circle(1200, 160, 40);
         stages[8] = new Circle(1415, 160, 35);
         stages[9] = new Circle(1415, 330, 35);
-//        stages[10] = new Circle(1326, 181, 40);
-//        stages[11] = new Circle(1041, 171, 40);
+        // NOT DONE
+        stages[10] = new Circle(1326, 181, 40);
+        stages[11] = new Circle(1041, 171, 40);
 //        stages[12] = new Circle(728, 178, 40);
 //        stages[13] = new Circle(426, 178, 40);
 //        stages[14] = new Circle(90, 173, 40);
@@ -92,6 +93,12 @@ public class StageSelectState extends State{
             }
             if(stages[9].contains(touchpoint.x, touchpoint.y)){
                 System.out.println("You clicked at stage " + 10 + "!!");
+            }
+            if(stages[10].contains(touchpoint.x, touchpoint.y)){
+                System.out.println("You clicked at stage " + 11 + "!!");
+            }
+            if(stages[11].contains(touchpoint.x, touchpoint.y)){
+                System.out.println("You clicked at stage " + 12 + "!!");
             }
             //            }
         }
