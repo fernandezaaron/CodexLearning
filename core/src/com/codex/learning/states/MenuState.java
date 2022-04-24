@@ -21,16 +21,11 @@ public class MenuState extends State {
     private TextureRegion mainMenu;
     private TextureRegion musicLogo, javaDeluxe, grandpaRecipe, jediTrial, quitGame;
     private TextureRegion background;
-    private OrthographicCamera camera;
-    private Box2DDebugRenderer b2dr;
     private Vector3 touchpoint;
     private Rectangle javaDeluxeBounds, recipeBounds, jediTrialBounds, quitGameBounds, soundBounds;
 
     public MenuState(Manager manager) {
         super(manager);
-        camera = new OrthographicCamera();
-        b2dr = new Box2DDebugRenderer();
-
         background = new TextureRegion(new Texture(Constants.BACKGROUND_PATH));
         mainMenu = new TextureRegion(new Texture(Constants.MENU_TEXT_PATH));
 
@@ -55,22 +50,14 @@ public class MenuState extends State {
 
     @Override
     public void render(SpriteBatch sprite) {
-       // sprite.setProjectionMatrix(manager.getCamera().combined);
-        sprite.disableBlending();
         sprite.begin();
-
         sprite.draw(background, 0, 0, (Constants.SCREEN_WIDTH - Constants.SCREEN_WIDTH / 2), (Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 2));
-        sprite.end();
-        sprite.enableBlending();
-
-        sprite.begin();
         drawObject(sprite);
-        //sprite.draw(javaDeluxe, 505, 221, Constants.JAVA_DELUXE_WIDTH / 2, Constants.JAVA_DELUXE_HEIGHT / 2);
-//        sprite.draw(grandpaRecipe, 428, 189, Constants.GRANDPA_RECIPE_WIDTH / 2, Constants.GRANDPA_RECIPE_HEIGHT / 2);
-//        sprite.draw(jediTrial, 503, 152, Constants.JEDI_TRIAL_WIDTH / 2, Constants.JEDI_TRIAL_HEIGHT / 2);
-//        sprite.draw(quitGame, 518, 120, Constants.QUIT_GAME_WIDTH / 2, Constants.QUIT_GAME_HEIGHT / 2);
-//        sprite.draw(musicLogo, 414, 115, Constants.MUSIC_LOGO_WIDTH / 2, Constants. MUSIC_LOGO_HEIGHT / 2);
         sprite.end();
+    }
+
+    @Override
+    public void dispose() {
 
     }
 
@@ -81,7 +68,7 @@ public class MenuState extends State {
                 System.out.println("You clicked at Sounds!");
             }
             if(javaDeluxeBounds.contains(touchpoint.x, touchpoint.y)){
-                System.out.println("You clicked at Java Deluxe!");
+                manager.set(new StageSelectState(manager));
             }
             if(recipeBounds.contains(touchpoint.x + Constants.RECIPE_BOUND_X, touchpoint.y + Constants.RECIPE_BOUND_Y)){
                 System.out.println("You clicked at JediGrandpa's Recipe!");
@@ -113,12 +100,5 @@ public class MenuState extends State {
         if(quitGameBounds.contains(touchpoint.x, touchpoint.y + Constants.QUIT_BOUND_Y)){
             sprite.draw(quitGame, quitGameBounds.x - Constants.QUIT_ON_SCREEN_X, quitGameBounds.y - Constants.QUIT_ON_SCREEN_Y,Constants.QUIT_GAME_WIDTH / 2, Constants.QUIT_GAME_HEIGHT / 2);
         }
-    }
-
-
-
-    @Override
-    public void dispose() {
-
     }
 }

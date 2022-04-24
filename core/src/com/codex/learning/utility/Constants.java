@@ -16,6 +16,8 @@ public class Constants {
     // MAP ASSET PATH
     public static final String STAGE_SELECT_PATH = "map/stageselect.png";
 
+//    MENU STATE
+
     // JAVA DELUXE X, Y, WIDTH, HEIGHT
     public static final int JAVA_DELUXE_X = 185;
     public static final int JAVA_DELUXE_Y = 186;
@@ -66,6 +68,19 @@ public class Constants {
     public static final int TRIAL_ON_SCREEN_Y = 298;
     public static final int QUIT_ON_SCREEN_X = 482;
     public static final int QUIT_ON_SCREEN_Y = 337;
+
+//    END OF MENU STATE
+
+//    STAGE SELECT STATE
+
+    //STAGE SELECT POINTS
+//    public static final int STAGE_1_1_X =
+//    public static final int STAGE_1_1_Y =
+//    public static final int STAGE_1_1_W =
+//    public static final int STAGE_1_1_H =
+
+
+//    END OF STAGE SELECT STATE
 
 
 
