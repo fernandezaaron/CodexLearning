@@ -17,7 +17,6 @@ public class Manager {
     private final OrthographicCamera camera;
     private final Stack<State> states;
     private Box2DDebugRenderer b2dr;
-    private ExtendViewport extendViewport;
 
     public Manager(){
 

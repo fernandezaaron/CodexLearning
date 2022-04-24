@@ -10,8 +10,11 @@ public class Constants {
     // BACKGROUND ASSET PATH
     public static final String BACKGROUND_PATH = "background/mainmenu1.png";
 
-    // MAIN MENU ASSET PATH
+    // TEXT ASSET PATH
     public static final String MENU_TEXT_PATH = "text/textsheet.png";
+
+    // MAP ASSET PATH
+    public static final String STAGE_SELECT_PATH = "map/stageselect.png";
 
     // JAVA DELUXE X, Y, WIDTH, HEIGHT
     public static final int JAVA_DELUXE_X = 185;
