@@ -52,10 +52,10 @@ public class MenuState extends State {
     @Override
     public void render(SpriteBatch sprite) {
         manager.getCamera().update();
+
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.draw(background, 0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-
         drawObject(sprite);
         sprite.end();
     }

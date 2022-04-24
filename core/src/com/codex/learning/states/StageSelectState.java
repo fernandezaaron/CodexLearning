@@ -14,7 +14,7 @@ public class StageSelectState extends State{
 
     private TextureRegion stageSelect;
     private Vector3 touchpoint;
-    private Rectangle stages[] = new Rectangle[15];
+    private Rectangle stages[] = new Rectangle[18];
 
     public StageSelectState(Manager manager){
         super(manager);
