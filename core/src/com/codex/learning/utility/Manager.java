@@ -27,9 +27,9 @@ public class Manager {
         world = new World(new Vector2(0,-20),false);
 
 
-        camera = new OrthographicCamera();
+        camera = new OrthographicCamera(Constants.SCREEN_WIDTH, Constants.SCREEN_WIDTH);
         camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-
+//        camera.translate(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2);
         states = new Stack<State>();
     }
 
