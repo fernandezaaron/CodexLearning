@@ -24,23 +24,23 @@ public class StageSelectState extends State{
 
         touchpoint = new Vector3();
         stages[0] = new Circle(67, 130, 40);
-        stages[1] = new Circle(230, 130, 40);
-        stages[2] = new Circle(450, 130, 40);
-//        stages[3] = new Circle(529, 639, 72);
-//        stages[4] = new Circle(777, 639, 72);
-//        stages[5] = new Circle(994, 641, 72);
-//        stages[6] = new Circle(1152, 708, 72);
-//        stages[7] = new Circle(1377, 704, 72);
-//        stages[8] = new Circle(1379, 534, 72);
-//        stages[9] = new Circle(1329, 399, 72);
-//        stages[10] = new Circle(1326, 181, 72);
-//        stages[11] = new Circle(1041, 171, 72);
-//        stages[12] = new Circle(728, 178, 72);
-//        stages[13] = new Circle(426, 178, 72);
-//        stages[14] = new Circle(90, 173, 72);
-//        stages[15] = new Circle(90, 173, 72);
-//        stages[16] = new Circle(90, 173, 72);
-//        stages[17] = new Circle(90, 173, 72);
+        stages[1] = new Circle(230, 132, 40);
+        stages[2] = new Circle(450, 138, 40);
+        stages[3] = new Circle(570, 220, 40);
+        stages[4] = new Circle(792, 225, 40);
+        stages[5] = new Circle(910, 225, 40);
+        stages[6] = new Circle(1030, 225, 40);
+        stages[7] = new Circle(1200, 160, 40);
+        stages[8] = new Circle(1415, 160, 35);
+        stages[9] = new Circle(1415, 330, 35);
+//        stages[10] = new Circle(1326, 181, 40);
+//        stages[11] = new Circle(1041, 171, 40);
+//        stages[12] = new Circle(728, 178, 40);
+//        stages[13] = new Circle(426, 178, 40);
+//        stages[14] = new Circle(90, 173, 40);
+//        stages[15] = new Circle(90, 173, 40);
+//        stages[16] = new Circle(90, 173, 40);
+//        stages[17] = new Circle(90, 173, 40);
     }
     @Override
     public void update(float delta) {
@@ -63,20 +63,37 @@ public class StageSelectState extends State{
         if(Gdx.input.justTouched()){
             manager.getCamera().unproject(touchpoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 //            for(int i = 0; i < stages.length; i++){
-//                System.out.println(stages[i].getX() + " - " +  stages[i].getY());
-//                System.out.println(stages[i].getWidth() + " - " +  stages[i].getHeight());
-
-                System.out.println("TOUCH - " + touchpoint.x + " - " + touchpoint.y);
-                if(stages[0].contains(touchpoint.x, touchpoint.y)){
-                    System.out.println("You clicked at stage " + 1 + "!!");
-                }
+            if(stages[0].contains(touchpoint.x, touchpoint.y)){
+                System.out.println("You clicked at stage " + 1 + "!!");
+            }
             if(stages[1].contains(touchpoint.x, touchpoint.y)){
                 System.out.println("You clicked at stage " + 2 + "!!");
             }
             if(stages[2].contains(touchpoint.x, touchpoint.y)){
                 System.out.println("You clicked at stage " + 3 + "!!");
             }
-//            }
+            if(stages[3].contains(touchpoint.x, touchpoint.y)){
+                System.out.println("You clicked at stage " + 4 + "!!");
+            }
+            if(stages[4].contains(touchpoint.x, touchpoint.y)){
+                System.out.println("You clicked at stage " + 5 + "!!");
+            }
+            if(stages[5].contains(touchpoint.x, touchpoint.y)){
+                System.out.println("You clicked at stage " + 6 + "!!");
+            }
+            if(stages[6].contains(touchpoint.x, touchpoint.y)){
+                System.out.println("You clicked at stage " + 7 + "!!");
+            }
+            if(stages[7].contains(touchpoint.x, touchpoint.y)){
+                System.out.println("You clicked at stage " + 8 + "!!");
+            }
+            if(stages[8].contains(touchpoint.x, touchpoint.y)){
+                System.out.println("You clicked at stage " + 9 + "!!");
+            }
+            if(stages[9].contains(touchpoint.x, touchpoint.y)){
+                System.out.println("You clicked at stage " + 10 + "!!");
+            }
+            //            }
         }
     }
 
