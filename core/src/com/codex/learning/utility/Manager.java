@@ -24,7 +24,7 @@ public class Manager {
         b2dr = new Box2DDebugRenderer();
 
 
-        world = new World(new Vector2(0,-20),false);
+        world = new World(new Vector2(0,0),false);
 
 
 
