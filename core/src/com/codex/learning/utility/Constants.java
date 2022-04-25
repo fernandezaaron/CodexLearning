@@ -16,6 +16,9 @@ public class Constants {
     // MAP ASSET PATH
     public static final String STAGE_SELECT_PATH = "map/stageselect.png";
 
+    // BLOCK ASSET PATH
+    public static final String UTILITY_SHEET_PATH = "block/utilitysheet.png";
+
 //    MENU STATE
 
     // JAVA DELUXE X, Y, WIDTH, HEIGHT
@@ -100,6 +103,14 @@ public class Constants {
     public static final int STAGE_1_16_Y = 690;
     public static final int STAGE_1_17_X = 130;
     public static final int STAGE_1_17_Y = 690;
+
+    public static final int GRAY_CIRCLE_X = 231;
+    public static final int GRAY_CIRCLE_Y = 34;
+    public static final int ORANGE_CIRCLE_X = 142;
+    public static final int ORANGE_CIRCLE_Y = 31;
+
+    public static final int CIRCLE_R = 60;
+
 
 //    END OF STAGE SELECT STATE
 

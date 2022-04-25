@@ -18,9 +18,8 @@ import java.awt.*;
 
 public class MenuState extends State {
 
-    private TextureRegion mainMenu;
+    private TextureRegion mainMenu, background;
     private TextureRegion musicLogo, javaDeluxe, grandpaRecipe, jediTrial, quitGame;
-    private TextureRegion background;
     private Vector3 touchpoint;
     private Rectangle javaDeluxeBounds, recipeBounds, jediTrialBounds, quitGameBounds, soundBounds;
 
