@@ -10,8 +10,16 @@ public class Constants {
     // BACKGROUND ASSET PATH
     public static final String BACKGROUND_PATH = "background/mainmenu1.png";
 
-    // MAIN MENU ASSET PATH
+    // TEXT ASSET PATH
     public static final String MENU_TEXT_PATH = "text/textsheet.png";
+
+    // MAP ASSET PATH
+    public static final String STAGE_SELECT_PATH = "map/stageselect.png";
+
+    // BLOCK ASSET PATH
+    public static final String UTILITY_SHEET_PATH = "block/utilitysheet.png";
+
+//    MENU STATE
 
     // JAVA DELUXE X, Y, WIDTH, HEIGHT
     public static final int JAVA_DELUXE_X = 185;
@@ -42,5 +50,70 @@ public class Constants {
     public static final int MUSIC_LOGO_Y = 174;
     public static final int MUSIC_LOGO_WIDTH = 57;
     public static final int MUSIC_LOGO_HEIGHT = 60;
+
+    // MENUSTATE TOUCHPOINT X, Y
+    public static final int SOUND_ON_SCREEN_X = 827;
+    public static final int SOUND_ON_SCREEN_Y = 445;
+    public static final int DELUXE_ON_SCREEN_X = 1007;
+    public static final int DELUXE_ON_SCREEN_Y = 455;
+    public static final int RECIPE_ON_SCREEN_X = 855;
+    public static final int RECIPE_ON_SCREEN_Y = 377;
+    public static final int TRIAL_ON_SCREEN_X = 1003;
+    public static final int TRIAL_ON_SCREEN_Y = 304;
+    public static final int QUIT_ON_SCREEN_X = 1034;
+    public static final int QUIT_ON_SCREEN_Y = 226;
+
+//    END OF MENU STATE
+
+//    STAGE SELECT STATE
+
+    //STAGE SELECT POINTS
+    public static final int STAGE_RADIUS = 39;
+    public static final int STAGE_1_1_X = 67;
+    public static final int STAGE_1_1_Y = 135;
+    public static final int STAGE_1_2_X = 232;
+    public static final int STAGE_1_2_Y = 135;
+    public static final int STAGE_1_3_X = 450;
+    public static final int STAGE_1_3_Y = 135;
+    public static final int STAGE_1_4_X = 570;
+    public static final int STAGE_1_4_Y = 222;
+    public static final int STAGE_1_5_X = 795;
+    public static final int STAGE_1_5_Y = 227;
+    public static final int STAGE_1_6_X = 910;
+    public static final int STAGE_1_6_Y = 227;
+    public static final int STAGE_1_7_X = 1030;
+    public static final int STAGE_1_7_Y = 227;
+    public static final int STAGE_1_8_X = 1190;
+    public static final int STAGE_1_8_Y = 160;
+    public static final int STAGE_1_9_X = 1410;
+    public static final int STAGE_1_9_Y = 160;
+    public static final int STAGE_1_10_X = 1410;
+    public static final int STAGE_1_10_Y = 330;
+    public static final int STAGE_1_11_X = 1366;
+    public static final int STAGE_1_11_Y = 455;
+    public static final int STAGE_1_12_X = 1366;
+    public static final int STAGE_1_12_Y = 690;
+    public static final int STAGE_1_13_X = 1150;
+    public static final int STAGE_1_13_Y = 690;
+    public static final int STAGE_1_14_X = 970;
+    public static final int STAGE_1_14_Y = 690;
+    public static final int STAGE_1_15_X = 690;
+    public static final int STAGE_1_15_Y = 690;
+    public static final int STAGE_1_16_X = 415;
+    public static final int STAGE_1_16_Y = 690;
+    public static final int STAGE_1_17_X = 130;
+    public static final int STAGE_1_17_Y = 690;
+
+    public static final int GRAY_CIRCLE_X = 231;
+    public static final int GRAY_CIRCLE_Y = 34;
+    public static final int ORANGE_CIRCLE_X = 142;
+    public static final int ORANGE_CIRCLE_Y = 31;
+
+    public static final int CIRCLE_R = 60;
+
+
+//    END OF STAGE SELECT STATE
+
+
 
 }
