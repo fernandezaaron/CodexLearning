@@ -74,7 +74,7 @@ public class StageSelectState extends State{
         manager.getCamera().unproject(touchpoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
         for(int i = 0; i < stages.length; i++){
             if(stages[i].contains(touchpoint.x, touchpoint.y)){
-                System.out.println("You clicked at stage " + stages[i] + "!!");
+                System.out.println("You clicked at stage " + (i + 1) + "!!");
             }
         }
 
