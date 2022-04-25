@@ -24,8 +24,8 @@ public class StageSelectState extends State{
         stageSelect = new TextureRegion(new Texture(Constants.STAGE_SELECT_PATH));
         utility = new TextureRegion(new Texture(Constants.UTILITY_SHEET_PATH));
 
-        orangeCircle = new TextureRegion(utility, Constants.ORANGE_CIRCLE_X, Constants.ORANGE_CIRCLE_Y, Constants.CIRCLE_R, Constants.CIRCLE_R);
-        grayCircle = new TextureRegion(utility, Constants.GRAY_CIRCLE_X, Constants.GRAY_CIRCLE_Y, Constants.CIRCLE_R, Constants.CIRCLE_R);
+        orangeCircle = new TextureRegion(utility, Constants.ORANGE_CIRCLE_X, Constants.ORANGE_CIRCLE_Y, Constants.ORANGE_CIRCLE_R, Constants.ORANGE_CIRCLE_R);
+        grayCircle = new TextureRegion(utility, Constants.GRAY_CIRCLE_X, Constants.GRAY_CIRCLE_Y, Constants.GRAY_CIRCLE_R, Constants.GRAY_CIRCLE_R);
 
         touchpoint = new Vector3();
         stages[0] = new Circle(Constants.STAGE_1_1_X, Constants.STAGE_1_1_Y, Constants.STAGE_RADIUS);
@@ -79,7 +79,11 @@ public class StageSelectState extends State{
     public void drawObject(SpriteBatch sprite){
         manager.getCamera().unproject(touchpoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
         for(int i = 0; i < stages.length; i++){
-                sprite.draw(grayCircle, stages[i].x - Constants.CIRCLE_R / 2, stages[i].y - Constants.CIRCLE_R / 2, Constants.CIRCLE_R, Constants.CIRCLE_R);
+                sprite.draw(orangeCircle, stages[i].x - Constants.ORANGE_CIRCLE_R / 2, stages[i].y - Constants.ORANGE_CIRCLE_R / 2, Constants.ORANGE_CIRCLE_R, Constants.ORANGE_CIRCLE_R);
+                if(stages[i].contains(touchpoint.x, touchpoint.y)){
+                    sprite.draw(grayCircle, (stages[i].x - Constants.GRAY_CIRCLE_R / 2) , (stages[i].y - Constants.GRAY_CIRCLE_R / 2), Constants.GRAY_CIRCLE_R, Constants.GRAY_CIRCLE_R);
+                }
+
 
         }
     }

@@ -14,7 +14,7 @@ public class Constants {
     public static final String MENU_TEXT_PATH = "text/textsheet.png";
 
     // MAP ASSET PATH
-    public static final String STAGE_SELECT_PATH = "map/stageselect.png";
+    public static final String STAGE_SELECT_PATH = "map/stageselectmap2.png";
 
     // BLOCK ASSET PATH
     public static final String UTILITY_SHEET_PATH = "block/utilitysheet.png";
@@ -106,10 +106,11 @@ public class Constants {
 
     public static final int GRAY_CIRCLE_X = 231;
     public static final int GRAY_CIRCLE_Y = 34;
-    public static final int ORANGE_CIRCLE_X = 142;
-    public static final int ORANGE_CIRCLE_Y = 31;
+    public static final int ORANGE_CIRCLE_X = 134;
+    public static final int ORANGE_CIRCLE_Y = 25;
 
-    public static final int CIRCLE_R = 60;
+    public static final int ORANGE_CIRCLE_R = 72;
+    public static final int GRAY_CIRCLE_R = 60;
 
 
 //    END OF STAGE SELECT STATE
