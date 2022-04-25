@@ -23,25 +23,25 @@ public class StageSelectState extends State{
         stageSelect = new TextureRegion(new Texture(Constants.STAGE_SELECT_PATH));
 
         touchpoint = new Vector3();
-        stages[0] = new Circle(67, 130, 40);
-        stages[1] = new Circle(230, 132, 40);
-        stages[2] = new Circle(450, 138, 40);
-        stages[3] = new Circle(570, 220, 40);
-        stages[4] = new Circle(792, 225, 40);
-        stages[5] = new Circle(910, 225, 40);
-        stages[6] = new Circle(1030, 225, 40);
-        stages[7] = new Circle(1200, 160, 40);
-        stages[8] = new Circle(1415, 160, 35);
-        stages[9] = new Circle(1415, 330, 35);
+        stages[0] = new Circle(67, 135, 38);
+        stages[1] = new Circle(232, 135, 38);
+        stages[2] = new Circle(450, 135, 38);
+        stages[3] = new Circle(570, 222, 38);
+        stages[4] = new Circle(795, 227, 38);
+        stages[5] = new Circle(910, 227, 38);
+        stages[6] = new Circle(1030, 227, 38);
+        stages[7] = new Circle(1190, 160, 38);
+        stages[8] = new Circle(1410, 160, 38);
+        stages[9] = new Circle(1410, 330, 38);
         // NOT DONE
-        stages[10] = new Circle(1326, 181, 40);
-        stages[11] = new Circle(1041, 171, 40);
-//        stages[12] = new Circle(728, 178, 40);
-//        stages[13] = new Circle(426, 178, 40);
-//        stages[14] = new Circle(90, 173, 40);
-//        stages[15] = new Circle(90, 173, 40);
-//        stages[16] = new Circle(90, 173, 40);
-//        stages[17] = new Circle(90, 173, 40);
+        stages[10] = new Circle(1366, 455, 38);
+        stages[11] = new Circle(1366, 690, 38);
+//        stages[12] = new Circle(728, 690, 38);
+//        stages[13] = new Circle(426, 690, 38);
+//        stages[14] = new Circle(90, 690, 38);
+//        stages[15] = new Circle(90, 690, 38);
+//        stages[16] = new Circle(90, 690, 38);
+//        stages[17] = new Circle(90, 690, 38);
     }
     @Override
     public void update(float delta) {
@@ -99,6 +99,24 @@ public class StageSelectState extends State{
             }
             if(stages[11].contains(touchpoint.x, touchpoint.y)){
                 System.out.println("You clicked at stage " + 12 + "!!");
+            }
+            if(stages[12].contains(touchpoint.x, touchpoint.y)){
+                System.out.println("You clicked at stage " + 13 + "!!");
+            }
+            if(stages[13].contains(touchpoint.x, touchpoint.y)){
+                System.out.println("You clicked at stage " + 14 + "!!");
+            }
+            if(stages[14].contains(touchpoint.x, touchpoint.y)){
+                System.out.println("You clicked at stage " + 15 + "!!");
+            }
+            if(stages[15].contains(touchpoint.x, touchpoint.y)){
+                System.out.println("You clicked at stage " + 16 + "!!");
+            }
+            if(stages[16].contains(touchpoint.x, touchpoint.y)){
+                System.out.println("You clicked at stage " + 17 + "!!");
+            }
+            if(stages[17].contains(touchpoint.x, touchpoint.y)){
+                System.out.println("You clicked at stage " + 18 + "!!");
             }
             //            }
         }
