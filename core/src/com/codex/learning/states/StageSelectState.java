@@ -79,12 +79,10 @@ public class StageSelectState extends State{
     public void drawObject(SpriteBatch sprite){
         manager.getCamera().unproject(touchpoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
         for(int i = 0; i < stages.length; i++){
-                sprite.draw(orangeCircle, stages[i].x - Constants.ORANGE_CIRCLE_R / 2, stages[i].y - Constants.ORANGE_CIRCLE_R / 2, Constants.ORANGE_CIRCLE_R, Constants.ORANGE_CIRCLE_R);
-                if(stages[i].contains(touchpoint.x, touchpoint.y)){
-                    sprite.draw(grayCircle, (stages[i].x - Constants.GRAY_CIRCLE_R / 2) , (stages[i].y - Constants.GRAY_CIRCLE_R / 2), Constants.GRAY_CIRCLE_R, Constants.GRAY_CIRCLE_R);
-                }
-
-
+            sprite.draw(orangeCircle, stages[i].x - Constants.ORANGE_CIRCLE_R / 2, stages[i].y - Constants.ORANGE_CIRCLE_R / 2, Constants.ORANGE_CIRCLE_R, Constants.ORANGE_CIRCLE_R);
+            if(stages[i].contains(touchpoint.x, touchpoint.y)){
+                sprite.draw(grayCircle, (stages[i].x - Constants.GRAY_CIRCLE_R / 2) , (stages[i].y - Constants.GRAY_CIRCLE_R / 2), Constants.GRAY_CIRCLE_R, Constants.GRAY_CIRCLE_R);
+            }
         }
     }
 }
