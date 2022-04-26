@@ -9,6 +9,7 @@ public class Constants {
 
     // BACKGROUND ASSET PATH
     public static final String BACKGROUND_PATH = "background/mainmenu1.png";
+    public static final String STAGE1_PATH = "map/house.png";
 
     // TEXT ASSET PATH
     public static final String MENU_TEXT_PATH = "text/textsheet.png";
@@ -18,6 +19,9 @@ public class Constants {
 
     // BLOCK ASSET PATH
     public static final String UTILITY_SHEET_PATH = "block/utilitysheet.png";
+
+    // JEDISAUR ASSET PATH
+    public static final String CHARACTER_SHEET_PATH = "character/jedisaurspritesheet.png";
 
 //    MENU STATE
 
@@ -115,6 +119,14 @@ public class Constants {
 
 //    END OF STAGE SELECT STATE
 
+    //ENTITIES
+
+    public static final int JEDI_STAND_X = 0;
+    public static final int JEDI_STAND_Y = 0;
+    public static final int JEDI_STAND_HEIGHT = 114;
+    public static final int JEDI_STAND_WIDTH = 79;
+
+    //END OF ENTITIES
 
 
 }
