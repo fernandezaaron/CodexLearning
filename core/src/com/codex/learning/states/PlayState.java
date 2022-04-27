@@ -17,7 +17,7 @@ public class PlayState extends State{
         super(manager);
         character = new Jedisaur(manager);
         stage1 = new TextureRegion(new Texture(Constants.STAGE1_PATH));
-        character.create(new Vector2(0,0),new Vector2(64,64),1.6f);
+        character.create(new Vector2(0,0),new Vector2(32,32),1.6f);
 
     }
 

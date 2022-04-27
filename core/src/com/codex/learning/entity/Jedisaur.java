@@ -8,7 +8,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.codex.learning.utility.Animation;
@@ -19,6 +21,8 @@ public class Jedisaur extends entity{
     Animation front, walk_front, walk_up, walk_right;
     private Rectangle rect;
     TextureRegion jedisaur;
+    Box2DDebugRenderer b2dr;
+    private float maxPosY;
 
 
     public Jedisaur(Manager manager) {
@@ -42,6 +46,8 @@ public class Jedisaur extends entity{
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(this.size.x, this.size.y);
 
+        b2dr = new Box2DDebugRenderer();
+
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.density = density;
         fixtureDef.shape = shape;
@@ -59,9 +65,21 @@ public class Jedisaur extends entity{
         walk_up = new Animation(spritesheet, 80,230,160,114,2,1,false);
         walk_right = new Animation(spritesheet, 80, 115, 160, 114,2,1,false);
 
+        maxPosY = body.getPosition().y;
 
 
+    }
+    private void cameraUpdate(){
 
+        if (maxPosY < body.getPosition().y) {
+            maxPosY = body.getPosition().y;
+        }
+
+        Vector3 position = manager.getCamera().position;
+        position.x = this.position.x * Constants.PPM;
+        position.y = maxPosY * Constants.PPM;
+        manager.getCamera().position.set(position);
+        manager.getCamera().update();
     }
 
     @Override
@@ -79,6 +97,7 @@ public class Jedisaur extends entity{
         else{
             front.update(delta);
         }
+        cameraUpdate();
         input(delta);
     }
     private boolean isLeft = false;
@@ -94,16 +113,16 @@ public class Jedisaur extends entity{
         if(Gdx.input.isKeyPressed(Input.Keys.D)){
             horizontalForce += 1;
             System.out.println("moving right");
-
         }
+
         if(Gdx.input.isKeyPressed(Input.Keys.W)){
             verticalForce += 1;
             System.out.println("moving up");
         }
+
         if(Gdx.input.isKeyPressed(Input.Keys.S)){
             verticalForce -= 1;
             System.out.println("moving down");
-
         }
 
         body.setLinearVelocity(horizontalForce * 5, body.getLinearVelocity().y);
@@ -112,20 +131,25 @@ public class Jedisaur extends entity{
 
     @Override
     public void render(SpriteBatch sprite) {
+
+        b2dr.render(manager.getWorld(), manager.getCamera().combined.scl(Constants.PPM));
         sprite.enableBlending();
+        sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.begin();
 
         if(Gdx.input.isKeyPressed(Input.Keys.S)){
-            sprite.draw(walk_front.getFrame(), body.getPosition().x * Constants.PPM, body.getPosition().y * Constants.PPM);
+            sprite.draw(walk_front.getFrame(), body.getPosition().x * Constants.PPM - ((float)walk_front.getFrame().getRegionWidth()/2)
+                    , body.getPosition().y * Constants.PPM - ((float)walk_front.getFrame().getRegionHeight()/2));
         }
         else if(Gdx.input.isKeyPressed(Input.Keys.W)){
-            sprite.draw(walk_up.getFrame(), body.getPosition().x * Constants.PPM, body.getPosition().y * Constants.PPM);
+            sprite.draw(walk_up.getFrame(), body.getPosition().x * Constants.PPM , body.getPosition().y * Constants.PPM);
         }
         else if(Gdx.input.isKeyPressed(Input.Keys.D)){
             sprite.draw(walk_right.getFrame(), body.getPosition().x * Constants.PPM, body.getPosition().y * Constants.PPM);
         }
         else {
-            sprite.draw(front.getFrame(), body.getPosition().x * Constants.PPM, body.getPosition().y * Constants.PPM);
+            sprite.draw(front.getFrame(), body.getPosition().x * Constants.PPM - ((float) front.getFrame().getRegionWidth()/2),
+                    body.getPosition().y * Constants.PPM - ((float) front.getFrame().getRegionHeight()/2));
         }
         //System.out.println(body.getPosition().x + " " + body.getPosition().y);
         sprite.end();
