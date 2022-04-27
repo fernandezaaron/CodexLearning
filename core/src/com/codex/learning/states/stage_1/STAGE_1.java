@@ -17,7 +17,7 @@ public class STAGE_1 extends JFrame implements KeyListener{
         this.setResizable(false);
 
         // BACKGROUND IMAGE
-        BACKGROUND = new ImageIcon("src\\com\\codex\\learning\\stage_1\\house.png");
+        BACKGROUND = new ImageIcon("src\\com\\codex\\learning\\states\\stage_1\\house.png"); // FILE PATH
         Image TEMP = BACKGROUND.getImage();
         Image TEMP_BACKGROUND = TEMP.getScaledInstance(1200,660,Image.SCALE_SMOOTH);
         BACKGROUND = new ImageIcon(TEMP_BACKGROUND);
