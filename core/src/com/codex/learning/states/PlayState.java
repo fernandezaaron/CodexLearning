@@ -1,5 +1,6 @@
 package com.codex.learning.states;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -28,8 +29,11 @@ public class PlayState extends State{
 
     @Override
     public void render(SpriteBatch sprite) {
+        manager.getCamera().update();
+
         sprite.begin();
-        sprite.draw(stage1, 0,0,Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        sprite.setProjectionMatrix(manager.getCamera().combined);
+        sprite.draw(stage1, manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f,manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f,Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 
         sprite.end();
         character.render(sprite);
