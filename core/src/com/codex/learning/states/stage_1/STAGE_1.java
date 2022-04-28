@@ -55,33 +55,33 @@ public class STAGE_1 extends Game {
                 System.out.print("W");
                 JEDISAUR_Y += Gdx.graphics.getDeltaTime() * SPEED;
                 if (WALK_COUNTER == 1) {
-                    JEDISAUR_H = 50;		// Example for walking animation
+                   // JEDISAUR_H = 50;		// Example for walking animation
                 } else if (WALK_COUNTER == 2) {
-                    JEDISAUR_H = 100;		// Example for walking animation
+                  //  JEDISAUR_H = 100;		// Example for walking animation
                 }
             } else if (Gdx.input.isKeyPressed(Input.Keys.S)) {
                 System.out.print("S");
                 JEDISAUR_Y -= Gdx.graphics.getDeltaTime() * SPEED;
                 if (WALK_COUNTER == 1) {
-                    JEDISAUR_H = 30;		// Example for walking animation
+                  //  JEDISAUR_H = 30;		// Example for walking animation
                 } else if (WALK_COUNTER == 2) {
-                    JEDISAUR_H = 90;		// Example for walking animation
+                  //  JEDISAUR_H = 90;		// Example for walking animation
                 }
             } else if (Gdx.input.isKeyPressed(Input.Keys.A)) {
                 System.out.print("A");
                 JEDISAUR_X -= Gdx.graphics.getDeltaTime() * SPEED;
                 if (WALK_COUNTER == 1) {
-                    JEDISAUR_W = 50;		// Example for walking animation
+                 //   JEDISAUR_W = 50;		// Example for walking animation
                 } else if (WALK_COUNTER == 2) {
-                    JEDISAUR_W = 100;		// Example for walking animation
+                 //   JEDISAUR_W = 100;		// Example for walking animation
                 }
             } else if (Gdx.input.isKeyPressed(Input.Keys.D)) {
                 System.out.print("D");
                 JEDISAUR_X += Gdx.graphics.getDeltaTime() * SPEED;
                 if (WALK_COUNTER == 1) {
-                    JEDISAUR_W = 30;		// Example for walking animation
+                 //   JEDISAUR_W = 30;		// Example for walking animation
                 } else if (WALK_COUNTER == 2) {
-                    JEDISAUR_W = 90;		// Example for walking animation
+                 //   JEDISAUR_W = 90;		// Example for walking animation
                 }
             }
             STAGE.end();
