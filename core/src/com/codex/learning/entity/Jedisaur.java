@@ -136,7 +136,7 @@ public class Jedisaur extends entity{
         sprite.enableBlending();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.begin();
-        sprite.draw(jedisaur, body.getPosition().x, body.getPosition().y, 16,16);
+        sprite.draw(jedisaur, body.getPosition().x * Constants.PPM, body.getPosition().y * Constants.PPM, 3,3);
 
 //        if(Gdx.input.isKeyPressed(Input.Keys.S)){
 //            sprite.draw(walk_front.getFrame(), body.getPosition().x * Constants.PPM - ((float)walk_front.getFrame().getRegionWidth()/2)
