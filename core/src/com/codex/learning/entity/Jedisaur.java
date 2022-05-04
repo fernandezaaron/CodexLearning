@@ -147,7 +147,7 @@ public class Jedisaur extends entity{
 
     @Override
     public void render(SpriteBatch sprite) {
-
+        //cute si aaron
         // b2dr.render(manager.getWorld(), manager.getCamera().combined.scl(Constants.PPM));
         sprite.enableBlending();
         sprite.setProjectionMatrix(manager.getCamera().combined);
