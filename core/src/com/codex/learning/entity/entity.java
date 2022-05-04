@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.codex.learning.utility.Manager;
 
 public abstract class entity {
+    //enitty
     protected Manager manager;
     protected int density;
     protected Body body;
