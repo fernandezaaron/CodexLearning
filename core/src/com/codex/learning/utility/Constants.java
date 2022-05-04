@@ -1,6 +1,7 @@
 package com.codex.learning.utility;
 
 public class Constants {
+    //constants
     public static final String GAME_TITLE = "Codex Learning";
     public static final int PPM = 32;
     // WINDOW SCREEN
