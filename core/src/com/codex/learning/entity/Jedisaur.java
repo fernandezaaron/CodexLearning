@@ -38,7 +38,7 @@ public class Jedisaur extends entity{
         def.type = BodyDef.BodyType.DynamicBody;
         def.position.set(this.position);
         def.fixedRotation = true;
-        body = manager.getWorld().createBody(def);
+
 
         this.size.x /= Constants.PPM;
         this.size.y /= Constants.PPM;
@@ -51,19 +51,25 @@ public class Jedisaur extends entity{
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.density = density;
         fixtureDef.shape = shape;
-        body.createFixture(fixtureDef).setUserData("body");
+        fixtureDef.friction = 0.75f;
+
         System.out.println("Body Created!");
+
+        body = manager.getWorld().createBody(def);
+        body.createFixture(fixtureDef);
         shape.dispose();
+
+
 
 
         TextureRegion spritesheet = new TextureRegion(new Texture(Constants.CHARACTER_SHEET_PATH));
         //rect = new Rectangle(150,10,Constants.JEDI_STAND_WIDTH, Constants.JEDI_STAND_HEIGHT);
-        jedisaur = new TextureRegion(spritesheet,Constants.JEDI_STAND_X, Constants.JEDI_STAND_Y, Constants.JEDI_STAND_WIDTH, Constants.JEDI_STAND_HEIGHT);
-       // front = new Animation(spritesheet,12, Constants.JEDI_STAND_Y, Constants.JEDI_STAND_WIDTH, Constants.JEDI_STAND_HEIGHT, 0.5f, false);
- //       front = new Animation(spritesheet, Constants.JEDI_STAND_X, Constants.JEDI_STAND_Y, Constants.JEDI_STAND_WIDTH, Constants.JEDI_STAND_HEIGHT,1, 0, false);
-//        walk_front = new Animation(spritesheet, 80,0,160,114,2,1,false);
-//        walk_up = new Animation(spritesheet, 80,230,160,114,2,1,false);
-//        walk_right = new Animation(spritesheet, 80, 115, 160, 114,2,1,false);
+        //jedisaur = new TextureRegion(spritesheet,Constants.JEDI_STAND_X, Constants.JEDI_STAND_Y, Constants.JEDI_STAND_WIDTH, Constants.JEDI_STAND_HEIGHT);
+        //front = new Animation(spritesheet,12, Constants.JEDI_STAND_Y, Constants.JEDI_STAND_WIDTH, Constants.JEDI_STAND_HEIGHT, 0.5f, false);
+        front = new Animation(spritesheet, Constants.JEDI_STAND_X, Constants.JEDI_STAND_Y, Constants.JEDI_STAND_WIDTH, Constants.JEDI_STAND_HEIGHT,1, 0);
+        walk_front = new Animation(spritesheet, 80,0,160,114,2,1);
+        walk_up = new Animation(spritesheet, 80,230,160,114,2,1);
+        walk_right = new Animation(spritesheet, 80, 115, 160, 114,2,1);
 
         maxPosY = body.getPosition().y;
 
@@ -85,22 +91,25 @@ public class Jedisaur extends entity{
     @Override
     public void update(float delta) {
 
-//        if(Gdx.input.isKeyPressed(Input.Keys.S)){
-//            walk_front.update(delta);
-//        }
-//        else if(Gdx.input.isKeyPressed(Input.Keys.W)){
-//            walk_up.update(delta);
-//        }
-//        else if(Gdx.input.isKeyPressed(Input.Keys.D)){
-//            walk_right.update(delta);
-//        }
-//        else{
-//            front.update(delta);
-//        }
+        if(Gdx.input.isKeyPressed(Input.Keys.S)){
+            walk_front.update(delta);
+        }
+        else if(Gdx.input.isKeyPressed(Input.Keys.W)){
+            walk_up.update(delta);
+        }
+        else if(Gdx.input.isKeyPressed(Input.Keys.A)){
+            walk_right.update(delta);
+        }
+        else if(Gdx.input.isKeyPressed(Input.Keys.D)){
+            walk_right.update(delta);
+        }
+        else{
+            front.update(delta);
+        }
         cameraUpdate();
         input(delta);
     }
-    private boolean isLeft = false;
+    private boolean isLeft = true;
     public void input(float delta){
         int horizontalForce = 0;
         int verticalForce = 0;
@@ -108,13 +117,20 @@ public class Jedisaur extends entity{
         if(Gdx.input.isKeyPressed(Input.Keys.A)){
             horizontalForce -= 1;
             System.out.println("moving left");
+            if(isLeft){
+                walk_right.flip();
+                isLeft = false;
+            }
         }
 
         if(Gdx.input.isKeyPressed(Input.Keys.D)){
             horizontalForce += 1;
             System.out.println("moving right");
+            if(!isLeft){
+                walk_right.flip();
+                isLeft = true;
+            }
         }
-
         if(Gdx.input.isKeyPressed(Input.Keys.W)){
             verticalForce += 1;
             System.out.println("moving up");
@@ -125,33 +141,40 @@ public class Jedisaur extends entity{
             System.out.println("moving down");
         }
 
-        body.setLinearVelocity(horizontalForce * 5, body.getLinearVelocity().y);
+        body.setLinearVelocity(horizontalForce * Constants.JEDI_VELOCITY, verticalForce * Constants.JEDI_VELOCITY);
 
     }
 
     @Override
     public void render(SpriteBatch sprite) {
 
-        b2dr.render(manager.getWorld(), manager.getCamera().combined.scl(Constants.PPM));
+        // b2dr.render(manager.getWorld(), manager.getCamera().combined.scl(Constants.PPM));
         sprite.enableBlending();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.begin();
-        sprite.draw(jedisaur, body.getPosition().x * Constants.PPM, body.getPosition().y * Constants.PPM, 3,3);
+        //sprite.draw(jedisaur, body.getPosition().x * Constants.PPM, body.getPosition().y * Constants.PPM, 3,3);
 
-//        if(Gdx.input.isKeyPressed(Input.Keys.S)){
-//            sprite.draw(walk_front.getFrame(), body.getPosition().x * Constants.PPM - ((float)walk_front.getFrame().getRegionWidth()/2)
-//                    , body.getPosition().y * Constants.PPM - ((float)walk_front.getFrame().getRegionHeight()/2));
-//        }
-//        else if(Gdx.input.isKeyPressed(Input.Keys.W)){
-//            sprite.draw(walk_up.getFrame(), body.getPosition().x * Constants.PPM , body.getPosition().y * Constants.PPM);
-//        }
-//        else if(Gdx.input.isKeyPressed(Input.Keys.D)){
-//            sprite.draw(walk_right.getFrame(), body.getPosition().x * Constants.PPM, body.getPosition().y * Constants.PPM);
-//        }
-//        else {
-//            sprite.draw(front.getFrame(), body.getPosition().x * Constants.PPM - ((float) front.getFrame().getRegionWidth()/2),
-//                    body.getPosition().y * Constants.PPM - ((float) front.getFrame().getRegionHeight()/2));
-//        }
+        if(Gdx.input.isKeyPressed(Input.Keys.S)){
+            sprite.draw(walk_front.getFrame(), body.getPosition().x * Constants.PPM - ((float)walk_front.getFrame().getRegionWidth()/2),
+                    body.getPosition().y * Constants.PPM - ((float)walk_front.getFrame().getRegionHeight()/2));
+        }
+        else if(Gdx.input.isKeyPressed(Input.Keys.A)){
+            sprite.draw(walk_right.getFrame(), body.getPosition().x * Constants.PPM - ((float)walk_right.getFrame().getRegionWidth()/2)
+                    , body.getPosition().y * Constants.PPM - ((float)walk_right.getFrame().getRegionHeight()/2));
+        }
+        else if(Gdx.input.isKeyPressed(Input.Keys.W)){
+            sprite.draw(walk_up.getFrame(), body.getPosition().x * Constants.PPM - ((float)walk_up.getFrame().getRegionWidth()/2)
+                    , body.getPosition().y * Constants.PPM - ((float)walk_up.getFrame().getRegionHeight()/2));
+        }
+        else if(Gdx.input.isKeyPressed(Input.Keys.D)){
+            sprite.draw(walk_right.getFrame(), body.getPosition().x * Constants.PPM - ((float)walk_right.getFrame().getRegionWidth()/2)
+                    , body.getPosition().y * Constants.PPM - ((float)walk_right.getFrame().getRegionHeight()/2));
+        }
+        else {
+            sprite.draw(front.getFrame(), body.getPosition().x * Constants.PPM - ((float)front.getFrame().getRegionWidth()/2),
+                    body.getPosition().y * Constants.PPM - ((float)front.getFrame().getRegionHeight()/2));
+        }
+
         //System.out.println(body.getPosition().x + " " + body.getPosition().y);
         sprite.end();
     }

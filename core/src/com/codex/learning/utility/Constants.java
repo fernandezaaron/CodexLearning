@@ -125,6 +125,8 @@ public class Constants {
     public static final int JEDI_STAND_Y = 0;
     public static final int JEDI_STAND_HEIGHT = 114;
     public static final int JEDI_STAND_WIDTH = 79;
+    public static final int JEDI_VELOCITY = 7;
+
 
     //END OF ENTITIES
 

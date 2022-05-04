@@ -18,12 +18,13 @@ public class PlayState extends State{
         super(manager);
         character = new Jedisaur(manager);
         stage1 = new TextureRegion(new Texture(Constants.STAGE1_PATH));
-        character.create(new Vector2(0,0),new Vector2(32,32),1.6f);
+        character.create(new Vector2(0,0),new Vector2(42, 60),1.6f);
 
     }
 
     @Override
     public void update(float delta) {
+        manager.getWorld().step(1/60f,6,2);
         character.update(delta);
     }
 

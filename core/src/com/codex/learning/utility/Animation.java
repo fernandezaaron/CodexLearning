@@ -12,45 +12,17 @@ public class Animation {
     private int currFrame;
     private boolean isFlipped;
 
-    public Animation(TextureRegion texture, int frameCount, float cycleTime, int jediStandWidth, int jediStandHeight, float v, boolean b){
-        frames = new Array<TextureRegion>();
-        int frameWidth = texture.getRegionWidth() / frameCount;
-        for(int i = 0; i < frameCount; i++)
-            frames.add(new TextureRegion(
-                    texture /* texture reference */,
-                    i * frameWidth /* x-origin */,
-                    0 /* y-origin */,
-                    frameWidth /* width */,
-                    texture.getRegionHeight() /* height */
-            ));
-        this.frameCount = frameCount;
-        maxFrameTime = cycleTime / frameCount;
-        currFrame = 0;
-        isFlipped = false;
-    }
-    public Animation(TextureRegion texture, int x, int y, int textureWidth,int textureHeight, int frameCount, float cycleTime, boolean isGoingDown){
-        frames = new Array<TextureRegion>();
+
+    public Animation(TextureRegion texture, int x, int y, int textureWidth,int textureHeight, int frameCount, float cycleTime){
+        frames = new Array<>();
         int frameWidth = textureWidth / frameCount;
         int frameHeight = textureHeight;
-        if(isGoingDown){
-            frameWidth = textureWidth;
-            frameHeight = textureHeight / frameCount;
-        }
 
         for(int i = 0; i < frameCount; i++) {
             int xOrigin = (i * frameWidth) + x;
             int yOrigin = y;
-            if (isGoingDown) {
-                xOrigin = x;
-                yOrigin = (i * frameHeight) + y;
-            }
-            frames.add(new TextureRegion(
-                    texture /* texture reference */,
-                    xOrigin /* x-origin */,
-                    yOrigin /* y-origin */,
-                    frameWidth /* width */,
-                    frameHeight /* height */
-            ));
+
+            frames.add(new TextureRegion(texture , xOrigin , yOrigin , frameWidth , frameHeight));
         }
         this.frameCount = frameCount;
         maxFrameTime = cycleTime / frameCount;
