@@ -10,14 +10,12 @@ import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
 public class PlayState extends State{
-    //playstate
-    TextureRegion stage1;
-    Jedisaur character;
+
+    private Jedisaur character;
 
     public PlayState(Manager manager) {
         super(manager);
         character = new Jedisaur(manager);
-        stage1 = new TextureRegion(new Texture(Constants.STAGE1_PATH));
         character.create(new Vector2(0,0),new Vector2(42, 60),1.6f);
 
     }
@@ -34,7 +32,7 @@ public class PlayState extends State{
 
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
-        sprite.draw(stage1, manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f,manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f,Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        sprite.draw(manager.getStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f,manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f,Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 
         sprite.end();
         character.render(sprite);

@@ -13,7 +13,7 @@ import com.codex.learning.utility.Manager;
 
 public class StageSelectState extends State{
 
-    private TextureRegion stageSelect, utility;
+
     private TextureRegion orangeCircle, grayCircle;
     private Vector3 touchpoint;
     private Circle stages[] = new Circle[17];
@@ -21,11 +21,10 @@ public class StageSelectState extends State{
     public StageSelectState(Manager manager){
         super(manager);
 
-        stageSelect = new TextureRegion(new Texture(Constants.STAGE_SELECT_PATH));
-        utility = new TextureRegion(new Texture(Constants.UTILITY_SHEET_PATH));
 
-        orangeCircle = new TextureRegion(utility, Constants.ORANGE_CIRCLE_X, Constants.ORANGE_CIRCLE_Y, Constants.ORANGE_CIRCLE_R, Constants.ORANGE_CIRCLE_R);
-        grayCircle = new TextureRegion(utility, Constants.GRAY_CIRCLE_X, Constants.GRAY_CIRCLE_Y, Constants.GRAY_CIRCLE_R, Constants.GRAY_CIRCLE_R);
+
+        orangeCircle = new TextureRegion(manager.getUtility(), Constants.ORANGE_CIRCLE_X, Constants.ORANGE_CIRCLE_Y, Constants.ORANGE_CIRCLE_R, Constants.ORANGE_CIRCLE_R);
+        grayCircle = new TextureRegion(manager.getUtility(), Constants.GRAY_CIRCLE_X, Constants.GRAY_CIRCLE_Y, Constants.GRAY_CIRCLE_R, Constants.GRAY_CIRCLE_R);
 
         touchpoint = new Vector3();
         stages[0] = new Circle(Constants.STAGE_1_1_X, Constants.STAGE_1_1_Y, Constants.STAGE_RADIUS);
@@ -55,7 +54,7 @@ public class StageSelectState extends State{
     @Override
     public void render(SpriteBatch sprite) {
         sprite.begin();
-        sprite.draw(stageSelect, 0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        sprite.draw(manager.getStageSelect(), 0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         drawObject(sprite);
         sprite.end();
     }

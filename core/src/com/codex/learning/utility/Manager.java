@@ -3,7 +3,9 @@ package com.codex.learning.utility;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -18,6 +20,10 @@ public class Manager {
     private final OrthographicCamera camera;
     private final Stack<State> states;
     private Box2DDebugRenderer b2dr;
+    private TextureRegion mainMenu, background;
+    private TextureRegion stage1;
+    private TextureRegion stageSelect, utility;
+    private TextureRegion spriteSheet;
 
     public Manager(){
 
@@ -26,7 +32,15 @@ public class Manager {
 
         world = new World(new Vector2(0,0),false);
 
+        background = new TextureRegion(new Texture(Constants.BACKGROUND_PATH));
+        mainMenu = new TextureRegion(new Texture(Constants.MENU_TEXT_PATH));
 
+        stage1 = new TextureRegion(new Texture(Constants.STAGE1_PATH));
+
+        stageSelect = new TextureRegion(new Texture(Constants.STAGE_SELECT_PATH));
+        utility = new TextureRegion(new Texture(Constants.UTILITY_SHEET_PATH));
+
+        spriteSheet = new TextureRegion(new Texture(Constants.CHARACTER_SHEET_PATH));
 
         camera = new OrthographicCamera(Constants.SCREEN_WIDTH, Constants.SCREEN_WIDTH);
         camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
@@ -73,5 +87,29 @@ public class Manager {
 
     public OrthographicCamera getCamera() {
         return camera;
+    }
+
+    public TextureRegion getMainMenu() {
+        return mainMenu;
+    }
+
+    public TextureRegion getBackground() {
+        return background;
+    }
+
+    public TextureRegion getStage1() {
+        return stage1;
+    }
+
+    public TextureRegion getStageSelect() {
+        return stageSelect;
+    }
+
+    public TextureRegion getUtility() {
+        return utility;
+    }
+
+    public TextureRegion getSpriteSheet() {
+        return spriteSheet;
     }
 }

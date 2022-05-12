@@ -18,21 +18,20 @@ import java.awt.*;
 
 public class MenuState extends State {
 
-    private TextureRegion mainMenu, background;
+
     private TextureRegion musicLogo, javaDeluxe, grandpaRecipe, jediTrial, quitGame;
     private Vector3 touchpoint;
     private Rectangle javaDeluxeBounds, recipeBounds, jediTrialBounds, quitGameBounds, soundBounds;
 
     public MenuState(Manager manager) {
         super(manager);
-        background = new TextureRegion(new Texture(Constants.BACKGROUND_PATH));
-        mainMenu = new TextureRegion(new Texture(Constants.MENU_TEXT_PATH));
 
-        musicLogo = new TextureRegion(mainMenu, Constants.MUSIC_LOGO_X, Constants.MUSIC_LOGO_Y, Constants.MUSIC_LOGO_WIDTH, Constants.MUSIC_LOGO_HEIGHT);
-        javaDeluxe = new TextureRegion(mainMenu, Constants.JAVA_DELUXE_X, Constants.JAVA_DELUXE_Y, Constants.JAVA_DELUXE_WIDTH, Constants.JAVA_DELUXE_HEIGHT);
-        grandpaRecipe = new TextureRegion(mainMenu, Constants.GRANDPA_RECIPE_X, Constants.GRANDPA_RECIPE_Y, Constants.GRANDPA_RECIPE_WIDTH, Constants.GRANDPA_RECIPE_HEIGHT);
-        jediTrial = new TextureRegion(mainMenu, Constants.JEDI_TRIAL_X, Constants.JEDI_TRIAL_Y, Constants.JEDI_TRIAL_WIDTH, Constants.JEDI_TRIAL_HEIGHT);
-        quitGame = new TextureRegion(mainMenu, Constants.QUIT_GAME_X, Constants.QUIT_GAME_Y, Constants.QUIT_GAME_WIDTH, Constants.QUIT_GAME_HEIGHT);
+
+        musicLogo = new TextureRegion(manager.getMainMenu(), Constants.MUSIC_LOGO_X, Constants.MUSIC_LOGO_Y, Constants.MUSIC_LOGO_WIDTH, Constants.MUSIC_LOGO_HEIGHT);
+        javaDeluxe = new TextureRegion(manager.getMainMenu(), Constants.JAVA_DELUXE_X, Constants.JAVA_DELUXE_Y, Constants.JAVA_DELUXE_WIDTH, Constants.JAVA_DELUXE_HEIGHT);
+        grandpaRecipe = new TextureRegion(manager.getMainMenu(), Constants.GRANDPA_RECIPE_X, Constants.GRANDPA_RECIPE_Y, Constants.GRANDPA_RECIPE_WIDTH, Constants.GRANDPA_RECIPE_HEIGHT);
+        jediTrial = new TextureRegion(manager.getMainMenu(), Constants.JEDI_TRIAL_X, Constants.JEDI_TRIAL_Y, Constants.JEDI_TRIAL_WIDTH, Constants.JEDI_TRIAL_HEIGHT);
+        quitGame = new TextureRegion(manager.getMainMenu(), Constants.QUIT_GAME_X, Constants.QUIT_GAME_Y, Constants.QUIT_GAME_WIDTH, Constants.QUIT_GAME_HEIGHT);
 
         touchpoint = new Vector3();
         soundBounds = new Rectangle(Constants.SOUND_ON_SCREEN_X, Constants.SOUND_ON_SCREEN_Y, Constants.MUSIC_LOGO_WIDTH, Constants.MUSIC_LOGO_HEIGHT);
@@ -54,7 +53,7 @@ public class MenuState extends State {
 
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
-        sprite.draw(background, 0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        sprite.draw(manager.getBackground(), 0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         drawObject(sprite);
         sprite.end();
     }

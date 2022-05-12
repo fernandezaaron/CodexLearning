@@ -18,11 +18,11 @@ import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
 public class Jedisaur extends entity{
-    Animation front, side, up;
-    Animation walkFront, walkUp, walkRight;
+    private Animation front, side, up;
+    private Animation walkFront, walkUp, walkRight;
     private String direction;
     private boolean isLeft;
-    Box2DDebugRenderer b2dr;
+    private Box2DDebugRenderer b2dr;
 
     public Jedisaur(Manager manager) {
         super(manager);
@@ -54,21 +54,19 @@ public class Jedisaur extends entity{
         fixtureDef.shape = shape;
         fixtureDef.friction = 0.75f;
 
-        System.out.println("Body Created!");
 
         body = manager.getWorld().createBody(def);
         body.createFixture(fixtureDef);
         shape.dispose();
 
-        TextureRegion spritesheet = new TextureRegion(new Texture(Constants.CHARACTER_SHEET_PATH));
-        front = new Animation(spritesheet, Constants.JEDI_STAND_X, Constants.JEDI_STAND_Y + (Constants.JEDI_STAND_HEIGHT * 0), Constants.JEDI_STAND_WIDTH, Constants.JEDI_STAND_HEIGHT,1, 0);
-        side = new Animation(spritesheet, Constants.JEDI_STAND_X, Constants.JEDI_STAND_Y + (Constants.JEDI_STAND_HEIGHT * 1), Constants.JEDI_STAND_WIDTH, Constants.JEDI_STAND_HEIGHT,1, 0);
-        up = new Animation(spritesheet, Constants.JEDI_STAND_X, Constants.JEDI_STAND_Y + (Constants.JEDI_STAND_HEIGHT * 2) + 3, Constants.JEDI_STAND_WIDTH, Constants.JEDI_STAND_HEIGHT,1, 0);
+        front = new Animation(manager.getSpriteSheet(), Constants.JEDI_STAND_X, Constants.JEDI_STAND_Y + (Constants.JEDI_STAND_HEIGHT * 0), Constants.JEDI_STAND_WIDTH, Constants.JEDI_STAND_HEIGHT,1, 0);
+        side = new Animation(manager.getSpriteSheet(), Constants.JEDI_STAND_X, Constants.JEDI_STAND_Y + (Constants.JEDI_STAND_HEIGHT * 1), Constants.JEDI_STAND_WIDTH, Constants.JEDI_STAND_HEIGHT,1, 0);
+        up = new Animation(manager.getSpriteSheet(), Constants.JEDI_STAND_X, Constants.JEDI_STAND_Y + (Constants.JEDI_STAND_HEIGHT * 2) + 3, Constants.JEDI_STAND_WIDTH, Constants.JEDI_STAND_HEIGHT,1, 0);
 
 
-        walkFront = new Animation(spritesheet, 80,0,160,114,2,1);
-        walkUp = new Animation(spritesheet, 80,230,160,114,2,1);
-        walkRight = new Animation(spritesheet, 80, 115, 160, 114,2,1);
+        walkFront = new Animation(manager.getSpriteSheet(), 80,0,160,114,2,1);
+        walkUp = new Animation(manager.getSpriteSheet(), 80,230,160,114,2,1);
+        walkRight = new Animation(manager.getSpriteSheet(), 80, 115, 160, 114,2,1);
 
     }
     @Override
