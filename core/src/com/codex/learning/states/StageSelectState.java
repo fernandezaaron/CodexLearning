@@ -12,16 +12,12 @@ import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
 public class StageSelectState extends State{
-
-
     private TextureRegion orangeCircle, grayCircle;
     private Vector3 touchpoint;
     private Circle stages[] = new Circle[17];
 
     public StageSelectState(Manager manager){
         super(manager);
-
-
 
         orangeCircle = new TextureRegion(manager.getUtility(), Constants.ORANGE_CIRCLE_X, Constants.ORANGE_CIRCLE_Y, Constants.ORANGE_CIRCLE_R, Constants.ORANGE_CIRCLE_R);
         grayCircle = new TextureRegion(manager.getUtility(), Constants.GRAY_CIRCLE_X, Constants.GRAY_CIRCLE_Y, Constants.GRAY_CIRCLE_R, Constants.GRAY_CIRCLE_R);

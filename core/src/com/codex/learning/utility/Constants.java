@@ -128,6 +128,10 @@ public class Constants {
     public static final int JEDI_STAND_WIDTH = 79;
     public static final int JEDI_VELOCITY = 7;
 
+    public static final int JEDI_WALK_X = 80;
+    public static final int JEDI_WALK_FRONT_Y = 0;
+    public static final int JEDI_WALK_UP_Y = 230;
+    public static final int JEDI_WALK_SIDE_Y = 115;
 
     //END OF ENTITIES
 

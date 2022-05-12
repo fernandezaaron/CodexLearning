@@ -19,8 +19,10 @@ import com.codex.learning.utility.Manager;
 
 public class Jedisaur extends entity{
     private Animation front, side, up;
-    private Animation walkFront, walkUp, walkRight;
+    private Animation walkFront, walkUp, walkSide;
+    private Animation carryFront, carryUp, carrySide;
     private String direction;
+    private boolean isMoving;
     private boolean isLeft;
     private Box2DDebugRenderer b2dr;
 
@@ -38,35 +40,35 @@ public class Jedisaur extends entity{
         def.position.set(this.position);
         def.fixedRotation = true;
 
-        isLeft = true;
-        direction = "south";
-
-        this.size.x /= Constants.PPM;
-        this.size.y /= Constants.PPM;
-
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(this.size.x, this.size.y);
-
-        b2dr = new Box2DDebugRenderer();
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.density = density;
         fixtureDef.shape = shape;
         fixtureDef.friction = 0.75f;
 
-
         body = manager.getWorld().createBody(def);
         body.createFixture(fixtureDef);
         shape.dispose();
+
+        // Used to flip the sprite left to right vice versa
+        isLeft = true;
+        isMoving = false;
+
+        // Used to know the last keyboard pressed of the user
+        direction = "south";
+
+        this.size.x /= Constants.PPM;
+        this.size.y /= Constants.PPM;
 
         front = new Animation(manager.getSpriteSheet(), Constants.JEDI_STAND_X, Constants.JEDI_STAND_Y + (Constants.JEDI_STAND_HEIGHT * 0), Constants.JEDI_STAND_WIDTH, Constants.JEDI_STAND_HEIGHT,1, 0);
         side = new Animation(manager.getSpriteSheet(), Constants.JEDI_STAND_X, Constants.JEDI_STAND_Y + (Constants.JEDI_STAND_HEIGHT * 1), Constants.JEDI_STAND_WIDTH, Constants.JEDI_STAND_HEIGHT,1, 0);
         up = new Animation(manager.getSpriteSheet(), Constants.JEDI_STAND_X, Constants.JEDI_STAND_Y + (Constants.JEDI_STAND_HEIGHT * 2) + 3, Constants.JEDI_STAND_WIDTH, Constants.JEDI_STAND_HEIGHT,1, 0);
 
-
-        walkFront = new Animation(manager.getSpriteSheet(), 80,0,160,114,2,1);
-        walkUp = new Animation(manager.getSpriteSheet(), 80,230,160,114,2,1);
-        walkRight = new Animation(manager.getSpriteSheet(), 80, 115, 160, 114,2,1);
+        walkFront = new Animation(manager.getSpriteSheet(), Constants.JEDI_WALK_X, Constants.JEDI_WALK_FRONT_Y,(Constants.JEDI_STAND_WIDTH * 2),Constants.JEDI_STAND_HEIGHT,2,0.5f);
+        walkUp = new Animation(manager.getSpriteSheet(), Constants.JEDI_WALK_X, Constants.JEDI_WALK_UP_Y,(Constants.JEDI_STAND_WIDTH * 2),Constants.JEDI_STAND_HEIGHT,2,0.5f);
+        walkSide = new Animation(manager.getSpriteSheet(), Constants.JEDI_WALK_X, Constants.JEDI_WALK_SIDE_Y, (Constants.JEDI_STAND_WIDTH * 2), Constants.JEDI_STAND_HEIGHT,2,0.5f);
 
     }
     @Override
@@ -74,23 +76,28 @@ public class Jedisaur extends entity{
         if(Gdx.input.isKeyPressed(Input.Keys.S)){
             walkFront.update(delta);
             direction = "south";
+            isMoving = true;
         }
         else if(Gdx.input.isKeyPressed(Input.Keys.W)){
             walkUp.update(delta);
             direction = "north";
+            isMoving = true;
         }
         else if(Gdx.input.isKeyPressed(Input.Keys.A)){
-            walkRight.update(delta);
+            walkSide.update(delta);
             direction = "west";
+            isMoving = true;
         }
         else if(Gdx.input.isKeyPressed(Input.Keys.D)){
-            walkRight.update(delta);
+            walkSide.update(delta);
             direction = "east";
+            isMoving = true;
         }
         else{
             front.update(delta);
             side.update(delta);
             up.update(delta);
+            isMoving = false;
         }
         cameraUpdate();
         input(delta);
@@ -100,47 +107,43 @@ public class Jedisaur extends entity{
         sprite.enableBlending();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.begin();
-
-        if(Gdx.input.isKeyPressed(Input.Keys.S)){
-            sprite.draw(walkFront.getFrame(), body.getPosition().x * Constants.PPM - ((float)walkFront.getFrame().getRegionWidth()/2),
-                    body.getPosition().y * Constants.PPM - ((float)walkFront.getFrame().getRegionHeight()/2));
-
-        }
-        else if(Gdx.input.isKeyPressed(Input.Keys.A)){
-            sprite.draw(walkRight.getFrame(), body.getPosition().x * Constants.PPM - ((float)walkRight.getFrame().getRegionWidth()/2)
-                    , body.getPosition().y * Constants.PPM - ((float)walkRight.getFrame().getRegionHeight()/2));
-
-        }
-        else if(Gdx.input.isKeyPressed(Input.Keys.W)){
-            sprite.draw(walkUp.getFrame(), body.getPosition().x * Constants.PPM - ((float)walkUp.getFrame().getRegionWidth()/2)
-                    , body.getPosition().y * Constants.PPM - ((float)walkUp.getFrame().getRegionHeight()/2));
-
-        }
-        else if(Gdx.input.isKeyPressed(Input.Keys.D)){
-            sprite.draw(walkRight.getFrame(), body.getPosition().x * Constants.PPM - ((float)walkRight.getFrame().getRegionWidth()/2)
-                    , body.getPosition().y * Constants.PPM - ((float)walkRight.getFrame().getRegionHeight()/2));
-
-        }
-        else {
-            checkDirection(sprite);
-        }
+        checkDirection(sprite, isMoving);
         sprite.end();
     }
-    private void checkDirection(SpriteBatch sprite){
-        switch(direction){
-            case "north":
-                sprite.draw(up.getFrame(), body.getPosition().x * Constants.PPM - ((float)front.getFrame().getRegionWidth()/2),
-                        body.getPosition().y * Constants.PPM - ((float)front.getFrame().getRegionHeight()/2));
-            break;
-            case "south":
-                sprite.draw(front.getFrame(), body.getPosition().x * Constants.PPM - ((float)front.getFrame().getRegionWidth()/2),
-                        body.getPosition().y * Constants.PPM - ((float)front.getFrame().getRegionHeight()/2));
-            break;
-            case "east":
-            case "west":
-                sprite.draw(side.getFrame(), body.getPosition().x * Constants.PPM - ((float)front.getFrame().getRegionWidth()/2),
-                        body.getPosition().y * Constants.PPM - ((float)front.getFrame().getRegionHeight()/2));
-            break;
+    private void checkDirection(SpriteBatch sprite, boolean isMoving){
+        if(isMoving) {
+            switch(direction){
+                case "north":
+                    sprite.draw(walkUp.getFrame(), body.getPosition().x * Constants.PPM - ((float)walkUp.getFrame().getRegionWidth()/2)
+                            , body.getPosition().y * Constants.PPM - ((float)walkUp.getFrame().getRegionHeight()/2));
+                    break;
+                case "south":
+                    sprite.draw(walkFront.getFrame(), body.getPosition().x * Constants.PPM - ((float)walkFront.getFrame().getRegionWidth()/2),
+                            body.getPosition().y * Constants.PPM - ((float)walkFront.getFrame().getRegionHeight()/2));
+                    break;
+                case "east":
+                case "west":
+                    sprite.draw(walkSide.getFrame(), body.getPosition().x * Constants.PPM - ((float)walkSide.getFrame().getRegionWidth()/2)
+                            , body.getPosition().y * Constants.PPM - ((float)walkSide.getFrame().getRegionHeight()/2));
+                    break;
+            }
+        }
+        else {
+            switch(direction){
+                case "north":
+                    sprite.draw(up.getFrame(), body.getPosition().x * Constants.PPM - ((float)front.getFrame().getRegionWidth()/2),
+                            body.getPosition().y * Constants.PPM - ((float)front.getFrame().getRegionHeight()/2));
+                    break;
+                case "south":
+                    sprite.draw(front.getFrame(), body.getPosition().x * Constants.PPM - ((float)front.getFrame().getRegionWidth()/2),
+                            body.getPosition().y * Constants.PPM - ((float)front.getFrame().getRegionHeight()/2));
+                    break;
+                case "east":
+                case "west":
+                    sprite.draw(side.getFrame(), body.getPosition().x * Constants.PPM - ((float)front.getFrame().getRegionWidth()/2),
+                            body.getPosition().y * Constants.PPM - ((float)front.getFrame().getRegionHeight()/2));
+                    break;
+            }
         }
     }
 
@@ -150,30 +153,25 @@ public class Jedisaur extends entity{
 
         if(Gdx.input.isKeyPressed(Input.Keys.A)){
             horizontalForce -= 1.2;
-            System.out.println("moving left");
             if(isLeft){
-                walkRight.flip();
+                walkSide.flip();
                 side.flip();
                 isLeft = false;
             }
         }
-
         if(Gdx.input.isKeyPressed(Input.Keys.D)){
             horizontalForce += 1.2;
-            System.out.println("moving right");
             if(!isLeft){
-                walkRight.flip();
+                walkSide.flip();
                 side.flip();
                 isLeft = true;
             }
         }
         if(Gdx.input.isKeyPressed(Input.Keys.W)){
             verticalForce += 1.2;
-            System.out.println("moving up");
         }
         if(Gdx.input.isKeyPressed(Input.Keys.S)){
             verticalForce -= 1.2;
-            System.out.println("moving down");
         }
         body.setLinearVelocity(horizontalForce * Constants.JEDI_VELOCITY, verticalForce * Constants.JEDI_VELOCITY);
     }
