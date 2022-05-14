@@ -2,11 +2,7 @@ package com.codex.learning.entity;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Polygon;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -17,7 +13,11 @@ import com.codex.learning.utility.Animation;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
-public class Jedisaur extends entity{
+import static java.lang.Math.abs;
+import static java.lang.Math.sqrt;
+
+
+public class Jedisaur extends Entity {
     private Animation front, side, up;
     private Animation walkFront, walkUp, walkSide;
     private Animation carryFront, carryUp, carrySide;
@@ -173,7 +173,15 @@ public class Jedisaur extends entity{
         if(Gdx.input.isKeyPressed(Input.Keys.S)){
             verticalForce -= 1.2;
         }
+
+        if(verticalForce != 0.0f && horizontalForce != 0.0f){
+            // sqrt(1/2)
+            verticalForce *= Constants.DIAGONAL_SPEED;
+            horizontalForce *= Constants.DIAGONAL_SPEED;
+        }
+        
         body.setLinearVelocity(horizontalForce * Constants.JEDI_VELOCITY, verticalForce * Constants.JEDI_VELOCITY);
+
     }
     private void cameraUpdate(){
         Vector3 position = manager.getCamera().position;

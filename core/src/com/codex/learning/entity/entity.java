@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.codex.learning.utility.Manager;
 
-public abstract class entity {
+public abstract class Entity {
     //enitty
     protected Manager manager;
     protected int density;
@@ -17,7 +17,7 @@ public abstract class entity {
     protected boolean isGenerated = false;
 
 
-    public entity(Manager manager){
+    public Entity(Manager manager){
         this.manager = manager;
     }
     public abstract void create(Vector2 position, Vector2 size, float density);
