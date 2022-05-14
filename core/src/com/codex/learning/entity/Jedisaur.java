@@ -5,13 +5,11 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.*;
 import com.codex.learning.utility.Animation;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
+import com.sun.org.apache.bcel.internal.Const;
 
 import static java.lang.Math.abs;
 import static java.lang.Math.sqrt;
@@ -51,6 +49,9 @@ public class Jedisaur extends Entity {
         body = manager.getWorld().createBody(def);
         body.createFixture(fixtureDef);
         shape.dispose();
+
+        EdgeShape character = new EdgeShape();
+        character.set(new Vector2(-2 / Constants.PPM, 5 / Constants.PPM), new Vector2(2 / Constants.PPM, 5 / Constants.PPM));
 
         // Used to flip the sprite left to right vice versa
         isLeft = true;
@@ -179,7 +180,7 @@ public class Jedisaur extends Entity {
             verticalForce *= Constants.DIAGONAL_SPEED;
             horizontalForce *= Constants.DIAGONAL_SPEED;
         }
-        
+
         body.setLinearVelocity(horizontalForce * Constants.JEDI_VELOCITY, verticalForce * Constants.JEDI_VELOCITY);
 
     }

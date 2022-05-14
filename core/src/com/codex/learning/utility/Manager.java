@@ -32,6 +32,7 @@ public class Manager {
 
 
         world = new World(new Vector2(0,0),false);
+        world.setContactListener(new Contact());
 
         background = new TextureRegion(new Texture(Constants.BACKGROUND_PATH));
         mainMenu = new TextureRegion(new Texture(Constants.MENU_TEXT_PATH));
