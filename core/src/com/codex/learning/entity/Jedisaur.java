@@ -235,7 +235,7 @@ public class Jedisaur extends Entity {
         }
 
         if(body.getPosition().x < -17 && body.getPosition().y < -11){
-            manager.set(new MenuState(manager));
+            manager.set(new StageSelectState(manager));
 
         }
 

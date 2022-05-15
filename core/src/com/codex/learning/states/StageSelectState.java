@@ -50,7 +50,7 @@ public class StageSelectState extends State{
     @Override
     public void render(SpriteBatch sprite) {
         sprite.begin();
-        sprite.draw(manager.getStageSelect(), 0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        sprite.draw(manager.getStageSelect(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         drawObject(sprite);
         sprite.end();
     }
@@ -75,9 +75,11 @@ public class StageSelectState extends State{
     public void drawObject(SpriteBatch sprite){
         manager.getCamera().unproject(touchpoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
         for(int i = 0; i < stages.length; i++){
-            sprite.draw(orangeCircle, stages[i].x - Constants.ORANGE_CIRCLE_R / 2, stages[i].y - Constants.ORANGE_CIRCLE_R / 2, Constants.ORANGE_CIRCLE_R, Constants.ORANGE_CIRCLE_R);
+            sprite.draw(orangeCircle, (manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f) + stages[i].x - Constants.ORANGE_CIRCLE_R / 2,
+                    (manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f) +  stages[i].y - Constants.ORANGE_CIRCLE_R / 2, Constants.ORANGE_CIRCLE_R, Constants.ORANGE_CIRCLE_R);
             if(stages[i].contains(touchpoint.x, touchpoint.y)){
-                sprite.draw(grayCircle, (stages[i].x - Constants.GRAY_CIRCLE_R / 2) , (stages[i].y - Constants.GRAY_CIRCLE_R / 2), Constants.GRAY_CIRCLE_R, Constants.GRAY_CIRCLE_R);
+                sprite.draw(grayCircle, (manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f) + (stages[i].x - Constants.GRAY_CIRCLE_R / 2) ,
+                        (manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f) + (stages[i].y - Constants.GRAY_CIRCLE_R / 2), Constants.GRAY_CIRCLE_R, Constants.GRAY_CIRCLE_R);
             }
         }
     }
