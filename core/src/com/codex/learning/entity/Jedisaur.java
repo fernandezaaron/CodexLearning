@@ -182,25 +182,19 @@ public class Jedisaur extends Entity {
         if(body.getPosition().x + size.x > Constants.SCREEN_WIDTH/2/Constants.PPM){
             System.out.println("you have reached the end!");
 
-
         }
 
         if(body.getPosition().x - size.x < -Constants.SCREEN_WIDTH/2/Constants.PPM){
-
             System.out.println("you have reached the end!");
-
 
         }
 
         if(body.getPosition().y + size.y > Constants.SCREEN_HEIGHT/2/Constants.PPM){
-
             System.out.println("you have reached the end!");
-
 
         }
 
         if(body.getPosition().y - size.y < -Constants.SCREEN_HEIGHT/2/Constants.PPM){
-
             System.out.println("you have reached the end!");
 
         }

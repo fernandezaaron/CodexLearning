@@ -3,41 +3,34 @@ package com.codex.learning.states;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.codex.learning.entity.Collision;
+import com.codex.learning.entity.Blocks;
 import com.codex.learning.entity.JediGrandpa;
 
-import com.codex.learning.entity.Blocks;
-
 import com.codex.learning.entity.Jedisaur;
-import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
 public class PlayState extends State{
 
-    private Jedisaur character;
-    private Collision upBorder, downBorder;
+    // HOUSE X Y BOX
+    private Jedisaur jedisaur;
+    private Blocks upBorder, downBorder;
     private JediGrandpa jediGrandpa;
     private Texture badLogic;
-    private Blocks blocks;
 
     public PlayState(Manager manager) {
         super(manager);
 
-        upBorder = new Collision(manager);
+        upBorder = new Blocks(manager);
         upBorder.create(new Vector2(0.75f,8), new Vector2(0.2f,4),0);
 
-        downBorder = new Collision(manager);
+        downBorder = new Blocks(manager);
         downBorder.create(new Vector2(0.75f,-8), new Vector2(0.2f,4),0);
 
-        character = new Jedisaur(manager);
-        character.create(new Vector2(0,0),new Vector2(1.4f, 1.75f),1.6f);
+        jedisaur = new Jedisaur(manager);
+        jedisaur.create(new Vector2(0,0),new Vector2(1.2f, 1.75f),1.6f);
 
         jediGrandpa = new JediGrandpa(manager);
         jediGrandpa.create(new Vector2(-10,0), new Vector2(1,1.4f),0);
-
-        blocks = new Blocks(manager);
-        blocks.create(new Vector2(50,0),new Vector2(50, 50),1.6f );
-
 
     }
 
@@ -46,7 +39,7 @@ public class PlayState extends State{
 
         manager.getWorld().step(1/60f,6,2);
        // jediGrandpa.update(delta);
-        character.update(delta);
+        jedisaur.update(delta);
         //blocks.update(delta);
 
 
@@ -58,20 +51,17 @@ public class PlayState extends State{
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.disableBlending();
-        sprite.draw(manager.getStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f,manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f,Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+//        sprite.draw(manager.getStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f,manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f,Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         //sprite.draw(badLogic, 200, 0, 100, 100);
         sprite.end();
         jediGrandpa.render(sprite);
-        character.render(sprite);
-
-
-        blocks.render(sprite);
+        jedisaur.render(sprite);
 
 
     }
 
     @Override
     public void dispose() {
-        character.disposeBody();
+        jedisaur.disposeBody();
     }
 }
