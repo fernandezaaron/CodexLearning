@@ -24,10 +24,10 @@ public class PlayState extends State{
         super(manager);
 
         upBorder = new Collision(manager);
-        upBorder.create(new Vector2(0.75f,8), new Vector2(0.2f,4),0);
+        upBorder.create(new Vector2(-6,8), new Vector2(0.2f,4),0);
 
         downBorder = new Collision(manager);
-        downBorder.create(new Vector2(0.75f,-8), new Vector2(0.2f,4),0);
+        downBorder.create(new Vector2(-6,-8), new Vector2(0.2f,4),0);
 
         character = new Jedisaur(manager);
         character.create(new Vector2(0,0),new Vector2(1.4f, 1.75f),1.6f);
