@@ -39,7 +39,7 @@ public class PlayState extends State{
     public void update(float delta) {
 
         manager.getWorld().step(1/60f,6,2);
-       // jediGrandpa.update(delta);
+        jediGrandpa.update(delta);
         jedisaur.update(delta);
         //blocks.update(delta);
 

@@ -22,6 +22,11 @@ public class Jedisaur extends Entity {
     private String direction;
     private boolean isMoving;
     private boolean isLeft;
+
+    private boolean atTop;
+    private boolean atBot;
+    private boolean atLeft;
+    private boolean atRight;
     private Box2DDebugRenderer b2dr;
 
     public Jedisaur(Manager manager) {
@@ -49,6 +54,11 @@ public class Jedisaur extends Entity {
         body.createFixture(fixtureDef);
         shape.dispose();
 
+        // Used to check if the character is in the border of the map
+        atTop = false;
+        atBot = false;
+        atLeft = false;
+        atRight = false;
 
         // Used to flip the sprite left to right vice versa
         isLeft = true;
@@ -148,29 +158,49 @@ public class Jedisaur extends Entity {
     public void input(float delta){
         float horizontalForce = 0;
         float verticalForce = 0;
-        boolean end = false;
+        if(!atLeft){
+            if(Gdx.input.isKeyPressed(Input.Keys.A)){
+                horizontalForce -= 1.2;
+                if(isLeft){
+                    walkSide.flip();
+                    side.flip();
+                    isLeft = false;
+                }
+            }
+        }
+        else{
+            atLeft = false;
+        }
 
-        if(Gdx.input.isKeyPressed(Input.Keys.A)){
-            horizontalForce -= 1.2;
-            if(isLeft){
-                walkSide.flip();
-                side.flip();
-                isLeft = false;
+        if(!atRight){
+            if(Gdx.input.isKeyPressed(Input.Keys.D)){
+                horizontalForce += 1.2;
+                if(!isLeft){
+                    walkSide.flip();
+                    side.flip();
+                    isLeft = true;
+                }
             }
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.D)){
-            horizontalForce += 1.2;
-            if(!isLeft){
-                walkSide.flip();
-                side.flip();
-                isLeft = true;
+        else{
+            atRight = false;
+        }
+
+        if(!atTop){
+            if(Gdx.input.isKeyPressed(Input.Keys.W)){
+                verticalForce += 1.2;
             }
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.W)){
-            verticalForce += 1.2;
+        else{
+            atTop = false;
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.S)){
-            verticalForce -= 1.2;
+        if(!atBot){
+            if(Gdx.input.isKeyPressed(Input.Keys.S)){
+                verticalForce -= 1.2;
+            }
+        }
+        else{
+            atBot = false;
         }
 
         if(verticalForce != 0.0f && horizontalForce != 0.0f){
@@ -179,27 +209,46 @@ public class Jedisaur extends Entity {
             horizontalForce *= Constants.DIAGONAL_SPEED;
         }
 
-        if(body.getPosition().x + size.x > Constants.SCREEN_WIDTH/2/Constants.PPM){
-            System.out.println("you have reached the end!");
 
+        if(body.getPosition().y + size.y + 2.7 > Constants.SCREEN_HEIGHT / 2 / Constants.PPM){
+            System.out.println("you have reached the end! UP");
+            atTop = true;
         }
 
-        if(body.getPosition().x - size.x < -Constants.SCREEN_WIDTH/2/Constants.PPM){
-            System.out.println("you have reached the end!");
-
+        if(body.getPosition().y - size.y - 2.7 < -Constants.SCREEN_HEIGHT / 2 / Constants.PPM){
+            System.out.println("you have reached the end! DOWN");
+            atBot = true;
         }
 
-        if(body.getPosition().y + size.y > Constants.SCREEN_HEIGHT/2/Constants.PPM){
-            System.out.println("you have reached the end!");
-
+        if(body.getPosition().x - size.x - 1.7 < -Constants.SCREEN_WIDTH / 2 / Constants.PPM){
+            System.out.println("you have reached the end! LEFT");
+            atLeft = true;
         }
 
-        if(body.getPosition().y - size.y < -Constants.SCREEN_HEIGHT/2/Constants.PPM){
-            System.out.println("you have reached the end!");
-
+        if(body.getPosition().x + size.x + 1.7 > Constants.SCREEN_WIDTH / 2 /Constants.PPM){
+            System.out.println("you have reached the end! RIGHT");
+            atRight = true;
         }
-        if(!end)
-            body.setLinearVelocity(horizontalForce * Constants.JEDI_VELOCITY, verticalForce * Constants.JEDI_VELOCITY);
+
+//        if(verticalForce == 0 || horizontalForce == 0){
+//            if(atTop){
+//                verticalForce = 0;
+//                atTop = false;
+//            }
+//            if(atBot){
+//                verticalForce = 0;
+//                atBot = false;
+//            }
+//            if(atLeft){
+//                horizontalForce = 0;
+//                atLeft = false;
+//            }
+//            if(atRight){
+//                horizontalForce = 0;
+//                atRight = false;
+//            }
+//        }
+        body.setLinearVelocity(horizontalForce * Constants.JEDI_VELOCITY, verticalForce * Constants.JEDI_VELOCITY);
 
     }
     private void cameraUpdate(){
