@@ -6,6 +6,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.codex.learning.entity.JediGrandpa;
+
+import com.codex.learning.entity.Blocks;
+
 import com.codex.learning.entity.Jedisaur;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Contact;
@@ -16,8 +19,10 @@ import java.awt.*;
 public class PlayState extends State{
 
     private Jedisaur character;
+
     private JediGrandpa jediGrandpa;
     private Texture badLogic;
+    private Blocks blocks;
 
     public PlayState(Manager manager) {
         super(manager);
@@ -25,6 +30,11 @@ public class PlayState extends State{
         character.create(new Vector2(0,0),new Vector2(2, 2),1.6f);
         //jediGrandpa = new JediGrandpa(manager);
         //jediGrandpa.create(new Vector2(50,0), new Vector2(42,60),1.6f);
+
+
+        blocks = new Blocks(manager);
+        blocks.create(new Vector2(200,0),new Vector2(50, 50),1.6f );
+
 
     }
 
@@ -40,11 +50,16 @@ public class PlayState extends State{
 
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
+
        // sprite.draw(manager.getStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f,manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f,Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         //sprite.draw(badLogic, 200, 0, 100, 100);
         sprite.end();
         character.render(sprite);
        // jediGrandpa.render(sprite);
+
+
+        blocks.render(sprite);
+
 
     }
 

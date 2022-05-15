@@ -19,6 +19,7 @@ public class Constants {
     public static final String STAGE_SELECT_PATH = "map/stageselectmap2.png";
 
     // BLOCK ASSET PATH
+    public static final String BLOCK_SHEET_PATH = "block/blocksheet.png";
     public static final String UTILITY_SHEET_PATH = "block/utilitysheet.png";
 
     // JEDISAUR ASSET PATH

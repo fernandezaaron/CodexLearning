@@ -25,6 +25,8 @@ public class Manager {
     private TextureRegion stage1;
     private TextureRegion stageSelect, utility;
     private TextureRegion spriteSheet;
+    private TextureRegion blockSheet;
+    private TextureRegion badLogic;
 
     public Manager(){
 
@@ -33,6 +35,8 @@ public class Manager {
 
         world = new World(new Vector2(0,0),false);
         world.setContactListener(new Contact());
+
+        badLogic = new TextureRegion(new Texture("badLogic.jpg"));
 
         background = new TextureRegion(new Texture(Constants.BACKGROUND_PATH));
         mainMenu = new TextureRegion(new Texture(Constants.MENU_TEXT_PATH));
@@ -113,5 +117,9 @@ public class Manager {
 
     public TextureRegion getSpriteSheet() {
         return spriteSheet;
+    }
+
+    public TextureRegion getBadLogic() {
+        return badLogic;
     }
 }
