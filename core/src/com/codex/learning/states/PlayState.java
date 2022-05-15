@@ -7,6 +7,7 @@ import com.codex.learning.entity.Blocks;
 import com.codex.learning.entity.JediGrandpa;
 
 import com.codex.learning.entity.Jedisaur;
+import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
 public class PlayState extends State{
@@ -21,10 +22,10 @@ public class PlayState extends State{
         super(manager);
 
         upBorder = new Blocks(manager);
-        upBorder.create(new Vector2(0.75f,8), new Vector2(0.2f,4),0);
+        upBorder.create(new Vector2(-6,8), new Vector2(0.2f,4),0);
 
         downBorder = new Blocks(manager);
-        downBorder.create(new Vector2(0.75f,-8), new Vector2(0.2f,4),0);
+        downBorder.create(new Vector2(-6,-8), new Vector2(0.2f,4),0);
 
         jedisaur = new Jedisaur(manager);
         jedisaur.create(new Vector2(0,0),new Vector2(1.2f, 1.75f),1.6f);
@@ -51,7 +52,7 @@ public class PlayState extends State{
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.disableBlending();
-//        sprite.draw(manager.getStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f,manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f,Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        sprite.draw(manager.getStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f,manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         //sprite.draw(badLogic, 200, 0, 100, 100);
         sprite.end();
         jediGrandpa.render(sprite);
