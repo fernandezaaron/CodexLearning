@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
+import com.codex.learning.states.MenuState;
+import com.codex.learning.states.StageSelectState;
 import com.codex.learning.utility.Animation;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
@@ -217,6 +219,7 @@ public class Jedisaur extends Entity {
 
         if(body.getPosition().y - size.y - 2.7 < -Constants.SCREEN_HEIGHT / 2 / Constants.PPM){
             System.out.println("you have reached the end! DOWN");
+            System.out.println(body.getPosition().x + " " + body.getPosition().y);
             atBot = true;
         }
 
@@ -227,7 +230,13 @@ public class Jedisaur extends Entity {
 
         if(body.getPosition().x + size.x + 1.7 > Constants.SCREEN_WIDTH / 2 /Constants.PPM){
             System.out.println("you have reached the end! RIGHT");
+
             atRight = true;
+        }
+
+        if(body.getPosition().x < -17 && body.getPosition().y < -11){
+            manager.set(new MenuState(manager));
+
         }
 
 //        if(verticalForce == 0 || horizontalForce == 0){
