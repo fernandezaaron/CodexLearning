@@ -32,14 +32,13 @@ public class Jedisaur extends Entity {
     public void create(Vector2 position, Vector2 size, float density) {
         this.position = position;
         this.size = size;
-
         BodyDef def = new BodyDef();
         def.type = BodyDef.BodyType.DynamicBody;
         def.position.set(this.position);
         def.fixedRotation = true;
 
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(this.size.x, this.size.y);
+        shape.setAsBox(this.size.x, this.size.y/2, new Vector2(0, -this.size.y/2), 0);
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.density = density;
@@ -50,8 +49,6 @@ public class Jedisaur extends Entity {
         body.createFixture(fixtureDef);
         shape.dispose();
 
-        EdgeShape character = new EdgeShape();
-        character.set(new Vector2(-2 / Constants.PPM, 5 / Constants.PPM), new Vector2(2 / Constants.PPM, 5 / Constants.PPM));
 
         // Used to flip the sprite left to right vice versa
         isLeft = true;
@@ -151,6 +148,7 @@ public class Jedisaur extends Entity {
     public void input(float delta){
         float horizontalForce = 0;
         float verticalForce = 0;
+        boolean end = false;
 
         if(Gdx.input.isKeyPressed(Input.Keys.A)){
             horizontalForce -= 1.2;
@@ -181,7 +179,22 @@ public class Jedisaur extends Entity {
             horizontalForce *= Constants.DIAGONAL_SPEED;
         }
 
-        body.setLinearVelocity(horizontalForce * Constants.JEDI_VELOCITY, verticalForce * Constants.JEDI_VELOCITY);
+        if(body.getPosition().x + size.x > Constants.SCREEN_WIDTH/2/Constants.PPM){
+            body.setLinearVelocity(0, body.getLinearVelocity().y);
+            System.out.println("you have reached the end!");
+
+            end = true;
+        }
+
+        if(body.getPosition().x - size.x < -Constants.SCREEN_WIDTH/2/Constants.PPM){
+            body.setLinearVelocity(0, body.getLinearVelocity().y);
+            System.out.println("you have reached the end!");
+
+            end = true;
+        }
+
+        if(!end)
+            body.setLinearVelocity(horizontalForce * Constants.JEDI_VELOCITY, verticalForce * Constants.JEDI_VELOCITY);
 
     }
     private void cameraUpdate(){
