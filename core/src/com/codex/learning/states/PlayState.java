@@ -30,7 +30,7 @@ public class PlayState extends State{
         downBorder.create(new Vector2(-6,-8), new Vector2(0.2f,4),0);
 
         character = new Jedisaur(manager);
-        character.create(new Vector2(0,0),new Vector2(1.4f, 1.75f),1.6f);
+        character.create(new Vector2(0,0),new Vector2(1.2f, 1.75f),1.6f);
 
         jediGrandpa = new JediGrandpa(manager);
         jediGrandpa.create(new Vector2(-10,0), new Vector2(1,1.4f),0);
@@ -58,7 +58,7 @@ public class PlayState extends State{
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.disableBlending();
-        //sprite.draw(manager.getStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f,manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f,Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        sprite.draw(manager.getStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f,manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f,Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         //sprite.draw(badLogic, 200, 0, 100, 100);
         sprite.end();
         jediGrandpa.render(sprite);
