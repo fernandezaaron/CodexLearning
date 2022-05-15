@@ -180,19 +180,30 @@ public class Jedisaur extends Entity {
         }
 
         if(body.getPosition().x + size.x > Constants.SCREEN_WIDTH/2/Constants.PPM){
-            body.setLinearVelocity(0, body.getLinearVelocity().y);
             System.out.println("you have reached the end!");
 
-            end = true;
+
         }
 
         if(body.getPosition().x - size.x < -Constants.SCREEN_WIDTH/2/Constants.PPM){
-            body.setLinearVelocity(0, body.getLinearVelocity().y);
+
             System.out.println("you have reached the end!");
 
-            end = true;
+
         }
 
+        if(body.getPosition().y + size.y > Constants.SCREEN_HEIGHT/2/Constants.PPM){
+
+            System.out.println("you have reached the end!");
+
+
+        }
+
+        if(body.getPosition().y - size.y < -Constants.SCREEN_HEIGHT/2/Constants.PPM){
+
+            System.out.println("you have reached the end!");
+
+        }
         if(!end)
             body.setLinearVelocity(horizontalForce * Constants.JEDI_VELOCITY, verticalForce * Constants.JEDI_VELOCITY);
 
