@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
 import com.codex.learning.states.MenuState;
+import com.codex.learning.states.PlayState;
 import com.codex.learning.states.StageSelectState;
 import com.codex.learning.utility.Animation;
 import com.codex.learning.utility.Constants;
@@ -236,6 +237,7 @@ public class Jedisaur extends Entity {
 
         if(body.getPosition().x < -17 && body.getPosition().y < -11){
             manager.set(new StageSelectState(manager));
+
 
         }
 
