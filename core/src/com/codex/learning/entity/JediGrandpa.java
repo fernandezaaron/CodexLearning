@@ -28,7 +28,7 @@ public class JediGrandpa extends Entity{
         def.fixedRotation = true;
 
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(this.size.x, this.size.y);
+        shape.setAsBox(this.size.x, (float) (this.size.y / 1.5), new Vector2(0, -(this.size.y - this.size.y /2)), 0);
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.density = density;
@@ -55,8 +55,8 @@ public class JediGrandpa extends Entity{
         sprite.enableBlending();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.begin();
-        sprite.draw(jediGrandpa, body.getPosition().x * Constants.PPM - jediGrandpa.getRegionWidth()/2,
-                body.getPosition().y * Constants.PPM - jediGrandpa.getRegionHeight()/2);
+        sprite.draw(jediGrandpa, body.getPosition().x * Constants.PPM - jediGrandpa.getRegionWidth() / 2,
+                body.getPosition().y * Constants.PPM - jediGrandpa.getRegionHeight() / 2);
         sprite.end();
 
     }

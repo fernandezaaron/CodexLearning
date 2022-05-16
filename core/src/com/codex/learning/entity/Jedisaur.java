@@ -212,7 +212,7 @@ public class Jedisaur extends Entity {
             horizontalForce *= Constants.DIAGONAL_SPEED;
         }
 
-
+        // END OF MAP DETECTOR
         if(body.getPosition().y + size.y + 2.7 > Constants.SCREEN_HEIGHT / 2 / Constants.PPM){
             atTop = true;
         }
@@ -228,7 +228,9 @@ public class Jedisaur extends Entity {
         if(body.getPosition().x + size.x + 1.7 > Constants.SCREEN_WIDTH / 2 /Constants.PPM){
             atRight = true;
         }
-        if(body.getPosition().x < -17 && body.getPosition().y < -11){
+
+        // USED TO EXIT THE MAP
+        if(body.getPosition().x > -19.8f && body.getPosition().x < -15.5f && body.getPosition().y < -11){
             manager.set(new StageSelectState(manager));
         }
 

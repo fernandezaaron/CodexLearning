@@ -11,14 +11,9 @@ import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
 public class PlayState extends State{
-
-    // HOUSE X Y BOX
     private Jedisaur jedisaur;
-
     private Blocks upBorder, downBorder, table, cabinet, fridgeSink;
-
     private JediGrandpa jediGrandpa;
-    private Texture badLogic;
 
     public PlayState(Manager manager) {
         super(manager);
@@ -43,18 +38,13 @@ public class PlayState extends State{
 
         jediGrandpa = new JediGrandpa(manager);
         jediGrandpa.create(new Vector2(-10,0), new Vector2(1,1.4f),0);
-
     }
 
     @Override
     public void update(float delta) {
-
         manager.getWorld().step(1/60f,6,2);
         jediGrandpa.update(delta);
         jedisaur.update(delta);
-        //blocks.update(delta);
-
-
     }
 
     @Override
@@ -62,20 +52,17 @@ public class PlayState extends State{
         manager.getCamera().update();
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
-        sprite.disableBlending();
-        sprite.draw(manager.getStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f,
-                manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-        //sprite.draw(badLogic, 200, 0, 100, 100);
+        sprite.enableBlending();
+        sprite.draw(manager.getStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         sprite.end();
         jediGrandpa.render(sprite);
         jedisaur.render(sprite);
-
-
     }
 
     @Override
     public void dispose() {
         jedisaur.disposeBody();
+        jediGrandpa.disposeBody();
         fridgeSink.disposeBody();
         table.disposeBody();
         upBorder.disposeBody();
