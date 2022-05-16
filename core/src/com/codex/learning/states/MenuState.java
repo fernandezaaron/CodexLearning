@@ -35,7 +35,8 @@ public class MenuState extends State {
 
         touchpoint = new Vector3();
         soundBounds = new Rectangle(Constants.SOUND_ON_SCREEN_X, Constants.SOUND_ON_SCREEN_Y, Constants.MUSIC_LOGO_WIDTH, Constants.MUSIC_LOGO_HEIGHT);
-        javaDeluxeBounds = new Rectangle(Constants.DELUXE_ON_SCREEN_X, Constants.DELUXE_ON_SCREEN_Y, Constants.JAVA_DELUXE_WIDTH , Constants.JAVA_DELUXE_HEIGHT);
+        javaDeluxeBounds = new Rectangle(Constants.DELUXE_ON_SCREEN_X,  Constants.DELUXE_ON_SCREEN_Y,
+                Constants.JAVA_DELUXE_WIDTH , Constants.JAVA_DELUXE_HEIGHT);
         recipeBounds = new Rectangle(Constants.RECIPE_ON_SCREEN_X, Constants.RECIPE_ON_SCREEN_Y, Constants.GRANDPA_RECIPE_WIDTH, Constants.GRANDPA_RECIPE_HEIGHT);
         jediTrialBounds = new Rectangle(Constants.TRIAL_ON_SCREEN_X, Constants.TRIAL_ON_SCREEN_Y, Constants.JEDI_TRIAL_WIDTH, Constants.JEDI_TRIAL_HEIGHT);
         quitGameBounds = new Rectangle(Constants.QUIT_ON_SCREEN_X, Constants.QUIT_ON_SCREEN_Y, Constants.QUIT_GAME_WIDTH, Constants.QUIT_GAME_HEIGHT);
@@ -53,7 +54,8 @@ public class MenuState extends State {
 
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
-        sprite.draw(manager.getBackground(), 0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        sprite.draw(manager.getBackground(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f,
+                manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         drawObject(sprite);
         sprite.end();
     }
@@ -83,10 +85,12 @@ public class MenuState extends State {
         manager.getCamera().unproject(touchpoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
         if(soundBounds.contains(touchpoint.x, touchpoint.y)){
-            sprite.draw(musicLogo, Constants.SOUND_ON_SCREEN_X, Constants.SOUND_ON_SCREEN_Y, Constants.MUSIC_LOGO_WIDTH, Constants.MUSIC_LOGO_HEIGHT);
+            sprite.draw(musicLogo, manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f + Constants.SOUND_ON_SCREEN_X,
+                    manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f + Constants.SOUND_ON_SCREEN_Y, Constants.MUSIC_LOGO_WIDTH, Constants.MUSIC_LOGO_HEIGHT);
         }
         if(javaDeluxeBounds.contains(touchpoint.x, touchpoint.y)){
-            sprite.draw(javaDeluxe, Constants.DELUXE_ON_SCREEN_X, Constants.DELUXE_ON_SCREEN_Y, Constants.JAVA_DELUXE_WIDTH, Constants.JAVA_DELUXE_HEIGHT);
+            sprite.draw(javaDeluxe, manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f + Constants.DELUXE_ON_SCREEN_X,
+                    manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f + Constants.DELUXE_ON_SCREEN_Y, Constants.JAVA_DELUXE_WIDTH, Constants.JAVA_DELUXE_HEIGHT);
         }
         if(recipeBounds.contains(touchpoint.x, touchpoint.y)){
             sprite.draw(grandpaRecipe, Constants.RECIPE_ON_SCREEN_X, Constants.RECIPE_ON_SCREEN_Y, Constants.GRANDPA_RECIPE_WIDTH, Constants.GRANDPA_RECIPE_HEIGHT);
