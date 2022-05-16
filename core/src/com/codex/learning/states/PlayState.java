@@ -14,8 +14,9 @@ public class PlayState extends State{
 
     // HOUSE X Y BOX
     private Jedisaur jedisaur;
-    private Blocks upBorder, downBorder;
-    private Blocks cabinet, table, fridgeSink;
+
+    private Blocks upBorder, downBorder, table, cabinet, fridgeSink;
+
     private JediGrandpa jediGrandpa;
     private Texture badLogic;
 
@@ -42,8 +43,6 @@ public class PlayState extends State{
 
         jediGrandpa = new JediGrandpa(manager);
         jediGrandpa.create(new Vector2(-10,0), new Vector2(1,1.4f),0);
-
-
 
     }
 
