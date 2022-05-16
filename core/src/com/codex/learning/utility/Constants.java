@@ -58,8 +58,8 @@ public class Constants {
     public static final int MUSIC_LOGO_HEIGHT = 60;
 
     // MENUSTATE TOUCHPOINT X, Y
-    public static final int SOUND_ON_SCREEN_X = 827;
-    public static final int SOUND_ON_SCREEN_Y = 445;
+    public static final int SOUND_ON_SCREEN_X = 823;
+    public static final int SOUND_ON_SCREEN_Y = 447;
     public static final int DELUXE_ON_SCREEN_X = 1007;
     public static final int DELUXE_ON_SCREEN_Y = 455;
     public static final int RECIPE_ON_SCREEN_X = 855;
