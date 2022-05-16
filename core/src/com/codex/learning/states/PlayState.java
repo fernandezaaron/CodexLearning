@@ -14,7 +14,7 @@ public class PlayState extends State{
 
     // HOUSE X Y BOX
     private Jedisaur jedisaur;
-    private Blocks upBorder, downBorder, table, cabinet, ref;
+    private Blocks upBorder, downBorder, table, cabinet, fridgeSink;
     private JediGrandpa jediGrandpa;
     private Texture badLogic;
 
@@ -24,14 +24,14 @@ public class PlayState extends State{
         upBorder = new Blocks(manager);
         upBorder.create(new Vector2(-6,8), new Vector2(0.2f,4),0);
 
-        table = new Blocks(manager);
-        table.create(new Vector2(-17.5f, 5), new Vector2(2.5f,2), 0);
-
-        ref = new Blocks(manager);
-        ref.create(new Vector2(-20, 12), new Vector2(3,2), 0);
-
         cabinet = new Blocks(manager);
-        cabinet.create(new Vector2(-8,12),new Vector2(2,2),0);
+        cabinet.create(new Vector2(-8.5f, 12.3f), new Vector2(2, 3), 0);
+
+        table = new Blocks(manager);
+        table.create(new Vector2(-17.5f, 5), new Vector2(3f, 2.3f), 0);
+
+        fridgeSink = new Blocks(manager);
+        fridgeSink.create(new Vector2(-20f, 12.3f), new Vector2(3.3f, 3), 0);
 
         downBorder = new Blocks(manager);
         downBorder.create(new Vector2(-6,-8), new Vector2(0.2f,4),0);
@@ -73,9 +73,8 @@ public class PlayState extends State{
 
     @Override
     public void dispose() {
-
         jedisaur.disposeBody();
-        ref.disposeBody();
+        fridgeSink.disposeBody();
         table.disposeBody();
         upBorder.disposeBody();
         downBorder.disposeBody();

@@ -241,26 +241,7 @@ public class Jedisaur extends Entity {
 
         }
 
-//        if(verticalForce == 0 || horizontalForce == 0){
-//            if(atTop){
-//                verticalForce = 0;
-//                atTop = false;
-//            }
-//            if(atBot){
-//                verticalForce = 0;
-//                atBot = false;
-//            }
-//            if(atLeft){
-//                horizontalForce = 0;
-//                atLeft = false;
-//            }
-//            if(atRight){
-//                horizontalForce = 0;
-//                atRight = false;
-//            }
-//        }
         body.setLinearVelocity(horizontalForce * Constants.JEDI_VELOCITY, verticalForce * Constants.JEDI_VELOCITY);
-
     }
     private void cameraUpdate(){
         Vector3 position = manager.getCamera().position;
