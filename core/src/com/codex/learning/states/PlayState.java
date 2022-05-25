@@ -2,7 +2,12 @@ package com.codex.learning.states;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.Map;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.World;
 import com.codex.learning.entity.Blocks;
 import com.codex.learning.entity.JediGrandpa;
 
@@ -38,6 +43,7 @@ public class PlayState extends State{
 
         jediGrandpa = new JediGrandpa(manager);
         jediGrandpa.create(new Vector2(-10,0), new Vector2(1,1.4f),0);
+
     }
 
     @Override
