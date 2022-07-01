@@ -14,7 +14,7 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.codex.learning.states.State;
 
 import java.util.Stack;
-
+//This class is used to initiate all once a used assets to prevent multiple calls.
 public class Manager {
     private final World world;
     private final OrthographicCamera camera;

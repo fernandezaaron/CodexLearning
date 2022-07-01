@@ -1,5 +1,6 @@
 package com.codex.learning.utility;
 
+//This class will contain all constants value
 public class Constants {
     //constants
     public static final String GAME_TITLE = "Codex Learning";

@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
+//This class is used to have a response in the circles in stage select stage.
 public class StageSelectState extends State{
     private TextureRegion orangeCircle, grayCircle;
     private Vector3 touchpoint;

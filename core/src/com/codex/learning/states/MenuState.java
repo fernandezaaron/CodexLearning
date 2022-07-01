@@ -16,6 +16,7 @@ import org.w3c.dom.css.Rect;
 
 import java.awt.*;
 
+//This class is used to load the Menu State of the game.
 public class MenuState extends State {
 
 
@@ -26,14 +27,16 @@ public class MenuState extends State {
     public MenuState(Manager manager) {
         super(manager);
 
-
+//        This is used to crop each sprite in a sprite sheet.
         musicLogo = new TextureRegion(manager.getMainMenu(), Constants.MUSIC_LOGO_X, Constants.MUSIC_LOGO_Y, Constants.MUSIC_LOGO_WIDTH, Constants.MUSIC_LOGO_HEIGHT);
         javaDeluxe = new TextureRegion(manager.getMainMenu(), Constants.JAVA_DELUXE_X, Constants.JAVA_DELUXE_Y, Constants.JAVA_DELUXE_WIDTH, Constants.JAVA_DELUXE_HEIGHT);
         grandpaRecipe = new TextureRegion(manager.getMainMenu(), Constants.GRANDPA_RECIPE_X, Constants.GRANDPA_RECIPE_Y, Constants.GRANDPA_RECIPE_WIDTH, Constants.GRANDPA_RECIPE_HEIGHT);
         jediTrial = new TextureRegion(manager.getMainMenu(), Constants.JEDI_TRIAL_X, Constants.JEDI_TRIAL_Y, Constants.JEDI_TRIAL_WIDTH, Constants.JEDI_TRIAL_HEIGHT);
         quitGame = new TextureRegion(manager.getMainMenu(), Constants.QUIT_GAME_X, Constants.QUIT_GAME_Y, Constants.QUIT_GAME_WIDTH, Constants.QUIT_GAME_HEIGHT);
 
+//        Touch point will allow the user to have a touch response.
         touchpoint = new Vector3();
+//        Used to create an invisible rectangle for touch point.
         soundBounds = new Rectangle(Constants.SOUND_ON_SCREEN_X, Constants.SOUND_ON_SCREEN_Y, Constants.MUSIC_LOGO_WIDTH, Constants.MUSIC_LOGO_HEIGHT);
         javaDeluxeBounds = new Rectangle(Constants.DELUXE_ON_SCREEN_X,  Constants.DELUXE_ON_SCREEN_Y,
                 Constants.JAVA_DELUXE_WIDTH , Constants.JAVA_DELUXE_HEIGHT);

@@ -6,19 +6,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
-import com.codex.learning.states.MenuState;
-import com.codex.learning.states.PlayState;
 import com.codex.learning.states.StageSelectState;
 import com.codex.learning.utility.Animation;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
-import com.sun.org.apache.bcel.internal.Const;
 
 import static java.lang.Math.abs;
-import static java.lang.Math.sqrt;
 
 
-public class Jedisaur extends Entity {
+public class Character extends Entity {
     private Animation front, side, up;
     private Animation walkFront, walkUp, walkSide;
     private Animation carryFront, carryUp, carrySide;
@@ -32,12 +28,13 @@ public class Jedisaur extends Entity {
     private boolean atRight;
     private Box2DDebugRenderer b2dr;
 
-    public Jedisaur(Manager manager) {
+    public Character(Manager manager) {
         super(manager);
     }
 
     @Override
     public void create(Vector2 position, Vector2 size, float density) {
+//        Create a body without collision yet.
         this.position = position;
         this.size = size;
         BodyDef def = new BodyDef();
@@ -45,6 +42,7 @@ public class Jedisaur extends Entity {
         def.position.set(this.position);
         def.fixedRotation = true;
 
+//        Create a rectangle for the character to have collision detection.
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(this.size.x, this.size.y/2, new Vector2(0, -this.size.y/2), 0);
 
