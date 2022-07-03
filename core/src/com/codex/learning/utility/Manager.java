@@ -41,6 +41,7 @@ public class Manager {
 
         stageSelect = new TextureRegion(new Texture(Constants.STAGE_SELECT_PATH));
         utility = new TextureRegion(new Texture(Constants.UTILITY_SHEET_PATH));
+        blockSheet = new TextureRegion(new Texture(Constants.BLOCK_SHEET_PATH));
 
         spriteSheet = new TextureRegion(new Texture(Constants.CHARACTER_SHEET_PATH));
 
@@ -113,5 +114,9 @@ public class Manager {
 
     public TextureRegion getSpriteSheet() {
         return spriteSheet;
+    }
+
+    public TextureRegion getBlockSheet() {
+        return blockSheet;
     }
 }

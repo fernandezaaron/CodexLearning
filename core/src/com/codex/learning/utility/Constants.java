@@ -122,21 +122,33 @@ public class Constants {
 
 //    END OF STAGE SELECT STATE
 
-    //ENTITIES
-
+    //JEDISAUR SPRITE SHEET
     public static final int JEDI_STAND_X = 0;
-    public static final int JEDI_STAND_Y = 0;
-    public static final int JEDI_STAND_HEIGHT = 114;
-    public static final int JEDI_STAND_WIDTH = 79;
-    public static final int JEDI_VELOCITY = 7;
-
-    public static final float DIAGONAL_SPEED = 0.707f;
     public static final int JEDI_WALK_X = 80;
-    public static final int JEDI_WALK_FRONT_Y = 0;
-    public static final int JEDI_WALK_UP_Y = 230;
-    public static final int JEDI_WALK_SIDE_Y = 115;
+    public static final int JEDI_CARRY_X = 480;
 
-    //END OF ENTITIES
+    public static final int JEDI_HEIGHT = 114;
+    public static final int JEDI_WIDTH = 80;
 
+    public static final int JEDI_VELOCITY = 7;
+    public static final float DIAGONAL_SPEED = 0.707f;
+
+    public static final int JEDI_FIRST_ROW = 0;
+    public static final int JEDI_SECOND_ROW = 115;
+    public static final int JEDI_THIRD_ROW = 230;
+
+
+    public static final int JEDI_GRANDPA_X = 0;
+    public static final int JEDI_GRANDPA_Y = 345;
+    public static final int JEDI_GRANDPA_WIDTH = 79;
+    public static final int JEDI_GRANDPA_HEIGHT = 108;
+    //END OF JEDISAUR SPRITE SHEET
+
+    //BLOCK SHEET
+    public static final int BLOCK_HEIGHT = 54;
+    public static final int BLOCK_FIRST_ROW = 22;
+    public static final int BLOCK_SECOND_ROW = 89;
+    public static final int BLOCK_THIRD_ROW = 153;
+    //END OF BLOCK SHEET
 
 }

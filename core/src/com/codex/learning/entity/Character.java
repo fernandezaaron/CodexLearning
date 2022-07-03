@@ -16,11 +16,12 @@ import static java.lang.Math.abs;
 
 public class Character extends Entity {
     private Animation front, side, up;
-    private Animation walkFront, walkUp, walkSide;
-    private Animation carryFront, carryUp, carrySide;
+    private Animation walkFront, walkSide, walkUp;
+    private Animation carryFront, carrySide, carryUp;
     private String direction;
     private boolean isMoving;
     private boolean isLeft;
+    private boolean isCarrying;
 
     private boolean atTop;
     private boolean atBot;
@@ -65,20 +66,27 @@ public class Character extends Entity {
         isLeft = true;
         isMoving = false;
 
+        // Used to check if the character is carrying a block
+        isCarrying = false;
+
         // Used to know the last keyboard pressed of the user
         direction = "south";
 
         this.size.x /= Constants.PPM;
         this.size.y /= Constants.PPM;
 
-        front = new Animation(manager.getSpriteSheet(), Constants.JEDI_STAND_X, Constants.JEDI_STAND_Y + (Constants.JEDI_STAND_HEIGHT * 0), Constants.JEDI_STAND_WIDTH, Constants.JEDI_STAND_HEIGHT,1, 0);
-        side = new Animation(manager.getSpriteSheet(), Constants.JEDI_STAND_X, Constants.JEDI_STAND_Y + (Constants.JEDI_STAND_HEIGHT * 1), Constants.JEDI_STAND_WIDTH, Constants.JEDI_STAND_HEIGHT,1, 0);
-        up = new Animation(manager.getSpriteSheet(), Constants.JEDI_STAND_X, Constants.JEDI_STAND_Y + (Constants.JEDI_STAND_HEIGHT * 2) + 3, Constants.JEDI_STAND_WIDTH, Constants.JEDI_STAND_HEIGHT,1, 0);
+        front = new Animation(manager.getSpriteSheet(), Constants.JEDI_STAND_X, Constants.JEDI_FIRST_ROW, Constants.JEDI_WIDTH, Constants.JEDI_HEIGHT,1, 0);
+        side = new Animation(manager.getSpriteSheet(), Constants.JEDI_STAND_X, Constants.JEDI_SECOND_ROW, Constants.JEDI_WIDTH, Constants.JEDI_HEIGHT,1, 0);
+        up = new Animation(manager.getSpriteSheet(), Constants.JEDI_STAND_X, Constants.JEDI_THIRD_ROW, Constants.JEDI_WIDTH, Constants.JEDI_HEIGHT,1, 0);
 
-        walkFront = new Animation(manager.getSpriteSheet(), Constants.JEDI_WALK_X, Constants.JEDI_WALK_FRONT_Y,(Constants.JEDI_STAND_WIDTH * 2),Constants.JEDI_STAND_HEIGHT,2,0.5f);
-        walkUp = new Animation(manager.getSpriteSheet(), Constants.JEDI_WALK_X, Constants.JEDI_WALK_UP_Y,(Constants.JEDI_STAND_WIDTH * 2),Constants.JEDI_STAND_HEIGHT,2,0.5f);
-        walkSide = new Animation(manager.getSpriteSheet(), Constants.JEDI_WALK_X, Constants.JEDI_WALK_SIDE_Y, (Constants.JEDI_STAND_WIDTH * 2), Constants.JEDI_STAND_HEIGHT,2,0.5f);
+        walkFront = new Animation(manager.getSpriteSheet(), Constants.JEDI_WALK_X, Constants.JEDI_FIRST_ROW, (Constants.JEDI_WIDTH * 2), Constants.JEDI_HEIGHT,2,0.5f);
+        walkSide = new Animation(manager.getSpriteSheet(), Constants.JEDI_WALK_X, Constants.JEDI_SECOND_ROW, (Constants.JEDI_WIDTH * 2), Constants.JEDI_HEIGHT,2,0.5f);
+        walkUp = new Animation(manager.getSpriteSheet(), Constants.JEDI_WALK_X, Constants.JEDI_THIRD_ROW, (Constants.JEDI_WIDTH * 2), Constants.JEDI_HEIGHT,2,0.5f);
 
+
+        carryFront = new Animation(manager.getSpriteSheet(), Constants.JEDI_CARRY_X, Constants.JEDI_FIRST_ROW, (Constants.JEDI_WIDTH * 2), Constants.JEDI_HEIGHT,2,0.5f);
+        carrySide = new Animation(manager.getSpriteSheet(), Constants.JEDI_CARRY_X, Constants.JEDI_SECOND_ROW, (Constants.JEDI_WIDTH * 2), Constants.JEDI_HEIGHT,2,0.5f);
+        carryUp = new Animation(manager.getSpriteSheet(), Constants.JEDI_CARRY_X, Constants.JEDI_THIRD_ROW, (Constants.JEDI_WIDTH * 2), Constants.JEDI_HEIGHT,2,0.5f);
     }
     @Override
     public void update(float delta) {
