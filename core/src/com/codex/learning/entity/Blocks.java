@@ -12,11 +12,13 @@ import com.codex.learning.utility.Manager;
 import static java.lang.Math.*;
 
 public class Blocks extends Entity{
-    private String name;
+    private String id, name;
     private TextureRegion block;
     private Vector2 positionSheet, sizeSheet;
-    public Blocks(Manager manager, String name, Vector2 positionSheet, Vector2 sizeSheet) {
+    protected boolean pickUp;
+    public Blocks(Manager manager, String id, String name, Vector2 positionSheet, Vector2 sizeSheet) {
         super(manager);
+        this.id = id;
         this.name = name;
         this.positionSheet = positionSheet;
         this.sizeSheet = sizeSheet;
@@ -34,21 +36,15 @@ public class Blocks extends Entity{
 
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(this.size.x, this.size.y,
-                new Vector2(0, (float) -((this.size.y / 1.5 )- this.size.y)), 0);
+                new Vector2(0, (float) -((this.size.y / 1.5 ) - this.size.y)), 0);
 
-
-//        new Vector2(((this.size.y - (this.size.y / 2))),
-//                        (this.size.x - (this.size.x / 2)))
-//        (this.size.x - (this.size.x / 2)) -
-
-//         - (this.size.y - (this.size.y / 2))
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.density = density;
         fixtureDef.shape = shape;
         fixtureDef.friction = 0;
 
         body = manager.getWorld().createBody(def);
-        body.createFixture(fixtureDef);
+        body.createFixture(fixtureDef).setUserData(this);
         shape.dispose();
 
         this.size.x /= Constants.PPM;
@@ -56,6 +52,8 @@ public class Blocks extends Entity{
 
         block = new TextureRegion(manager.getBlockSheet(), (int) positionSheet.x,
                 (int) positionSheet.y, (int) sizeSheet.x, (int) sizeSheet.y);
+
+        pickUp = false;
     }
 
     @Override
@@ -70,6 +68,16 @@ public class Blocks extends Entity{
         sprite.begin();
         sprite.draw(block, body.getPosition().x * Constants.PPM - block.getRegionWidth() / 2,
                 body.getPosition().y * Constants.PPM - block.getRegionHeight() / 2);
+//        manager.getFont().draw(sprite, this.name, body.getPosition().x * Constants.PPM - block.getRegionWidth() / 2,
+//                body.getPosition().y * Constants.PPM - block.getRegionHeight() / 2);
         sprite.end();
+    }
+
+    public boolean isPickUp() {
+        return pickUp;
+    }
+
+    public void setPickUp(boolean pickUp) {
+        this.pickUp = pickUp;
     }
 }

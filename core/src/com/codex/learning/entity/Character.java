@@ -17,11 +17,16 @@ import static java.lang.Math.abs;
 public class Character extends Entity {
     private Animation front, side, up;
     private Animation walkFront, walkSide, walkUp;
+    private Animation pickUpFront, pickUpSide, pickUpUp;
     private Animation carryFront, carrySide, carryUp;
+    private Animation carryWalkFront, carryWalkSide, carryWalkUp;
+
     private String direction;
     private boolean isMoving;
     private boolean isLeft;
     private boolean isCarrying;
+    protected boolean pickUpAble;
+    private boolean picked;
 
     private boolean atTop;
     private boolean atBot;
@@ -53,7 +58,7 @@ public class Character extends Entity {
         fixtureDef.friction = 0.75f;
 
         body = manager.getWorld().createBody(def);
-        body.createFixture(fixtureDef);
+        body.createFixture(fixtureDef).setUserData(this);
         shape.dispose();
 
         // Used to check if the character is in the border of the map
@@ -68,6 +73,7 @@ public class Character extends Entity {
 
         // Used to check if the character is carrying a block
         isCarrying = false;
+        picked = false;
 
         // Used to know the last keyboard pressed of the user
         direction = "south";
@@ -83,38 +89,75 @@ public class Character extends Entity {
         walkSide = new Animation(manager.getSpriteSheet(), Constants.JEDI_WALK_X, Constants.JEDI_SECOND_ROW, (Constants.JEDI_WIDTH * 2), Constants.JEDI_HEIGHT,2,0.5f);
         walkUp = new Animation(manager.getSpriteSheet(), Constants.JEDI_WALK_X, Constants.JEDI_THIRD_ROW, (Constants.JEDI_WIDTH * 2), Constants.JEDI_HEIGHT,2,0.5f);
 
+        pickUpFront = new Animation(manager.getSpriteSheet(), Constants.JEDI_PICK_UP_X, Constants.JEDI_FIRST_ROW, (Constants.JEDI_WIDTH), Constants.JEDI_HEIGHT, 1, 0);
+        pickUpSide = new Animation(manager.getSpriteSheet(), Constants.JEDI_PICK_UP_X, Constants.JEDI_SECOND_ROW, (Constants.JEDI_WIDTH), Constants.JEDI_HEIGHT, 1, 0);
+        pickUpUp = new Animation(manager.getSpriteSheet(), Constants.JEDI_PICK_UP_X, Constants.JEDI_THIRD_ROW, (Constants.JEDI_WIDTH), Constants.JEDI_HEIGHT, 1, 0);
 
-        carryFront = new Animation(manager.getSpriteSheet(), Constants.JEDI_CARRY_X, Constants.JEDI_FIRST_ROW, (Constants.JEDI_WIDTH * 2), Constants.JEDI_HEIGHT,2,0.5f);
-        carrySide = new Animation(manager.getSpriteSheet(), Constants.JEDI_CARRY_X, Constants.JEDI_SECOND_ROW, (Constants.JEDI_WIDTH * 2), Constants.JEDI_HEIGHT,2,0.5f);
-        carryUp = new Animation(manager.getSpriteSheet(), Constants.JEDI_CARRY_X, Constants.JEDI_THIRD_ROW, (Constants.JEDI_WIDTH * 2), Constants.JEDI_HEIGHT,2,0.5f);
+        carryFront = new Animation(manager.getSpriteSheet(), Constants.JEDI_CARRY_X, Constants.JEDI_FIRST_ROW, Constants.JEDI_WIDTH, Constants.JEDI_HEIGHT,1,0);
+        carrySide = new Animation(manager.getSpriteSheet(), Constants.JEDI_CARRY_X, Constants.JEDI_SECOND_ROW, Constants.JEDI_WIDTH, Constants.JEDI_HEIGHT,1,0);
+        carryUp = new Animation(manager.getSpriteSheet(), Constants.JEDI_CARRY_X, Constants.JEDI_THIRD_ROW, Constants.JEDI_WIDTH, Constants.JEDI_HEIGHT,1,0);
+
+        carryWalkFront = new Animation(manager.getSpriteSheet(), Constants.JEDI_CARRY_WALK_X, Constants.JEDI_FIRST_ROW, (Constants.JEDI_WIDTH * 2), Constants.JEDI_HEIGHT,2,0.5f);
+        carryWalkSide = new Animation(manager.getSpriteSheet(), Constants.JEDI_CARRY_WALK_X, Constants.JEDI_SECOND_ROW, (Constants.JEDI_WIDTH * 2), Constants.JEDI_HEIGHT,2,0.5f);
+        carryWalkUp = new Animation(manager.getSpriteSheet(), Constants.JEDI_CARRY_WALK_X, Constants.JEDI_THIRD_ROW, (Constants.JEDI_WIDTH * 2), Constants.JEDI_HEIGHT,2,0.5f);
     }
     @Override
     public void update(float delta) {
         if(Gdx.input.isKeyPressed(Input.Keys.S)){
+            if(isCarrying)
+                carryWalkFront.update(delta);
             walkFront.update(delta);
             direction = "south";
             isMoving = true;
         }
         else if(Gdx.input.isKeyPressed(Input.Keys.W)){
+            if(isCarrying)
+                carryWalkUp.update(delta);
             walkUp.update(delta);
             direction = "north";
             isMoving = true;
         }
         else if(Gdx.input.isKeyPressed(Input.Keys.A)){
+            if(isCarrying)
+                carryWalkSide.update(delta);
             walkSide.update(delta);
             direction = "west";
             isMoving = true;
         }
         else if(Gdx.input.isKeyPressed(Input.Keys.D)){
+            if(isCarrying)
+                carryWalkSide.update(delta);
             walkSide.update(delta);
             direction = "east";
             isMoving = true;
         }
         else{
+            if(!isCarrying){
+                pickUpFront.update(delta);
+                pickUpSide.update(delta);
+                pickUpUp.update(delta);
+                carryFront.update(delta);
+                carrySide.update(delta);
+                carryUp.update(delta);
+            }
             front.update(delta);
             side.update(delta);
             up.update(delta);
             isMoving = false;
+        }
+        if(isPickUpAble()) {
+            picked = true;
+        }
+        else{
+            picked = false;
+        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.E)){
+            if (isCarrying) {
+                isCarrying = false;
+            }
+            else {
+                isCarrying = true;
+            }
         }
         cameraUpdate();
         input(delta);
@@ -124,42 +167,96 @@ public class Character extends Entity {
         sprite.enableBlending();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.begin();
-        checkDirection(sprite, isMoving);
+        checkDirection(sprite, isMoving, isCarrying, picked);
         sprite.end();
     }
-    private void checkDirection(SpriteBatch sprite, boolean isMoving){
-        if(isMoving) {
-            switch(direction){
+
+    private void checkDirection(SpriteBatch sprite, boolean isMoving, boolean isCarrying, boolean isPicked){
+        if(isPicked && !isCarrying && !isMoving){
+            switch (direction) {
                 case "north":
-                    sprite.draw(walkUp.getFrame(), body.getPosition().x * Constants.PPM - ((float)walkUp.getFrame().getRegionWidth()/2)
-                            , body.getPosition().y * Constants.PPM - ((float)walkUp.getFrame().getRegionHeight()/2));
+                    sprite.draw(pickUpUp.getFrame(), body.getPosition().x * Constants.PPM - ((float) walkUp.getFrame().getRegionWidth() / 2)
+                            , body.getPosition().y * Constants.PPM - ((float) walkUp.getFrame().getRegionHeight() / 2));
                     break;
                 case "south":
-                    sprite.draw(walkFront.getFrame(), body.getPosition().x * Constants.PPM - ((float)walkFront.getFrame().getRegionWidth()/2),
-                            body.getPosition().y * Constants.PPM - ((float)walkFront.getFrame().getRegionHeight()/2));
+                    sprite.draw(pickUpFront.getFrame(), body.getPosition().x * Constants.PPM - ((float) walkFront.getFrame().getRegionWidth() / 2),
+                            body.getPosition().y * Constants.PPM - ((float) walkFront.getFrame().getRegionHeight() / 2));
                     break;
                 case "east":
                 case "west":
-                    sprite.draw(walkSide.getFrame(), body.getPosition().x * Constants.PPM - ((float)walkSide.getFrame().getRegionWidth()/2)
-                            , body.getPosition().y * Constants.PPM - ((float)walkSide.getFrame().getRegionHeight()/2));
+                    sprite.draw(pickUpSide.getFrame(), body.getPosition().x * Constants.PPM - ((float) walkSide.getFrame().getRegionWidth() / 2)
+                            , body.getPosition().y * Constants.PPM - ((float) walkSide.getFrame().getRegionHeight() / 2));
                     break;
             }
         }
-        else {
-            switch(direction){
-                case "north":
-                    sprite.draw(up.getFrame(), body.getPosition().x * Constants.PPM - ((float)front.getFrame().getRegionWidth()/2),
-                            body.getPosition().y * Constants.PPM - ((float)front.getFrame().getRegionHeight()/2));
-                    break;
-                case "south":
-                    sprite.draw(front.getFrame(), body.getPosition().x * Constants.PPM - ((float)front.getFrame().getRegionWidth()/2),
-                            body.getPosition().y * Constants.PPM - ((float)front.getFrame().getRegionHeight()/2));
-                    break;
-                case "east":
-                case "west":
-                    sprite.draw(side.getFrame(), body.getPosition().x * Constants.PPM - ((float)front.getFrame().getRegionWidth()/2),
-                            body.getPosition().y * Constants.PPM - ((float)front.getFrame().getRegionHeight()/2));
-                    break;
+        else if(isCarrying) {
+            if(isMoving) {
+                switch (direction) {
+                    case "north":
+                        sprite.draw(carryWalkUp.getFrame(), body.getPosition().x * Constants.PPM - ((float) walkUp.getFrame().getRegionWidth() / 2)
+                                , body.getPosition().y * Constants.PPM - ((float) walkUp.getFrame().getRegionHeight() / 2));
+                        break;
+                    case "south":
+                        sprite.draw(carryWalkFront.getFrame(), body.getPosition().x * Constants.PPM - ((float) walkFront.getFrame().getRegionWidth() / 2),
+                                body.getPosition().y * Constants.PPM - ((float) walkFront.getFrame().getRegionHeight() / 2));
+                        break;
+                    case "east":
+                    case "west":
+                        sprite.draw(carryWalkSide.getFrame(), body.getPosition().x * Constants.PPM - ((float) walkSide.getFrame().getRegionWidth() / 2)
+                                , body.getPosition().y * Constants.PPM - ((float) walkSide.getFrame().getRegionHeight() / 2));
+                        break;
+                }
+            } else {
+                switch (direction) {
+                    case "north":
+                        sprite.draw(carryUp.getFrame(), body.getPosition().x * Constants.PPM - ((float) walkUp.getFrame().getRegionWidth() / 2)
+                                , body.getPosition().y * Constants.PPM - ((float) walkUp.getFrame().getRegionHeight() / 2));
+                        break;
+                    case "south":
+                        sprite.draw(carryFront.getFrame(), body.getPosition().x * Constants.PPM - ((float) walkFront.getFrame().getRegionWidth() / 2),
+                                body.getPosition().y * Constants.PPM - ((float) walkFront.getFrame().getRegionHeight() / 2));
+                        break;
+                    case "east":
+                    case "west":
+                        sprite.draw(carrySide.getFrame(), body.getPosition().x * Constants.PPM - ((float) walkSide.getFrame().getRegionWidth() / 2)
+                                , body.getPosition().y * Constants.PPM - ((float) walkSide.getFrame().getRegionHeight() / 2));
+                        break;
+                }
+            }
+        } else{
+            if(isMoving){
+                switch(direction){
+                    case "north":
+                        sprite.draw(walkUp.getFrame(), body.getPosition().x * Constants.PPM - ((float)walkUp.getFrame().getRegionWidth()/2)
+                                , body.getPosition().y * Constants.PPM - ((float)walkUp.getFrame().getRegionHeight()/2));
+                        break;
+                    case "south":
+                        sprite.draw(walkFront.getFrame(), body.getPosition().x * Constants.PPM - ((float)walkFront.getFrame().getRegionWidth()/2),
+                                body.getPosition().y * Constants.PPM - ((float)walkFront.getFrame().getRegionHeight()/2));
+                        break;
+                    case "east":
+                    case "west":
+                        sprite.draw(walkSide.getFrame(), body.getPosition().x * Constants.PPM - ((float)walkSide.getFrame().getRegionWidth()/2)
+                                , body.getPosition().y * Constants.PPM - ((float)walkSide.getFrame().getRegionHeight()/2));
+                        break;
+                }
+            }
+            else{
+                switch(direction){
+                    case "north":
+                        sprite.draw(up.getFrame(), body.getPosition().x * Constants.PPM - ((float)front.getFrame().getRegionWidth()/2),
+                                body.getPosition().y * Constants.PPM - ((float)front.getFrame().getRegionHeight()/2));
+                        break;
+                    case "south":
+                        sprite.draw(front.getFrame(), body.getPosition().x * Constants.PPM - ((float)front.getFrame().getRegionWidth()/2),
+                                body.getPosition().y * Constants.PPM - ((float)front.getFrame().getRegionHeight()/2));
+                        break;
+                    case "east":
+                    case "west":
+                        sprite.draw(side.getFrame(), body.getPosition().x * Constants.PPM - ((float)front.getFrame().getRegionWidth()/2),
+                                body.getPosition().y * Constants.PPM - ((float)front.getFrame().getRegionHeight()/2));
+                        break;
+                }
             }
         }
     }
@@ -173,6 +270,9 @@ public class Character extends Entity {
                 if(isLeft){
                     walkSide.flip();
                     side.flip();
+                    carryWalkSide.flip();
+                    carrySide.flip();
+                    pickUpSide.flip();
                     isLeft = false;
                 }
             }
@@ -187,6 +287,9 @@ public class Character extends Entity {
                 if(!isLeft){
                     walkSide.flip();
                     side.flip();
+                    carryWalkSide.flip();
+                    carrySide.flip();
+                    pickUpSide.flip();
                     isLeft = true;
                 }
             }
@@ -248,5 +351,13 @@ public class Character extends Entity {
         position.y = this.position.y * Constants.PPM;
         manager.getCamera().position.set(position);
         manager.getCamera().update();
+    }
+
+    public boolean isPickUpAble() {
+        return pickUpAble;
+    }
+
+    public void setPickUpAble(boolean pickUpAble) {
+        this.pickUpAble = pickUpAble;
     }
 }

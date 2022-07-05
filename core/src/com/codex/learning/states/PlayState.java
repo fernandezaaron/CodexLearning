@@ -20,13 +20,13 @@ public class PlayState extends State{
 
         house = new HouseMap(manager);
 
-        sample = new Blocks(manager, "class", new Vector2(40, Constants.BLOCK_FIRST_ROW), new Vector2(330, Constants.BLOCK_HEIGHT));
+        sample = new Blocks(manager, "class", "class HelloWorld{", new Vector2(40, Constants.BLOCK_FIRST_ROW), new Vector2(330, Constants.BLOCK_HEIGHT));
         sample.create(new Vector2(5, 0), new Vector2(4.6f, 0.7f), 0);
 
-        sample2 = new Blocks(manager, "}", new Vector2(380, Constants.BLOCK_FIRST_ROW), new Vector2(46, Constants.BLOCK_HEIGHT));
+        sample2 = new Blocks(manager, "}", "}", new Vector2(380, Constants.BLOCK_FIRST_ROW), new Vector2(46, Constants.BLOCK_HEIGHT));
         sample2.create(new Vector2(5, -5), new Vector2(0.3f, 0.7f), 0);
 
-        sample3 = new Blocks(manager, "args", new Vector2(380, Constants.BLOCK_SECOND_ROW), new Vector2(206, Constants.BLOCK_HEIGHT));
+        sample3 = new Blocks(manager, "args", "String[] args)", new Vector2(380, Constants.BLOCK_SECOND_ROW), new Vector2(206, Constants.BLOCK_HEIGHT));
         sample3.create(new Vector2(5, 5), new Vector2(2.6f, 0.7f), 0);
 
         jedisaur = new Character(manager);
@@ -42,6 +42,11 @@ public class PlayState extends State{
         sample.update(delta);
         sample2.update(delta);
         sample3.update(delta);
+        if(sample.isPickUp() || sample2.isPickUp() || sample3.isPickUp()){
+            jedisaur.setPickUpAble(true);
+        }else{
+            jedisaur.setPickUpAble(false);
+        }
         jediGrandpa.update(delta);
         jedisaur.update(delta);
     }

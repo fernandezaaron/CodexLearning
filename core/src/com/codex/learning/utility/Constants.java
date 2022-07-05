@@ -13,18 +13,20 @@ public class Constants {
     public static final String BACKGROUND_PATH = "background/mainmenu1.png";
     public static final String STAGE1_PATH = "map/house.png";
 
-    // TEXT ASSET PATH
-    public static final String MENU_TEXT_PATH = "text/textsheet.png";
-
-    // MAP ASSET PATH
-    public static final String STAGE_SELECT_PATH = "map/stageselectmap2.png";
-
     // BLOCK ASSET PATH
     public static final String BLOCK_SHEET_PATH = "block/blocksheet.png";
     public static final String UTILITY_SHEET_PATH = "block/utilitysheet.png";
 
-    // JEDISAUR ASSET PATH
+    // CHARACTER ASSET PATH
     public static final String CHARACTER_SHEET_PATH = "character/jedisaurspritesheet.png";
+
+    // FONT ASSET PATH
+    public static final String FONT_STYLE = "PokemonClassic.fnt";
+    // MAP ASSET PATH
+    public static final String STAGE_SELECT_PATH = "map/stageselectmap2.png";
+
+    // TEXT ASSET PATH
+    public static final String MENU_TEXT_PATH = "text/textsheet.png";
 
 //    MENU STATE
 
@@ -125,7 +127,9 @@ public class Constants {
     //JEDISAUR SPRITE SHEET
     public static final int JEDI_STAND_X = 0;
     public static final int JEDI_WALK_X = 80;
-    public static final int JEDI_CARRY_X = 480;
+    public static final int JEDI_CARRY_X = 400;
+    public static final int JEDI_CARRY_WALK_X = 480;
+    public static final int JEDI_PICK_UP_X = 320;
 
     public static final int JEDI_HEIGHT = 114;
     public static final int JEDI_WIDTH = 80;
@@ -136,7 +140,6 @@ public class Constants {
     public static final int JEDI_FIRST_ROW = 0;
     public static final int JEDI_SECOND_ROW = 115;
     public static final int JEDI_THIRD_ROW = 230;
-
 
     public static final int JEDI_GRANDPA_X = 0;
     public static final int JEDI_GRANDPA_Y = 345;

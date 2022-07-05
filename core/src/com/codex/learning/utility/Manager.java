@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -27,6 +28,8 @@ public class Manager {
     private TextureRegion spriteSheet;
     private TextureRegion blockSheet;
 
+    private BitmapFont font;
+
     public Manager(){
 
         b2dr = new Box2DDebugRenderer();
@@ -44,6 +47,9 @@ public class Manager {
         blockSheet = new TextureRegion(new Texture(Constants.BLOCK_SHEET_PATH));
 
         spriteSheet = new TextureRegion(new Texture(Constants.CHARACTER_SHEET_PATH));
+
+//        font = new BitmapFont(Gdx.files.internal(Constants.FONT_STYLE));
+//        font.getData().scale(0.01f);
 
         camera = new OrthographicCamera(Constants.SCREEN_WIDTH, Constants.SCREEN_WIDTH);
         camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
@@ -119,4 +125,9 @@ public class Manager {
     public TextureRegion getBlockSheet() {
         return blockSheet;
     }
+
+    public BitmapFont getFont() {
+        return font;
+    }
 }
+
