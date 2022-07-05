@@ -13,6 +13,7 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.codex.learning.states.State;
+import org.w3c.dom.Text;
 
 import java.util.Stack;
 //This class is used to initiate all once a used assets to prevent multiple calls.
@@ -27,6 +28,7 @@ public class Manager {
     private TextureRegion stageSelect, utility;
     private TextureRegion spriteSheet;
     private TextureRegion blockSheet;
+    private TextureRegion reportcardsheet;
 
     private BitmapFont font;
 
@@ -47,6 +49,8 @@ public class Manager {
         blockSheet = new TextureRegion(new Texture(Constants.BLOCK_SHEET_PATH));
 
         spriteSheet = new TextureRegion(new Texture(Constants.CHARACTER_SHEET_PATH));
+
+        reportcardsheet = new TextureRegion(new Texture(Constants.reportcard));
 
         font = new BitmapFont(Gdx.files.internal(Constants.FONT_STYLE));
         font.getData().scale(0.7f);
@@ -129,5 +133,7 @@ public class Manager {
     public BitmapFont getFont() {
         return font;
     }
+
+    public TextureRegion getReportcardsheet(){ return reportcardsheet; }
 }
 
