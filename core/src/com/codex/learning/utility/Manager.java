@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -14,7 +15,7 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.codex.learning.states.State;
 
 import java.util.Stack;
-
+//This class is used to initiate all once a used assets to prevent multiple calls.
 public class Manager {
     private final World world;
     private final OrthographicCamera camera;
@@ -26,17 +27,15 @@ public class Manager {
     private TextureRegion stageSelect, utility;
     private TextureRegion spriteSheet;
     private TextureRegion blockSheet;
-    private TextureRegion badLogic;
+
+    private BitmapFont font;
 
     public Manager(){
 
         b2dr = new Box2DDebugRenderer();
 
-
         world = new World(new Vector2(0,0),false);
         world.setContactListener(new Contact());
-
-        badLogic = new TextureRegion(new Texture("badLogic.jpg"));
 
         background = new TextureRegion(new Texture(Constants.BACKGROUND_PATH));
         mainMenu = new TextureRegion(new Texture(Constants.MENU_TEXT_PATH));
@@ -45,8 +44,12 @@ public class Manager {
 
         stageSelect = new TextureRegion(new Texture(Constants.STAGE_SELECT_PATH));
         utility = new TextureRegion(new Texture(Constants.UTILITY_SHEET_PATH));
+        blockSheet = new TextureRegion(new Texture(Constants.BLOCK_SHEET_PATH));
 
         spriteSheet = new TextureRegion(new Texture(Constants.CHARACTER_SHEET_PATH));
+
+//        font = new BitmapFont(Gdx.files.internal(Constants.FONT_STYLE));
+//        font.getData().scale(0.01f);
 
         camera = new OrthographicCamera(Constants.SCREEN_WIDTH, Constants.SCREEN_WIDTH);
         camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
@@ -119,7 +122,12 @@ public class Manager {
         return spriteSheet;
     }
 
-    public TextureRegion getBadLogic() {
-        return badLogic;
+    public TextureRegion getBlockSheet() {
+        return blockSheet;
+    }
+
+    public BitmapFont getFont() {
+        return font;
     }
 }
+

@@ -1,83 +1,75 @@
 package com.codex.learning.states;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.codex.learning.entity.Blocks;
-import com.codex.learning.entity.JediGrandpa;
+import com.codex.learning.entity.*;
 
-import com.codex.learning.entity.Jedisaur;
-import com.codex.learning.utility.Constants;
-import com.codex.learning.utility.Manager;
+import com.codex.learning.entity.Character;
+import com.codex.learning.utility.*;
 
 public class PlayState extends State{
-
-    // HOUSE X Y BOX
-    private Jedisaur jedisaur;
-    private Blocks upBorder, downBorder, table, cabinet, fridgeSink;
-    private JediGrandpa jediGrandpa;
-    private Texture badLogic;
+    private Character jedisaur;
+    private NPC jediGrandpa;
+    private HouseMap house;
+    private Blocks sample;
+    private Blocks sample2;
+    private Blocks sample3;
 
     public PlayState(Manager manager) {
         super(manager);
 
-        upBorder = new Blocks(manager);
-        upBorder.create(new Vector2(-6,8), new Vector2(0.2f,4),0);
+        house = new HouseMap(manager);
 
-        cabinet = new Blocks(manager);
-        cabinet.create(new Vector2(-8.5f, 12.3f), new Vector2(2, 3), 0);
+        sample = new Blocks(manager, "class", "class HelloWorld{", new Vector2(40, Constants.BLOCK_FIRST_ROW), new Vector2(330, Constants.BLOCK_HEIGHT));
+        sample.create(new Vector2(5, 0), new Vector2(4.6f, 0.7f), 0);
 
-        table = new Blocks(manager);
-        table.create(new Vector2(-17.5f, 5), new Vector2(3f, 2.3f), 0);
+        sample2 = new Blocks(manager, "}", "}", new Vector2(380, Constants.BLOCK_FIRST_ROW), new Vector2(46, Constants.BLOCK_HEIGHT));
+        sample2.create(new Vector2(5, -5), new Vector2(0.3f, 0.7f), 0);
 
-        fridgeSink = new Blocks(manager);
-        fridgeSink.create(new Vector2(-20f, 12.3f), new Vector2(3.3f, 3), 0);
+        sample3 = new Blocks(manager, "args", "String[] args)", new Vector2(380, Constants.BLOCK_SECOND_ROW), new Vector2(206, Constants.BLOCK_HEIGHT));
+        sample3.create(new Vector2(5, 5), new Vector2(2.6f, 0.7f), 0);
 
-        downBorder = new Blocks(manager);
-        downBorder.create(new Vector2(-6,-8), new Vector2(0.2f,4),0);
+        jedisaur = new Character(manager);
+        jedisaur.create(new Vector2(0, 0), new Vector2(1.2f, 1.75f), 1.6f);
 
-        jedisaur = new Jedisaur(manager);
-        jedisaur.create(new Vector2(0,0),new Vector2(1.2f, 1.75f),1.6f);
-
-        jediGrandpa = new JediGrandpa(manager);
-        jediGrandpa.create(new Vector2(-10,0), new Vector2(1,1.4f),0);
-
+        jediGrandpa = new NPC(manager);
+        jediGrandpa.create(new Vector2(-10, 0), new Vector2(1, 1.4f), 0);
     }
 
     @Override
     public void update(float delta) {
-
         manager.getWorld().step(1/60f,6,2);
+        sample.update(delta);
+        sample2.update(delta);
+        sample3.update(delta);
+        if(sample.isPickUp() || sample2.isPickUp() || sample3.isPickUp()){
+            jedisaur.setPickUpAble(true);
+        }else{
+            jedisaur.setPickUpAble(false);
+        }
         jediGrandpa.update(delta);
         jedisaur.update(delta);
-        //blocks.update(delta);
-
-
     }
 
     @Override
     public void render(SpriteBatch sprite) {
         manager.getCamera().update();
-        sprite.begin();
-        sprite.setProjectionMatrix(manager.getCamera().combined);
-        sprite.disableBlending();
-        sprite.draw(manager.getStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f,
-                manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-        //sprite.draw(badLogic, 200, 0, 100, 100);
-        sprite.end();
+//        sprite.setProjectionMatrix(manager.getCamera().combined);
+        house.render(sprite);
+        sample.render(sprite);
+        sample2.render(sprite);
+        sample3.render(sprite);
         jediGrandpa.render(sprite);
         jedisaur.render(sprite);
-
-
     }
 
     @Override
     public void dispose() {
         jedisaur.disposeBody();
-        fridgeSink.disposeBody();
-        table.disposeBody();
-        upBorder.disposeBody();
-        downBorder.disposeBody();
-        cabinet.disposeBody();
+        jediGrandpa.disposeBody();
+        sample.disposeBody();
+        sample2.disposeBody();
+        sample3.disposeBody();
+        house.dispose();
     }
 }

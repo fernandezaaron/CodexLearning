@@ -1,5 +1,6 @@
 package com.codex.learning.utility;
 
+//This class will contain all constants value
 public class Constants {
     //constants
     public static final String GAME_TITLE = "Codex Learning";
@@ -12,18 +13,20 @@ public class Constants {
     public static final String BACKGROUND_PATH = "background/mainmenu1.png";
     public static final String STAGE1_PATH = "map/house.png";
 
-    // TEXT ASSET PATH
-    public static final String MENU_TEXT_PATH = "text/textsheet.png";
-
-    // MAP ASSET PATH
-    public static final String STAGE_SELECT_PATH = "map/stageselectmap2.png";
-
     // BLOCK ASSET PATH
     public static final String BLOCK_SHEET_PATH = "block/blocksheet.png";
     public static final String UTILITY_SHEET_PATH = "block/utilitysheet.png";
 
-    // JEDISAUR ASSET PATH
+    // CHARACTER ASSET PATH
     public static final String CHARACTER_SHEET_PATH = "character/jedisaurspritesheet.png";
+
+    // FONT ASSET PATH
+    public static final String FONT_STYLE = "PokemonClassic.fnt";
+    // MAP ASSET PATH
+    public static final String STAGE_SELECT_PATH = "map/stageselectmap2.png";
+
+    // TEXT ASSET PATH
+    public static final String MENU_TEXT_PATH = "text/textsheet.png";
 
 //    MENU STATE
 
@@ -121,21 +124,34 @@ public class Constants {
 
 //    END OF STAGE SELECT STATE
 
-    //ENTITIES
-
+    //JEDISAUR SPRITE SHEET
     public static final int JEDI_STAND_X = 0;
-    public static final int JEDI_STAND_Y = 0;
-    public static final int JEDI_STAND_HEIGHT = 114;
-    public static final int JEDI_STAND_WIDTH = 79;
-    public static final int JEDI_VELOCITY = 7;
-
-    public static final float DIAGONAL_SPEED = 0.707f;
     public static final int JEDI_WALK_X = 80;
-    public static final int JEDI_WALK_FRONT_Y = 0;
-    public static final int JEDI_WALK_UP_Y = 230;
-    public static final int JEDI_WALK_SIDE_Y = 115;
+    public static final int JEDI_CARRY_X = 400;
+    public static final int JEDI_CARRY_WALK_X = 480;
+    public static final int JEDI_PICK_UP_X = 320;
 
-    //END OF ENTITIES
+    public static final int JEDI_HEIGHT = 114;
+    public static final int JEDI_WIDTH = 80;
 
+    public static final int JEDI_VELOCITY = 7;
+    public static final float DIAGONAL_SPEED = 0.707f;
+
+    public static final int JEDI_FIRST_ROW = 0;
+    public static final int JEDI_SECOND_ROW = 115;
+    public static final int JEDI_THIRD_ROW = 230;
+
+    public static final int JEDI_GRANDPA_X = 0;
+    public static final int JEDI_GRANDPA_Y = 345;
+    public static final int JEDI_GRANDPA_WIDTH = 79;
+    public static final int JEDI_GRANDPA_HEIGHT = 108;
+    //END OF JEDISAUR SPRITE SHEET
+
+    //BLOCK SHEET
+    public static final int BLOCK_HEIGHT = 54;
+    public static final int BLOCK_FIRST_ROW = 22;
+    public static final int BLOCK_SECOND_ROW = 89;
+    public static final int BLOCK_THIRD_ROW = 153;
+    //END OF BLOCK SHEET
 
 }

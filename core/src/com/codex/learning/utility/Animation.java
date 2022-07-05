@@ -12,7 +12,9 @@ public class Animation {
     private int currFrame;
     private boolean isFlipped;
 
-
+//    Used to get sprite with animation.
+//    frameCount is the count of frames in a sprite that the animation has.
+//    cycleTime is the time that the animation will run.
     public Animation(TextureRegion texture, int x, int y, int textureWidth,int textureHeight, int frameCount, float cycleTime){
         frames = new Array<>();
         int frameWidth = textureWidth / frameCount;
