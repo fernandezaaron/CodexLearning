@@ -13,6 +13,7 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.codex.learning.states.State;
+import com.sun.org.apache.bcel.internal.Const;
 
 import java.util.Stack;
 //This class is used to initiate all once a used assets to prevent multiple calls.
@@ -22,7 +23,7 @@ public class Manager {
     private final Stack<State> states;
     private Box2DDebugRenderer b2dr;
 
-    private TextureRegion mainMenu, background;
+    private TextureRegion mainMenu, background, reportcardsheet;
     private TextureRegion stage1;
     private TextureRegion stageSelect, utility;
     private TextureRegion spriteSheet;
@@ -48,6 +49,7 @@ public class Manager {
         blockSheet = new TextureRegion(new Texture(Constants.BLOCK_SHEET_PATH));
 
         spriteSheet = new TextureRegion(new Texture(Constants.CHARACTER_SHEET_PATH));
+        reportcardsheet = new TextureRegion(new Texture(Constants.reportcard));
 
 //        font = new BitmapFont(Gdx.files.internal(Constants.FONT_STYLE));
 //        font.getData().scale(0.01f);
@@ -128,6 +130,8 @@ public class Manager {
     public TextureRegion getBlockSheet() {
         return blockSheet;
     }
+
+    public TextureRegion getReportcardsheet(){ return reportcardsheet; }
 
     public BitmapFont getFont() {
         return font;

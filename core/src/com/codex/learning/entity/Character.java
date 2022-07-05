@@ -2,7 +2,9 @@ package com.codex.learning.entity;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
@@ -20,6 +22,7 @@ public class Character extends Entity {
     private Animation pickUpFront, pickUpSide, pickUpUp;
     private Animation carryFront, carrySide, carryUp;
     private Animation carryWalkFront, carryWalkSide, carryWalkUp;
+    private TextureRegion door;
 
     private String direction;
     private boolean isMoving;
@@ -32,6 +35,7 @@ public class Character extends Entity {
     private boolean atBot;
     private boolean atLeft;
     private boolean atRight;
+    private boolean atDoor;
     private Box2DDebugRenderer b2dr;
 
     public Character(Manager manager) {
@@ -66,6 +70,7 @@ public class Character extends Entity {
         atBot = false;
         atLeft = false;
         atRight = false;
+        atDoor = false;
 
         // Used to flip the sprite left to right vice versa
         isLeft = true;
@@ -80,6 +85,8 @@ public class Character extends Entity {
 
         this.size.x /= Constants.PPM;
         this.size.y /= Constants.PPM;
+
+        door = new TextureRegion(manager.getReportcardsheet(), 48,195, 263, 119);
 
         front = new Animation(manager.getSpriteSheet(), Constants.JEDI_STAND_X, Constants.JEDI_FIRST_ROW, Constants.JEDI_WIDTH, Constants.JEDI_HEIGHT,1, 0);
         side = new Animation(manager.getSpriteSheet(), Constants.JEDI_STAND_X, Constants.JEDI_SECOND_ROW, Constants.JEDI_WIDTH, Constants.JEDI_HEIGHT,1, 0);
@@ -159,6 +166,7 @@ public class Character extends Entity {
                 isCarrying = true;
             }
         }
+
         cameraUpdate();
         input(delta);
     }
@@ -168,7 +176,14 @@ public class Character extends Entity {
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.begin();
         checkDirection(sprite, isMoving, isCarrying, picked);
+        checkDoor(sprite, atDoor);
         sprite.end();
+    }
+
+    private void checkDoor(SpriteBatch sprite, boolean atDoor){
+        if(atDoor){
+            sprite.draw(door, -693, -450);
+        }
     }
 
     private void checkDirection(SpriteBatch sprite, boolean isMoving, boolean isCarrying, boolean isPicked){
@@ -341,6 +356,11 @@ public class Character extends Entity {
         // USED TO EXIT THE MAP
         if(body.getPosition().x > -19.8f && body.getPosition().x < -15.5f && body.getPosition().y < -11){
             manager.set(new StageSelectState(manager));
+        }
+        if(body.getPosition().x > -19.8f && body.getPosition().x < -15.5f && body.getPosition().y < -10){
+            atDoor = true;
+        }else{
+            atDoor = false;
         }
 
         body.setLinearVelocity(horizontalForce * Constants.JEDI_VELOCITY, verticalForce * Constants.JEDI_VELOCITY);
