@@ -47,6 +47,7 @@ public class PlayState extends State{
         }else{
             jedisaur.setPickUpAble(false);
         }
+        house.exitDoor(jedisaur);
         jediGrandpa.update(delta);
         jedisaur.update(delta);
     }
