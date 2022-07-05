@@ -34,7 +34,6 @@ public class HouseMap extends State {
         atDoor = false;
 
         door = new TextureRegion(manager.getReportcardsheet(), 48,195, 263, 119);
-
     }
 
     @Override

@@ -80,7 +80,7 @@ public class Blocks extends Entity{
         sprite.draw(block, body.getPosition().x * Constants.PPM - block.getRegionWidth() / 2,
                 body.getPosition().y * Constants.PPM - block.getRegionHeight() / 2);
         manager.getFont().draw(sprite, this.name, body.getPosition().x * Constants.PPM - block.getRegionWidth() / 2,
-                body.getPosition().y * Constants.PPM - block.getRegionHeight() / 2);
+                body.getPosition().y * Constants.PPM);
         sprite.end();
     }
 

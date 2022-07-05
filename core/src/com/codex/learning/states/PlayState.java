@@ -42,11 +42,20 @@ public class PlayState extends State{
         sample.update(delta);
         sample2.update(delta);
         sample3.update(delta);
-        if(sample.isPickUp() || sample2.isPickUp() || sample3.isPickUp()){
+        if(sample.isPickUp()){
             jedisaur.setPickUpAble(true);
-        }else{
+            jedisaur.carryBlock(sample);
+        }else if(sample2.isPickUp()){
+            jedisaur.setPickUpAble(true);
+            jedisaur.carryBlock(sample);
+        }else if(sample3.isPickUp()){
+            jedisaur.setPickUpAble(true);
+            jedisaur.carryBlock(sample);
+        }
+        else{
             jedisaur.setPickUpAble(false);
         }
+
         house.exitDoor(jedisaur);
         jediGrandpa.update(delta);
         jedisaur.update(delta);

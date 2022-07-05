@@ -368,5 +368,10 @@ public class Character extends Entity {
         this.pickUpAble = pickUpAble;
     }
 
-    
+    public void carryBlock(Blocks block){
+        block.position.x = body.getPosition().x * Constants.PPM - ((float) walkUp.getFrame().getRegionWidth() / 2);
+        block.position.y = body.getPosition().y * Constants.PPM - ((float) walkUp.getFrame().getRegionWidth() / 2);
+        System.out.println(" BLOCK " + block.position.x + " - " + block.position.y);
+        System.out.println(" PLAYER " + body.getPosition().x + " - " + body.getPosition().y);
+    }
 }
