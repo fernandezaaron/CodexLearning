@@ -103,62 +103,7 @@ public class Character extends Entity {
     }
     @Override
     public void update(float delta) {
-        if(Gdx.input.isKeyPressed(Input.Keys.S)){
-            if(isCarrying)
-                carryWalkFront.update(delta);
-            walkFront.update(delta);
-            direction = "south";
-            isMoving = true;
-        }
-        else if(Gdx.input.isKeyPressed(Input.Keys.W)){
-            if(isCarrying)
-                carryWalkUp.update(delta);
-            walkUp.update(delta);
-            direction = "north";
-            isMoving = true;
-        }
-        else if(Gdx.input.isKeyPressed(Input.Keys.A)){
-            if(isCarrying)
-                carryWalkSide.update(delta);
-            walkSide.update(delta);
-            direction = "west";
-            isMoving = true;
-        }
-        else if(Gdx.input.isKeyPressed(Input.Keys.D)){
-            if(isCarrying)
-                carryWalkSide.update(delta);
-            walkSide.update(delta);
-            direction = "east";
-            isMoving = true;
-        }
-        else{
-            if(!isCarrying){
-                pickUpFront.update(delta);
-                pickUpSide.update(delta);
-                pickUpUp.update(delta);
-                carryFront.update(delta);
-                carrySide.update(delta);
-                carryUp.update(delta);
-            }
-            front.update(delta);
-            side.update(delta);
-            up.update(delta);
-            isMoving = false;
-        }
-        if(isPickUpAble()) {
-            picked = true;
-        }
-        else{
-            picked = false;
-        }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.E)){
-            if (isCarrying) {
-                isCarrying = false;
-            }
-            else {
-                isCarrying = true;
-            }
-        }
+        logicInput(delta);
         cameraUpdate();
         input(delta);
     }
@@ -261,6 +206,64 @@ public class Character extends Entity {
         }
     }
 
+    public void logicInput(float delta){
+        if(Gdx.input.isKeyPressed(Input.Keys.S)){
+            if(isCarrying)
+                carryWalkFront.update(delta);
+            walkFront.update(delta);
+            direction = "south";
+            isMoving = true;
+        }
+        else if(Gdx.input.isKeyPressed(Input.Keys.W)){
+            if(isCarrying)
+                carryWalkUp.update(delta);
+            walkUp.update(delta);
+            direction = "north";
+            isMoving = true;
+        }
+        else if(Gdx.input.isKeyPressed(Input.Keys.A)){
+            if(isCarrying)
+                carryWalkSide.update(delta);
+            walkSide.update(delta);
+            direction = "west";
+            isMoving = true;
+        }
+        else if(Gdx.input.isKeyPressed(Input.Keys.D)){
+            if(isCarrying)
+                carryWalkSide.update(delta);
+            walkSide.update(delta);
+            direction = "east";
+            isMoving = true;
+        }
+        else{
+            if(!isCarrying){
+                pickUpFront.update(delta);
+                pickUpSide.update(delta);
+                pickUpUp.update(delta);
+                carryFront.update(delta);
+                carrySide.update(delta);
+                carryUp.update(delta);
+            }
+            front.update(delta);
+            side.update(delta);
+            up.update(delta);
+            isMoving = false;
+        }
+        if(isPickUpAble()) {
+            picked = true;
+        }
+        else{
+            picked = false;
+        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.E)){
+            if (isCarrying) {
+                isCarrying = false;
+            }
+            else {
+                isCarrying = true;
+            }
+        }
+    }
     public void input(float delta){
         float horizontalForce = 0;
         float verticalForce = 0;
@@ -360,4 +363,8 @@ public class Character extends Entity {
     public void setPickUpAble(boolean pickUpAble) {
         this.pickUpAble = pickUpAble;
     }
+
+//    public void carryBlock(Blocks block){
+//        block.body.
+//    }
 }

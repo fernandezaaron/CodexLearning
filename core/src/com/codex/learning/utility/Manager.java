@@ -48,8 +48,8 @@ public class Manager {
 
         spriteSheet = new TextureRegion(new Texture(Constants.CHARACTER_SHEET_PATH));
 
-//        font = new BitmapFont(Gdx.files.internal(Constants.FONT_STYLE));
-//        font.getData().scale(0.01f);
+        font = new BitmapFont(Gdx.files.internal(Constants.FONT_STYLE));
+        font.getData().scale(0.7f);
 
         camera = new OrthographicCamera(Constants.SCREEN_WIDTH, Constants.SCREEN_WIDTH);
         camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
