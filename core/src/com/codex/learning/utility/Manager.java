@@ -28,6 +28,7 @@ public class Manager {
     private TextureRegion spriteSheet;
     private TextureRegion blockSheet;
 
+
     private BitmapFont font;
 
     public Manager(){
@@ -55,6 +56,8 @@ public class Manager {
         camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 
         states = new Stack<State>();
+
+        font = new BitmapFont(Gdx.files.internal("./font/PokemonClassic.fnt"));
     }
 
     public void push(State state){

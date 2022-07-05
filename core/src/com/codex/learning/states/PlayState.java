@@ -1,5 +1,7 @@
 package com.codex.learning.states;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.codex.learning.entity.*;
@@ -14,6 +16,7 @@ public class PlayState extends State{
     private Blocks sample;
     private Blocks sample2;
     private Blocks sample3;
+    private BitmapFont font;
 
     public PlayState(Manager manager) {
         super(manager);
@@ -34,6 +37,8 @@ public class PlayState extends State{
 
         jediGrandpa = new NPC(manager);
         jediGrandpa.create(new Vector2(-10, 0), new Vector2(1, 1.4f), 0);
+
+
     }
 
     @Override
@@ -55,6 +60,9 @@ public class PlayState extends State{
     public void render(SpriteBatch sprite) {
         manager.getCamera().update();
 //        sprite.setProjectionMatrix(manager.getCamera().combined);
+        sprite.begin();
+//        font.draw(sprite, "tite", jedisaur.getBody().getPosition().x, jedisaur.getBody().getPosition().y);
+        sprite.end();
         house.render(sprite);
         sample.render(sprite);
         sample2.render(sprite);
