@@ -1,6 +1,5 @@
 package com.codex.learning.states;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -42,7 +41,7 @@ public class PlayState extends State{
 //        sample3.create(new Vector2(5, 5), new Vector2(2.6f, 0.7f), 0);
 
         sample = new Blocks(manager, "class", "class HelloWorld{");
-        sample.create(new Vector2(6.2f, 0), new Vector2(3.5f, 0.7f), 0);
+        sample.create(new Vector2(1.2f, 0), new Vector2(3.5f, 0.7f), 0);
 
         sample2 = new Blocks(manager, "}", "}");
         sample2.create(new Vector2(4.2f, -5), new Vector2(0.2f, 0.7f), 0);
@@ -65,7 +64,8 @@ public class PlayState extends State{
         if(sample.isPickUp()){
             jedisaur.setPickUpAble(true);
             jedisaur.carryBlock(sample);
-        }else if(sample2.isPickUp()){
+        }
+        else if(sample2.isPickUp()){
             jedisaur.setPickUpAble(true);
             jedisaur.carryBlock(sample2);
         }else if(sample3.isPickUp()){

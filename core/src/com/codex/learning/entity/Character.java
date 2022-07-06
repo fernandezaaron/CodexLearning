@@ -3,11 +3,10 @@ package com.codex.learning.entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
-import com.codex.learning.states.StageSelectState;
+import com.badlogic.gdx.physics.bullet.softbody.btSoftBody;
 import com.codex.learning.utility.Animation;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
@@ -109,6 +108,7 @@ public class Character extends Entity {
         logicInput(delta);
         cameraUpdate();
         input(delta);
+
     }
     @Override
     public void render(SpriteBatch sprite) {
@@ -365,12 +365,21 @@ public class Character extends Entity {
 
     public void carryBlock(Blocks block){
 //        block.position.set(block.getBody().getPosition().x + 10, block.getBody().getPosition().y + 20);
+
         if(isCarrying){
-            block.position.add(10, 20);
-            block.body.getPosition().add(body.getPosition().x, body.getPosition().y + 5);
-            block.size.set(10, 10);
+      //      block.position.set(body.getPosition().x, body.getPosition().y);
+                block.body.setTransform(body.getPosition().x, body.getPosition().y+0.8f, 0);
+                 System.out.println(body.getPosition().x + " " + body.getPosition().y);
+                 block.body.setType(BodyDef.BodyType.DynamicBody);
+
+
+                //block.position.set(body.getPosition().x, body.getPosition().y + 5);
+                //block.body.getPosition().set(body.getPosition().x, body.getPosition().y + 5);
+                //block.size.set(10, 10);
 //            block.size.add(3, 3);
 //            block.disposeBody();
+        }else{
+            block.body.setType(BodyDef.BodyType.StaticBody);
         }
     }
 }

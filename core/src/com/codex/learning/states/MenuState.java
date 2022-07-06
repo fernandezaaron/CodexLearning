@@ -78,9 +78,9 @@ public class MenuState extends State {
     public void input(){
         if(Gdx.input.justTouched()){
             manager.getCamera().unproject(touchpoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
-            if(soundBounds.contains(touchpoint.x, touchpoint.y)){
-                System.out.println("You clicked at Sounds!");
-            }
+//            if(soundBounds.contains(touchpoint.x, touchpoint.y)){
+//                System.out.println("You clicked at Sounds!");
+//            }
             if(javaDeluxeBounds.contains(touchpoint.x, touchpoint.y)){
                 manager.set(new StageSelectState(manager));
             }

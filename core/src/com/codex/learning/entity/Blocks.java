@@ -42,7 +42,7 @@ public class Blocks extends Entity{
         this.size = size;
 
         BodyDef def = new BodyDef();
-        def.type = BodyDef.BodyType.KinematicBody;
+        def.type = BodyDef.BodyType.StaticBody;
         def.position.set(this.position);
         def.fixedRotation = true;
         PolygonShape shape = new PolygonShape();
@@ -53,6 +53,7 @@ public class Blocks extends Entity{
         fixtureDef.density = density;
         fixtureDef.shape = shape;
         fixtureDef.friction = 5;
+
 
         body = manager.getWorld().createBody(def);
         body.createFixture(fixtureDef).setUserData(this);
@@ -66,23 +67,26 @@ public class Blocks extends Entity{
         pickUp = false;
     }
 
+
     @Override
     public void update(float delta) {
 
     }
 
+
     @Override
     public void render(SpriteBatch sprite) {
         sprite.enableBlending();
         sprite.setProjectionMatrix(manager.getCamera().combined);
-
+        shapeRenderer.setProjectionMatrix(manager.getCamera().combined);
         shapeRenderer.setColor(Color.ORANGE);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 //        shapeRenderer.rect(this.sizeSheet.x + this.sizeSheet.x / 2, (this.sizeSheet.x + this.sizeSheet.x / 2) - ((this.sizeSheet.x/ 2) + Constants.PPM), this.name.length() * (Constants.PPM * manager.getFont().getScaleX()) / 6, (Constants.PPM * manager.getFont().getScaleY()) / 3);
-        shapeRenderer.rect(body.getPosition().x * Constants.PPM / 2,
-                body.getPosition().y * this.size.y - Constants.PPM,
-                this.name.length() * this.size.x + Constants.PPM,
-                this.size.y * Constants.PPM);
+//        shapeRenderer.rect(body.getPosition().x * Constants.PPM / 2,
+//                body.getPosition().y * this.size.y - Constants.PPM,
+//                this.name.length() * this.size.x + Constants.PPM,
+//                this.size.y + Constants.PPM);
+        shapeRenderer.rect(body.getPosition().x, body.getPosition().y, this.name.length() * this.size.x, this.size.y);
         shapeRenderer.end();
 
         sprite.begin();
@@ -95,7 +99,7 @@ public class Blocks extends Entity{
 
         sprite.end();
 //        -(body.getPosition().x - body.getPosition().x / 2) * this.size.x
-        System.out.println(this.name + " - " + body.getPosition().x + " - " + body.getPosition().y);
+       // System.out.println(this.name + " - " + body.getPosition().x + " - " + body.getPosition().y);
     }
 
     public boolean isPickUp() {
