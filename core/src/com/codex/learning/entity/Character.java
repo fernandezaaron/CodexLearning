@@ -357,11 +357,7 @@ public class Character extends Entity {
         if(body.getPosition().x > -19.8f && body.getPosition().x < -15.5f && body.getPosition().y < -11){
             manager.set(new StageSelectState(manager));
         }
-        if(body.getPosition().x > -19.8f && body.getPosition().x < -15.5f && body.getPosition().y < -10){
-            atDoor = true;
-        }else{
-            atDoor = false;
-        }
+        atDoor = body.getPosition().x > -19.8f && body.getPosition().x < -15.5f && body.getPosition().y < -10;
 
         body.setLinearVelocity(horizontalForce * Constants.JEDI_VELOCITY, verticalForce * Constants.JEDI_VELOCITY);
     }
