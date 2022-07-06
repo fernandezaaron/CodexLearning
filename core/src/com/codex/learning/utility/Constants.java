@@ -10,7 +10,9 @@ public class Constants {
     public static final int SCREEN_HEIGHT = 900;
 
     // BACKGROUND ASSET PATH
-    public static final String BACKGROUND_PATH = "background/mainmenu1.png";
+    public static final String BACKGROUND_PATH = "background/mainmenu2.png";
+    public static final String SKY_BACKGROUND_PATH = "background/skyBG.png";
+    public static final String CLOUD_PATH = "background/clouds.png";
     public static final String STAGE1_PATH = "map/house.png";
     public static final String reportcard = "background/reportcardspritesheet.png";
 
@@ -31,6 +33,10 @@ public class Constants {
 
 //    MENU STATE
 
+    public static final int BACKGROUND_SPEED = 50;
+    public static final int CLOUDS_HEIGHT = 594;
+    public static final int CLOUDS_WIDTH = 2235;
+
     public static final int TEXT_HIGHLIGHT_X = 28;
     public static final int TEXT_HIGHLIGHT_Y = 93;
     public static final int TEXT_HIGHLIGHT_WIDTH = 537;
@@ -40,14 +46,20 @@ public class Constants {
     // MENUSTATE TOUCHPOINT X, Y
     public static final int SOUND_ON_SCREEN_X = 823;
     public static final int SOUND_ON_SCREEN_Y = 447;
-    public static final int DELUXE_ON_SCREEN_X = 1007;
-    public static final int DELUXE_ON_SCREEN_Y = 455;
-    public static final int RECIPE_ON_SCREEN_X = 855;
-    public static final int RECIPE_ON_SCREEN_Y = 377;
-    public static final int TRIAL_ON_SCREEN_X = 1003;
-    public static final int TRIAL_ON_SCREEN_Y = 304;
-    public static final int QUIT_ON_SCREEN_X = 1034;
-    public static final int QUIT_ON_SCREEN_Y = 226;
+    public static final int DELUXE_ON_SCREEN_X = 534;
+    public static final int DELUXE_ON_SCREEN_Y = 460;
+    public static final int RECIPE_ON_SCREEN_X = 538;
+    public static final int RECIPE_ON_SCREEN_Y = 410;
+    public static final int TRIAL_ON_SCREEN_X = 538;
+    public static final int TRIAL_ON_SCREEN_Y = 360;
+    public static final int REPORTCARD_ON_SCREEN_X = 538;
+    public static final int REPORTCARD_ON_SCREEN_Y = 305;
+    public static final int HELP_ON_SCREEN_X = 538;
+    public static final int HELP_ON_SCREEN_Y = 250;
+    public static final int SETTINGS_ON_SCREEN_X = 538;
+    public static final int SETTINGS_ON_SCREEN_Y = 200;
+    public static final int QUIT_ON_SCREEN_X = 538;
+    public static final int QUIT_ON_SCREEN_Y = 145;
 
 //    END OF MENU STATE
 

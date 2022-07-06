@@ -5,6 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bec48db2-8361-48a5-88e4-0e949fc72c35" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/background/clouds.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/background/mainmenu2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/background/skyBG.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/text/textsheet.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/text/textsheet.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/MenuState.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/MenuState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Constants.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,6 +52,13 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/background" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\background" />
+      <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\text" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="DesktopLauncher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">

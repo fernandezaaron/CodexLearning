@@ -20,25 +20,33 @@ import java.awt.*;
 public class MenuState extends State {
 
 
-    private TextureRegion musicLogo, textHighlight;
+    private TextureRegion musicLogo, textHighlight, skyBG, clouds;
     private Vector3 touchpoint;
-    private Rectangle javaDeluxeBounds, recipeBounds, jediTrialBounds, quitGameBounds, soundBounds;
+    private Rectangle javaDeluxeBounds, recipeBounds, jediTrialBounds, quitGameBounds, soundBounds, reportCardBounds, helpBounds, settingsBounds;
+    private float xMax, xCoord;
 
     public MenuState(Manager manager) {
         super(manager);
 
 //        This is used to crop each sprite in a sprite sheet.
-        textHighlight = new TextureRegion(new Texture(manager.get))
+        textHighlight = new TextureRegion(manager.getMainMenu(), Constants.TEXT_HIGHLIGHT_X, Constants.TEXT_HIGHLIGHT_Y, Constants.TEXT_HIGHLIGHT_WIDTH, Constants.TEXT_HIGHLIGHT_HEIGHT);
+        skyBG = new TextureRegion(new Texture(Constants.SKY_BACKGROUND_PATH));
+        clouds = new TextureRegion(new Texture(Constants.CLOUD_PATH));
 
 //        Touch point will allow the user to have a touch response.
         touchpoint = new Vector3();
 //        Used to create an invisible rectangle for touch point.
-        soundBounds = new Rectangle(Constants.SOUND_ON_SCREEN_X, Constants.SOUND_ON_SCREEN_Y, Constants.MUSIC_LOGO_WIDTH, Constants.MUSIC_LOGO_HEIGHT);
-        javaDeluxeBounds = new Rectangle(Constants.DELUXE_ON_SCREEN_X,  Constants.DELUXE_ON_SCREEN_Y,
-                Constants.JAVA_DELUXE_WIDTH , Constants.JAVA_DELUXE_HEIGHT);
-        recipeBounds = new Rectangle(Constants.RECIPE_ON_SCREEN_X, Constants.RECIPE_ON_SCREEN_Y, Constants.GRANDPA_RECIPE_WIDTH, Constants.GRANDPA_RECIPE_HEIGHT);
-        jediTrialBounds = new Rectangle(Constants.TRIAL_ON_SCREEN_X, Constants.TRIAL_ON_SCREEN_Y, Constants.JEDI_TRIAL_WIDTH, Constants.JEDI_TRIAL_HEIGHT);
-        quitGameBounds = new Rectangle(Constants.QUIT_ON_SCREEN_X, Constants.QUIT_ON_SCREEN_Y, Constants.QUIT_GAME_WIDTH, Constants.QUIT_GAME_HEIGHT);
+  //      soundBounds = new Rectangle(Constants.SOUND_ON_SCREEN_X, Constants.SOUND_ON_SCREEN_Y, Constants.MUSIC_LOGO_WIDTH, Constants.MUSIC_LOGO_HEIGHT);
+        javaDeluxeBounds = new Rectangle(Constants.DELUXE_ON_SCREEN_X,  Constants.DELUXE_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH , Constants.TEXT_HIGHLIGHT_HEIGHT);
+        recipeBounds = new Rectangle(Constants.RECIPE_ON_SCREEN_X, Constants.RECIPE_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH, Constants.TEXT_HIGHLIGHT_HEIGHT);
+        jediTrialBounds = new Rectangle(Constants.TRIAL_ON_SCREEN_X, Constants.TRIAL_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH, Constants.TEXT_HIGHLIGHT_HEIGHT);
+        reportCardBounds = new Rectangle(Constants.REPORTCARD_ON_SCREEN_X, Constants.REPORTCARD_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH, Constants.TEXT_HIGHLIGHT_HEIGHT);
+        helpBounds = new Rectangle(Constants.HELP_ON_SCREEN_X, Constants.HELP_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH, Constants.TEXT_HIGHLIGHT_HEIGHT);
+        settingsBounds = new Rectangle(Constants.SETTINGS_ON_SCREEN_X, Constants.SETTINGS_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH, Constants.TEXT_HIGHLIGHT_HEIGHT);
+        quitGameBounds = new Rectangle(Constants.QUIT_ON_SCREEN_X, Constants.QUIT_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH, Constants.TEXT_HIGHLIGHT_HEIGHT);
+
+        xMax = 2235;
+        xCoord = xMax*(-1);
     }
 
     @Override
@@ -50,8 +58,17 @@ public class MenuState extends State {
     public void render(SpriteBatch sprite) {
         manager.getCamera().update();
 
+        xCoord += Constants.BACKGROUND_SPEED * Gdx.graphics.getDeltaTime();
+        if(xCoord >= 1000){
+            xCoord = xMax*(-1);
+        }
+
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
+        sprite.draw(skyBG, manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f,
+                manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        sprite.draw(clouds, xCoord + manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f,
+                manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f + 230, Constants.CLOUDS_WIDTH, Constants.CLOUDS_HEIGHT);
         sprite.draw(manager.getBackground(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f,
                 manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         drawObject(sprite);
@@ -82,22 +99,31 @@ public class MenuState extends State {
     public void drawObject(SpriteBatch sprite){
         manager.getCamera().unproject(touchpoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
-        if(soundBounds.contains(touchpoint.x, touchpoint.y)){
-            sprite.draw(musicLogo, manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f + Constants.SOUND_ON_SCREEN_X,
-                    manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f + Constants.SOUND_ON_SCREEN_Y, Constants.MUSIC_LOGO_WIDTH, Constants.MUSIC_LOGO_HEIGHT);
-        }
+//        if(soundBounds.contains(touchpoint.x, touchpoint.y)){
+//            sprite.draw(musicLogo, manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f + Constants.SOUND_ON_SCREEN_X,
+//                    manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f + Constants.SOUND_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH , Constants.TEXT_HIGHLIGHT_HEIGHT);
+//        }
         if(javaDeluxeBounds.contains(touchpoint.x, touchpoint.y)){
-            sprite.draw(javaDeluxe, manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f + Constants.DELUXE_ON_SCREEN_X,
-                    manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f + Constants.DELUXE_ON_SCREEN_Y, Constants.JAVA_DELUXE_WIDTH, Constants.JAVA_DELUXE_HEIGHT);
+            sprite.draw(textHighlight, manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f + Constants.DELUXE_ON_SCREEN_X,
+                    manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f + Constants.DELUXE_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH , Constants.TEXT_HIGHLIGHT_HEIGHT);
         }
         if(recipeBounds.contains(touchpoint.x, touchpoint.y)){
-            sprite.draw(grandpaRecipe, Constants.RECIPE_ON_SCREEN_X, Constants.RECIPE_ON_SCREEN_Y, Constants.GRANDPA_RECIPE_WIDTH, Constants.GRANDPA_RECIPE_HEIGHT);
+            sprite.draw(textHighlight, Constants.RECIPE_ON_SCREEN_X, Constants.RECIPE_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH , Constants.TEXT_HIGHLIGHT_HEIGHT);
         }
         if(jediTrialBounds.contains(touchpoint.x, touchpoint.y)){
-            sprite.draw(jediTrial, Constants.TRIAL_ON_SCREEN_X, Constants.TRIAL_ON_SCREEN_Y, Constants.JEDI_TRIAL_WIDTH, Constants.JEDI_TRIAL_HEIGHT);
+            sprite.draw(textHighlight, Constants.TRIAL_ON_SCREEN_X, Constants.TRIAL_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH , Constants.TEXT_HIGHLIGHT_HEIGHT);
+        }
+        if(reportCardBounds.contains(touchpoint.x, touchpoint.y)){
+            sprite.draw(textHighlight, Constants.REPORTCARD_ON_SCREEN_X, Constants.REPORTCARD_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH , Constants.TEXT_HIGHLIGHT_HEIGHT);
+        }
+        if(helpBounds.contains(touchpoint.x, touchpoint.y)){
+            sprite.draw(textHighlight, Constants.HELP_ON_SCREEN_X, Constants.HELP_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH , Constants.TEXT_HIGHLIGHT_HEIGHT);
+        }
+        if(settingsBounds.contains(touchpoint.x, touchpoint.y)){
+            sprite.draw(textHighlight, Constants.SETTINGS_ON_SCREEN_X, Constants.SETTINGS_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH , Constants.TEXT_HIGHLIGHT_HEIGHT);
         }
         if(quitGameBounds.contains(touchpoint.x, touchpoint.y)){
-            sprite.draw(quitGame, Constants.QUIT_ON_SCREEN_X, Constants.QUIT_ON_SCREEN_Y, Constants.QUIT_GAME_WIDTH, Constants.QUIT_GAME_HEIGHT);
+            sprite.draw(textHighlight, Constants.QUIT_ON_SCREEN_X, Constants.QUIT_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH , Constants.TEXT_HIGHLIGHT_HEIGHT);
         }
     }
 
