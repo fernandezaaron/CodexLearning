@@ -20,7 +20,7 @@ import java.awt.*;
 public class MenuState extends State {
 
 
-    private TextureRegion musicLogo, javaDeluxe, grandpaRecipe, jediTrial, quitGame;
+    private TextureRegion musicLogo, textHighlight;
     private Vector3 touchpoint;
     private Rectangle javaDeluxeBounds, recipeBounds, jediTrialBounds, quitGameBounds, soundBounds;
 
@@ -28,7 +28,7 @@ public class MenuState extends State {
         super(manager);
 
 //        This is used to crop each sprite in a sprite sheet.
-
+        textHighlight = new TextureRegion(new Texture(manager.get))
 
 //        Touch point will allow the user to have a touch response.
         touchpoint = new Vector3();

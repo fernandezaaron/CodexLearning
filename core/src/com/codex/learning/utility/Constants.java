@@ -31,7 +31,11 @@ public class Constants {
 
 //    MENU STATE
 
-    public static final TEXT_HIGHLIGHT_X = 
+    public static final int TEXT_HIGHLIGHT_X = 28;
+    public static final int TEXT_HIGHLIGHT_Y = 93;
+    public static final int TEXT_HIGHLIGHT_WIDTH = 537;
+    public static final int TEXT_HIGHLIGHT_HEIGHT = 40;
+
 
     // MENUSTATE TOUCHPOINT X, Y
     public static final int SOUND_ON_SCREEN_X = 823;
