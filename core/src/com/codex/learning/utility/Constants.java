@@ -22,7 +22,7 @@ public class Constants {
     public static final String CHARACTER_SHEET_PATH = "character/jedisaurspritesheet.png";
 
     // FONT ASSET PATH
-    public static final String FONT_STYLE = "PokemonClassic.fnt";
+    public static final String FONT_STYLE = "font/PokemonClassic.fnt";
     // MAP ASSET PATH
     public static final String STAGE_SELECT_PATH = "map/stageselectmap2.png";
 

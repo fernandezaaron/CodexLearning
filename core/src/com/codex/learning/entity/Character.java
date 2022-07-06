@@ -2,7 +2,6 @@ package com.codex.learning.entity;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -22,7 +21,6 @@ public class Character extends Entity {
     private Animation pickUpFront, pickUpSide, pickUpUp;
     private Animation carryFront, carrySide, carryUp;
     private Animation carryWalkFront, carryWalkSide, carryWalkUp;
-    private TextureRegion door;
 
     private String direction;
     private boolean isMoving;
@@ -35,7 +33,7 @@ public class Character extends Entity {
     private boolean atBot;
     private boolean atLeft;
     private boolean atRight;
-    private boolean atDoor;
+
     private Box2DDebugRenderer b2dr;
 
     public Character(Manager manager) {
@@ -70,7 +68,7 @@ public class Character extends Entity {
         atBot = false;
         atLeft = false;
         atRight = false;
-        atDoor = false;
+
 
         // Used to flip the sprite left to right vice versa
         isLeft = true;
@@ -85,8 +83,6 @@ public class Character extends Entity {
 
         this.size.x /= Constants.PPM;
         this.size.y /= Constants.PPM;
-
-        door = new TextureRegion(manager.getReportcardsheet(), 48,195, 263, 119);
 
         front = new Animation(manager.getSpriteSheet(), Constants.JEDI_STAND_X, Constants.JEDI_FIRST_ROW, Constants.JEDI_WIDTH, Constants.JEDI_HEIGHT,1, 0);
         side = new Animation(manager.getSpriteSheet(), Constants.JEDI_STAND_X, Constants.JEDI_SECOND_ROW, Constants.JEDI_WIDTH, Constants.JEDI_HEIGHT,1, 0);
@@ -110,63 +106,7 @@ public class Character extends Entity {
     }
     @Override
     public void update(float delta) {
-        if(Gdx.input.isKeyPressed(Input.Keys.S)){
-            if(isCarrying)
-                carryWalkFront.update(delta);
-            walkFront.update(delta);
-            direction = "south";
-            isMoving = true;
-        }
-        else if(Gdx.input.isKeyPressed(Input.Keys.W)){
-            if(isCarrying)
-                carryWalkUp.update(delta);
-            walkUp.update(delta);
-            direction = "north";
-            isMoving = true;
-        }
-        else if(Gdx.input.isKeyPressed(Input.Keys.A)){
-            if(isCarrying)
-                carryWalkSide.update(delta);
-            walkSide.update(delta);
-            direction = "west";
-            isMoving = true;
-        }
-        else if(Gdx.input.isKeyPressed(Input.Keys.D)){
-            if(isCarrying)
-                carryWalkSide.update(delta);
-            walkSide.update(delta);
-            direction = "east";
-            isMoving = true;
-        }
-        else{
-            if(!isCarrying){
-                pickUpFront.update(delta);
-                pickUpSide.update(delta);
-                pickUpUp.update(delta);
-                carryFront.update(delta);
-                carrySide.update(delta);
-                carryUp.update(delta);
-            }
-            front.update(delta);
-            side.update(delta);
-            up.update(delta);
-            isMoving = false;
-        }
-        if(isPickUpAble()) {
-            picked = true;
-        }
-        else{
-            picked = false;
-        }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.E)){
-            if (isCarrying) {
-                isCarrying = false;
-            }
-            else {
-                isCarrying = true;
-            }
-        }
-
+        logicInput(delta);
         cameraUpdate();
         input(delta);
     }
@@ -176,14 +116,7 @@ public class Character extends Entity {
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.begin();
         checkDirection(sprite, isMoving, isCarrying, picked);
-        checkDoor(sprite, atDoor);
         sprite.end();
-    }
-
-    private void checkDoor(SpriteBatch sprite, boolean atDoor){
-        if(atDoor){
-            sprite.draw(door, -693, -450);
-        }
     }
 
     private void checkDirection(SpriteBatch sprite, boolean isMoving, boolean isCarrying, boolean isPicked){
@@ -276,6 +209,64 @@ public class Character extends Entity {
         }
     }
 
+    public void logicInput(float delta){
+        if(Gdx.input.isKeyPressed(Input.Keys.S)){
+            if(isCarrying)
+                carryWalkFront.update(delta);
+            walkFront.update(delta);
+            direction = "south";
+            isMoving = true;
+        }
+        else if(Gdx.input.isKeyPressed(Input.Keys.W)){
+            if(isCarrying)
+                carryWalkUp.update(delta);
+            walkUp.update(delta);
+            direction = "north";
+            isMoving = true;
+        }
+        else if(Gdx.input.isKeyPressed(Input.Keys.A)){
+            if(isCarrying)
+                carryWalkSide.update(delta);
+            walkSide.update(delta);
+            direction = "west";
+            isMoving = true;
+        }
+        else if(Gdx.input.isKeyPressed(Input.Keys.D)){
+            if(isCarrying)
+                carryWalkSide.update(delta);
+            walkSide.update(delta);
+            direction = "east";
+            isMoving = true;
+        }
+        else{
+            if(!isCarrying){
+                pickUpFront.update(delta);
+                pickUpSide.update(delta);
+                pickUpUp.update(delta);
+                carryFront.update(delta);
+                carrySide.update(delta);
+                carryUp.update(delta);
+            }
+            front.update(delta);
+            side.update(delta);
+            up.update(delta);
+            isMoving = false;
+        }
+        if(isPickUpAble()) {
+            picked = true;
+        }
+        else{
+            picked = false;
+        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.E) && picked){
+            if (isCarrying) {
+                isCarrying = false;
+            }
+            else {
+                isCarrying = true;
+            }
+        }
+    }
     public void input(float delta){
         float horizontalForce = 0;
         float verticalForce = 0;
@@ -353,14 +344,9 @@ public class Character extends Entity {
             atRight = true;
         }
 
-        // USED TO EXIT THE MAP
-        if(body.getPosition().x > -19.8f && body.getPosition().x < -15.5f && body.getPosition().y < -11){
-            manager.set(new StageSelectState(manager));
-        }
-        atDoor = body.getPosition().x > -19.8f && body.getPosition().x < -15.5f && body.getPosition().y < -10;
-
         body.setLinearVelocity(horizontalForce * Constants.JEDI_VELOCITY, verticalForce * Constants.JEDI_VELOCITY);
     }
+
     private void cameraUpdate(){
         Vector3 position = manager.getCamera().position;
         position.x = this.position.x * Constants.PPM;
@@ -375,5 +361,16 @@ public class Character extends Entity {
 
     public void setPickUpAble(boolean pickUpAble) {
         this.pickUpAble = pickUpAble;
+    }
+
+    public void carryBlock(Blocks block){
+//        block.position.set(block.getBody().getPosition().x + 10, block.getBody().getPosition().y + 20);
+        if(isCarrying){
+            block.position.add(10, 20);
+            block.body.getPosition().add(body.getPosition().x, body.getPosition().y + 5);
+            block.size.set(10, 10);
+//            block.size.add(3, 3);
+//            block.disposeBody();
+        }
     }
 }
