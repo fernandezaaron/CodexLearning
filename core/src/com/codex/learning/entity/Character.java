@@ -258,7 +258,7 @@ public class Character extends Entity {
         else{
             picked = false;
         }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.E)){
+        if(Gdx.input.isKeyJustPressed(Input.Keys.E) && picked){
             if (isCarrying) {
                 isCarrying = false;
             }
@@ -371,7 +371,5 @@ public class Character extends Entity {
     public void carryBlock(Blocks block){
         block.position.x = body.getPosition().x * Constants.PPM - ((float) walkUp.getFrame().getRegionWidth() / 2);
         block.position.y = body.getPosition().y * Constants.PPM - ((float) walkUp.getFrame().getRegionWidth() / 2);
-        System.out.println(" BLOCK " + block.position.x + " - " + block.position.y);
-        System.out.println(" PLAYER " + body.getPosition().x + " - " + body.getPosition().y);
     }
 }

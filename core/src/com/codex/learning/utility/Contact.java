@@ -25,7 +25,6 @@ public class Contact implements ContactListener {
 
         if(isBlockContact(fa)){
             Blocks blockA = (Blocks) fa.getUserData();
-            Gdx.app.log("BEGIN CONTACT", "");
             blockA.setPickUp(true);
         }
 
@@ -43,7 +42,6 @@ public class Contact implements ContactListener {
 
         if(isBlockContact(fa)){
             Blocks blockA = (Blocks) fa.getUserData();
-            Gdx.app.log("END CONTACT", "");
             blockA.setPickUp(false);
         }
 

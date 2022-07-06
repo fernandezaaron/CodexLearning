@@ -21,12 +21,18 @@ public class Blocks extends Entity{
     private Rectangle rectangle;
     private ShapeRenderer shapeRenderer;
     protected boolean pickUp;
-    public Blocks(Manager manager, String id, String name, Vector2 positionSheet, Vector2 sizeSheet) {
+//    public Blocks(Manager manager, String id, String name, Vector2 positionSheet, Vector2 sizeSheet) {
+//        super(manager);
+//        this.id = id;
+//        this.name = name;
+//        this.positionSheet = positionSheet;
+//        this.sizeSheet = sizeSheet;
+//    }
+    public Blocks(Manager manager, String id, String name) {
         super(manager);
         this.id = id;
         this.name = name;
-        this.positionSheet = positionSheet;
-        this.sizeSheet = sizeSheet;
+
     }
 
     @Override
@@ -34,14 +40,15 @@ public class Blocks extends Entity{
 
         this.position = position;
         this.size = size;
+
         BodyDef def = new BodyDef();
-        def.type = BodyDef.BodyType.KinematicBody;
+        def.type = BodyDef.BodyType.StaticBody;
         def.position.set(this.position);
         def.fixedRotation = true;
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(this.size.x, this.size.y,
-                new Vector2(0, (float) -((this.size.y / 1.5 ) - this.size.y)), 0);
-
+//        shape.setAsBox(this.size.x, this.size.y,
+//                new Vector2(0, (float) -((this.size.y / 1.5 ) - this.size.y)), 0);
+        shape.setAsBox(this.size.x, this.size.y);
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.density = density;
         fixtureDef.shape = shape;
@@ -52,12 +59,10 @@ public class Blocks extends Entity{
         body.setLinearVelocity(0, 0);
         shape.dispose();
 
-        this.size.x /= Constants.PPM;
-        this.size.y /= Constants.PPM;
 
         shapeRenderer = new ShapeRenderer();
-        block = new TextureRegion(manager.getBlockSheet(), (int) positionSheet.x,
-                (int) positionSheet.y, (int) sizeSheet.x, (int) sizeSheet.y);
+//        block = new TextureRegion(manager.getBlockSheet(), (int) positionSheet.x,
+//                (int) positionSheet.y, (int) sizeSheet.x, (int) sizeSheet.y);
 
         pickUp = false;
     }
@@ -72,16 +77,26 @@ public class Blocks extends Entity{
         sprite.enableBlending();
         sprite.setProjectionMatrix(manager.getCamera().combined);
 
-//        shapeRenderer.setColor(Color.BLACK);
-//        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-//        shapeRenderer.rect((int) (body.getPosition().x - body.getPosition().x / 2) * Constants.PPM/2, (int) body.getPosition().y * Constants.PPM/2 , 100, 10);
-//        shapeRenderer.end();
+        shapeRenderer.setColor(Color.ORANGE);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+//        shapeRenderer.rect(this.sizeSheet.x + this.sizeSheet.x / 2, (this.sizeSheet.x + this.sizeSheet.x / 2) - ((this.sizeSheet.x/ 2) + Constants.PPM), this.name.length() * (Constants.PPM * manager.getFont().getScaleX()) / 6, (Constants.PPM * manager.getFont().getScaleY()) / 3);
+        shapeRenderer.rect(body.getPosition().x * Constants.PPM / 2,
+                body.getPosition().y * this.size.y - Constants.PPM,
+                this.name.length() * this.size.x + Constants.PPM,
+                this.size.y * Constants.PPM);
+        shapeRenderer.end();
         sprite.begin();
-        sprite.draw(block, body.getPosition().x * Constants.PPM - block.getRegionWidth() / 2,
-                body.getPosition().y * Constants.PPM - block.getRegionHeight() / 2);
-        manager.getFont().draw(sprite, this.name, body.getPosition().x * Constants.PPM - block.getRegionWidth() / 2,
-                body.getPosition().y * Constants.PPM);
+//        sprite.draw(block, body.getPosition().x * Constants.PPM - block.getRegionWidth() / 2,
+//                body.getPosition().y * Constants.PPM - block.getRegionHeight() / 2);
+//        manager.getFont().draw(sprite, this.name, this.sizeSheet.x - this.sizeSheet.x /2 , this.sizeSheet.x - this.sizeSheet.x / 2);
+        manager.getFont().draw(sprite, this.name,
+                (body.getPosition().x - (Constants.PPM * this.size.x) / 2) + Constants.PPM * 4,
+                -body.getPosition().y * (this.size.y - Constants.PPM) + Constants.PPM / 3);
+
         sprite.end();
+//        -(body.getPosition().x - body.getPosition().x / 2) * this.size.x
+        System.out.println(this.size.x + " - " + this.size.y);
+        System.out.println(" B - " + body.getPosition().x + " - " + body.getPosition().y);
     }
 
     public boolean isPickUp() {

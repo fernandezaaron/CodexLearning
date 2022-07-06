@@ -20,14 +20,32 @@ public class PlayState extends State{
 
         house = new HouseMap(manager);
 
-        sample = new Blocks(manager, "class", "class HelloWorld{", new Vector2(40, Constants.BLOCK_FIRST_ROW), new Vector2(330, Constants.BLOCK_HEIGHT));
-        sample.create(new Vector2(5, 0), new Vector2(4.6f, 0.7f), 0);
+//        sample = new Blocks(manager, "class", "class HelloWorld{", new Vector2(40, Constants.BLOCK_FIRST_ROW), new Vector2(330, Constants.BLOCK_HEIGHT));
+//        sample.create(new Vector2(5, 0), new Vector2(4.6f, 0.7f), 0);
+//
+//        sample2 = new Blocks(manager, "}", "}", new Vector2(380, Constants.BLOCK_FIRST_ROW), new Vector2(46, Constants.BLOCK_HEIGHT));
+//        sample2.create(new Vector2(5, -5), new Vector2(0.3f, 0.7f), 0);
+//
+//        sample3 = new Blocks(manager, "args", "String[] args)", new Vector2(380, Constants.BLOCK_SECOND_ROW), new Vector2(206, Constants.BLOCK_HEIGHT));
+//        sample3.create(new Vector2(5, 5), new Vector2(2.6f, 0.7f), 0);
 
-        sample2 = new Blocks(manager, "}", "}", new Vector2(380, Constants.BLOCK_FIRST_ROW), new Vector2(46, Constants.BLOCK_HEIGHT));
-        sample2.create(new Vector2(5, -5), new Vector2(0.3f, 0.7f), 0);
+//        sample = new Blocks(manager, "class", "class HelloWorld{");
+//        sample.create(new Vector2(5, 0), new Vector2(4.6f, 0.7f), 0);
+//
+//        sample2 = new Blocks(manager, "}", "}");
+//        sample2.create(new Vector2(5, -5), new Vector2(0.3f, 0.7f), 0);
+//
+//        sample3 = new Blocks(manager, "args", "String[] args)");
+//        sample3.create(new Vector2(5, 5), new Vector2(2.6f, 0.7f), 0);
 
-        sample3 = new Blocks(manager, "args", "String[] args)", new Vector2(380, Constants.BLOCK_SECOND_ROW), new Vector2(206, Constants.BLOCK_HEIGHT));
-        sample3.create(new Vector2(5, 5), new Vector2(2.6f, 0.7f), 0);
+        sample = new Blocks(manager, "class", "class HelloWorld{");
+        sample.create(new Vector2(6.2f, 0), new Vector2(3.5f, 0.7f), 0);
+
+        sample2 = new Blocks(manager, "}", "}");
+        sample2.create(new Vector2(4.2f, -5), new Vector2(0.2f, 0.7f), 0);
+
+        sample3 = new Blocks(manager, "args", "String[] args)");
+        sample3.create(new Vector2(5.9f, 5), new Vector2(2.9f, 0.7f), 0);
 
         jedisaur = new Character(manager);
         jedisaur.create(new Vector2(0, 0), new Vector2(1.2f, 1.75f), 1.6f);
