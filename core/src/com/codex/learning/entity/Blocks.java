@@ -42,7 +42,7 @@ public class Blocks extends Entity{
         this.size = size;
 
         BodyDef def = new BodyDef();
-        def.type = BodyDef.BodyType.StaticBody;
+        def.type = BodyDef.BodyType.KinematicBody;
         def.position.set(this.position);
         def.fixedRotation = true;
         PolygonShape shape = new PolygonShape();
@@ -58,7 +58,6 @@ public class Blocks extends Entity{
         body.createFixture(fixtureDef).setUserData(this);
         body.setLinearVelocity(0, 0);
         shape.dispose();
-
 
         shapeRenderer = new ShapeRenderer();
 //        block = new TextureRegion(manager.getBlockSheet(), (int) positionSheet.x,
@@ -95,8 +94,7 @@ public class Blocks extends Entity{
 
         sprite.end();
 //        -(body.getPosition().x - body.getPosition().x / 2) * this.size.x
-        System.out.println(this.size.x + " - " + this.size.y);
-        System.out.println(" B - " + body.getPosition().x + " - " + body.getPosition().y);
+        System.out.println(this.name + " - " + body.getPosition().x + " - " + body.getPosition().y);
     }
 
     public boolean isPickUp() {
@@ -106,4 +104,6 @@ public class Blocks extends Entity{
     public void setPickUp(boolean pickUp) {
         this.pickUp = pickUp;
     }
+
+
 }

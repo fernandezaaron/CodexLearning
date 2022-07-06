@@ -57,23 +57,23 @@ public class PlayState extends State{
     @Override
     public void update(float delta) {
         manager.getWorld().step(1/60f,6,2);
-        sample.update(delta);
-        sample2.update(delta);
-        sample3.update(delta);
         if(sample.isPickUp()){
             jedisaur.setPickUpAble(true);
-            jedisaur.carryBlock(sample);
+//            jedisaur.carryBlock(sample);
+            sample.getBody().setLinearVelocity(new Vector2(jedisaur.getBody().getPosition().x, jedisaur.getBody().getPosition().y));
         }else if(sample2.isPickUp()){
             jedisaur.setPickUpAble(true);
-            jedisaur.carryBlock(sample);
+//            jedisaur.carryBlock(sample2);
         }else if(sample3.isPickUp()){
             jedisaur.setPickUpAble(true);
-            jedisaur.carryBlock(sample);
+//            jedisaur.carryBlock(sample3);
         }
         else{
             jedisaur.setPickUpAble(false);
         }
-
+        sample.update(delta);
+        sample2.update(delta);
+        sample3.update(delta);
         house.exitDoor(jedisaur);
         jediGrandpa.update(delta);
         jedisaur.update(delta);
