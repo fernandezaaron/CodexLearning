@@ -344,11 +344,6 @@ public class Character extends Entity {
             atRight = true;
         }
 
-        // USED TO EXIT THE MAP
-        if(body.getPosition().x > -19.8f && body.getPosition().x < -15.5f && body.getPosition().y < -11){
-            manager.set(new StageSelectState(manager));
-        }
-
         body.setLinearVelocity(horizontalForce * Constants.JEDI_VELOCITY, verticalForce * Constants.JEDI_VELOCITY);
     }
 
@@ -368,10 +363,14 @@ public class Character extends Entity {
         this.pickUpAble = pickUpAble;
     }
 
-    public void carryBlock(Blocks block, boolean pickUpAble){
-        if(pickUpAble){
-            block.position.x = body.getPosition().x;
-            block.position.y = body.getPosition().y + 30;
+    public void carryBlock(Blocks block){
+//        block.position.set(block.getBody().getPosition().x + 10, block.getBody().getPosition().y + 20);
+        if(isCarrying){
+            block.position.add(10, 20);
+            block.body.getPosition().add(body.getPosition().x, body.getPosition().y + 5);
+            block.size.set(10, 10);
+//            block.size.add(3, 3);
+//            block.disposeBody();
         }
     }
 }

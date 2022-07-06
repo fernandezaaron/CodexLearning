@@ -52,7 +52,7 @@ public class Blocks extends Entity{
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.density = density;
         fixtureDef.shape = shape;
-        fixtureDef.friction = 1;
+        fixtureDef.friction = 5;
 
         body = manager.getWorld().createBody(def);
         body.createFixture(fixtureDef).setUserData(this);
@@ -84,6 +84,7 @@ public class Blocks extends Entity{
                 this.name.length() * this.size.x + Constants.PPM,
                 this.size.y * Constants.PPM);
         shapeRenderer.end();
+
         sprite.begin();
 //        sprite.draw(block, body.getPosition().x * Constants.PPM - block.getRegionWidth() / 2,
 //                body.getPosition().y * Constants.PPM - block.getRegionHeight() / 2);

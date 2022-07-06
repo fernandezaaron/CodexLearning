@@ -59,14 +59,13 @@ public class PlayState extends State{
         manager.getWorld().step(1/60f,6,2);
         if(sample.isPickUp()){
             jedisaur.setPickUpAble(true);
-//            jedisaur.carryBlock(sample);
-            sample.getBody().setLinearVelocity(new Vector2(jedisaur.getBody().getPosition().x, jedisaur.getBody().getPosition().y));
+            jedisaur.carryBlock(sample);
         }else if(sample2.isPickUp()){
             jedisaur.setPickUpAble(true);
-//            jedisaur.carryBlock(sample2);
+            jedisaur.carryBlock(sample2);
         }else if(sample3.isPickUp()){
             jedisaur.setPickUpAble(true);
-//            jedisaur.carryBlock(sample3);
+            jedisaur.carryBlock(sample3);
         }
         else{
             jedisaur.setPickUpAble(false);
