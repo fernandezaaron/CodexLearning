@@ -368,7 +368,7 @@ public class Character extends Entity {
 
         if(isCarrying){
       //      block.position.set(body.getPosition().x, body.getPosition().y);
-                block.body.setTransform(body.getPosition().x, body.getPosition().y+0.8f, 0);
+                block.body.setTransform(body.getPosition().x, body.getPosition().y+1f, 0);
                  System.out.println(body.getPosition().x + " " + body.getPosition().y);
                  block.body.setType(BodyDef.BodyType.DynamicBody);
 
@@ -379,6 +379,7 @@ public class Character extends Entity {
 //            block.size.add(3, 3);
 //            block.disposeBody();
         }else{
+
             block.body.setType(BodyDef.BodyType.StaticBody);
         }
     }

@@ -64,6 +64,7 @@ public class PlayState extends State{
         if(sample.isPickUp()){
             jedisaur.setPickUpAble(true);
             jedisaur.carryBlock(sample);
+
         }
         else if(sample2.isPickUp()){
             jedisaur.setPickUpAble(true);
