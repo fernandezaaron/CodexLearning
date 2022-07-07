@@ -6,7 +6,6 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.codex.learning.entity.Blocks;
-import com.codex.learning.entity.Character;
 
 //This class will allow the player to have collision detection
 public class Contact implements ContactListener {
@@ -25,8 +24,9 @@ public class Contact implements ContactListener {
 
         if(isBlockContact(fa)){
             Blocks blockA = (Blocks) fa.getUserData();
-            blockA.setPickUp(true);
+            blockA.setInContact(true);
         }
+        Gdx.app.log("BEGIN CONTACT", "");
 
     }
 
@@ -42,9 +42,10 @@ public class Contact implements ContactListener {
 
         if(isBlockContact(fa)){
             Blocks blockA = (Blocks) fa.getUserData();
-            blockA.setPickUp(false);
+            blockA.setInContact(false);
         }
 
+        Gdx.app.log("END CONTACT", "");
     }
 
     @Override

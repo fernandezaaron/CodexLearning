@@ -12,15 +12,13 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
-import static java.lang.Math.*;
-
 public class Blocks extends Entity{
     private String id, name;
     private TextureRegion block;
     private Vector2 positionSheet, sizeSheet;
     private Rectangle rectangle;
     private ShapeRenderer shapeRenderer;
-    protected boolean pickUp;
+    protected boolean inContact;
 //    public Blocks(Manager manager, String id, String name, Vector2 positionSheet, Vector2 sizeSheet) {
 //        super(manager);
 //        this.id = id;
@@ -54,7 +52,6 @@ public class Blocks extends Entity{
         fixtureDef.shape = shape;
         fixtureDef.friction = 5;
 
-
         body = manager.getWorld().createBody(def);
         body.createFixture(fixtureDef).setUserData(this);
         body.setLinearVelocity(0, 0);
@@ -64,7 +61,7 @@ public class Blocks extends Entity{
 //        block = new TextureRegion(manager.getBlockSheet(), (int) positionSheet.x,
 //                (int) positionSheet.y, (int) sizeSheet.x, (int) sizeSheet.y);
 
-        pickUp = false;
+        inContact = false;
     }
 
 
@@ -99,16 +96,15 @@ public class Blocks extends Entity{
 
         sprite.end();
 //        -(body.getPosition().x - body.getPosition().x / 2) * this.size.x
-       // System.out.println(this.name + " - " + body.getPosition().x + " - " + body.getPosition().y);
+
     }
 
-    public boolean isPickUp() {
-        return pickUp;
+    public boolean isInContact() {
+        return inContact;
     }
 
-    public void setPickUp(boolean pickUp) {
-        this.pickUp = pickUp;
+    public void setInContact(boolean inContact) {
+        this.inContact = inContact;
     }
-
 
 }

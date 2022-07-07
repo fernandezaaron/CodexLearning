@@ -61,14 +61,15 @@ public class PlayState extends State{
     @Override
     public void update(float delta) {
         manager.getWorld().step(1/60f,6,2);
-        if(sample.isPickUp()){
+        if(sample.isInContact()){
             jedisaur.setPickUpAble(true);
             jedisaur.carryBlock(sample);
         }
-        else if(sample2.isPickUp()){
+        else if(sample2.isInContact()){
             jedisaur.setPickUpAble(true);
             jedisaur.carryBlock(sample2);
-        }else if(sample3.isPickUp()){
+        }
+        else if(sample3.isInContact()){
             jedisaur.setPickUpAble(true);
             jedisaur.carryBlock(sample3);
         }

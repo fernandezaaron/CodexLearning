@@ -26,7 +26,8 @@ public class Character extends Entity {
     private boolean isLeft;
     private boolean isCarrying;
     protected boolean pickUpAble;
-    private boolean picked;
+    private boolean dropped;
+    private int carry;
 
     private boolean atTop;
     private boolean atBot;
@@ -75,10 +76,12 @@ public class Character extends Entity {
 
         // Used to check if the character is carrying a block
         isCarrying = false;
-        picked = false;
 
         // Used to know the last keyboard pressed of the user
         direction = "south";
+
+        carry = 0;
+        dropped = true;
 
         this.size.x /= Constants.PPM;
         this.size.y /= Constants.PPM;
@@ -115,7 +118,7 @@ public class Character extends Entity {
         sprite.enableBlending();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.begin();
-        checkDirection(sprite, isMoving, isCarrying, picked);
+        checkDirection(sprite, isMoving, isCarrying, pickUpAble);
         sprite.end();
     }
 
@@ -252,13 +255,7 @@ public class Character extends Entity {
             up.update(delta);
             isMoving = false;
         }
-        if(isPickUpAble()) {
-            picked = true;
-        }
-        else{
-            picked = false;
-        }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.E) && picked){
+        if(Gdx.input.isKeyJustPressed(Input.Keys.E) && isPickUpAble()){
             if (isCarrying) {
                 isCarrying = false;
             }
@@ -364,22 +361,20 @@ public class Character extends Entity {
     }
 
     public void carryBlock(Blocks block){
-//        block.position.set(block.getBody().getPosition().x + 10, block.getBody().getPosition().y + 20);
-
-        if(isCarrying){
-      //      block.position.set(body.getPosition().x, body.getPosition().y);
-                block.body.setTransform(body.getPosition().x, body.getPosition().y+0.8f, 0);
-                 System.out.println(body.getPosition().x + " " + body.getPosition().y);
-                 block.body.setType(BodyDef.BodyType.DynamicBody);
-
-
-                //block.position.set(body.getPosition().x, body.getPosition().y + 5);
-                //block.body.getPosition().set(body.getPosition().x, body.getPosition().y + 5);
-                //block.size.set(10, 10);
-//            block.size.add(3, 3);
-//            block.disposeBody();
-        }else{
+        if(isCarrying && block.isInContact() && carry == 0){
+            carry = 1;
+            dropped = false;
+            block.body.setTransform(body.getPosition().x, body.getPosition().y + 1f, 0);
+//            System.out.println(body.getPosition().x + " " + body.getPosition().y);
+            block.body.setType(BodyDef.BodyType.DynamicBody);
+        }
+        if(dropped){
+            carry = 0;
             block.body.setType(BodyDef.BodyType.StaticBody);
         }
+//        else{
+//            carry = 0;
+//            block.body.setType(BodyDef.BodyType.StaticBody);
+//        }
     }
 }
