@@ -44,9 +44,9 @@ public class Blocks extends Entity{
         def.position.set(this.position);
         def.fixedRotation = true;
         PolygonShape shape = new PolygonShape();
-//        shape.setAsBox(this.size.x, this.size.y,
-//                new Vector2(0, (float) -((this.size.y / 1.5 ) - this.size.y)), 0);
-        shape.setAsBox(this.size.x, this.size.y);
+        shape.setAsBox(this.size.x, this.size.y,
+                new Vector2(this.size.x, (float) -((this.size.y / 1.5 ) - this.size.y)), 0);
+//        shape.setAsBox(this.size.x, this.size.y);
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.density = density;
         fixtureDef.shape = shape;
@@ -78,12 +78,10 @@ public class Blocks extends Entity{
         shapeRenderer.setProjectionMatrix(manager.getCamera().combined);
         shapeRenderer.setColor(Color.ORANGE);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-//        shapeRenderer.rect(this.sizeSheet.x + this.sizeSheet.x / 2, (this.sizeSheet.x + this.sizeSheet.x / 2) - ((this.sizeSheet.x/ 2) + Constants.PPM), this.name.length() * (Constants.PPM * manager.getFont().getScaleX()) / 6, (Constants.PPM * manager.getFont().getScaleY()) / 3);
-//        shapeRenderer.rect(body.getPosition().x * Constants.PPM / 2,
-//                body.getPosition().y * this.size.y - Constants.PPM,
-//                this.name.length() * this.size.x + Constants.PPM,
-//                this.size.y + Constants.PPM);
-        shapeRenderer.rect(body.getPosition().x, body.getPosition().y, this.name.length() * this.size.x, this.size.y);
+        shapeRenderer.rect(-(this.size.x - (Constants.PPM * body.getPosition().x)),
+                -(this.size.y - (Constants.PPM * body.getPosition().y)),
+                (this.name.length() + (this.size.x * Constants.PPM)) * 2,
+                (this.size.y * Constants.PPM) * 2);
         shapeRenderer.end();
 
         sprite.begin();
@@ -91,11 +89,10 @@ public class Blocks extends Entity{
 //                body.getPosition().y * Constants.PPM - block.getRegionHeight() / 2);
 //        manager.getFont().draw(sprite, this.name, this.sizeSheet.x - this.sizeSheet.x /2 , this.sizeSheet.x - this.sizeSheet.x / 2);
         manager.getFont().draw(sprite, this.name,
-                (body.getPosition().x - (Constants.PPM * this.size.x) / 2) + Constants.PPM * 4,
-                -body.getPosition().y * (this.size.y - Constants.PPM) + Constants.PPM / 3);
+                -(this.size.x - (Constants.PPM * body.getPosition().x)),
+                -(this.size.y - (Constants.PPM * body.getPosition().y)));
 
         sprite.end();
-//        -(body.getPosition().x - body.getPosition().x / 2) * this.size.x
 
     }
 

@@ -368,8 +368,24 @@ public class Character extends Entity {
 //            System.out.println(body.getPosition().x + " " + body.getPosition().y);
             block.body.setType(BodyDef.BodyType.DynamicBody);
         }
-        if(dropped){
+        else{
             carry = 0;
+//            if(!dropped){
+//                switch (direction){
+//                    case "north":
+//                        block.body.setTransform(body.getPosition().x, body.getPosition().y + 1f, 0);
+//                        break;
+//                    case "south":
+//                        block.body.setTransform(body.getPosition().x, - body.getPosition().y - 1f, 0);
+//                        break;
+//                    case "east":
+//                        block.body.setTransform(body.getPosition().x + 1f, body.getPosition().y, 0);
+//                        break;
+//                    case "west":
+//                        block.body.setTransform(- body.getPosition().x - 1f, body.getPosition().y, 0);
+//                        break;
+//                }
+//            }
             block.body.setType(BodyDef.BodyType.StaticBody);
         }
 //        else{
