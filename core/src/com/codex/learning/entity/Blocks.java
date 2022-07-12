@@ -44,8 +44,10 @@ public class Blocks extends Entity{
         def.position.set(this.position);
         def.fixedRotation = true;
         PolygonShape shape = new PolygonShape();
+//        shape.setAsBox(this.size.x, this.size.y,
+//                new Vector2(0, (float) -((this.size.y / 1.5 ) - this.size.y)), 0);
         shape.setAsBox(this.size.x, this.size.y,
-                new Vector2(this.size.x, (float) -((this.size.y / 1.5 ) - this.size.y)), 0);
+                new Vector2(0, -(this.size.y - this.size.y / 3)), 0);
 //        shape.setAsBox(this.size.x, this.size.y);
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.density = density;
@@ -78,19 +80,19 @@ public class Blocks extends Entity{
         shapeRenderer.setProjectionMatrix(manager.getCamera().combined);
         shapeRenderer.setColor(Color.ORANGE);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.rect(-(this.size.x - (Constants.PPM * body.getPosition().x)),
-                -(this.size.y - (Constants.PPM * body.getPosition().y)),
+        shapeRenderer.rect((this.size.x  * 2 + (Constants.PPM * body.getPosition().x)),
+                (this.size.y * 2 + (Constants.PPM * body.getPosition().y)),
                 (this.name.length() + (this.size.x * Constants.PPM)) * 2,
-                (this.size.y * Constants.PPM) * 2);
+                - (this.size.y * Constants.PPM * 2));
         shapeRenderer.end();
 
         sprite.begin();
 //        sprite.draw(block, body.getPosition().x * Constants.PPM - block.getRegionWidth() / 2,
 //                body.getPosition().y * Constants.PPM - block.getRegionHeight() / 2);
-//        manager.getFont().draw(sprite, this.name, this.sizeSheet.x - this.sizeSheet.x /2 , this.sizeSheet.x - this.sizeSheet.x / 2);
+
         manager.getFont().draw(sprite, this.name,
-                -(this.size.x - (Constants.PPM * body.getPosition().x)),
-                -(this.size.y - (Constants.PPM * body.getPosition().y)));
+                (this.size.x + (Constants.PPM * body.getPosition().x)),
+                (this.size.y + (Constants.PPM * body.getPosition().y)));
 
         sprite.end();
 

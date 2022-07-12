@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
-import com.badlogic.gdx.physics.bullet.softbody.btSoftBody;
 import com.codex.learning.utility.Animation;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
@@ -364,25 +363,26 @@ public class Character extends Entity {
         if(isCarrying && block.isInContact() && carry == 0){
             carry = 1;
             dropped = false;
-            block.body.setTransform(body.getPosition().x, body.getPosition().y + 1f, 0);
+            block.body.setTransform(body.getPosition().x, body.getPosition().y + 1.2f, 0);
 //            System.out.println(body.getPosition().x + " " + body.getPosition().y);
             block.body.setType(BodyDef.BodyType.DynamicBody);
         }
         else{
             carry = 0;
-//            if(!dropped){
+            dropped = true;
+//            if(!isCarrying){
 //                switch (direction){
 //                    case "north":
-//                        block.body.setTransform(body.getPosition().x, body.getPosition().y + 1f, 0);
+//                        block.body.setTransform(body.getPosition().x, body.getPosition().y + 1.2f, 0);
 //                        break;
 //                    case "south":
-//                        block.body.setTransform(body.getPosition().x, - body.getPosition().y - 1f, 0);
+//                        block.body.setTransform(body.getPosition().x, body.getPosition().y - 1.2f, 0);
 //                        break;
 //                    case "east":
-//                        block.body.setTransform(body.getPosition().x + 1f, body.getPosition().y, 0);
+//                        block.body.setTransform(body.getPosition().x + 1.2f, body.getPosition().y, 0);
 //                        break;
 //                    case "west":
-//                        block.body.setTransform(- body.getPosition().x - 1f, body.getPosition().y, 0);
+//                        block.body.setTransform(- body.getPosition().x -1.2f, body.getPosition().y, 0);
 //                        break;
 //                }
 //            }
