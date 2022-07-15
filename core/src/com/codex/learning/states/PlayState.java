@@ -44,7 +44,7 @@ public class PlayState extends State{
         sample.create(new Vector2(1.2f, 0), new Vector2(3.5f, 0.7f), 0);
 
         sample2 = new Blocks(manager, "}", " } ");
-        sample2.create(new Vector2(4.2f, -5), new Vector2(0.2f, 0.7f), 0);
+        sample2.create(new Vector2(4.2f, -5), new Vector2(0.3f, 0.7f), 0);
 
         sample3 = new Blocks(manager, "args", "String[] args)");
         sample3.create(new Vector2(5.9f, 5), new Vector2(2.9f, 0.7f), 0);

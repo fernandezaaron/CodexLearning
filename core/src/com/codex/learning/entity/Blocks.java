@@ -46,7 +46,7 @@ public class Blocks extends Entity{
         PolygonShape shape = new PolygonShape();
 //        shape.setAsBox(this.size.x, this.size.y,
 //                new Vector2(0, (float) -((this.size.y / 1.5 ) - this.size.y)), 0);
-        shape.setAsBox(this.size.x, this.size.y,
+        shape.setAsBox(this.size.x , this.size.y,
                 new Vector2(0, -(this.size.y - this.size.y / 3)), 0);
 //        shape.setAsBox(this.size.x, this.size.y);
         FixtureDef fixtureDef = new FixtureDef();
@@ -60,6 +60,9 @@ public class Blocks extends Entity{
         shape.dispose();
 
         shapeRenderer = new ShapeRenderer();
+        shapeRenderer.translate((-(this.size.x * Constants.PPM) * 1.22f), 0, 0);
+
+
 //        block = new TextureRegion(manager.getBlockSheet(), (int) positionSheet.x,
 //                (int) positionSheet.y, (int) sizeSheet.x, (int) sizeSheet.y);
 
@@ -84,15 +87,20 @@ public class Blocks extends Entity{
                 (this.size.y * 2 + (Constants.PPM * body.getPosition().y)),
                 (this.name.length() + (this.size.x * Constants.PPM)) * 2,
                 - (this.size.y * Constants.PPM * 2));
+
         shapeRenderer.end();
 
         sprite.begin();
 //        sprite.draw(block, body.getPosition().x * Constants.PPM - block.getRegionWidth() / 2,
 //                body.getPosition().y * Constants.PPM - block.getRegionHeight() / 2);
 
+//        manager.getFont().draw(sprite, this.name,
+//                (this.size.x + (Constants.PPM * body.getPosition().x)),
+//                (this.size.y + (Constants.PPM * body.getPosition().y)));
+
         manager.getFont().draw(sprite, this.name,
-                (this.size.x + (Constants.PPM * body.getPosition().x)),
-                (this.size.y + (Constants.PPM * body.getPosition().y)));
+                (this.size.x - (this.size.x * (Constants.PPM * 1.1f)) + (Constants.PPM * body.getPosition().x)),
+                (this.size.y - (this.size.y * (Constants.PPM * 0.5f)) + (Constants.PPM * body.getPosition().y)));
 
         sprite.end();
 
