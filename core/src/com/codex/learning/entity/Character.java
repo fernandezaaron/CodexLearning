@@ -363,7 +363,7 @@ public class Character extends Entity {
         if(isCarrying && block.isInContact() && carry == 0){
             carry = 1;
             dropped = false;
-            block.body.setTransform(body.getPosition().x, body.getPosition().y + 1.2f, 0);
+            block.body.setTransform(body.getPosition().x, body.getPosition().y + 3f, 0);
 //            System.out.println(body.getPosition().x + " " + body.getPosition().y);
             block.body.setType(BodyDef.BodyType.DynamicBody);
         }

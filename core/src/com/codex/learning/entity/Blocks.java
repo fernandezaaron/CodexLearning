@@ -14,23 +14,13 @@ import com.codex.learning.utility.Manager;
 
 public class Blocks extends Entity{
     private String id, name;
-    private TextureRegion block;
-    private Vector2 positionSheet, sizeSheet;
-    private Rectangle rectangle;
-    private ShapeRenderer shapeRenderer;
+    private ShapeRenderer shadowColor;
+    private ShapeRenderer mainColor;
     protected boolean inContact;
-//    public Blocks(Manager manager, String id, String name, Vector2 positionSheet, Vector2 sizeSheet) {
-//        super(manager);
-//        this.id = id;
-//        this.name = name;
-//        this.positionSheet = positionSheet;
-//        this.sizeSheet = sizeSheet;
-//    }
     public Blocks(Manager manager, String id, String name) {
         super(manager);
         this.id = id;
         this.name = name;
-
     }
 
     @Override
@@ -44,11 +34,10 @@ public class Blocks extends Entity{
         def.position.set(this.position);
         def.fixedRotation = true;
         PolygonShape shape = new PolygonShape();
-//        shape.setAsBox(this.size.x, this.size.y,
-//                new Vector2(0, (float) -((this.size.y / 1.5 ) - this.size.y)), 0);
+
         shape.setAsBox(this.size.x , this.size.y,
                 new Vector2(0, -(this.size.y - this.size.y / 3)), 0);
-//        shape.setAsBox(this.size.x, this.size.y);
+
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.density = density;
         fixtureDef.shape = shape;
@@ -59,12 +48,11 @@ public class Blocks extends Entity{
         body.setLinearVelocity(0, 0);
         shape.dispose();
 
-        shapeRenderer = new ShapeRenderer();
-        shapeRenderer.translate((-(this.size.x * Constants.PPM) * 1.22f), 0, 0);
+        shadowColor = new ShapeRenderer();
+        shadowColor.translate((-(this.size.x * Constants.PPM) * 1.22f), 0, 0);
 
-
-//        block = new TextureRegion(manager.getBlockSheet(), (int) positionSheet.x,
-//                (int) positionSheet.y, (int) sizeSheet.x, (int) sizeSheet.y);
+        mainColor = new ShapeRenderer();
+        mainColor.translate((-(this.size.x * Constants.PPM) * 1.16f), - (this.size.y * Constants.PPM) / 6, 0);
 
         inContact = false;
     }
@@ -80,15 +68,23 @@ public class Blocks extends Entity{
     public void render(SpriteBatch sprite) {
         sprite.enableBlending();
         sprite.setProjectionMatrix(manager.getCamera().combined);
-        shapeRenderer.setProjectionMatrix(manager.getCamera().combined);
-        shapeRenderer.setColor(Color.ORANGE);
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.rect((this.size.x  * 2 + (Constants.PPM * body.getPosition().x)),
+        shadowColor.setProjectionMatrix(manager.getCamera().combined);
+        shadowColor.setColor(201/255f, 186/255f, 176/255f, 0.0f);
+        shadowColor.begin(ShapeRenderer.ShapeType.Filled);
+        shadowColor.rect((this.size.x  * 2 + (Constants.PPM * body.getPosition().x)),
                 (this.size.y * 2 + (Constants.PPM * body.getPosition().y)),
                 (this.name.length() + (this.size.x * Constants.PPM)) * 2,
                 - (this.size.y * Constants.PPM * 2));
+        shadowColor.end();
 
-        shapeRenderer.end();
+        mainColor.setProjectionMatrix(manager.getCamera().combined);
+        mainColor.setColor(246/255f, 228/255f, 216/255f, 0.0f);
+        mainColor.begin(ShapeRenderer.ShapeType.Filled);
+        mainColor.rect((this.size.x  * 2 + (Constants.PPM * body.getPosition().x)),
+                (this.size.y * 2 + (Constants.PPM * body.getPosition().y)),
+                (this.name.length() + (this.size.x * Constants.PPM)) * 1.9f,
+                - (this.size.y * Constants.PPM * 1.5f));
+        mainColor.end();
 
         sprite.begin();
 

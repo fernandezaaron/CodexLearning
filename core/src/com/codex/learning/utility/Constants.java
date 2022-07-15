@@ -1,5 +1,7 @@
 package com.codex.learning.utility;
 
+import com.badlogic.gdx.graphics.Color;
+
 //This class will contain all constants value
 public class Constants {
     //constants
@@ -137,6 +139,7 @@ public class Constants {
     //END OF JEDISAUR SPRITE SHEET
 
     //BLOCK SHEET
+
     public static final int BLOCK_HEIGHT = 54;
     public static final int BLOCK_FIRST_ROW = 22;
     public static final int BLOCK_SECOND_ROW = 89;
