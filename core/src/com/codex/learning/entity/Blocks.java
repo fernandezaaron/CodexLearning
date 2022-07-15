@@ -91,12 +91,6 @@ public class Blocks extends Entity{
         shapeRenderer.end();
 
         sprite.begin();
-//        sprite.draw(block, body.getPosition().x * Constants.PPM - block.getRegionWidth() / 2,
-//                body.getPosition().y * Constants.PPM - block.getRegionHeight() / 2);
-
-//        manager.getFont().draw(sprite, this.name,
-//                (this.size.x + (Constants.PPM * body.getPosition().x)),
-//                (this.size.y + (Constants.PPM * body.getPosition().y)));
 
         manager.getFont().draw(sprite, this.name,
                 (this.size.x - (this.size.x * (Constants.PPM * 1.1f)) + (Constants.PPM * body.getPosition().x)),
