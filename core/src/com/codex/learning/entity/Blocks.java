@@ -87,11 +87,9 @@ public class Blocks extends Entity{
         mainColor.end();
 
         sprite.begin();
-
         manager.getFont().draw(sprite, this.name,
                 (this.size.x - (this.size.x * (Constants.PPM * 1.1f)) + (Constants.PPM * body.getPosition().x)),
                 (this.size.y - (this.size.y * (Constants.PPM * 0.5f)) + (Constants.PPM * body.getPosition().y)));
-
         sprite.end();
 
     }
