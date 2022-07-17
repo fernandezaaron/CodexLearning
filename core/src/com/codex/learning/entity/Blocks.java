@@ -1,10 +1,7 @@
 package com.codex.learning.entity;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -25,7 +22,6 @@ public class Blocks extends Entity{
 
     @Override
     public void create(Vector2 position, Vector2 size, float density) {
-
         this.position = position;
         this.size = size;
 
@@ -57,12 +53,10 @@ public class Blocks extends Entity{
         inContact = false;
     }
 
-
     @Override
     public void update(float delta) {
 
     }
-
 
     @Override
     public void render(SpriteBatch sprite) {
@@ -91,7 +85,6 @@ public class Blocks extends Entity{
                 (this.size.x - (this.size.x * (Constants.PPM * 1.1f)) + (Constants.PPM * body.getPosition().x)),
                 (this.size.y - (this.size.y * (Constants.PPM * 0.5f)) + (Constants.PPM * body.getPosition().y)));
         sprite.end();
-
     }
 
     public boolean isInContact() {

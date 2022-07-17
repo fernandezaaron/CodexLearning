@@ -1,4 +1,4 @@
-package com.codex.learning.entity;
+package com.codex.learning.entity.characters;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
+import com.codex.learning.entity.Blocks;
+import com.codex.learning.entity.Entity;
 import com.codex.learning.utility.Animation;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
@@ -363,9 +365,9 @@ public class Character extends Entity {
         if(isCarrying && block.isInContact() && carry == 0){
             carry = 1;
             dropped = false;
-            block.body.setTransform(body.getPosition().x, body.getPosition().y + 3f, 0);
+            block.getBody().setTransform(body.getPosition().x, body.getPosition().y + 3f, 0);
 //            System.out.println(body.getPosition().x + " " + body.getPosition().y);
-            block.body.setType(BodyDef.BodyType.DynamicBody);
+            block.getBody().setType(BodyDef.BodyType.DynamicBody);
         }
         else{
             carry = 0;
@@ -386,7 +388,7 @@ public class Character extends Entity {
 //                        break;
 //                }
 //            }
-            block.body.setType(BodyDef.BodyType.StaticBody);
+            block.getBody().setType(BodyDef.BodyType.StaticBody);
         }
 //        else{
 //            carry = 0;

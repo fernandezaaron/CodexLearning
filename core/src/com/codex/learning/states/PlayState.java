@@ -5,7 +5,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.codex.learning.entity.*;
 
-import com.codex.learning.entity.Character;
+import com.codex.learning.entity.characters.Character;
+import com.codex.learning.entity.characters.NPC;
+import com.codex.learning.entity.maps.HouseMap;
 import com.codex.learning.utility.*;
 
 public class PlayState extends State{
@@ -15,7 +17,7 @@ public class PlayState extends State{
     private Blocks sample;
     private Blocks sample2;
     private Blocks sample3;
-    private BitmapFont font;
+    private BlockHolder blockHolder;
 
     public PlayState(Manager manager) {
         super(manager);
@@ -37,11 +39,15 @@ public class PlayState extends State{
         jediGrandpa = new NPC(manager);
         jediGrandpa.create(new Vector2(-10, 0), new Vector2(1, 1.4f), 0);
 
+
+        blockHolder = new BlockHolder(manager, 0, 0, 0);
+        blockHolder.create(new Vector2(1f, 1f), new Vector2(1f, 0.7f), 0);
     }
 
     @Override
     public void update(float delta) {
         manager.getWorld().step(1/60f,6,2);
+
         if(sample.isInContact()){
             jedisaur.setPickUpAble(true);
             jedisaur.carryBlock(sample);
@@ -60,9 +66,11 @@ public class PlayState extends State{
         sample.update(delta);
         sample2.update(delta);
         sample3.update(delta);
+        blockHolder.update(delta);
         house.exitDoor(jedisaur);
         jediGrandpa.update(delta);
         jedisaur.update(delta);
+
     }
 
     @Override
@@ -75,6 +83,7 @@ public class PlayState extends State{
         sample.render(sprite);
         sample2.render(sprite);
         sample3.render(sprite);
+        blockHolder.render(sprite);
         jediGrandpa.render(sprite);
         jedisaur.render(sprite);
     }
@@ -87,5 +96,6 @@ public class PlayState extends State{
         sample2.disposeBody();
         sample3.disposeBody();
         house.dispose();
+        blockHolder.disposeBody();
     }
 }
