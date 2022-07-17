@@ -7,7 +7,6 @@ import com.codex.learning.entity.characters.Character;
 import com.codex.learning.entity.Collisions;
 import com.codex.learning.states.StageSelectState;
 import com.codex.learning.states.State;
-import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
 public class HouseMap extends State {

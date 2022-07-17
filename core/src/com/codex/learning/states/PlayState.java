@@ -71,6 +71,7 @@ public class PlayState extends State{
         jediGrandpa.update(delta);
         jedisaur.update(delta);
 
+        blockHolder.isInRectangle(jedisaur);
     }
 
     @Override

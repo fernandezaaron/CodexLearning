@@ -1,9 +1,8 @@
 package com.codex.learning.entity;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Circle;
+import com.codex.learning.entity.characters.Character;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -14,6 +13,7 @@ import com.codex.learning.utility.Manager;
 
 public class BlockHolder extends Entity{
     private ShapeRenderer shapeRenderer;
+    private Rectangle rectangle;
     private int r, g, b;
     private boolean inContact;
 
@@ -49,6 +49,11 @@ public class BlockHolder extends Entity{
         shape.dispose();
 
         shapeRenderer = new ShapeRenderer();
+        rectangle = new Rectangle();
+        rectangle.set(this.size.x, this.size.y,
+                this.size.x * Constants.PPM,
+                this.size.y * Constants.PPM);
+
 
 
         inContact = false;
@@ -68,12 +73,15 @@ public class BlockHolder extends Entity{
         shapeRenderer.setColor(this.r/255f, this.g/255f, this.b/255f, 0.0f);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
-        shapeRenderer.rect((this.size.x  * 2 + (Constants.PPM * body.getPosition().x)),
-                (this.size.y * 2 + (Constants.PPM * body.getPosition().y)),
-                (this.size.x * Constants.PPM),
-                - (this.size.y * Constants.PPM));
+//        shapeRenderer.rect((this.size.x  * 2 + (Constants.PPM * body.getPosition().x)),
+//                (this.size.y * 2 + (Constants.PPM * body.getPosition().y)),
+//                (this.size.x * Constants.PPM),
+//                - (this.size.y * Constants.PPM));
+        shapeRenderer.rect(rectangle.getX(), rectangle.getY(), rectangle.getWidth(), rectangle.getHeight());
 
         shapeRenderer.end();
+
+
     }
 
     public boolean isInContact() {
@@ -82,5 +90,14 @@ public class BlockHolder extends Entity{
 
     public void setInContact(boolean inContact) {
         this.inContact = inContact;
+    }
+
+    public void isInRectangle(Character character){
+        if(rectangle.contains(character.getBody().getPosition().x, character.getBody().getPosition().y)){
+            System.out.println("I AM INSIDE");
+        }
+        else{
+            System.out.println("I AM NOT INSIDE");
+        }
     }
 }
