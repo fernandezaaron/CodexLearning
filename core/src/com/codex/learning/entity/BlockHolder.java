@@ -50,12 +50,13 @@ public class BlockHolder extends Entity{
         shape.dispose();
 
         shapeRenderer = new ShapeRenderer();
-
         rectangle = new Rectangle(
-                -this.size.x,
-                -this.size.y,
-                this.size.x,
-                this.size.y);
+                (this.position.x * this.size.x) - (this.position.x * this.size.x) / 2,
+                (this.position.y * this.size.y),
+                (this.size.x),
+                (this.size.y));
+
+
 
 
         inContact = false;
@@ -70,7 +71,6 @@ public class BlockHolder extends Entity{
     public void render(SpriteBatch sprite) {
         sprite.enableBlending();
         sprite.setProjectionMatrix(manager.getCamera().combined);
-
         shapeRenderer.setProjectionMatrix(manager.getCamera().combined);
         if(isInContact()){
             shapeRenderer.setColor(Color.ORANGE);
@@ -80,12 +80,10 @@ public class BlockHolder extends Entity{
         }
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
-//        shapeRenderer.rect((this.size.x  * 2 + (Constants.PPM * body.getPosition().x)),
-//                (this.size.y * 2 + (Constants.PPM * body.getPosition().y)),
-//                (this.size.x * Constants.PPM),
-//                - (this.size.y * Constants.PPM));
-        shapeRenderer.rect(rectangle.getX(), rectangle.getY(), rectangle.getWidth() * Constants.PPM, rectangle.getHeight() * Constants.PPM);
 
+        shapeRenderer.rect(rectangle.getX(), rectangle.getY(),
+                rectangle.getWidth() * Constants.PPM,
+                rectangle.getHeight() * Constants.PPM);
 
         shapeRenderer.end();
 
