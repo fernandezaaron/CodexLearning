@@ -1,5 +1,6 @@
 package com.codex.learning.entity;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.codex.learning.entity.characters.Character;
@@ -49,11 +50,12 @@ public class BlockHolder extends Entity{
         shape.dispose();
 
         shapeRenderer = new ShapeRenderer();
-        rectangle = new Rectangle();
-        rectangle.set(this.size.x, this.size.y,
-                this.size.x * Constants.PPM,
-                this.size.y * Constants.PPM);
 
+        rectangle = new Rectangle(
+                -this.size.x,
+                -this.size.y,
+                this.size.x,
+                this.size.y);
 
 
         inContact = false;
@@ -70,18 +72,25 @@ public class BlockHolder extends Entity{
         sprite.setProjectionMatrix(manager.getCamera().combined);
 
         shapeRenderer.setProjectionMatrix(manager.getCamera().combined);
-        shapeRenderer.setColor(this.r/255f, this.g/255f, this.b/255f, 0.0f);
+        if(isInContact()){
+            shapeRenderer.setColor(Color.ORANGE);
+        }
+        else{
+            shapeRenderer.setColor(this.r/255f, this.g/255f, this.b/255f, 0.0f);
+        }
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
 //        shapeRenderer.rect((this.size.x  * 2 + (Constants.PPM * body.getPosition().x)),
 //                (this.size.y * 2 + (Constants.PPM * body.getPosition().y)),
 //                (this.size.x * Constants.PPM),
 //                - (this.size.y * Constants.PPM));
-        shapeRenderer.rect(rectangle.getX(), rectangle.getY(), rectangle.getWidth(), rectangle.getHeight());
+        shapeRenderer.rect(rectangle.getX(), rectangle.getY(), rectangle.getWidth() * Constants.PPM, rectangle.getHeight() * Constants.PPM);
+
 
         shapeRenderer.end();
 
-
+        System.out.println(" x y - " + rectangle.getX() + " - " + rectangle.getY());
+        System.out.println(" w h - " + rectangle.getWidth() + " - " + rectangle.getHeight());
     }
 
     public boolean isInContact() {
@@ -93,11 +102,12 @@ public class BlockHolder extends Entity{
     }
 
     public void isInRectangle(Character character){
+        System.out.println("CHARACTER - " + character.getBody().getPosition().x + " - " + character.getBody().getPosition().y);
         if(rectangle.contains(character.getBody().getPosition().x, character.getBody().getPosition().y)){
-            System.out.println("I AM INSIDE");
+            setInContact(true);
         }
         else{
-            System.out.println("I AM NOT INSIDE");
+            setInContact(false);
         }
     }
 }
