@@ -1,7 +1,6 @@
 package com.codex.learning.utility;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -9,11 +8,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.codex.learning.states.State;
-import org.w3c.dom.Text;
 
 import java.util.Stack;
 //This class is used to initiate all once a used assets to prevent multiple calls.
@@ -51,7 +47,7 @@ public class Manager {
 
         spriteSheet = new TextureRegion(new Texture(Constants.CHARACTER_SHEET_PATH));
 
-        reportcardsheet = new TextureRegion(new Texture(Constants.reportcard));
+        reportcardsheet = new TextureRegion(new Texture(Constants.REPORT_CARD_SHEET_PATH));
 
         font = new BitmapFont(Gdx.files.internal(Constants.FONT_STYLE));
         font.getData().scale(0.7f);

@@ -18,6 +18,7 @@ public class PlayState extends State{
     private Blocks sample2;
     private Blocks sample3;
     private BlockHolder blockHolder;
+    private BlockHolder blockHolder2;
 
     public PlayState(Manager manager) {
         super(manager);
@@ -41,6 +42,9 @@ public class PlayState extends State{
 
         blockHolder = new BlockHolder(manager, 0, 0, 0);
         blockHolder.create(new Vector2(1f, 1f), new Vector2(2f, 2f), 0);
+//
+//        blockHolder2 = new BlockHolder(manager, 0, 0, 0);
+//        blockHolder2.create(new Vector2(5f, 5f), new Vector2(2f, 2f), 0);
     }
 
     @Override
@@ -66,11 +70,13 @@ public class PlayState extends State{
 //        sample2.update(delta);
 //        sample3.update(delta);
         blockHolder.update(delta);
+//        blockHolder2.update(delta);
         house.exitDoor(jedisaur);
         jediGrandpa.update(delta);
         jedisaur.update(delta);
 
         blockHolder.isInRectangle(jedisaur);
+//        blockHolder2.isInRectangle(jedisaur);
     }
 
     @Override
@@ -79,11 +85,12 @@ public class PlayState extends State{
 //        sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.begin();
         sprite.end();
-        house.render(sprite);
+//        house.render(sprite);
 //        sample.render(sprite);
 //        sample2.render(sprite);
 //        sample3.render(sprite);
         blockHolder.render(sprite);
+//        blockHolder2.render(sprite);
         jediGrandpa.render(sprite);
         jedisaur.render(sprite);
     }
@@ -97,5 +104,6 @@ public class PlayState extends State{
         sample3.disposeBody();
         house.dispose();
         blockHolder.disposeBody();
+//        blockHolder2.disposeBody();
     }
 }

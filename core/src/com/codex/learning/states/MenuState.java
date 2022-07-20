@@ -1,18 +1,12 @@
 package com.codex.learning.states;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
-import com.sun.org.apache.bcel.internal.Const;
-import jdk.vm.ci.meta.Constant;
-import org.w3c.dom.css.Rect;
 
 import java.awt.*;
 
@@ -40,7 +34,7 @@ public class MenuState extends State {
         javaDeluxeBounds = new Rectangle(Constants.DELUXE_ON_SCREEN_X,  Constants.DELUXE_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH , Constants.TEXT_HIGHLIGHT_HEIGHT);
         recipeBounds = new Rectangle(Constants.RECIPE_ON_SCREEN_X, Constants.RECIPE_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH, Constants.TEXT_HIGHLIGHT_HEIGHT);
         jediTrialBounds = new Rectangle(Constants.TRIAL_ON_SCREEN_X, Constants.TRIAL_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH, Constants.TEXT_HIGHLIGHT_HEIGHT);
-        reportCardBounds = new Rectangle(Constants.REPORTCARD_ON_SCREEN_X, Constants.REPORTCARD_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH, Constants.TEXT_HIGHLIGHT_HEIGHT);
+        reportCardBounds = new Rectangle(Constants.REPORT_CARD_ON_SCREEN_X, Constants.REPORT_CARD_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH, Constants.TEXT_HIGHLIGHT_HEIGHT);
         helpBounds = new Rectangle(Constants.HELP_ON_SCREEN_X, Constants.HELP_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH, Constants.TEXT_HIGHLIGHT_HEIGHT);
         settingsBounds = new Rectangle(Constants.SETTINGS_ON_SCREEN_X, Constants.SETTINGS_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH, Constants.TEXT_HIGHLIGHT_HEIGHT);
         quitGameBounds = new Rectangle(Constants.QUIT_ON_SCREEN_X, Constants.QUIT_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH, Constants.TEXT_HIGHLIGHT_HEIGHT);
@@ -114,7 +108,7 @@ public class MenuState extends State {
             sprite.draw(textHighlight, Constants.TRIAL_ON_SCREEN_X, Constants.TRIAL_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH , Constants.TEXT_HIGHLIGHT_HEIGHT);
         }
         if(reportCardBounds.contains(touchpoint.x, touchpoint.y)){
-            sprite.draw(textHighlight, Constants.REPORTCARD_ON_SCREEN_X, Constants.REPORTCARD_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH , Constants.TEXT_HIGHLIGHT_HEIGHT);
+            sprite.draw(textHighlight, Constants.REPORT_CARD_ON_SCREEN_X, Constants.REPORT_CARD_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH , Constants.TEXT_HIGHLIGHT_HEIGHT);
         }
         if(helpBounds.contains(touchpoint.x, touchpoint.y)){
             sprite.draw(textHighlight, Constants.HELP_ON_SCREEN_X, Constants.HELP_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH , Constants.TEXT_HIGHLIGHT_HEIGHT);

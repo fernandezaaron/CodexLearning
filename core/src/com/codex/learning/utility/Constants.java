@@ -1,7 +1,5 @@
 package com.codex.learning.utility;
 
-import com.badlogic.gdx.graphics.Color;
-
 //This class will contain all constants value
 public class Constants {
     //constants
@@ -16,7 +14,7 @@ public class Constants {
     public static final String SKY_BACKGROUND_PATH = "background/skyBG.png";
     public static final String CLOUD_PATH = "background/clouds.png";
     public static final String STAGE1_PATH = "map/house.png";
-    public static final String reportcard = "background/reportcardspritesheet.png";
+    public static final String REPORT_CARD_SHEET_PATH = "background/reportcardspritesheet.png";
 
     // BLOCK ASSET PATH
     public static final String BLOCK_SHEET_PATH = "block/blocksheet.png";
@@ -54,8 +52,8 @@ public class Constants {
     public static final int RECIPE_ON_SCREEN_Y = 410;
     public static final int TRIAL_ON_SCREEN_X = 538;
     public static final int TRIAL_ON_SCREEN_Y = 360;
-    public static final int REPORTCARD_ON_SCREEN_X = 538;
-    public static final int REPORTCARD_ON_SCREEN_Y = 305;
+    public static final int REPORT_CARD_ON_SCREEN_X = 538;
+    public static final int REPORT_CARD_ON_SCREEN_Y = 305;
     public static final int HELP_ON_SCREEN_X = 538;
     public static final int HELP_ON_SCREEN_Y = 250;
     public static final int SETTINGS_ON_SCREEN_X = 538;
@@ -140,10 +138,12 @@ public class Constants {
 
     //BLOCK SHEET
 
+    public static final int BLOCK_WIDTH = 46;
     public static final int BLOCK_HEIGHT = 54;
-    public static final int BLOCK_FIRST_ROW = 22;
-    public static final int BLOCK_SECOND_ROW = 89;
-    public static final int BLOCK_THIRD_ROW = 153;
+    public static final int BLOCK_X = 444;
+    public static final int BLOCK_Y_NORMAL = 363;
+    public static final int BLOCK_Y_HIGHLIGHT = 458;
+
     //END OF BLOCK SHEET
 
 }

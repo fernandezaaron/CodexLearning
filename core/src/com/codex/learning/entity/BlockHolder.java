@@ -1,8 +1,10 @@
 package com.codex.learning.entity;
 
-import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Intersector;
 import com.codex.learning.entity.characters.Character;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -14,6 +16,7 @@ import com.codex.learning.utility.Manager;
 
 public class BlockHolder extends Entity{
     private ShapeRenderer shapeRenderer;
+    private TextureRegion normalBlock, highlightBlock;
     private Rectangle rectangle;
     private int r, g, b;
     private boolean inContact;
@@ -50,42 +53,38 @@ public class BlockHolder extends Entity{
         shape.dispose();
 
         shapeRenderer = new ShapeRenderer();
-        rectangle = new Rectangle(
-                (this.position.x * this.size.x) - (this.position.x * this.size.x) / 2,
-                (this.position.y * this.size.y),
-                (this.size.x),
-                (this.size.y));
-
-
-
 
         inContact = false;
+
+        normalBlock = new TextureRegion(new Texture(Constants.BLOCK_SHEET_PATH), Constants.BLOCK_X, Constants.BLOCK_Y_NORMAL, Constants.BLOCK_WIDTH, Constants.BLOCK_HEIGHT);
+        highlightBlock = new TextureRegion(new Texture(Constants.BLOCK_SHEET_PATH), Constants.BLOCK_X, Constants.BLOCK_Y_HIGHLIGHT, Constants.BLOCK_WIDTH, Constants.BLOCK_HEIGHT);
+
+        rectangle = new Rectangle(
+                -(this.position.x),
+                -(this.position.y),
+                (this.size.x),
+                (this.size.y));
     }
 
     @Override
     public void update(float delta) {
-
     }
 
     @Override
     public void render(SpriteBatch sprite) {
         sprite.enableBlending();
         sprite.setProjectionMatrix(manager.getCamera().combined);
-        shapeRenderer.setProjectionMatrix(manager.getCamera().combined);
+
+        sprite.begin();
+
         if(isInContact()){
-            shapeRenderer.setColor(Color.ORANGE);
+            sprite.draw(highlightBlock, rectangle.getX(), rectangle.getY(), Constants.BLOCK_WIDTH, Constants.BLOCK_HEIGHT);
         }
         else{
-            shapeRenderer.setColor(this.r/255f, this.g/255f, this.b/255f, 0.0f);
+            sprite.draw(normalBlock, rectangle.getX(), rectangle.getY(), Constants.BLOCK_WIDTH, Constants.BLOCK_HEIGHT);
         }
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
-
-        shapeRenderer.rect(rectangle.getX(), rectangle.getY(),
-                rectangle.getWidth() * Constants.PPM,
-                rectangle.getHeight() * Constants.PPM);
-
-        shapeRenderer.end();
+        sprite.end();
 
         System.out.println(" x y - " + rectangle.getX() + " - " + rectangle.getY());
         System.out.println(" w h - " + rectangle.getWidth() + " - " + rectangle.getHeight());
@@ -101,7 +100,7 @@ public class BlockHolder extends Entity{
 
     public void isInRectangle(Character character){
         System.out.println("CHARACTER - " + character.getBody().getPosition().x + " - " + character.getBody().getPosition().y);
-        if(rectangle.contains(character.getBody().getPosition().x, character.getBody().getPosition().y)){
+        if(rectangle.contains(character.getBody().getPosition())){
             setInContact(true);
         }
         else{
