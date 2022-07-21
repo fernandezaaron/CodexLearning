@@ -5,8 +5,8 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import com.codex.learning.entity.Blocks;
-import com.codex.learning.entity.Character;
+import com.codex.learning.entity.blocks.BlockDispenser;
+import com.codex.learning.entity.blocks.Blocks;
 
 //This class will allow the player to have collision detection
 public class Contact implements ContactListener {
@@ -25,8 +25,13 @@ public class Contact implements ContactListener {
 
         if(isBlockContact(fa)){
             Blocks blockA = (Blocks) fa.getUserData();
-            blockA.setPickUp(true);
+            blockA.setInContact(true);
         }
+        else if(isDispenserContact(fa)){
+            BlockDispenser blockDispenserA = (BlockDispenser) fa.getUserData();
+            blockDispenserA.setInDispenser(true);
+        }
+        Gdx.app.log("BEGIN CONTACT", "");
 
     }
 
@@ -42,9 +47,15 @@ public class Contact implements ContactListener {
 
         if(isBlockContact(fa)){
             Blocks blockA = (Blocks) fa.getUserData();
-            blockA.setPickUp(false);
+            blockA.setInContact(false);
+        }
+        else if(isDispenserContact(fa)){
+            BlockDispenser blockDispenserA = (BlockDispenser) fa.getUserData();
+            blockDispenserA.setInDispenser(false);
         }
 
+
+        Gdx.app.log("END CONTACT", "");
     }
 
     @Override
@@ -63,6 +74,13 @@ public class Contact implements ContactListener {
         }
         return false;
 //        return (a.getUserData() instanceof Blocks && a.getUserData() instanceof Character);
+    }
+
+    private boolean isDispenserContact(Fixture a){
+        if(a.getUserData() instanceof BlockDispenser){
+            return true;
+        }
+        return false;
     }
 
 }

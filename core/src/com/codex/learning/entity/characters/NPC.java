@@ -1,4 +1,4 @@
-package com.codex.learning.entity;
+package com.codex.learning.entity.characters;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -6,10 +6,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.codex.learning.entity.Entity;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
-public class NPC extends Entity{
+public class NPC extends Entity {
 
     private TextureRegion jediGrandpa;
     public NPC(Manager manager) {
@@ -29,7 +30,8 @@ public class NPC extends Entity{
 
 //        Create a rectangle for the character to have collision detection.
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(this.size.x, (float) (this.size.y / 1.5), new Vector2(0, -(this.size.y - this.size.y /2)), 0);
+        shape.setAsBox(this.size.x, (float) (this.size.y / 1.5),
+                new Vector2(0, -(this.size.y - this.size.y /2)), 0);
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.density = density;

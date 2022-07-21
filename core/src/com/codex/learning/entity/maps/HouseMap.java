@@ -1,8 +1,10 @@
-package com.codex.learning.entity;
+package com.codex.learning.entity.maps;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.codex.learning.entity.characters.Character;
+import com.codex.learning.entity.Collisions;
 import com.codex.learning.states.StageSelectState;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.Constants;
@@ -16,10 +18,10 @@ public class HouseMap extends State {
         super(manager);
 //      Create invisible collision for the character.
         upBorder = new Collisions(manager);
-        upBorder.create(new Vector2(-6, 8), new Vector2(0.2f, 4), 0);
+        upBorder.create(new Vector2(-6.1f, 8), new Vector2(0.4f, 5.5f), 0);
 
         downBorder = new Collisions(manager);
-        downBorder.create(new Vector2(-6, -8), new Vector2(0.2f, 4), 0);
+        downBorder.create(new Vector2(-6.2f, -9), new Vector2(0.4f, 3.3f), 0);
 
         cabinet = new Collisions(manager);
         cabinet.create(new Vector2(-8.5f, 12.3f), new Vector2(2, 3), 0);
@@ -46,7 +48,7 @@ public class HouseMap extends State {
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.enableBlending();
-//        sprite.draw(manager.getStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        sprite.draw(manager.getStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         checkDoor(sprite, atDoor);
         sprite.end();
     }
@@ -61,11 +63,11 @@ public class HouseMap extends State {
     }
 
     public void exitDoor(Character character){
-        if(character.body.getPosition().x > -19.8f && character.body.getPosition().x < -15.5f && character.body.getPosition().y < -11){
+        if(character.getBody().getPosition().x > -19.8f && character.getBody().getPosition().x < -15.5f && character.getBody().getPosition().y < -11){
             manager.set(new StageSelectState(manager));
         }
 
-        atDoor = character.body.getPosition().x > -19.8f && character.body.getPosition().x < -15.5f && character.body.getPosition().y < -10;
+        atDoor = character.getBody().getPosition().x > -19.8f && character.getBody().getPosition().x < -15.5f && character.getBody().getPosition().y < -10;
     }
 
     private void checkDoor(SpriteBatch sprite, boolean atDoor){

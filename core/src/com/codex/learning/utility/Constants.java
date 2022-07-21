@@ -13,8 +13,8 @@ public class Constants {
     public static final String BACKGROUND_PATH = "background/mainmenu2.png";
     public static final String SKY_BACKGROUND_PATH = "background/skyBG.png";
     public static final String CLOUD_PATH = "background/clouds.png";
-    public static final String STAGE1_PATH = "map/house.png";
-    public static final String reportcard = "background/reportcardspritesheet.png";
+    public static final String STAGE1_PATH = "map/housemap.png";
+    public static final String REPORT_CARD_SHEET_PATH = "background/reportcardspritesheet.png";
 
     // BLOCK ASSET PATH
     public static final String BLOCK_SHEET_PATH = "block/blocksheet.png";
@@ -52,8 +52,8 @@ public class Constants {
     public static final int RECIPE_ON_SCREEN_Y = 410;
     public static final int TRIAL_ON_SCREEN_X = 538;
     public static final int TRIAL_ON_SCREEN_Y = 360;
-    public static final int REPORTCARD_ON_SCREEN_X = 538;
-    public static final int REPORTCARD_ON_SCREEN_Y = 305;
+    public static final int REPORT_CARD_ON_SCREEN_X = 538;
+    public static final int REPORT_CARD_ON_SCREEN_Y = 305;
     public static final int HELP_ON_SCREEN_X = 538;
     public static final int HELP_ON_SCREEN_Y = 250;
     public static final int SETTINGS_ON_SCREEN_X = 538;
@@ -137,10 +137,28 @@ public class Constants {
     //END OF JEDISAUR SPRITE SHEET
 
     //BLOCK SHEET
+
+    public static final int BLOCK_WIDTH = 46;
     public static final int BLOCK_HEIGHT = 54;
-    public static final int BLOCK_FIRST_ROW = 22;
-    public static final int BLOCK_SECOND_ROW = 89;
-    public static final int BLOCK_THIRD_ROW = 153;
+    public static final int BLOCK_X = 444;
+    public static final int BLOCK_Y_NORMAL = 363;
+    public static final int BLOCK_Y_HIGHLIGHT = 458;
+
     //END OF BLOCK SHEET
+
+    //UTILITY SHEET
+
+    public static final int BLOCK_MACHINE_FRONT_X = 311;
+    public static final int BLOCK_MACHINE_FRONT_Y = 15;
+    public static final int BLOCK_MACHINE_FRONT_WIDTH = 39;
+    public static final int BLOCK_MACHINE_FRONT_HEIGHT = 109;
+
+    public static final int BLOCK_MACHINE_LEFT_X = 354;
+    public static final int BLOCK_MACHINE_RIGHT_X = 392;
+    public static final int BLOCK_MACHINE_Y = 3;
+    public static final int BLOCK_MACHINE_WIDTH = 34;
+    public static final int BLOCK_MACHINE_HEIGHT = 122;
+
+    //END OF UTILITY SHEET
 
 }
