@@ -330,7 +330,7 @@ public class Character extends Entity {
             atTop = true;
         }
 
-        if(body.getPosition().y - size.y - 2.7 < -Constants.SCREEN_HEIGHT / 2 / Constants.PPM){
+        if(body.getPosition().y - size.y - 3 < -Constants.SCREEN_HEIGHT / 2 / Constants.PPM){
             atBot = true;
         }
 

@@ -13,7 +13,7 @@ public class Constants {
     public static final String BACKGROUND_PATH = "background/mainmenu2.png";
     public static final String SKY_BACKGROUND_PATH = "background/skyBG.png";
     public static final String CLOUD_PATH = "background/clouds.png";
-    public static final String STAGE1_PATH = "map/house.png";
+    public static final String STAGE1_PATH = "map/housemap.png";
     public static final String REPORT_CARD_SHEET_PATH = "background/reportcardspritesheet.png";
 
     // BLOCK ASSET PATH

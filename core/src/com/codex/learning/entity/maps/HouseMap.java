@@ -18,10 +18,10 @@ public class HouseMap extends State {
         super(manager);
 //      Create invisible collision for the character.
         upBorder = new Collisions(manager);
-        upBorder.create(new Vector2(-6, 8), new Vector2(0.2f, 4), 0);
+        upBorder.create(new Vector2(-6.1f, 8), new Vector2(0.4f, 5.5f), 0);
 
         downBorder = new Collisions(manager);
-        downBorder.create(new Vector2(-6, -8), new Vector2(0.2f, 4), 0);
+        downBorder.create(new Vector2(-6.2f, -9), new Vector2(0.4f, 3.3f), 0);
 
         cabinet = new Collisions(manager);
         cabinet.create(new Vector2(-8.5f, 12.3f), new Vector2(2, 3), 0);

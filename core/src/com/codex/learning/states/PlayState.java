@@ -85,7 +85,7 @@ public class PlayState extends State{
 //        sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.begin();
         sprite.end();
-//        house.render(sprite);
+        house.render(sprite);
 //        sample.render(sprite);
 //        sample2.render(sprite);
 //        sample3.render(sprite);
