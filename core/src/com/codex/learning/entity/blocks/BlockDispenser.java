@@ -5,7 +5,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -13,7 +12,6 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.codex.learning.entity.Entity;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
-import org.graalvm.compiler.nodes.cfg.Block;
 
 public class BlockDispenser extends Entity {
     private TextureRegion blockDispenser;
@@ -63,11 +61,20 @@ public class BlockDispenser extends Entity {
 
         createDispenser();
 
+        for(int i = 0; i < limit; i++){
+            blocks[limit] = new Blocks(manager, this.id, this.name);
+            blocks[limit].create(this.position, this.size,0);
+        }
+
 //        blocks = new Blocks(manager, this.id, this.name);
     }
 
     @Override
     public void update(float delta) {
+
+//        for(Blocks i : blocks){
+//            i.update(delta);
+//        }
 
     }
 
@@ -77,18 +84,17 @@ public class BlockDispenser extends Entity {
         sprite.setProjectionMatrix(manager.getCamera().combined);
 
         sprite.begin();
+
         sprite.draw(blockDispenser,
                 body.getPosition().x * Constants.PPM - blockDispenser.getRegionWidth() / 2,
                 body.getPosition().y * Constants.PPM - blockDispenser.getRegionHeight() / 2);
 
-        if(isInDispenser() && limit > 0 && Gdx.input.isKeyJustPressed(Input.Keys.E)){
+        if(isInDispenser() && limit >= 0 && Gdx.input.isKeyJustPressed(Input.Keys.E)){
             System.out.println("I SUMMONED");
-            blocks[limit] = new Blocks(manager, this.id, this.name);
-            blocks[limit].create(this.position, this.size,0);
-
             blocks[limit].render(sprite);
             limit--;
         }
+
         sprite.end();
     }
 

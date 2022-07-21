@@ -78,8 +78,8 @@ public class PlayState extends State{
 
         if(blockDispenser.isInDispenser()){
             jedisaur.setPickUpAble(true);
-            jedisaur.carryBlock(blockDispenser.getBlocks()[3]);
         }
+
 //        sample.update(delta);
 //        sample2.update(delta);
 //        sample3.update(delta);
