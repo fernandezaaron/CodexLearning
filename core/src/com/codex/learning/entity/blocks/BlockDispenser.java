@@ -1,5 +1,7 @@
 package com.codex.learning.entity.blocks;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -11,14 +13,16 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.codex.learning.entity.Entity;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
+import org.graalvm.compiler.nodes.cfg.Block;
 
 public class BlockDispenser extends Entity {
     private TextureRegion blockDispenser;
+    private boolean inDispenser;
     private String direction;
     private String id;
     private String name;
     private int limit;
-    private Blocks blocks;
+    private Blocks[] blocks = new Blocks[limit];
 
     public BlockDispenser(Manager manager, String direction, String id, String name, int limit) {
         super(manager);
@@ -39,8 +43,11 @@ public class BlockDispenser extends Entity {
         def.fixedRotation = true;
         PolygonShape shape = new PolygonShape();
 
-        shape.setAsBox(this.size.x , this.size.y,
-                new Vector2(0, -(this.size.y - this.size.y / 3)), 0);
+        shape.setAsBox(this.size.x, (float) (this.size.y / 1.5),
+                new Vector2(0, -(this.size.y - this.size.y / 2)), 0);
+
+//        shape.setAsBox(this.size.x , this.size.y,
+//                new Vector2(0, -(this.size.y - this.size.y / 3)), 0);
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.density = density;
@@ -48,13 +55,13 @@ public class BlockDispenser extends Entity {
         fixtureDef.friction = 5;
 
         body = manager.getWorld().createBody(def);
-        body.createFixture(fixtureDef);
+        body.createFixture(fixtureDef).setUserData(this);
         body.setLinearVelocity(0, 0);
         shape.dispose();
 
+        inDispenser = false;
 
         createDispenser();
-
 
 //        blocks = new Blocks(manager, this.id, this.name);
     }
@@ -70,23 +77,17 @@ public class BlockDispenser extends Entity {
         sprite.setProjectionMatrix(manager.getCamera().combined);
 
         sprite.begin();
+        sprite.draw(blockDispenser,
+                body.getPosition().x * Constants.PPM - blockDispenser.getRegionWidth() / 2,
+                body.getPosition().y * Constants.PPM - blockDispenser.getRegionHeight() / 2);
 
-        switch (direction){
-            case "Down":
-                sprite.draw(blockDispenser,
-                        this.size.x,
-                        this.size.y,
-                        Constants.BLOCK_MACHINE_FRONT_WIDTH,
-                        Constants.BLOCK_MACHINE_FRONT_HEIGHT);
-            break;
-            case "Left":
-            case "Right":
-                sprite.draw(blockDispenser,
-                        this.size.x,
-                        this.size.y,
-                        Constants.BLOCK_MACHINE_WIDTH,
-                        Constants.BLOCK_MACHINE_HEIGHT);
-            break;
+        if(isInDispenser() && limit > 0 && Gdx.input.isKeyJustPressed(Input.Keys.E)){
+            System.out.println("I SUMMONED");
+            blocks[limit] = new Blocks(manager, this.id, this.name);
+            blocks[limit].create(this.position, this.size,0);
+
+            blocks[limit].render(sprite);
+            limit--;
         }
         sprite.end();
     }
@@ -116,5 +117,17 @@ public class BlockDispenser extends Entity {
                         Constants.BLOCK_MACHINE_HEIGHT);
             break;
         }
+    }
+
+    public boolean isInDispenser() {
+        return inDispenser;
+    }
+
+    public void setInDispenser(boolean inDispenser) {
+        this.inDispenser = inDispenser;
+    }
+
+    public Blocks[] getBlocks() {
+        return blocks;
     }
 }

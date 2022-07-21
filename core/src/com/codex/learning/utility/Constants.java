@@ -157,7 +157,7 @@ public class Constants {
     public static final int BLOCK_MACHINE_RIGHT_X = 392;
     public static final int BLOCK_MACHINE_Y = 3;
     public static final int BLOCK_MACHINE_WIDTH = 34;
-    public static final int BLOCK_MACHINE_HEIGHT = 34;
+    public static final int BLOCK_MACHINE_HEIGHT = 122;
 
     //END OF UTILITY SHEET
 

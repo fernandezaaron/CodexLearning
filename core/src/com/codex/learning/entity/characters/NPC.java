@@ -30,7 +30,8 @@ public class NPC extends Entity {
 
 //        Create a rectangle for the character to have collision detection.
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(this.size.x, (float) (this.size.y / 1.5), new Vector2(0, -(this.size.y - this.size.y /2)), 0);
+        shape.setAsBox(this.size.x, (float) (this.size.y / 1.5),
+                new Vector2(0, -(this.size.y - this.size.y /2)), 0);
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.density = density;

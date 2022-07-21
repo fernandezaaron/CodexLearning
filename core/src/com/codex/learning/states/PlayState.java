@@ -21,7 +21,7 @@ public class PlayState extends State{
     private BlockHolder blockHolder;
     private BlockHolder blockHolder2;
     private BlockDispenser blockDispenser;
-
+    private BlockDispenser blockDispenser2;
     public PlayState(Manager manager) {
         super(manager);
 
@@ -49,10 +49,11 @@ public class PlayState extends State{
         jediGrandpa = new NPC(manager);
         jediGrandpa.create(new Vector2(-10, 0), new Vector2(1, 1.4f), 0);
 
-
         blockDispenser = new BlockDispenser(manager, "Down", "}", " } ", 3);
-        blockDispenser.create(new Vector2(0.625f, 1.5f), new Vector2(0.55f, 1f), 0);
+        blockDispenser.create(new Vector2(1, 5), new Vector2(0.3f, 1.3f), 0);
 
+        blockDispenser2 = new BlockDispenser(manager, "Left", "}", " } ", 3);
+        blockDispenser2.create(new Vector2(6, 5), new Vector2(0.3f, 1.3f), 0);
     }
 
     @Override
@@ -74,6 +75,11 @@ public class PlayState extends State{
 //        else{
 //            jedisaur.setPickUpAble(false);
 //        }
+
+        if(blockDispenser.isInDispenser()){
+            jedisaur.setPickUpAble(true);
+            jedisaur.carryBlock(blockDispenser.getBlocks()[3]);
+        }
 //        sample.update(delta);
 //        sample2.update(delta);
 //        sample3.update(delta);
@@ -81,7 +87,7 @@ public class PlayState extends State{
 //        blockHolder2.update(delta);
 
         blockDispenser.update(delta);
-
+        blockDispenser2.update(delta);
         house.exitDoor(jedisaur);
         jediGrandpa.update(delta);
         jedisaur.update(delta);
@@ -106,6 +112,7 @@ public class PlayState extends State{
 //        blockHolder.render(sprite);
 //        blockHolder2.render(sprite);
         blockDispenser.render(sprite);
+        blockDispenser2.render(sprite);
         jediGrandpa.render(sprite);
         jedisaur.render(sprite);
     }
@@ -118,7 +125,7 @@ public class PlayState extends State{
 //        sample2.disposeBody();
 //        sample3.disposeBody();
         blockDispenser.disposeBody();
-
+        blockDispenser2.disposeBody();
         house.dispose();
 //        blockHolder.disposeBody();
 //        blockHolder2.disposeBody();
