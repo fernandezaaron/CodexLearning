@@ -1,10 +1,11 @@
-package com.codex.learning.entity;
+package com.codex.learning.entity.blocks;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Intersector;
+import com.codex.learning.entity.Entity;
 import com.codex.learning.entity.characters.Character;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -14,7 +15,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
-public class BlockHolder extends Entity{
+public class BlockHolder extends Entity {
     private ShapeRenderer shapeRenderer;
     private TextureRegion normalBlock, highlightBlock;
     private Rectangle rectangle;

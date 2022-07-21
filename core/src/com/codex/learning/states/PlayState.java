@@ -1,10 +1,11 @@
 package com.codex.learning.states;
 
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.codex.learning.entity.*;
 
+import com.codex.learning.entity.blocks.BlockDispenser;
+import com.codex.learning.entity.blocks.BlockHolder;
+import com.codex.learning.entity.blocks.Blocks;
 import com.codex.learning.entity.characters.Character;
 import com.codex.learning.entity.characters.NPC;
 import com.codex.learning.entity.maps.HouseMap;
@@ -19,6 +20,7 @@ public class PlayState extends State{
     private Blocks sample3;
     private BlockHolder blockHolder;
     private BlockHolder blockHolder2;
+    private BlockDispenser blockDispenser;
 
     public PlayState(Manager manager) {
         super(manager);
@@ -34,17 +36,23 @@ public class PlayState extends State{
 //        sample3 = new Blocks(manager, "args", "String[] args)");
 //        sample3.create(new Vector2(5.9f, 5), new Vector2(2.9f, 0.7f), 0);
 
+//        blockHolder = new BlockHolder(manager, 0, 0, 0);
+//        blockHolder.create(new Vector2(1f, 1f), new Vector2(2f, 2f), 0);
+//
+//        blockHolder2 = new BlockHolder(manager, 0, 0, 0);
+//        blockHolder2.create(new Vector2(5f, 5f), new Vector2(2f, 2f), 0);
+
+
         jedisaur = new Character(manager);
         jedisaur.create(new Vector2(0, 0), new Vector2(1.2f, 1.75f), 1.6f);
 
         jediGrandpa = new NPC(manager);
         jediGrandpa.create(new Vector2(-10, 0), new Vector2(1, 1.4f), 0);
 
-        blockHolder = new BlockHolder(manager, 0, 0, 0);
-        blockHolder.create(new Vector2(1f, 1f), new Vector2(2f, 2f), 0);
-//
-//        blockHolder2 = new BlockHolder(manager, 0, 0, 0);
-//        blockHolder2.create(new Vector2(5f, 5f), new Vector2(2f, 2f), 0);
+
+        blockDispenser = new BlockDispenser(manager, "Down", "}", " } ", 3);
+        blockDispenser.create(new Vector2(0.625f, 1.5f), new Vector2(0.55f, 1f), 0);
+
     }
 
     @Override
@@ -69,13 +77,16 @@ public class PlayState extends State{
 //        sample.update(delta);
 //        sample2.update(delta);
 //        sample3.update(delta);
-        blockHolder.update(delta);
+//        blockHolder.update(delta);
 //        blockHolder2.update(delta);
+
+        blockDispenser.update(delta);
+
         house.exitDoor(jedisaur);
         jediGrandpa.update(delta);
         jedisaur.update(delta);
 
-        blockHolder.isInRectangle(jedisaur);
+//        blockHolder.isInRectangle(jedisaur);
 //        blockHolder2.isInRectangle(jedisaur);
     }
 
@@ -85,12 +96,16 @@ public class PlayState extends State{
 //        sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.begin();
         sprite.end();
-        house.render(sprite);
+
+//        house.render(sprite);
+
+
 //        sample.render(sprite);
 //        sample2.render(sprite);
 //        sample3.render(sprite);
-        blockHolder.render(sprite);
+//        blockHolder.render(sprite);
 //        blockHolder2.render(sprite);
+        blockDispenser.render(sprite);
         jediGrandpa.render(sprite);
         jedisaur.render(sprite);
     }
@@ -99,11 +114,13 @@ public class PlayState extends State{
     public void dispose() {
         jedisaur.disposeBody();
         jediGrandpa.disposeBody();
-        sample.disposeBody();
-        sample2.disposeBody();
-        sample3.disposeBody();
+//        sample.disposeBody();
+//        sample2.disposeBody();
+//        sample3.disposeBody();
+        blockDispenser.disposeBody();
+
         house.dispose();
-        blockHolder.disposeBody();
+//        blockHolder.disposeBody();
 //        blockHolder2.disposeBody();
     }
 }

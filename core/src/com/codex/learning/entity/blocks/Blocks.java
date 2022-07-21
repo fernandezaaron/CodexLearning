@@ -1,4 +1,4 @@
-package com.codex.learning.entity;
+package com.codex.learning.entity.blocks;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -6,10 +6,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.codex.learning.entity.Entity;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
-public class Blocks extends Entity{
+public class Blocks extends Entity {
     private String id, name;
     private ShapeRenderer shadowColor;
     private ShapeRenderer mainColor;

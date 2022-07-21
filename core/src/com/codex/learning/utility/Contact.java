@@ -5,7 +5,7 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import com.codex.learning.entity.Blocks;
+import com.codex.learning.entity.blocks.Blocks;
 
 //This class will allow the player to have collision detection
 public class Contact implements ContactListener {
