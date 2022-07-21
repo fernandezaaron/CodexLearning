@@ -20,7 +20,7 @@ public class BlockDispenser extends Entity {
     private String id;
     private String name;
     private int limit;
-    private Blocks[] blocks = new Blocks[limit];
+    private final Blocks[] blocks;
 
     public BlockDispenser(Manager manager, String direction, String id, String name, int limit) {
         super(manager);
@@ -28,6 +28,9 @@ public class BlockDispenser extends Entity {
         this.id = id;
         this.name = name;
         this.limit = limit;
+
+        blocks = new Blocks[this.limit + 1];
+
     }
 
     @Override
@@ -61,12 +64,12 @@ public class BlockDispenser extends Entity {
 
         createDispenser();
 
-        for(int i = 0; i < limit; i++){
-            blocks[limit] = new Blocks(manager, this.id, this.name);
-            blocks[limit].create(this.position, this.size,0);
+        for(int i = 0; i < this.limit; i++){
+            blocks[i] = new Blocks(manager, id, name);
+            blocks[i].create(this.position, new Vector2(0.3f, 0.7f),0);
         }
 
-//        blocks = new Blocks(manager, this.id, this.name);
+
     }
 
     @Override
@@ -89,13 +92,19 @@ public class BlockDispenser extends Entity {
                 body.getPosition().x * Constants.PPM - blockDispenser.getRegionWidth() / 2,
                 body.getPosition().y * Constants.PPM - blockDispenser.getRegionHeight() / 2);
 
-        if(isInDispenser() && limit >= 0 && Gdx.input.isKeyJustPressed(Input.Keys.E)){
+//        if(isInDispenser() && limit >= 0 && Gdx.input.isKeyJustPressed(Input.Keys.E))
+
+        if(limit >= 0 && Gdx.input.isKeyJustPressed(Input.Keys.E)){
+
             System.out.println("I SUMMONED");
+
+
             blocks[limit].render(sprite);
             limit--;
         }
 
         sprite.end();
+
     }
 
 
