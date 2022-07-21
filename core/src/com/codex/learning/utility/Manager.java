@@ -27,6 +27,10 @@ public class Manager {
     private TextureRegion blockSheet;
     private TextureRegion reportcardsheet;
 
+
+
+    private TextureRegion pausestatesheet;
+
     private BitmapFont font;
 
     public Manager(){
@@ -48,6 +52,8 @@ public class Manager {
         spriteSheet = new TextureRegion(new Texture(Constants.CHARACTER_SHEET_PATH));
 
         reportcardsheet = new TextureRegion(new Texture(Constants.REPORT_CARD_SHEET_PATH));
+
+        pausestatesheet = new TextureRegion(new Texture(Constants.PAUSE_STATE_PATH));
 
         font = new BitmapFont(Gdx.files.internal(Constants.FONT_STYLE));
         font.getData().scale(0.7f);
@@ -132,5 +138,11 @@ public class Manager {
     }
 
     public TextureRegion getReportcardsheet(){ return reportcardsheet; }
+
+    public TextureRegion getPausestatesheet() {
+        return pausestatesheet;
+    }
+
+
 }
 

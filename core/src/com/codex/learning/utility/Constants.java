@@ -26,7 +26,9 @@ public class Constants {
     // FONT ASSET PATH
     public static final String FONT_STYLE = "font/PokemonClassic.fnt";
     // MAP ASSET PATH
+    public static final String PAUSE_STATE_PATH = "background/pausespritesheet.png";
     public static final String STAGE_SELECT_PATH = "map/stageselectmap2.png";
+
 
     // TEXT ASSET PATH
     public static final String MENU_TEXT_PATH = "text/textsheet.png";
@@ -112,6 +114,51 @@ public class Constants {
 
 
 //    END OF STAGE SELECT STATE
+
+    //PAUSE SPRITE SHEET
+    public static final int PAUSE_BOARD_X = 30;
+    public static final int PAUSE_BOARD_Y = 29;
+    public static final int PAUSE_BOARD_WIDTH = 747;
+    public static final int PAUSE_BOARD_HEIGHT = 836;
+
+    public static final int CONTINUE_BUTTON_X = 860;
+    public static final int CONTINUE_BUTTON_Y = 35;
+    public static final int CONTINUE_BUTTON_WIDTH = 161;
+    public static final int CONTINUE_BUTTON_HEIGHT = 161;
+
+    public static final int RETRY_BUTTON_X = 1071;
+    public static final int RETRY_BUTTON_Y = 10;
+    public static final int RETRY_BUTTON_WIDTH = 203;
+    public static final int RETRY_BUTTON_HEIGHT = 212;
+
+    public static final int STAGE_BUTTON_X = 1313;
+    public static final int STAGE_BUTTON_Y = 37;
+    public static final int STAGE_BUTTON_WIDTH = 162;
+    public static final int STAGE_BUTTON_HEIGHT = 162;
+
+    public static final int QUIT_BUTTON_X = 1073;
+    public static final int QUIT_BUTTON_Y = 243;
+    public static final int QUIT_BUTTON_WIDTH = 185;
+    public static final int QUIT_BUTTON_HEIGHT = 185;
+
+
+
+
+    //END OF PAUSE SPRITE SHEET
+
+    //PAUSE STATE
+    public static final int GAME_RUNNING = 1;
+    public static final int GAME_PAUSED = 2;
+    public static final int GAME_QUIT = 3;
+    public static final int GAME_OVER = 4;
+    public static final int GAME_STAGE_SELECT = 5;
+
+    public static final int CONTINUE_BOUNDS_X = 496;
+    public static final int CONTINUE_BOUNDS_Y = 61;
+
+
+
+    //END OF PAUSE STATE
 
     //JEDISAUR SPRITE SHEET
     public static final int JEDI_STAND_X = 0;

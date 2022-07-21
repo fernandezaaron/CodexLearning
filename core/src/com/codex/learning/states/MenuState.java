@@ -80,6 +80,8 @@ public class MenuState extends State {
             }
             if(recipeBounds.contains(touchpoint.x, touchpoint.y)){
                 System.out.println("You clicked at JediGrandpa's Recipe!");
+                System.out.println(touchpoint.x + " " + touchpoint.y);
+                System.out.println(recipeBounds.x + " " + recipeBounds.y);
             }
             if(jediTrialBounds.contains(touchpoint.x, touchpoint.y)){
                 System.out.println("You clicked at Jedi Trials!");

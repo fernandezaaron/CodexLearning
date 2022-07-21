@@ -1,5 +1,7 @@
 package com.codex.learning.states;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
@@ -22,9 +24,10 @@ public class PlayState extends State{
     private BlockHolder blockHolder2;
     private BlockDispenser blockDispenser;
     private BlockDispenser blockDispenser2;
+    private PauseState pause;
     public PlayState(Manager manager) {
         super(manager);
-
+        pause = new PauseState(manager);
         house = new HouseMap(manager);
 
 //        sample = new Blocks(manager, "class", "class HelloWorld{");
@@ -91,6 +94,7 @@ public class PlayState extends State{
         house.exitDoor(jedisaur);
         jediGrandpa.update(delta);
         jedisaur.update(delta);
+       // pause.update(delta);
 
 //        blockHolder.isInRectangle(jedisaur);
 //        blockHolder2.isInRectangle(jedisaur);
@@ -103,7 +107,7 @@ public class PlayState extends State{
         sprite.begin();
         sprite.end();
 
-//        house.render(sprite);
+        house.render(sprite);
 
 
 //        sample.render(sprite);
@@ -115,7 +119,10 @@ public class PlayState extends State{
         blockDispenser2.render(sprite);
         jediGrandpa.render(sprite);
         jedisaur.render(sprite);
+        pause.render(sprite);
     }
+
+
 
     @Override
     public void dispose() {
