@@ -21,6 +21,8 @@ public class BlockDispenser extends Entity {
     private String name;
     private int limit;
     private final Blocks[] blocks;
+    private Blocks sample;
+    private boolean spawned;
 
     public BlockDispenser(Manager manager, String direction, String id, String name, int limit) {
         super(manager);
@@ -61,20 +63,39 @@ public class BlockDispenser extends Entity {
         shape.dispose();
 
         inDispenser = false;
+        spawned = false;
 
         createDispenser();
 
-        for(int i = 0; i < this.limit; i++){
-            blocks[i] = new Blocks(manager, id, name);
-            blocks[i].create(this.position, new Vector2(0.3f, 0.7f),0);
-        }
 
+
+
+    }
+
+    public void createBlock(){
+
+        if(Gdx.input.isKeyJustPressed(Input.Keys.E)){
+            for(int i = 0; i < this.limit; i++){
+                blocks[i] = new Blocks(manager, id, name);
+                blocks[i].create(new Vector2(this.position.x, this.position.y + i*50), new Vector2(0.3f, 0.7f),0);
+                System.out.println("created");
+            }
+            sample = new Blocks(manager, id, name);
+            sample.create(this.position, new Vector2(3.5f, 0.7f), 0);
+            spawned = true;
+        }
 
     }
 
     @Override
     public void update(float delta) {
-
+        createBlock();
+        if(spawned){
+            sample.update(delta);
+            for(Blocks i : blocks){
+                i.update(delta);
+            }
+        }
 //        for(Blocks i : blocks){
 //            i.update(delta);
 //        }
@@ -91,19 +112,28 @@ public class BlockDispenser extends Entity {
         sprite.draw(blockDispenser,
                 body.getPosition().x * Constants.PPM - blockDispenser.getRegionWidth() / 2,
                 body.getPosition().y * Constants.PPM - blockDispenser.getRegionHeight() / 2);
+        sprite.end();
+
+        if(spawned){
+            sample.render(sprite);
+            for(Blocks i : blocks){
+                i.render(sprite);
+            }
+            //blocks[limit].render(sprite);
+           //limit--;
+        }
 
 //        if(isInDispenser() && limit >= 0 && Gdx.input.isKeyJustPressed(Input.Keys.E))
 
-        if(limit >= 0 && Gdx.input.isKeyJustPressed(Input.Keys.E)){
+//        if(limit >= 0 && Gdx.input.isKeyJustPressed(Input.Keys.E)){
+//
+//            System.out.println("I SUMMONED");
+//
+//
 
-            System.out.println("I SUMMONED");
+//        }
 
 
-            blocks[limit].render(sprite);
-            limit--;
-        }
-
-        sprite.end();
 
     }
 

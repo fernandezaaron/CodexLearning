@@ -55,8 +55,8 @@ public class PlayState extends State{
         blockDispenser = new BlockDispenser(manager, "Down", "}", " } ", 3);
         blockDispenser.create(new Vector2(1, 5), new Vector2(0.3f, 1.3f), 0);
 
-        blockDispenser2 = new BlockDispenser(manager, "Left", "}", " } ", 3);
-        blockDispenser2.create(new Vector2(6, 5), new Vector2(0.3f, 1.3f), 0);
+       // blockDispenser2 = new BlockDispenser(manager, "Left", "}", " } ", 3);
+       // blockDispenser2.create(new Vector2(6, 5), new Vector2(0.3f, 1.3f), 0);
     }
 
     @Override
@@ -90,7 +90,7 @@ public class PlayState extends State{
 //        blockHolder2.update(delta);
 
             blockDispenser.update(delta);
-            blockDispenser2.update(delta);
+            //blockDispenser2.update(delta);
             house.exitDoor(jedisaur);
             jediGrandpa.update(delta);
             jedisaur.update(delta);
@@ -124,7 +124,7 @@ public class PlayState extends State{
 //        blockHolder.render(sprite);
 //        blockHolder2.render(sprite);
         blockDispenser.render(sprite);
-        blockDispenser2.render(sprite);
+       // blockDispenser2.render(sprite);
         jediGrandpa.render(sprite);
         jedisaur.render(sprite);
         pause.render(sprite);
@@ -140,7 +140,7 @@ public class PlayState extends State{
 //        sample2.disposeBody();
 //        sample3.disposeBody();
         blockDispenser.disposeBody();
-        blockDispenser2.disposeBody();
+      //  blockDispenser2.disposeBody();
         house.dispose();
 //        blockHolder.disposeBody();
 //        blockHolder2.disposeBody();

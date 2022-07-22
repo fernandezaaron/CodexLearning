@@ -85,24 +85,28 @@ public class PauseState extends State {
             state = Constants.GAME_PAUSED;
             return;
         }
-        if(Gdx.input.isTouched()){
-            manager.getCamera().unproject(coords.set(Gdx.input.getX(), Gdx.input.getY(), 0));
-            if(continueBounds.contains(coords.x, coords.y)){
-                System.out.println("pressed continue");
-                state = Constants.GAME_RUNNING;
-            }
+
+        if(state == Constants.GAME_PAUSED){
+            if(Gdx.input.isTouched()){
+                manager.getCamera().unproject(coords.set(Gdx.input.getX(), Gdx.input.getY(), 0));
+                if(continueBounds.contains(coords.x, coords.y)){
+                    System.out.println("pressed continue");
+                    state = Constants.GAME_RUNNING;
+                }
 //            System.out.println(coords.x + " " + coords.y);
 //            System.out.println("continue bounds: " + continueBounds.x + " " + continueBounds.y);
-            if(retryBounds.contains(coords.x, coords.y)){
-                manager.set(new PlayState(manager));
-            }
-            if(stageBounds.contains(coords.x, coords.y)){
-                manager.set(new StageSelectState(manager));
-            }
-            if(quitBounds.contains(coords.x, coords.y)){
-                manager.set(new MenuState(manager));
+                if(retryBounds.contains(coords.x, coords.y)){
+                    manager.set(new PlayState(manager));
+                }
+                if(stageBounds.contains(coords.x, coords.y)){
+                    manager.set(new StageSelectState(manager));
+                }
+                if(quitBounds.contains(coords.x, coords.y)){
+                    manager.set(new MenuState(manager));
+                }
             }
         }
+
     }
 
     @Override
