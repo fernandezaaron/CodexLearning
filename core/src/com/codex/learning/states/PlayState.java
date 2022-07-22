@@ -62,8 +62,8 @@ public class PlayState extends State{
     @Override
     public void update(float delta) {
         manager.getWorld().step(1/60f,6,2);
-
-//        if(sample.isInContact()){
+        if(pause.isRunning()){
+            //        if(sample.isInContact()){
 //            jedisaur.setPickUpAble(true);
 //            jedisaur.carryBlock(sample);
 //        }
@@ -79,9 +79,9 @@ public class PlayState extends State{
 //            jedisaur.setPickUpAble(false);
 //        }
 
-        if(blockDispenser.isInDispenser()){
-            jedisaur.setPickUpAble(true);
-        }
+            if(blockDispenser.isInDispenser()){
+                jedisaur.setPickUpAble(true);
+            }
 
 //        sample.update(delta);
 //        sample2.update(delta);
@@ -89,15 +89,23 @@ public class PlayState extends State{
 //        blockHolder.update(delta);
 //        blockHolder2.update(delta);
 
-        blockDispenser.update(delta);
-        blockDispenser2.update(delta);
-        house.exitDoor(jedisaur);
-        jediGrandpa.update(delta);
-        jedisaur.update(delta);
-        pause.update(delta);
+            blockDispenser.update(delta);
+            blockDispenser2.update(delta);
+            house.exitDoor(jedisaur);
+            jediGrandpa.update(delta);
+            jedisaur.update(delta);
+
+//            pause.update(delta);
 
 //        blockHolder.isInRectangle(jedisaur);
 //        blockHolder2.isInRectangle(jedisaur);
+        }else{
+            if(jedisaur.isMoving()){
+                jedisaur.setMoving(false);
+                jedisaur.update(delta);
+                jedisaur.getBody().setLinearVelocity(0,0);
+            }
+        }
     }
 
     @Override

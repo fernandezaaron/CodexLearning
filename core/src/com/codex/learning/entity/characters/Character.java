@@ -241,6 +241,8 @@ public class Character extends Entity {
             walkSide.update(delta);
             direction = "east";
             isMoving = true;
+
+
         }
         else{
             if(!isCarrying){
@@ -395,4 +397,14 @@ public class Character extends Entity {
 //            block.body.setType(BodyDef.BodyType.StaticBody);
 //        }
     }
+
+
+    public boolean isMoving() {
+        return isMoving;
+    }
+
+    public void setMoving(boolean moving) {
+        isMoving = moving;
+    }
+
 }

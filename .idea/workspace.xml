@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bec48db2-8361-48a5-88e4-0e949fc72c35" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/Character.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/PauseState.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/PauseState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java" afterDir="false" />
     </list>
@@ -108,7 +109,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java</url>
-          <line>125</line>
+          <line>133</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
