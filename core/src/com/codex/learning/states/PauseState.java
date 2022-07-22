@@ -42,6 +42,7 @@ public class PauseState extends State {
         continueBounds = new Rectangle(-300, 35, Constants.CONTINUE_BUTTON_WIDTH, Constants.CONTINUE_BUTTON_HEIGHT);
         retryBounds = new Rectangle(-100, 35, Constants.RETRY_BUTTON_WIDTH, Constants.CONTINUE_BUTTON_HEIGHT);
         stageBounds = new Rectangle(150, 35, Constants.STAGE_BUTTON_WIDTH, Constants.STAGE_BUTTON_HEIGHT);
+        quitBounds = new Rectangle(-100,-200, Constants.QUIT_BUTTON_WIDTH, Constants.QUIT_BUTTON_HEIGHT);
 
 
     }
@@ -84,19 +85,23 @@ public class PauseState extends State {
             state = Constants.GAME_PAUSED;
             return;
         }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.A)){
-            System.out.println("game is running");
-            //manager.pop();
-            state = Constants.GAME_RUNNING;
-            return;
-        }
         if(Gdx.input.isTouched()){
             manager.getCamera().unproject(coords.set(Gdx.input.getX(), Gdx.input.getY(), 0));
             if(continueBounds.contains(coords.x, coords.y)){
                 System.out.println("pressed continue");
+                state = Constants.GAME_RUNNING;
             }
-            System.out.println(coords.x + " " + coords.y);
-            System.out.println("continue bounds: " + continueBounds.x + " " + continueBounds.y);
+//            System.out.println(coords.x + " " + coords.y);
+//            System.out.println("continue bounds: " + continueBounds.x + " " + continueBounds.y);
+            if(retryBounds.contains(coords.x, coords.y)){
+                manager.set(new PlayState(manager));
+            }
+            if(stageBounds.contains(coords.x, coords.y)){
+                manager.set(new StageSelectState(manager));
+            }
+            if(quitBounds.contains(coords.x, coords.y)){
+                manager.set(new MenuState(manager));
+            }
         }
     }
 
@@ -128,11 +133,18 @@ public class PauseState extends State {
                 sprite.draw(stageSelectButton, manager.getCamera().position.x + 150, manager.getCamera().position.y + Constants.PPM);
             }
 
+            if(quitBounds.contains(coords.x, coords.y)){
+                sprite.draw(hl_quitButton, manager.getCamera().position.x - 100, manager.getCamera().position.y - 200);
+            }else{
+                sprite.draw(quitButton, manager.getCamera().position.x - 100, manager.getCamera().position.y -200);
+            }
+
+
 
 
            // sprite.draw(retryButton, manager.getCamera().position.x - 100, manager.getCamera().position.y + 10);
-            sprite.draw(stageSelectButton, manager.getCamera().position.x + 150, manager.getCamera().position.y + Constants.PPM);
-            sprite.draw(quitButton, manager.getCamera().position.x - 100, manager.getCamera().position.y - 200);
+           // sprite.draw(stageSelectButton, manager.getCamera().position.x + 150, manager.getCamera().position.y + Constants.PPM);
+            //sprite.draw(quitButton, manager.getCamera().position.x - 100, manager.getCamera().position.y - 200);
 
         }else if(state == Constants.GAME_RUNNING){
             setRunning(true);
