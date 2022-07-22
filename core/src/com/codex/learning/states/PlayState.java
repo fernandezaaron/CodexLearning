@@ -94,7 +94,7 @@ public class PlayState extends State{
         house.exitDoor(jedisaur);
         jediGrandpa.update(delta);
         jedisaur.update(delta);
-       // pause.update(delta);
+        pause.update(delta);
 
 //        blockHolder.isInRectangle(jedisaur);
 //        blockHolder2.isInRectangle(jedisaur);

@@ -26,7 +26,7 @@ public class PauseState extends State {
 
     public PauseState(Manager manager){
         super(manager);
-        state = 1;
+       // state = 1;
         pauseMenu = new TextureRegion(manager.getPausestatesheet(), Constants.PAUSE_BOARD_X, Constants.PAUSE_BOARD_Y, Constants.PAUSE_BOARD_WIDTH, Constants.PAUSE_BOARD_HEIGHT);
         continueButton = new TextureRegion(manager.getPausestatesheet(), Constants.CONTINUE_BUTTON_X, Constants. CONTINUE_BUTTON_Y, Constants.CONTINUE_BUTTON_WIDTH, Constants.CONTINUE_BUTTON_HEIGHT);
         retryButton = new TextureRegion(manager.getPausestatesheet(), Constants.RETRY_BUTTON_X, Constants.RETRY_BUTTON_Y, Constants.RETRY_BUTTON_WIDTH, Constants.RETRY_BUTTON_HEIGHT);
@@ -43,14 +43,17 @@ public class PauseState extends State {
     @Override
     public void update(float delta) {
 
-     //   input();
 
+//
+        System.out.println(state);
 //        switch (state){
 //
 //            case Constants.GAME_PAUSED:
+//                manager.push(this);
 //                break;
 //
 //            case Constants.GAME_RUNNING:
+//                System.out.println("im here");
 //                manager.pop();
 //                break;
 //
@@ -62,14 +65,21 @@ public class PauseState extends State {
 //            case Constants.GAME_STAGE_SELECT:
 //                manager.pop();
 //                manager.set(new StageSelectState(manager));
+//                break;
 //        }
     }
 
     public void input(){
         if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
             System.out.println("Paused");
-            manager.push(this);
-            state = 2;
+
+            state = Constants.GAME_PAUSED;
+            return;
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.A) ){
+            System.out.println("game is running");
+            //manager.pop();
+            state = Constants.GAME_RUNNING;
             return;
         }
         if(Gdx.input.isTouched()){
@@ -88,7 +98,7 @@ public class PauseState extends State {
         sprite.begin();
         input();
         manager.getCamera().unproject(coords.set(Gdx.input.getX(), Gdx.input.getY(), 0));
-        if(state == 2){
+        if(state == Constants.GAME_PAUSED){
             //sprite.draw(manager.getStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
             sprite.draw(pauseMenu, manager.getCamera().position.x - Constants.SCREEN_WIDTH/4 + Constants.PPM, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2 + Constants.PPM, Constants.PAUSE_BOARD_WIDTH, Constants.PAUSE_BOARD_HEIGHT);
 
@@ -102,6 +112,8 @@ public class PauseState extends State {
             sprite.draw(stageSelectButton, manager.getCamera().position.x + 150, manager.getCamera().position.y + Constants.PPM);
             sprite.draw(quitButton, manager.getCamera().position.x - 100, manager.getCamera().position.y - 200);
 
+        }else if(state == Constants.GAME_RUNNING){
+           // System.out.println("hehe");
         }
 
 
