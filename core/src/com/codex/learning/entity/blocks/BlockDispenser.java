@@ -13,6 +13,8 @@ import com.codex.learning.entity.Entity;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
+import java.util.ArrayList;
+
 public class BlockDispenser extends Entity {
     private TextureRegion blockDispenser;
     private boolean inDispenser;
@@ -23,6 +25,7 @@ public class BlockDispenser extends Entity {
     private final Blocks[] blocks;
     private Blocks sample;
     private boolean spawned;
+    private ArrayList<Blocks> blocksArrayList;
 
     public BlockDispenser(Manager manager, String direction, String id, String name, int limit) {
         super(manager);
@@ -77,11 +80,16 @@ public class BlockDispenser extends Entity {
         if(Gdx.input.isKeyJustPressed(Input.Keys.E)){
             for(int i = 0; i < this.limit; i++){
                 blocks[i] = new Blocks(manager, id, name);
-                blocks[i].create(new Vector2(this.position.x, this.position.y + i*50), new Vector2(0.3f, 0.7f),0);
+                blocks[i].create(new Vector2(this.position.x+ i*50, this.position.y ), new Vector2(0.3f, 0.7f),0);
+                System.out.println(this.position.x+ i*50);
                 System.out.println("created");
             }
-            sample = new Blocks(manager, id, name);
-            sample.create(this.position, new Vector2(3.5f, 0.7f), 0);
+
+//            blocks[0] = new Blocks(manager, id, name);
+//            blocks[0].create(this.position, new Vector2(3.5f, 0.7f), 0);
+
+//            sample = new Blocks(manager, id, name);
+//            sample.create(this.position, new Vector2(3.5f, 0.7f), 0);
             spawned = true;
         }
 
@@ -91,10 +99,11 @@ public class BlockDispenser extends Entity {
     public void update(float delta) {
         createBlock();
         if(spawned){
-            sample.update(delta);
-            for(Blocks i : blocks){
-                i.update(delta);
-            }
+            //sample.update(delta);
+//            blocks[0].update(delta);
+//            for(int i=0; i<this.limit; i++){
+//                blocks[i].update(delta);
+//            }
         }
 //        for(Blocks i : blocks){
 //            i.update(delta);
@@ -115,10 +124,16 @@ public class BlockDispenser extends Entity {
         sprite.end();
 
         if(spawned){
-            sample.render(sprite);
-            for(Blocks i : blocks){
-                i.render(sprite);
+           // sample.render(sprite);
+           // blocks[0].render(sprite);
+//            for(Blocks i : blocks){
+//                i.render(sprite);
+//            }
+            for(int i=0; i<this.limit; i++){
+                blocks[i].render(sprite);
             }
+            blocks[1].render(sprite);
+            blocks[2].render(sprite);
             //blocks[limit].render(sprite);
            //limit--;
         }
