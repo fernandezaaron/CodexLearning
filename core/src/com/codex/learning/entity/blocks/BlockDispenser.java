@@ -78,7 +78,7 @@ public class BlockDispenser extends Entity {
     public void createBlock(){
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.E)){
-            for(int i = limit; i >= 0; i--){
+            for(int i = limit; i > 0; i--){
                 blocks[i] = new Blocks(manager, id, name);
                 blocks[i].create(new Vector2(this.position.x+ i*50, this.position.y ), new Vector2(0.3f, 0.7f),0);
                 System.out.println(this.position.x+ i*50);
@@ -129,7 +129,7 @@ public class BlockDispenser extends Entity {
 //            for(Blocks i : blocks){
 //                i.render(sprite);
 //            }
-            for(int i = limit; i >= 0; i--){
+            for(int i = limit; i > 0; i--){
                 blocks[i].render(sprite);
             }
            // blocks[1].render(sprite);
