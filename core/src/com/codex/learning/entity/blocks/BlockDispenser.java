@@ -18,22 +18,24 @@ import java.util.ArrayList;
 public class BlockDispenser extends Entity {
     private TextureRegion blockDispenser;
     private boolean inDispenser;
+    private boolean spawned;
     private String direction;
     private String id;
     private String name;
     private int limit;
+    private Blocks blockID;
     private Blocks[] blocks;
-    private boolean spawned;
+    private Vector2 blockSize;
 
-    public BlockDispenser(Manager manager, String direction, String id, String name, int limit) {
+    public BlockDispenser(Manager manager, String direction, String id, String name, int limit, Vector2 blockSize) {
         super(manager);
         this.direction = direction;
         this.id = id;
         this.name = name;
         this.limit = limit;
+        this.blockSize = blockSize;
 
         blocks = new Blocks[this.limit + 1];
-
     }
 
     @Override
@@ -66,8 +68,12 @@ public class BlockDispenser extends Entity {
         inDispenser = false;
         spawned = false;
 
-        createDispenser();
+        blockID = new Blocks(manager, id, name);
+        blockID.create(new Vector2(this.position.x, this.position.y + 1.6f),
+                blockSize, 0);
+        blockID.getBody().setType(BodyDef.BodyType.StaticBody);
 
+        createDispenser();
     }
 
     @Override
@@ -86,6 +92,7 @@ public class BlockDispenser extends Entity {
                 body.getPosition().y * Constants.PPM - blockDispenser.getRegionHeight() / 2);
         sprite.end();
 
+        blockID.render(sprite);
         if(spawned){
             System.out.println("BEFORE _ " + limit);
             blocks[limit].render(sprite);
@@ -95,6 +102,17 @@ public class BlockDispenser extends Entity {
         }
     }
 
+    public void createBlock(){
+        if(isInDispenser() && limit > 0 && Gdx.input.isKeyJustPressed(Input.Keys.E)){
+            System.out.println("CREATE _ " + limit);
+            blocks[limit] = new Blocks(manager, id, name);
+            blocks[limit].create(new Vector2(this.position.x + limit * 50, this.position.y),
+                    new Vector2(0.3f, 0.7f),0);
+            System.out.println(this.position.x + limit * 50 + " - " + this.position.y);
+            System.out.println("created");
+            spawned = true;
+        }
+    }
 
     public void createDispenser(){
         switch (direction){
@@ -122,16 +140,6 @@ public class BlockDispenser extends Entity {
         }
     }
 
-    public void createBlock(){
-        if(isInDispenser() && limit > 0 && Gdx.input.isKeyJustPressed(Input.Keys.E)){
-            blocks[limit] = new Blocks(manager, id, name);
-            blocks[limit].create(new Vector2(this.position.x + limit * 50, this.position.y), new Vector2(0.3f, 0.7f),0);
-            System.out.println(this.position.x + limit * 50);
-            System.out.println("created");
-            spawned = true;
-        }
-    }
-
     public boolean isInDispenser() {
         return inDispenser;
     }
@@ -139,4 +147,5 @@ public class BlockDispenser extends Entity {
     public void setInDispenser(boolean inDispenser) {
         this.inDispenser = inDispenser;
     }
+
 }

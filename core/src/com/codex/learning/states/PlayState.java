@@ -45,18 +45,17 @@ public class PlayState extends State{
 //        blockHolder2 = new BlockHolder(manager, 0, 0, 0);
 //        blockHolder2.create(new Vector2(5f, 5f), new Vector2(2f, 2f), 0);
 
-
         jedisaur = new Character(manager);
         jedisaur.create(new Vector2(0, 0), new Vector2(1.2f, 1.75f), 1.6f);
 
         jediGrandpa = new NPC(manager);
         jediGrandpa.create(new Vector2(-10, 0), new Vector2(1, 1.4f), 0);
 
-        blockDispenser = new BlockDispenser(manager, "Down", "}", " } ", 3);
+        blockDispenser = new BlockDispenser(manager, "Down", "}", " } ", 3, new Vector2(0.3f, 0.7f));
         blockDispenser.create(new Vector2(1, 5), new Vector2(0.3f, 1.3f), 0);
 
-       // blockDispenser2 = new BlockDispenser(manager, "Left", "}", " } ", 3);
-       // blockDispenser2.create(new Vector2(6, 5), new Vector2(0.3f, 1.3f), 0);
+        blockDispenser2 = new BlockDispenser(manager, "Left", "}", " } ", 3, new Vector2(0.3f, 0.7f));
+        blockDispenser2.create(new Vector2(6, 5), new Vector2(0.3f, 1.3f), 0);
     }
 
     @Override
@@ -79,7 +78,7 @@ public class PlayState extends State{
 //            jedisaur.setPickUpAble(false);
 //        }
 
-            if(blockDispenser.isInDispenser()){
+            if(blockDispenser.isInDispenser() || blockDispenser2.isInDispenser()){
                 jedisaur.setPickUpAble(true);
             }
 
@@ -90,7 +89,7 @@ public class PlayState extends State{
 //        blockHolder2.update(delta);
 
             blockDispenser.update(delta);
-            //blockDispenser2.update(delta);
+            blockDispenser2.update(delta);
             house.exitDoor(jedisaur);
             jediGrandpa.update(delta);
             jedisaur.update(delta);
@@ -124,7 +123,7 @@ public class PlayState extends State{
 //        blockHolder.render(sprite);
 //        blockHolder2.render(sprite);
         blockDispenser.render(sprite);
-       // blockDispenser2.render(sprite);
+        blockDispenser2.render(sprite);
         jediGrandpa.render(sprite);
         jedisaur.render(sprite);
         pause.render(sprite);
@@ -140,7 +139,7 @@ public class PlayState extends State{
 //        sample2.disposeBody();
 //        sample3.disposeBody();
         blockDispenser.disposeBody();
-      //  blockDispenser2.disposeBody();
+        blockDispenser2.disposeBody();
         house.dispose();
 //        blockHolder.disposeBody();
 //        blockHolder2.disposeBody();

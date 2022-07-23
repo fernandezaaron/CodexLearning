@@ -32,7 +32,6 @@ public class Contact implements ContactListener {
             blockDispenserA.setInDispenser(true);
         }
         Gdx.app.log("BEGIN CONTACT", "");
-
     }
 
     @Override
@@ -53,8 +52,6 @@ public class Contact implements ContactListener {
             BlockDispenser blockDispenserA = (BlockDispenser) fb.getUserData();
             blockDispenserA.setInDispenser(false);
         }
-
-
         Gdx.app.log("END CONTACT", "");
     }
 
@@ -73,7 +70,6 @@ public class Contact implements ContactListener {
             return true;
         }
         return false;
-//        return (a.getUserData() instanceof Blocks && a.getUserData() instanceof Character);
     }
 
     private boolean isDispenserContact(Fixture a){
