@@ -115,7 +115,7 @@ public class PlayState extends State{
         sprite.begin();
         sprite.end();
 
-        house.render(sprite);
+//        house.render(sprite);
 
 
 //        sample.render(sprite);

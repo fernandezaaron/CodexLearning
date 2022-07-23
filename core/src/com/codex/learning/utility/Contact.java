@@ -27,8 +27,8 @@ public class Contact implements ContactListener {
             Blocks blockA = (Blocks) fa.getUserData();
             blockA.setInContact(true);
         }
-        else if(isDispenserContact(fa)){
-            BlockDispenser blockDispenserA = (BlockDispenser) fa.getUserData();
+        if(isDispenserContact(fb)){
+            BlockDispenser blockDispenserA = (BlockDispenser) fb.getUserData();
             blockDispenserA.setInDispenser(true);
         }
         Gdx.app.log("BEGIN CONTACT", "");
@@ -49,8 +49,8 @@ public class Contact implements ContactListener {
             Blocks blockA = (Blocks) fa.getUserData();
             blockA.setInContact(false);
         }
-        else if(isDispenserContact(fa)){
-            BlockDispenser blockDispenserA = (BlockDispenser) fa.getUserData();
+        if(isDispenserContact(fb)){
+            BlockDispenser blockDispenserA = (BlockDispenser) fb.getUserData();
             blockDispenserA.setInDispenser(false);
         }
 

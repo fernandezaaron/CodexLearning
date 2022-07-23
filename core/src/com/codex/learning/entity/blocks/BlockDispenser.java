@@ -22,10 +22,8 @@ public class BlockDispenser extends Entity {
     private String id;
     private String name;
     private int limit;
-    private final Blocks[] blocks;
-    private Blocks sample;
+    private Blocks[] blocks;
     private boolean spawned;
-    private ArrayList<Blocks> blocksArrayList;
 
     public BlockDispenser(Manager manager, String direction, String id, String name, int limit) {
         super(manager);
@@ -70,45 +68,11 @@ public class BlockDispenser extends Entity {
 
         createDispenser();
 
-
-
-
-    }
-
-    public void createBlock(){
-
-        if(Gdx.input.isKeyJustPressed(Input.Keys.E)){
-            for(int i = 0; i < this.limit; i++){
-                blocks[i] = new Blocks(manager, id, name);
-                blocks[i].create(new Vector2(this.position.x+ i*50, this.position.y ), new Vector2(0.3f, 0.7f),0);
-                System.out.println(this.position.x+ i*50);
-                System.out.println("created");
-            }
-
-//            blocks[0] = new Blocks(manager, id, name);
-//            blocks[0].create(this.position, new Vector2(3.5f, 0.7f), 0);
-
-//            sample = new Blocks(manager, id, name);
-//            sample.create(this.position, new Vector2(3.5f, 0.7f), 0);
-            spawned = true;
-        }
-
     }
 
     @Override
     public void update(float delta) {
         createBlock();
-        if(spawned){
-            //sample.update(delta);
-//            blocks[0].update(delta);
-//            for(int i=0; i<this.limit; i++){
-//                blocks[i].update(delta);
-//            }
-        }
-//        for(Blocks i : blocks){
-//            i.update(delta);
-//        }
-
     }
 
     @Override
@@ -117,39 +81,18 @@ public class BlockDispenser extends Entity {
         sprite.setProjectionMatrix(manager.getCamera().combined);
 
         sprite.begin();
-
         sprite.draw(blockDispenser,
                 body.getPosition().x * Constants.PPM - blockDispenser.getRegionWidth() / 2,
                 body.getPosition().y * Constants.PPM - blockDispenser.getRegionHeight() / 2);
         sprite.end();
 
         if(spawned){
-           // sample.render(sprite);
-           // blocks[0].render(sprite);
-//            for(Blocks i : blocks){
-//                i.render(sprite);
-//            }
-            for(int i=0; i<this.limit; i++){
-                blocks[i].render(sprite);
-            }
-            blocks[1].render(sprite);
-            blocks[2].render(sprite);
-            //blocks[limit].render(sprite);
-           //limit--;
+            System.out.println("BEFORE _ " + limit);
+            blocks[limit].render(sprite);
+            limit--;
+            System.out.println("AFTER _ " + limit);
+            spawned = false;
         }
-
-//        if(isInDispenser() && limit >= 0 && Gdx.input.isKeyJustPressed(Input.Keys.E))
-
-//        if(limit >= 0 && Gdx.input.isKeyJustPressed(Input.Keys.E)){
-//
-//            System.out.println("I SUMMONED");
-//
-//
-
-//        }
-
-
-
     }
 
 
@@ -179,15 +122,21 @@ public class BlockDispenser extends Entity {
         }
     }
 
+    public void createBlock(){
+        if(isInDispenser() && limit > 0 && Gdx.input.isKeyJustPressed(Input.Keys.E)){
+            blocks[limit] = new Blocks(manager, id, name);
+            blocks[limit].create(new Vector2(this.position.x + limit * 50, this.position.y), new Vector2(0.3f, 0.7f),0);
+            System.out.println(this.position.x + limit * 50);
+            System.out.println("created");
+            spawned = true;
+        }
+    }
+
     public boolean isInDispenser() {
         return inDispenser;
     }
 
     public void setInDispenser(boolean inDispenser) {
         this.inDispenser = inDispenser;
-    }
-
-    public Blocks[] getBlocks() {
-        return blocks;
     }
 }
