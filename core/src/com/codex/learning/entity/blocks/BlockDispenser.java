@@ -20,14 +20,15 @@ public class BlockDispenser extends Entity {
     private TextureRegion blockDispenser;
     private boolean inDispenser;
     private boolean spawned;
+    private boolean cloned;
     private String direction;
     private String id;
     private String name;
     private int limit;
     private ShapeRenderer blockID;
     private Blocks[] blocks;
-    private Blocks sample;
     private Vector2 blockSize;
+    private Blocks sample;
 
     public BlockDispenser(Manager manager, String direction, String id, String name, int limit, Vector2 blockSize) {
         super(manager);
@@ -69,6 +70,7 @@ public class BlockDispenser extends Entity {
 
         inDispenser = false;
         spawned = false;
+        cloned = false;
 
         blockID = new ShapeRenderer();
         createDispenser();
@@ -104,28 +106,41 @@ public class BlockDispenser extends Entity {
         sprite.end();
 
         if(spawned){
-            System.out.println("BEFORE _ " + limit);
 //            blocks[limit].render(sprite);
-            sample.render(sprite);
+            blocks[limit] = sample;
             limit--;
-            System.out.println("AFTER _ " + limit);
+            cloned = true;
             spawned = false;
         }
+
+        if(cloned){
+            for(Blocks i: blocks){
+                if (i == null) {
+                    continue;
+                }
+                else{
+                    i.render(sprite);
+                }
+            }
+        }
+
+
     }
 
     public void createBlock(){
         if(isInDispenser() && limit > 0 && Gdx.input.isKeyJustPressed(Input.Keys.E)){
-            System.out.println("CREATE _ " + limit);
+
             sample = new Blocks(manager, id, name);
-            sample.create(new Vector2(this.position.x + limit * 50, this.position.y + 50),
+            sample.create(new Vector2(this.position.x, this.position.y - limit * 3),
                     blockSize,0);
+
 //            blocks[limit] = new Blocks(manager, id, name);
-//            blocks[limit].create(new Vector2(this.position.x + limit * 50, this.position.y),
+//            blocks[limit].create(new Vector2(this.position.x, this.position.y - limit * 3),
 //                    blockSize,0);
-            System.out.println(this.position.x + limit * 50 + " - " + this.position.y + 50);
-            System.out.println("created");
             spawned = true;
         }
+
+
     }
 
     public void createDispenser(){
@@ -203,4 +218,16 @@ public class BlockDispenser extends Entity {
         this.inDispenser = inDispenser;
     }
 
+    public boolean isSpawned() {
+        return spawned;
+    }
+
+    public void setSpawned(boolean spawned) {
+        this.spawned = spawned;
+    }
+
+    public Blocks getCurrentBlock(){
+        return sample;
+//        return blocks[limit];
+    }
 }
