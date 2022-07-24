@@ -26,6 +26,7 @@ public class BlockDispenser extends Entity {
     private int limit;
     private ShapeRenderer blockID;
     private Blocks[] blocks;
+    private Blocks sample;
     private Vector2 blockSize;
 
     public BlockDispenser(Manager manager, String direction, String id, String name, int limit, Vector2 blockSize) {
@@ -104,7 +105,8 @@ public class BlockDispenser extends Entity {
 
         if(spawned){
             System.out.println("BEFORE _ " + limit);
-            blocks[limit].render(sprite);
+//            blocks[limit].render(sprite);
+            sample.render(sprite);
             limit--;
             System.out.println("AFTER _ " + limit);
             spawned = false;
@@ -114,10 +116,13 @@ public class BlockDispenser extends Entity {
     public void createBlock(){
         if(isInDispenser() && limit > 0 && Gdx.input.isKeyJustPressed(Input.Keys.E)){
             System.out.println("CREATE _ " + limit);
-            blocks[limit] = new Blocks(manager, id, name);
-            blocks[limit].create(new Vector2(this.position.x + limit * 50, this.position.y),
-                    new Vector2(0.3f, 0.7f),0);
-            System.out.println(this.position.x + limit * 50 + " - " + this.position.y);
+            sample = new Blocks(manager, id, name);
+            sample.create(new Vector2(this.position.x + limit * 50, this.position.y + 50),
+                    blockSize,0);
+//            blocks[limit] = new Blocks(manager, id, name);
+//            blocks[limit].create(new Vector2(this.position.x + limit * 50, this.position.y),
+//                    blockSize,0);
+            System.out.println(this.position.x + limit * 50 + " - " + this.position.y + 50);
             System.out.println("created");
             spawned = true;
         }
@@ -159,16 +164,35 @@ public class BlockDispenser extends Entity {
         switch (direction){
             case "Down":
                 manager.getFont().draw(sprite, this.id,
-                        (this.size.x - (this.size.x * (Constants.PPM * 0.3f)) + (Constants.PPM * body.getPosition().x)),
+                        adjustFontPosition(this.id.length()),
                         (this.size.y + Constants.PPM * 7));
             break;
             case "Left":
             case "Right":
                 manager.getFont().draw(sprite, this.id,
-                        (this.size.x - (this.size.x * (Constants.PPM * 0.3f)) + (Constants.PPM * body.getPosition().x)),
+                        adjustFontPosition(this.id.length()),
                         (float) (this.size.y + Constants.PPM * 7.5));
             break;
         }
+    }
+
+    public float adjustFontPosition(int num){
+        float x = 0f;
+        switch(num){
+            case 1:
+                x = this.size.x - (this.size.x * (Constants.PPM * 0.3f)) + (Constants.PPM * body.getPosition().x);
+            break;
+            case 2:
+                x = this.size.x - (this.size.x * Constants.PPM * 1.5f) + (Constants.PPM * body.getPosition().x);
+            break;
+            case 3:
+                x = this.size.x - (this.size.x * Constants.PPM * 2.4f) + (Constants.PPM * body.getPosition().x);
+            break;
+            case 4:
+                x = 0f;
+            break;
+        }
+        return x;
     }
 
     public boolean isInDispenser() {
