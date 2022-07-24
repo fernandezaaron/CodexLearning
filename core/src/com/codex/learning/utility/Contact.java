@@ -25,6 +25,7 @@ public class Contact implements ContactListener {
 
         if(isBlockContact(fa)){
             Blocks blockA = (Blocks) fa.getUserData();
+            System.out.println("Block yes");
             blockA.setInContact(true);
         }
         if(isDispenserContact(fb)){
@@ -46,6 +47,7 @@ public class Contact implements ContactListener {
 
         if(isBlockContact(fa)){
             Blocks blockA = (Blocks) fa.getUserData();
+            System.out.println("Block no");
             blockA.setInContact(false);
         }
         if(isDispenserContact(fb)){

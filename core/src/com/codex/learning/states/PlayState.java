@@ -17,9 +17,11 @@ public class PlayState extends State{
     private Character jedisaur;
     private NPC jediGrandpa;
     private HouseMap house;
-    private Blocks sample;
-    private Blocks sample2;
-    private Blocks sample3;
+
+    private Blocks[] totalBlocks;
+    private int blockCount;
+    private boolean blockSpawn;
+
     private BlockHolder blockHolder;
     private BlockHolder blockHolder2;
     private BlockDispenser blockDispenser;
@@ -56,6 +58,9 @@ public class PlayState extends State{
 
         blockDispenser2 = new BlockDispenser(manager, "Right", "}", " } ", 3, new Vector2(0.3f, 0.7f));
         blockDispenser2.create(new Vector2(6, 5), new Vector2(0.3f, 1.3f), 0);
+
+        totalBlocks = new Blocks[6];
+        blockCount = 0;
     }
 
     @Override
@@ -78,12 +83,29 @@ public class PlayState extends State{
 //            jedisaur.setPickUpAble(false);
 //        }
 
-        if(blockDispenser.isInDispenser() || blockDispenser2.isInDispenser()){
-            jedisaur.setPickUpAble(true);
-        }
-        if(blockDispenser.isCloned()){
-            jedisaur.setPickUpAble(true);
-            jedisaur.carryBlock(blockDispenser.getCurrentBlock());
+            if(blockDispenser.isInDispenser() || blockDispenser2.isInDispenser()){
+                jedisaur.setPickUpAble(true);
+            }
+
+            if(blockDispenser.isSpawned()){
+                totalBlocks[blockCount] = blockDispenser.getCurrentBlock();
+                blockCount++;
+
+                blockDispenser.getCurrentBlock().disposeBody();
+
+//                blockDispenser.getCurrentBlock().setInContact(true);
+//                jedisaur.carryBlock(blockDispenser.getCurrentBlock());
+            }
+
+        for(Blocks i: totalBlocks){
+            if (i != null) {
+                if(i.isInContact()){
+                    jedisaur.carryBlock(i);
+                }
+            }
+            else{
+                continue;
+            }
         }
 
 //        sample.update(delta);
@@ -91,7 +113,14 @@ public class PlayState extends State{
 //        sample3.update(delta);
 //        blockHolder.update(delta);
 //        blockHolder2.update(delta);
-
+            for(Blocks i: totalBlocks){
+                if (i != null) {
+                    i.update(delta);
+                }
+                else{
+                    continue;
+                }
+            }
             blockDispenser.update(delta);
             blockDispenser2.update(delta);
             house.exitDoor(jedisaur);
@@ -128,6 +157,14 @@ public class PlayState extends State{
 //        blockHolder2.render(sprite);
         blockDispenser.render(sprite);
         blockDispenser2.render(sprite);
+
+//        for(Blocks i: totalBlocks) {
+//            if (i != null) {
+//                i.render(sprite);
+//            } else {
+//                continue;
+//            }
+//        }
         jediGrandpa.render(sprite);
         jedisaur.render(sprite);
         pause.render(sprite);

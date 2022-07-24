@@ -110,13 +110,8 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Contact.java</url>
-          <line>71</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java</url>
-          <line>136</line>
+          <line>172</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

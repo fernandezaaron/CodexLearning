@@ -109,22 +109,21 @@ public class BlockDispenser extends Entity {
 //            blocks[limit].render(sprite);
             blocks[limit] = sample;
             limit--;
-            cloned = true;
+
             spawned = false;
+            cloned = true;
         }
 
         if(cloned){
             for(Blocks i: blocks){
-                if (i == null) {
-                    continue;
+                if (i != null) {
+                    i.render(sprite);
                 }
                 else{
-                    i.render(sprite);
+                    continue;
                 }
             }
         }
-
-
     }
 
     public void createBlock(){
@@ -218,15 +217,16 @@ public class BlockDispenser extends Entity {
         this.inDispenser = inDispenser;
     }
 
-    public boolean isCloned() {
-        return cloned;
+    public boolean isSpawned() {
+        return spawned;
     }
 
-    public void setCloned(boolean cloned) {
-        this.cloned = cloned;
+    public void setSpawned(boolean spawned) {
+        this.spawned = spawned;
     }
 
     public Blocks getCurrentBlock(){
-        return blocks[limit];
+        return blocks[limit + 1];
     }
+
 }
