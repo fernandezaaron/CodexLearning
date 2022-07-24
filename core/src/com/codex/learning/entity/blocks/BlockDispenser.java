@@ -218,16 +218,15 @@ public class BlockDispenser extends Entity {
         this.inDispenser = inDispenser;
     }
 
-    public boolean isSpawned() {
-        return spawned;
+    public boolean isCloned() {
+        return cloned;
     }
 
-    public void setSpawned(boolean spawned) {
-        this.spawned = spawned;
+    public void setCloned(boolean cloned) {
+        this.cloned = cloned;
     }
 
     public Blocks getCurrentBlock(){
-        return sample;
-//        return blocks[limit];
+        return blocks[limit];
     }
 }

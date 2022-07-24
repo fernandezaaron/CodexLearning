@@ -78,12 +78,13 @@ public class PlayState extends State{
 //            jedisaur.setPickUpAble(false);
 //        }
 
-            if(blockDispenser.isInDispenser() || blockDispenser2.isInDispenser()){
-                jedisaur.setPickUpAble(true);
-            }
-            if(blockDispenser.isSpawned()){
-                jedisaur.carryBlock(blockDispenser.getCurrentBlock());
-            }
+        if(blockDispenser.isInDispenser() || blockDispenser2.isInDispenser()){
+            jedisaur.setPickUpAble(true);
+        }
+        if(blockDispenser.isCloned()){
+            jedisaur.setPickUpAble(true);
+            jedisaur.carryBlock(blockDispenser.getCurrentBlock());
+        }
 
 //        sample.update(delta);
 //        sample2.update(delta);
