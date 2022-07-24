@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -23,7 +24,7 @@ public class BlockDispenser extends Entity {
     private String id;
     private String name;
     private int limit;
-    private Blocks blockID;
+    private ShapeRenderer blockID;
     private Blocks[] blocks;
     private Vector2 blockSize;
 
@@ -68,11 +69,7 @@ public class BlockDispenser extends Entity {
         inDispenser = false;
         spawned = false;
 
-        blockID = new Blocks(manager, id, name);
-        blockID.create(new Vector2(this.position.x, this.position.y + 1.6f),
-                blockSize, 0);
-        blockID.getBody().setType(BodyDef.BodyType.StaticBody);
-
+        blockID = new ShapeRenderer();
         createDispenser();
     }
 
@@ -92,7 +89,19 @@ public class BlockDispenser extends Entity {
                 body.getPosition().y * Constants.PPM - blockDispenser.getRegionHeight() / 2);
         sprite.end();
 
-        blockID.render(sprite);
+        blockID.setProjectionMatrix(manager.getCamera().combined);
+        blockID.setColor(246/255f, 228/255f, 216/255f, 0.0f);
+        blockID.begin(ShapeRenderer.ShapeType.Filled);
+        blockID.rect((this.size.x + (Constants.PPM * body.getPosition().x)),
+                (this.size.y + (Constants.PPM * body.getPosition().y)),
+                ((this.size.x * Constants.PPM)) * 6.3f,
+                -(this.size.y * Constants.PPM / 2));
+        blockID.end();
+
+        sprite.begin();
+        createIDDispenser(sprite);
+        sprite.end();
+
         if(spawned){
             System.out.println("BEFORE _ " + limit);
             blocks[limit].render(sprite);
@@ -122,6 +131,8 @@ public class BlockDispenser extends Entity {
                         Constants.BLOCK_MACHINE_FRONT_Y,
                         Constants.BLOCK_MACHINE_FRONT_WIDTH,
                         Constants.BLOCK_MACHINE_FRONT_HEIGHT);
+                blockID.translate(this.size.x - Constants.PPM / 1.1f,
+                        this.size.y * Constants.PPM * 1.62f, 0);
             break;
             case "Left":
                 blockDispenser = new TextureRegion(new Texture(Constants.UTILITY_SHEET_PATH),
@@ -129,6 +140,8 @@ public class BlockDispenser extends Entity {
                         Constants.BLOCK_MACHINE_Y,
                         Constants.BLOCK_MACHINE_WIDTH,
                         Constants.BLOCK_MACHINE_HEIGHT);
+                blockID.translate(this.size.x - Constants.PPM / 1.05f,
+                        this.size.y * Constants.PPM * 2.02f, 0);
             break;
             case "Right":
                 blockDispenser = new TextureRegion(new Texture(Constants.UTILITY_SHEET_PATH),
@@ -136,6 +149,24 @@ public class BlockDispenser extends Entity {
                         Constants.BLOCK_MACHINE_Y,
                         Constants.BLOCK_MACHINE_WIDTH,
                         Constants.BLOCK_MACHINE_HEIGHT);
+                blockID.translate(this.size.x - Constants.PPM / 1.228f,
+                        this.size.y * Constants.PPM * 2.02f, 0);
+            break;
+        }
+    }
+
+    public void createIDDispenser(SpriteBatch sprite){
+        switch (direction){
+            case "Down":
+                manager.getFont().draw(sprite, this.id,
+                        (this.size.x - (this.size.x * (Constants.PPM * 0.3f)) + (Constants.PPM * body.getPosition().x)),
+                        (this.size.y + Constants.PPM * 7));
+            break;
+            case "Left":
+            case "Right":
+                manager.getFont().draw(sprite, this.id,
+                        (this.size.x - (this.size.x * (Constants.PPM * 0.3f)) + (Constants.PPM * body.getPosition().x)),
+                        (float) (this.size.y + Constants.PPM * 7.5));
             break;
         }
     }

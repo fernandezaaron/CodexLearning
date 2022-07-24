@@ -54,7 +54,7 @@ public class PlayState extends State{
         blockDispenser = new BlockDispenser(manager, "Down", "}", " } ", 3, new Vector2(0.3f, 0.7f));
         blockDispenser.create(new Vector2(1, 5), new Vector2(0.3f, 1.3f), 0);
 
-        blockDispenser2 = new BlockDispenser(manager, "Left", "}", " } ", 3, new Vector2(0.3f, 0.7f));
+        blockDispenser2 = new BlockDispenser(manager, "Right", "}", " } ", 3, new Vector2(0.3f, 0.7f));
         blockDispenser2.create(new Vector2(6, 5), new Vector2(0.3f, 1.3f), 0);
     }
 

@@ -195,16 +195,16 @@ public class Constants {
 
     //UTILITY SHEET
 
-    public static final int BLOCK_MACHINE_FRONT_X = 311;
-    public static final int BLOCK_MACHINE_FRONT_Y = 15;
-    public static final int BLOCK_MACHINE_FRONT_WIDTH = 39;
-    public static final int BLOCK_MACHINE_FRONT_HEIGHT = 109;
+    public static final int BLOCK_MACHINE_FRONT_X = 672;
+    public static final int BLOCK_MACHINE_FRONT_Y = 409;
+    public static final int BLOCK_MACHINE_FRONT_WIDTH = 78;
+    public static final int BLOCK_MACHINE_FRONT_HEIGHT = 156;
 
-    public static final int BLOCK_MACHINE_LEFT_X = 354;
-    public static final int BLOCK_MACHINE_RIGHT_X = 392;
-    public static final int BLOCK_MACHINE_Y = 3;
-    public static final int BLOCK_MACHINE_WIDTH = 34;
-    public static final int BLOCK_MACHINE_HEIGHT = 122;
+    public static final int BLOCK_MACHINE_LEFT_X = 764;
+    public static final int BLOCK_MACHINE_RIGHT_X = 850;
+    public static final int BLOCK_MACHINE_Y = 409;
+    public static final int BLOCK_MACHINE_WIDTH = 79;
+    public static final int BLOCK_MACHINE_HEIGHT = 187;
 
     //END OF UTILITY SHEET
 
