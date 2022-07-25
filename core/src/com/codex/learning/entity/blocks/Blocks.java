@@ -96,4 +96,7 @@ public class Blocks extends Entity {
         this.inContact = inContact;
     }
 
+    public String getId() {
+        return id;
+    }
 }

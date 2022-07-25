@@ -79,23 +79,24 @@ public class PlayState extends State{
 //                jedisaur.carryBlock(blockDispenser.getCurrentBlock());
             }
 
-        for(Blocks i: totalBlocks){
-            if (i != null) {
-                if(i.isInContact()){
-                    jedisaur.carryBlock(i);
-                }
-            }
-            else{
-                continue;
-            }
-        }
+//        for(Blocks i: totalBlocks){
+//            if (i != null) {
+//                if(i.isInContact()){
+//                    jedisaur.carryBlock(i);
+//                }
+//            }
+//            else{
+//                continue;
+//            }
+//        }
 
-        sample.update(delta);
-        sample2.update(delta);
-        sample3.update(delta);
+            sample.update(delta);
+            sample2.update(delta);
+            sample3.update(delta);
 
-        blockHolder.update(delta);
-        blockHolder2.update(delta);
+            blockHolder.update(delta);
+            blockHolder2.update(delta);
+
             for(Blocks i: totalBlocks){
                 if (i != null) {
                     i.update(delta);
@@ -111,9 +112,6 @@ public class PlayState extends State{
             jedisaur.update(delta);
 
 //            pause.update(delta);
-
-//        blockHolder.isInRectangle(jedisaur);
-//        blockHolder2.isInRectangle(jedisaur);
         }else{
             if(jedisaur.isMoving()){
                 jedisaur.setMoving(false);

@@ -1,6 +1,7 @@
 package com.codex.learning.utility;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
@@ -39,6 +40,16 @@ public class Contact implements ContactListener {
             System.out.println("Block yes");
             blocks.setInContact(true);
             jedisaur.setPickUpAble(true);
+
+            if(Gdx.input.isKeyJustPressed(Input.Keys.E) && jedisaur.isPickUpAble()){
+                if (jedisaur.isCarrying()) {
+                    jedisaur.setCarrying(false);
+                }
+                else {
+                    jedisaur.setCarrying(true);
+                }
+                jedisaur.carryBlock(blocks);
+            }
         }
 
         if(isDispenserContact(fa, fb)){
@@ -70,6 +81,7 @@ public class Contact implements ContactListener {
             blockHolder.setInContact(true);
             jedisaur.setPickUpAble(true);
         }
+
         Gdx.app.log("BEGIN CONTACT", "");
 
     }
