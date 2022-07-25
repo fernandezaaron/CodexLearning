@@ -43,7 +43,8 @@ public class Character extends Entity {
 
     @Override
     public void create(Vector2 position, Vector2 size, float density) {
-//        Create a body without collision yet.
+
+        // Create a body without collision yet.
         this.position = position;
         this.size = size;
         BodyDef def = new BodyDef();
@@ -51,7 +52,7 @@ public class Character extends Entity {
         def.position.set(this.position);
         def.fixedRotation = true;
 
-//        Create a rectangle for the character to have collision detection.
+        // Create a rectangle for the character to have collision detection.
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(this.size.x, this.size.y/2, new Vector2(0, -this.size.y/2), 0);
 
@@ -112,8 +113,8 @@ public class Character extends Entity {
         logicInput(delta);
         cameraUpdate();
         input(delta);
-
     }
+
     @Override
     public void render(SpriteBatch sprite) {
         sprite.enableBlending();
@@ -397,7 +398,6 @@ public class Character extends Entity {
 //            block.body.setType(BodyDef.BodyType.StaticBody);
 //        }
     }
-
 
     public boolean isMoving() {
         return isMoving;

@@ -106,8 +106,7 @@ public class BlockDispenser extends Entity {
         sprite.end();
 
         if(spawned){
-//            blocks[limit].render(sprite);
-            blocks[limit] = sample;
+//            blocks[limit] = sample;
             limit--;
 
             spawned = false;
@@ -129,13 +128,13 @@ public class BlockDispenser extends Entity {
     public void createBlock(){
         if(isInDispenser() && limit > 0 && Gdx.input.isKeyJustPressed(Input.Keys.E)){
 
-            sample = new Blocks(manager, id, name);
-            sample.create(new Vector2(this.position.x, this.position.y - limit * 3),
-                    blockSize,0);
-
-//            blocks[limit] = new Blocks(manager, id, name);
-//            blocks[limit].create(new Vector2(this.position.x, this.position.y - limit * 3),
+//            sample = new Blocks(manager, id, name);
+//            sample.create(new Vector2(this.position.x, this.position.y - limit * 3),
 //                    blockSize,0);
+
+            blocks[limit] = new Blocks(manager, id, name);
+            blocks[limit].create(new Vector2(this.position.x, this.position.y - limit * 3),
+                    blockSize,0);
             spawned = true;
         }
 
