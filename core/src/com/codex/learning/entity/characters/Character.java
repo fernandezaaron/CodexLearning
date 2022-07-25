@@ -350,14 +350,6 @@ public class Character extends Entity {
         manager.getCamera().update();
     }
 
-    public boolean isPickUpAble() {
-        return pickUpAble;
-    }
-
-    public void setPickUpAble(boolean pickUpAble) {
-        this.pickUpAble = pickUpAble;
-    }
-
     public void carryBlock(Blocks block){
         if(isCarrying() && block.isInContact()){
 
@@ -370,6 +362,15 @@ public class Character extends Entity {
         else{
             block.getBody().setType(BodyDef.BodyType.StaticBody);
         }
+    }
+
+
+    public boolean isPickUpAble() {
+        return pickUpAble;
+    }
+
+    public void setPickUpAble(boolean pickUpAble) {
+        this.pickUpAble = pickUpAble;
     }
 
     public boolean isCarrying() {

@@ -48,6 +48,8 @@ public class Contact implements ContactListener {
                 else {
                     jedisaur.setCarrying(true);
                 }
+            }
+            if(jedisaur.isCarrying()){
                 jedisaur.carryBlock(blocks);
             }
         }
