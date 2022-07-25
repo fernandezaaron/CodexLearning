@@ -137,6 +137,7 @@ public class PlayState extends State{
 
         blockHolder.render(sprite);
         blockHolder2.render(sprite);
+
         blockDispenser.render(sprite);
         blockDispenser2.render(sprite);
 
@@ -163,6 +164,7 @@ public class PlayState extends State{
 
         blockDispenser.disposeBody();
         blockDispenser2.disposeBody();
+
         house.dispose();
 
         blockHolder.disposeBody();

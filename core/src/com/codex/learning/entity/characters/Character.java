@@ -253,14 +253,14 @@ public class Character extends Entity {
             up.update(delta);
             setMoving(false);
         }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.E) && isPickUpAble()){
-            if (isCarrying()) {
-                setCarrying(false);
-            }
-            else {
-                setCarrying(true);
-            }
-        }
+//        if(Gdx.input.isKeyJustPressed(Input.Keys.E) && isPickUpAble()){
+//            if (isCarrying()) {
+//                setCarrying(false);
+//            }
+//            else {
+//                setCarrying(true);
+//            }
+//        }
     }
     public void input(float delta){
         float horizontalForce = 0;
@@ -351,10 +351,10 @@ public class Character extends Entity {
     }
 
     public void carryBlock(Blocks block){
+        System.out.println(" I AM CARRYING " + block.getId());
         if(isCarrying() && block.isInContact()){
 
             System.out.println(" I AM CARRYING " + block.getId());
-
             block.getBody().setType(BodyDef.BodyType.DynamicBody);
             block.getBody().setTransform(body.getPosition().x, body.getPosition().y + 3f, 0);
 //            System.out.println(body.getPosition().x + " " + body.getPosition().y);

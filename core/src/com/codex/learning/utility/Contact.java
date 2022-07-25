@@ -49,9 +49,9 @@ public class Contact implements ContactListener {
                     jedisaur.setCarrying(true);
                 }
             }
-            if(jedisaur.isCarrying()){
-                jedisaur.carryBlock(blocks);
-            }
+//            if(Gdx.input.isKeyJustPressed(Input.Keys.E) && jedisaur.isCarrying()){
+//                jedisaur.carryBlock(blocks);
+//            }
         }
 
         if(isDispenserContact(fa, fb)){
