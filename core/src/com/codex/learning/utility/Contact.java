@@ -40,18 +40,6 @@ public class Contact implements ContactListener {
             System.out.println("Block yes");
             blocks.setInContact(true);
             jedisaur.setPickUpAble(true);
-
-            if(Gdx.input.isKeyJustPressed(Input.Keys.E) && jedisaur.isPickUpAble()){
-                if (jedisaur.isCarrying()) {
-                    jedisaur.setCarrying(false);
-                }
-                else {
-                    jedisaur.setCarrying(true);
-                }
-            }
-//            if(Gdx.input.isKeyJustPressed(Input.Keys.E) && jedisaur.isCarrying()){
-//                jedisaur.carryBlock(blocks);
-//            }
         }
 
         if(isDispenserContact(fa, fb)){
@@ -85,7 +73,6 @@ public class Contact implements ContactListener {
         }
 
         Gdx.app.log("BEGIN CONTACT", "");
-
     }
 
     @Override

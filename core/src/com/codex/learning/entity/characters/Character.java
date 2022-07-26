@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
+import com.codex.learning.entity.blocks.BlockHolder;
 import com.codex.learning.entity.blocks.Blocks;
 import com.codex.learning.entity.Entity;
 import com.codex.learning.utility.Animation;
@@ -36,6 +37,8 @@ public class Character extends Entity {
     private boolean atRight;
 
     private Box2DDebugRenderer b2dr;
+
+    private Blocks copyBlock;
 
     public Character(Manager manager) {
         super(manager);
@@ -109,6 +112,7 @@ public class Character extends Entity {
         logicInput(delta);
         cameraUpdate();
         input(delta);
+
     }
 
     @Override
@@ -253,14 +257,14 @@ public class Character extends Entity {
             up.update(delta);
             setMoving(false);
         }
-//        if(Gdx.input.isKeyJustPressed(Input.Keys.E) && isPickUpAble()){
-//            if (isCarrying()) {
-//                setCarrying(false);
-//            }
-//            else {
-//                setCarrying(true);
-//            }
-//        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.E) && isPickUpAble()){
+            if (isCarrying()) {
+                setCarrying(false);
+            }
+            else {
+                setCarrying(true);
+            }
+        }
     }
     public void input(float delta){
         float horizontalForce = 0;
@@ -351,9 +355,7 @@ public class Character extends Entity {
     }
 
     public void carryBlock(Blocks block){
-        System.out.println(" I AM CARRYING " + block.getId());
         if(isCarrying() && block.isInContact()){
-
             System.out.println(" I AM CARRYING " + block.getId());
             block.getBody().setType(BodyDef.BodyType.DynamicBody);
             block.getBody().setTransform(body.getPosition().x, body.getPosition().y + 3f, 0);
@@ -361,9 +363,25 @@ public class Character extends Entity {
         }
         else{
             block.getBody().setType(BodyDef.BodyType.StaticBody);
+            setCarrying(false);
         }
     }
 
+    public void dropBlock(Blocks block, BlockHolder blockHolder){
+        block.getBody().setTransform(blockHolder.getBody().getPosition().x,
+                blockHolder.getBody().getPosition().y - blockHolder.getBody().getPosition().y / 1.2f, 0);
+        block.setInContact(false);
+        block.getBody().setType(BodyDef.BodyType.StaticBody);
+        setCarrying(false);
+    }
+
+    public Blocks getCopyBlock() {
+        return copyBlock;
+    }
+
+    public void setCopyBlock(Blocks copyBlock) {
+        this.copyBlock = copyBlock;
+    }
 
     public boolean isPickUpAble() {
         return pickUpAble;

@@ -69,7 +69,7 @@ public class Blocks extends Entity {
         shadowColor.rect((this.size.x  * 2 + (Constants.PPM * body.getPosition().x)),
                 (this.size.y * 2 + (Constants.PPM * body.getPosition().y)),
                 (this.name.length() + (this.size.x * Constants.PPM)) * 2,
-                - (this.size.y * Constants.PPM * 2));
+                - (this.size.y * Constants.PPM * 2.1f));
         shadowColor.end();
 
         mainColor.setProjectionMatrix(manager.getCamera().combined);
@@ -78,7 +78,7 @@ public class Blocks extends Entity {
         mainColor.rect((this.size.x  * 2 + (Constants.PPM * body.getPosition().x)),
                 (this.size.y * 2 + (Constants.PPM * body.getPosition().y)),
                 (this.name.length() + (this.size.x * Constants.PPM)) * 1.9f,
-                - (this.size.y * Constants.PPM * 1.5f));
+                - (this.size.y * Constants.PPM * 1.6f));
         mainColor.end();
 
         sprite.begin();

@@ -135,10 +135,9 @@ public class BlockDispenser extends Entity {
             blocks[limit] = new Blocks(manager, id, name);
             blocks[limit].create(new Vector2(this.position.x, this.position.y - limit * 3),
                     blockSize,0);
+            blocks[limit].setInContact(true);
             spawned = true;
         }
-
-
     }
 
     public void createDispenser(){
