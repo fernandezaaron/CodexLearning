@@ -55,9 +55,6 @@ public class BlockHolder extends Entity {
 
     @Override
     public void update(float delta) {
-        if(isInContact()){
-            System.out.println("CAN BE DROPPED HERE");
-        }
     }
 
     @Override

@@ -112,7 +112,7 @@ public class Character extends Entity {
         logicInput(delta);
         cameraUpdate();
         input(delta);
-
+        System.out.println(isMoving + " - " + body.getLinearVelocity());
     }
 
     @Override
@@ -368,11 +368,14 @@ public class Character extends Entity {
     }
 
     public void dropBlock(Blocks block, BlockHolder blockHolder){
-        block.getBody().setTransform(blockHolder.getBody().getPosition().x,
-                blockHolder.getBody().getPosition().y - blockHolder.getBody().getPosition().y / 1.2f, 0);
-        block.setInContact(false);
-        block.getBody().setType(BodyDef.BodyType.StaticBody);
-        setCarrying(false);
+        if(Gdx.input.isKeyJustPressed(Input.Keys.E)){
+            block.getBody().setTransform(blockHolder.getBody().getPosition().x,
+                    blockHolder.getBody().getPosition().y - blockHolder.getBody().getPosition().y / 1.2f, 0);
+            block.setInContact(false);
+            block.getBody().setType(BodyDef.BodyType.StaticBody);
+            setPickUpAble(false);
+            setCarrying(false);
+        }
     }
 
     public Blocks getCopyBlock() {
