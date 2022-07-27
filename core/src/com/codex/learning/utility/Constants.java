@@ -192,6 +192,14 @@ public class Constants {
     public static final int BLOCK_Y_HIGHLIGHT = 458;
 
     //END OF BLOCK SHEET
+    public static final float BLOCKS_CLASS_WIDTH = 3.5f;
+    public static final float BLOCKS_BRACE_WIDTH = 0.7f;
+    public static final float BLOCKS_ARGS_WIDTH = 2.9f;
+
+    public static final float BLOCKS_HEIGHT = 0.815f;
+
+    public static final float BLOCK_HOLDER_WIDTH = 0.7f;
+    public static final float BLOCK_HOLDER_HEIGHT = 0.8f;
 
     //UTILITY SHEET
 

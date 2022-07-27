@@ -108,15 +108,15 @@ public class Character extends Entity {
         carryWalkUp = new Animation(manager.getSpriteSheet(), Constants.JEDI_CARRY_WALK_X, Constants.JEDI_THIRD_ROW, (Constants.JEDI_WIDTH * 2), Constants.JEDI_HEIGHT,2,0.5f);
     }
     @Override
-    public void update(float delta) {
+    public void update(float delta){
         logicInput(delta);
         cameraUpdate();
         input(delta);
-        System.out.println(isMoving + " - " + body.getLinearVelocity());
+        checkIfStuck();
     }
 
     @Override
-    public void render(SpriteBatch sprite) {
+    public void render(SpriteBatch sprite){
         sprite.enableBlending();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.begin();
@@ -354,23 +354,33 @@ public class Character extends Entity {
         manager.getCamera().update();
     }
 
+    private void checkIfStuck(){
+        if(Gdx.input.isKeyJustPressed(Input.Keys.R)){
+            System.out.println("HERE");
+            body.getPosition().set(10, 10);
+        }
+    }
     public void carryBlock(Blocks block){
         if(isCarrying() && block.isInContact()){
+            setCopyBlock(block);
             System.out.println(" I AM CARRYING " + block.getId());
             block.getBody().setType(BodyDef.BodyType.DynamicBody);
             block.getBody().setTransform(body.getPosition().x, body.getPosition().y + 3f, 0);
 //            System.out.println(body.getPosition().x + " " + body.getPosition().y);
         }
         else{
+            setCopyBlock(null);
             block.getBody().setType(BodyDef.BodyType.StaticBody);
             setCarrying(false);
         }
     }
 
     public void dropBlock(Blocks block, BlockHolder blockHolder){
-        if(Gdx.input.isKeyJustPressed(Input.Keys.E)){
-            block.getBody().setTransform(blockHolder.getBody().getPosition().x,
-                    blockHolder.getBody().getPosition().y - blockHolder.getBody().getPosition().y / 1.2f, 0);
+        if(Gdx.input.isKeyJustPressed(Input.Keys.E) && getCopyBlock() != null){
+            block.getBody().setTransform(
+                    blockHolder.getBody().getPosition().x,
+                    Constants.BLOCK_HOLDER_HEIGHT,
+                    0);
             block.setInContact(false);
             block.getBody().setType(BodyDef.BodyType.StaticBody);
             setPickUpAble(false);

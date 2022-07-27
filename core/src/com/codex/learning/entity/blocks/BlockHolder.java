@@ -18,9 +18,12 @@ import com.codex.learning.utility.Manager;
 public class BlockHolder extends Entity {
     private TextureRegion normalBlock, highlightBlock;
     private boolean inContact;
+    private String correctID;
 
-    public BlockHolder(Manager manager) {
+
+    public BlockHolder(Manager manager, String correctID) {
         super(manager);
+        this.correctID = correctID;
     }
 
     @Override

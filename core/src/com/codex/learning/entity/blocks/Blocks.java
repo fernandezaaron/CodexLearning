@@ -49,7 +49,7 @@ public class Blocks extends Entity {
         shadowColor.translate((-(this.size.x * Constants.PPM) * 1.22f), 0, 0);
 
         mainColor = new ShapeRenderer();
-        mainColor.translate((-(this.size.x * Constants.PPM) * 1.16f), - (this.size.y * Constants.PPM) / 6, 0);
+        mainColor.translate((-(this.size.x * Constants.PPM) * 1.16f), - (this.size.y * Constants.PPM) / 10f, 0);
 
         inContact = false;
     }
@@ -75,10 +75,10 @@ public class Blocks extends Entity {
         mainColor.setProjectionMatrix(manager.getCamera().combined);
         mainColor.setColor(246/255f, 228/255f, 216/255f, 0.0f);
         mainColor.begin(ShapeRenderer.ShapeType.Filled);
-        mainColor.rect((this.size.x  * 2 + (Constants.PPM * body.getPosition().x)),
+        mainColor.rect((this.size.x * 2 + (Constants.PPM * body.getPosition().x)),
                 (this.size.y * 2 + (Constants.PPM * body.getPosition().y)),
                 (this.name.length() + (this.size.x * Constants.PPM)) * 1.9f,
-                - (this.size.y * Constants.PPM * 1.6f));
+                - (this.size.y * Constants.PPM * 1.7f));
         mainColor.end();
 
         sprite.begin();
