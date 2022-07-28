@@ -154,7 +154,6 @@ public class PlayState extends State{
         sprite.end();
 
 //        house.render(sprite);
-
         for(int i = 0; i < 3; i++){
             blockHolders[i].render(sprite);
         }
@@ -162,7 +161,6 @@ public class PlayState extends State{
         for(int i = 0; i < 3; i++){
             blocks[i].render(sprite);
         }
-
 //        blockDispenser.render(sprite);
 //        blockDispenser2.render(sprite);
 
@@ -189,7 +187,6 @@ public class PlayState extends State{
         }
 
         house.dispose();
-
 //        blockHolder.disposeBody();
 //        blockHolder2.disposeBody();
     }
