@@ -17,6 +17,7 @@ public class Manager {
     private final World world;
     private final OrthographicCamera camera;
     private final Stack<State> states;
+    private Contact cl;
     private Box2DDebugRenderer b2dr;
 
 
@@ -27,8 +28,6 @@ public class Manager {
     private TextureRegion blockSheet;
     private TextureRegion reportcardsheet;
 
-
-
     private TextureRegion pausestatesheet;
 
     private BitmapFont font;
@@ -37,8 +36,9 @@ public class Manager {
 
         b2dr = new Box2DDebugRenderer();
 
+        cl = new Contact();
         world = new World(new Vector2(0,0),false);
-        world.setContactListener(new Contact());
+        world.setContactListener(cl);
 
         background = new TextureRegion(new Texture(Constants.BACKGROUND_PATH));
         mainMenu = new TextureRegion(new Texture(Constants.MENU_TEXT_PATH));
@@ -100,49 +100,41 @@ public class Manager {
     public World getWorld() {
         return world;
     }
-
     public OrthographicCamera getCamera() {
         return camera;
     }
-
     public TextureRegion getMainMenu() {
         return mainMenu;
     }
-
     public TextureRegion getBackground() {
         return background;
     }
-
     public TextureRegion getStage1() {
         return stage1;
     }
-
     public TextureRegion getStageSelect() {
         return stageSelect;
     }
-
     public TextureRegion getUtility() {
         return utility;
     }
-
     public TextureRegion getSpriteSheet() {
         return spriteSheet;
     }
-
     public TextureRegion getBlockSheet() {
         return blockSheet;
     }
-
     public BitmapFont getFont() {
         return font;
     }
-
     public TextureRegion getReportcardsheet(){ return reportcardsheet; }
-
     public TextureRegion getPausestatesheet() {
         return pausestatesheet;
     }
-
-
+    public Contact getCl() {
+        return cl;
+    }
+    public void setCl(Contact cl) {
+        this.cl = cl;
+    }
 }
-

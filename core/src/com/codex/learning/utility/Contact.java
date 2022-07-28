@@ -1,12 +1,15 @@
 package com.codex.learning.utility;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.codex.learning.entity.blocks.BlockDispenser;
+import com.codex.learning.entity.blocks.BlockHolder;
 import com.codex.learning.entity.blocks.Blocks;
+import com.codex.learning.entity.characters.Character;
 
 //This class will allow the player to have collision detection
 public class Contact implements ContactListener {
@@ -23,16 +26,53 @@ public class Contact implements ContactListener {
             return;
         }
 
-        if(isBlockContact(fa)){
-            Blocks blockA = (Blocks) fa.getUserData();
-            blockA.setInContact(true);
+        if(isBlockContact(fa, fb)){
+            Blocks blocks;
+            Character jedisaur;
+            if(fa.getUserData() instanceof Blocks){
+                blocks = (Blocks) fa.getUserData();
+                jedisaur = (Character) fb.getUserData();
+            }
+            else{
+                jedisaur = (Character) fa.getUserData();
+                blocks = (Blocks) fb.getUserData();
+            }
+            System.out.println("Block yes");
+            blocks.setInContact(true);
+            jedisaur.setPickUpAble(true);
         }
-        else if(isDispenserContact(fa)){
-            BlockDispenser blockDispenserA = (BlockDispenser) fa.getUserData();
-            blockDispenserA.setInDispenser(true);
-        }
-        Gdx.app.log("BEGIN CONTACT", "");
 
+        if(isDispenserContact(fa, fb)){
+            BlockDispenser blockDispenser;
+            Character jedisaur;
+            if(fa.getUserData() instanceof BlockDispenser){
+                blockDispenser = (BlockDispenser) fa.getUserData();
+                jedisaur = (Character) fb.getUserData();
+            }
+            else{
+                jedisaur = (Character) fa.getUserData();
+                blockDispenser = (BlockDispenser) fb.getUserData();
+            }
+            blockDispenser.setInDispenser(true);
+            jedisaur.setPickUpAble(true);
+        }
+
+        if(isBlockHolderContact(fa, fb)){
+            BlockHolder blockHolder;
+            Character jedisaur;
+            if(fa.getUserData() instanceof BlockHolder){
+                blockHolder = (BlockHolder) fa.getUserData();
+                jedisaur = (Character) fb.getUserData();
+            }
+            else{
+                jedisaur = (Character) fa.getUserData();
+                blockHolder = (BlockHolder) fb.getUserData();
+            }
+            blockHolder.setInContact(true);
+            jedisaur.setPickUpAble(true);
+        }
+
+        Gdx.app.log("BEGIN CONTACT", "");
     }
 
     @Override
@@ -45,15 +85,50 @@ public class Contact implements ContactListener {
         if(fa.getUserData() == null || fb.getUserData() == null)
             return;
 
-        if(isBlockContact(fa)){
-            Blocks blockA = (Blocks) fa.getUserData();
-            blockA.setInContact(false);
-        }
-        else if(isDispenserContact(fa)){
-            BlockDispenser blockDispenserA = (BlockDispenser) fa.getUserData();
-            blockDispenserA.setInDispenser(false);
+        if(isBlockContact(fa, fb)){
+            Blocks blocks;
+            Character jedisaur;
+            if(fa.getUserData() instanceof Blocks){
+                blocks = (Blocks) fa.getUserData();
+                jedisaur = (Character) fb.getUserData();
+            }
+            else{
+                jedisaur = (Character) fa.getUserData();
+                blocks = (Blocks) fb.getUserData();
+            }
+            blocks.setInContact(false);
+            jedisaur.setPickUpAble(false);
         }
 
+        if(isDispenserContact(fa, fb)){
+            BlockDispenser blockDispenser;
+            Character jedisaur;
+            if(fa.getUserData() instanceof BlockDispenser){
+                blockDispenser = (BlockDispenser) fa.getUserData();
+                jedisaur = (Character) fb.getUserData();
+            }
+            else{
+                jedisaur = (Character) fa.getUserData();
+                blockDispenser = (BlockDispenser) fb.getUserData();
+            }
+            blockDispenser.setInDispenser(false);
+            jedisaur.setPickUpAble(false);
+        }
+
+        if(isBlockHolderContact(fa, fb)){
+            BlockHolder blockHolder;
+            Character jedisaur;
+            if(fa.getUserData() instanceof BlockHolder){
+                blockHolder = (BlockHolder) fa.getUserData();
+                jedisaur = (Character) fb.getUserData();
+            }
+            else{
+                jedisaur = (Character) fa.getUserData();
+                blockHolder = (BlockHolder) fb.getUserData();
+            }
+            blockHolder.setInContact(false);
+            jedisaur.setPickUpAble(false);
+        }
 
         Gdx.app.log("END CONTACT", "");
     }
@@ -68,17 +143,29 @@ public class Contact implements ContactListener {
 
     }
 
-    private boolean isBlockContact(Fixture a){
-        if(a.getUserData() instanceof Blocks){
-            return true;
+    private boolean isBlockContact(Fixture a, Fixture b){
+        if(a.getUserData() instanceof Character || b.getUserData() instanceof Character) {
+            if(a.getUserData() instanceof Blocks || b.getUserData() instanceof Blocks) {
+                return true;
+            }
         }
         return false;
-//        return (a.getUserData() instanceof Blocks && a.getUserData() instanceof Character);
     }
 
-    private boolean isDispenserContact(Fixture a){
-        if(a.getUserData() instanceof BlockDispenser){
-            return true;
+    private boolean isDispenserContact(Fixture a, Fixture b){
+        if(a.getUserData() instanceof Character || b.getUserData() instanceof Character){
+            if(a.getUserData() instanceof BlockDispenser || b.getUserData() instanceof BlockDispenser){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isBlockHolderContact(Fixture a, Fixture b){
+        if(a.getUserData() instanceof Character || b.getUserData() instanceof Character){
+            if(a.getUserData() instanceof BlockHolder || b.getUserData() instanceof BlockHolder){
+                return true;
+            }
         }
         return false;
     }

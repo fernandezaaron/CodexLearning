@@ -49,7 +49,7 @@ public class Blocks extends Entity {
         shadowColor.translate((-(this.size.x * Constants.PPM) * 1.22f), 0, 0);
 
         mainColor = new ShapeRenderer();
-        mainColor.translate((-(this.size.x * Constants.PPM) * 1.16f), - (this.size.y * Constants.PPM) / 6, 0);
+        mainColor.translate((-(this.size.x * Constants.PPM) * 1.16f), - (this.size.y * Constants.PPM) / 10f, 0);
 
         inContact = false;
     }
@@ -69,16 +69,16 @@ public class Blocks extends Entity {
         shadowColor.rect((this.size.x  * 2 + (Constants.PPM * body.getPosition().x)),
                 (this.size.y * 2 + (Constants.PPM * body.getPosition().y)),
                 (this.name.length() + (this.size.x * Constants.PPM)) * 2,
-                - (this.size.y * Constants.PPM * 2));
+                - (this.size.y * Constants.PPM * 2.1f));
         shadowColor.end();
 
         mainColor.setProjectionMatrix(manager.getCamera().combined);
         mainColor.setColor(246/255f, 228/255f, 216/255f, 0.0f);
         mainColor.begin(ShapeRenderer.ShapeType.Filled);
-        mainColor.rect((this.size.x  * 2 + (Constants.PPM * body.getPosition().x)),
+        mainColor.rect((this.size.x * 2 + (Constants.PPM * body.getPosition().x)),
                 (this.size.y * 2 + (Constants.PPM * body.getPosition().y)),
                 (this.name.length() + (this.size.x * Constants.PPM)) * 1.9f,
-                - (this.size.y * Constants.PPM * 1.5f));
+                - (this.size.y * Constants.PPM * 1.7f));
         mainColor.end();
 
         sprite.begin();
@@ -96,4 +96,7 @@ public class Blocks extends Entity {
         this.inContact = inContact;
     }
 
+    public String getId() {
+        return id;
+    }
 }

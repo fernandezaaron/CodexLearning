@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
+import com.codex.learning.entity.blocks.BlockHolder;
 import com.codex.learning.entity.blocks.Blocks;
 import com.codex.learning.entity.Entity;
 import com.codex.learning.utility.Animation;
@@ -37,13 +38,16 @@ public class Character extends Entity {
 
     private Box2DDebugRenderer b2dr;
 
+    private Blocks copyBlock;
+
     public Character(Manager manager) {
         super(manager);
     }
 
     @Override
     public void create(Vector2 position, Vector2 size, float density) {
-//        Create a body without collision yet.
+
+        // Create a body without collision yet.
         this.position = position;
         this.size = size;
         BodyDef def = new BodyDef();
@@ -51,7 +55,7 @@ public class Character extends Entity {
         def.position.set(this.position);
         def.fixedRotation = true;
 
-//        Create a rectangle for the character to have collision detection.
+        // Create a rectangle for the character to have collision detection.
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(this.size.x, this.size.y/2, new Vector2(0, -this.size.y/2), 0);
 
@@ -70,7 +74,6 @@ public class Character extends Entity {
         atLeft = false;
         atRight = false;
 
-
         // Used to flip the sprite left to right vice versa
         isLeft = true;
         isMoving = false;
@@ -80,9 +83,6 @@ public class Character extends Entity {
 
         // Used to know the last keyboard pressed of the user
         direction = "south";
-
-        carry = 0;
-        dropped = true;
 
         this.size.x /= Constants.PPM;
         this.size.y /= Constants.PPM;
@@ -108,23 +108,24 @@ public class Character extends Entity {
         carryWalkUp = new Animation(manager.getSpriteSheet(), Constants.JEDI_CARRY_WALK_X, Constants.JEDI_THIRD_ROW, (Constants.JEDI_WIDTH * 2), Constants.JEDI_HEIGHT,2,0.5f);
     }
     @Override
-    public void update(float delta) {
+    public void update(float delta){
         logicInput(delta);
         cameraUpdate();
         input(delta);
-
+        checkIfStuck();
     }
+
     @Override
-    public void render(SpriteBatch sprite) {
+    public void render(SpriteBatch sprite){
         sprite.enableBlending();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.begin();
-        checkDirection(sprite, isMoving, isCarrying, pickUpAble);
+        checkDirection(sprite);
         sprite.end();
     }
 
-    private void checkDirection(SpriteBatch sprite, boolean isMoving, boolean isCarrying, boolean isPicked){
-        if(isPicked && !isCarrying && !isMoving){
+    private void checkDirection(SpriteBatch sprite){
+        if(isPickUpAble() && !isCarrying() && !isMoving()){
             switch (direction) {
                 case "north":
                     sprite.draw(pickUpUp.getFrame(), body.getPosition().x * Constants.PPM - ((float) walkUp.getFrame().getRegionWidth() / 2)
@@ -141,8 +142,8 @@ public class Character extends Entity {
                     break;
             }
         }
-        else if(isCarrying) {
-            if(isMoving) {
+        else if(isCarrying()) {
+            if(isMoving()) {
                 switch (direction) {
                     case "north":
                         sprite.draw(carryWalkUp.getFrame(), body.getPosition().x * Constants.PPM - ((float) walkUp.getFrame().getRegionWidth() / 2)
@@ -176,7 +177,7 @@ public class Character extends Entity {
                 }
             }
         } else{
-            if(isMoving){
+            if(isMoving()){
                 switch(direction){
                     case "north":
                         sprite.draw(walkUp.getFrame(), body.getPosition().x * Constants.PPM - ((float)walkUp.getFrame().getRegionWidth()/2)
@@ -215,37 +216,35 @@ public class Character extends Entity {
 
     public void logicInput(float delta){
         if(Gdx.input.isKeyPressed(Input.Keys.S)){
-            if(isCarrying)
+            if(isCarrying())
                 carryWalkFront.update(delta);
             walkFront.update(delta);
             direction = "south";
-            isMoving = true;
+            setMoving(true);
         }
         else if(Gdx.input.isKeyPressed(Input.Keys.W)){
-            if(isCarrying)
+            if(isCarrying())
                 carryWalkUp.update(delta);
             walkUp.update(delta);
             direction = "north";
-            isMoving = true;
+            setMoving(true);
         }
         else if(Gdx.input.isKeyPressed(Input.Keys.A)){
-            if(isCarrying)
+            if(isCarrying())
                 carryWalkSide.update(delta);
             walkSide.update(delta);
             direction = "west";
-            isMoving = true;
+            setMoving(true);
         }
         else if(Gdx.input.isKeyPressed(Input.Keys.D)){
-            if(isCarrying)
+            if(isCarrying())
                 carryWalkSide.update(delta);
             walkSide.update(delta);
             direction = "east";
-            isMoving = true;
-
-
+            setMoving(true);
         }
         else{
-            if(!isCarrying){
+            if(!isCarrying()){
                 pickUpFront.update(delta);
                 pickUpSide.update(delta);
                 pickUpUp.update(delta);
@@ -256,14 +255,14 @@ public class Character extends Entity {
             front.update(delta);
             side.update(delta);
             up.update(delta);
-            isMoving = false;
+            setMoving(false);
         }
         if(Gdx.input.isKeyJustPressed(Input.Keys.E) && isPickUpAble()){
-            if (isCarrying) {
-                isCarrying = false;
+            if (isCarrying()) {
+                setCarrying(false);
             }
             else {
-                isCarrying = true;
+                setCarrying(true);
             }
         }
     }
@@ -355,6 +354,48 @@ public class Character extends Entity {
         manager.getCamera().update();
     }
 
+    private void checkIfStuck(){
+        if(Gdx.input.isKeyJustPressed(Input.Keys.R)){
+            System.out.println("HERE");
+            body.getPosition().set(10, 10);
+        }
+    }
+    public void carryBlock(Blocks block){
+        if(isCarrying() && block.isInContact()){
+            setCopyBlock(block);
+            System.out.println(" I AM CARRYING " + block.getId());
+            block.getBody().setType(BodyDef.BodyType.DynamicBody);
+            block.getBody().setTransform(body.getPosition().x, body.getPosition().y + 3f, 0);
+//            System.out.println(body.getPosition().x + " " + body.getPosition().y);
+        }
+        else{
+            setCopyBlock(null);
+            block.getBody().setType(BodyDef.BodyType.StaticBody);
+            setCarrying(false);
+        }
+    }
+
+    public void dropBlock(Blocks block, BlockHolder blockHolder){
+        if(Gdx.input.isKeyJustPressed(Input.Keys.E) && getCopyBlock() != null){
+            block.getBody().setTransform(
+                    blockHolder.getBody().getPosition().x,
+                    Constants.BLOCK_HOLDER_HEIGHT,
+                    0);
+            block.setInContact(false);
+            block.getBody().setType(BodyDef.BodyType.StaticBody);
+            setPickUpAble(false);
+            setCarrying(false);
+        }
+    }
+
+    public Blocks getCopyBlock() {
+        return copyBlock;
+    }
+
+    public void setCopyBlock(Blocks copyBlock) {
+        this.copyBlock = copyBlock;
+    }
+
     public boolean isPickUpAble() {
         return pickUpAble;
     }
@@ -363,41 +404,13 @@ public class Character extends Entity {
         this.pickUpAble = pickUpAble;
     }
 
-    public void carryBlock(Blocks block){
-        if(isCarrying && block.isInContact() && carry == 0){
-            carry = 1;
-            dropped = false;
-            block.getBody().setTransform(body.getPosition().x, body.getPosition().y + 3f, 0);
-//            System.out.println(body.getPosition().x + " " + body.getPosition().y);
-            block.getBody().setType(BodyDef.BodyType.DynamicBody);
-        }
-        else{
-            carry = 0;
-            dropped = true;
-//            if(!isCarrying){
-//                switch (direction){
-//                    case "north":
-//                        block.body.setTransform(body.getPosition().x, body.getPosition().y + 1.2f, 0);
-//                        break;
-//                    case "south":
-//                        block.body.setTransform(body.getPosition().x, body.getPosition().y - 1.2f, 0);
-//                        break;
-//                    case "east":
-//                        block.body.setTransform(body.getPosition().x + 1.2f, body.getPosition().y, 0);
-//                        break;
-//                    case "west":
-//                        block.body.setTransform(- body.getPosition().x -1.2f, body.getPosition().y, 0);
-//                        break;
-//                }
-//            }
-            block.getBody().setType(BodyDef.BodyType.StaticBody);
-        }
-//        else{
-//            carry = 0;
-//            block.body.setType(BodyDef.BodyType.StaticBody);
-//        }
+    public boolean isCarrying() {
+        return isCarrying;
     }
 
+    public void setCarrying(boolean carrying) {
+        isCarrying = carrying;
+    }
 
     public boolean isMoving() {
         return isMoving;

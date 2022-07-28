@@ -21,7 +21,6 @@ public class Game extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		manager = new Manager();
 
-
 		manager.push(new MenuState(manager));
 
 //		img = new Texture(Constants.BACKGROUND_PATH);

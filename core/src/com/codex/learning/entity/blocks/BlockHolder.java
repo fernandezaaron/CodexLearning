@@ -16,22 +16,18 @@ import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
 public class BlockHolder extends Entity {
-    private ShapeRenderer shapeRenderer;
     private TextureRegion normalBlock, highlightBlock;
-    private Rectangle rectangle;
-    private int r, g, b;
     private boolean inContact;
+    private String correctID;
 
-    public BlockHolder(Manager manager, int r, int g, int b) {
+
+    public BlockHolder(Manager manager, String correctID) {
         super(manager);
-        this.r = r;
-        this.g = g;
-        this.b = b;
+        this.correctID = correctID;
     }
 
     @Override
     public void create(Vector2 position, Vector2 size, float density) {
-
         this.position = position;
         this.size = size;
 
@@ -46,25 +42,18 @@ public class BlockHolder extends Entity {
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.density = density;
         fixtureDef.shape = shape;
+        fixtureDef.isSensor = true;
         fixtureDef.friction = 5;
 
         body = manager.getWorld().createBody(def);
-//        body.createFixture(fixtureDef);
+        body.createFixture(fixtureDef).setUserData(this);
         body.setLinearVelocity(0, 0);
         shape.dispose();
-
-        shapeRenderer = new ShapeRenderer();
 
         inContact = false;
 
         normalBlock = new TextureRegion(new Texture(Constants.BLOCK_SHEET_PATH), Constants.BLOCK_X, Constants.BLOCK_Y_NORMAL, Constants.BLOCK_WIDTH, Constants.BLOCK_HEIGHT);
         highlightBlock = new TextureRegion(new Texture(Constants.BLOCK_SHEET_PATH), Constants.BLOCK_X, Constants.BLOCK_Y_HIGHLIGHT, Constants.BLOCK_WIDTH, Constants.BLOCK_HEIGHT);
-
-        rectangle = new Rectangle(
-                -(this.position.x),
-                -(this.position.y),
-                (this.size.x),
-                (this.size.y));
     }
 
     @Override
@@ -77,18 +66,18 @@ public class BlockHolder extends Entity {
         sprite.setProjectionMatrix(manager.getCamera().combined);
 
         sprite.begin();
-
         if(isInContact()){
-            sprite.draw(highlightBlock, rectangle.getX(), rectangle.getY(), Constants.BLOCK_WIDTH, Constants.BLOCK_HEIGHT);
+            sprite.draw(highlightBlock,
+                    body.getPosition().x * Constants.PPM - highlightBlock.getRegionWidth() / 2,
+                    body.getPosition().y * Constants.PPM - highlightBlock.getRegionHeight() / 2);
         }
         else{
-            sprite.draw(normalBlock, rectangle.getX(), rectangle.getY(), Constants.BLOCK_WIDTH, Constants.BLOCK_HEIGHT);
+            sprite.draw(normalBlock,
+                    body.getPosition().x * Constants.PPM - highlightBlock.getRegionWidth() / 2,
+                    body.getPosition().y * Constants.PPM - highlightBlock.getRegionHeight() / 2);
         }
-
         sprite.end();
 
-        System.out.println(" x y - " + rectangle.getX() + " - " + rectangle.getY());
-        System.out.println(" w h - " + rectangle.getWidth() + " - " + rectangle.getHeight());
     }
 
     public boolean isInContact() {
@@ -97,15 +86,5 @@ public class BlockHolder extends Entity {
 
     public void setInContact(boolean inContact) {
         this.inContact = inContact;
-    }
-
-    public void isInRectangle(Character character){
-        System.out.println("CHARACTER - " + character.getBody().getPosition().x + " - " + character.getBody().getPosition().y);
-        if(rectangle.contains(character.getBody().getPosition())){
-            setInContact(true);
-        }
-        else{
-            setInContact(false);
-        }
     }
 }
