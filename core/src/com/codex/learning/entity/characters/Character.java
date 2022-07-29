@@ -411,8 +411,6 @@ public class Character extends Entity {
         }
         else if(Gdx.input.isKeyJustPressed(Input.Keys.E) && getCopyBlock() == null){
             blockHolder.setOccupied(false);
-            // Doesn't work yet...
-//            blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().first());
         }
 
         if(blockHolder.isOccupied()){

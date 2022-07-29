@@ -78,7 +78,7 @@ public class BlockDispenser extends Entity {
 
     @Override
     public void update(float delta) {
-        createBlock();
+
     }
 
     @Override
@@ -126,7 +126,7 @@ public class BlockDispenser extends Entity {
     }
 
     public void createBlock(){
-        if(isInDispenser() && limit > 0 && Gdx.input.isKeyJustPressed(Input.Keys.E)){
+        if(Gdx.input.isKeyJustPressed(Input.Keys.E) && limit > 0){
 
 //            sample = new Blocks(manager, id, name);
 //            sample.create(new Vector2(this.position.x, this.position.y - limit * 3),
