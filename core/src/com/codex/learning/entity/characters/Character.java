@@ -371,21 +371,17 @@ public class Character extends Entity {
         block.getBody().setType(BodyDef.BodyType.StaticBody);
     }
 
-    public void dropBlock(Blocks block, BlockHolder blockHolder){
-//        if(blockHolder.getCopyBlock() != null){
-//            blockHolder.setOccupied(true);
-//        }
-//        else{
-//            blockHolder.setOccupied(false);
-//        }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.E) && getCopyBlock() != null && !blockHolder.isOccupied()){
+    public void dropBlock(BlockHolder blockHolder){
+        System.out.println("OCCU - " + blockHolder.isOccupied());
+        if(Gdx.input.isKeyJustPressed(Input.Keys.E) &&
+                getCopyBlock() != null && blockHolder.getCopyBlock() == null){
             // Blocks Adjustment
-            block.getBody().setTransform(
+            getCopyBlock().getBody().setTransform(
                     blockHolder.getBody().getPosition().x,
                     Constants.BLOCK_HOLDER_HEIGHT,
                     0);
-            block.setInContact(false);
-            block.getBody().setType(BodyDef.BodyType.StaticBody);
+            getCopyBlock().setInContact(false);
+            getCopyBlock().getBody().setType(BodyDef.BodyType.StaticBody);
 
             // Character Adjustment
             setCopyBlock(null);
@@ -395,7 +391,16 @@ public class Character extends Entity {
 
             // BlockHolder Adjustment
             blockHolder.setOccupied(true);
-            blockHolder.setCopyBlock(block);
+        }
+        else if(Gdx.input.isKeyJustPressed(Input.Keys.E) && getCopyBlock() == null){
+            blockHolder.setOccupied(false);
+        }
+
+        if(blockHolder.isOccupied()){
+            blockHolder.setCopyBlock(getCopyBlock());
+        }
+        else{
+            blockHolder.setCopyBlock(null);
         }
     }
 

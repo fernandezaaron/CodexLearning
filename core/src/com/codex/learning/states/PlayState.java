@@ -125,7 +125,7 @@ public class PlayState extends State{
                     jedisaur.carryBlock(blocks[i]);
                 }
                 if(blockHolders[i].isInContact()){
-                    jedisaur.dropBlock(jedisaur.getCopyBlock(), blockHolders[i]);
+                    jedisaur.dropBlock(blockHolders[i]);
                 }
             }
 
