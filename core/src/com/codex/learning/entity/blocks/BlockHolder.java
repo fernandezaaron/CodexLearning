@@ -18,8 +18,9 @@ import com.codex.learning.utility.Manager;
 public class BlockHolder extends Entity {
     private TextureRegion normalBlock, highlightBlock;
     private boolean inContact;
+    private boolean occupied;
+    private Blocks copyBlock;
     private String correctID;
-
 
     public BlockHolder(Manager manager, String correctID) {
         super(manager);
@@ -51,6 +52,8 @@ public class BlockHolder extends Entity {
         shape.dispose();
 
         inContact = false;
+        occupied = false;
+        setCopyBlock(null);
 
         normalBlock = new TextureRegion(new Texture(Constants.BLOCK_SHEET_PATH), Constants.BLOCK_X, Constants.BLOCK_Y_NORMAL, Constants.BLOCK_WIDTH, Constants.BLOCK_HEIGHT);
         highlightBlock = new TextureRegion(new Texture(Constants.BLOCK_SHEET_PATH), Constants.BLOCK_X, Constants.BLOCK_Y_HIGHLIGHT, Constants.BLOCK_WIDTH, Constants.BLOCK_HEIGHT);
@@ -86,5 +89,21 @@ public class BlockHolder extends Entity {
 
     public void setInContact(boolean inContact) {
         this.inContact = inContact;
+    }
+
+    public boolean isOccupied() {
+        return occupied;
+    }
+
+    public void setOccupied(boolean occupied) {
+        this.occupied = occupied;
+    }
+
+    public Blocks getCopyBlock() {
+        return copyBlock;
+    }
+
+    public void setCopyBlock(Blocks copyBlock) {
+        this.copyBlock = copyBlock;
     }
 }

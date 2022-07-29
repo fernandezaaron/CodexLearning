@@ -28,7 +28,6 @@ public class Character extends Entity {
     private boolean isLeft;
     private boolean isCarrying;
     protected boolean pickUpAble;
-    private boolean dropped;
     private int carry;
 
     private boolean atTop;
@@ -80,6 +79,7 @@ public class Character extends Entity {
 
         // Used to check if the character is carrying a block
         isCarrying = false;
+        setCopyBlock(null);
 
         // Used to know the last keyboard pressed of the user
         direction = "south";
@@ -345,7 +345,6 @@ public class Character extends Entity {
 
         body.setLinearVelocity(horizontalForce * Constants.JEDI_VELOCITY, verticalForce * Constants.JEDI_VELOCITY);
     }
-
     private void cameraUpdate(){
         Vector3 position = manager.getCamera().position;
         position.x = this.position.x * Constants.PPM;
@@ -361,30 +360,42 @@ public class Character extends Entity {
         }
     }
     public void carryBlock(Blocks block){
-        if(isCarrying() && block.isInContact()){
+        if(isCarrying() && carry == 0){
+            carry = 1;
             setCopyBlock(block);
-            System.out.println(" I AM CARRYING " + block.getId());
-            block.getBody().setType(BodyDef.BodyType.DynamicBody);
-            block.getBody().setTransform(body.getPosition().x, body.getPosition().y + 3f, 0);
-//            System.out.println(body.getPosition().x + " " + body.getPosition().y);
         }
-        else{
-            setCopyBlock(null);
-            block.getBody().setType(BodyDef.BodyType.StaticBody);
-            setCarrying(false);
+        if(getCopyBlock() != null){
+            getCopyBlock().getBody().setType(BodyDef.BodyType.DynamicBody);
+            getCopyBlock().getBody().setTransform(body.getPosition().x, body.getPosition().y + 3f, 0);
         }
+        block.getBody().setType(BodyDef.BodyType.StaticBody);
     }
 
     public void dropBlock(Blocks block, BlockHolder blockHolder){
-        if(Gdx.input.isKeyJustPressed(Input.Keys.E) && getCopyBlock() != null){
+//        if(blockHolder.getCopyBlock() != null){
+//            blockHolder.setOccupied(true);
+//        }
+//        else{
+//            blockHolder.setOccupied(false);
+//        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.E) && getCopyBlock() != null && !blockHolder.isOccupied()){
+            // Blocks Adjustment
             block.getBody().setTransform(
                     blockHolder.getBody().getPosition().x,
                     Constants.BLOCK_HOLDER_HEIGHT,
                     0);
             block.setInContact(false);
             block.getBody().setType(BodyDef.BodyType.StaticBody);
+
+            // Character Adjustment
+            setCopyBlock(null);
+            carry = 0;
             setPickUpAble(false);
             setCarrying(false);
+
+            // BlockHolder Adjustment
+            blockHolder.setOccupied(true);
+            blockHolder.setCopyBlock(block);
         }
     }
 
@@ -420,4 +431,11 @@ public class Character extends Entity {
         isMoving = moving;
     }
 
+    public int getCarry() {
+        return carry;
+    }
+
+    public void setCarry(int carry) {
+        this.carry = carry;
+    }
 }
