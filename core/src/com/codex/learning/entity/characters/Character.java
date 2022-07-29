@@ -28,6 +28,7 @@ public class Character extends Entity {
     private boolean isLeft;
     private boolean isCarrying;
     protected boolean pickUpAble;
+    private boolean fixture;
     private int carry;
 
     private boolean atTop;
@@ -83,6 +84,8 @@ public class Character extends Entity {
 
         // Used to know the last keyboard pressed of the user
         direction = "south";
+
+        fixture = false;
 
         this.size.x /= Constants.PPM;
         this.size.y /= Constants.PPM;
@@ -372,6 +375,13 @@ public class Character extends Entity {
     }
 
     public void dropBlock(BlockHolder blockHolder){
+        if(blockHolder.isOccupied() && !isCarrying()){
+            setPickUpAble(true);
+        }
+        else{
+            setPickUpAble(false);
+        }
+        System.out.println("FIX - " + isFixture());
         System.out.println("OCCU - " + blockHolder.isOccupied());
         if(Gdx.input.isKeyJustPressed(Input.Keys.E) &&
                 getCopyBlock() != null && blockHolder.getCopyBlock() == null){
@@ -383,24 +393,36 @@ public class Character extends Entity {
             getCopyBlock().setInContact(false);
             getCopyBlock().getBody().setType(BodyDef.BodyType.StaticBody);
 
+            // BlockHolder Adjustment
+            blockHolder.setOccupied(true);
+                // Adjust BlockHolder Fixture
+            blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().first());
+            if(isFixture()){
+                blockHolder.createFixture(getCopyBlock().getDupliSize().x, getCopyBlock().getDupliSize().y);
+            }
+            else{
+                blockHolder.createDefaultFixture();
+            }
             // Character Adjustment
             setCopyBlock(null);
             carry = 0;
             setPickUpAble(false);
             setCarrying(false);
-
-            // BlockHolder Adjustment
-            blockHolder.setOccupied(true);
         }
         else if(Gdx.input.isKeyJustPressed(Input.Keys.E) && getCopyBlock() == null){
             blockHolder.setOccupied(false);
+            // Doesn't work yet...
+//            blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().first());
         }
 
         if(blockHolder.isOccupied()){
             blockHolder.setCopyBlock(getCopyBlock());
+            setFixture(true);
         }
         else{
             blockHolder.setCopyBlock(null);
+            setFixture(false);
+
         }
     }
 
@@ -436,11 +458,11 @@ public class Character extends Entity {
         isMoving = moving;
     }
 
-    public int getCarry() {
-        return carry;
+    public boolean isFixture() {
+        return fixture;
     }
 
-    public void setCarry(int carry) {
-        this.carry = carry;
+    public void setFixture(boolean fixture) {
+        this.fixture = fixture;
     }
 }

@@ -86,7 +86,6 @@ public class Contact implements ContactListener {
                 jedisaur.setPickUpAble(true);
             }
         }
-
         Gdx.app.log("BEGIN CONTACT", "");
     }
 
@@ -144,7 +143,6 @@ public class Contact implements ContactListener {
             blockHolder.setInContact(false);
             jedisaur.setPickUpAble(false);
         }
-
         Gdx.app.log("END CONTACT", "");
     }
 
@@ -184,5 +182,4 @@ public class Contact implements ContactListener {
         }
         return false;
     }
-
 }

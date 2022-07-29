@@ -15,6 +15,8 @@ public class Blocks extends Entity {
     private ShapeRenderer shadowColor;
     private ShapeRenderer mainColor;
     protected boolean inContact;
+    private Vector2 dupliSize;
+
     public Blocks(Manager manager, String id, String name) {
         super(manager);
         this.id = id;
@@ -25,6 +27,7 @@ public class Blocks extends Entity {
     public void create(Vector2 position, Vector2 size, float density) {
         this.position = position;
         this.size = size;
+        this.dupliSize = size;
 
         BodyDef def = new BodyDef();
         def.type = BodyDef.BodyType.StaticBody;
@@ -88,6 +91,7 @@ public class Blocks extends Entity {
         sprite.end();
     }
 
+
     public boolean isInContact() {
         return inContact;
     }
@@ -98,5 +102,13 @@ public class Blocks extends Entity {
 
     public String getId() {
         return id;
+    }
+
+    public Vector2 getDupliSize() {
+        return dupliSize;
+    }
+
+    public void setDupliSize(Vector2 dupliSize) {
+        this.dupliSize = dupliSize;
     }
 }
