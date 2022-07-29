@@ -40,15 +40,11 @@ public class Contact implements ContactListener {
             System.out.println("Block yes");
             blocks.setInContact(true);
             if(jedisaur.isCarrying()){
-                System.out.println("carrying");
-                //jedisaur.setCarrying(false);
                 jedisaur.setPickUpAble(false);
-                System.out.println(jedisaur.isPickUpAble());
-            }else{
-                System.out.println("not carrying");
+            }
+            else{
                 jedisaur.setPickUpAble(true);
             }
-
         }
 
         if(isDispenserContact(fa, fb)){
@@ -63,7 +59,12 @@ public class Contact implements ContactListener {
                 blockDispenser = (BlockDispenser) fb.getUserData();
             }
             blockDispenser.setInDispenser(true);
-            jedisaur.setPickUpAble(true);
+            if(jedisaur.isCarrying()){
+                jedisaur.setPickUpAble(false);
+            }
+            else{
+                jedisaur.setPickUpAble(true);
+            }
         }
 
         if(isBlockHolderContact(fa, fb)){
@@ -78,7 +79,12 @@ public class Contact implements ContactListener {
                 blockHolder = (BlockHolder) fb.getUserData();
             }
             blockHolder.setInContact(true);
-            jedisaur.setPickUpAble(true);
+            if(jedisaur.isCarrying()){
+                jedisaur.setPickUpAble(false);
+            }
+            else{
+                jedisaur.setPickUpAble(true);
+            }
         }
 
         Gdx.app.log("BEGIN CONTACT", "");
