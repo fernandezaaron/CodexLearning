@@ -259,9 +259,12 @@ public class Character extends Entity {
         }
         if(Gdx.input.isKeyJustPressed(Input.Keys.E) && isPickUpAble()){
             if (isCarrying()) {
+                System.out.println("carrying is false");
                 setCarrying(false);
+
             }
             else {
+                System.out.println("carrying is true");
                 setCarrying(true);
             }
         }
@@ -361,12 +364,15 @@ public class Character extends Entity {
         }
     }
     public void carryBlock(Blocks block){
-        if(isCarrying() && block.isInContact()){
+       // System.out.println("true");
+        if(isCarrying() && block.isInContact() && isPickUpAble()){
             setCopyBlock(block);
-            System.out.println(" I AM CARRYING " + block.getId());
+           // System.out.println(" I AM CARRYING " + block.getId());
             block.getBody().setType(BodyDef.BodyType.DynamicBody);
             block.getBody().setTransform(body.getPosition().x, body.getPosition().y + 3f, 0);
+            //setPickUpAble(false);
 //            System.out.println(body.getPosition().x + " " + body.getPosition().y);
+
         }
         else{
             setCopyBlock(null);
