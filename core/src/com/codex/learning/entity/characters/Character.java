@@ -435,12 +435,4 @@ public class Character extends Entity {
     public void setMoving(boolean moving) {
         isMoving = moving;
     }
-
-    public int getCarry() {
-        return carry;
-    }
-
-    public void setCarry(int carry) {
-        this.carry = carry;
-    }
 }
