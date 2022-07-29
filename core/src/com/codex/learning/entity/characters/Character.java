@@ -383,17 +383,22 @@ public class Character extends Entity {
             getCopyBlock().setInContact(false);
             getCopyBlock().getBody().setType(BodyDef.BodyType.StaticBody);
 
+            // BlockHolder Adjustment
+            blockHolder.setOccupied(true);
+//            blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().first());
+//            blockHolder.createFixture(getCopyBlock().getDupliSize().x, getCopyBlock().getDupliSize().y);
+
             // Character Adjustment
             setCopyBlock(null);
             carry = 0;
             setPickUpAble(false);
             setCarrying(false);
 
-            // BlockHolder Adjustment
-            blockHolder.setOccupied(true);
         }
         else if(Gdx.input.isKeyJustPressed(Input.Keys.E) && getCopyBlock() == null){
             blockHolder.setOccupied(false);
+//            blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().first());
+//            blockHolder.createDefaultFixture();
         }
 
         if(blockHolder.isOccupied()){

@@ -86,6 +86,35 @@ public class BlockHolder extends Entity {
 
     }
 
+    public void createFixture(float x, float y){
+        PolygonShape shape = new PolygonShape();
+
+        shape.setAsBox(x , y / 0.8f,
+                new Vector2(0, (y - y / 1.2f)), 0);
+        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.density = density;
+        fixtureDef.shape = shape;
+        fixtureDef.isSensor = true;
+        fixtureDef.friction = 5;
+
+        body.createFixture(fixtureDef).setUserData(this);
+    }
+
+    public void createDefaultFixture(){
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(this.size.x, this.size.y);
+
+//        shape.setAsBox(this.size.x , this.size.y / 0.8f,
+//                new Vector2(0, (this.size.y - this.size.y / 1.2f)), 0);
+        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.density = density;
+        fixtureDef.shape = shape;
+        fixtureDef.isSensor = true;
+        fixtureDef.friction = 5;
+
+        body.createFixture(fixtureDef).setUserData(this);
+    }
+
     public boolean isInContact() {
         return inContact;
     }
