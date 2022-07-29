@@ -385,18 +385,20 @@ public class Character extends Entity {
 
             // BlockHolder Adjustment
             blockHolder.setOccupied(true);
-//            blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().first());
-//            blockHolder.createFixture(getCopyBlock().getDupliSize().x, getCopyBlock().getDupliSize().y);
+                // Adjust BlockHolder Fixture
+            blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().first());
+            blockHolder.createFixture(getCopyBlock().getDupliSize().x, getCopyBlock().getDupliSize().y);
 
             // Character Adjustment
             setCopyBlock(null);
             carry = 0;
             setPickUpAble(false);
             setCarrying(false);
-
         }
         else if(Gdx.input.isKeyJustPressed(Input.Keys.E) && getCopyBlock() == null){
             blockHolder.setOccupied(false);
+            
+            // Doesn't work yet...
 //            blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().first());
 //            blockHolder.createDefaultFixture();
         }
