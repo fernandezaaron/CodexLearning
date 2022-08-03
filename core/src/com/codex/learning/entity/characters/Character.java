@@ -383,6 +383,17 @@ public class Character extends Entity {
         }
         System.out.println("FIX - " + isFixture());
         System.out.println("OCCU - " + blockHolder.isOccupied());
+
+        if(blockHolder.isOccupied()){
+            blockHolder.setCopyBlock(getCopyBlock());
+            setFixture(true);
+        }
+        else{
+            blockHolder.setCopyBlock(null);
+            setFixture(false);
+
+        }
+
         if(Gdx.input.isKeyJustPressed(Input.Keys.E) &&
                 getCopyBlock() != null && blockHolder.getCopyBlock() == null){
             // Blocks Adjustment
@@ -395,8 +406,11 @@ public class Character extends Entity {
 
             // BlockHolder Adjustment
             blockHolder.setOccupied(true);
+
                 // Adjust BlockHolder Fixture
             blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().first());
+
+
             if(isFixture()){
                 blockHolder.createFixture(getCopyBlock().getDupliSize().x, getCopyBlock().getDupliSize().y);
             }
@@ -415,15 +429,7 @@ public class Character extends Entity {
 //            blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().first());
         }
 
-        if(blockHolder.isOccupied()){
-            blockHolder.setCopyBlock(getCopyBlock());
-            setFixture(true);
-        }
-        else{
-            blockHolder.setCopyBlock(null);
-            setFixture(false);
 
-        }
     }
 
     public Blocks getCopyBlock() {
