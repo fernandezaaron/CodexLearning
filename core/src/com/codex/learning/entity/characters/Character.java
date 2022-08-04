@@ -363,9 +363,11 @@ public class Character extends Entity {
         }
     }
     public void carryBlock(Blocks block){
+
         if(isCarrying() && carry == 0){
             carry = 1;
             setCopyBlock(block);
+            System.out.println("carrying  " + getCopyBlock());
         }
         if(getCopyBlock() != null){
             getCopyBlock().getBody().setType(BodyDef.BodyType.DynamicBody);
@@ -411,11 +413,10 @@ public class Character extends Entity {
             blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().first());
 
 
-            if(isFixture()){
+            if(!isFixture()){
+                System.out.println("im here");
                 blockHolder.createFixture(getCopyBlock().getDupliSize().x, getCopyBlock().getDupliSize().y);
-            }
-            else{
-                blockHolder.createDefaultFixture();
+            //setFixture(true);
             }
             // Character Adjustment
             setCopyBlock(null);
@@ -423,10 +424,24 @@ public class Character extends Entity {
             setPickUpAble(false);
             setCarrying(false);
         }
-        else if(Gdx.input.isKeyJustPressed(Input.Keys.E) && getCopyBlock() == null){
+
+        else if(Gdx.input.isKeyJustPressed(Input.Keys.E) && isFixture() && blockHolder.isOccupied()){
+            System.out.println("asd");
             blockHolder.setOccupied(false);
+           // setFixture(false);
+            blockHolder.setCopyBlock(null);
+//                blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().first());
+            blockHolder.createDefaultFixture();
+            System.out.println(getCopyBlock());
+//            getCopyBlock().getBody().setTransform(
+//                    blockHolder.getBody().getPosition().x,
+//                    Constants.BLOCK_HOLDER_HEIGHT,
+//                    0);
+//            getCopyBlock().setInContact(false);
+//            getCopyBlock().getBody().setType(BodyDef.BodyType.StaticBody);
+           // blockHolder.createDefaultFixture();
             // Doesn't work yet...
-//            blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().first());
+
         }
 
 
