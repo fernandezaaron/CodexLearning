@@ -22,6 +22,7 @@ public class BlockHolder extends Entity {
     private Blocks copyBlock;
     private String correctID;
 
+
     public BlockHolder(Manager manager, String correctID) {
         super(manager);
         this.correctID = correctID;
@@ -87,10 +88,16 @@ public class BlockHolder extends Entity {
     }
 
     public void createFixture(float x, float y){
-        PolygonShape shape = new PolygonShape();
 
+//        if(isOccupied()){
+//            body.getFixtureList().pop();
+//            body.getFixtureList().first().setSensor(false);
+//        }
+
+        PolygonShape shape = new PolygonShape();
         shape.setAsBox(x, y / 0.78f,
                 new Vector2(0, (y - y / 1.2f)), 0);
+
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.density = density;
         fixtureDef.shape = shape;
@@ -101,6 +108,16 @@ public class BlockHolder extends Entity {
     }
 
     public void createDefaultFixture(){
+        System.out.println("ASDASDASDADASDADNIWQIDQIDWNIQDWINQWDNNIDWQ");
+        
+
+        for(int i = 0; i < body.getFixtureList().size; i++){
+            body.destroyFixture(body.getFixtureList().removeIndex(i));
+        }
+
+
+
+
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(this.size.x, this.size.y);
 

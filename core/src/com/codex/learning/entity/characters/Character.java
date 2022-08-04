@@ -410,14 +410,12 @@ public class Character extends Entity {
             blockHolder.setOccupied(true);
 
                 // Adjust BlockHolder Fixture
-            blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().first());
-
-
+//            blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().first());
             if(!isFixture()){
-                System.out.println("im here");
                 blockHolder.createFixture(getCopyBlock().getDupliSize().x, getCopyBlock().getDupliSize().y);
             //setFixture(true);
             }
+
             // Character Adjustment
             setCopyBlock(null);
             carry = 0;
@@ -426,13 +424,13 @@ public class Character extends Entity {
         }
 
         else if(Gdx.input.isKeyJustPressed(Input.Keys.E) && isFixture() && blockHolder.isOccupied()){
-            System.out.println("asd");
             blockHolder.setOccupied(false);
            // setFixture(false);
             blockHolder.setCopyBlock(null);
-//                blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().first());
+
             blockHolder.createDefaultFixture();
-            System.out.println(getCopyBlock());
+
+            setPickUpAble(true);
 //            getCopyBlock().getBody().setTransform(
 //                    blockHolder.getBody().getPosition().x,
 //                    Constants.BLOCK_HOLDER_HEIGHT,
