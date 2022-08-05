@@ -27,6 +27,7 @@ public class Character extends Entity {
     private boolean isMoving;
     private boolean isLeft;
     private boolean isCarrying;
+    private boolean isInteractingDispenser;
     protected boolean pickUpAble;
     private boolean fixture;
     private int carry;
@@ -80,6 +81,7 @@ public class Character extends Entity {
 
         // Used to check if the character is carrying a block
         isCarrying = false;
+        isInteractingDispenser = false;
         setCopyBlock(null);
 
         // Used to know the last keyboard pressed of the user
@@ -260,7 +262,7 @@ public class Character extends Entity {
             up.update(delta);
             setMoving(false);
         }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.E) && isPickUpAble()){
+        if(Gdx.input.isKeyJustPressed(Input.Keys.E) && (isPickUpAble() || isInteractingDispenser())){
             if (isCarrying()) {
                 setCarrying(false);
             }
@@ -268,6 +270,14 @@ public class Character extends Entity {
                 setCarrying(true);
             }
         }
+//        if(Gdx.input.isKeyJustPressed(Input.Keys.E) && isInteractingDispenser()){
+//            if (isCarrying()) {
+//                setCarrying(false);
+//            }
+//            else {
+//                setCarrying(true);
+//            }
+//        }
     }
     public void input(float delta){
         float horizontalForce = 0;
@@ -362,9 +372,9 @@ public class Character extends Entity {
             body.getPosition().set(10, 10);
         }
     }
-    public void carryBlock(Blocks block){
 
-        if(isCarrying() && carry == 0){
+    public void carryBlock(Blocks block){
+        if(isInteractingDispenser() && carry == 0 && isCarrying()){
             carry = 1;
             setCopyBlock(block);
             System.out.println("carrying  " + getCopyBlock());
@@ -375,6 +385,19 @@ public class Character extends Entity {
         }
         block.getBody().setType(BodyDef.BodyType.StaticBody);
     }
+
+//    public void carryBlock(Blocks block){
+//        if(isCarrying() && carry == 0){
+//            carry = 1;
+//            setCopyBlock(block);
+//            System.out.println("carrying  " + getCopyBlock());
+//        }
+//        if(getCopyBlock() != null){
+//            getCopyBlock().getBody().setType(BodyDef.BodyType.DynamicBody);
+//            getCopyBlock().getBody().setTransform(body.getPosition().x, body.getPosition().y + 3f, 0);
+//        }
+//        block.getBody().setType(BodyDef.BodyType.StaticBody);
+//    }
 
     public void dropBlock(BlockHolder blockHolder){
 
@@ -458,6 +481,14 @@ public class Character extends Entity {
 
     public void setPickUpAble(boolean pickUpAble) {
         this.pickUpAble = pickUpAble;
+    }
+
+    public boolean isInteractingDispenser() {
+        return isInteractingDispenser;
+    }
+
+    public void setInteractingDispenser(boolean interactingDispenser) {
+        isInteractingDispenser = interactingDispenser;
     }
 
     public boolean isCarrying() {

@@ -23,7 +23,7 @@ public class PlayState extends State{
     private boolean blockSpawn;
 
     private Blocks[] blocks;
-//    private BlockHolder[] blockHolders;
+    private BlockHolder[] blockHolders;
     private BlockDispenser[] blockDispensers;
 //    private BlockDispenser blockDispenser, blockDispenser2;
 
@@ -35,26 +35,26 @@ public class PlayState extends State{
 
         // WILL BE USED, DON'T ERASE
 //        blocks = new Blocks[4];
-//        blockHolders = new BlockHolder[4];
+        blockHolders = new BlockHolder[4];
         // WILL BE USED, DON'T ERASE
 
         blockDispensers = new BlockDispenser[2];
 
         for(int i = 0; i < 2; i++){
             if(i == 0){
-                blockDispensers[i] = new BlockDispenser(manager, "Down", "}", " } ",
+                blockDispensers[i] = new BlockDispenser(manager, "Down", "ey", " } ",
                         3, new Vector2(0.3f, 0.7f));
             }
             else{
-                blockDispensers[i] = new BlockDispenser(manager, "Right", "}", " } ",
+                blockDispensers[i] = new BlockDispenser(manager, "Right", "asd", " } ",
                         3, new Vector2(0.3f, 0.7f));
             }
-            blockDispensers[i].create(new Vector2(5 * i, -2), new Vector2(0.3f, 1.3f), 0);
+            blockDispensers[i].create(new Vector2(15 * i, -6), new Vector2(0.3f, 1.3f), 0);
 
         }
 
         // WILL BE USED, DON'T ERASE
-//        for(int i = 0; i < 3; i++){
+        for(int i = 0; i < 3; i++){
 //            if(i == 0){
 //                blocks[i] = new Blocks(manager, "}", "   } ");
 //                blocks[i].create(new Vector2(1.2f + (i * 10), 0),
@@ -70,9 +70,9 @@ public class PlayState extends State{
 //                blocks[i].create(new Vector2(1.2f + (i * 10), 0),
 //                        new Vector2(Constants.BLOCKS_ARGS_WIDTH, Constants.BLOCKS_HEIGHT), 0);
 //            }
-//            blockHolders[i] = new BlockHolder(manager, "}");
-//            blockHolders[i].create(new Vector2(6f * i, 0), new Vector2(Constants.BLOCK_HOLDER_WIDTH, Constants.BLOCK_HOLDER_HEIGHT), 0);
-//        }
+            blockHolders[i] = new BlockHolder(manager, "}");
+            blockHolders[i].create(new Vector2(6f * i, 0), new Vector2(Constants.BLOCK_HOLDER_WIDTH, Constants.BLOCK_HOLDER_HEIGHT), 0);
+        }
         // WILL BE USED, DON'T ERASE
 
         jedisaur = new Character(manager);
@@ -127,25 +127,69 @@ public class PlayState extends State{
 //            }
 
             // WILL BE USED, DON'T ERASE
-//            for(int i = 0; i < 3; i++){
-//                blockHolders[i].update(delta);
+            for(int i = 0; i < 3; i++){
+                blockHolders[i].update(delta);
 //                blocks[i].update(delta);
-//            }
+            }
             // WILL BE USED, DON'T ERASE
 
             for(int i = 0; i < 2; i++){
-                blockDispensers[i].update(delta);
+//                blockDispensers[i].update(delta);
+                blockDispensers[i].createBlock(new Vector2(jedisaur.getBody().getPosition().x, jedisaur.getBody().getPosition().y));
             }
 
+            for(int i=0; i<2; i++){
+                if(blockDispensers[i].isSpawned()){
+                    System.out.println("spawned");
+                    totalBlocks[blockCount] = blockDispensers[i].getCurrentBlock();
+//                    totalBlocks[blockCount] = blockDispensers[blockCount].getCurrentBlock();
+                    blockCount++;
+
+//                    System.out.println(blockCount);
+
+                    System.out.println(blockDispensers[i].getCurrentBlock().getId());
+                }
+            }
+
+            for (Blocks b: totalBlocks) {
+                if(b != null){
+                    System.out.println("in contact");
+                    jedisaur.carryBlock(b);
+
+                }
+                else{
+                    continue;
+                }
+
+            }
+
+
+
+
+//            for(int i=0; i<2; i++){
+//                if(blockDispensers[i].isSpawned()){
+//                    if(blockDispensers[i].getCurrentBlock().isInContact()) {
+//                        if(blockDispensers[i].getCurrentBlock() != null){
+//                            jedisaur.carryBlock(blockDispensers[i].getCurrentBlock());
+//                        }
+//                        else{
+//                            continue;
+//                        }
+//
+//                     }
+//
+//                }
+//            }
+
             // WILL BE USED, DON'T ERASE
-//            for(int i = 0; i < 3; i++){
+            for(int i = 0; i < 3; i++){
 //                if(blocks[i].isInContact()){
 //                    jedisaur.carryBlock(blocks[i]);
 //                }
-//                if(blockHolders[i].isInContact()){
-//                    jedisaur.dropBlock(blockHolders[i]);
-//                }
-//            }
+                if(blockHolders[i].isInContact()){
+                    jedisaur.dropBlock(blockHolders[i]);
+                }
+            }
             // WILL BE USED, DON'T ERASE
 
 //            blockDispenser.update(delta);
@@ -174,9 +218,9 @@ public class PlayState extends State{
 
 //        house.render(sprite);
 
-//        for(int i = 0; i < 3; i++){
-//            blockHolders[i].render(sprite);
-//        }
+        for(int i = 0; i < 3; i++){
+            blockHolders[i].render(sprite);
+        }
 
         for(int i = 0; i < 2; i++){
             blockDispensers[i].render(sprite);

@@ -59,11 +59,16 @@ public class Contact implements ContactListener {
                 blockDispenser = (BlockDispenser) fb.getUserData();
             }
             blockDispenser.setInDispenser(true);
+
             if(jedisaur.isCarrying()){
                 jedisaur.setPickUpAble(false);
+                jedisaur.setInteractingDispenser(false);
+                blockDispenser.setInDispenser(false);
+                System.out.println("cant interact");
             }
             else{
-                jedisaur.setPickUpAble(true);
+                jedisaur.setInteractingDispenser(true);
+                System.out.println("interacting dispenser");
             }
         }
 

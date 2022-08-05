@@ -78,7 +78,7 @@ public class BlockDispenser extends Entity {
 
     @Override
     public void update(float delta) {
-        createBlock();
+//        createBlock();
     }
 
     @Override
@@ -125,7 +125,7 @@ public class BlockDispenser extends Entity {
         }
     }
 
-    public void createBlock(){
+    public void createBlock(Vector2 position){
         if(isInDispenser() && limit > 0 && Gdx.input.isKeyJustPressed(Input.Keys.E)){
 
 //            sample = new Blocks(manager, id, name);
@@ -133,7 +133,7 @@ public class BlockDispenser extends Entity {
 //                    blockSize,0);
 
             blocks[limit] = new Blocks(manager, id, name);
-            blocks[limit].create(new Vector2(this.position.x, this.position.y - limit * 3),
+            blocks[limit].create(new Vector2(position.x, position.y + 3),
                     blockSize,0);
             blocks[limit].setInContact(true);
             spawned = true;
@@ -177,13 +177,17 @@ public class BlockDispenser extends Entity {
             case "Down":
                 manager.getFont().draw(sprite, this.id,
                         adjustFontPosition(this.id.length()),
-                        (this.size.y + Constants.PPM / this.size.y));
+                       (this.size.y + (this.size.y * (Constants.PPM * 1.5f))) + (Constants.PPM * body.getPosition().y));
+                       // this.position.y + (this.position.y / this.size.y * (Constants.PPM + this.size.y)));
+//                        this.size.y - body.getPosition().y);
+
             break;
             case "Left":
             case "Right":
                 manager.getFont().draw(sprite, this.id,
                         adjustFontPosition(this.id.length()),
-                        (float) (this.size.y + Constants.PPM / this.size.y));
+                        (this.size.y + (this.size.y * (Constants.PPM * 1.9f))) + (Constants.PPM * body.getPosition().y));
+//                        (this.size.y / (Constants.PPM / body.getPosition().y * this.size.y)));
             break;
         }
     }
@@ -201,7 +205,8 @@ public class BlockDispenser extends Entity {
                 x = this.size.x - (this.size.x * Constants.PPM * 2.4f) + (Constants.PPM * body.getPosition().x);
             break;
             case 4:
-                x = 0f;
+                x = this.size.x - (this.size.x * Constants.PPM * 3.2f) + (Constants.PPM * body.getPosition().x);
+                //x = 0f;
             break;
         }
         return x;
@@ -224,7 +229,7 @@ public class BlockDispenser extends Entity {
     }
 
     public Blocks getCurrentBlock(){
-        return blocks[limit + 1];
+        return blocks[limit];
     }
 
 }
