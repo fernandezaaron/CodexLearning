@@ -42,9 +42,6 @@ public class BlockHolder extends Entity {
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(this.size.x , this.size.y);
 
-//        shape.setAsBox(this.size.x , this.size.y / 0.8f,
-//                new Vector2(0, (this.size.y - this.size.y / 1.2f)), 0);
-
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.density = density;
         fixtureDef.shape = shape;
@@ -90,12 +87,6 @@ public class BlockHolder extends Entity {
     }
 
     public void createFixture(float x, float y){
-
-//        if(isOccupied()){
-//            body.getFixtureList().pop();
-//            body.getFixtureList().first().setSensor(false);
-//        }
-
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(x, y / 0.78f,
                 new Vector2(0, (y - y / 1.2f)), 0);
@@ -110,22 +101,19 @@ public class BlockHolder extends Entity {
     }
 
     public void createDefaultFixture(){
-//        if(!isOnceOnly()){
-//            System.out.println("INQWDNIASDNASNDASINDASDANIDAD");
-            body.destroyFixture(body.getFixtureList().first());
-//            setOnceOnly(true);
+
+
+
+//        body.destroyFixture(body.getFixtureList().first());
+
+
+//        for(int i = 0; i < body.getFixtureList().size; i++){
+//            body.destroyFixture(body.getFixtureList().removeIndex(i));
 //        }
-
-
-        for(int i = 0; i < body.getFixtureList().size; i++){
-            body.destroyFixture(body.getFixtureList().removeIndex(i));
-        }
 
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(this.size.x, this.size.y);
 
-//        shape.setAsBox(this.size.x , this.size.y / 0.8f,
-//                new Vector2(0, (this.size.y - this.size.y / 1.2f)), 0);
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.density = density;
         fixtureDef.shape = shape;
