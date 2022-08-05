@@ -19,7 +19,6 @@ public class BlockHolder extends Entity {
     private TextureRegion normalBlock, highlightBlock;
     private boolean inContact;
     private boolean occupied;
-    private boolean onceOnly;
     private Blocks copyBlock;
     private String correctID;
 
@@ -55,7 +54,6 @@ public class BlockHolder extends Entity {
 
         inContact = false;
         occupied = false;
-        onceOnly = false;
         setCopyBlock(null);
 
         normalBlock = new TextureRegion(new Texture(Constants.BLOCK_SHEET_PATH), Constants.BLOCK_X, Constants.BLOCK_Y_NORMAL, Constants.BLOCK_WIDTH, Constants.BLOCK_HEIGHT);
@@ -101,16 +99,6 @@ public class BlockHolder extends Entity {
     }
 
     public void createDefaultFixture(){
-
-
-
-//        body.destroyFixture(body.getFixtureList().first());
-
-
-//        for(int i = 0; i < body.getFixtureList().size; i++){
-//            body.destroyFixture(body.getFixtureList().removeIndex(i));
-//        }
-
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(this.size.x, this.size.y);
 
@@ -145,13 +133,5 @@ public class BlockHolder extends Entity {
 
     public void setCopyBlock(Blocks copyBlock) {
         this.copyBlock = copyBlock;
-    }
-
-    public boolean isOnceOnly() {
-        return onceOnly;
-    }
-
-    public void setOnceOnly(boolean onceOnly) {
-        this.onceOnly = onceOnly;
     }
 }
