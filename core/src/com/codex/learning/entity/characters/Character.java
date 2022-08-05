@@ -377,14 +377,8 @@ public class Character extends Entity {
     }
 
     public void dropBlock(BlockHolder blockHolder){
-//        if(blockHolder.isOccupied() && isCarrying()){
-//            setPickUpAble(false);
-//        }
-//        else{
-//            setPickUpAble(true);
-//        }
-        System.out.println("FIX - " + isFixture());
-        System.out.println("OCCU - " + blockHolder.isOccupied());
+//        System.out.println("FIX - " + isFixture());
+//        System.out.println("OCCU - " + blockHolder.isOccupied());
 
         if(blockHolder.isOccupied()){
             blockHolder.setCopyBlock(getCopyBlock());
@@ -407,12 +401,8 @@ public class Character extends Entity {
 
             // BlockHolder Adjustment
             blockHolder.setOccupied(true);
-
-                // Adjust BlockHolder Fixture
-//            blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().first());
             if(!isFixture()){
                 blockHolder.createFixture(getCopyBlock().getDupliSize().x, getCopyBlock().getDupliSize().y);
-            //setFixture(true);
             }
 
             // Character Adjustment
@@ -425,7 +415,6 @@ public class Character extends Entity {
 
             blockHolder.setCopyBlock(null);
             blockHolder.createDefaultFixture();
-
 
             if(isCarrying()){
                 blockHolder.setOccupied(true);
