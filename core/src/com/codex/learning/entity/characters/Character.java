@@ -377,6 +377,13 @@ public class Character extends Entity {
     }
 
     public void dropBlock(BlockHolder blockHolder){
+        // To prevent pickup in an empty block holder
+        if(blockHolder.isOccupied() && !isCarrying()){
+            setPickUpAble(true);
+        }
+        else{
+            setPickUpAble(false);
+        }
 //        System.out.println("FIX - " + isFixture());
 //        System.out.println("OCCU - " + blockHolder.isOccupied());
 
@@ -414,7 +421,9 @@ public class Character extends Entity {
         else if(Gdx.input.isKeyJustPressed(Input.Keys.E) && isFixture() && blockHolder.isOccupied()){
 
             blockHolder.setCopyBlock(null);
-            blockHolder.createDefaultFixture();
+            if(blockHolder.isOccupied())
+                blockHolder.createDefaultFixture();
+
 
             if(isCarrying()){
                 blockHolder.setOccupied(true);
