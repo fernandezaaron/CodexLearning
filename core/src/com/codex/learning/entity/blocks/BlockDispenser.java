@@ -177,13 +177,13 @@ public class BlockDispenser extends Entity {
             case "Down":
                 manager.getFont().draw(sprite, this.id,
                         adjustFontPosition(this.id.length()),
-                        (this.size.y + Constants.PPM * 7));
+                        (this.size.y + Constants.PPM / this.size.y));
             break;
             case "Left":
             case "Right":
                 manager.getFont().draw(sprite, this.id,
                         adjustFontPosition(this.id.length()),
-                        (float) (this.size.y + Constants.PPM * 7.5));
+                        (float) (this.size.y + Constants.PPM / this.size.y));
             break;
         }
     }
