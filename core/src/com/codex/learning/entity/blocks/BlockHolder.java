@@ -108,15 +108,11 @@ public class BlockHolder extends Entity {
     }
 
     public void createDefaultFixture(){
-        System.out.println("ASDASDASDADASDADNIWQIDQIDWNIQDWINQWDNNIDWQ");
-        
 
+//        body.destroyFixture(body.getFixtureList().first());
         for(int i = 0; i < body.getFixtureList().size; i++){
             body.destroyFixture(body.getFixtureList().removeIndex(i));
         }
-
-
-
 
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(this.size.x, this.size.y);

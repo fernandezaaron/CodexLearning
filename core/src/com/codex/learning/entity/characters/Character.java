@@ -377,12 +377,12 @@ public class Character extends Entity {
     }
 
     public void dropBlock(BlockHolder blockHolder){
-        if(blockHolder.isOccupied() && !isCarrying()){
-            setPickUpAble(true);
-        }
-        else{
-            setPickUpAble(false);
-        }
+//        if(blockHolder.isOccupied() && isCarrying()){
+//            setPickUpAble(false);
+//        }
+//        else{
+//            setPickUpAble(true);
+//        }
         System.out.println("FIX - " + isFixture());
         System.out.println("OCCU - " + blockHolder.isOccupied());
 
@@ -393,7 +393,6 @@ public class Character extends Entity {
         else{
             blockHolder.setCopyBlock(null);
             setFixture(false);
-
         }
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.E) &&
@@ -422,15 +421,26 @@ public class Character extends Entity {
             setPickUpAble(false);
             setCarrying(false);
         }
-
         else if(Gdx.input.isKeyJustPressed(Input.Keys.E) && isFixture() && blockHolder.isOccupied()){
-            blockHolder.setOccupied(false);
-           // setFixture(false);
-            blockHolder.setCopyBlock(null);
 
+            blockHolder.setCopyBlock(null);
             blockHolder.createDefaultFixture();
 
-            setPickUpAble(true);
+
+            if(isCarrying()){
+                blockHolder.setOccupied(true);
+                setPickUpAble(false);
+            }
+            else{
+                blockHolder.setOccupied(false);
+                setPickUpAble(true);
+            }
+
+           // setFixture(false);
+
+
+
+
 //            getCopyBlock().getBody().setTransform(
 //                    blockHolder.getBody().getPosition().x,
 //                    Constants.BLOCK_HOLDER_HEIGHT,
