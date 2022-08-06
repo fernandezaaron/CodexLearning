@@ -14,8 +14,6 @@ import com.codex.learning.entity.Entity;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
-import java.util.ArrayList;
-
 public class BlockDispenser extends Entity {
     private TextureRegion blockDispenser;
     private boolean inDispenser;
@@ -231,4 +229,15 @@ public class BlockDispenser extends Entity {
         return blocks[limit];
     }
 
+    public Blocks[] getBlocks(){
+        return blocks;
+    }
+
+    public boolean isCloned() {
+        return cloned;
+    }
+
+    public void setCloned(boolean cloned) {
+        this.cloned = cloned;
+    }
 }

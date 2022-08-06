@@ -55,21 +55,21 @@ public class PlayState extends State{
 
         // WILL BE USED, DON'T ERASE
         for(int i = 0; i < 3; i++){
-            if(i == 0){
-                blocks[i] = new Blocks(manager, "}", "   } ");
-                blocks[i].create(new Vector2(1.2f + (i * 10), 0),
-                        new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT), 0);
-            }
-            if(i == 1){
-                blocks[i] = new Blocks(manager, "class", "class HelloWorld{");
-                blocks[i].create(new Vector2(1.2f + (i * 10), 0),
-                        new Vector2(Constants.BLOCKS_CLASS_WIDTH, Constants.BLOCKS_HEIGHT), 0);
-            }
-            if(i == 2){
-                blocks[i] = new Blocks(manager, "args", "String[] args)");
-                blocks[i].create(new Vector2(1.2f + (i * 10), 0),
-                        new Vector2(Constants.BLOCKS_ARGS_WIDTH, Constants.BLOCKS_HEIGHT), 0);
-            }
+//            if(i == 0){
+//                blocks[i] = new Blocks(manager, "}", "   } ");
+//                blocks[i].create(new Vector2(1.2f + (i * 10), 0),
+//                        new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT), 0);
+//            }
+//            if(i == 1){
+//                blocks[i] = new Blocks(manager, "class", "class HelloWorld{");
+//                blocks[i].create(new Vector2(1.2f + (i * 10), 0),
+//                        new Vector2(Constants.BLOCKS_CLASS_WIDTH, Constants.BLOCKS_HEIGHT), 0);
+//            }
+//            if(i == 2){
+//                blocks[i] = new Blocks(manager, "args", "String[] args)");
+//                blocks[i].create(new Vector2(1.2f + (i * 10), 0),
+//                        new Vector2(Constants.BLOCKS_ARGS_WIDTH, Constants.BLOCKS_HEIGHT), 0);
+//            }
             blockHolders[i] = new BlockHolder(manager, "}");
             blockHolders[i].create(new Vector2(6f * i, 0), new Vector2(Constants.BLOCK_HOLDER_WIDTH, Constants.BLOCK_HOLDER_HEIGHT), 0);
         }
@@ -99,7 +99,7 @@ public class PlayState extends State{
             // WILL BE USED, DON'T ERASE
             for(int i = 0; i < 3; i++){
                 blockHolders[i].update(delta);
-                blocks[i].update(delta);
+//                blocks[i].update(delta);
             }
             // WILL BE USED, DON'T ERASE
 
@@ -108,25 +108,40 @@ public class PlayState extends State{
                 blockDispensers[i].createBlock(new Vector2(jedisaur.getBody().getPosition().x, jedisaur.getBody().getPosition().y));
             }
 
-            for(int i=0; i<2; i++){
-                if(blockDispensers[i].isSpawned()){
-                    System.out.println("spawned");
-                    totalBlocks[blockCount] = blockDispensers[i].getCurrentBlock();
-                    blockCount++;
-                }
-            }
+//            for(int i = 0; i < 2; i++){
+//                if(blockDispensers[i].isSpawned()){
+//                    System.out.println("spawned");
+//                    totalBlocks[blockCount] = blockDispensers[i].getCurrentBlock();
+//                    blockCount++;
+//                }
+//            }
 
-            for (Blocks b: totalBlocks) {
-                if(b != null){
-                    b.update(delta);
-                    if(b.isInContact()){
-                        jedisaur.carryBlock(b);
+            for(int i = 0; i < 2; i++) {
+                if(blockDispensers[i].isCloned()){
+                    for (Blocks b : blockDispensers[i].getBlocks()) {
+                        if (b != null) {
+                            b.update(delta);
+                            if(b.isInContact()){
+                                jedisaur.carryBlock(b);
+                            }
+                        }
+                        else{
+                            continue;
+                        }
                     }
                 }
-                else{
-                    continue;
-                }
             }
+//            for (Blocks b: totalBlocks) {
+//                if(b != null){
+//                    b.update(delta);
+//                    if(b.isInContact()){
+//                        jedisaur.carryBlock(b);
+//                    }
+//                }
+//                else{
+//                    continue;
+//                }
+//            }
 
 
 //            for(int i=0; i<2; i++){
@@ -146,9 +161,9 @@ public class PlayState extends State{
 
             // WILL BE USED, DON'T ERASE
             for(int i = 0; i < 3; i++){
-                if(blocks[i].isInContact()){
-                    jedisaur.carryBlock(blocks[i]);
-                }
+//                if(blocks[i].isInContact()){
+//                    jedisaur.carryBlock(blocks[i]);
+//                }
                 if(blockHolders[i].isInContact()){
                     jedisaur.dropBlock(blockHolders[i]);
                 }
@@ -187,20 +202,31 @@ public class PlayState extends State{
 
         for(int i = 0; i < 2; i++){
             blockDispensers[i].render(sprite);
+            if(blockDispensers[i].isCloned()){
+                for (Blocks b : blockDispensers[i].getBlocks()) {
+                    if (b != null) {
+                        b.render(sprite);
+                    }
+                    else{
+                        continue;
+                    }
+                }
+            }
         }
 
-        for (Blocks b: totalBlocks) {
-            if(b != null){
-                b.render(sprite);
-            }
-            else{
-                continue;
-            }
-        }
 
-        for(int i = 0; i < 3; i++){
-            blocks[i].render(sprite);
-        }
+//        for (Blocks b: totalBlocks) {
+//            if(b != null){
+//                b.render(sprite);
+//            }
+//            else{
+//                continue;
+//            }
+//        }
+
+//        for(int i = 0; i < 3; i++){
+//            blocks[i].render(sprite);
+//        }
 
 
 //        blockDispenser.render(sprite);
@@ -218,21 +244,31 @@ public class PlayState extends State{
 
         for(int i = 0; i < 2; i++){
             blockDispensers[i].disposeBody();
+            if(blockDispensers[i].isCloned()){
+                for (Blocks b : blockDispensers[i].getBlocks()) {
+                    if (b != null) {
+                        b.disposeBody();
+                    }
+                    else{
+                        continue;
+                    }
+                }
+            }
         }
 
-        for (Blocks b: totalBlocks) {
-            if(b != null){
-                b.disposeBody();
-            }
-            else{
-                continue;
-            }
-        }
+//        for (Blocks b: totalBlocks) {
+//            if(b != null){
+//                b.disposeBody();
+//            }
+//            else{
+//                continue;
+//            }
+//        }
 
         // WILL BE USED, DON'T ERASE
         for(int i = 0; i < 3; i++){
             blockHolders[i].disposeBody();
-            blocks[i].disposeBody();
+//            blocks[i].disposeBody();
         }
         // WILL BE USED, DON'T ERASE
 
