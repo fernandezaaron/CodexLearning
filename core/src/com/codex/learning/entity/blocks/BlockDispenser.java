@@ -113,16 +113,16 @@ public class BlockDispenser extends Entity {
             cloned = true;
         }
 
-        if(cloned){
-            for(Blocks i: blocks){
-                if (i != null) {
-                    i.render(sprite);
-                }
-                else{
-                    continue;
-                }
-            }
-        }
+//        if(cloned){
+//            for(Blocks i: blocks){
+//                if (i != null) {
+//                    i.render(sprite);
+//                }
+//                else{
+//                    continue;
+//                }
+//            }
+//        }
     }
 
     public void createBlock(Vector2 position){
@@ -206,7 +206,6 @@ public class BlockDispenser extends Entity {
             break;
             case 4:
                 x = this.size.x - (this.size.x * Constants.PPM * 3.2f) + (Constants.PPM * body.getPosition().x);
-                //x = 0f;
             break;
         }
         return x;

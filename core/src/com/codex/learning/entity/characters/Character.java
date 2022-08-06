@@ -374,7 +374,7 @@ public class Character extends Entity {
     }
 
     public void carryBlock(Blocks block){
-        if(isInteractingDispenser() && carry == 0 && isCarrying()){
+        if(isInteractingDispenser() || carry == 0 && isCarrying()){
             carry = 1;
             setCopyBlock(block);
             System.out.println("carrying  " + getCopyBlock());
