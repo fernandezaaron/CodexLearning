@@ -383,8 +383,8 @@ public class Character extends Entity {
         else{
             setPickUpAble(false);
         }
-        System.out.println("FIX - " + isFixture());
-        System.out.println("OCCU - " + blockHolder.isOccupied());
+//        System.out.println("FIX - " + isFixture());
+//        System.out.println("OCCU - " + blockHolder.isOccupied());
 
         if(blockHolder.isOccupied()){
             blockHolder.setCopyBlock(getCopyBlock());
