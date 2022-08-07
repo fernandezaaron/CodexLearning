@@ -27,6 +27,7 @@ public class PlayState extends State{
     private BlockDispenser[] blockDispensers;
 
     private PauseState pause;
+
     public PlayState(Manager manager) {
         super(manager);
         pause = new PauseState(manager);
@@ -38,6 +39,7 @@ public class PlayState extends State{
         // WILL BE USED, DON'T ERASE
 
         blockDispensers = new BlockDispenser[2];
+        manager.getReader().getQuestions("Easy","Stage 1","");
 
         for(int i = 0; i < 2; i++){
             if(i == 0){

@@ -17,14 +17,13 @@ public class StageSelectState extends State{
     private TextureRegion orangeCircle, grayCircle;
     private Vector3 touchpoint;
     private Circle stages[] = new Circle[17];
-    private DatabaseReader reader;
+
 
     public StageSelectState(Manager manager){
         super(manager);
 
         orangeCircle = new TextureRegion(manager.getUtility(), Constants.ORANGE_CIRCLE_X, Constants.ORANGE_CIRCLE_Y, Constants.ORANGE_CIRCLE_R, Constants.ORANGE_CIRCLE_R);
         grayCircle = new TextureRegion(manager.getUtility(), Constants.GRAY_CIRCLE_X, Constants.GRAY_CIRCLE_Y, Constants.GRAY_CIRCLE_R, Constants.GRAY_CIRCLE_R);
-        reader = new DatabaseReader();
 
         touchpoint = new Vector3();
         stages[0] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_1_X,
@@ -88,7 +87,6 @@ public class StageSelectState extends State{
                 if(stages[i].contains(touchpoint.x, touchpoint.y)){
                     manager.set(new PlayState(manager));
                     System.out.println("You clicked at stage " + (i + 1)  + "!!");
-                    reader.getQuestions("Easy","Stage 1","");
                 }
             }
         }
