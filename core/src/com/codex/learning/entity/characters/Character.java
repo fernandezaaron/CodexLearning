@@ -386,7 +386,7 @@ public class Character extends Entity {
     public void dropBlock(BlockHolder blockHolder){
 
 //        System.out.println("Occupied - " + blockHolder.isOccupied());
-        
+
         // To prevent pickup in an empty block holder
         if(blockHolder.isOccupied() && !isCarrying()){
             setPickUpAble(true);
