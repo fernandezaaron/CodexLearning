@@ -27,7 +27,7 @@ public class Constants {
     public static final String FONT_STYLE = "font/PokemonClassic.fnt";
     // MAP ASSET PATH
     public static final String PAUSE_STATE_PATH = "background/pausespritesheet.png";
-    public static final String STAGE_SELECT_PATH = "map/stageselectmap2.png";
+    public static final String STAGE_SELECT_PATH = "map/stageselectmap.png";
 
 
     // TEXT ASSET PATH
