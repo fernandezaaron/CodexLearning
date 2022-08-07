@@ -14,6 +14,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class DatabaseReader extends Thread {
     private Workbook wb;
     private String question, difficulty, stage, topic, option1, option2, option3, option4;
+    private String[] options;
 
     public DatabaseReader() {
         wb = null;
@@ -21,6 +22,11 @@ public class DatabaseReader extends Thread {
         difficulty = "";
         stage = "";
         topic = "";
+        options = new String[4];
+
+        for(int i = 0; i < 4; i++){
+            options[i] = "";
+        }
         option1 = "";
         option2 = "";
         option3 = "";

@@ -87,6 +87,11 @@ public class StageSelectState extends State{
                 if(stages[i].contains(touchpoint.x, touchpoint.y)){
                     manager.set(new PlayState(manager));
                     System.out.println("You clicked at stage " + (i + 1)  + "!!");
+
+                    // ITO COMMENT OUT TO COMPARE
+                    manager.getReader().getQuestions("Easy","Stage 1","");
+                    // ITO COMMENT OUT TO COMPARE
+
                 }
             }
         }
