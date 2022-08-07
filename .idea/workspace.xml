@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bec48db2-8361-48a5-88e4-0e949fc72c35" name="Changes" comment="">
+    <list default="true" id="bec48db2-8361-48a5-88e4-0e949fc72c35" name="Changes" comment="asset folder for excel&#10;excel reader file&#10;apache implementation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/core/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/Character.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/StageSelectState.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/StageSelectState.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,6 +133,21 @@
       <option name="presentableId" value="Default" />
       <updated>1650520661994</updated>
     </task>
+    <task id="LOCAL-00001" summary="asset folder for excel&#10;excel reader file&#10;apache implementation">
+      <created>1659855862405</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1659855862405</updated>
+    </task>
+    <task id="LOCAL-00002" summary="asset folder for excel&#10;excel reader file&#10;apache implementation">
+      <created>1659856052976</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1659856052976</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -149,6 +161,10 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="asset folder for excel&#10;excel reader file&#10;apache implementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="asset folder for excel&#10;excel reader file&#10;apache implementation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -166,11 +182,6 @@
           <url>file://$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java</url>
           <line>91</line>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/core/src/com/codex/learning/utility/DatabaseReader.java</url>
-          <line>13</line>
-          <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/core/src/com/codex/learning/states/StageSelectState.java</url>
