@@ -26,9 +26,10 @@ public class Manager {
     private TextureRegion stageSelect, utility;
     private TextureRegion spriteSheet;
     private TextureRegion blockSheet;
-    private TextureRegion reportcardsheet;
+    private TextureRegion reportCardSheet;
+    private TextureRegion pcStateSheet;
 
-    private TextureRegion pausestatesheet;
+    private TextureRegion pauseStateSheet;
 
     private BitmapFont font;
 
@@ -54,9 +55,9 @@ public class Manager {
 
         spriteSheet = new TextureRegion(new Texture(Constants.CHARACTER_SHEET_PATH));
 
-        reportcardsheet = new TextureRegion(new Texture(Constants.REPORT_CARD_SHEET_PATH));
-
-        pausestatesheet = new TextureRegion(new Texture(Constants.PAUSE_STATE_PATH));
+        reportCardSheet = new TextureRegion(new Texture(Constants.REPORT_CARD_SHEET_PATH));
+        pauseStateSheet = new TextureRegion(new Texture(Constants.PAUSE_STATE_PATH));
+        pcStateSheet = new TextureRegion(new Texture(Constants.PC_SHEET_PATH));
 
         font = new BitmapFont(Gdx.files.internal(Constants.FONT_STYLE));
         font.getData().scale(0.7f);
@@ -121,6 +122,12 @@ public class Manager {
     public TextureRegion getUtility() {
         return utility;
     }
+    public TextureRegion getPcStateSheet() {
+        return pcStateSheet;
+    }
+    public void setPcStateSheet(TextureRegion pcStateSheet) {
+        this.pcStateSheet = pcStateSheet;
+    }
     public TextureRegion getSpriteSheet() {
         return spriteSheet;
     }
@@ -130,9 +137,9 @@ public class Manager {
     public BitmapFont getFont() {
         return font;
     }
-    public TextureRegion getReportcardsheet(){ return reportcardsheet; }
-    public TextureRegion getPausestatesheet() {
-        return pausestatesheet;
+    public TextureRegion getReportCardSheet(){ return reportCardSheet; }
+    public TextureRegion getPauseStateSheet() {
+        return pauseStateSheet;
     }
     public Contact getCl() {
         return cl;
