@@ -32,6 +32,8 @@ public class Manager {
 
     private BitmapFont font;
 
+    private DatabaseReader reader;
+
     public Manager(){
 
         b2dr = new Box2DDebugRenderer();
@@ -39,6 +41,7 @@ public class Manager {
         cl = new Contact();
         world = new World(new Vector2(0,0),false);
         world.setContactListener(cl);
+        reader = new DatabaseReader();
 
         background = new TextureRegion(new Texture(Constants.BACKGROUND_PATH));
         mainMenu = new TextureRegion(new Texture(Constants.MENU_TEXT_PATH));
@@ -136,5 +139,11 @@ public class Manager {
     }
     public void setCl(Contact cl) {
         this.cl = cl;
+    }
+    public DatabaseReader getReader() {
+        return reader;
+    }
+    public void setReader(DatabaseReader reader) {
+        this.reader = reader;
     }
 }

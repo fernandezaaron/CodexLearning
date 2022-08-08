@@ -14,8 +14,6 @@ import com.codex.learning.entity.Entity;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
-import java.util.ArrayList;
-
 public class BlockDispenser extends Entity {
     private TextureRegion blockDispenser;
     private boolean inDispenser;
@@ -28,7 +26,6 @@ public class BlockDispenser extends Entity {
     private ShapeRenderer blockID;
     private Blocks[] blocks;
     private Vector2 blockSize;
-    private Blocks sample;
 
     public BlockDispenser(Manager manager, String direction, String id, String name, int limit, Vector2 blockSize) {
         super(manager);
@@ -78,7 +75,6 @@ public class BlockDispenser extends Entity {
 
     @Override
     public void update(float delta) {
-//        createBlock();
     }
 
     @Override
@@ -106,31 +102,16 @@ public class BlockDispenser extends Entity {
         sprite.end();
 
         if(spawned){
-//            blocks[limit] = sample;
             limit--;
 
             spawned = false;
             cloned = true;
         }
 
-        if(cloned){
-            for(Blocks i: blocks){
-                if (i != null) {
-                    i.render(sprite);
-                }
-                else{
-                    continue;
-                }
-            }
-        }
     }
 
     public void createBlock(Vector2 position){
         if(isInDispenser() && limit > 0 && Gdx.input.isKeyJustPressed(Input.Keys.E)){
-
-//            sample = new Blocks(manager, id, name);
-//            sample.create(new Vector2(this.position.x, this.position.y - limit * 3),
-//                    blockSize,0);
 
             blocks[limit] = new Blocks(manager, id, name);
             blocks[limit].create(new Vector2(position.x, position.y + 3),
@@ -206,7 +187,6 @@ public class BlockDispenser extends Entity {
             break;
             case 4:
                 x = this.size.x - (this.size.x * Constants.PPM * 3.2f) + (Constants.PPM * body.getPosition().x);
-                //x = 0f;
             break;
         }
         return x;
@@ -220,16 +200,15 @@ public class BlockDispenser extends Entity {
         this.inDispenser = inDispenser;
     }
 
-    public boolean isSpawned() {
-        return spawned;
+    public Blocks[] getBlocks(){
+        return blocks;
     }
 
-    public void setSpawned(boolean spawned) {
-        this.spawned = spawned;
+    public boolean isCloned() {
+        return cloned;
     }
 
-    public Blocks getCurrentBlock(){
-        return blocks[limit];
+    public void setCloned(boolean cloned) {
+        this.cloned = cloned;
     }
-
 }

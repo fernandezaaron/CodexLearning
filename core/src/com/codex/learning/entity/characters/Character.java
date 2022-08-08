@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
+import com.codex.learning.entity.blocks.BlockDispenser;
 import com.codex.learning.entity.blocks.BlockHolder;
 import com.codex.learning.entity.blocks.Blocks;
 import com.codex.learning.entity.Entity;
@@ -27,7 +28,6 @@ public class Character extends Entity {
     private boolean isMoving;
     private boolean isLeft;
     private boolean isCarrying;
-    private boolean isInteractingDispenser;
     protected boolean pickUpAble;
     private boolean fixture;
     private int carry;
@@ -81,7 +81,6 @@ public class Character extends Entity {
 
         // Used to check if the character is carrying a block
         isCarrying = false;
-        isInteractingDispenser = false;
         setCopyBlock(null);
 
         // Used to know the last keyboard pressed of the user
@@ -262,7 +261,7 @@ public class Character extends Entity {
             up.update(delta);
             setMoving(false);
         }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.E) && (isPickUpAble() || isInteractingDispenser())){
+        if(Gdx.input.isKeyJustPressed(Input.Keys.E) && isPickUpAble()){
             if (isCarrying()) {
                 setCarrying(false);
             }
@@ -374,10 +373,9 @@ public class Character extends Entity {
     }
 
     public void carryBlock(Blocks block){
-        if(isInteractingDispenser() && carry == 0 && isCarrying()){
+        if(isCarrying() && carry == 0){
             carry = 1;
             setCopyBlock(block);
-            System.out.println("carrying  " + getCopyBlock());
         }
         if(getCopyBlock() != null){
             getCopyBlock().getBody().setType(BodyDef.BodyType.DynamicBody);
@@ -386,20 +384,9 @@ public class Character extends Entity {
         block.getBody().setType(BodyDef.BodyType.StaticBody);
     }
 
-//    public void carryBlock(Blocks block){
-//        if(isCarrying() && carry == 0){
-//            carry = 1;
-//            setCopyBlock(block);
-//            System.out.println("carrying  " + getCopyBlock());
-//        }
-//        if(getCopyBlock() != null){
-//            getCopyBlock().getBody().setType(BodyDef.BodyType.DynamicBody);
-//            getCopyBlock().getBody().setTransform(body.getPosition().x, body.getPosition().y + 3f, 0);
-//        }
-//        block.getBody().setType(BodyDef.BodyType.StaticBody);
-//    }
-
     public void dropBlock(BlockHolder blockHolder){
+
+//        System.out.println("Occupied - " + blockHolder.isOccupied());
 
         // To prevent pickup in an empty block holder
         if(blockHolder.isOccupied() && !isCarrying()){
@@ -408,9 +395,6 @@ public class Character extends Entity {
         else{
             setPickUpAble(false);
         }
-
-//        System.out.println("FIX - " + isFixture());
-//        System.out.println("OCCU - " + blockHolder.isOccupied());
 
         if(blockHolder.isOccupied()){
             blockHolder.setCopyBlock(getCopyBlock());
@@ -446,15 +430,13 @@ public class Character extends Entity {
         else if(Gdx.input.isKeyJustPressed(Input.Keys.E) && isFixture() && blockHolder.isOccupied()){
 
             blockHolder.setCopyBlock(null);
-
             if(!isCarrying()){
                 blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().first());
                 for(int i = 0; i < blockHolder.getBody().getFixtureList().size; i++){
                     blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().removeIndex(i));
                 }
+                blockHolder.createDefaultFixture();
             }
-
-            blockHolder.createDefaultFixture();
 
             if(isCarrying()){
                 blockHolder.setOccupied(true);
@@ -481,14 +463,6 @@ public class Character extends Entity {
 
     public void setPickUpAble(boolean pickUpAble) {
         this.pickUpAble = pickUpAble;
-    }
-
-    public boolean isInteractingDispenser() {
-        return isInteractingDispenser;
-    }
-
-    public void setInteractingDispenser(boolean interactingDispenser) {
-        isInteractingDispenser = interactingDispenser;
     }
 
     public boolean isCarrying() {

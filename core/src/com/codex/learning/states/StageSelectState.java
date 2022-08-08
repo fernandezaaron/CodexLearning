@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.codex.learning.utility.Constants;
+import com.codex.learning.utility.DatabaseReader;
 import com.codex.learning.utility.Manager;
 
 //This class is used to have a response in the circles in stage select stage.
@@ -16,6 +17,7 @@ public class StageSelectState extends State{
     private TextureRegion orangeCircle, grayCircle;
     private Vector3 touchpoint;
     private Circle stages[] = new Circle[17];
+
 
     public StageSelectState(Manager manager){
         super(manager);
@@ -85,6 +87,11 @@ public class StageSelectState extends State{
                 if(stages[i].contains(touchpoint.x, touchpoint.y)){
                     manager.set(new PlayState(manager));
                     System.out.println("You clicked at stage " + (i + 1)  + "!!");
+
+                    // ITO COMMENT OUT TO COMPARE
+                    manager.getReader().getQuestions("Easy","Stage 1","");
+                    // ITO COMMENT OUT TO COMPARE
+
                 }
             }
         }
