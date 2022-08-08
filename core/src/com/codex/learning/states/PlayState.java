@@ -2,6 +2,7 @@ package com.codex.learning.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
@@ -29,6 +30,7 @@ public class PlayState extends State{
     private BlockDispenser[] blockDispensers;
 
     private PauseState pause;
+    private Music houseMusic;
 
     public PlayState(Manager manager) {
         super(manager);
@@ -88,6 +90,8 @@ public class PlayState extends State{
 
         totalBlocks = new Blocks[6];
         blockCount = 0;
+        manager.setMusic(Constants.HOUSE_MUSIC);
+
     }
 
     @Override

@@ -28,11 +28,17 @@ public class Constants {
     public static final String FONT_STYLE = "font/PokemonClassic.fnt";
     // MAP ASSET PATH
     public static final String PAUSE_STATE_PATH = "background/pausespritesheet.png";
-    public static final String STAGE_SELECT_PATH = "map/stageselectmap2.png";
+    public static final String STAGE_SELECT_PATH = "map/stageselectmap.png";
 
 
     // TEXT ASSET PATH
     public static final String MENU_TEXT_PATH = "text/textsheet.png";
+
+    //MUSIC ASSET PATH
+    public static final String MENU_MUSIC = "music/vibecheck1.wav";
+    public static final String STAGE_SELECT_MUSIC = "music/stageselect.wav";
+    public static final String HOUSE_MUSIC = "music/house.wav";
+
 
 //    MENU STATE
 
