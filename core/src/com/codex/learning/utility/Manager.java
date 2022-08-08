@@ -20,7 +20,6 @@ public class Manager {
     private Contact cl;
     private Box2DDebugRenderer b2dr;
 
-
     private TextureRegion mainMenu, background;
     private TextureRegion stage1;
     private TextureRegion stageSelect, utility;

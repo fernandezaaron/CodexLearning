@@ -16,7 +16,7 @@ import com.codex.learning.utility.Manager;
 
 public class BlockDispenser extends Entity {
     private TextureRegion blockDispenser;
-    private boolean inDispenser;
+    private boolean inContact;
     private boolean spawned;
     private boolean cloned;
     private String direction;
@@ -65,7 +65,7 @@ public class BlockDispenser extends Entity {
         body.setLinearVelocity(0, 0);
         shape.dispose();
 
-        inDispenser = false;
+        inContact = false;
         spawned = false;
         cloned = false;
 
@@ -111,7 +111,7 @@ public class BlockDispenser extends Entity {
     }
 
     public void createBlock(Vector2 position){
-        if(isInDispenser() && limit > 0 && Gdx.input.isKeyJustPressed(Input.Keys.E)){
+        if(isInContact() && limit > 0 && Gdx.input.isKeyJustPressed(Input.Keys.E)){
 
             blocks[limit] = new Blocks(manager, id, name);
             blocks[limit].create(new Vector2(position.x, position.y + 3),
@@ -192,12 +192,12 @@ public class BlockDispenser extends Entity {
         return x;
     }
 
-    public boolean isInDispenser() {
-        return inDispenser;
+    public boolean isInContact() {
+        return inContact;
     }
 
-    public void setInDispenser(boolean inDispenser) {
-        this.inDispenser = inDispenser;
+    public void setInContact(boolean inContact) {
+        this.inContact = inContact;
     }
 
     public Blocks[] getBlocks(){
