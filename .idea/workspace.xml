@@ -111,7 +111,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java</url>
-          <line>123</line>
+          <line>124</line>
           <properties class="com.codex.learning.utility.Manager" method="getSpriteSheet">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -129,7 +129,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java</url>
-          <line>142</line>
+          <line>143</line>
           <properties class="com.codex.learning.utility.Manager" method="getReader">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />

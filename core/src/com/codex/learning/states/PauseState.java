@@ -23,15 +23,15 @@ public class PauseState extends State {
     public PauseState(Manager manager){
         super(manager);
         isRunning = true;
-        pauseMenu = new TextureRegion(manager.getPausestatesheet(), Constants.PAUSE_BOARD_X, Constants.PAUSE_BOARD_Y, Constants.PAUSE_BOARD_WIDTH, Constants.PAUSE_BOARD_HEIGHT);
-        continueButton = new TextureRegion(manager.getPausestatesheet(), Constants.CONTINUE_BUTTON_X, Constants. CONTINUE_BUTTON_Y, Constants.CONTINUE_BUTTON_WIDTH, Constants.CONTINUE_BUTTON_HEIGHT);
-        retryButton = new TextureRegion(manager.getPausestatesheet(), Constants.RETRY_BUTTON_X, Constants.RETRY_BUTTON_Y, Constants.RETRY_BUTTON_WIDTH, Constants.RETRY_BUTTON_HEIGHT);
-        stageSelectButton = new TextureRegion(manager.getPausestatesheet(), Constants.STAGE_BUTTON_X, Constants.STAGE_BUTTON_Y, Constants.STAGE_BUTTON_WIDTH, Constants.STAGE_BUTTON_HEIGHT);
-        quitButton = new TextureRegion(manager.getPausestatesheet(), Constants.QUIT_BUTTON_X, Constants.QUIT_BUTTON_Y, Constants.QUIT_BUTTON_WIDTH, Constants.QUIT_BUTTON_HEIGHT);
-        hlContinueButton = new TextureRegion(manager.getPausestatesheet(), 859, 480, 161, 161);
-        hlRetryButton = new TextureRegion(manager.getPausestatesheet(), 1074, 459, 197, 171);
-        hlStageSelectButton = new TextureRegion(manager.getPausestatesheet(), 1303, 477, 178, 143);
-        hlQuitButton = new TextureRegion(manager.getPausestatesheet(), 1079, 689, 177, 182);
+        pauseMenu = new TextureRegion(manager.getPauseStateSheet(), Constants.PAUSE_BOARD_X, Constants.PAUSE_BOARD_Y, Constants.PAUSE_BOARD_WIDTH, Constants.PAUSE_BOARD_HEIGHT);
+        continueButton = new TextureRegion(manager.getPauseStateSheet(), Constants.CONTINUE_BUTTON_X, Constants. CONTINUE_BUTTON_Y, Constants.CONTINUE_BUTTON_WIDTH, Constants.CONTINUE_BUTTON_HEIGHT);
+        retryButton = new TextureRegion(manager.getPauseStateSheet(), Constants.RETRY_BUTTON_X, Constants.RETRY_BUTTON_Y, Constants.RETRY_BUTTON_WIDTH, Constants.RETRY_BUTTON_HEIGHT);
+        stageSelectButton = new TextureRegion(manager.getPauseStateSheet(), Constants.STAGE_BUTTON_X, Constants.STAGE_BUTTON_Y, Constants.STAGE_BUTTON_WIDTH, Constants.STAGE_BUTTON_HEIGHT);
+        quitButton = new TextureRegion(manager.getPauseStateSheet(), Constants.QUIT_BUTTON_X, Constants.QUIT_BUTTON_Y, Constants.QUIT_BUTTON_WIDTH, Constants.QUIT_BUTTON_HEIGHT);
+        hlContinueButton = new TextureRegion(manager.getPauseStateSheet(), 859, 480, 161, 161);
+        hlRetryButton = new TextureRegion(manager.getPauseStateSheet(), 1074, 459, 197, 171);
+        hlStageSelectButton = new TextureRegion(manager.getPauseStateSheet(), 1303, 477, 178, 143);
+        hlQuitButton = new TextureRegion(manager.getPauseStateSheet(), 1079, 689, 177, 182);
 
         coords = new Vector3();
         continueBounds = new Rectangle(-300, 35, Constants.CONTINUE_BUTTON_WIDTH, Constants.CONTINUE_BUTTON_HEIGHT);

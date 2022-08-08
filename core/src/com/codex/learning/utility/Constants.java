@@ -10,11 +10,12 @@ public class Constants {
     public static final int SCREEN_HEIGHT = 900;
 
     // BACKGROUND ASSET PATH
-    public static final String BACKGROUND_PATH = "background/mainmenu2.png";
-    public static final String SKY_BACKGROUND_PATH = "background/skyBG.png";
     public static final String CLOUD_PATH = "background/clouds.png";
     public static final String STAGE1_PATH = "map/housemap.png";
+    public static final String BACKGROUND_PATH = "background/mainmenu2.png";
     public static final String REPORT_CARD_SHEET_PATH = "background/reportcardspritesheet.png";
+    public static final String SKY_BACKGROUND_PATH = "background/skyBG.png";
+    public static final String PC_SHEET_PATH = "background/pcstatesheet.png";
 
     // BLOCK ASSET PATH
     public static final String BLOCK_SHEET_PATH = "block/blocksheet.png";
@@ -198,7 +199,7 @@ public class Constants {
     public static final float BLOCKS_BRACE_WIDTH = 0.7f;
     public static final float BLOCKS_ARGS_WIDTH = 2.9f;
 
-    public static final float BLOCKS_HEIGHT = 0.815f;
+    public static final float BLOCKS_HEIGHT = 0.78f;
 
     public static final float BLOCK_HOLDER_WIDTH = 0.7f;
     public static final float BLOCK_HOLDER_HEIGHT = 0.8f;

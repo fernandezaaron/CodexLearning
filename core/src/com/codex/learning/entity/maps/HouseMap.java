@@ -35,7 +35,7 @@ public class HouseMap extends State {
 //      Used to exit the map
         atDoor = false;
 
-        door = new TextureRegion(manager.getReportcardsheet(), 48,195, 263, 119);
+        door = new TextureRegion(manager.getReportCardSheet(), 48,195, 263, 119);
     }
 
     @Override

@@ -89,7 +89,7 @@ public class StageSelectState extends State{
                     System.out.println("You clicked at stage " + (i + 1)  + "!!");
 
                     // ITO COMMENT OUT TO COMPARE
-                    manager.getReader().getQuestions("Easy","Stage 1","");
+//                    manager.getReader().getQuestions("Easy","Stage 1","");
                     // ITO COMMENT OUT TO COMPARE
 
                 }
