@@ -157,6 +157,7 @@ public class Manager {
     public void setMusic(String file){
         music = Gdx.audio.newMusic(Gdx.files.internal(file));
         music.play();
+        music.setVolume(0.2f);
         music.setLooping(true);
     }
     public void stopMusic(Music music){

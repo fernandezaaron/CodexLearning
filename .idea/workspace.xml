@@ -111,7 +111,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java</url>
-          <line>125</line>
+          <line>127</line>
           <properties class="com.codex.learning.utility.Manager">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -129,7 +129,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java</url>
-          <line>148</line>
+          <line>150</line>
           <properties class="com.codex.learning.utility.Manager" method="getReader">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -138,7 +138,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java</url>
-          <line>123</line>
+          <line>125</line>
           <properties class="com.codex.learning.utility.Manager" method="getPcStateSheet">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />

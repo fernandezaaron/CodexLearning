@@ -9,12 +9,14 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.codex.learning.entity.Entity;
+import com.codex.learning.states.minigames.CodeRiddle;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
 public class Computer extends Entity {
     private TextureRegion pc;
     private boolean inContact;
+    private CodeRiddle codeRiddle;
 
     public Computer(Manager manager) {
         super(manager);
@@ -47,6 +49,7 @@ public class Computer extends Entity {
         inContact = false;
 
         pc = new TextureRegion(manager.getPcStateSheet(), Constants.PC_X, Constants.PC_Y, Constants.PC_WIDTH, Constants.PC_HEIGHT);
+        codeRiddle = new CodeRiddle(manager);
 
     }
 
@@ -65,11 +68,12 @@ public class Computer extends Entity {
                     body.getPosition().x * Constants.PPM - pc.getRegionWidth() / 2,
                     body.getPosition().y * Constants.PPM - pc.getRegionHeight() / 2);
         sprite.end();
+        codeRiddle.render(sprite);
     }
 
     private void checkIfClicked(){
         if(isInContact() && Gdx.input.isKeyJustPressed(Input.Keys.E)){
-            System.out.println("CLICKED E");
+            codeRiddle.setInComputer(true);
         }
     }
 

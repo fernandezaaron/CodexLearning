@@ -159,7 +159,7 @@ public class PlayState extends State{
         sprite.begin();
         sprite.end();
 
-//        house.render(sprite);
+        house.render(sprite);
 
         for(int i = 0; i < 3; i++){
             blockHolders[i].render(sprite);
