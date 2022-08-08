@@ -156,10 +156,20 @@ public class Constants {
 
     public static final int CONTINUE_BOUNDS_X = 496;
     public static final int CONTINUE_BOUNDS_Y = 61;
-
-
-
     //END OF PAUSE STATE
+
+    //PC ASSETS
+    public static final int PC_X = 111;
+    public static final int PC_Y = 24;
+    public static final int PC_WIDTH = 56;
+    public static final int PC_HEIGHT = 43;
+
+    public static final int PC_SCREEN_X = 34;
+    public static final int PC_SCREEN_Y = 105;
+    public static final int PC_SCREEN_WIDTH = 1006;
+    public static final int PC_SCREEN_HEIGHT = 719;
+
+    //END OF PC ASSETS
 
     //JEDISAUR SPRITE SHEET
     public static final int JEDI_STAND_X = 0;

@@ -46,7 +46,7 @@ public class Computer extends Entity {
 
         inContact = false;
 
-        pc = new TextureRegion(manager.getPcStateSheet(), 111, 24, 56, 43);
+        pc = new TextureRegion(manager.getPcStateSheet(), Constants.PC_X, Constants.PC_Y, Constants.PC_WIDTH, Constants.PC_HEIGHT);
 
     }
 
