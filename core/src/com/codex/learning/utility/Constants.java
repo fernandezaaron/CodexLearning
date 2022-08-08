@@ -34,6 +34,12 @@ public class Constants {
     // TEXT ASSET PATH
     public static final String MENU_TEXT_PATH = "text/textsheet.png";
 
+    //MUSIC ASSET PATH
+    public static final String MENU_MUSIC = "music/vibecheck1.wav";
+    public static final String STAGE_SELECT_MUSIC = "music/stageselect.wav";
+    public static final String HOUSE_MUSIC = "music/house.wav";
+
+
 //    MENU STATE
 
     public static final int BACKGROUND_SPEED = 50;

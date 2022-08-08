@@ -1,6 +1,7 @@
 package com.codex.learning.utility;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -19,6 +20,7 @@ public class Manager {
     private final Stack<State> states;
     private Contact cl;
     private Box2DDebugRenderer b2dr;
+    private Music music;
 
 
     private TextureRegion mainMenu, background;
@@ -152,5 +154,17 @@ public class Manager {
     }
     public void setReader(DatabaseReader reader) {
         this.reader = reader;
+    }
+    public void setMusic(String file){
+        music = Gdx.audio.newMusic(Gdx.files.internal(file));
+        music.play();
+        music.setLooping(true);
+    }
+    public void stopMusic(Music music){
+        music.stop();
+    }
+
+    public Music getMusic(){
+        return music;
     }
 }

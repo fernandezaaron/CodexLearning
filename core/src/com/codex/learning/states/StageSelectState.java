@@ -61,6 +61,8 @@ public class StageSelectState extends State{
         stages[16] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 +Constants.STAGE_1_17_X,
                 manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2 + Constants.STAGE_1_17_Y, Constants.STAGE_RADIUS);
 
+        manager.setMusic(Constants.STAGE_SELECT_MUSIC);
+
     }
     @Override
     public void update(float delta) {
@@ -85,6 +87,7 @@ public class StageSelectState extends State{
             manager.getCamera().unproject(touchpoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
             for(int i = 0; i < stages.length; i++){
                 if(stages[i].contains(touchpoint.x, touchpoint.y)){
+                    manager.stopMusic(manager.getMusic());
                     manager.set(new PlayState(manager));
                     System.out.println("You clicked at stage " + (i + 1)  + "!!");
 
