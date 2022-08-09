@@ -19,9 +19,11 @@ public class MenuState extends State {
     private Vector3 touchpoint;
     private Rectangle javaDeluxeBounds, recipeBounds, jediTrialBounds, quitGameBounds, soundBounds, reportCardBounds, helpBounds, settingsBounds;
     private float xMax, xCoord;
+    private Settings settings;
 
     public MenuState(Manager manager) {
         super(manager);
+        settings = new Settings(manager);
 
 //        This is used to crop each sprite in a sprite sheet.
         textHighlight = new TextureRegion(manager.getMainMenu(), Constants.TEXT_HIGHLIGHT_X, Constants.TEXT_HIGHLIGHT_Y, Constants.TEXT_HIGHLIGHT_WIDTH, Constants.TEXT_HIGHLIGHT_HEIGHT);
@@ -50,13 +52,17 @@ public class MenuState extends State {
         xMax = 2235;
         xCoord = xMax*(-1);
 
+        settings.setSettings(false);
         manager.setMusic(Constants.MENU_MUSIC);
 
     }
 
     @Override
     public void update(float delta) {
-        input();
+        if(!settings.isSettings()){
+            input();
+        }
+
     }
 
     @Override
@@ -78,6 +84,7 @@ public class MenuState extends State {
                 manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         drawObject(sprite);
         sprite.end();
+        settings.render(sprite);
     }
 
     public void input(){
@@ -98,6 +105,11 @@ public class MenuState extends State {
             }
             if(jediTrialBounds.contains(touchpoint.x, touchpoint.y)){
                 System.out.println("You clicked at Jedi Trials!");
+            }
+            if(settingsBounds.contains(touchpoint.x, touchpoint.y)){
+                System.out.println("clicked at settings");
+                settings.setSettings(true);
+//                manager.set(new Settings(manager));
             }
             if(quitGameBounds.contains(touchpoint.x, touchpoint.y)){
                 System.out.println("You clicked at Quit Game!");

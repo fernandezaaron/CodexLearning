@@ -28,6 +28,7 @@ public class Constants {
     public static final String FONT_STYLE = "font/PokemonClassic.fnt";
     // MAP ASSET PATH
     public static final String PAUSE_STATE_PATH = "background/pausespritesheet.png";
+    public static final String SETTINGS_STATE_PATH = "background/settingssheet.png";
     public static final String STAGE_SELECT_PATH = "map/stageselectmap.png";
 
 
@@ -163,6 +164,50 @@ public class Constants {
     public static final int CONTINUE_BOUNDS_X = 496;
     public static final int CONTINUE_BOUNDS_Y = 61;
     //END OF PAUSE STATE
+
+    //SETTINGS SPRITE SHEET
+    public static final int SETTINGS_BOARD_X = 16;
+    public static final int SETTINGS_BOARD_Y = 13;
+    public static final int SETTINGS_BOARD_WIDTH = 799;
+    public static final int SETTINGS_BOARD_HEIGHT = 883;
+
+    public static final int ON_NORMAL_X = 898;
+    public static final int ON_NORMAL_Y = 100;
+    public static final int ON_NORMAL_WIDTH = 134;
+    public static final int ON_NORMAL_HEIGHT = 134;
+
+    public static final int OFF_NORMAL_X = 1224;
+    public static final int OFF_NORMAL_Y = 100;
+    public static final int OFF_NORMAL_WIDTH = 134;
+    public static final int OFF_NORMAL_HEIGHT = 134;
+
+    public static final int ON_HL_X = 898;
+    public static final int ON_HL_Y = 302;
+    public static final int ON_HL_WIDTH = 134;
+    public static final int ON_HL_HEIGHT = 134;
+
+    public static final int OFF_HL_X = 1224;
+    public static final int OFF_HL_Y = 302;
+    public static final int OFF_HL_WIDTH = 134;
+    public static final int OFF_HL_HEIGHT = 134;
+
+    public static final int CLOSE_NORMAL_X = 924;
+    public static final int CLOSE_NORMAL_Y = 500;
+    public static final int CLOSE_NORMAL_WIDTH = 84;
+    public static final int CLOSE_NORMAL_HEIGHT = 84;
+
+    public static final int CLOSE_HL_X = 1092;
+    public static final int CLOSE_HL_Y = 502;
+    public static final int CLOSE_HL_WIDTH = 84;
+    public static final int CLOSE_HL_HEIGHT = 84;
+
+
+
+
+
+
+
+    //END OF SETTINGS SPRITE SHEET
 
     //PC ASSETS
     public static final int PC_X = 111;

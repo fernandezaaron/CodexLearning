@@ -29,6 +29,7 @@ public class Manager {
     private TextureRegion blockSheet;
     private TextureRegion reportCardSheet;
     private TextureRegion pcStateSheet;
+    private TextureRegion settingsStateSheet;
 
     private TextureRegion pauseStateSheet;
 
@@ -58,6 +59,7 @@ public class Manager {
 
         reportCardSheet = new TextureRegion(new Texture(Constants.REPORT_CARD_SHEET_PATH));
         pauseStateSheet = new TextureRegion(new Texture(Constants.PAUSE_STATE_PATH));
+        settingsStateSheet = new TextureRegion(new Texture(Constants.SETTINGS_STATE_PATH));
         pcStateSheet = new TextureRegion(new Texture(Constants.PC_SHEET_PATH));
 
         font = new BitmapFont(Gdx.files.internal(Constants.FONT_STYLE));
@@ -142,6 +144,7 @@ public class Manager {
     public TextureRegion getPauseStateSheet() {
         return pauseStateSheet;
     }
+    public TextureRegion getSettingsStateSheet() {return settingsStateSheet;}
     public Contact getCl() {
         return cl;
     }
@@ -164,6 +167,8 @@ public class Manager {
     public void stopMusic(Music music){
         music.stop();
     }
+    public void pauseMusic (Music music) {music.pause();}
+    public void resumeMusic (Music music) {music.play();}
 
     public Music getMusic(){
         return music;
