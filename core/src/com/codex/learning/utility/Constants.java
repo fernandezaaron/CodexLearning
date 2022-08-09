@@ -220,10 +220,10 @@ public class Constants {
     public static final float BLOCKS_BRACE_WIDTH = 0.7f;
     public static final float BLOCKS_ARGS_WIDTH = 2.9f;
 
-    public static final float BLOCKS_HEIGHT = 0.78f;
+    public static final float BLOCKS_HEIGHT = 0.5f;
 
     public static final float BLOCK_HOLDER_WIDTH = 0.7f;
-    public static final float BLOCK_HOLDER_HEIGHT = 0.8f;
+    public static final float BLOCK_HOLDER_HEIGHT = 0.4f;
     //END OF BLOCK DISPENSER WIDTH HEIGHT
 
     //UTILITY SHEET

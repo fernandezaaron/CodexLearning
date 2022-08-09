@@ -407,10 +407,11 @@ public class Character extends Entity {
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.E) &&
                 getCopyBlock() != null && blockHolder.getCopyBlock() == null){
+            System.out.println(blockHolder.getBody().getPosition());
             // Blocks Adjustment
             getCopyBlock().getBody().setTransform(
                     blockHolder.getBody().getPosition().x,
-                    Constants.BLOCK_HOLDER_HEIGHT,
+                    Constants.BLOCK_HOLDER_HEIGHT + blockHolder.getBody().getPosition().y,
                     0);
             getCopyBlock().setInContact(false);
             getCopyBlock().getBody().setType(BodyDef.BodyType.StaticBody);

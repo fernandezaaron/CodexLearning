@@ -159,6 +159,7 @@ public class Manager {
         music.play();
         music.setVolume(0.2f);
         music.setLooping(true);
+
     }
     public void stopMusic(Music music){
         music.stop();
