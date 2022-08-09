@@ -15,7 +15,7 @@ public class Constants {
     public static final String BACKGROUND_PATH = "background/mainmenu2.png";
     public static final String REPORT_CARD_SHEET_PATH = "background/reportcardspritesheet.png";
     public static final String SKY_BACKGROUND_PATH = "background/skyBG.png";
-    public static final String PC_SHEET_PATH = "background/pcstatesheet.png";
+    public static final String PC_SHEET_PATH = "background/pcstatesheet1.png";
 
     // BLOCK ASSET PATH
     public static final String BLOCK_SHEET_PATH = "block/blocksheet.png";
@@ -210,20 +210,25 @@ public class Constants {
     //END OF SETTINGS SPRITE SHEET
 
     //PC ASSETS
-    public static final int PC_X = 111;
-    public static final int PC_Y = 24;
-    public static final int PC_WIDTH = 56;
+    public static final int PC_X = 102;
+    public static final int PC_Y = 31;
+    public static final int PC_WIDTH = 54;
     public static final int PC_HEIGHT = 43;
 
-    public static final int PC_SCREEN_X = 34;
-    public static final int PC_SCREEN_Y = 105;
-    public static final int PC_SCREEN_WIDTH = 1006;
-    public static final int PC_SCREEN_HEIGHT = 719;
+    public static final int PC_SCREEN_X = 82;
+    public static final int PC_SCREEN_Y = 144;
+    public static final int PC_SCREEN_WIDTH = 1425;
+    public static final int PC_SCREEN_HEIGHT = 887;
 
-    public static final int PC_QUESTION_X = 8;
-    public static final int PC_QUESTION_Y = 827;
-    public static final int PC_QUESTION_WIDTH = 772;
-    public static final int PC_QUESTION_HEIGHT = 246;
+    public static final int PC_QUESTION_X = 236;
+    public static final int PC_QUESTION_Y = 1231;
+    public static final int PC_QUESTION_WIDTH = 1113;
+    public static final int PC_QUESTION_HEIGHT = 349;
+
+    public static final int PC_CHOICES_X = 236;
+    public static final int PC_CHOICES_Y = 1133;
+    public static final int PC_CHOICES_WIDTH = 1111;
+    public static final int PC_CHOICES_HEIGHT = 72;
 
     //END OF PC ASSETS
 

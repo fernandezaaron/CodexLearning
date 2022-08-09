@@ -23,6 +23,7 @@ public class PauseState extends State {
     public PauseState(Manager manager){
         super(manager);
         isRunning = true;
+
         pauseMenu = new TextureRegion(manager.getPauseStateSheet(), Constants.PAUSE_BOARD_X, Constants.PAUSE_BOARD_Y, Constants.PAUSE_BOARD_WIDTH, Constants.PAUSE_BOARD_HEIGHT);
         continueButton = new TextureRegion(manager.getPauseStateSheet(), Constants.CONTINUE_BUTTON_X, Constants. CONTINUE_BUTTON_Y, Constants.CONTINUE_BUTTON_WIDTH, Constants.CONTINUE_BUTTON_HEIGHT);
         retryButton = new TextureRegion(manager.getPauseStateSheet(), Constants.RETRY_BUTTON_X, Constants.RETRY_BUTTON_Y, Constants.RETRY_BUTTON_WIDTH, Constants.RETRY_BUTTON_HEIGHT);

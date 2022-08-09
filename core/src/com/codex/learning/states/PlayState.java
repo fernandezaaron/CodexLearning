@@ -39,7 +39,7 @@ public class PlayState extends State{
 
         // WILL BE USED, DON'T ERASE
         blocks = new Blocks[4];
-        blockHolders = new BlockHolder[10];
+        blockHolders = new BlockHolder[4];
         // WILL BE USED, DON'T ERASE
 
         blockDispensers = new BlockDispenser[2];
@@ -47,21 +47,8 @@ public class PlayState extends State{
         computer = new Computer(manager);
         computer.create(new Vector2(-18, 2.8f), new Vector2(0.6f, 0.6f), 0);
 
-        for(int i = 0; i < 2; i++){
-            if(i == 0){
-                blockDispensers[i] = new BlockDispenser(manager, "Down", "ey", "   }  ",
-                        3, new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
-            }
-            else{
-                blockDispensers[i] = new BlockDispenser(manager, "Right", "asd", "   }  ",
-                        3, new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
-            }
-            blockDispensers[i].create(new Vector2(15 * i, -6), new Vector2(0.3f, 1.3f), 0);
-
-        }
-
         // WILL BE USED, DON'T ERASE
-        for(int i = 0; i < 10; i++){
+        for(int i = 0; i < 3; i++){
 //            if(i == 0){
 //                blocks[i] = new Blocks(manager, "}", "   } ");
 //                blocks[i].create(new Vector2(1.2f + (i * 10), 0),
@@ -77,16 +64,22 @@ public class PlayState extends State{
 //                blocks[i].create(new Vector2(1.2f + (i * 10), 0),
 //                        new Vector2(Constants.BLOCKS_ARGS_WIDTH, Constants.BLOCKS_HEIGHT), 0);
 //            }
-//            if(i == 0){
-//                blockHolders[i] = new BlockHolder(manager, "}");
-//                blockHolders[i].create(new Vector2(-3, -9), new Vector2(Constants.BLOCK_HOLDER_WIDTH, Constants.BLOCK_HOLDER_HEIGHT), 0);
-//            }else {
-                blockHolders[i] = new BlockHolder(manager, "}");
-                blockHolders[i].create(new Vector2(-3, 9 + (-9f * i/4)), new Vector2(Constants.BLOCK_HOLDER_WIDTH, Constants.BLOCK_HOLDER_HEIGHT), 0);
- //           }
-
+            blockHolders[i] = new BlockHolder(manager, "}");
+            blockHolders[i].create(new Vector2(6f , i * 3), new Vector2(Constants.BLOCK_HOLDER_WIDTH, Constants.BLOCK_HOLDER_HEIGHT), 0);
         }
         // WILL BE USED, DON'T ERASE
+
+        for(int i = 0; i < 2; i++){
+            if(i == 0){
+                blockDispensers[i] = new BlockDispenser(manager, "Down", "ey", "   }  ",
+                        3, new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
+            }
+            else{
+                blockDispensers[i] = new BlockDispenser(manager, "Right", "asd", "   }  ",
+                        3, new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
+            }
+            blockDispensers[i].create(new Vector2(15 * i, -6), new Vector2(0.3f, 1.3f), 0);
+        }
 
         jedisaur = new Character(manager);
         jedisaur.create(new Vector2(0, 0), new Vector2(1.2f, 1.75f), 1.6f);
@@ -140,7 +133,6 @@ public class PlayState extends State{
 //                }
                     if(blockHolders[i].isInContact()){
                         jedisaur.dropBlock(blockHolders[i]);
-                        System.out.println("dropped to " + i);
                     }
                 }
                 // WILL BE USED, DON'T ERASE
@@ -156,6 +148,9 @@ public class PlayState extends State{
                     jedisaur.setMoving(false);
                     jedisaur.update(delta);
                     jedisaur.getBody().setLinearVelocity(0,0);
+                }
+                if(computer.getCodeRiddle().isInComputer() && Gdx.input.isKeyJustPressed(Input.Keys.F)){
+                    computer.getCodeRiddle().setInComputer(false);
                 }
             }
         }else{
@@ -174,9 +169,9 @@ public class PlayState extends State{
         sprite.begin();
         sprite.end();
 
-        house.render(sprite);
+//        house.render(sprite);
 
-        for(int i = 0; i < 10; i++){
+        for(int i = 0; i < 3; i++){
             blockHolders[i].render(sprite);
         }
 
@@ -194,13 +189,21 @@ public class PlayState extends State{
             }
         }
 
+
 //        for(int i = 0; i < 3; i++){
 //            blocks[i].render(sprite);
 //        }
 
         jediGrandpa.render(sprite);
-        computer.render(sprite);
-        jedisaur.render(sprite);
+
+        if(computer.getCodeRiddle().isInComputer()){
+            jedisaur.render(sprite);
+            computer.render(sprite);
+        }
+        else{
+            computer.render(sprite);
+            jedisaur.render(sprite);
+        }
 
         pause.render(sprite);
     }
@@ -210,6 +213,13 @@ public class PlayState extends State{
         jedisaur.disposeBody();
         jediGrandpa.disposeBody();
         computer.disposeBody();
+
+        // WILL BE USED, DON'T ERASE
+        for(int i = 0; i < 3; i++){
+            blockHolders[i].disposeBody();
+//            blocks[i].disposeBody();
+        }
+        // WILL BE USED, DON'T ERASE
 
         for(int i = 0; i < 2; i++){
             blockDispensers[i].disposeBody();
@@ -225,12 +235,7 @@ public class PlayState extends State{
             }
         }
 
-        // WILL BE USED, DON'T ERASE
-        for(int i = 0; i < 3; i++){
-            blockHolders[i].disposeBody();
-//            blocks[i].disposeBody();
-        }
-        // WILL BE USED, DON'T ERASE
+
 
         house.dispose();
     }
