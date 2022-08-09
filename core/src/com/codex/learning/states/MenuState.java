@@ -16,7 +16,7 @@ public class MenuState extends State {
 
     private Music mainMenuMusic, stageSelectMusic;
     private TextureRegion musicLogo, textHighlight, skyBG, clouds;
-    private Vector3 touchpoint;
+    private Vector3 touchPoint;
     private Rectangle javaDeluxeBounds, recipeBounds, jediTrialBounds, quitGameBounds, soundBounds, reportCardBounds, helpBounds, settingsBounds;
     private float xMax, xCoord;
 
@@ -29,7 +29,7 @@ public class MenuState extends State {
         clouds = new TextureRegion(new Texture(Constants.CLOUD_PATH));
 
 //        Touch point will allow the user to have a touch response.
-        touchpoint = new Vector3();
+        touchPoint = new Vector3();
 //        Used to create an invisible rectangle for touch point.
   //      soundBounds = new Rectangle(Constants.SOUND_ON_SCREEN_X, Constants.SOUND_ON_SCREEN_Y, Constants.MUSIC_LOGO_WIDTH, Constants.MUSIC_LOGO_HEIGHT);
         javaDeluxeBounds = new Rectangle((int) (manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.DELUXE_ON_SCREEN_X),
@@ -82,61 +82,61 @@ public class MenuState extends State {
 
     public void input(){
         if(Gdx.input.justTouched()){
-            manager.getCamera().unproject(touchpoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
+            manager.getCamera().unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 //            if(soundBounds.contains(touchpoint.x, touchpoint.y)){
 //                System.out.println("You clicked at Sounds!");
 //            }
-            if(javaDeluxeBounds.contains(touchpoint.x, touchpoint.y)){
+            if(javaDeluxeBounds.contains(touchPoint.x, touchPoint.y)){
                 manager.stopMusic(manager.getMusic());
                 manager.set(new StageSelectState(manager));
 
             }
-            if(recipeBounds.contains(touchpoint.x, touchpoint.y)){
+            if(recipeBounds.contains(touchPoint.x, touchPoint.y)){
                 System.out.println("You clicked at JediGrandpa's Recipe!");
-                System.out.println(touchpoint.x + " " + touchpoint.y);
+                System.out.println(touchPoint.x + " " + touchPoint.y);
                 System.out.println(recipeBounds.x + " " + recipeBounds.y);
             }
-            if(jediTrialBounds.contains(touchpoint.x, touchpoint.y)){
+            if(jediTrialBounds.contains(touchPoint.x, touchPoint.y)){
                 System.out.println("You clicked at Jedi Trials!");
             }
-            if(quitGameBounds.contains(touchpoint.x, touchpoint.y)){
+            if(quitGameBounds.contains(touchPoint.x, touchPoint.y)){
                 System.out.println("You clicked at Quit Game!");
             }
         }
     }
 
     public void drawObject(SpriteBatch sprite){
-        manager.getCamera().unproject(touchpoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
+        manager.getCamera().unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
 //        if(soundBounds.contains(touchpoint.x, touchpoint.y)){
 //            sprite.draw(musicLogo, manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f + Constants.SOUND_ON_SCREEN_X,
 //                    manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f + Constants.SOUND_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH , Constants.TEXT_HIGHLIGHT_HEIGHT);
 //        }
-        if(javaDeluxeBounds.contains(touchpoint.x, touchpoint.y)){
+        if(javaDeluxeBounds.contains(touchPoint.x, touchPoint.y)){
             sprite.draw(textHighlight, manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f + Constants.DELUXE_ON_SCREEN_X,
                     manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f + Constants.DELUXE_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH , Constants.TEXT_HIGHLIGHT_HEIGHT);
         }
-        if(recipeBounds.contains(touchpoint.x, touchpoint.y)){
+        if(recipeBounds.contains(touchPoint.x, touchPoint.y)){
             sprite.draw(textHighlight, manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f + Constants.RECIPE_ON_SCREEN_X,
                     manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f + Constants.RECIPE_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH , Constants.TEXT_HIGHLIGHT_HEIGHT);
         }
-        if(jediTrialBounds.contains(touchpoint.x, touchpoint.y)){
+        if(jediTrialBounds.contains(touchPoint.x, touchPoint.y)){
             sprite.draw(textHighlight, manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f + Constants.TRIAL_ON_SCREEN_X,
                     manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f + Constants.TRIAL_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH , Constants.TEXT_HIGHLIGHT_HEIGHT);
         }
-        if(reportCardBounds.contains(touchpoint.x, touchpoint.y)){
+        if(reportCardBounds.contains(touchPoint.x, touchPoint.y)){
             sprite.draw(textHighlight, manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f + Constants.REPORT_CARD_ON_SCREEN_X,
                     manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f + Constants.REPORT_CARD_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH , Constants.TEXT_HIGHLIGHT_HEIGHT);
         }
-        if(helpBounds.contains(touchpoint.x, touchpoint.y)){
+        if(helpBounds.contains(touchPoint.x, touchPoint.y)){
             sprite.draw(textHighlight, manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f + Constants.HELP_ON_SCREEN_X,
                     manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f + Constants.HELP_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH , Constants.TEXT_HIGHLIGHT_HEIGHT);
         }
-        if(settingsBounds.contains(touchpoint.x, touchpoint.y)){
+        if(settingsBounds.contains(touchPoint.x, touchPoint.y)){
             sprite.draw(textHighlight, manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f + Constants.SETTINGS_ON_SCREEN_X,
                     manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f + Constants.SETTINGS_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH , Constants.TEXT_HIGHLIGHT_HEIGHT);
         }
-        if(quitGameBounds.contains(touchpoint.x, touchpoint.y)){
+        if(quitGameBounds.contains(touchPoint.x, touchPoint.y)){
             sprite.draw(textHighlight, manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f + Constants.QUIT_ON_SCREEN_X,
                     manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f + Constants.QUIT_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH , Constants.TEXT_HIGHLIGHT_HEIGHT);
         }

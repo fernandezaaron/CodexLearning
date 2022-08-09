@@ -56,7 +56,6 @@ public class Computer extends Entity {
     @Override
     public void update(float delta) {
         checkIfClicked();
-
     }
 
     @Override

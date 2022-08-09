@@ -149,6 +149,9 @@ public class PlayState extends State{
                     jedisaur.update(delta);
                     jedisaur.getBody().setLinearVelocity(0,0);
                 }
+                if(computer.getCodeRiddle().isInComputer() && Gdx.input.isKeyJustPressed(Input.Keys.F)){
+                    computer.getCodeRiddle().setInComputer(false);
+                }
             }
         }else{
             if(jedisaur.isMoving()){
@@ -192,8 +195,15 @@ public class PlayState extends State{
 //        }
 
         jediGrandpa.render(sprite);
-        computer.render(sprite);
-        jedisaur.render(sprite);
+
+        if(computer.getCodeRiddle().isInComputer()){
+            jedisaur.render(sprite);
+            computer.render(sprite);
+        }
+        else{
+            computer.render(sprite);
+            jedisaur.render(sprite);
+        }
 
         pause.render(sprite);
     }

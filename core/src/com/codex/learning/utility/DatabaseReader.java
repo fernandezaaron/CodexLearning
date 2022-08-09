@@ -15,15 +15,17 @@ public class DatabaseReader extends Thread {
     private Workbook wb;
     private String question, difficulty, stage, topic, option1, option2, option3, option4;
     private String[] options;
+    private String answer;
 
     public DatabaseReader() {
+        options = new String[4];
+
         wb = null;
         question = null;
         difficulty = "";
         stage = "";
         topic = "";
-        options = new String[4];
-
+        answer = "";
         for(int i = 0; i < 4; i++){
             options[i] = "";
         }
@@ -51,10 +53,14 @@ public class DatabaseReader extends Thread {
 
             question = getQuestion(questionID, 4, wb, difficulty, stage);
             if(question != null) {
-                option1 = getInfo(questionID, 5, wb);
-                option2 = getInfo(questionID , 6, wb);
-                option3 = getInfo(questionID, 7, wb);
-                option4 = getInfo(questionID, 8, wb);
+                for(int i = 0; i < 4; i++){
+                    options[i] = getInfo(questionID, i + 5, wb);
+                }
+                answer = getInfo(questionID, 9, wb);
+//                option1 = getInfo(questionID, 5, wb);
+//                option2 = getInfo(questionID , 6, wb);
+//                option3 = getInfo(questionID, 7, wb);
+//                option4 = getInfo(questionID, 8, wb);
             }
         }
 //        System.out.println(question);
@@ -91,5 +97,15 @@ public class DatabaseReader extends Thread {
         }
         else
             return null;
+    }
+
+    
+
+    public String[] getOptions() {
+        return options;
+    }
+
+    public String getAnswer() {
+        return answer;
     }
 }
