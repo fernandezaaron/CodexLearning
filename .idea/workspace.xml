@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bec48db2-8361-48a5-88e4-0e949fc72c35" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/entity/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Response.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/MenuState.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/MenuState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/DatabaseReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/DatabaseReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java" afterDir="false" />
-    </list>
+    <list default="true" id="bec48db2-8361-48a5-88e4-0e949fc72c35" name="Changes" comment="DatabaseReader modified&#10;Manager updated&#10;Menustate - javadeluxe reads the excel file&#10;response moved&#10;minigames excel added&#10;questionnaire added" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -100,6 +95,14 @@
       <option name="presentableId" value="Default" />
       <updated>1650520661994</updated>
     </task>
+    <task id="LOCAL-00001" summary="DatabaseReader modified&#10;Manager updated&#10;Menustate - javadeluxe reads the excel file&#10;response moved&#10;minigames excel added&#10;questionnaire added">
+      <created>1660046853076</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1660046853076</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -113,6 +116,10 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="DatabaseReader modified&#10;Manager updated&#10;Menustate - javadeluxe reads the excel file&#10;response moved&#10;minigames excel added&#10;questionnaire added" />
+    <option name="LAST_COMMIT_MESSAGE" value="DatabaseReader modified&#10;Manager updated&#10;Menustate - javadeluxe reads the excel file&#10;response moved&#10;minigames excel added&#10;questionnaire added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

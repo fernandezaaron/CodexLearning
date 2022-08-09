@@ -23,6 +23,10 @@ public class Questionnaire {
     }
 
     public void questionDisplay(String stage, String level) {
+        //for the meantime
+        stage = "Stage 1";
+        level = "Novice";
+
         read = new DatabaseReader();
         levels = new ArrayList<String>();
         Random randomizer = new Random(); //instance of random class
