@@ -10,11 +10,12 @@ public class Constants {
     public static final int SCREEN_HEIGHT = 900;
 
     // BACKGROUND ASSET PATH
-    public static final String BACKGROUND_PATH = "background/mainmenu2.png";
-    public static final String SKY_BACKGROUND_PATH = "background/skyBG.png";
     public static final String CLOUD_PATH = "background/clouds.png";
     public static final String STAGE1_PATH = "map/housemap.png";
+    public static final String BACKGROUND_PATH = "background/mainmenu2.png";
     public static final String REPORT_CARD_SHEET_PATH = "background/reportcardspritesheet.png";
+    public static final String SKY_BACKGROUND_PATH = "background/skyBG.png";
+    public static final String PC_SHEET_PATH = "background/pcstatesheet.png";
 
     // BLOCK ASSET PATH
     public static final String BLOCK_SHEET_PATH = "block/blocksheet.png";
@@ -27,11 +28,17 @@ public class Constants {
     public static final String FONT_STYLE = "font/PokemonClassic.fnt";
     // MAP ASSET PATH
     public static final String PAUSE_STATE_PATH = "background/pausespritesheet.png";
-    public static final String STAGE_SELECT_PATH = "map/stageselectmap2.png";
+    public static final String STAGE_SELECT_PATH = "map/stageselectmap.png";
 
 
     // TEXT ASSET PATH
     public static final String MENU_TEXT_PATH = "text/textsheet.png";
+
+    //MUSIC ASSET PATH
+    public static final String MENU_MUSIC = "music/vibecheck1.wav";
+    public static final String STAGE_SELECT_MUSIC = "music/stageselect.wav";
+    public static final String HOUSE_MUSIC = "music/house.wav";
+
 
 //    MENU STATE
 
@@ -155,10 +162,20 @@ public class Constants {
 
     public static final int CONTINUE_BOUNDS_X = 496;
     public static final int CONTINUE_BOUNDS_Y = 61;
-
-
-
     //END OF PAUSE STATE
+
+    //PC ASSETS
+    public static final int PC_X = 111;
+    public static final int PC_Y = 24;
+    public static final int PC_WIDTH = 56;
+    public static final int PC_HEIGHT = 43;
+
+    public static final int PC_SCREEN_X = 34;
+    public static final int PC_SCREEN_Y = 105;
+    public static final int PC_SCREEN_WIDTH = 1006;
+    public static final int PC_SCREEN_HEIGHT = 719;
+
+    //END OF PC ASSETS
 
     //JEDISAUR SPRITE SHEET
     public static final int JEDI_STAND_X = 0;
@@ -192,14 +209,17 @@ public class Constants {
     public static final int BLOCK_Y_HIGHLIGHT = 458;
 
     //END OF BLOCK SHEET
+
+    //BLOCK DISPENSER WIDTH HEIGHT
     public static final float BLOCKS_CLASS_WIDTH = 3.5f;
     public static final float BLOCKS_BRACE_WIDTH = 0.7f;
     public static final float BLOCKS_ARGS_WIDTH = 2.9f;
 
-    public static final float BLOCKS_HEIGHT = 0.815f;
+    public static final float BLOCKS_HEIGHT = 0.78f;
 
     public static final float BLOCK_HOLDER_WIDTH = 0.7f;
     public static final float BLOCK_HOLDER_HEIGHT = 0.8f;
+    //END OF BLOCK DISPENSER WIDTH HEIGHT
 
     //UTILITY SHEET
 

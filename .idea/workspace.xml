@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bec48db2-8361-48a5-88e4-0e949fc72c35" name="Changes" comment="asset folder for excel&#10;excel reader file&#10;apache implementation">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/core/build.gradle" afterDir="false" />
-    </list>
+    <list default="true" id="bec48db2-8361-48a5-88e4-0e949fc72c35" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,23 +14,6 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
-  </component>
-  <component name="ExternalProjectsManager">
-    <system id="GRADLE">
-      <state>
-        <projects_view>
-          <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="CodexLearning2" type="f1a62948:ProjectNode" />
-              </path>
-            </expand>
-            <select />
-          </tree_state>
-        </projects_view>
-      </state>
-    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -54,14 +34,16 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/maps/HouseMap.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Contact.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Constants.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/MenuState.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/PauseState.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../jediJump/core/src/com/jedijump/states/PlayState.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/Character.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Contact.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/maps/HouseMap.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../jediJump/core/src/com/jedijump/states/PauseState.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/MenuState.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Constants.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/PauseState.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -74,39 +56,18 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/xmlbeans-2.6.0.jar" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/background" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\background" />
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\text" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Users\Ryoshu\Documents\GitHub\CodexLearning2" />
-      <recent name="D:\Users\Ryoshu\Documents\GitHub\CodexLearning2\assets\lib" />
-      <recent name="D:\Users\Ryoshu\Documents\GitHub\CodexLearning2\assets\questions_excel" />
-    </key>
   </component>
-  <component name="RunManager" selected="Application.DesktopLauncher (1)">
-    <configuration name="DesktopLauncher (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.codex.learning.DesktopLauncher" />
-      <module name="CodexLearning2.desktop.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.codex.learning.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager">
     <configuration name="DesktopLauncher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.codex.learning.DesktopLauncher" />
-      <module name="CodexLearning2.desktop" />
+      <module name="CodexLearning.desktop.main" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.codex.learning.*" />
@@ -119,7 +80,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.DesktopLauncher (1)" />
         <item itemvalue="Application.DesktopLauncher" />
       </list>
     </recent_temporary>
@@ -133,21 +93,6 @@
       <option name="presentableId" value="Default" />
       <updated>1650520661994</updated>
     </task>
-    <task id="LOCAL-00001" summary="asset folder for excel&#10;excel reader file&#10;apache implementation">
-      <created>1659855862405</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1659855862405</updated>
-    </task>
-    <task id="LOCAL-00002" summary="asset folder for excel&#10;excel reader file&#10;apache implementation">
-      <created>1659856052976</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1659856052976</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -160,35 +105,56 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="asset folder for excel&#10;excel reader file&#10;apache implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="asset folder for excel&#10;excel reader file&#10;apache implementation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java</url>
-          <line>115</line>
+          <line>127</line>
           <properties class="com.codex.learning.utility.Manager">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java</url>
-          <line>91</line>
-          <option name="timeStamp" value="2" />
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/BlockDispenser.java</url>
+          <line>123</line>
+          <properties class="com.codex.learning.entity.blocks.BlockDispenser" method="createDispenser">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java</url>
+          <line>150</line>
+          <properties class="com.codex.learning.utility.Manager" method="getReader">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java</url>
+          <line>125</line>
+          <properties class="com.codex.learning.utility.Manager" method="getPcStateSheet">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/core/src/com/codex/learning/states/StageSelectState.java</url>
-          <line>88</line>
-          <option name="timeStamp" value="10" />
+          <url>file://$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/BlockDispenser.java</url>
+          <line>177</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

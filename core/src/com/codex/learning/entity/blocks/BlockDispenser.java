@@ -14,11 +14,9 @@ import com.codex.learning.entity.Entity;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
-import java.util.ArrayList;
-
 public class BlockDispenser extends Entity {
     private TextureRegion blockDispenser;
-    private boolean inDispenser;
+    private boolean inContact;
     private boolean spawned;
     private boolean cloned;
     private String direction;
@@ -28,7 +26,6 @@ public class BlockDispenser extends Entity {
     private ShapeRenderer blockID;
     private Blocks[] blocks;
     private Vector2 blockSize;
-    private Blocks sample;
 
     public BlockDispenser(Manager manager, String direction, String id, String name, int limit, Vector2 blockSize) {
         super(manager);
@@ -68,7 +65,7 @@ public class BlockDispenser extends Entity {
         body.setLinearVelocity(0, 0);
         shape.dispose();
 
-        inDispenser = false;
+        inContact = false;
         spawned = false;
         cloned = false;
 
@@ -78,7 +75,6 @@ public class BlockDispenser extends Entity {
 
     @Override
     public void update(float delta) {
-        createBlock();
     }
 
     @Override
@@ -106,34 +102,19 @@ public class BlockDispenser extends Entity {
         sprite.end();
 
         if(spawned){
-//            blocks[limit] = sample;
             limit--;
 
             spawned = false;
             cloned = true;
         }
 
-        if(cloned){
-            for(Blocks i: blocks){
-                if (i != null) {
-                    i.render(sprite);
-                }
-                else{
-                    continue;
-                }
-            }
-        }
     }
 
-    public void createBlock(){
-        if(isInDispenser() && limit > 0 && Gdx.input.isKeyJustPressed(Input.Keys.E)){
-
-//            sample = new Blocks(manager, id, name);
-//            sample.create(new Vector2(this.position.x, this.position.y - limit * 3),
-//                    blockSize,0);
+    public void createBlock(Vector2 position){
+        if(isInContact() && limit > 0 && Gdx.input.isKeyJustPressed(Input.Keys.E)){
 
             blocks[limit] = new Blocks(manager, id, name);
-            blocks[limit].create(new Vector2(this.position.x, this.position.y - limit * 3),
+            blocks[limit].create(new Vector2(position.x, position.y + 3),
                     blockSize,0);
             blocks[limit].setInContact(true);
             spawned = true;
@@ -177,13 +158,17 @@ public class BlockDispenser extends Entity {
             case "Down":
                 manager.getFont().draw(sprite, this.id,
                         adjustFontPosition(this.id.length()),
-                        (this.size.y + Constants.PPM * 7));
+                       (this.size.y + (this.size.y * (Constants.PPM * 1.5f))) + (Constants.PPM * body.getPosition().y));
+                       // this.position.y + (this.position.y / this.size.y * (Constants.PPM + this.size.y)));
+//                        this.size.y - body.getPosition().y);
+
             break;
             case "Left":
             case "Right":
                 manager.getFont().draw(sprite, this.id,
                         adjustFontPosition(this.id.length()),
-                        (float) (this.size.y + Constants.PPM * 7.5));
+                        (this.size.y + (this.size.y * (Constants.PPM * 1.9f))) + (Constants.PPM * body.getPosition().y));
+//                        (this.size.y / (Constants.PPM / body.getPosition().y * this.size.y)));
             break;
         }
     }
@@ -201,30 +186,29 @@ public class BlockDispenser extends Entity {
                 x = this.size.x - (this.size.x * Constants.PPM * 2.4f) + (Constants.PPM * body.getPosition().x);
             break;
             case 4:
-                x = 0f;
+                x = this.size.x - (this.size.x * Constants.PPM * 3.2f) + (Constants.PPM * body.getPosition().x);
             break;
         }
         return x;
     }
 
-    public boolean isInDispenser() {
-        return inDispenser;
+    public boolean isInContact() {
+        return inContact;
     }
 
-    public void setInDispenser(boolean inDispenser) {
-        this.inDispenser = inDispenser;
+    public void setInContact(boolean inContact) {
+        this.inContact = inContact;
     }
 
-    public boolean isSpawned() {
-        return spawned;
+    public Blocks[] getBlocks(){
+        return blocks;
     }
 
-    public void setSpawned(boolean spawned) {
-        this.spawned = spawned;
+    public boolean isCloned() {
+        return cloned;
     }
 
-    public Blocks getCurrentBlock(){
-        return blocks[limit + 1];
+    public void setCloned(boolean cloned) {
+        this.cloned = cloned;
     }
-
 }

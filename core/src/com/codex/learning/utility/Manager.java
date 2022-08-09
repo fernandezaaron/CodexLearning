@@ -1,6 +1,7 @@
 package com.codex.learning.utility;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -19,18 +20,21 @@ public class Manager {
     private final Stack<State> states;
     private Contact cl;
     private Box2DDebugRenderer b2dr;
-
+    private Music music;
 
     private TextureRegion mainMenu, background;
     private TextureRegion stage1;
     private TextureRegion stageSelect, utility;
     private TextureRegion spriteSheet;
     private TextureRegion blockSheet;
-    private TextureRegion reportcardsheet;
+    private TextureRegion reportCardSheet;
+    private TextureRegion pcStateSheet;
 
-    private TextureRegion pausestatesheet;
+    private TextureRegion pauseStateSheet;
 
     private BitmapFont font;
+
+    private DatabaseReader reader;
 
     public Manager(){
 
@@ -39,6 +43,7 @@ public class Manager {
         cl = new Contact();
         world = new World(new Vector2(0,0),false);
         world.setContactListener(cl);
+        reader = new DatabaseReader();
 
         background = new TextureRegion(new Texture(Constants.BACKGROUND_PATH));
         mainMenu = new TextureRegion(new Texture(Constants.MENU_TEXT_PATH));
@@ -51,9 +56,9 @@ public class Manager {
 
         spriteSheet = new TextureRegion(new Texture(Constants.CHARACTER_SHEET_PATH));
 
-        reportcardsheet = new TextureRegion(new Texture(Constants.REPORT_CARD_SHEET_PATH));
-
-        pausestatesheet = new TextureRegion(new Texture(Constants.PAUSE_STATE_PATH));
+        reportCardSheet = new TextureRegion(new Texture(Constants.REPORT_CARD_SHEET_PATH));
+        pauseStateSheet = new TextureRegion(new Texture(Constants.PAUSE_STATE_PATH));
+        pcStateSheet = new TextureRegion(new Texture(Constants.PC_SHEET_PATH));
 
         font = new BitmapFont(Gdx.files.internal(Constants.FONT_STYLE));
         font.getData().scale(0.7f);
@@ -118,6 +123,12 @@ public class Manager {
     public TextureRegion getUtility() {
         return utility;
     }
+    public TextureRegion getPcStateSheet() {
+        return pcStateSheet;
+    }
+    public void setPcStateSheet(TextureRegion pcStateSheet) {
+        this.pcStateSheet = pcStateSheet;
+    }
     public TextureRegion getSpriteSheet() {
         return spriteSheet;
     }
@@ -127,14 +138,33 @@ public class Manager {
     public BitmapFont getFont() {
         return font;
     }
-    public TextureRegion getReportcardsheet(){ return reportcardsheet; }
-    public TextureRegion getPausestatesheet() {
-        return pausestatesheet;
+    public TextureRegion getReportCardSheet(){ return reportCardSheet; }
+    public TextureRegion getPauseStateSheet() {
+        return pauseStateSheet;
     }
     public Contact getCl() {
         return cl;
     }
     public void setCl(Contact cl) {
         this.cl = cl;
+    }
+    public DatabaseReader getReader() {
+        return reader;
+    }
+    public void setReader(DatabaseReader reader) {
+        this.reader = reader;
+    }
+    public void setMusic(String file){
+        music = Gdx.audio.newMusic(Gdx.files.internal(file));
+        music.play();
+        music.setVolume(0.2f);
+        music.setLooping(true);
+    }
+    public void stopMusic(Music music){
+        music.stop();
+    }
+
+    public Music getMusic(){
+        return music;
     }
 }

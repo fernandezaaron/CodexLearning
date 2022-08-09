@@ -22,6 +22,7 @@ public class BlockHolder extends Entity {
     private Blocks copyBlock;
     private String correctID;
 
+
     public BlockHolder(Manager manager, String correctID) {
         super(manager);
         this.correctID = correctID;
@@ -39,9 +40,6 @@ public class BlockHolder extends Entity {
 
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(this.size.x , this.size.y);
-
-//        shape.setAsBox(this.size.x , this.size.y / 0.8f,
-//                new Vector2(0, (this.size.y - this.size.y / 1.2f)), 0);
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.density = density;
@@ -73,14 +71,14 @@ public class BlockHolder extends Entity {
 
         sprite.begin();
         if(isInContact()){
-            sprite.draw(highlightBlock,
-                    body.getPosition().x * Constants.PPM - highlightBlock.getRegionWidth() / 2,
-                    body.getPosition().y * Constants.PPM - highlightBlock.getRegionHeight() / 2);
-        }
-        else{
-            sprite.draw(normalBlock,
-                    body.getPosition().x * Constants.PPM - highlightBlock.getRegionWidth() / 2,
-                    body.getPosition().y * Constants.PPM - highlightBlock.getRegionHeight() / 2);
+                sprite.draw(highlightBlock,
+                        body.getPosition().x * Constants.PPM - highlightBlock.getRegionWidth() / 2,
+                        body.getPosition().y * Constants.PPM - highlightBlock.getRegionHeight() / 2);
+            }
+            else{
+                sprite.draw(normalBlock,
+                        body.getPosition().x * Constants.PPM - highlightBlock.getRegionWidth() / 2,
+                        body.getPosition().y * Constants.PPM - highlightBlock.getRegionHeight() / 2);
         }
         sprite.end();
 
@@ -88,9 +86,9 @@ public class BlockHolder extends Entity {
 
     public void createFixture(float x, float y){
         PolygonShape shape = new PolygonShape();
-
         shape.setAsBox(x, y / 0.78f,
                 new Vector2(0, (y - y / 1.2f)), 0);
+
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.density = density;
         fixtureDef.shape = shape;
@@ -104,8 +102,6 @@ public class BlockHolder extends Entity {
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(this.size.x, this.size.y);
 
-//        shape.setAsBox(this.size.x , this.size.y / 0.8f,
-//                new Vector2(0, (this.size.y - this.size.y / 1.2f)), 0);
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.density = density;
         fixtureDef.shape = shape;

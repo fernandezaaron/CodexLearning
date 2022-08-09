@@ -2,12 +2,14 @@ package com.codex.learning.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
 import com.codex.learning.entity.blocks.BlockDispenser;
 import com.codex.learning.entity.blocks.BlockHolder;
 import com.codex.learning.entity.blocks.Blocks;
+import com.codex.learning.entity.blocks.Computer;
 import com.codex.learning.entity.characters.Character;
 import com.codex.learning.entity.characters.NPC;
 import com.codex.learning.entity.maps.HouseMap;
@@ -17,6 +19,7 @@ public class PlayState extends State{
     private Character jedisaur;
     private NPC jediGrandpa;
     private HouseMap house;
+    private Computer computer;
 
     private Blocks[] totalBlocks;
     private int blockCount;
@@ -24,45 +27,60 @@ public class PlayState extends State{
 
     private Blocks[] blocks;
     private BlockHolder[] blockHolders;
-    private BlockDispenser blockDispenser;
-    private BlockDispenser blockDispenser2;
+    private BlockDispenser[] blockDispensers;
+
     private PauseState pause;
+    private Music houseMusic;
+
     public PlayState(Manager manager) {
         super(manager);
         pause = new PauseState(manager);
         house = new HouseMap(manager);
 
-//        sample = new Blocks(manager, "class", "class HelloWorld{");
-//        sample.create(new Vector2(1.2f, 0), new Vector2(3.5f, 0.85f), 0);
-//
-//        sample2 = new Blocks(manager, "}", " } ");
-//        sample2.create(new Vector2(4.2f, -5), new Vector2(0.3f, 0.7f), 0);
-//
-//        sample3 = new Blocks(manager, "args", "String[] args)");
-//        sample3.create(new Vector2(5.9f, 5), new Vector2(2.9f, 0.7f), 0);
-
+        // WILL BE USED, DON'T ERASE
         blocks = new Blocks[4];
         blockHolders = new BlockHolder[4];
+        // WILL BE USED, DON'T ERASE
 
-        for(int i = 0; i < 3; i++){
+        blockDispensers = new BlockDispenser[2];
+
+        computer = new Computer(manager);
+        computer.create(new Vector2(-18, 2.8f), new Vector2(0.6f, 0.6f), 0);
+
+        for(int i = 0; i < 2; i++){
             if(i == 0){
-                blocks[i] = new Blocks(manager, "}", "   } ");
-                blocks[i].create(new Vector2(1.2f + (i * 10), 0),
-                        new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT), 0);
+                blockDispensers[i] = new BlockDispenser(manager, "Down", "ey", "   }  ",
+                        3, new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
             }
-            if(i == 1){
-                blocks[i] = new Blocks(manager, "class", "class HelloWorld{");
-                blocks[i].create(new Vector2(1.2f + (i * 10), 0),
-                        new Vector2(Constants.BLOCKS_CLASS_WIDTH, Constants.BLOCKS_HEIGHT), 0);
+            else{
+                blockDispensers[i] = new BlockDispenser(manager, "Right", "asd", "   }  ",
+                        3, new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
             }
-            if(i == 2){
-                blocks[i] = new Blocks(manager, "args", "String[] args)");
-                blocks[i].create(new Vector2(1.2f + (i * 10), 0),
-                        new Vector2(Constants.BLOCKS_ARGS_WIDTH, Constants.BLOCKS_HEIGHT), 0);
-            }
+            blockDispensers[i].create(new Vector2(15 * i, -6), new Vector2(0.3f, 1.3f), 0);
+
+        }
+
+        // WILL BE USED, DON'T ERASE
+        for(int i = 0; i < 3; i++){
+//            if(i == 0){
+//                blocks[i] = new Blocks(manager, "}", "   } ");
+//                blocks[i].create(new Vector2(1.2f + (i * 10), 0),
+//                        new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT), 0);
+//            }
+//            if(i == 1){
+//                blocks[i] = new Blocks(manager, "class", "class HelloWorld{");
+//                blocks[i].create(new Vector2(1.2f + (i * 10), 0),
+//                        new Vector2(Constants.BLOCKS_CLASS_WIDTH, Constants.BLOCKS_HEIGHT), 0);
+//            }
+//            if(i == 2){
+//                blocks[i] = new Blocks(manager, "args", "String[] args)");
+//                blocks[i].create(new Vector2(1.2f + (i * 10), 0),
+//                        new Vector2(Constants.BLOCKS_ARGS_WIDTH, Constants.BLOCKS_HEIGHT), 0);
+//            }
             blockHolders[i] = new BlockHolder(manager, "}");
             blockHolders[i].create(new Vector2(6f * i, 0), new Vector2(Constants.BLOCK_HOLDER_WIDTH, Constants.BLOCK_HOLDER_HEIGHT), 0);
         }
+        // WILL BE USED, DON'T ERASE
 
         jedisaur = new Character(manager);
         jedisaur.create(new Vector2(0, 0), new Vector2(1.2f, 1.75f), 1.6f);
@@ -70,72 +88,60 @@ public class PlayState extends State{
         jediGrandpa = new NPC(manager);
         jediGrandpa.create(new Vector2(-10, 0), new Vector2(1, 1.4f), 0);
 
-//        blockDispenser = new BlockDispenser(manager, "Down", "}", " } ", 3, new Vector2(0.3f, 0.7f));
-//        blockDispenser.create(new Vector2(1, 5), new Vector2(0.3f, 1.3f), 0);
-//
-//        blockDispenser2 = new BlockDispenser(manager, "Right", "}", " } ", 3, new Vector2(0.3f, 0.7f));
-//        blockDispenser2.create(new Vector2(6, 5), new Vector2(0.3f, 1.3f), 0);
-
         totalBlocks = new Blocks[6];
         blockCount = 0;
+        manager.setMusic(Constants.HOUSE_MUSIC);
+
     }
 
     @Override
     public void update(float delta) {
         manager.getWorld().step(1/60f,6,2);
         if(pause.isRunning()){
-//            if(blockDispenser.isSpawned()){
-//                totalBlocks[blockCount] = blockDispenser.getCurrentBlock();
-//                blockCount++;
 
-//                blockDispenser.getCurrentBlock().disposeBody();
-
-//                blockDispenser.getCurrentBlock().setInContact(true);
-//                jedisaur.carryBlock(blockDispenser.getCurrentBlock());
-//            }
-
-
-//        for(Blocks i: totalBlocks){
-//            if (i != null) {
-//                if(i.isInContact()){
-//                    jedisaur.carryBlock(i);
-//                }
-//            }
-//            else{
-//                continue;
-//            }
-//        }
-
-//            for(Blocks i: totalBlocks){
-//                if (i != null) {
-//                    i.update(delta);
-//                }
-//                else{
-//                    continue;
-//                }
-//            }
-
+            // WILL BE USED, DON'T ERASE
             for(int i = 0; i < 3; i++){
                 blockHolders[i].update(delta);
-                blocks[i].update(delta);
+//                blocks[i].update(delta);
+            }
+            // WILL BE USED, DON'T ERASE
+
+            for(int i = 0; i < 2; i++){
+//                blockDispensers[i].update(delta);
+                blockDispensers[i].createBlock(new Vector2(jedisaur.getBody().getPosition().x, jedisaur.getBody().getPosition().y));
             }
 
-            for(int i = 0; i < 3; i++){
-                if(blocks[i].isInContact()){
-                    jedisaur.carryBlock(blocks[i]);
+            for(int i = 0; i < 2; i++) {
+                if(blockDispensers[i].isCloned()){
+                    for (Blocks b : blockDispensers[i].getBlocks()) {
+                        if (b != null) {
+                            b.update(delta);
+                            if(b.isInContact()){
+                                jedisaur.carryBlock(b);
+                            }
+                        }
+                        else{
+                            continue;
+                        }
+                    }
                 }
+            }
+
+            // WILL BE USED, DON'T ERASE
+            for(int i = 0; i < 3; i++){
+//                if(blocks[i].isInContact()){
+//                    jedisaur.carryBlock(blocks[i]);
+//                }
                 if(blockHolders[i].isInContact()){
                     jedisaur.dropBlock(blockHolders[i]);
                 }
             }
-
-//            blockDispenser.update(delta);
-//            blockDispenser2.update(delta);
+            // WILL BE USED, DON'T ERASE
 
             house.exitDoor(jedisaur);
             jediGrandpa.update(delta);
             jedisaur.update(delta);
-
+            computer.update(delta);
 //            pause.update(delta);
         }else{
             if(jedisaur.isMoving()){
@@ -153,25 +159,31 @@ public class PlayState extends State{
         sprite.begin();
         sprite.end();
 
-//        house.render(sprite);
+        house.render(sprite);
 
         for(int i = 0; i < 3; i++){
             blockHolders[i].render(sprite);
         }
 
-        for(int i = 0; i < 3; i++){
-            blocks[i].render(sprite);
+        for(int i = 0; i < 2; i++){
+            blockDispensers[i].render(sprite);
+            if(blockDispensers[i].isCloned()){
+                for (Blocks b : blockDispensers[i].getBlocks()) {
+                    if (b != null) {
+                        b.render(sprite);
+                    }
+                    else{
+                        continue;
+                    }
+                }
+            }
         }
-//        blockDispenser.render(sprite);
-//        blockDispenser2.render(sprite);
 
-//        for(Blocks i: totalBlocks) {
-//            if (i != null) {
-//                i.render(sprite);
-//            } else {
-//                continue;
-//            }
+//        for(int i = 0; i < 3; i++){
+//            blocks[i].render(sprite);
 //        }
+
+        computer.render(sprite);
         jediGrandpa.render(sprite);
         jedisaur.render(sprite);
         pause.render(sprite);
@@ -181,14 +193,29 @@ public class PlayState extends State{
     public void dispose() {
         jedisaur.disposeBody();
         jediGrandpa.disposeBody();
+        computer.disposeBody();
 
-        for(int i = 0; i < 3; i++){
-            blockHolders[i].disposeBody();
-            blocks[i].disposeBody();
+        for(int i = 0; i < 2; i++){
+            blockDispensers[i].disposeBody();
+            if(blockDispensers[i].isCloned()){
+                for (Blocks b : blockDispensers[i].getBlocks()) {
+                    if (b != null) {
+                        b.disposeBody();
+                    }
+                    else{
+                        continue;
+                    }
+                }
+            }
         }
 
+        // WILL BE USED, DON'T ERASE
+        for(int i = 0; i < 3; i++){
+            blockHolders[i].disposeBody();
+//            blocks[i].disposeBody();
+        }
+        // WILL BE USED, DON'T ERASE
+
         house.dispose();
-//        blockHolder.disposeBody();
-//        blockHolder2.disposeBody();
     }
 }

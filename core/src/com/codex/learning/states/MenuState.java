@@ -1,6 +1,7 @@
 package com.codex.learning.states;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -13,7 +14,7 @@ import java.awt.*;
 //This class is used to load the Menu State of the game.
 public class MenuState extends State {
 
-
+    private Music mainMenuMusic, stageSelectMusic;
     private TextureRegion musicLogo, textHighlight, skyBG, clouds;
     private Vector3 touchpoint;
     private Rectangle javaDeluxeBounds, recipeBounds, jediTrialBounds, quitGameBounds, soundBounds, reportCardBounds, helpBounds, settingsBounds;
@@ -48,6 +49,9 @@ public class MenuState extends State {
 
         xMax = 2235;
         xCoord = xMax*(-1);
+
+        manager.setMusic(Constants.MENU_MUSIC);
+
     }
 
     @Override
@@ -83,7 +87,9 @@ public class MenuState extends State {
 //                System.out.println("You clicked at Sounds!");
 //            }
             if(javaDeluxeBounds.contains(touchpoint.x, touchpoint.y)){
+                manager.stopMusic(manager.getMusic());
                 manager.set(new StageSelectState(manager));
+
             }
             if(recipeBounds.contains(touchpoint.x, touchpoint.y)){
                 System.out.println("You clicked at JediGrandpa's Recipe!");

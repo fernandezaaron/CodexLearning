@@ -13,7 +13,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class DatabaseReader extends Thread {
     private Workbook wb;
-    private String question, difficulty, stage, topic, option1, option2, option3,option4;
+    private String question, difficulty, stage, topic, option1, option2, option3, option4;
+    private String[] options;
 
     public DatabaseReader() {
         wb = null;
@@ -21,6 +22,11 @@ public class DatabaseReader extends Thread {
         difficulty = "";
         stage = "";
         topic = "";
+        options = new String[4];
+
+        for(int i = 0; i < 4; i++){
+            options[i] = "";
+        }
         option1 = "";
         option2 = "";
         option3 = "";
@@ -41,7 +47,7 @@ public class DatabaseReader extends Thread {
         while(question == null) {
             Random randomNumber = new Random(); //instance of random class
             int limit = 23;
-            int questionID = randomNumber.nextInt(limit);
+            int questionID = randomNumber.nextInt(limit - 1) + 1;
 
             question = getQuestion(questionID, 4, wb, difficulty, stage);
             if(question != null) {
@@ -51,11 +57,11 @@ public class DatabaseReader extends Thread {
                 option4 = getInfo(questionID, 8, wb);
             }
         }
-        System.out.println(question);
-        System.out.println(option1);
-        System.out.println(option2);
-        System.out.println(option3);
-        System.out.println(option4);
+//        System.out.println(question);
+//        System.out.println(option1);
+//        System.out.println(option2);
+//        System.out.println(option3);
+//        System.out.println(option4);
     }
 
     public String getInfo(int row1, int col1, Workbook wb) {
