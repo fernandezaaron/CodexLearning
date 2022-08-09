@@ -18,7 +18,7 @@ public class DatabaseReader extends Thread {
         workbook = null;
     }
 
-    public Workbook getRiddler() {
+    public Workbook getReader() {
         try {
             FileInputStream fs = new FileInputStream("assets/questions_excel/Minigames.xlsx");
             workbook = new XSSFWorkbook(fs);
@@ -29,6 +29,7 @@ public class DatabaseReader extends Thread {
         catch(IOException e1) {
             e1.printStackTrace();
         }
+        System.out.println("binasa na eksel");
         return workbook;
     }
 }

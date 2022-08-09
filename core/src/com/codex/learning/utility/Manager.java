@@ -36,6 +36,8 @@ public class Manager {
 
     private DatabaseReader reader;
 
+    private Questionnaire riddler;
+
     public Manager(){
 
         b2dr = new Box2DDebugRenderer();
@@ -148,17 +150,20 @@ public class Manager {
     public void setCl(Contact cl) {
         this.cl = cl;
     }
-    public DatabaseReader getRiddler() {
+    public DatabaseReader getReader() {
         return reader;
     }
-    public void setRiddler(DatabaseReader reader) {
+    public void setReader(DatabaseReader reader) {
         this.reader = reader;
     }
+    public Questionnaire getRiddler(){return riddler;};
+    public void setRiddler(Questionnaire riddler){this.riddler = riddler;};
     public void setMusic(String file){
         music = Gdx.audio.newMusic(Gdx.files.internal(file));
         music.play();
         music.setVolume(0.2f);
         music.setLooping(true);
+
     }
     public void stopMusic(Music music){
         music.stop();

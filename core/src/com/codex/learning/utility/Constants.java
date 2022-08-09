@@ -175,6 +175,11 @@ public class Constants {
     public static final int PC_SCREEN_WIDTH = 1006;
     public static final int PC_SCREEN_HEIGHT = 719;
 
+    public static final int PC_QUESTION_X = 8;
+    public static final int PC_QUESTION_Y = 827;
+    public static final int PC_QUESTION_WIDTH = 772;
+    public static final int PC_QUESTION_HEIGHT = 246;
+
     //END OF PC ASSETS
 
     //JEDISAUR SPRITE SHEET
@@ -215,10 +220,10 @@ public class Constants {
     public static final float BLOCKS_BRACE_WIDTH = 0.7f;
     public static final float BLOCKS_ARGS_WIDTH = 2.9f;
 
-    public static final float BLOCKS_HEIGHT = 0.78f;
+    public static final float BLOCKS_HEIGHT = 0.5f;
 
     public static final float BLOCK_HOLDER_WIDTH = 0.7f;
-    public static final float BLOCK_HOLDER_HEIGHT = 0.8f;
+    public static final float BLOCK_HOLDER_HEIGHT = 0.4f;
     //END OF BLOCK DISPENSER WIDTH HEIGHT
 
     //UTILITY SHEET

@@ -30,7 +30,7 @@ public class Questionnaire {
         read = new DatabaseReader();
         levels = new ArrayList<String>();
         Random randomizer = new Random(); //instance of random class
-        workbook = read.getRiddler();
+        workbook = read.getReader();
         if(level == "Poor") {
             levels.add("Easy");
         }
