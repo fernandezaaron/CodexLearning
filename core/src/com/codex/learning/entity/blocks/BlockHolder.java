@@ -71,14 +71,14 @@ public class BlockHolder extends Entity {
 
         sprite.begin();
         if(isInContact()){
-            sprite.draw(highlightBlock,
-                    body.getPosition().x * Constants.PPM - highlightBlock.getRegionWidth() / 2,
-                    body.getPosition().y * Constants.PPM - highlightBlock.getRegionHeight() / 2);
-        }
-        else{
-            sprite.draw(normalBlock,
-                    body.getPosition().x * Constants.PPM - highlightBlock.getRegionWidth() / 2,
-                    body.getPosition().y * Constants.PPM - highlightBlock.getRegionHeight() / 2);
+                sprite.draw(highlightBlock,
+                        body.getPosition().x * Constants.PPM - highlightBlock.getRegionWidth() / 2,
+                        body.getPosition().y * Constants.PPM - highlightBlock.getRegionHeight() / 2);
+            }
+            else{
+                sprite.draw(normalBlock,
+                        body.getPosition().x * Constants.PPM - highlightBlock.getRegionWidth() / 2,
+                        body.getPosition().y * Constants.PPM - highlightBlock.getRegionHeight() / 2);
         }
         sprite.end();
 

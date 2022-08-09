@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.codex.learning.entity.blocks.BlockDispenser;
 import com.codex.learning.entity.blocks.BlockHolder;
 import com.codex.learning.entity.blocks.Blocks;
+import com.codex.learning.entity.blocks.Computer;
 import com.codex.learning.entity.characters.Character;
 import com.codex.learning.entity.characters.NPC;
 import com.codex.learning.entity.maps.HouseMap;
@@ -18,6 +19,7 @@ public class PlayState extends State{
     private Character jedisaur;
     private NPC jediGrandpa;
     private HouseMap house;
+    private Computer computer;
 
     private Blocks[] totalBlocks;
     private int blockCount;
@@ -41,6 +43,9 @@ public class PlayState extends State{
         // WILL BE USED, DON'T ERASE
 
         blockDispensers = new BlockDispenser[2];
+
+        computer = new Computer(manager);
+        computer.create(new Vector2(-18, 2.8f), new Vector2(0.6f, 0.6f), 0);
 
         for(int i = 0; i < 2; i++){
             if(i == 0){
@@ -136,6 +141,7 @@ public class PlayState extends State{
             house.exitDoor(jedisaur);
             jediGrandpa.update(delta);
             jedisaur.update(delta);
+            computer.update(delta);
 //            pause.update(delta);
         }else{
             if(jedisaur.isMoving()){
@@ -153,7 +159,7 @@ public class PlayState extends State{
         sprite.begin();
         sprite.end();
 
-//        house.render(sprite);
+        house.render(sprite);
 
         for(int i = 0; i < 3; i++){
             blockHolders[i].render(sprite);
@@ -177,6 +183,7 @@ public class PlayState extends State{
 //            blocks[i].render(sprite);
 //        }
 
+        computer.render(sprite);
         jediGrandpa.render(sprite);
         jedisaur.render(sprite);
         pause.render(sprite);
@@ -186,6 +193,7 @@ public class PlayState extends State{
     public void dispose() {
         jedisaur.disposeBody();
         jediGrandpa.disposeBody();
+        computer.disposeBody();
 
         for(int i = 0; i < 2; i++){
             blockDispensers[i].disposeBody();

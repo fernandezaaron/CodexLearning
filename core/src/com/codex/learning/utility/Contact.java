@@ -1,7 +1,6 @@
 package com.codex.learning.utility;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
@@ -9,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.codex.learning.entity.blocks.BlockDispenser;
 import com.codex.learning.entity.blocks.BlockHolder;
 import com.codex.learning.entity.blocks.Blocks;
+import com.codex.learning.entity.blocks.Computer;
 import com.codex.learning.entity.characters.Character;
 
 //This class will allow the player to have collision detection
@@ -60,11 +60,11 @@ public class Contact implements ContactListener {
             }
             if(jedisaur.isCarrying()){
                 jedisaur.setPickUpAble(false);
-                blockDispenser.setInDispenser(false);
+                blockDispenser.setInContact(false);
             }
             else{
                 jedisaur.setPickUpAble(true);
-                blockDispenser.setInDispenser(true);
+                blockDispenser.setInContact(true);
             }
 
         }
@@ -87,6 +87,20 @@ public class Contact implements ContactListener {
             else{
                 jedisaur.setPickUpAble(true);
             }
+        }
+
+        if(isComputerContact(fa, fb)){
+            Computer computer;
+            Character jedisaur;
+            if(fa.getUserData() instanceof Computer){
+                computer = (Computer) fa.getUserData();
+                jedisaur = (Character) fb.getUserData();
+            }
+            else{
+                jedisaur = (Character) fa.getUserData();
+                computer = (Computer) fb.getUserData();
+            }
+            computer.setInContact(true);
         }
         Gdx.app.log("BEGIN CONTACT", "");
     }
@@ -127,7 +141,7 @@ public class Contact implements ContactListener {
                 jedisaur = (Character) fa.getUserData();
                 blockDispenser = (BlockDispenser) fb.getUserData();
             }
-            blockDispenser.setInDispenser(false);
+            blockDispenser.setInContact(false);
             jedisaur.setPickUpAble(false);
 
         }
@@ -146,6 +160,21 @@ public class Contact implements ContactListener {
             blockHolder.setInContact(false);
             jedisaur.setPickUpAble(false);
         }
+
+        if(isComputerContact(fa, fb)){
+            Computer computer;
+            Character jedisaur;
+            if(fa.getUserData() instanceof Computer){
+                computer = (Computer) fa.getUserData();
+                jedisaur = (Character) fb.getUserData();
+            }
+            else{
+                jedisaur = (Character) fa.getUserData();
+                computer = (Computer) fb.getUserData();
+            }
+            computer.setInContact(false);
+        }
+
         Gdx.app.log("END CONTACT", "");
     }
 
@@ -180,6 +209,15 @@ public class Contact implements ContactListener {
     private boolean isBlockHolderContact(Fixture a, Fixture b){
         if(a.getUserData() instanceof Character || b.getUserData() instanceof Character){
             if(a.getUserData() instanceof BlockHolder || b.getUserData() instanceof BlockHolder){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isComputerContact(Fixture a, Fixture b){
+        if(a.getUserData() instanceof Character || b.getUserData() instanceof Character){
+            if(a.getUserData() instanceof Computer || b.getUserData() instanceof Computer){
                 return true;
             }
         }
