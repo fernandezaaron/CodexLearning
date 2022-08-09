@@ -1,4 +1,4 @@
-package com.codex.learning.entity;
+package com.codex.learning.utility;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;

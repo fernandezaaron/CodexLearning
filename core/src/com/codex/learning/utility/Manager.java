@@ -148,10 +148,10 @@ public class Manager {
     public void setCl(Contact cl) {
         this.cl = cl;
     }
-    public DatabaseReader getReader() {
+    public DatabaseReader getRiddler() {
         return reader;
     }
-    public void setReader(DatabaseReader reader) {
+    public void setRiddler(DatabaseReader reader) {
         this.reader = reader;
     }
     public void setMusic(String file){
