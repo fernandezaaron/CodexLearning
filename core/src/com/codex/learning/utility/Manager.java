@@ -2,6 +2,7 @@ package com.codex.learning.utility;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -10,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.codex.learning.states.State;
 
 import java.util.Stack;
@@ -35,6 +37,7 @@ public class Manager {
     private TextureRegion pauseStateSheet;
 
     private BitmapFont font;
+    private Skin skin;
 
     private DatabaseReader databaseReader;
 
@@ -71,6 +74,8 @@ public class Manager {
 
         camera = new OrthographicCamera(Constants.SCREEN_WIDTH, Constants.SCREEN_WIDTH);
         camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+
+        skin = new Skin(FileHandle.tempFile(Constants.JSON_SKIN_PATH));
 
         states = new Stack<State>();
     }
@@ -186,5 +191,13 @@ public class Manager {
 
     public void setMusicPaused(boolean musicPaused) {
         this.musicPaused = musicPaused;
+    }
+
+    public Skin getSkin() {
+        return skin;
+    }
+
+    public void setSkin(Skin skin) {
+        this.skin = skin;
     }
 }

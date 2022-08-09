@@ -26,6 +26,10 @@ public class Constants {
 
     // FONT ASSET PATH
     public static final String FONT_STYLE = "font/PokemonClassic.fnt";
+
+    // JSON ASSET PATH
+    public static final String JSON_SKIN_PATH = "json/uiskin.json";
+
     // MAP ASSET PATH
     public static final String PAUSE_STATE_PATH = "background/pausespritesheet.png";
     public static final String SETTINGS_STATE_PATH = "background/settingssheet.png";
@@ -229,7 +233,6 @@ public class Constants {
     public static final int PC_CHOICES_Y = 1133;
     public static final int PC_CHOICES_WIDTH = 1111;
     public static final int PC_CHOICES_HEIGHT = 72;
-
     //END OF PC ASSETS
 
     //JEDISAUR SPRITE SHEET

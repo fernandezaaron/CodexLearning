@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b24edcde-939f-44c7-8971-d1a6639c5cf4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/MenuState.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/MenuState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/PauseState.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/PauseState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/Settings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/StageSelectState.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/StageSelectState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeRiddle.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeRiddle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java" afterDir="false" />
-    </list>
+    <list default="true" id="b24edcde-939f-44c7-8971-d1a6639c5cf4" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,15 +35,15 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../jediJump/core/src/com/jedijump/states/PlayState.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/Character.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Contact.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/maps/HouseMap.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../jediJump/core/src/com/jedijump/states/PauseState.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/MenuState.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Constants.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/PauseState.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Contact.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/maps/HouseMap.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/Character.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../jediJump/core/src/com/jedijump/states/PauseState.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -120,7 +111,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java</url>
-          <line>133</line>
+          <line>138</line>
           <properties class="com.codex.learning.utility.Manager">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -138,7 +129,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java</url>
-          <line>160</line>
+          <line>165</line>
           <properties class="com.codex.learning.utility.Manager">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -147,7 +138,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java</url>
-          <line>131</line>
+          <line>136</line>
           <properties class="com.codex.learning.utility.Manager" method="getPcStateSheet">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />

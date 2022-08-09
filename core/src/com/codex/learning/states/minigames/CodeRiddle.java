@@ -44,10 +44,8 @@ public class CodeRiddle extends State {
                     Constants.PC_CHOICES_WIDTH, Constants.PC_CHOICES_HEIGHT);
         }
 //        manager.getQuestionnaire().questionDisplay("","");
-//
-//        question = new TextArea(manager.getQuestionnaire().getQuestion(), (Skin) null);
 
-
+//        question = new TextArea(manager.getQuestionnaire().getQuestion(), manager.getSkin());
     }
 
     @Override
@@ -65,7 +63,6 @@ public class CodeRiddle extends State {
             sprite.draw(screen,
                     manager.getCamera().position.x * Constants.PPM - screen.getRegionWidth() / 2,
                     manager.getCamera().position.y * Constants.PPM - screen.getRegionHeight() / 2);
-
             sprite.draw(questionScreen,
                     manager.getCamera().position.x * Constants.PPM - questionScreen.getRegionWidth() / 2,
                     manager.getCamera().position.y * Constants.PPM - questionScreen.getRegionHeight() / 1.25f);
