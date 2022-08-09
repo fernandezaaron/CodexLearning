@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
+import com.codex.learning.utility.Questionnaire;
 
 import java.awt.*;
 
@@ -18,6 +19,7 @@ public class CodeRiddle extends State {
 
     private TextureRegion questionScreen;
     private TextureRegion[] choicesScreen;
+    private Questionnaire questionnaire;
 
     private Rectangle[] questionBounds;
     private Vector3 touchPoint;

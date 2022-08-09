@@ -89,7 +89,7 @@ public class MenuState extends State {
             if(javaDeluxeBounds.contains(touchPoint.x, touchPoint.y)){
                 manager.stopMusic(manager.getMusic());
                 manager.set(new StageSelectState(manager));
-
+                manager.getReader().getReader();
             }
             if(recipeBounds.contains(touchPoint.x, touchPoint.y)){
                 System.out.println("You clicked at JediGrandpa's Recipe!");

@@ -12,6 +12,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class DatabaseReader extends Thread {
+<<<<<<< HEAD
     private Workbook wb;
     private String question, difficulty, stage, topic, option1, option2, option3, option4;
     private String[] options;
@@ -33,12 +34,18 @@ public class DatabaseReader extends Thread {
         option2 = "";
         option3 = "";
         option4 = "";
+=======
+    private Workbook workbook;
+
+    public DatabaseReader() {
+        workbook = null;
+>>>>>>> jy
     }
 
-    public void getQuestions(String difficulty, String stage, String topic) {
+    public Workbook getReader() {
         try {
-            FileInputStream fs = new FileInputStream("assets/questions_excel/Trial.xlsx");
-            wb = new XSSFWorkbook(fs);
+            FileInputStream fs = new FileInputStream("assets/questions_excel/Minigames.xlsx");
+            workbook = new XSSFWorkbook(fs);
         }
         catch(FileNotFoundException e) {
             e.printStackTrace();
@@ -46,6 +53,7 @@ public class DatabaseReader extends Thread {
         catch(IOException e1) {
             e1.printStackTrace();
         }
+<<<<<<< HEAD
         while(question == null) {
             Random randomNumber = new Random(); //instance of random class
             int limit = 23;
@@ -97,6 +105,10 @@ public class DatabaseReader extends Thread {
         }
         else
             return null;
+=======
+        System.out.println("binasa na eksel");
+        return workbook;
+>>>>>>> jy
     }
 
     
