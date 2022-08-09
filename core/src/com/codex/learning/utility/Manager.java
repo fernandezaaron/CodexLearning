@@ -34,9 +34,9 @@ public class Manager {
 
     private BitmapFont font;
 
-    private DatabaseReader reader;
+    private DatabaseReader databaseReader;
 
-    private Questionnaire riddler;
+    private Questionnaire questionnaire;
 
     public Manager(){
 
@@ -45,7 +45,8 @@ public class Manager {
         cl = new Contact();
         world = new World(new Vector2(0,0),false);
         world.setContactListener(cl);
-        reader = new DatabaseReader();
+        databaseReader = new DatabaseReader();
+        questionnaire = new Questionnaire();
 
         background = new TextureRegion(new Texture(Constants.BACKGROUND_PATH));
         mainMenu = new TextureRegion(new Texture(Constants.MENU_TEXT_PATH));
@@ -150,14 +151,20 @@ public class Manager {
     public void setCl(Contact cl) {
         this.cl = cl;
     }
-    public DatabaseReader getReader() {
-        return reader;
+    public DatabaseReader getDatabaseReader() {
+        return databaseReader;
     }
-    public void setReader(DatabaseReader reader) {
-        this.reader = reader;
+
+    public void setDatabaseReader(DatabaseReader databaseReader) {
+        this.databaseReader = databaseReader;
     }
-    public Questionnaire getRiddler(){return riddler;};
-    public void setRiddler(Questionnaire riddler){this.riddler = riddler;};
+
+    public Questionnaire getQuestionnaire() {
+        return questionnaire;
+    };
+    public void setQuestionnaire(Questionnaire questionnaire){
+        this.questionnaire = questionnaire;
+    }
     public void setMusic(String file){
         music = Gdx.audio.newMusic(Gdx.files.internal(file));
         music.play();

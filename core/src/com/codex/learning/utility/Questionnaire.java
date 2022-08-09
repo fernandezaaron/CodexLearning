@@ -5,7 +5,6 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -51,7 +50,7 @@ public class Questionnaire {
             options = new ArrayList<String>();
             limit = 196;
             questionID = randomizer.nextInt(limit - 1) + 1;
-            question = getQuestion(questionID, 4, workbook, difficulty, stage);
+            question = getExcelQuestion(questionID, 4, workbook, difficulty, stage);
             if(question != null) {
                 options.add(getInfo(questionID, 5, workbook));
                 options.add(getInfo(questionID, 6, workbook));
@@ -77,7 +76,7 @@ public class Questionnaire {
         return stageValue;                         //returns the cell value
     }
 
-    public String getQuestion(int row1, int col1, Workbook workbook, String diff, String stg) {
+    public String getExcelQuestion(int row1, int col1, Workbook workbook, String diff, String stg) {
         int qID = 0;
         String question = null;
 
@@ -119,5 +118,22 @@ public class Questionnaire {
         }
         else
             System.out.println("HAH BOBO");
+    }
+
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public ArrayList<String> getOptions() {
+        return options;
+    }
+
+    public void setOptions(ArrayList<String> options) {
+        this.options = options;
     }
 }

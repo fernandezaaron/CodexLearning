@@ -1,15 +1,14 @@
 package com.codex.learning.states.minigames;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
-import com.codex.learning.utility.Questionnaire;
 
 import java.awt.*;
 
@@ -19,11 +18,12 @@ public class CodeRiddle extends State {
 
     private TextureRegion questionScreen;
     private TextureRegion[] choicesScreen;
-    private Questionnaire questionnaire;
 
     private Rectangle[] questionBounds;
     private Vector3 touchPoint;
 
+    private TextArea question;
+    private TextArea[] choices;
     private boolean inComputer;
 
     public CodeRiddle(Manager manager) {
@@ -43,6 +43,11 @@ public class CodeRiddle extends State {
                     (int) -(40 * (i + 1)),
                     Constants.PC_CHOICES_WIDTH, Constants.PC_CHOICES_HEIGHT);
         }
+        manager.getQuestionnaire().questionDisplay("","");
+
+        question = new TextArea(manager.getQuestionnaire().getQuestion(), (Skin) null);
+
+
     }
 
     @Override
@@ -94,4 +99,5 @@ public class CodeRiddle extends State {
     public void setInComputer(boolean inComputer) {
         this.inComputer = inComputer;
     }
+
 }
