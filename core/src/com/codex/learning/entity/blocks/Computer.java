@@ -84,4 +84,12 @@ public class Computer extends Entity {
     public void setInContact(boolean inContact) {
         this.inContact = inContact;
     }
+
+    public CodeRiddle getCodeRiddle() {
+        return codeRiddle;
+    }
+
+    public void setCodeRiddle(CodeRiddle codeRiddle) {
+        this.codeRiddle = codeRiddle;
+    }
 }
