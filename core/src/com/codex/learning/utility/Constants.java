@@ -175,6 +175,11 @@ public class Constants {
     public static final int PC_SCREEN_WIDTH = 1006;
     public static final int PC_SCREEN_HEIGHT = 719;
 
+    public static final int PC_QUESTION_X = 8;
+    public static final int PC_QUESTION_Y = 827;
+    public static final int PC_QUESTION_WIDTH = 772;
+    public static final int PC_QUESTION_HEIGHT = 246;
+
     //END OF PC ASSETS
 
     //JEDISAUR SPRITE SHEET

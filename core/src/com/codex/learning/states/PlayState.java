@@ -98,51 +98,59 @@ public class PlayState extends State{
     public void update(float delta) {
         manager.getWorld().step(1/60f,6,2);
         if(pause.isRunning()){
-
-            // WILL BE USED, DON'T ERASE
-            for(int i = 0; i < 3; i++){
-                blockHolders[i].update(delta);
+            if(!computer.getCodeRiddle().isInComputer()){
+                // WILL BE USED, DON'T ERASE
+                for(int i = 0; i < 3; i++){
+                    blockHolders[i].update(delta);
 //                blocks[i].update(delta);
-            }
-            // WILL BE USED, DON'T ERASE
+                }
+                // WILL BE USED, DON'T ERASE
 
-            for(int i = 0; i < 2; i++){
+                for(int i = 0; i < 2; i++){
 //                blockDispensers[i].update(delta);
-                blockDispensers[i].createBlock(new Vector2(jedisaur.getBody().getPosition().x, jedisaur.getBody().getPosition().y));
-            }
+                    blockDispensers[i].createBlock(new Vector2(jedisaur.getBody().getPosition().x, jedisaur.getBody().getPosition().y));
+                }
 
-            for(int i = 0; i < 2; i++) {
-                if(blockDispensers[i].isCloned()){
-                    for (Blocks b : blockDispensers[i].getBlocks()) {
-                        if (b != null) {
-                            b.update(delta);
-                            if(b.isInContact()){
-                                jedisaur.carryBlock(b);
+                for(int i = 0; i < 2; i++) {
+                    if(blockDispensers[i].isCloned()){
+                        for (Blocks b : blockDispensers[i].getBlocks()) {
+                            if (b != null) {
+                                b.update(delta);
+                                if(b.isInContact()){
+                                    jedisaur.carryBlock(b);
+                                }
                             }
-                        }
-                        else{
-                            continue;
+                            else{
+                                continue;
+                            }
                         }
                     }
                 }
-            }
 
-            // WILL BE USED, DON'T ERASE
-            for(int i = 0; i < 3; i++){
+                // WILL BE USED, DON'T ERASE
+                for(int i = 0; i < 3; i++){
 //                if(blocks[i].isInContact()){
 //                    jedisaur.carryBlock(blocks[i]);
 //                }
-                if(blockHolders[i].isInContact()){
-                    jedisaur.dropBlock(blockHolders[i]);
+                    if(blockHolders[i].isInContact()){
+                        jedisaur.dropBlock(blockHolders[i]);
+                    }
+                }
+                // WILL BE USED, DON'T ERASE
+
+                house.exitDoor(jedisaur);
+                jediGrandpa.update(delta);
+                jedisaur.update(delta);
+                computer.update(delta);
+//            pause.update(delta);
+            }
+            else{
+                if(jedisaur.isMoving()){
+                    jedisaur.setMoving(false);
+                    jedisaur.update(delta);
+                    jedisaur.getBody().setLinearVelocity(0,0);
                 }
             }
-            // WILL BE USED, DON'T ERASE
-
-            house.exitDoor(jedisaur);
-            jediGrandpa.update(delta);
-            jedisaur.update(delta);
-            computer.update(delta);
-//            pause.update(delta);
         }else{
             if(jedisaur.isMoving()){
                 jedisaur.setMoving(false);
@@ -183,9 +191,10 @@ public class PlayState extends State{
 //            blocks[i].render(sprite);
 //        }
 
-        computer.render(sprite);
         jediGrandpa.render(sprite);
+        computer.render(sprite);
         jedisaur.render(sprite);
+
         pause.render(sprite);
     }
 
