@@ -58,12 +58,7 @@ public class Questionnaire {
                 options.add(getInfo(questionID, 8, workbook));
             }
         }
-        System.out.println(question);
         Collections.shuffle(options);
-        System.out.println(options.get(0));
-        System.out.println(options.get(1));
-        System.out.println(options.get(2));
-        System.out.println(options.get(3));
     }
 
     public String getInfo(int row1, int col1, Workbook workbook) {
