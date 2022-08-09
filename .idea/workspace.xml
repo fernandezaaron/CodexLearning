@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bec48db2-8361-48a5-88e4-0e949fc72c35" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/background/settingssheet.png" afterDir="false" />
+    <list default="true" id="b24edcde-939f-44c7-8971-d1a6639c5cf4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/MenuState.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/MenuState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/PauseState.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/PauseState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/Settings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/StageSelectState.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/StageSelectState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeRiddle.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeRiddle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -118,7 +120,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java</url>
-          <line>129</line>
+          <line>133</line>
           <properties class="com.codex.learning.utility.Manager">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -136,8 +138,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java</url>
-          <line>153</line>
-          <properties class="com.codex.learning.utility.Manager" method="getReader">
+          <line>160</line>
+          <properties class="com.codex.learning.utility.Manager">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
@@ -145,7 +147,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java</url>
-          <line>127</line>
+          <line>131</line>
           <properties class="com.codex.learning.utility.Manager" method="getPcStateSheet">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />

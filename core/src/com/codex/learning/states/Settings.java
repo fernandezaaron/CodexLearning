@@ -19,6 +19,7 @@ public class Settings extends State{
     private Vector3 coords;
     private boolean isSettings;
 
+
     public Settings(Manager manager){
         super(manager);
         settingsMenu = new TextureRegion(manager.getSettingsStateSheet(), Constants.SETTINGS_BOARD_X, Constants.SETTINGS_BOARD_Y, Constants.SETTINGS_BOARD_WIDTH, Constants.SETTINGS_BOARD_HEIGHT);
@@ -84,10 +85,12 @@ public class Settings extends State{
             manager.getCamera().unproject(coords.set(Gdx.input.getX(), Gdx.input.getY(), 0));
             if(Gdx.input.isTouched()){
                 if(onBounds.contains(coords.x, coords.y)){
-                    manager.resumeMusic(manager.getMusic());
+                   manager.getMusic().play();
+                    manager.setMusicPaused(false);
                 }
                 if(offBounds.contains(coords.x,coords.y)){
-                    manager.pauseMusic(manager.getMusic());
+                    manager.getMusic().pause();
+                    manager.setMusicPaused(true);
                 }
                 if(closeBounds.contains(coords.x, coords.y)){
                     setSettings(false);
@@ -108,4 +111,6 @@ public class Settings extends State{
     public void setSettings(boolean settings) {
         isSettings = settings;
     }
+
+
 }

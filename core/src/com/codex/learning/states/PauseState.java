@@ -105,16 +105,16 @@ public class PauseState extends State {
                     state = Constants.GAME_RUNNING;
                 }
                 if(retryBounds.contains(coords.x, coords.y)){
-                    manager.stopMusic(manager.getMusic());
+                    manager.getMusic().stop();
                     manager.set(new PlayState(manager));
                 }
                 if(stageBounds.contains(coords.x, coords.y)){
-                    manager.stopMusic(manager.getMusic());
+                    manager.getMusic().stop();
                     manager.set(new StageSelectState(manager));
 
                 }
                 if(quitBounds.contains(coords.x, coords.y)){
-                    manager.stopMusic(manager.getMusic());
+                    manager.getMusic().stop();
                     manager.set(new MenuState(manager));
                 }
             }

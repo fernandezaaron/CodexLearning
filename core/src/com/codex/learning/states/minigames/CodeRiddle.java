@@ -43,9 +43,9 @@ public class CodeRiddle extends State {
                     (int) -(40 * (i + 1)),
                     Constants.PC_CHOICES_WIDTH, Constants.PC_CHOICES_HEIGHT);
         }
-        manager.getQuestionnaire().questionDisplay("","");
-
-        question = new TextArea(manager.getQuestionnaire().getQuestion(), (Skin) null);
+//        manager.getQuestionnaire().questionDisplay("","");
+//
+//        question = new TextArea(manager.getQuestionnaire().getQuestion(), (Skin) null);
 
 
     }

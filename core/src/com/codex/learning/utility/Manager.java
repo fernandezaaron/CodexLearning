@@ -21,6 +21,7 @@ public class Manager {
     private Contact cl;
     private Box2DDebugRenderer b2dr;
     private Music music;
+    private boolean musicPaused;
 
     private TextureRegion mainMenu, background;
     private TextureRegion stage1;
@@ -175,13 +176,15 @@ public class Manager {
         music.setLooping(true);
 
     }
-    public void stopMusic(Music music){
-        music.stop();
-    }
-    public void pauseMusic (Music music) {music.pause();}
-    public void resumeMusic (Music music) {music.play();}
-
     public Music getMusic(){
         return music;
+    }
+
+    public boolean isMusicPaused() {
+        return musicPaused;
+    }
+
+    public void setMusicPaused(boolean musicPaused) {
+        this.musicPaused = musicPaused;
     }
 }

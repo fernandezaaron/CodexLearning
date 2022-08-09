@@ -53,7 +53,10 @@ public class MenuState extends State {
         xCoord = xMax*(-1);
 
         settings.setSettings(false);
-        manager.setMusic(Constants.MENU_MUSIC);
+        if(!manager.isMusicPaused()){
+            manager.setMusic(Constants.MENU_MUSIC);
+        }
+
 
     }
 
@@ -94,7 +97,7 @@ public class MenuState extends State {
 //                System.out.println("You clicked at Sounds!");
 //            }
             if(javaDeluxeBounds.contains(touchpoint.x, touchpoint.y)){
-                manager.stopMusic(manager.getMusic());
+                manager.getMusic().stop();
                 manager.set(new StageSelectState(manager));
 
             }

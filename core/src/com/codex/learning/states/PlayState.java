@@ -30,12 +30,13 @@ public class PlayState extends State{
     private BlockDispenser[] blockDispensers;
 
     private PauseState pause;
-    private Music houseMusic;
+    private Settings settings;
 
     public PlayState(Manager manager) {
         super(manager);
         pause = new PauseState(manager);
         house = new HouseMap(manager);
+        settings = new Settings(manager);
 
         // WILL BE USED, DON'T ERASE
         blocks = new Blocks[4];
@@ -89,7 +90,12 @@ public class PlayState extends State{
 
         totalBlocks = new Blocks[6];
         blockCount = 0;
-        manager.setMusic(Constants.HOUSE_MUSIC);
+
+        if(!manager.isMusicPaused()){
+            System.out.println("paused");
+            manager.setMusic(Constants.HOUSE_MUSIC);
+        }
+
 
     }
 
