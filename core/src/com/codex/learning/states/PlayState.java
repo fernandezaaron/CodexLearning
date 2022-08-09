@@ -39,7 +39,7 @@ public class PlayState extends State{
 
         // WILL BE USED, DON'T ERASE
         blocks = new Blocks[4];
-        blockHolders = new BlockHolder[4];
+        blockHolders = new BlockHolder[10];
         // WILL BE USED, DON'T ERASE
 
         blockDispensers = new BlockDispenser[2];
@@ -61,7 +61,7 @@ public class PlayState extends State{
         }
 
         // WILL BE USED, DON'T ERASE
-        for(int i = 0; i < 3; i++){
+        for(int i = 0; i < 10; i++){
 //            if(i == 0){
 //                blocks[i] = new Blocks(manager, "}", "   } ");
 //                blocks[i].create(new Vector2(1.2f + (i * 10), 0),
@@ -77,8 +77,14 @@ public class PlayState extends State{
 //                blocks[i].create(new Vector2(1.2f + (i * 10), 0),
 //                        new Vector2(Constants.BLOCKS_ARGS_WIDTH, Constants.BLOCKS_HEIGHT), 0);
 //            }
-            blockHolders[i] = new BlockHolder(manager, "}");
-            blockHolders[i].create(new Vector2(6f * i, 0), new Vector2(Constants.BLOCK_HOLDER_WIDTH, Constants.BLOCK_HOLDER_HEIGHT), 0);
+//            if(i == 0){
+//                blockHolders[i] = new BlockHolder(manager, "}");
+//                blockHolders[i].create(new Vector2(-3, -9), new Vector2(Constants.BLOCK_HOLDER_WIDTH, Constants.BLOCK_HOLDER_HEIGHT), 0);
+//            }else {
+                blockHolders[i] = new BlockHolder(manager, "}");
+                blockHolders[i].create(new Vector2(-3, 9 + (-9f * i/4)), new Vector2(Constants.BLOCK_HOLDER_WIDTH, Constants.BLOCK_HOLDER_HEIGHT), 0);
+ //           }
+
         }
         // WILL BE USED, DON'T ERASE
 
@@ -134,6 +140,7 @@ public class PlayState extends State{
 //                }
                     if(blockHolders[i].isInContact()){
                         jedisaur.dropBlock(blockHolders[i]);
+                        System.out.println("dropped to " + i);
                     }
                 }
                 // WILL BE USED, DON'T ERASE
@@ -169,7 +176,7 @@ public class PlayState extends State{
 
         house.render(sprite);
 
-        for(int i = 0; i < 3; i++){
+        for(int i = 0; i < 10; i++){
             blockHolders[i].render(sprite);
         }
 
