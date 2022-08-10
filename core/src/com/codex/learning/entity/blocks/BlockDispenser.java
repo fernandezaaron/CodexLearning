@@ -188,6 +188,10 @@ public class BlockDispenser extends Entity {
             case 4:
                 x = this.size.x - (this.size.x * Constants.PPM * 3.2f) + (Constants.PPM * body.getPosition().x);
             break;
+            default:
+                x = this.size.x - (this.size.x * Constants.PPM * 4.2f) + (Constants.PPM * body.getPosition().x);
+                break;
+
         }
         return x;
     }

@@ -25,7 +25,7 @@ public class PauseState extends State {
     public PauseState(Manager manager){
         super(manager);
         isRunning = true;
-        settings = new Settings(manager);
+        settings = new Settings(manager,0,0);
 
         pauseMenu = new TextureRegion(manager.getPauseStateSheet(), Constants.PAUSE_BOARD_X, Constants.PAUSE_BOARD_Y, Constants.PAUSE_BOARD_WIDTH, Constants.PAUSE_BOARD_HEIGHT);
         continueButton = new TextureRegion(manager.getPauseStateSheet(), Constants.CONTINUE_BUTTON_X, Constants. CONTINUE_BUTTON_Y, Constants.CONTINUE_BUTTON_WIDTH, Constants.CONTINUE_BUTTON_HEIGHT);
@@ -40,10 +40,10 @@ public class PauseState extends State {
         hlSettingsButton = new TextureRegion(manager.getPauseStateSheet(), Constants.SETTINGS_HL_BUTTON_X, Constants.SETTINGS_HL_BUTTON_Y, Constants.SETTINGS_HL_BUTTON_WIDTH, Constants.SETTINGS_HL_BUTTON_HEIGHT);
 
         coords = new Vector3();
-        continueBounds = new Rectangle(-300, 35, Constants.CONTINUE_BUTTON_WIDTH, Constants.CONTINUE_BUTTON_HEIGHT);
+        continueBounds = new Rectangle( -300,  35, Constants.CONTINUE_BUTTON_WIDTH, Constants.CONTINUE_BUTTON_HEIGHT);
         retryBounds = new Rectangle(-100, 35, Constants.RETRY_BUTTON_WIDTH, Constants.CONTINUE_BUTTON_HEIGHT);
         stageBounds = new Rectangle(150, 35, Constants.STAGE_BUTTON_WIDTH, Constants.STAGE_BUTTON_HEIGHT);
-        quitBounds = new Rectangle(50,-200, Constants.QUIT_BUTTON_WIDTH, Constants.QUIT_BUTTON_HEIGHT);
+        quitBounds = new Rectangle(50, -200, Constants.QUIT_BUTTON_WIDTH, Constants.QUIT_BUTTON_HEIGHT);
         settingsBounds = new Rectangle(-200, -200, Constants.SETTINGS_BUTTON_WIDTH, Constants.SETTINGS_BUTTON_HEIGHT);
 
         settings.setSettings(false);
@@ -56,7 +56,9 @@ public class PauseState extends State {
 
     @Override
     public void render(SpriteBatch sprite) {
+        manager.getCamera().update();
         sprite.begin();
+        sprite.setProjectionMatrix(manager.getCamera().combined);
         if(!settings.isSettings()){
             input();
         }

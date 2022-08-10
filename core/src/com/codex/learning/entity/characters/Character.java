@@ -121,6 +121,7 @@ public class Character extends Entity {
 
     @Override
     public void render(SpriteBatch sprite){
+        manager.getCamera().update();
         sprite.enableBlending();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.begin();
@@ -363,6 +364,7 @@ public class Character extends Entity {
         position.y = this.position.y * Constants.PPM;
         manager.getCamera().position.set(position);
         manager.getCamera().update();
+
     }
 
     private void checkIfStuck(){
