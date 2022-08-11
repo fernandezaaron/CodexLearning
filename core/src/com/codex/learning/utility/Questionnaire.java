@@ -90,7 +90,7 @@ public class Questionnaire {
 
             System.out.println("NUMBER OF QUESTIONS - " + numberOfQuestions);
         }
-        Collections.shuffle(options);
+//        Collections.shuffle(options);
     }
 
     public String getCodeRiddle(int rows, int col){
@@ -102,20 +102,14 @@ public class Questionnaire {
     }
 
     public String getExcelQuestion(int row1, int col1, String difficulty, String stage) {
-        int qID = 0;
-        String question = null;
 
-        qID = (int) getWorkbook().getSheet("CodeRiddle").
-                getRow(row1).getCell(0).getNumericCellValue();
-
-        if(qID == row1 && getCodeRiddle(row1, 2).equals(difficulty) && (getCodeRiddle(row1, 3).equals(stage))) {
-            question = getWorkbook().getSheet("CodeRiddle").
-                    getRow(row1).getCell(col1).getStringCellValue();
-            return question;
+        if((int) getWorkbook().getSheet("CodeRiddle").
+                getRow(row1).getCell(0).getNumericCellValue() == row1 &&
+                getCodeRiddle(row1, 2).equals(difficulty) &&
+                (getCodeRiddle(row1, 3).equals(stage))) {
+            return getWorkbook().getSheet("CodeRiddle").getRow(row1).getCell(col1).getStringCellValue();
         }
-        else{
-            return null;
-        }
+        return null;
     }
 
     public boolean answerChecker(String chosenAnswer, int index){
