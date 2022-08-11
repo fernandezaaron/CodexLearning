@@ -104,11 +104,12 @@ public class CodeRiddle extends State {
             for(int i = 0; i < 4; i++){
                 if(choicesBounds[i].contains(touchPoint.x, touchPoint.y)) {
 //                    for(int j = 0; j < 4; j++) {
+                    System.out.println(i);
                     System.out.println("1QWDQWDQWD1 - " + options.get(0).get(0));
                     System.out.println("2QWDQWDQWD2 - " + options.get(0).get(1));
                     System.out.println("3QWDQWDQWD3 - " + options.get(0).get(2));
                     System.out.println("4QWDQWDQWD4 - " + options.get(0).get(3));
-                    if (manager.getQuestionnaire().answerChecker(options.get(0).get(i), i)) {
+                    if (manager.getQuestionnaire().answerChecker(options.get(0).get(i), 0)) {
                         System.out.println("YOUR ANSWER IS CORRECT");
                     } else {
                         System.out.println("WRONG");
