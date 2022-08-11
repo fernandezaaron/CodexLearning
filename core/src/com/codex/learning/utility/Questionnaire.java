@@ -90,7 +90,7 @@ public class Questionnaire {
 
             System.out.println("NUMBER OF QUESTIONS - " + numberOfQuestions);
         }
-
+//        Collections.shuffle(options);
     }
 
     public String getCodeRiddle(int rows, int col){
