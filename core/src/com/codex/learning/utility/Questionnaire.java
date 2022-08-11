@@ -15,7 +15,6 @@ public class Questionnaire {
 
     private String question, answer, difficulty;
 
-
     private ArrayList<String> questions;
     private ArrayList<ArrayList<String>> options;
     private ArrayList<String> answers;
@@ -68,6 +67,7 @@ public class Questionnaire {
 
         System.out.println("QUESTION LIMIT - " + questionLimit);
         while(question == null) {
+
             questionID = randomizer.nextInt(excelQuestionLimit - 1) + 1;
             System.out.println("WQDNIWDINQINDWNDWQNDWQNDWQNIDWQNQWD");
             question = getExcelQuestion(questionID, 4, difficulty, stage);
@@ -105,15 +105,12 @@ public class Questionnaire {
         int qID = 0;
         String question = null;
 
-        Sheet sheet = getWorkbook().getSheet("CodeRiddle");
-        Row IDRow = sheet.getRow(row1);
-        Cell IDCell = IDRow.getCell(0);
-        qID = (int) IDCell.getNumericCellValue();
+        qID = (int) getWorkbook().getSheet("CodeRiddle").
+                getRow(row1).getCell(0).getNumericCellValue();
 
         if(qID == row1 && getCodeRiddle(row1, 2).equals(difficulty) && (getCodeRiddle(row1, 3).equals(stage))) {
-            Row qRow = sheet.getRow(row1);
-            Cell qCell = qRow.getCell(col1);
-            question = qCell.getStringCellValue();
+            question = getWorkbook().getSheet("CodeRiddle").
+                    getRow(row1).getCell(col1).getStringCellValue();
             return question;
         }
         else{
