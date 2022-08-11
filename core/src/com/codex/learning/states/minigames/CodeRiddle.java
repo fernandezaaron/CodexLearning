@@ -21,7 +21,7 @@ public class CodeRiddle extends State {
     private Rectangle[] choicesBounds;
     private Vector3 touchPoint;
 
-    private ArrayList<ArrayList<String>> questions;
+    private ArrayList<String> questions;
     private ArrayList<ArrayList<String>> options;
 
     private String choice;
@@ -72,7 +72,7 @@ public class CodeRiddle extends State {
             drawObject(sprite);
 
 //            for(int i = 0; i < manager.getQuestionnaire().getNumberOfQuestions(); i++){
-                manager.getFont().draw(sprite, questions.get(0).get(0),
+                manager.getFont().draw(sprite, questions.get(0),
                         10 + manager.getCamera().position.x * Constants.PPM - questionScreen.getRegionWidth() / 2,
                         - (manager.getCamera().position.y * Constants.PPM - questionScreen.getRegionHeight()) / 1.25f);
 //            }
@@ -104,10 +104,8 @@ public class CodeRiddle extends State {
             for(int i = 0; i < 4; i++){
                 if(choicesBounds[i].contains(touchPoint.x, touchPoint.y)) {
 //                    for(int j = 0; j < 4; j++) {
-                    System.out.println("1QWDQWDQWD1 - " + options.get(0).get(0));
-                    System.out.println("2QWDQWDQWD2 - " + options.get(0).get(1));
-                    System.out.println("3QWDQWDQWD3 - " + options.get(0).get(2));
-                    System.out.println("4QWDQWDQWD4 - " + options.get(0).get(3));
+                    System.out.println("1QWDQWDQWD1 - " + options.get(0).get(i));
+
                     if (manager.getQuestionnaire().answerChecker(options.get(0).get(i), i)) {
                         System.out.println("YOUR ANSWER IS CORRECT");
                     } else {

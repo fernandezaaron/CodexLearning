@@ -16,9 +16,9 @@ public class Questionnaire {
     private String question, answer, difficulty;
 
 
-    private ArrayList<ArrayList<String>> questions;
+    private ArrayList<String> questions;
     private ArrayList<ArrayList<String>> options;
-    private ArrayList<ArrayList<String>> answers;
+    private ArrayList<String> answers;
 
 
     private ArrayList<String> levels;
@@ -68,15 +68,12 @@ public class Questionnaire {
 
         System.out.println("QUESTION LIMIT - " + questionLimit);
         while(question == null) {
-
             questionID = randomizer.nextInt(excelQuestionLimit - 1) + 1;
             System.out.println("WQDNIWDINQINDWNDWQNDWQNDWQNIDWQNQWD");
             question = getExcelQuestion(questionID, 4, difficulty, stage);
             if(question != null) {
 
-
-                questions.add(new ArrayList<String>());
-                questions.get(numberOfQuestions).add(question);
+                questions.add(question);
 
                 options.add(new ArrayList<String>());
                 options.get(numberOfQuestions).add(getCodeRiddle(questionID, 5));
@@ -84,8 +81,7 @@ public class Questionnaire {
                 options.get(numberOfQuestions).add(getCodeRiddle(questionID, 7));
                 options.get(numberOfQuestions).add(getCodeRiddle(questionID, 8));
 
-                answers.add(new ArrayList<String>());
-                answers.get(numberOfQuestions).add(getCodeRiddle(questionID, 9));
+                answers.add(getCodeRiddle(questionID, 9));
 
                 System.out.println(answers);
 
@@ -126,8 +122,7 @@ public class Questionnaire {
     }
 
     public boolean answerChecker(String chosenAnswer, int index){
-        System.out.println("ASNWER???? " + answers.get(index).get(0));
-        if(chosenAnswer == answers.get(index).get(0)){
+        if(chosenAnswer == answers.get(0)){
             return true;
         }
         return false;
@@ -156,11 +151,11 @@ public class Questionnaire {
         }
     }
 
-    public ArrayList<ArrayList<String>> getQuestions() {
+    public ArrayList<String> getQuestions() {
         return questions;
     }
 
-    public void setQuestions(ArrayList<ArrayList<String>> questions) {
+    public void setQuestions(ArrayList<String> questions) {
         this.questions = questions;
     }
 
@@ -172,11 +167,11 @@ public class Questionnaire {
         this.options = options;
     }
 
-    public ArrayList<ArrayList<String>> getAnswers() {
+    public ArrayList<String> getAnswers() {
         return answers;
     }
 
-    public void setAnswers(ArrayList<ArrayList<String>> answers) {
+    public void setAnswers(ArrayList<String> answers) {
         this.answers = answers;
     }
 
