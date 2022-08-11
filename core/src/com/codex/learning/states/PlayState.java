@@ -30,17 +30,17 @@ public class PlayState extends State{
     private BlockDispenser[] blockDispensers;
 
     private PauseState pause;
-    private Settings settings;
+
 
     public PlayState(Manager manager) {
         super(manager);
         pause = new PauseState(manager);
         house = new HouseMap(manager);
-        settings = new Settings(manager);
+
 
         // WILL BE USED, DON'T ERASE
         blocks = new Blocks[4];
-        blockHolders = new BlockHolder[4];
+        blockHolders = new BlockHolder[10];
         // WILL BE USED, DON'T ERASE
 
         blockDispensers = new BlockDispenser[2];
@@ -49,7 +49,7 @@ public class PlayState extends State{
         computer.create(new Vector2(-18, 2.8f), new Vector2(0.6f, 0.6f), 0);
 
         // WILL BE USED, DON'T ERASE
-        for(int i = 0; i < 3; i++){
+        for(int i = 0; i < 10; i++){
 //            if(i == 0){
 //                blocks[i] = new Blocks(manager, "}", "   } ");
 //                blocks[i].create(new Vector2(1.2f + (i * 10), 0),
@@ -66,7 +66,7 @@ public class PlayState extends State{
 //                        new Vector2(Constants.BLOCKS_ARGS_WIDTH, Constants.BLOCKS_HEIGHT), 0);
 //            }
             blockHolders[i] = new BlockHolder(manager, "}");
-            blockHolders[i].create(new Vector2(6f , i * 3), new Vector2(Constants.BLOCK_HOLDER_WIDTH, Constants.BLOCK_HOLDER_HEIGHT), 0);
+            blockHolders[i].create(new Vector2(6f , i * 2), new Vector2(Constants.BLOCK_HOLDER_WIDTH, Constants.BLOCK_HOLDER_HEIGHT), 0);
         }
         // WILL BE USED, DON'T ERASE
 
@@ -76,7 +76,11 @@ public class PlayState extends State{
                         3, new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
             }
             else{
+<<<<<<< HEAD
                 blockDispensers[i] = new BlockDispenser(manager, "Right", "hard", "   }  ",
+=======
+                blockDispensers[i] = new BlockDispenser(manager, "Right", "class", "class hello  ",
+>>>>>>> AaronNew
                         3, new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
             }
             blockDispensers[i].create(new Vector2(15 * i, -6), new Vector2(0.3f, 1.3f), 0);
@@ -92,9 +96,14 @@ public class PlayState extends State{
         blockCount = 0;
 
         if(!manager.isMusicPaused()){
-            System.out.println("paused");
+            manager.setMusic(Constants.HOUSE_MUSIC);
+            manager.getMusic().play();
+            manager.getMusic().setLooping(true);
+        }else {
             manager.setMusic(Constants.HOUSE_MUSIC);
         }
+
+        System.out.println(manager.getCamera().position.x + " " + manager.getCamera().position.y);
 
 
     }
@@ -109,13 +118,13 @@ public class PlayState extends State{
                     blockHolders[i].update(delta);
 //                blocks[i].update(delta);
                 }
-                // WILL BE USED, DON'T ERASE
-
+//                // WILL BE USED, DON'T ERASE
+//
                 for(int i = 0; i < 2; i++){
 //                blockDispensers[i].update(delta);
                     blockDispensers[i].createBlock(new Vector2(jedisaur.getBody().getPosition().x, jedisaur.getBody().getPosition().y));
                 }
-
+//
                 for(int i = 0; i < 2; i++) {
                     if(blockDispensers[i].isCloned()){
                         for (Blocks b : blockDispensers[i].getBlocks()) {
@@ -133,7 +142,7 @@ public class PlayState extends State{
                 }
 
                 // WILL BE USED, DON'T ERASE
-                for(int i = 0; i < 3; i++){
+                for(int i = 0; i < 10; i++){
 //                if(blocks[i].isInContact()){
 //                    jedisaur.carryBlock(blocks[i]);
 //                }
@@ -170,17 +179,25 @@ public class PlayState extends State{
 
     @Override
     public void render(SpriteBatch sprite) {
+
         manager.getCamera().update();
-//        sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.begin();
+        sprite.setProjectionMatrix(manager.getCamera().combined);
+
+
         sprite.end();
 
+<<<<<<< HEAD
         house.render(sprite);
+=======
+>>>>>>> AaronNew
 
-        for(int i = 0; i < 3; i++){
+      //  house.render(sprite);
+//
+        for(int i = 0; i < 10; i++){
             blockHolders[i].render(sprite);
         }
-
+//
         for(int i = 0; i < 2; i++){
             blockDispensers[i].render(sprite);
             if(blockDispensers[i].isCloned()){
@@ -199,7 +216,7 @@ public class PlayState extends State{
 //        for(int i = 0; i < 3; i++){
 //            blocks[i].render(sprite);
 //        }
-
+//
         jediGrandpa.render(sprite);
 
         if(computer.getCodeRiddle().isInComputer()){
@@ -210,8 +227,9 @@ public class PlayState extends State{
             computer.render(sprite);
             jedisaur.render(sprite);
         }
-
+//
         pause.render(sprite);
+
     }
 
     @Override

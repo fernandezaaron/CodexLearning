@@ -148,6 +148,17 @@ public class Constants {
     public static final int STAGE_BUTTON_WIDTH = 162;
     public static final int STAGE_BUTTON_HEIGHT = 162;
 
+    public static final int SETTINGS_BUTTON_X = 857;
+    public static final int SETTINGS_BUTTON_Y = 256;
+    public static final int SETTINGS_BUTTON_WIDTH = 161 ;
+    public static final int SETTINGS_BUTTON_HEIGHT = 161;
+
+    public static final int SETTINGS_HL_BUTTON_X = 861;
+    public static final int SETTINGS_HL_BUTTON_Y = 701;
+    public static final int SETTINGS_HL_BUTTON_WIDTH = 161 ;
+    public static final int SETTINGS_HL_BUTTON_HEIGHT = 161;
+
+
     public static final int QUIT_BUTTON_X = 1073;
     public static final int QUIT_BUTTON_Y = 243;
     public static final int QUIT_BUTTON_WIDTH = 185;

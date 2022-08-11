@@ -23,7 +23,7 @@ public class MenuState extends State {
 
     public MenuState(Manager manager) {
         super(manager);
-        settings = new Settings(manager);
+        settings = new Settings(manager, manager.getCamera().position.x, manager.getCamera().position.y);
 
 //        This is used to crop each sprite in a sprite sheet.
         textHighlight = new TextureRegion(manager.getMainMenu(), Constants.TEXT_HIGHLIGHT_X, Constants.TEXT_HIGHLIGHT_Y, Constants.TEXT_HIGHLIGHT_WIDTH, Constants.TEXT_HIGHLIGHT_HEIGHT);
@@ -55,6 +55,11 @@ public class MenuState extends State {
         settings.setSettings(false);
         if(!manager.isMusicPaused()){
             manager.setMusic(Constants.MENU_MUSIC);
+            manager.getMusic().play();
+            manager.getMusic().setLooping(true);
+        }else {
+            manager.setMusic(Constants.MENU_MUSIC);
+         //   manager.getMusic() = Gdx.audio.newMusic(Gdx.files.internal(Constants.MENU_MUSIC));
         }
 
 

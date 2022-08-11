@@ -22,7 +22,7 @@ public class StageSelectState extends State{
 
     public StageSelectState(Manager manager){
         super(manager);
-        settings = new Settings(manager);
+
         orangeCircle = new TextureRegion(manager.getUtility(), Constants.ORANGE_CIRCLE_X, Constants.ORANGE_CIRCLE_Y, Constants.ORANGE_CIRCLE_R, Constants.ORANGE_CIRCLE_R);
         grayCircle = new TextureRegion(manager.getUtility(), Constants.GRAY_CIRCLE_X, Constants.GRAY_CIRCLE_Y, Constants.GRAY_CIRCLE_R, Constants.GRAY_CIRCLE_R);
 
@@ -66,6 +66,10 @@ public class StageSelectState extends State{
 
         if(!manager.isMusicPaused()){
             manager.setMusic(Constants.STAGE_SELECT_MUSIC);
+            manager.getMusic().play();
+            manager.getMusic().setLooping(true);
+        }else {
+            manager.setMusic(Constants.HOUSE_MUSIC);
         }
 
 

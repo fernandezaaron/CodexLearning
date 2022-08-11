@@ -20,7 +20,7 @@ public class Settings extends State{
     private boolean isSettings;
 
 
-    public Settings(Manager manager){
+    public Settings(Manager manager, float x, float y){
         super(manager);
         settingsMenu = new TextureRegion(manager.getSettingsStateSheet(), Constants.SETTINGS_BOARD_X, Constants.SETTINGS_BOARD_Y, Constants.SETTINGS_BOARD_WIDTH, Constants.SETTINGS_BOARD_HEIGHT);
         onButton = new TextureRegion(manager.getSettingsStateSheet(), Constants.ON_NORMAL_X, Constants.ON_NORMAL_Y, Constants.ON_NORMAL_WIDTH, Constants.ON_NORMAL_HEIGHT);
@@ -31,9 +31,10 @@ public class Settings extends State{
         closeHLButton = new TextureRegion(manager.getSettingsStateSheet(), Constants.CLOSE_HL_X, Constants.CLOSE_HL_Y, Constants.CLOSE_HL_WIDTH, Constants.CLOSE_HL_HEIGHT);
 
         coords = new Vector3();
-        onBounds = new Rectangle(manager.getCamera().position.x - 200, manager.getCamera().position.y - 20, Constants.ON_NORMAL_WIDTH, Constants.ON_NORMAL_HEIGHT);
-        offBounds = new Rectangle(manager.getCamera().position.x + 100, manager.getCamera().position.y - 20, Constants.OFF_NORMAL_WIDTH, Constants.OFF_NORMAL_HEIGHT);
-        closeBounds = new Rectangle(manager.getCamera().position.x - 310, manager.getCamera().position.y + 280, Constants.CLOSE_NORMAL_WIDTH, Constants.CLOSE_NORMAL_HEIGHT);
+        onBounds = new Rectangle(x - 200, y - 20, Constants.ON_NORMAL_WIDTH, Constants.ON_NORMAL_HEIGHT);
+        offBounds = new Rectangle(x+ 100, y - 20, Constants.OFF_NORMAL_WIDTH, Constants.OFF_NORMAL_HEIGHT);
+        closeBounds = new Rectangle(x - 310, y + 280, Constants.CLOSE_NORMAL_WIDTH, Constants.CLOSE_NORMAL_HEIGHT);
+        System.out.println(manager.getCamera().position.x + " a " + manager.getCamera().position.y);
 
 
 
@@ -45,7 +46,9 @@ public class Settings extends State{
 
     @Override
     public void render(SpriteBatch sprite) {
+
         sprite.begin();
+        sprite.setProjectionMatrix(manager.getCamera().combined);
         input();
 
         if(isSettings){
@@ -78,6 +81,7 @@ public class Settings extends State{
 
 
         sprite.end();
+        manager.getCamera().update();
     }
 
     public void input(){
