@@ -76,11 +76,7 @@ public class PlayState extends State{
                         3, new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
             }
             else{
-<<<<<<< HEAD
                 blockDispensers[i] = new BlockDispenser(manager, "Right", "hard", "   }  ",
-=======
-                blockDispensers[i] = new BlockDispenser(manager, "Right", "class", "class hello  ",
->>>>>>> AaronNew
                         3, new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
             }
             blockDispensers[i].create(new Vector2(15 * i, -6), new Vector2(0.3f, 1.3f), 0);
@@ -187,10 +183,8 @@ public class PlayState extends State{
 
         sprite.end();
 
-<<<<<<< HEAD
         house.render(sprite);
-=======
->>>>>>> AaronNew
+
 
       //  house.render(sprite);
 //
