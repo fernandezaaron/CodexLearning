@@ -64,6 +64,7 @@ public class HouseMap extends State {
 
     public void exitDoor(Character character){
         if(character.getBody().getPosition().x > -19.8f && character.getBody().getPosition().x < -15.5f && character.getBody().getPosition().y < -11){
+            manager.getMusic().stop();
             manager.set(new StageSelectState(manager));
         }
 

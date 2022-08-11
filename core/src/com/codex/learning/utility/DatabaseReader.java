@@ -29,7 +29,6 @@ public class DatabaseReader extends Thread {
         catch(IOException e1) {
             e1.printStackTrace();
         }
-        System.out.println("binasa na eksel");
         return workbook;
     }
 }

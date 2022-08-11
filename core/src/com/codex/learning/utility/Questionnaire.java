@@ -12,123 +12,195 @@ import java.util.Random;
 public class Questionnaire {
     private DatabaseReader read;
     private Workbook workbook;
-    private String question, difficulty;
-    private ArrayList<String> levels, options;
-    private int questionID, limit;
+
+    private String question, answer, difficulty;
+
+
+    private ArrayList<ArrayList<String>> questions;
+    private ArrayList<ArrayList<String>> options;
+    private ArrayList<ArrayList<String>> answers;
+
+
+    private ArrayList<String> levels;
+
+    private int questionID, excelQuestionLimit, questionLimit;
+
+    private String stageValue;
+    private Random randomizer;
+
+    private int numberOfQuestions;
 
     public Questionnaire() {
+        read = new DatabaseReader();
+
+        questions = new ArrayList<>();
+        options = new ArrayList<>();
+        answers = new ArrayList<>();
+
         question = null;
         difficulty = null;
+        stageValue = null;
+        answer = null;
+
+        numberOfQuestions = 0;
+        questionLimit = 0;
+
+        excelQuestionLimit = 196;
+        randomizer = new Random();
+
+        workbook = read.getReader();
+        levels = new ArrayList<>();
     }
 
-    public void questionDisplay(String stage, String level) {
-        //for the meantime
+    public void questionDisplay(String stage, String expertiseLevel) {
+        // For the meantime
         stage = "Stage 1";
-        level = "Novice";
+        expertiseLevel = "Novice";
+        // To be erased
 
-        read = new DatabaseReader();
-        levels = new ArrayList<String>();
-        Random randomizer = new Random(); //instance of random class
-        workbook = read.getReader();
-        if(level == "Poor") {
-            levels.add("Easy");
-        }
-        else if(level == "Novice") {
-            levels.add("Easy");
-            levels.add("Medium");
-        }
-        else if(level == "Average") {
-            levels.add("Hard");
-            levels.add("Medium");
-        }
-        else if(level == "Expert") {
-            levels.add("Hard");
-        }
+
+        adjustDifficulty(expertiseLevel);
+
+
         difficulty = levels.get(randomizer.nextInt(levels.size()));
+
+        // Correct Until Here
+
+        System.out.println("QUESTION LIMIT - " + questionLimit);
         while(question == null) {
-            randomizer = new Random();
-            options = new ArrayList<String>();
-            limit = 196;
-            questionID = randomizer.nextInt(limit - 1) + 1;
-            question = getExcelQuestion(questionID, 4, workbook, difficulty, stage);
+
+            questionID = randomizer.nextInt(excelQuestionLimit - 1) + 1;
+            System.out.println("WQDNIWDINQINDWNDWQNDWQNDWQNIDWQNQWD");
+            question = getExcelQuestion(questionID, 4, difficulty, stage);
             if(question != null) {
-                options.add(getInfo(questionID, 5, workbook));
-                options.add(getInfo(questionID, 6, workbook));
-                options.add(getInfo(questionID, 7, workbook));
-                options.add(getInfo(questionID, 8, workbook));
+
+
+                questions.add(new ArrayList<String>());
+                questions.get(numberOfQuestions).add(question);
+
+                options.add(new ArrayList<String>());
+                options.get(numberOfQuestions).add(getCodeRiddle(questionID, 5));
+                options.get(numberOfQuestions).add(getCodeRiddle(questionID, 6));
+                options.get(numberOfQuestions).add(getCodeRiddle(questionID, 7));
+                options.get(numberOfQuestions).add(getCodeRiddle(questionID, 8));
+
+                answers.add(new ArrayList<String>());
+                answers.get(numberOfQuestions).add(getCodeRiddle(questionID, 9));
+
+                System.out.println(answers);
+
+                numberOfQuestions++;
             }
+
+            System.out.println("NUMBER OF QUESTIONS - " + numberOfQuestions);
         }
         Collections.shuffle(options);
     }
 
-    public String getInfo(int row1, int col1, Workbook workbook) {
-        String stageValue = null;
-
-        Sheet sheet = workbook.getSheet("CodeRiddle");          //getting the XSSFSheet object at given index
-        Row row = sheet.getRow(row1);              //returns the logical row
-        Cell cell = row.getCell(col1);             //getting the cell representing the given column
-        stageValue = (String) cell.getStringCellValue();    //getting cell value
-        return stageValue;                         //returns the cell value
+    public String getCodeRiddle(int rows, int col){
+        Sheet sheet = getWorkbook().getSheet("CodeRiddle");
+        Row row = sheet.getRow(rows);
+        Cell cell = row.getCell(col);
+        stageValue = (String) cell.getStringCellValue();
+        return stageValue;
     }
 
-    public String getExcelQuestion(int row1, int col1, Workbook workbook, String diff, String stg) {
+    public String getExcelQuestion(int row1, int col1, String difficulty, String stage) {
         int qID = 0;
         String question = null;
 
-        Sheet sheet = workbook.getSheet("CodeRiddle");
+        Sheet sheet = getWorkbook().getSheet("CodeRiddle");
         Row IDRow = sheet.getRow(row1);
         Cell IDCell = IDRow.getCell(0);
         qID = (int) IDCell.getNumericCellValue();
 
-        if(qID == row1 && (getInfo(row1, 2, workbook).equals(diff)) && (getInfo(row1, 3, workbook).equals(stg))) {
+        if(qID == row1 && getCodeRiddle(row1, 2).equals(difficulty) && (getCodeRiddle(row1, 3).equals(stage))) {
             Row qRow = sheet.getRow(row1);
             Cell qCell = qRow.getCell(col1);
             question = qCell.getStringCellValue();
             return question;
         }
-        else
+        else{
             return null;
+        }
     }
 
-    public void checker(String answer){
-        Sheet sheet = workbook.getSheetAt(0);
-        Row IDRow = sheet.getRow(questionID);
-        Cell IDCell = IDRow.getCell(0);
-
-        if(answer.equals("A") || answer.equals("a")){
-            answer = options.get(0);
+    public boolean answerChecker(String chosenAnswer, int index){
+        System.out.println("ASNWER???? " + answers.get(index).get(0));
+        if(chosenAnswer == answers.get(index).get(0)){
+            return true;
         }
-        else if(answer.equals("B") || answer.equals("b") ){
-            answer = options.get(1);
-        }
-        else if(answer.equals("C") || answer.equals("c") ){
-            answer = options.get(2);
-        }
-        else if(answer.equals("D") || answer.equals("d") ){
-            answer = options.get(3);
-        }
-
-        if(answer == getInfo(questionID, 9, workbook)) {
-            System.out.println("Luh gamer");
-        }
-        else
-            System.out.println("HAH BOBO");
+        return false;
     }
 
-
-    public String getQuestion() {
-        return question;
+    public void adjustDifficulty(String expertiseLevel){
+        switch (expertiseLevel){
+            case "Poor":
+                levels.add("Easy");
+                questionLimit = 10;
+                break;
+            case "Novice":
+                levels.add("Easy");
+                levels.add("Medium");
+                questionLimit = 5;
+                break;
+            case "Average":
+                levels.add("Medium");
+                levels.add("Hard");
+                questionLimit = 4;
+                break;
+            case "Expert":
+                levels.add("Hard");
+                questionLimit = 3;
+                break;
+        }
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
+    public ArrayList<ArrayList<String>> getQuestions() {
+        return questions;
     }
 
-    public ArrayList<String> getOptions() {
+    public void setQuestions(ArrayList<ArrayList<String>> questions) {
+        this.questions = questions;
+    }
+
+    public ArrayList<ArrayList<String>> getOptions() {
         return options;
     }
 
-    public void setOptions(ArrayList<String> options) {
+    public void setOptions(ArrayList<ArrayList<String>> options) {
         this.options = options;
+    }
+
+    public ArrayList<ArrayList<String>> getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(ArrayList<ArrayList<String>> answers) {
+        this.answers = answers;
+    }
+
+
+    public Workbook getWorkbook() {
+        return workbook;
+    }
+
+    public void setWorkbook(Workbook workbook) {
+        this.workbook = workbook;
+    }
+
+    public int getNumberOfQuestions() {
+        return numberOfQuestions;
+    }
+
+    public void setNumberOfQuestions(int numberOfQuestions) {
+        this.numberOfQuestions = numberOfQuestions;
+    }
+
+    public void dispose(){
+        question = null;
+        levels.clear();
+        options.clear();
+        answer = null;
     }
 }

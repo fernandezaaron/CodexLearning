@@ -53,8 +53,6 @@ public class Manager {
         databaseReader = new DatabaseReader();
 
         questionnaire = new Questionnaire();
-        //THIS SHOULD HAVE RETURN VALUE AND NOT VOID METHOD
-        questionnaire.questionDisplay("", "");
 
         background = new TextureRegion(new Texture(Constants.BACKGROUND_PATH));
         mainMenu = new TextureRegion(new Texture(Constants.MENU_TEXT_PATH));
