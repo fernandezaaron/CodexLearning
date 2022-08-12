@@ -13,12 +13,11 @@ public class Questionnaire {
     private DatabaseReader read;
     private Workbook workbook;
 
-    private String question, answer, difficulty;
+    private String question, difficulty;
 
-
-    private ArrayList<ArrayList<String>> questions;
+    private ArrayList<String> questions;
     private ArrayList<ArrayList<String>> options;
-    private ArrayList<ArrayList<String>> answers;
+    private ArrayList<String> answers;
 
 
     private ArrayList<String> levels;
@@ -40,7 +39,6 @@ public class Questionnaire {
         question = null;
         difficulty = null;
         stageValue = null;
-        answer = null;
 
         numberOfQuestions = 0;
         questionLimit = 0;
@@ -69,14 +67,16 @@ public class Questionnaire {
         System.out.println("QUESTION LIMIT - " + questionLimit);
         while(question == null) {
 
+            if(numberOfQuestions == questionLimit){
+                break;
+            }
+
             questionID = randomizer.nextInt(excelQuestionLimit - 1) + 1;
-            System.out.println("WQDNIWDINQINDWNDWQNDWQNDWQNIDWQNQWD");
+
             question = getExcelQuestion(questionID, 4, difficulty, stage);
             if(question != null) {
 
-
-                questions.add(new ArrayList<String>());
-                questions.get(numberOfQuestions).add(question);
+                questions.add(question);
 
                 options.add(new ArrayList<String>());
                 options.get(numberOfQuestions).add(getCodeRiddle(questionID, 5));
@@ -84,17 +84,13 @@ public class Questionnaire {
                 options.get(numberOfQuestions).add(getCodeRiddle(questionID, 7));
                 options.get(numberOfQuestions).add(getCodeRiddle(questionID, 8));
 
-                answers.add(new ArrayList<String>());
-                answers.get(numberOfQuestions).add(getCodeRiddle(questionID, 9));
-
-                System.out.println(answers);
+                answers.add(getCodeRiddle(questionID, 9));
 
                 numberOfQuestions++;
             }
-
-            System.out.println("NUMBER OF QUESTIONS - " + numberOfQuestions);
+            question = null;
         }
-        Collections.shuffle(options);
+//        Collections.shuffle(options);
     }
 
     public String getCodeRiddle(int rows, int col){
@@ -106,28 +102,19 @@ public class Questionnaire {
     }
 
     public String getExcelQuestion(int row1, int col1, String difficulty, String stage) {
-        int qID = 0;
-        String question = null;
 
-        Sheet sheet = getWorkbook().getSheet("CodeRiddle");
-        Row IDRow = sheet.getRow(row1);
-        Cell IDCell = IDRow.getCell(0);
-        qID = (int) IDCell.getNumericCellValue();
-
-        if(qID == row1 && getCodeRiddle(row1, 2).equals(difficulty) && (getCodeRiddle(row1, 3).equals(stage))) {
-            Row qRow = sheet.getRow(row1);
-            Cell qCell = qRow.getCell(col1);
-            question = qCell.getStringCellValue();
-            return question;
+        if((int) getWorkbook().getSheet("CodeRiddle").
+                getRow(row1).getCell(0).getNumericCellValue() == row1 &&
+                getCodeRiddle(row1, 2).equals(difficulty) &&
+                (getCodeRiddle(row1, 3).equals(stage))) {
+            return getWorkbook().getSheet("CodeRiddle").getRow(row1).getCell(col1).getStringCellValue();
         }
-        else{
-            return null;
-        }
+        return null;
     }
 
     public boolean answerChecker(String chosenAnswer, int index){
-        System.out.println("ASNWER???? " + answers.get(index).get(0));
-        if(chosenAnswer == answers.get(index).get(0)){
+        System.out.println("ASDASDQWD - " + answers);
+        if(chosenAnswer == answers.get(index)){
             return true;
         }
         return false;
@@ -156,11 +143,11 @@ public class Questionnaire {
         }
     }
 
-    public ArrayList<ArrayList<String>> getQuestions() {
+    public ArrayList<String> getQuestions() {
         return questions;
     }
 
-    public void setQuestions(ArrayList<ArrayList<String>> questions) {
+    public void setQuestions(ArrayList<String> questions) {
         this.questions = questions;
     }
 
@@ -172,14 +159,13 @@ public class Questionnaire {
         this.options = options;
     }
 
-    public ArrayList<ArrayList<String>> getAnswers() {
+    public ArrayList<String> getAnswers() {
         return answers;
     }
 
-    public void setAnswers(ArrayList<ArrayList<String>> answers) {
+    public void setAnswers(ArrayList<String> answers) {
         this.answers = answers;
     }
-
 
     public Workbook getWorkbook() {
         return workbook;
@@ -197,10 +183,18 @@ public class Questionnaire {
         this.numberOfQuestions = numberOfQuestions;
     }
 
+    public int getQuestionLimit() {
+        return questionLimit;
+    }
+
+    public void setQuestionLimit(int questionLimit) {
+        this.questionLimit = questionLimit;
+    }
+
     public void dispose(){
-        question = null;
+        questions.clear();
         levels.clear();
         options.clear();
-        answer = null;
+        answers.clear();
     }
 }
