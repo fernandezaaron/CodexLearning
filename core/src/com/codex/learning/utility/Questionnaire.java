@@ -13,7 +13,7 @@ public class Questionnaire {
     private DatabaseReader read;
     private Workbook workbook;
 
-    private String question, answer, difficulty;
+    private String question, difficulty;
 
     private ArrayList<String> questions;
     private ArrayList<ArrayList<String>> options;
@@ -39,7 +39,6 @@ public class Questionnaire {
         question = null;
         difficulty = null;
         stageValue = null;
-        answer = null;
 
         numberOfQuestions = 0;
         questionLimit = 0;
@@ -68,8 +67,12 @@ public class Questionnaire {
         System.out.println("QUESTION LIMIT - " + questionLimit);
         while(question == null) {
 
+            if(numberOfQuestions == questionLimit){
+                break;
+            }
+
             questionID = randomizer.nextInt(excelQuestionLimit - 1) + 1;
-            System.out.println("WQDNIWDINQINDWNDWQNDWQNDWQNIDWQNQWD");
+
             question = getExcelQuestion(questionID, 4, difficulty, stage);
             if(question != null) {
 
@@ -83,12 +86,9 @@ public class Questionnaire {
 
                 answers.add(getCodeRiddle(questionID, 9));
 
-                System.out.println(answers);
-
                 numberOfQuestions++;
             }
-
-            System.out.println("NUMBER OF QUESTIONS - " + numberOfQuestions);
+            question = null;
         }
 //        Collections.shuffle(options);
     }
@@ -113,7 +113,8 @@ public class Questionnaire {
     }
 
     public boolean answerChecker(String chosenAnswer, int index){
-        if(chosenAnswer == answers.get(0)){
+        System.out.println("ASDASDQWD - " + answers);
+        if(chosenAnswer == answers.get(index)){
             return true;
         }
         return false;
@@ -166,7 +167,6 @@ public class Questionnaire {
         this.answers = answers;
     }
 
-
     public Workbook getWorkbook() {
         return workbook;
     }
@@ -183,10 +183,18 @@ public class Questionnaire {
         this.numberOfQuestions = numberOfQuestions;
     }
 
+    public int getQuestionLimit() {
+        return questionLimit;
+    }
+
+    public void setQuestionLimit(int questionLimit) {
+        this.questionLimit = questionLimit;
+    }
+
     public void dispose(){
-        question = null;
+        questions.clear();
         levels.clear();
         options.clear();
-        answer = null;
+        answers.clear();
     }
 }
