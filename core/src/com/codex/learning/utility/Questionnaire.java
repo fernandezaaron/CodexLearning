@@ -3,7 +3,6 @@ package com.codex.learning.utility;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -94,7 +93,6 @@ public class Questionnaire extends DatabaseReader{
     }
 
     public String getExcelQuestion(int row1, int col1, String difficulty, String stage) {
-
         if((int) getWorkbook().getSheet("CodeRiddle").
                 getRow(row1).getCell(0).getNumericCellValue() == row1 &&
                 getCodeRiddle(row1, 2).equals(difficulty) &&
