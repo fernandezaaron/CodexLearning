@@ -27,6 +27,7 @@ public class BlockDispenser extends Entity {
     private Blocks[] blocks;
     private Vector2 blockSize;
 
+
     public BlockDispenser(Manager manager, String direction, String id, String name, int limit, Vector2 blockSize) {
         super(manager);
         this.direction = direction;
@@ -214,5 +215,9 @@ public class BlockDispenser extends Entity {
 
     public void setCloned(boolean cloned) {
         this.cloned = cloned;
+    }
+
+    public int getLimit() {
+        return limit;
     }
 }
