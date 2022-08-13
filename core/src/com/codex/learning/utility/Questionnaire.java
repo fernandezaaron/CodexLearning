@@ -15,7 +15,6 @@ public class Questionnaire extends DatabaseReader{
     private ArrayList<ArrayList<String>> options;
     private ArrayList<String> answers;
 
-
     private ArrayList<String> levels;
 
     private int questionID, excelQuestionLimit, questionLimit;

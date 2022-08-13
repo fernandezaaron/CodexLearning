@@ -215,4 +215,8 @@ public class BlockDispenser extends Entity {
     public void setCloned(boolean cloned) {
         this.cloned = cloned;
     }
+
+    public int getLimit() {
+        return limit;
+    }
 }

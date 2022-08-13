@@ -63,8 +63,14 @@ public class Contact implements ContactListener {
                 blockDispenser.setInContact(false);
             }
             else{
-                jedisaur.setPickUpAble(true);
-                blockDispenser.setInContact(true);
+                if(blockDispenser.getLimit() == 0){
+                    jedisaur.setPickUpAble(false);
+                    blockDispenser.setInContact(false);
+                }
+                else{
+                    jedisaur.setPickUpAble(true);
+                    blockDispenser.setInContact(true);
+                }
             }
 
         }

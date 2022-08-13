@@ -28,6 +28,7 @@ public class CodeRiddle extends State {
     private boolean inComputer;
     private int currentQuestion;
 
+
     public CodeRiddle(Manager manager) {
         super(manager);
         inComputer = false;
@@ -35,8 +36,6 @@ public class CodeRiddle extends State {
         screen = new TextureRegion(manager.getPcStateSheet(), Constants.PC_SCREEN_X, Constants.PC_SCREEN_Y, Constants.PC_SCREEN_WIDTH, Constants.PC_SCREEN_HEIGHT);
 
         questionScreen = new TextureRegion(manager.getPcStateSheet(), Constants.PC_QUESTION_X, Constants.PC_QUESTION_Y, Constants.PC_QUESTION_WIDTH, Constants.PC_QUESTION_HEIGHT);
-
-
 
         choicesScreen = new TextureRegion[4];
         choicesBounds = new Rectangle[4];
@@ -103,8 +102,9 @@ public class CodeRiddle extends State {
 
         if(Gdx.input.justTouched()){
             for(int i = 0; i < 4; i++){
-                if(choicesBounds[i].contains(touchPoint.x, touchPoint.y)) {
-                    if (currentQuestion <= manager.getQuestionnaire().getQuestionLimit() - 1) {
+                if (currentQuestion <= manager.getQuestionnaire().getQuestionLimit() - 1) {
+                    if (choicesBounds[i].contains(touchPoint.x, touchPoint.y)) {
+
                         if (manager.getQuestionnaire().answerChecker(options.get(currentQuestion).get(i), currentQuestion)) {
                             currentQuestion++;
                             System.out.println("YOUR ANSWER IS CORRECT");
@@ -113,9 +113,9 @@ public class CodeRiddle extends State {
                             System.out.println("WRONG");
                         }
                     }
-                    else{
+                }
+                else{
 
-                    }
                 }
             }
         }
