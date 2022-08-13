@@ -6,13 +6,9 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 
-public class Questionnaire {
-    private DatabaseReader read;
-    private Workbook workbook;
-
+public class Questionnaire extends DatabaseReader{
     private String question, difficulty;
 
     private ArrayList<String> questions;
@@ -29,8 +25,8 @@ public class Questionnaire {
 
     private int numberOfQuestions;
 
-    public Questionnaire() {
-        read = new DatabaseReader();
+    public Questionnaire(Manager manager) {
+        super(manager);
 
         questions = new ArrayList<>();
         options = new ArrayList<>();
@@ -46,7 +42,6 @@ public class Questionnaire {
         excelQuestionLimit = 196;
         randomizer = new Random();
 
-        workbook = read.getReader();
         levels = new ArrayList<>();
     }
 
@@ -165,14 +160,6 @@ public class Questionnaire {
 
     public void setAnswers(ArrayList<String> answers) {
         this.answers = answers;
-    }
-
-    public Workbook getWorkbook() {
-        return workbook;
-    }
-
-    public void setWorkbook(Workbook workbook) {
-        this.workbook = workbook;
     }
 
     public int getNumberOfQuestions() {

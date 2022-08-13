@@ -37,7 +37,6 @@ public class Manager {
     private TextureRegion pauseStateSheet;
 
     private BitmapFont font;
-    private Skin skin;
 
     private DatabaseReader databaseReader;
 
@@ -50,9 +49,6 @@ public class Manager {
         cl = new Contact();
         world = new World(new Vector2(0,0),false);
         world.setContactListener(cl);
-        databaseReader = new DatabaseReader();
-
-        questionnaire = new Questionnaire();
 
         background = new TextureRegion(new Texture(Constants.BACKGROUND_PATH));
         mainMenu = new TextureRegion(new Texture(Constants.MENU_TEXT_PATH));
@@ -75,8 +71,6 @@ public class Manager {
 
         camera = new OrthographicCamera(Constants.SCREEN_WIDTH, Constants.SCREEN_WIDTH);
         camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-
-        skin = new Skin(FileHandle.tempFile(Constants.JSON_SKIN_PATH));
 
         states = new Stack<State>();
     }
@@ -162,20 +156,7 @@ public class Manager {
     public void setCl(Contact cl) {
         this.cl = cl;
     }
-    public DatabaseReader getDatabaseReader() {
-        return databaseReader;
-    }
 
-    public void setDatabaseReader(DatabaseReader databaseReader) {
-        this.databaseReader = databaseReader;
-    }
-
-    public Questionnaire getQuestionnaire() {
-        return questionnaire;
-    };
-    public void setQuestionnaire(Questionnaire questionnaire){
-        this.questionnaire = questionnaire;
-    }
     public void setMusic(String file){
         music = Gdx.audio.newMusic(Gdx.files.internal(file));
 //        music.play();
@@ -193,13 +174,5 @@ public class Manager {
 
     public void setMusicPaused(boolean musicPaused) {
         this.musicPaused = musicPaused;
-    }
-
-    public Skin getSkin() {
-        return skin;
-    }
-
-    public void setSkin(Skin skin) {
-        this.skin = skin;
     }
 }
