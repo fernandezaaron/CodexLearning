@@ -25,9 +25,7 @@ public class Questionnaire extends DatabaseReader{
 
     private int numberOfQuestions;
 
-    public Questionnaire(Manager manager) {
-        super(manager);
-
+    public Questionnaire() {
         questions = new ArrayList<>();
         options = new ArrayList<>();
         answers = new ArrayList<>();

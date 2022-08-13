@@ -38,8 +38,6 @@ public class Manager {
 
     private BitmapFont font;
 
-    private DatabaseReader databaseReader;
-
     private Questionnaire questionnaire;
 
     public Manager(){
@@ -49,6 +47,8 @@ public class Manager {
         cl = new Contact();
         world = new World(new Vector2(0,0),false);
         world.setContactListener(cl);
+
+        questionnaire = new Questionnaire();
 
         background = new TextureRegion(new Texture(Constants.BACKGROUND_PATH));
         mainMenu = new TextureRegion(new Texture(Constants.MENU_TEXT_PATH));
@@ -174,5 +174,13 @@ public class Manager {
 
     public void setMusicPaused(boolean musicPaused) {
         this.musicPaused = musicPaused;
+    }
+
+    public Questionnaire getQuestionnaire() {
+        return questionnaire;
+    }
+
+    public void setQuestionnaire(Questionnaire questionnaire) {
+        this.questionnaire = questionnaire;
     }
 }

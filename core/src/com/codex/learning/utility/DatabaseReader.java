@@ -8,11 +8,9 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public abstract class DatabaseReader {
-    protected Manager manager;
     private Workbook workbook;
 
-    public DatabaseReader(Manager manager) {
-        this.manager = manager;
+    public DatabaseReader() {
         try {
             FileInputStream fs = new FileInputStream("assets/questions_excel/Minigames.xlsx");
             workbook = new XSSFWorkbook(fs);

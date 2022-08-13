@@ -28,8 +28,6 @@ public class CodeRiddle extends State {
     private boolean inComputer;
     private int currentQuestion;
 
-    private Questionnaire questionnaire;
-
     public CodeRiddle(Manager manager) {
         super(manager);
         inComputer = false;
@@ -38,7 +36,7 @@ public class CodeRiddle extends State {
 
         questionScreen = new TextureRegion(manager.getPcStateSheet(), Constants.PC_QUESTION_X, Constants.PC_QUESTION_Y, Constants.PC_QUESTION_WIDTH, Constants.PC_QUESTION_HEIGHT);
 
-        questionnaire = new Questionnaire(manager);
+
 
         choicesScreen = new TextureRegion[4];
         choicesBounds = new Rectangle[4];
@@ -75,7 +73,7 @@ public class CodeRiddle extends State {
                     manager.getCamera().position.y * Constants.PPM - questionScreen.getRegionHeight() / 1.25f);
             drawObject(sprite);
 
-            if (currentQuestion <= questionnaire.getQuestionLimit() - 1) {
+            if (currentQuestion <= manager.getQuestionnaire().getQuestionLimit() - 1) {
                 manager.getFont().draw(sprite, questions.get(currentQuestion),
                         10 + manager.getCamera().position.x * Constants.PPM - questionScreen.getRegionWidth() / 2,
                         -(manager.getCamera().position.y * Constants.PPM - questionScreen.getRegionHeight()) / 1.25f);
@@ -93,11 +91,11 @@ public class CodeRiddle extends State {
     }
 
     public void getAQuestion(String stage, String expertiseLevel){
-        questionnaire.questionDisplay("","");
+        manager.getQuestionnaire().questionDisplay("","");
 
-        questions = questionnaire.getQuestions();
+        questions = manager.getQuestionnaire().getQuestions();
 
-        options = questionnaire.getOptions();
+        options = manager.getQuestionnaire().getOptions();
     }
 
     public void drawObject(SpriteBatch sprite){
@@ -106,8 +104,8 @@ public class CodeRiddle extends State {
         if(Gdx.input.justTouched()){
             for(int i = 0; i < 4; i++){
                 if(choicesBounds[i].contains(touchPoint.x, touchPoint.y)) {
-                    if (currentQuestion <= questionnaire.getQuestionLimit() - 1) {
-                        if (questionnaire.answerChecker(options.get(currentQuestion).get(i), currentQuestion)) {
+                    if (currentQuestion <= manager.getQuestionnaire().getQuestionLimit() - 1) {
+                        if (manager.getQuestionnaire().answerChecker(options.get(currentQuestion).get(i), currentQuestion)) {
                             currentQuestion++;
                             System.out.println("YOUR ANSWER IS CORRECT");
                         } else {
@@ -129,7 +127,7 @@ public class CodeRiddle extends State {
                         manager.getCamera().position.x * Constants.PPM - choicesScreen[i].getRegionWidth() / 2,
                         (manager.getCamera().position.y * Constants.PPM - choicesScreen[i].getRegionHeight() - 20) * i + 1);
             }
-            if (currentQuestion <= questionnaire.getQuestionLimit() - 1) {
+            if (currentQuestion <= manager.getQuestionnaire().getQuestionLimit() - 1) {
                 manager.getFont().draw(sprite, options.get(currentQuestion).get(i),
                         10 + manager.getCamera().position.x * Constants.PPM - choicesScreen[i].getRegionWidth() / 2,
                         (manager.getCamera().position.y * Constants.PPM - choicesScreen[i].getRegionHeight()) * i + 1);
