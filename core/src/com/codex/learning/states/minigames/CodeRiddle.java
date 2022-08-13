@@ -38,6 +38,8 @@ public class CodeRiddle extends State {
 
         questionScreen = new TextureRegion(manager.getPcStateSheet(), Constants.PC_QUESTION_X, Constants.PC_QUESTION_Y, Constants.PC_QUESTION_WIDTH, Constants.PC_QUESTION_HEIGHT);
 
+        questionnaire = new Questionnaire(manager);
+
         choicesScreen = new TextureRegion[4];
         choicesBounds = new Rectangle[4];
         for(int i = 0; i < 4; i++){
