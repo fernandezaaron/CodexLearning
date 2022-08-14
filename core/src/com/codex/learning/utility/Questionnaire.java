@@ -47,35 +47,35 @@ public class Questionnaire extends DatabaseReader{
         expertiseLevel = "Novice";
         // To be erased
 
-
         adjustDifficulty(expertiseLevel);
 
-
         difficulty = levels.get(randomizer.nextInt(levels.size()));
+        System.out.println(difficulty);
+//        difficulty = levels.get(0);
 
         // Correct Until Here
 
-        System.out.println("QUESTION LIMIT - " + questionLimit);
         while(question == null) {
 
             if(numberOfQuestions == questionLimit){
                 break;
             }
-
             questionID = randomizer.nextInt(excelQuestionLimit - 1) + 1;
 
-            question = getExcelQuestion(questionID, 4, difficulty, stage);
+            question = "Which operator can be used to compare two values";
+//            question = getExcelQuestion(questionID, 4, difficulty, stage);
+
             if(question != null) {
 
                 questions.add(question);
 
                 options.add(new ArrayList<String>());
-                options.get(numberOfQuestions).add(getCodeRiddle(questionID, 5));
-                options.get(numberOfQuestions).add(getCodeRiddle(questionID, 6));
-                options.get(numberOfQuestions).add(getCodeRiddle(questionID, 7));
-                options.get(numberOfQuestions).add(getCodeRiddle(questionID, 8));
+//                options.get(numberOfQuestions).add(getCodeRiddle(questionID, 5));
+//                options.get(numberOfQuestions).add(getCodeRiddle(questionID, 6));
+//                options.get(numberOfQuestions).add(getCodeRiddle(questionID, 7));
+//                options.get(numberOfQuestions).add(getCodeRiddle(questionID, 8));
 
-                answers.add(getCodeRiddle(questionID, 9));
+//                answers.add(getCodeRiddle(questionID, 9));
 
                 numberOfQuestions++;
             }
@@ -88,8 +88,7 @@ public class Questionnaire extends DatabaseReader{
         Sheet sheet = getWorkbook().getSheet("CodeRiddle");
         Row row = sheet.getRow(rows);
         Cell cell = row.getCell(col);
-        stageValue = (String) cell.getStringCellValue();
-        return stageValue;
+        return (String) cell.getStringCellValue();
     }
 
     public String getExcelQuestion(int row1, int col1, String difficulty, String stage) {
@@ -97,13 +96,13 @@ public class Questionnaire extends DatabaseReader{
                 getRow(row1).getCell(0).getNumericCellValue() == row1 &&
                 getCodeRiddle(row1, 2).equals(difficulty) &&
                 (getCodeRiddle(row1, 3).equals(stage))) {
+
             return getWorkbook().getSheet("CodeRiddle").getRow(row1).getCell(col1).getStringCellValue();
         }
         return null;
     }
 
     public boolean answerChecker(String chosenAnswer, int index){
-        System.out.println("ASDASDQWD - " + answers);
         if(chosenAnswer == answers.get(index)){
             return true;
         }
@@ -114,21 +113,21 @@ public class Questionnaire extends DatabaseReader{
         switch (expertiseLevel){
             case "Poor":
                 levels.add("Easy");
-                questionLimit = 10;
+                setQuestionLimit(10);
                 break;
             case "Novice":
                 levels.add("Easy");
                 levels.add("Medium");
-                questionLimit = 5;
+                setQuestionLimit(5);
                 break;
             case "Average":
                 levels.add("Medium");
                 levels.add("Hard");
-                questionLimit = 4;
+                setQuestionLimit(4);
                 break;
             case "Expert":
                 levels.add("Hard");
-                questionLimit = 3;
+                setQuestionLimit(3);
                 break;
         }
     }
