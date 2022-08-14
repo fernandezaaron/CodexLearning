@@ -63,8 +63,15 @@ public class Contact implements ContactListener {
                 blockDispenser.setInContact(false);
             }
             else{
-                jedisaur.setPickUpAble(true);
-                blockDispenser.setInContact(true);
+                if(blockDispenser.getLimit() == 0){
+                    System.out.println("ubos na :D");
+                    jedisaur.setPickUpAble(false);
+                    blockDispenser.setInContact(false);
+                }else {
+                    jedisaur.setPickUpAble(true);
+                    blockDispenser.setInContact(true);
+                }
+
             }
 
         }

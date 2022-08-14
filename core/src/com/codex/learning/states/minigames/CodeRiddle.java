@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
+import com.codex.learning.utility.Questionnaire;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class CodeRiddle extends State {
 
     private boolean inComputer;
     private int currentQuestion;
+
 
     public CodeRiddle(Manager manager) {
         super(manager);
@@ -100,8 +102,9 @@ public class CodeRiddle extends State {
 
         if(Gdx.input.justTouched()){
             for(int i = 0; i < 4; i++){
-                if(choicesBounds[i].contains(touchPoint.x, touchPoint.y)) {
-                    if (currentQuestion <= manager.getQuestionnaire().getQuestionLimit() - 1) {
+                if (currentQuestion <= manager.getQuestionnaire().getQuestionLimit() - 1) {
+                    if (choicesBounds[i].contains(touchPoint.x, touchPoint.y)) {
+
                         if (manager.getQuestionnaire().answerChecker(options.get(currentQuestion).get(i), currentQuestion)) {
                             currentQuestion++;
                             System.out.println("YOUR ANSWER IS CORRECT");
@@ -110,9 +113,9 @@ public class CodeRiddle extends State {
                             System.out.println("WRONG");
                         }
                     }
-                    else{
+                }
+                else{
 
-                    }
                 }
             }
         }
