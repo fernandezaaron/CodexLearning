@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b24edcde-939f-44c7-8971-d1a6639c5cf4" name="Changes" comment="" />
+    <list default="true" id="b24edcde-939f-44c7-8971-d1a6639c5cf4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/background/pcstatesheet1.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/background/pcstatesheet1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeRiddle.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeRiddle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Constants.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -69,10 +74,11 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="DesktopLauncher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="DesktopLauncher" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="15" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.codex.learning.DesktopLauncher" />
+      <module name="CodexLearning.desktop.main" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.codex.learning.*" />
@@ -83,11 +89,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.DesktopLauncher" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
