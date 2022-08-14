@@ -1,6 +1,7 @@
 package com.codex.learning.utility;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
@@ -23,6 +24,8 @@ public class Questionnaire extends DatabaseReader{
 
     private int numberOfQuestions;
 
+    private DataFormatter formatter;
+
     public Questionnaire() {
         questions = new ArrayList<>();
         options = new ArrayList<>();
@@ -39,6 +42,8 @@ public class Questionnaire extends DatabaseReader{
         randomizer = new Random();
 
         levels = new ArrayList<>();
+
+        formatter = new DataFormatter();
     }
 
     public void questionDisplay(String stage, String expertiseLevel) {
@@ -47,35 +52,34 @@ public class Questionnaire extends DatabaseReader{
         expertiseLevel = "Novice";
         // To be erased
 
+
         adjustDifficulty(expertiseLevel);
 
+
         difficulty = levels.get(randomizer.nextInt(levels.size()));
-        System.out.println(difficulty);
-//        difficulty = levels.get(0);
 
         // Correct Until Here
 
+        System.out.println("QUESTION LIMIT - " + questionLimit);
         while(question == null) {
 
             if(numberOfQuestions == questionLimit){
                 break;
             }
+
             questionID = randomizer.nextInt(excelQuestionLimit - 1) + 1;
-
-            question = "Which operator can be used to compare two values";
-//            question = getExcelQuestion(questionID, 4, difficulty, stage);
-
+            question = getExcelQuestion(questionID, 4, difficulty, stage);
             if(question != null) {
 
                 questions.add(question);
 
                 options.add(new ArrayList<String>());
-//                options.get(numberOfQuestions).add(getCodeRiddle(questionID, 5));
-//                options.get(numberOfQuestions).add(getCodeRiddle(questionID, 6));
-//                options.get(numberOfQuestions).add(getCodeRiddle(questionID, 7));
-//                options.get(numberOfQuestions).add(getCodeRiddle(questionID, 8));
+                options.get(numberOfQuestions).add(getCodeRiddle(questionID, 5));
+                options.get(numberOfQuestions).add(getCodeRiddle(questionID, 6));
+                options.get(numberOfQuestions).add(getCodeRiddle(questionID, 7));
+                options.get(numberOfQuestions).add(getCodeRiddle(questionID, 8));
 
-//                answers.add(getCodeRiddle(questionID, 9));
+                answers.add(getCodeRiddle(questionID, 9));
 
                 numberOfQuestions++;
             }
@@ -88,7 +92,9 @@ public class Questionnaire extends DatabaseReader{
         Sheet sheet = getWorkbook().getSheet("CodeRiddle");
         Row row = sheet.getRow(rows);
         Cell cell = row.getCell(col);
-        return (String) cell.getStringCellValue();
+        String cellValue = formatter.formatCellValue(cell);
+        stageValue = cellValue;
+        return stageValue;
     }
 
     public String getExcelQuestion(int row1, int col1, String difficulty, String stage) {
@@ -96,13 +102,13 @@ public class Questionnaire extends DatabaseReader{
                 getRow(row1).getCell(0).getNumericCellValue() == row1 &&
                 getCodeRiddle(row1, 2).equals(difficulty) &&
                 (getCodeRiddle(row1, 3).equals(stage))) {
-
             return getWorkbook().getSheet("CodeRiddle").getRow(row1).getCell(col1).getStringCellValue();
         }
         return null;
     }
 
     public boolean answerChecker(String chosenAnswer, int index){
+        System.out.println("ASDASDQWD - " + answers);
         if(chosenAnswer == answers.get(index)){
             return true;
         }
@@ -113,21 +119,21 @@ public class Questionnaire extends DatabaseReader{
         switch (expertiseLevel){
             case "Poor":
                 levels.add("Easy");
-                setQuestionLimit(10);
+                questionLimit = 10;
                 break;
             case "Novice":
                 levels.add("Easy");
                 levels.add("Medium");
-                setQuestionLimit(5);
+                questionLimit = 5;
                 break;
             case "Average":
                 levels.add("Medium");
                 levels.add("Hard");
-                setQuestionLimit(4);
+                questionLimit = 4;
                 break;
             case "Expert":
                 levels.add("Hard");
-                setQuestionLimit(3);
+                questionLimit = 3;
                 break;
         }
     }
