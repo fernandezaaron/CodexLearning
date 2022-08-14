@@ -1,6 +1,7 @@
 package com.codex.learning.utility;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
@@ -23,6 +24,8 @@ public class Questionnaire extends DatabaseReader{
 
     private int numberOfQuestions;
 
+    private DataFormatter formatter;
+
     public Questionnaire() {
         questions = new ArrayList<>();
         options = new ArrayList<>();
@@ -39,6 +42,8 @@ public class Questionnaire extends DatabaseReader{
         randomizer = new Random();
 
         levels = new ArrayList<>();
+
+        formatter = new DataFormatter();
     }
 
     public void questionDisplay(String stage, String expertiseLevel) {
@@ -63,7 +68,6 @@ public class Questionnaire extends DatabaseReader{
             }
 
             questionID = randomizer.nextInt(excelQuestionLimit - 1) + 1;
-
             question = getExcelQuestion(questionID, 4, difficulty, stage);
             if(question != null) {
 
@@ -88,7 +92,8 @@ public class Questionnaire extends DatabaseReader{
         Sheet sheet = getWorkbook().getSheet("CodeRiddle");
         Row row = sheet.getRow(rows);
         Cell cell = row.getCell(col);
-        stageValue = (String) cell.getStringCellValue();
+        String cellValue = formatter.formatCellValue(cell);
+        stageValue = cellValue;
         return stageValue;
     }
 
