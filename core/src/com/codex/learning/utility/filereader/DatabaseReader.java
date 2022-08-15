@@ -1,4 +1,4 @@
-package com.codex.learning.utility;
+package com.codex.learning.utility.filereader;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

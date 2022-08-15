@@ -7,7 +7,6 @@ import com.badlogic.gdx.math.Vector3;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
-import com.codex.learning.utility.Questionnaire;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -43,12 +42,12 @@ public class CodeRiddle extends State {
         for(int i = 0; i < 4; i++){
             choicesScreen[i] = new TextureRegion(manager.getPcStateSheet(), Constants.PC_CHOICES_X, Constants.PC_CHOICES_Y, Constants.PC_CHOICES_WIDTH, Constants.PC_CHOICES_HEIGHT);
             choicesBounds[i] = new Rectangle(
-                    (int) -100,
-                    (int) -(40 * (i + 1)),
+                    -550,
+                    -(75 * (i + 1)),
                     Constants.PC_CHOICES_WIDTH, Constants.PC_CHOICES_HEIGHT);
         }
 
-        getAQuestion("", "");
+        getAQuestion("Stage 1", "Novice");
 
         currentQuestion = 0;
     }
@@ -92,7 +91,7 @@ public class CodeRiddle extends State {
     }
 
     public void getAQuestion(String stage, String expertiseLevel){
-        manager.getQuestionnaire().questionDisplay("","");
+        manager.getQuestionnaire().questionDisplay(stage,expertiseLevel);
 
         questions = manager.getQuestionnaire().getQuestions();
 

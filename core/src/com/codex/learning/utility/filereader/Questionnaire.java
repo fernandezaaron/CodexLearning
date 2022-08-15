@@ -1,5 +1,6 @@
-package com.codex.learning.utility;
+package com.codex.learning.utility.filereader;
 
+import com.codex.learning.utility.filereader.DatabaseReader;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
@@ -8,7 +9,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Questionnaire extends DatabaseReader{
+public class Questionnaire extends DatabaseReader {
     private String question, difficulty;
 
     private ArrayList<String> questions;
@@ -47,18 +48,10 @@ public class Questionnaire extends DatabaseReader{
     }
 
     public void questionDisplay(String stage, String expertiseLevel) {
-        // For the meantime
-        stage = "Stage 1";
-        expertiseLevel = "Novice";
-        // To be erased
-
-
         adjustDifficulty(expertiseLevel);
 
 
         difficulty = levels.get(randomizer.nextInt(levels.size()));
-
-        // Correct Until Here
 
         System.out.println("QUESTION LIMIT - " + questionLimit);
         while(question == null) {
@@ -108,7 +101,6 @@ public class Questionnaire extends DatabaseReader{
     }
 
     public boolean answerChecker(String chosenAnswer, int index){
-        System.out.println("ASDASDQWD - " + answers);
         if(chosenAnswer == answers.get(index)){
             return true;
         }
