@@ -225,25 +225,38 @@ public class Constants {
     //END OF SETTINGS SPRITE SHEET
 
     //PC ASSETS
-    public static final int PC_X = 102;
-    public static final int PC_Y = 31;
+    public static final int PC_X = 89;
+    public static final int PC_Y = 28;
     public static final int PC_WIDTH = 54;
     public static final int PC_HEIGHT = 43;
 
-    public static final int PC_SCREEN_X = 82;
-    public static final int PC_SCREEN_Y = 144;
+    public static final int PC_SCREEN_X = 69;
+    public static final int PC_SCREEN_Y = 141;
     public static final int PC_SCREEN_WIDTH = 1425;
     public static final int PC_SCREEN_HEIGHT = 887;
 
-    public static final int PC_QUESTION_X = 236;
-    public static final int PC_QUESTION_Y = 1231;
+    public static final int PC_QUESTION_X = 222;
+    public static final int PC_QUESTION_Y = 1227;
     public static final int PC_QUESTION_WIDTH = 1113;
     public static final int PC_QUESTION_HEIGHT = 349;
 
-    public static final int PC_CHOICES_X = 236;
-    public static final int PC_CHOICES_Y = 1133;
-    public static final int PC_CHOICES_WIDTH = 1111;
+    public static final int PC_CHOICES_X = 222;
+    public static final int PC_CHOICES_Y = 1134;
+    public static final int PC_CHOICES_WIDTH = 1113;
     public static final int PC_CHOICES_HEIGHT = 72;
+
+    public static final int PC_PASSED_X = 1526;
+    public static final int PC_PASSED_Y = 622;
+    public static final int PC_PASSED_WIDTH = 1113;
+    public static final int PC_PASSED_HEIGHT = 550;
+
+    public static final int PC_FAILED_X = 1526;
+    public static final int PC_FAILED_Y = 31;
+    public static final int PC_FAILED_WIDTH = 1113 ;
+    public static final int PC_FAILED_HEIGHT = 550;
+
+
+
     //END OF PC ASSETS
 
     //JEDISAUR SPRITE SHEET

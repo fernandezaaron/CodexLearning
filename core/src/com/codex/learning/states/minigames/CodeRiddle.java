@@ -16,7 +16,7 @@ public class CodeRiddle extends State {
 
     private TextureRegion screen;
 
-    private TextureRegion questionScreen;
+    private TextureRegion questionScreen, passedScoreScreen;
     private TextureRegion[] choicesScreen;
 
     private Rectangle[] choicesBounds;
@@ -36,6 +36,7 @@ public class CodeRiddle extends State {
         screen = new TextureRegion(manager.getPcStateSheet(), Constants.PC_SCREEN_X, Constants.PC_SCREEN_Y, Constants.PC_SCREEN_WIDTH, Constants.PC_SCREEN_HEIGHT);
 
         questionScreen = new TextureRegion(manager.getPcStateSheet(), Constants.PC_QUESTION_X, Constants.PC_QUESTION_Y, Constants.PC_QUESTION_WIDTH, Constants.PC_QUESTION_HEIGHT);
+        passedScoreScreen = new TextureRegion(manager.getPcStateSheet(), Constants.PC_PASSED_X, Constants.PC_PASSED_Y, Constants.PC_PASSED_WIDTH, Constants.PC_PASSED_HEIGHT);
 
         choicesScreen = new TextureRegion[4];
         choicesBounds = new Rectangle[4];
@@ -78,7 +79,8 @@ public class CodeRiddle extends State {
                         -(manager.getCamera().position.y * Constants.PPM - questionScreen.getRegionHeight()) / 1.25f);
             }
             else{
-
+                sprite.draw(passedScoreScreen, manager.getCamera().position.x * Constants.PPM - passedScoreScreen.getRegionWidth()/2,
+                        manager.getCamera().position.y * Constants.PPM - passedScoreScreen.getRegionHeight()/2);
             }
         }
         sprite.end();
