@@ -10,6 +10,7 @@ import com.codex.learning.entity.blocks.BlockHolder;
 import com.codex.learning.entity.blocks.Blocks;
 import com.codex.learning.entity.blocks.Computer;
 import com.codex.learning.entity.characters.Character;
+import com.codex.learning.entity.characters.NPC;
 
 //This class will allow the player to have collision detection
 public class Contact implements ContactListener {
@@ -109,6 +110,22 @@ public class Contact implements ContactListener {
             }
             computer.setInContact(true);
         }
+
+        if(isNPCContact(fa, fb)){
+            NPC npc;
+            Character jedisaur;
+
+            if(fa.getUserData() instanceof NPC){
+                npc = (NPC) fa.getUserData();
+                jedisaur = (Character) fb.getUserData();
+            }
+            else{
+                jedisaur = (Character) fa.getUserData();
+                npc = (NPC) fb.getUserData();
+            }
+            npc.setInContact(true);
+            System.out.println("NPC CONTACT");
+        }
         Gdx.app.log("BEGIN CONTACT", "");
     }
 
@@ -182,6 +199,21 @@ public class Contact implements ContactListener {
             computer.setInContact(false);
         }
 
+        if(isNPCContact(fa, fb)){
+            NPC npc;
+            Character jedisaur;
+
+            if(fa.getUserData() instanceof NPC){
+                npc = (NPC) fa.getUserData();
+                jedisaur = (Character) fb.getUserData();
+            }
+            else{
+                jedisaur = (Character) fa.getUserData();
+                npc = (NPC) fb.getUserData();
+            }
+            npc.setInContact(false);
+        }
+
         Gdx.app.log("END CONTACT", "");
     }
 
@@ -225,6 +257,15 @@ public class Contact implements ContactListener {
     private boolean isComputerContact(Fixture a, Fixture b){
         if(a.getUserData() instanceof Character || b.getUserData() instanceof Character){
             if(a.getUserData() instanceof Computer || b.getUserData() instanceof Computer){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isNPCContact(Fixture a, Fixture b){
+        if(a.getUserData() instanceof Character || b.getUserData() instanceof Character){
+            if(a.getUserData() instanceof NPC || b.getUserData() instanceof NPC){
                 return true;
             }
         }
