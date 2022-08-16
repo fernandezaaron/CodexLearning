@@ -2,12 +2,17 @@ package com.codex.learning.states.minigames;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Align;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
-import com.codex.learning.utility.Questionnaire;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -16,8 +21,15 @@ public class CodeRiddle extends State {
 
     private TextureRegion screen;
 
-    private TextureRegion questionScreen, passedScoreScreen;
+    private TextureRegion answerScreen, passedScoreScreen;
     private TextureRegion[] choicesScreen;
+    private TextureAtlas atlas;
+    private Skin skin;
+    private Stage stage;
+    private ScrollPane scrollPane;
+    private Label text;
+    private Table table, scrollTable;
+
 
     private Rectangle[] choicesBounds;
     private Vector3 touchPoint;
@@ -25,17 +37,32 @@ public class CodeRiddle extends State {
     private ArrayList<String> questions;
     private ArrayList<ArrayList<String>> options;
 
+
+
     private boolean inComputer;
     private int currentQuestion;
 
 
     public CodeRiddle(Manager manager) {
         super(manager);
+        stage = new Stage();
+        skin = new Skin(Gdx.files.internal("./text/DialogBox.json"));
+        atlas = new TextureAtlas(Gdx.files.internal("./text/DialogBox.atlas"));
+        skin.addRegions(atlas);
+
+
+
+
+
+
+
+
         inComputer = false;
         touchPoint = new Vector3();
         screen = new TextureRegion(manager.getPcStateSheet(), Constants.PC_SCREEN_X, Constants.PC_SCREEN_Y, Constants.PC_SCREEN_WIDTH, Constants.PC_SCREEN_HEIGHT);
 
-        questionScreen = new TextureRegion(manager.getPcStateSheet(), Constants.PC_QUESTION_X, Constants.PC_QUESTION_Y, Constants.PC_QUESTION_WIDTH, Constants.PC_QUESTION_HEIGHT);
+
+        answerScreen = new TextureRegion(manager.getPcStateSheet(), Constants.PC_QUESTION_X, Constants.PC_QUESTION_Y, Constants.PC_QUESTION_WIDTH, Constants.PC_QUESTION_HEIGHT);
         passedScoreScreen = new TextureRegion(manager.getPcStateSheet(), Constants.PC_PASSED_X, Constants.PC_PASSED_Y, Constants.PC_PASSED_WIDTH, Constants.PC_PASSED_HEIGHT);
 
         choicesScreen = new TextureRegion[4];
@@ -68,15 +95,46 @@ public class CodeRiddle extends State {
             sprite.draw(screen,
                     manager.getCamera().position.x * Constants.PPM - screen.getRegionWidth() / 2,
                     manager.getCamera().position.y * Constants.PPM - screen.getRegionHeight() / 2);
-            sprite.draw(questionScreen,
-                    manager.getCamera().position.x * Constants.PPM - questionScreen.getRegionWidth() / 2,
-                    manager.getCamera().position.y * Constants.PPM - questionScreen.getRegionHeight() / 1.25f);
+            sprite.draw(answerScreen,
+                    manager.getCamera().position.x * Constants.PPM - answerScreen.getRegionWidth() / 2,
+                    manager.getCamera().position.y * Constants.PPM - answerScreen.getRegionHeight() / 1.25f);
             drawObject(sprite);
 
             if (currentQuestion <= manager.getQuestionnaire().getQuestionLimit() - 1) {
+
+//                text = new Label();
+//                text.setAlignment(Label.LEFT);
+//                text.setText(questions.get(currentQuestion));
+//
+//                scrollTable = new Table();
+//                scrollTable.setSkin(skin);
+//                scrollTable.setBackground("questions");
+//                scrollTable.setHeight(1);
+//                scrollTable.setPosition(10 + manager.getCamera().position.x * Constants.PPM - answerScreen.getRegionWidth() / 12,
+//                        -(manager.getCamera().position.y * Constants.PPM - answerScreen.getRegionHeight()) / 4f);
+//
+//
+//
+//                scrollPane = new ScrollPane(scrollTable);
+//
+//
+//                table = new Table();
+//                table.setFillParent(true);
+//
+//                table.setDebug(true);
+//                table.setPosition( manager.getCamera().position.x / Constants.PPM - answerScreen.getRegionWidth() / 12,
+//                        -(manager.getCamera().position.y /Constants.PPM - answerScreen.getRegionHeight()) / 4f);
+//
+//                table.add(scrollPane);
+//
+//
+//                stage.addActor(table);
+//                stage.draw();
+//                table.draw(sprite, 1);
+
                 manager.getFont().draw(sprite, questions.get(currentQuestion),
-                        10 + manager.getCamera().position.x * Constants.PPM - questionScreen.getRegionWidth() / 2,
-                        -(manager.getCamera().position.y * Constants.PPM - questionScreen.getRegionHeight()) / 1.25f);
+                        10 + manager.getCamera().position.x * Constants.PPM - answerScreen.getRegionWidth() / 2,
+                        -(manager.getCamera().position.y * Constants.PPM - answerScreen.getRegionHeight()) / 1.25f);
             }
             else{
                 sprite.draw(passedScoreScreen, manager.getCamera().position.x * Constants.PPM - passedScoreScreen.getRegionWidth()/2,
@@ -133,9 +191,6 @@ public class CodeRiddle extends State {
                 manager.getFont().draw(sprite, options.get(currentQuestion).get(i),
                         10 + manager.getCamera().position.x * Constants.PPM - choicesScreen[i].getRegionWidth() / 2,
                         (manager.getCamera().position.y * Constants.PPM - choicesScreen[i].getRegionHeight()) * i + 1);
-            }
-            else{
-
             }
         }
     }

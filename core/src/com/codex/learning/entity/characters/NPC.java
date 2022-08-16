@@ -42,7 +42,7 @@ public class NPC extends Entity {
 //        Create a body without collision yet.
         this.position = position;
         this.size = size;
-
+        stage = new Stage();
         skin = new Skin(Gdx.files.internal("./text/DialogBox.json"));
         table = new Table();
         atlas = new TextureAtlas(Gdx.files.internal("./text/DialogBox.atlas"));
@@ -51,7 +51,7 @@ public class NPC extends Entity {
         System.out.println(atlas.findRegion("dialogbox1"));
 
 
-        stage = new Stage();
+
         labelStyle = new Label.LabelStyle();
         labelStyle.font = manager.getFont();
         labelStyle.font.setColor(Color.BLACK);
@@ -143,10 +143,6 @@ public class NPC extends Entity {
         if(isInContact() && Gdx.input.isKeyJustPressed(Input.Keys.E)){
             System.out.println("Jedigrandpa");;
             table.setFillParent(true);
-//            table.setSkin(skin);
-//            table.setBackground("dialogbox1");
-
-
 
             if(!db.isOpen()){
                 System.out.println("here");
@@ -156,11 +152,9 @@ public class NPC extends Entity {
                 stage.addActor(table);
             }
 
-
         }
         if(Gdx.input.justTouched() && db.isOpen()){
            table.reset();
-           //table = new Table();
            db.setOpen(false);
         }
     }

@@ -1,5 +1,5 @@
 DialogBox.png
-size: 2777, 351
+size: 3888, 351
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -22,5 +22,12 @@ exit
   xy: 2115, 0
   size: 662, 326
   orig: 662, 326
+  offset: 0, 0
+  index: -1
+questions
+  rotate: false
+  xy: 2777, 0
+  size: 1111, 203
+  orig: 1111, 203
   offset: 0, 0
   index: -1
