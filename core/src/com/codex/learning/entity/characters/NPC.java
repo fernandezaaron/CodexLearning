@@ -2,8 +2,10 @@ package com.codex.learning.entity.characters;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -11,6 +13,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
@@ -28,6 +31,8 @@ public class NPC extends Entity {
     private Stage stage;
     private Table table;
     private DialogueBox db;
+    private Label.LabelStyle labelStyle;
+    private TextureAtlas atlas;
     public NPC(Manager manager) {
         super(manager);
     }
@@ -38,9 +43,27 @@ public class NPC extends Entity {
         this.position = position;
         this.size = size;
 
-        skin = new Skin(Gdx.files.internal("./text/uiskin.json"));
+        skin = new Skin(Gdx.files.internal("./text/DialogBox.json"));
         table = new Table();
+        atlas = new TextureAtlas(Gdx.files.internal("./text/DialogBox.atlas"));
+        skin.addRegions(atlas);
+        skin.load(Gdx.files.internal("./text/DialogBox.json"));
+        System.out.println(atlas.findRegion("dialogbox1"));
+
+
         stage = new Stage();
+        labelStyle = new Label.LabelStyle();
+        labelStyle.font = manager.getFont();
+        labelStyle.font.setColor(Color.BLACK);
+        skin.add("default", labelStyle);
+
+        manager.getFont().setColor(Color.BLACK);
+        skin.add("pokemon", manager.getFont());
+
+        //   table.setDebug(true);
+        // stage.setDebugAll(true);
+        db = new DialogueBox(skin, "dialogueSkin");
+        //stage.getViewport().update(Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2);
 
 
 
@@ -72,9 +95,11 @@ public class NPC extends Entity {
                 Constants.JEDI_GRANDPA_WIDTH,Constants.JEDI_GRANDPA_HEIGHT);
 
         dialogueSkin = new TextureRegion(manager.getPcStateSheet(), Constants.PC_QUESTION_X, Constants.PC_QUESTION_Y, Constants.PC_QUESTION_WIDTH, Constants.PC_QUESTION_HEIGHT);
-        skin.add("dialogueSkin", dialogueSkin);
+      //  skin.add("dialogueSkin", dialogueSkin);
+
+
 //        skin.add("default-font", manager.getFont());
-        System.out.println(skin.getJsonClassTags());
+
 
 
     }
@@ -82,7 +107,10 @@ public class NPC extends Entity {
     @Override
     public void update(float delta) {
 //        cameraUpdate();
-        npcInteraction();
+        npcInteraction(delta);
+        stage.act(delta);
+        stage.draw();
+
     }
 
     @Override
@@ -92,7 +120,16 @@ public class NPC extends Entity {
         sprite.begin();
         sprite.draw(jediGrandpa, body.getPosition().x * Constants.PPM - jediGrandpa.getRegionWidth() / 2,
                 body.getPosition().y * Constants.PPM - jediGrandpa.getRegionHeight() / 2);
+
+
+        table.draw(sprite, 1);
+
+
+
+
         sprite.end();
+        stage.draw();
+
     }
 //    private void cameraUpdate(){
 //        Vector3 position = manager.getCamera().position;
@@ -102,23 +139,29 @@ public class NPC extends Entity {
 //        manager.getCamera().update();
 //    }
 
-    public void npcInteraction(){
+    public void npcInteraction(float delta){
         if(isInContact() && Gdx.input.isKeyJustPressed(Input.Keys.E)){
-            System.out.println("Jedigrandpa");
-            stage = new Stage(new ScreenViewport());
-            stage.getViewport().update(Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2);
+            System.out.println("Jedigrandpa");;
             table.setFillParent(true);
 //            table.setSkin(skin);
-//            table.setBackground(skin.getDrawable("dialogueSkin"));
-            stage.addActor(table);
-            System.out.println(stage.getActors());
-            db = new DialogueBox(skin, "dialogueSkin");
-            System.out.println(skin.getAtlas());
-            db.textAnimation("JEDIGRANDPA BABYYYYYYYYYY");
+//            table.setBackground("dialogbox1");
 
-            table.add(db).expand().align(Align.bottom).pad(8f);
-            Gdx.app.log(table.getName(), "its here");
 
+
+            if(!db.isOpen()){
+                System.out.println("here");
+                db.textAnimation("JEDIGRANDPA BABYYYYYYYYYY");
+                table.add(db).expand().align(Align.left).fill(true,false);
+                table.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 / Constants.PPM - 370, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2);
+                stage.addActor(table);
+            }
+
+
+        }
+        if(Gdx.input.justTouched() && db.isOpen()){
+           table.reset();
+           //table = new Table();
+           db.setOpen(false);
         }
     }
 

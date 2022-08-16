@@ -1,0 +1,26 @@
+DialogBox.png
+size: 2777, 351
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dialogbox1
+  rotate: false
+  xy: 0, 0
+  size: 1115, 351
+  orig: 1115, 351
+  offset: 0, 0
+  index: -1
+dialogbox2
+  rotate: false
+  xy: 1115, 0
+  size: 1000, 231
+  orig: 1000, 231
+  offset: 0, 0
+  index: -1
+exit
+  rotate: false
+  xy: 2115, 0
+  size: 662, 326
+  orig: 662, 326
+  offset: 0, 0
+  index: -1

@@ -12,16 +12,25 @@ public class DialogueBox extends Table {
     private float animationTimer = 0f;
     private float animationTotalTime = 0f;
     private float TEXT_SPEED = 0.05f;
-    private boolean isAnimating;
+    private boolean isAnimating, isOpen;
     private Label textLabel;
 
 
     public DialogueBox(Skin skin, String name){
+        this.pack();
         this.setSkin(skin);
-        this.setBackground(skin.getDrawable(name));
+        this.setBackground(skin.getDrawable("dialogbox2"));
         textLabel = new Label("\n", skin);
+//        textLabel.setHeight(1000);
+//        textLabel.setWidth(1000);
         this.add(textLabel).expand().align(Align.left).pad(5f);
+//        this.setWidth(400);
+//        this.setHeight(200);
+        this.setPosition(this.getX(), this.getY());
+
+        System.out.println(getName() + getActions() + getBackground() + getDebug());
         isAnimating = false;
+        isOpen = false;
 
     }
 
@@ -29,7 +38,9 @@ public class DialogueBox extends Table {
         text = t;
         animationTotalTime = t.length()*TEXT_SPEED;
         setAnimating(true);
+        setOpen(true);
         animationTimer = 0f;
+
     }
 
     private void setText (String t){
@@ -49,14 +60,21 @@ public class DialogueBox extends Table {
                 animationTimer = animationTotalTime;
             }
             String displayedText = "";
+//            System.out.println(delta);
             int stringSize = (int) ((animationTimer/animationTotalTime)*text.length());
             for(int i=0; i<stringSize; i++){
                 displayedText += text.charAt(i);
             }
             if(!displayedText.equals(textLabel.getText().toString())){
                 setText(displayedText);
+//                System.out.println(displayedText);
             }
         }
+    }
+
+    public void close(){
+        this.reset();
+
     }
 
     public boolean isAnimating() {
@@ -67,5 +85,16 @@ public class DialogueBox extends Table {
         isAnimating = animating;
     }
 
+    public boolean isOpen() {
+        return isOpen;
+    }
 
+    public void setOpen(boolean open) {
+        isOpen = open;
+    }
+
+    @Override
+    public float getPrefWidth(){
+        return 200f;
+    }
 }

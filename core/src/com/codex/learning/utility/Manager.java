@@ -36,6 +36,7 @@ public class Manager {
 
     private TextureRegion pauseStateSheet;
 
+
     private BitmapFont font;
 
     private Questionnaire questionnaire;
@@ -68,6 +69,8 @@ public class Manager {
 
         font = new BitmapFont(Gdx.files.internal(Constants.FONT_STYLE));
         font.getData().scale(0.7f);
+
+
 
         camera = new OrthographicCamera(Constants.SCREEN_WIDTH, Constants.SCREEN_WIDTH);
         camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
