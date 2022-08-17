@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.Constants;
+import com.codex.learning.utility.FuzzyLogic;
 import com.codex.learning.utility.Manager;
 
 import java.awt.*;
@@ -26,6 +27,8 @@ public class CodeRiddle extends State {
 
     private boolean inComputer;
     private int currentQuestion;
+
+    private FuzzyLogic fuzzyLogic;
 
 
     public CodeRiddle(Manager manager) {
@@ -111,6 +114,7 @@ public class CodeRiddle extends State {
                             System.out.println("YOUR ANSWER IS CORRECT");
                         } else {
                             currentQuestion++;
+
                             System.out.println("WRONG");
                         }
                     }

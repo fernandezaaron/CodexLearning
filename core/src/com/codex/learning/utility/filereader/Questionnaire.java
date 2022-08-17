@@ -78,7 +78,6 @@ public class Questionnaire extends DatabaseReader {
             }
             question = null;
         }
-//        Collections.shuffle(options);
     }
 
     public String getCodeRiddle(int rows, int col){

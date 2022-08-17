@@ -21,6 +21,7 @@ public class PlayState extends State{
     private HouseMap house;
     private Computer computer;
 
+
     private Blocks[] totalBlocks;
     private int blockCount;
     private boolean blockSpawn;
