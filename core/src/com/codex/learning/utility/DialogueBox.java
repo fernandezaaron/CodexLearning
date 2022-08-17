@@ -11,24 +11,18 @@ public class DialogueBox extends Table {
     private String text = "";
     private float animationTimer = 0f;
     private float animationTotalTime = 0f;
-    private float TEXT_SPEED = 0.05f;
+    private float TEXT_SPEED = 0.06f;
     private boolean isAnimating, isOpen;
     private Label textLabel;
 
 
     public DialogueBox(Skin skin, String name){
-        this.pack();
+        //this.pack();
         this.setSkin(skin);
-        this.setBackground(skin.getDrawable("dialogbox2"));
+        this.setBackground(skin.getDrawable(name));
         textLabel = new Label("\n", skin);
-//        textLabel.setHeight(1000);
-//        textLabel.setWidth(1000);
-        this.add(textLabel).expand().align(Align.left).pad(5f);
-//        this.setWidth(400);
-//        this.setHeight(200);
-        this.setPosition(this.getX(), this.getY());
-
-        System.out.println(getName() + getActions() + getBackground() + getDebug());
+        this.add(textLabel).align(Align.left).pad(50f);
+       // this.setPosition(this.getX(), this.getY());
         isAnimating = false;
         isOpen = false;
 
@@ -97,4 +91,5 @@ public class DialogueBox extends Table {
     public float getPrefWidth(){
         return 200f;
     }
+
 }

@@ -43,6 +43,9 @@ public class NPC extends Entity {
         this.position = position;
         this.size = size;
         stage = new Stage();
+       // stage.getViewport().update(Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2, true);
+        //stage.getCamera().update();
+
         skin = new Skin(Gdx.files.internal("./text/DialogBox.json"));
         table = new Table();
         atlas = new TextureAtlas(Gdx.files.internal("./text/DialogBox.atlas"));
@@ -62,7 +65,7 @@ public class NPC extends Entity {
 
         //   table.setDebug(true);
         // stage.setDebugAll(true);
-        db = new DialogueBox(skin, "dialogueSkin");
+        db = new DialogueBox(skin, "dialogbox2");
         //stage.getViewport().update(Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2);
 
 
@@ -108,8 +111,9 @@ public class NPC extends Entity {
     public void update(float delta) {
 //        cameraUpdate();
         npcInteraction(delta);
-        stage.act(delta);
-        stage.draw();
+        db.act(delta);
+        //stage.act(delta);
+        //stage.draw();
 
     }
 
@@ -120,15 +124,9 @@ public class NPC extends Entity {
         sprite.begin();
         sprite.draw(jediGrandpa, body.getPosition().x * Constants.PPM - jediGrandpa.getRegionWidth() / 2,
                 body.getPosition().y * Constants.PPM - jediGrandpa.getRegionHeight() / 2);
-
-
         table.draw(sprite, 1);
-
-
-
-
         sprite.end();
-        stage.draw();
+        //stage.draw();
 
     }
 //    private void cameraUpdate(){
@@ -142,14 +140,14 @@ public class NPC extends Entity {
     public void npcInteraction(float delta){
         if(isInContact() && Gdx.input.isKeyJustPressed(Input.Keys.E)){
             System.out.println("Jedigrandpa");;
-            table.setFillParent(true);
+            //table.setFillParent(true);
 
             if(!db.isOpen()){
                 System.out.println("here");
                 db.textAnimation("JEDIGRANDPA BABYYYYYYYYYY");
-                table.add(db).expand().align(Align.left).fill(true,false);
-                table.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 / Constants.PPM - 370, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2);
-                stage.addActor(table);
+                table.add(db).align(Align.center);
+                table.setHeight(250);
+                table.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/Constants.PPM/2, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/Constants.PPM/2 - 400);
             }
 
         }

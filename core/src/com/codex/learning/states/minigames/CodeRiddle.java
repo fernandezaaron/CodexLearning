@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.Constants;
+import com.codex.learning.utility.DialogueBox;
 import com.codex.learning.utility.Manager;
 
 import java.awt.*;
@@ -29,6 +30,7 @@ public class CodeRiddle extends State {
     private ScrollPane scrollPane;
     private Label text;
     private Table table, scrollTable;
+    private DialogueBox db;
 
 
     private Rectangle[] choicesBounds;
@@ -45,16 +47,12 @@ public class CodeRiddle extends State {
 
     public CodeRiddle(Manager manager) {
         super(manager);
-        stage = new Stage();
         skin = new Skin(Gdx.files.internal("./text/DialogBox.json"));
         atlas = new TextureAtlas(Gdx.files.internal("./text/DialogBox.atlas"));
         skin.addRegions(atlas);
+        db = new DialogueBox(skin, "questions");
 
-
-
-
-
-
+        table = new Table();
 
 
         inComputer = false;
@@ -82,7 +80,8 @@ public class CodeRiddle extends State {
 
     @Override
     public void update(float delta) {
-
+        castToTable();
+        db.act(delta);
     }
 
     @Override
@@ -90,6 +89,9 @@ public class CodeRiddle extends State {
         sprite.enableBlending();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.begin();
+
+
+
 
         if(isInComputer()){
             sprite.draw(screen,
@@ -99,38 +101,16 @@ public class CodeRiddle extends State {
                     manager.getCamera().position.x * Constants.PPM - answerScreen.getRegionWidth() / 2,
                     manager.getCamera().position.y * Constants.PPM - answerScreen.getRegionHeight() / 1.25f);
             drawObject(sprite);
+//
+//            text = new Label();
+//            text.setAlignment(Label.LEFT);
+//            text.setText(questions.get(currentQuestion));
+
+
 
             if (currentQuestion <= manager.getQuestionnaire().getQuestionLimit() - 1) {
 
-//                text = new Label();
-//                text.setAlignment(Label.LEFT);
-//                text.setText(questions.get(currentQuestion));
-//
-//                scrollTable = new Table();
-//                scrollTable.setSkin(skin);
-//                scrollTable.setBackground("questions");
-//                scrollTable.setHeight(1);
-//                scrollTable.setPosition(10 + manager.getCamera().position.x * Constants.PPM - answerScreen.getRegionWidth() / 12,
-//                        -(manager.getCamera().position.y * Constants.PPM - answerScreen.getRegionHeight()) / 4f);
-//
-//
-//
-//                scrollPane = new ScrollPane(scrollTable);
-//
-//
-//                table = new Table();
-//                table.setFillParent(true);
-//
-//                table.setDebug(true);
-//                table.setPosition( manager.getCamera().position.x / Constants.PPM - answerScreen.getRegionWidth() / 12,
-//                        -(manager.getCamera().position.y /Constants.PPM - answerScreen.getRegionHeight()) / 4f);
-//
-//                table.add(scrollPane);
-//
-//
-//                stage.addActor(table);
-//                stage.draw();
-//                table.draw(sprite, 1);
+
 
                 manager.getFont().draw(sprite, questions.get(currentQuestion),
                         10 + manager.getCamera().position.x * Constants.PPM - answerScreen.getRegionWidth() / 2,
@@ -141,7 +121,30 @@ public class CodeRiddle extends State {
                         manager.getCamera().position.y * Constants.PPM - passedScoreScreen.getRegionHeight()/2);
             }
         }
+        castToTable();
+        table.draw(sprite, 1);
         sprite.end();
+    }
+
+    public void castToTable(){
+        if(isInComputer()){
+            if(currentQuestion <= manager.getQuestionnaire().getQuestionLimit() - 1){
+//                scrollTable = new Table();
+////            scrollTable.setSkin(skin);
+////            scrollTable.setBackground("questions");
+//                scrollTable.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2);
+//                scrollTable.debug();
+//
+//                scrollPane = new ScrollPane(scrollTable);
+                table.setFillParent(true);
+                table.setPosition( manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2/Constants.PPM);
+                db.textAnimation("questions.get(currentQuestion)");
+                table.add(db).expand().fill(true);
+
+
+            }
+        }
+
     }
 
     @Override
