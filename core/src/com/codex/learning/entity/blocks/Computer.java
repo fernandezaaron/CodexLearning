@@ -11,15 +11,18 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.codex.learning.entity.Entity;
 import com.codex.learning.states.minigames.CodeRiddle;
 import com.codex.learning.utility.Constants;
+import com.codex.learning.utility.FuzzyLogic;
 import com.codex.learning.utility.Manager;
 
 public class Computer extends Entity {
     private TextureRegion pc;
     private boolean inContact;
     private CodeRiddle codeRiddle;
+    private FuzzyLogic fuzzyLogic;
 
-    public Computer(Manager manager) {
+    public Computer(Manager manager, FuzzyLogic fuzzyLogic) {
         super(manager);
+        this.fuzzyLogic = fuzzyLogic;
     }
 
     @Override
@@ -49,8 +52,7 @@ public class Computer extends Entity {
         inContact = false;
 
         pc = new TextureRegion(manager.getPcStateSheet(), Constants.PC_X, Constants.PC_Y, Constants.PC_WIDTH, Constants.PC_HEIGHT);
-        codeRiddle = new CodeRiddle(manager);
-
+        codeRiddle = new CodeRiddle(manager, fuzzyLogic);
     }
 
     @Override

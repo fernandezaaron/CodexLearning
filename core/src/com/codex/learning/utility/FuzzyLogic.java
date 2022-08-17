@@ -22,18 +22,14 @@ public class FuzzyLogic {
 
     private int cookies;
 
-    private int totalQuestions;
 
-    public FuzzyLogic(int totalQuestions){
+    public FuzzyLogic(){
         numberOfErrors = 0;
         timeConsumptions = 0;
         correctOutput = 0;
         numberOfAttempts = 0;
 
         timeConsumptionRules = "";
-
-
-        this.totalQuestions = totalQuestions;
     }
 
     public void fuzzyNumberOfError(){
@@ -61,6 +57,9 @@ public class FuzzyLogic {
             setNumberOfErrorsRules("VERY HIGH");
             setPercentNumberOfErrors(25);
         }
+
+        System.out.println("PERCENT = " + getPercentNumberOfErrors());
+        System.out.println("RULES = " + getNumberOfErrorsRules());
 
     }
 

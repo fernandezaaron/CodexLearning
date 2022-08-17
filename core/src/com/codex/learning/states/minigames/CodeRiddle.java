@@ -27,12 +27,17 @@ public class CodeRiddle extends State {
 
     private boolean inComputer;
     private int currentQuestion;
+    private int error;
 
     private FuzzyLogic fuzzyLogic;
 
 
-    public CodeRiddle(Manager manager) {
+    public CodeRiddle(Manager manager, FuzzyLogic fuzzyLogic) {
         super(manager);
+
+        this.fuzzyLogic = fuzzyLogic;
+        error = 0;
+
         inComputer = false;
         touchPoint = new Vector3();
         screen = new TextureRegion(manager.getPcStateSheet(), Constants.PC_SCREEN_X, Constants.PC_SCREEN_Y, Constants.PC_SCREEN_WIDTH, Constants.PC_SCREEN_HEIGHT);
@@ -81,6 +86,9 @@ public class CodeRiddle extends State {
                         -(manager.getCamera().position.y * Constants.PPM - questionScreen.getRegionHeight()) / 1.25f);
             }
             else{
+                System.out.println("ERROR - " + error);
+                fuzzyLogic.setNumberOfErrors(error);
+                fuzzyLogic.fuzzyNumberOfError();
                 sprite.draw(passedScoreScreen, manager.getCamera().position.x * Constants.PPM - passedScoreScreen.getRegionWidth()/2,
                         manager.getCamera().position.y * Constants.PPM - passedScoreScreen.getRegionHeight()/2);
             }
@@ -111,10 +119,11 @@ public class CodeRiddle extends State {
 
                         if (manager.getQuestionnaire().answerChecker(options.get(currentQuestion).get(i), currentQuestion)) {
                             currentQuestion++;
+
                             System.out.println("YOUR ANSWER IS CORRECT");
                         } else {
                             currentQuestion++;
-
+                            error++;
                             System.out.println("WRONG");
                         }
                     }
@@ -136,9 +145,6 @@ public class CodeRiddle extends State {
                 manager.getFont().draw(sprite, options.get(currentQuestion).get(i),
                         10 + manager.getCamera().position.x * Constants.PPM - choicesScreen[i].getRegionWidth() / 2,
                         (manager.getCamera().position.y * Constants.PPM - choicesScreen[i].getRegionHeight()) * i + 1);
-            }
-            else{
-
             }
         }
     }

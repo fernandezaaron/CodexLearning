@@ -32,11 +32,15 @@ public class PlayState extends State{
 
     private PauseState pause;
 
+    private FuzzyLogic fuzzyLogic;
+
 
     public PlayState(Manager manager) {
         super(manager);
         pause = new PauseState(manager);
         house = new HouseMap(manager);
+
+        fuzzyLogic = new FuzzyLogic();
 
 
         // WILL BE USED, DON'T ERASE
@@ -46,7 +50,7 @@ public class PlayState extends State{
 
         blockDispensers = new BlockDispenser[2];
 
-        computer = new Computer(manager);
+        computer = new Computer(manager, fuzzyLogic);
         computer.create(new Vector2(-18, 2.8f), new Vector2(0.6f, 0.6f), 0);
 
         // WILL BE USED, DON'T ERASE
