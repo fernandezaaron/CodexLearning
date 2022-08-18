@@ -1,12 +1,11 @@
 package com.codex.learning.utility;
 
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 
-public class DialogueBox extends Table {
+public class QuestionBox extends Table {
 
     private String text = "";
     private float animationTimer = 0f;
@@ -16,13 +15,13 @@ public class DialogueBox extends Table {
     private Label textLabel;
 
 
-    public DialogueBox(Skin skin, String name){
+    public QuestionBox(Skin skin, String name){
         //this.pack();
         this.setSkin(skin);
         this.setBackground(skin.getDrawable(name));
         textLabel = new Label("\n", skin);
         this.add(textLabel).align(Align.left).pad(50f);
-       // this.setPosition(this.getX(), this.getY());
+        // this.setPosition(this.getX(), this.getY());
         isAnimating = false;
         isOpen = false;
 
@@ -36,7 +35,7 @@ public class DialogueBox extends Table {
         setAnimating(true);
         setOpen(true);
         animationTimer = 0f;
-
+        //System.out.println(isAnimating);
 
     }
 
@@ -47,9 +46,10 @@ public class DialogueBox extends Table {
         this.textLabel.setText(t);
     }
 
-    @Override
+//    @Override
     public void act(float delta){
         super.act(delta);
+        System.out.println(isAnimating);
         if(isAnimating()){
 
             animationTimer += delta;
@@ -95,5 +95,4 @@ public class DialogueBox extends Table {
     public float getPrefWidth(){
         return 200f;
     }
-
 }

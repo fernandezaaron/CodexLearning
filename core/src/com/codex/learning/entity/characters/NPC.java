@@ -126,6 +126,7 @@ public class NPC extends Entity {
                 body.getPosition().y * Constants.PPM - jediGrandpa.getRegionHeight() / 2);
         table.draw(sprite, 1);
         sprite.end();
+
         //stage.draw();
 
     }
