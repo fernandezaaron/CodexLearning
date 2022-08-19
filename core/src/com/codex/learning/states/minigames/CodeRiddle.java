@@ -134,7 +134,7 @@ public class CodeRiddle extends State {
 
         if(isInComputer()){
             table.setFillParent(true);
-            table.debug();
+//            table.debug();
             table.defaults().size(500, 150);
             table.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM + 25,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM + 15);
 //            text.setText("questions.get(currentQuestion\nasd\nasd\nquestions.get(currentQuesasdasdadadation\nasd\nasd\nasd\nasd\nasd\nquestions.get(currentQuestion\nasd\nasd" +
@@ -213,7 +213,7 @@ public class CodeRiddle extends State {
                scrollPane.layout();
                scrollPane.updateVisualScroll();
                scrollPane.setForceScroll(false,true);
-               scrollPane.debugAll();
+//               scrollPane.debugAll();
 
                table.add(scrollPane).height(200).padTop(25f);
                table.row();
