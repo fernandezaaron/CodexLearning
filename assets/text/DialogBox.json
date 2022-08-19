@@ -41,11 +41,20 @@
   "com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle": {
     "default": {
         "vScroll": "verticalScroll",
-        "background": "verticalScroll",
-        "hScroll": "verticalScroll",
-        "vScrollKnob": "verticalScroll",
-        "hScrollKnob": "verticalScroll"
+        "hScroll": "hScroll",
+        "background": "dialogbox1",
+        "vScrollKnob": "verticalScrollKnob",
+        "hScrollKnob": "hScrollKnob"
     }
   }
+
+  "com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {
+    "default": {
+        "font": "default-font"
+    }
+  }
+
+
+
 
 }

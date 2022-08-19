@@ -5,18 +5,22 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.Constants;
-import com.codex.learning.utility.DialogueBox;
 import com.codex.learning.utility.Manager;
-import com.codex.learning.utility.QuestionBox;
+import org.apache.poi.ss.formula.functions.T;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -33,12 +37,14 @@ public class CodeRiddle extends State {
     private ScrollPane scrollPane;
     private Label text;
     private Table table, scrollTable;
-    private QuestionBox db;
+    private Group group;
+    private List.ListStyle listStyle;
     private com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle labelStyle;
 
 
     private Rectangle[] choicesBounds;
     private Vector3 touchPoint;
+    private TextButton[] textButtons;
 
     private ArrayList<String> questions;
     private ArrayList<ArrayList<String>> options;
@@ -54,18 +60,31 @@ public class CodeRiddle extends State {
         skin = new Skin(Gdx.files.internal("text/DialogBox.json"));
         atlas = new TextureAtlas(Gdx.files.internal("./text/DialogBox.atlas"));
         skin.addRegions(atlas);
+
 //        db = new QuestionBox(skin, "questions");
-//        stage = new Stage();
+
         table = new Table();
         scrollTable = new Table();
+        group = new Group();
+
+        textButtons = new TextButton[4];
+
         scrollTable.setSkin(skin);
-        scrollTable.setBackground("dialogbox2");
+        scrollTable.setBackground("questions");
 
         table.setSkin(skin);
-        table.setBackground("dialogbox2");
+        table.setBackground("dialogbox1");
 
         text = new Label("\n", skin);
 
+        Drawable dr = skin.getDrawable("dialogbox1");
+        listStyle = new List.ListStyle();
+        listStyle.font = manager.getFont();
+        listStyle.background = dr;
+        listStyle.down = dr;
+        listStyle.over = dr;
+        listStyle.selection = dr;
+        skin.add("default", listStyle);
 
         //ScrollPane.ScrollPaneStyle spStyle = skin.get("verticalScroll", ScrollPane.ScrollPaneStyle.class);
         //skin.add("default", spStyle);
@@ -104,11 +123,19 @@ public class CodeRiddle extends State {
 
     @Override
     public void update(float delta) {
-       // scrollPane.act(delta);
-        table.act(delta);
+        //scrollPane.act(delta);
+        castToTable(delta);
+        manager.getStage().act(delta);
+//        manager.getStage().draw();
+       // manager.getStage().setDebugAll(true);
+//        manager.getStage().getViewport().setScreenSize(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+      //  System.out.println(group.getChildren());
+       // table.act(delta);
+      //  stage.act(delta);
 
 
     }
+
 
     @Override
     public void render(SpriteBatch sprite) {
@@ -117,84 +144,130 @@ public class CodeRiddle extends State {
         sprite.begin();
 
         if(isInComputer()){
-            sprite.draw(screen,
-                    manager.getCamera().position.x * Constants.PPM - screen.getRegionWidth() / 2,
-                    manager.getCamera().position.y * Constants.PPM - screen.getRegionHeight() / 2);
-            sprite.draw(answerScreen,
-                    manager.getCamera().position.x * Constants.PPM - answerScreen.getRegionWidth() / 2,
-                    manager.getCamera().position.y * Constants.PPM - answerScreen.getRegionHeight() / 1.25f);
-            drawObject(sprite);
-//
-//            text = new Label();
-//            text.setAlignment(Label.LEFT);
-//            text.setText(questions.get(currentQuestion));
+//            sprite.draw(screen,
+//                    manager.getCamera().position.x * Constants.PPM - screen.getRegionWidth() / 2,
+//                    manager.getCamera().position.y * Constants.PPM - screen.getRegionHeight() / 2);
+//            sprite.draw(answerScreen,
+//                    manager.getCamera().position.x * Constants.PPM - answerScreen.getRegionWidth() / 2,
+//                    manager.getCamera().position.y * Constants.PPM - answerScreen.getRegionHeight() / 1.25f);
+//            drawObject(sprite);
+
+
 
 
             if (currentQuestion <= manager.getQuestionnaire().getQuestionLimit() - 1) {
-                table.setFillParent(true);
-                scrollTable.setFillParent(true);
-                text.setText(questions.get(currentQuestion));
-                text.setScale(100,100);
-                scrollTable.add(text);
-                scrollTable.pack();
-//                scrollTable.setTransform(true);
-//                scrollTable.setOrigin(scrollTable.getWidth()/2, scrollTable.getHeight()/2);
-//                scrollTable.setScale(0.5f);
 
-               // scrollTable.draw(sprite, 1);
-                scrollPane = new ScrollPane(text, skin);
-                scrollPane.setFillParent(true);
-                System.out.println(scrollPane.getActor());
-                scrollPane.setScrollbarsVisible(true);
-                scrollPane.setScrollbarsOnTop(true);
-                scrollPane.setFadeScrollBars(false);
-               // scrollPane.draw(sprite, 1);
-               // scrollPane.debugAll();
-                scrollPane.debug();
-
-               // table.add(new Label("QUESTION: ", skin)).align(Align.center).width(table.getWidth()/2);
-                table.add(scrollPane).expand().fill();
-
-               // table.setHeight(300);
-                table.setPosition( manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2/Constants.PPM);
-                table.draw(sprite, 1);
-                table.debug();
 //                manager.getFont().draw(sprite, questions.get(currentQuestion),
 //                        10 + manager.getCamera().position.x * Constants.PPM - answerScreen.getRegionWidth() / 2,
 //                        -(manager.getCamera().position.y * Constants.PPM - answerScreen.getRegionHeight()) / 1.25f);
             }
             else{
-                sprite.draw(passedScoreScreen, manager.getCamera().position.x * Constants.PPM - passedScoreScreen.getRegionWidth()/2,
-                        manager.getCamera().position.y * Constants.PPM - passedScoreScreen.getRegionHeight()/2);
+//                sprite.draw(passedScoreScreen, manager.getCamera().position.x * Constants.PPM - passedScoreScreen.getRegionWidth()/2,
+//                        manager.getCamera().position.y * Constants.PPM - passedScoreScreen.getRegionHeight()/2);
             }
         }
 
+        //group.draw(sprite, 3);
+        manager.getStage().draw();
         sprite.end();
     }
 
-    public void castToTable(){
+    public void castToTable(float delta){
 
-//                scrollTable = new Table();
-////            scrollTable.setSkin(skin);
-////            scrollTable.setBackground("questions");
-//                scrollTable.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2);
-//                scrollTable.debug();
-//
-//                scrollPane = new ScrollPane(scrollTable);
+        if(isInComputer()){
+            table.setFillParent(true);
+            table.debug();
+            table.defaults().size(500, 150);
+//            table.setPosition(manager.getStage().getWidth()/2 , manager.getStage().getHeight()/2 , Align.bottomLeft);
+            table.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM + 25,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM + 15);
+//            text.setText("questions.get(currentQuestion\nasd\nasd\nquestions.get(currentQuesasdasdadadation\nasd\nasd\nasd\nasd\nasd\nquestions.get(currentQuestion\nasd\nasd" +
+//                    "\nquestions.get(currentQuestion\nasd\nasd\nquestions.get(currentQuesasdasdadadation\nasd\nasd\nasd\nasd\nasd\nquestions.get(currentQuestion\nasd\nasd" +
+//                    "\nquestions.get(currentQuestion\nasd\nasd\nquestions.get(currentQuesasdasdadadation\nasd\nasd\nasd\nasd\nasd\nquestions.get(currentQuestion\nasd\nasd" +
+//                    "\nquestions.get(currentQuestion\nasd\nasd\nquestions.get(currentQuesasdasdadadation\nasd\nasd\nasd\nasd\nasd\nquestions.get(currentQuestion\nasd\nasd");
 
-               // table.add(db).expand().fill(true);
-               // stage.addActor(table);
-               // table.setFillParent(true);
+           // text.setFontScale(2.2f);
+            text.setWrap(true);
+
+//            List list = new List(skin);
+//            list.setItems(new String[]{questions.get(currentQuestion)});
+
+//            scrollTable.add(new Label("QUESTION: \n", skin)).top().left().padLeft(10f);
+            text.setText(questions.get(currentQuestion));
+            for(int i=0; i<4; i++){
+                textButtons[i] = new TextButton(options.get(currentQuestion).get(i), skin);
+                scrollTable.add(textButtons[i]).grow().padLeft(10f).center();
+                scrollTable.row();
+            }
+
+            for(int i=0; i<4; i++){
+                final int tempI = i;
+                textButtons[i].addListener(new InputListener(){
+
+                    @Override
+                    public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+//                        System.out.println(tempI);
+//                        System.out.println(currentQuestion);
+//                        System.out.println(manager.getQuestionnaire().getQuestionLimit());
+                        if(currentQuestion < manager.getQuestionnaire().getQuestionLimit() - 1){
+                            if(manager.getQuestionnaire().answerChecker(options.get(currentQuestion).get(tempI), currentQuestion)){
+                                currentQuestion++;
+                                text.setText(questions.get(currentQuestion));
+                                for(int j=0; j<4; j++){
+                                    textButtons[j].setText(options.get(currentQuestion).get(j));
+                                }
+
+                                System.out.println("Your Answer is correct!");
+                            }else{
+                                currentQuestion++;
+                                text.setText(questions.get(currentQuestion));
+                                for(int j=0; j<4; j++){
+                                    textButtons[j].setText(options.get(currentQuestion).get(j));
+                                }
+                                System.out.println("bobo ka");
+                            }
+                        }else {
+                            System.out.println("tapos na");
+                        }
+
+                        return true;
+                    }
+
+                });
+            }
+
+
+            scrollPane = new ScrollPane(text, skin);
+            scrollPane.layout();
+            scrollPane.updateVisualScroll();
+            scrollPane.setForceScroll(false,true);
+//            scrollPane.setScrollingDisabled(true,false);
+            scrollPane.debugAll();
+
+
+//            scrollPane.setPosition(table.getX(), table.getY());
+//            System.out.println(scrollPane.getHeight() +" "+ scrollPane.getWidth());
+
+            table.add(scrollPane).height(200).padTop(25f);
+            table.row();
+            table.add(scrollTable).height(250).padBottom(15f);
+            table.pack();
+
+//            System.out.println(scrollPane.getX() + " " + scrollPane.getY());
+//            System.out.println(table.getX() + " " + table.getY());
+//            System.out.println(questions.get(currentQuestion));
 
 
 
+            manager.getStage().addActor(table);
 
-//                db.textAnimation("asfsaga");
-              //  table.add("db").fill(true).align(Align.center);
 
+        }
 
 
     }
+
+
+
 
     @Override
     public void dispose() {
@@ -211,12 +284,10 @@ public class CodeRiddle extends State {
 
     public void drawObject(SpriteBatch sprite){
         manager.getCamera().unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
-
-        if(Gdx.input.justTouched()){
-            for(int i = 0; i < 4; i++){
+        if(Gdx.input.justTouched()) {
+            for (int i = 0; i < 4; i++) {
                 if (currentQuestion <= manager.getQuestionnaire().getQuestionLimit() - 1) {
                     if (choicesBounds[i].contains(touchPoint.x, touchPoint.y)) {
-
                         if (manager.getQuestionnaire().answerChecker(options.get(currentQuestion).get(i), currentQuestion)) {
                             currentQuestion++;
                             System.out.println("YOUR ANSWER IS CORRECT");
@@ -225,14 +296,11 @@ public class CodeRiddle extends State {
                             System.out.println("WRONG");
                         }
                     }
-                }
-                else{
+                } else {
 
                 }
             }
         }
-
-
         for(int i = 0; i < 4; i++) {
             if (choicesBounds[i].contains(touchPoint.x, touchPoint.y)) {
                 sprite.draw(choicesScreen[i],

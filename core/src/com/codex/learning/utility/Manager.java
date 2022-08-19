@@ -11,7 +11,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.codex.learning.states.State;
 
 import java.util.Stack;
@@ -40,6 +42,8 @@ public class Manager {
     private BitmapFont font;
 
     private Questionnaire questionnaire;
+    private Stage stage;
+    private Viewport viewport;
 
     public Manager(){
 
@@ -75,8 +79,16 @@ public class Manager {
         camera = new OrthographicCamera(Constants.SCREEN_WIDTH, Constants.SCREEN_WIDTH);
         camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 
+
+
+        stage = new Stage();
+        //stage.getViewport().update((int) camera.viewportWidth, (int) camera.viewportHeight, true);
+
+
+
         states = new Stack<State>();
     }
+
 
     public void push(State state){
         System.out.println(state + " is pushed");
@@ -118,6 +130,11 @@ public class Manager {
     public OrthographicCamera getCamera() {
         return camera;
     }
+
+    public Stage getStage() {
+        return stage;
+    }
+
     public TextureRegion getMainMenu() {
         return mainMenu;
     }

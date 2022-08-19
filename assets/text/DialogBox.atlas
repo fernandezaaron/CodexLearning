@@ -1,40 +1,68 @@
 DialogBox.png
-size: 3896, 351
+size: 1662, 956
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-dialogbox1
+choices
   rotate: false
   xy: 0, 0
+  size: 1115, 76
+  orig: 1115, 76
+  offset: 0, 0
+  index: -1
+dialogbox1
+  rotate: false
+  xy: 0, 76
   size: 1115, 351
   orig: 1115, 351
   offset: 0, 0
   index: -1
 dialogbox2
   rotate: false
-  xy: 1115, 0
+  xy: 0, 427
   size: 1000, 231
   orig: 1000, 231
   offset: 0, 0
   index: -1
 exit
   rotate: false
-  xy: 2115, 0
+  xy: 1000, 427
   size: 662, 326
   orig: 662, 326
   offset: 0, 0
   index: -1
+hScroll
+  rotate: false
+  xy: 0, 753
+  size: 170, 8
+  orig: 170, 8
+  offset: 0, 0
+  index: -1
+hScrollKnob
+  rotate: false
+  xy: 170, 753
+  size: 134, 8
+  orig: 134, 8
+  offset: 0, 0
+  index: -1
 questions
   rotate: false
-  xy: 2777, 0
+  xy: 304, 753
   size: 1111, 203
   orig: 1111, 203
   offset: 0, 0
   index: -1
 verticalScroll
   rotate: false
-  xy: 3888, 0
+  xy: 1415, 753
   size: 8, 170
   orig: 8, 170
+  offset: 0, 0
+  index: -1
+verticalScrollKnob
+  rotate: false
+  xy: 1423, 753
+  size: 8, 134
+  orig: 8, 134
   offset: 0, 0
   index: -1

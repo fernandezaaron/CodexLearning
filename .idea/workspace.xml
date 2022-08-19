@@ -5,16 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b24edcde-939f-44c7-8971-d1a6639c5cf4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/text/PokemonClassic.fnt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/QuestionBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/text/DialogBox.atlas" beforeDir="false" afterPath="$PROJECT_DIR$/assets/text/DialogBox.atlas" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/text/DialogBox.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/text/DialogBox.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/text/DialogBox.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/text/DialogBox.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/NPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/NPC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/Computer.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/Computer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeRiddle.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeRiddle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/DialogueBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/DialogueBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/QuestionBox.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
