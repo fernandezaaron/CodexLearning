@@ -163,16 +163,16 @@ public class PlayState extends State{
                 }
                 if(computer.getCodeRiddle().isInComputer() && Gdx.input.isKeyJustPressed(Input.Keys.F)){
                     computer.getCodeRiddle().setInComputer(false);
-
-                    for (int i =0 ; i<manager.getStage().getActors().size; i++){
-                        System.out.println(manager.getStage().getActors().get(i));
-                        if(manager.getStage().getActors().get(i).toString().equals("Table")){
-                            System.out.println("true");
-                            manager.getStage().getActors().get(i).remove();
-                            manager.getStage().clear();
-                        }
-                    }
-//                    manager.getStage().clear();
+//not working pa
+//                    for (int i =0 ; i<manager.getStage().getActors().size; i++){
+//                        System.out.println(manager.getStage().getActors().get(i));
+//                        if(manager.getStage().getActors().get(i).toString().equals("Table")){
+//                            System.out.println("true");
+//                            manager.getStage().getActors().get(i).remove();
+////                            manager.getStage().clear();
+//                        }
+//                    }
+                    manager.getStage().clear();
                 }
             }
         }else{
@@ -197,7 +197,7 @@ public class PlayState extends State{
         //house.render(sprite);
 
 
-      //  house.render(sprite);
+        house.render(sprite);
 //
         for(int i = 0; i < 10; i++){
             blockHolders[i].render(sprite);
