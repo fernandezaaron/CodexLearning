@@ -58,7 +58,9 @@ public class Computer extends Entity {
 
     @Override
     public void update(float delta) {
+
         checkIfClicked();
+        codeRiddle.update(delta);
     }
 
     @Override

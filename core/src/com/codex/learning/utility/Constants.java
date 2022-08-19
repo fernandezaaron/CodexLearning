@@ -28,7 +28,11 @@ public class Constants {
     public static final String FONT_STYLE = "font/PokemonClassic.fnt";
 
     // JSON ASSET PATH
-    public static final String JSON_SKIN_PATH = "json/uiskin.json";
+    public static final String JSON_DIALOG_BOX_SKIN_PATH = "text/DialogBox.json";
+
+    // ATLAS ASSET PATH
+    public static final String ATLAS_UTILITY_PATH = "text/DialogBox.atlas";
+    public static final String PNG_ATLAS_UTILITY_PATH = "text/DialogBox.png";
 
     // MAP ASSET PATH
     public static final String PAUSE_STATE_PATH = "background/pausespritesheet.png";
