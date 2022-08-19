@@ -1,12 +1,10 @@
 package com.codex.learning.utility.filereader;
 
 import com.codex.learning.utility.filereader.DatabaseReader;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Questionnaire extends DatabaseReader {
@@ -18,7 +16,7 @@ public class Questionnaire extends DatabaseReader {
 
     private ArrayList<String> levels;
 
-    private int questionID, excelQuestionLimit, questionLimit;
+    private int questionID, excelQuestionLimit, questionLimit, excelMinigameLimit, minigameElementLimit, findCell;
 
     private String stageValue;
     private Random randomizer;
@@ -26,6 +24,11 @@ public class Questionnaire extends DatabaseReader {
     private int numberOfQuestions;
 
     private DataFormatter formatter;
+
+    private Sheet minigameSheet, questionSheet;
+
+    private String[][] minigameGetter;
+    private String[][] minigameHolder;
 
     public Questionnaire() {
         questions = new ArrayList<>();
@@ -40,21 +43,117 @@ public class Questionnaire extends DatabaseReader {
         questionLimit = 0;
 
         excelQuestionLimit = 196;
+        excelMinigameLimit = 53;
+        minigameElementLimit = 0;
         randomizer = new Random();
 
         levels = new ArrayList<>();
 
         formatter = new DataFormatter();
+
+        minigameSheet = getMinigameSheet();
+        questionSheet = getQuestionSheet();
+    }
+
+    // for minigames
+    private int findRow(Sheet sheet, int cellToFind) {
+        int foundCell = 0;
+        for(int i = 1; i <= sheet.getLastRowNum() + 1; i++) {
+            Row findRow = sheet.getRow(i);
+            if(findRow == null) {
+                continue;
+            }
+            else {
+                Cell findCell = findRow.getCell(0);
+                if (findCell == null) {
+                    continue;
+                }
+                else
+                    foundCell = (int) findCell.getNumericCellValue();
+                if (foundCell == cellToFind) {
+                    return i;
+                }
+            }
+        }
+        return 0;
+    }
+    // end for minigames
+
+    public void minigameDisplay(String stage, String expertiseLevel) {
+        adjustDifficulty(expertiseLevel);
+        minigameHolder = new String[50][50];
+        while(minigameGetter == null) {
+            questionID = randomizer.nextInt(excelMinigameLimit - 1) + 1;
+            findCell = findRow(minigameSheet, questionID);
+            System.out.println(questionID);
+            getMinigame(findCell, 4, difficulty, stage);
+        }
+    }
+
+    public void getMinigame(int row1, int col1, String diff, String stg) {
+        minigameGetter = new String[50][50];
+
+        String difficultyacq = getMinigameInfo(row1, 2);
+        String stageacq = getMinigameInfo(row1, 3);
+
+        if((difficultyacq != null && difficultyacq.equals(diff)) && (stageacq != null && stageacq.equals(stg))) {
+            int i = 0, j;
+            for(int x = row1; x > 0; x++) {
+                j = 0;
+                for(int y = col1; y > 0; y++) {
+                    Row qRow = minigameSheet.getRow(x + 1);
+                    Cell qCell = qRow.getCell(y);
+                    String cell = formatter.formatCellValue(qCell);
+                    if(cell.equals("\\"+"n")) {
+                        break;
+                    }
+                    else {
+                        minigameGetter[i][j] = cell;
+                        j++;
+                        minigameElementLimit++;
+                    }
+                }
+                i++;
+                Row qRow = minigameSheet.getRow(x + 2);
+                Cell qCell = qRow.getCell(4);
+                String cell = formatter.formatCellValue(qCell);
+                if(cell.equals("End")) {
+                    break;
+                }
+            }
+            for(int row = 0; row < 50; row++) {
+                for (int col = 0; col < 50; col++) {
+                    if (minigameGetter[row][col] != null) {
+                        minigameHolder[row][col] = minigameGetter[row][col];
+                    }
+                }
+            }
+        }
+        else
+            minigameGetter = null;
+    }
+
+    public String getMinigameInfo(int row1, int col1) {
+        String stageValue = null;
+
+        Row row = minigameSheet.getRow(row1);
+        Cell cell = row.getCell(col1);
+        if (cell == null) {
+            return null;
+        }
+        else {
+            String cellValue = formatter.formatCellValue(cell);
+            stageValue = cellValue;
+            return stageValue;
+        }
     }
 
     public void questionDisplay(String stage, String expertiseLevel) {
         adjustDifficulty(expertiseLevel);
 
-
-        difficulty = levels.get(randomizer.nextInt(levels.size()));
-
         System.out.println("QUESTION LIMIT - " + questionLimit);
         while(question == null) {
+            difficulty = levels.get(randomizer.nextInt(levels.size()));
 
             if(numberOfQuestions == questionLimit){
                 break;
@@ -82,8 +181,7 @@ public class Questionnaire extends DatabaseReader {
     }
 
     public String getCodeRiddle(int rows, int col){
-        Sheet sheet = getWorkbook().getSheet("CodeRiddle");
-        Row row = sheet.getRow(rows);
+        Row row = questionSheet.getRow(rows);
         Cell cell = row.getCell(col);
         String cellValue = formatter.formatCellValue(cell);
         stageValue = cellValue;
@@ -91,7 +189,7 @@ public class Questionnaire extends DatabaseReader {
     }
 
     public String getExcelQuestion(int row1, int col1, String difficulty, String stage) {
-        if((int) getWorkbook().getSheet("CodeRiddle").
+        if((int) questionSheet.
                 getRow(row1).getCell(0).getNumericCellValue() == row1 &&
                 getCodeRiddle(row1, 2).equals(difficulty) &&
                 (getCodeRiddle(row1, 3).equals(stage))) {
@@ -138,6 +236,14 @@ public class Questionnaire extends DatabaseReader {
         this.questions = questions;
     }
 
+    public String[][] getMinigame() {
+        return minigameHolder;
+    }
+
+    public void setMinigame(String[][] minigameHolder) {
+        this.minigameHolder = minigameHolder;
+    }
+
     public ArrayList<ArrayList<String>> getOptions() {
         return options;
     }
@@ -169,6 +275,10 @@ public class Questionnaire extends DatabaseReader {
     public void setQuestionLimit(int questionLimit) {
         this.questionLimit = questionLimit;
     }
+
+    public int getMinigameLimit(){return minigameElementLimit;}
+
+    public void setMinigameLimit(int minigameElementLimit){this.minigameElementLimit = minigameElementLimit;}
 
     public void dispose(){
         questions.clear();

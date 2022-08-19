@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector3;
+import com.codex.learning.states.minigames.MysteryCode;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
@@ -96,7 +97,7 @@ public class StageSelectState extends State{
             for(int i = 0; i < stages.length; i++){
                 if(stages[i].contains(touchpoint.x, touchpoint.y)){
                     manager.getMusic().stop();
-                    manager.set(new PlayState(manager));
+                    manager.set(new MysteryCode(manager));
                     System.out.println("You clicked at stage " + (i + 1)  + "!!");
 
                     // ITO COMMENT OUT TO COMPARE
