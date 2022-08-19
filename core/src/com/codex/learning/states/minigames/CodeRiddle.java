@@ -50,6 +50,8 @@ public class CodeRiddle extends State {
     private ArrayList<String> questions;
     private ArrayList<ArrayList<String>> options;
 
+
+
     private boolean inComputer;
     private int currentQuestion;
     private int error;
@@ -63,11 +65,6 @@ public class CodeRiddle extends State {
 
         this.fuzzyLogic = fuzzyLogic;
         error = 0;
-        timer = 0;
-
-
-        inComputer = false;
-        touchPoint = new Vector3();
 
 //        skin = new Skin(Gdx.files.internal("text/DialogBox.json"));
 //        atlas = new TextureAtlas(Gdx.files.internal("./text/DialogBox.atlas"));
@@ -107,25 +104,8 @@ public class CodeRiddle extends State {
 
 
         inComputer = false;
-//        touchPoint = new Vector3();
-//        screen = new TextureRegion(manager.getPcStateSheet(), Constants.PC_SCREEN_X, Constants.PC_SCREEN_Y, Constants.PC_SCREEN_WIDTH, Constants.PC_SCREEN_HEIGHT);
-//
-//
-//        answerScreen = new TextureRegion(manager.getPcStateSheet(), Constants.PC_QUESTION_X, Constants.PC_QUESTION_Y, Constants.PC_QUESTION_WIDTH, Constants.PC_QUESTION_HEIGHT);
-//        passedScoreScreen = new TextureRegion(manager.getPcStateSheet(), Constants.PC_PASSED_X, Constants.PC_PASSED_Y, Constants.PC_PASSED_WIDTH, Constants.PC_PASSED_HEIGHT);
-//
-//        choicesScreen = new TextureRegion[4];
-//        choicesBounds = new Rectangle[4];
-//        for(int i = 0; i < 4; i++){
-//            choicesScreen[i] = new TextureRegion(manager.getPcStateSheet(), Constants.PC_CHOICES_X, Constants.PC_CHOICES_Y, Constants.PC_CHOICES_WIDTH, Constants.PC_CHOICES_HEIGHT);
-//            choicesBounds[i] = new Rectangle(
-//                    (int) -100,
-//                    (int) -(40 * (i + 1)),
-//                    Constants.PC_CHOICES_WIDTH, Constants.PC_CHOICES_HEIGHT);
-//        }
 
-        getAQuestion("", "");
-
+        getAQuestion("Stage 1", "Novice");
         currentQuestion = 0;
     }
 
@@ -135,7 +115,6 @@ public class CodeRiddle extends State {
         if(isInComputer()){
             timer += Gdx.graphics.getDeltaTime();
         }
-
         castToTable(delta);
         manager.getStage().act(delta);
 
@@ -202,10 +181,9 @@ public class CodeRiddle extends State {
 
                                    }else{
                                        currentQuestion++;
+                                       error++;
                                        System.out.println("bobo ka");
                                    }
-                               }else {
-
                                }
                                return true;
                            }
@@ -218,6 +196,12 @@ public class CodeRiddle extends State {
                                        textButtons[j].setText(options.get(currentQuestion).get(j));
                                    }
                                }else{
+                                   fuzzyLogic.setNumberOfErrors(error);
+                                   fuzzyLogic.setTimeConsumptions(timer);
+
+                                   fuzzyLogic.fuzzyNumberOfError();
+                                   fuzzyLogic.fuzzyTimeConsumption();
+
                                    text.setText("YOU ARE DONE xD");
                                    for(int j=0; j<4; j++){
                                        textButtons[j].setText(" ");
@@ -264,79 +248,6 @@ public class CodeRiddle extends State {
         fuzzyLogic.setTotalQuestions(manager.getQuestionnaire().getQuestionLimit());
     }
 
-
-    public void drawObject(SpriteBatch sprite){
-        manager.getCamera().unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
-
-        if(Gdx.input.justTouched()){
-            for(int i = 0; i < 4; i++){
-                if (currentQuestion <= manager.getQuestionnaire().getQuestionLimit() - 1) {
-                    if (choicesBounds[i].contains(touchPoint.x, touchPoint.y)) {
-
-                        if (manager.getQuestionnaire().answerChecker(options.get(currentQuestion).get(i), currentQuestion)) {
-                            currentQuestion++;
-
-                            System.out.println("YOUR ANSWER IS CORRECT");
-                        } else {
-                            currentQuestion++;
-                            error++;
-                            System.out.println("WRONG");
-                        }
-                    }
-                }
-                else{
-
-                }
-            }
-        }
-
-
-        for(int i = 0; i < 4; i++) {
-            if (choicesBounds[i].contains(touchPoint.x, touchPoint.y)) {
-                sprite.draw(choicesScreen[i],
-                        manager.getCamera().position.x * Constants.PPM - choicesScreen[i].getRegionWidth() / 2,
-                        (manager.getCamera().position.y * Constants.PPM - choicesScreen[i].getRegionHeight() - 20) * i + 1);
-            }
-            if (currentQuestion <= manager.getQuestionnaire().getQuestionLimit() - 1) {
-                manager.getFont().draw(sprite, options.get(currentQuestion).get(i),
-                        10 + manager.getCamera().position.x * Constants.PPM - choicesScreen[i].getRegionWidth() / 2,
-                        (manager.getCamera().position.y * Constants.PPM - choicesScreen[i].getRegionHeight()) * i + 1);
-            }
-        }
-    }
-
-//    public void drawObject(SpriteBatch sprite){
-//        manager.getCamera().unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
-//        if(Gdx.input.justTouched()) {
-//            for (int i = 0; i < 4; i++) {
-//                if (currentQuestion <= manager.getQuestionnaire().getQuestionLimit() - 1) {
-//                    if (choicesBounds[i].contains(touchPoint.x, touchPoint.y)) {
-//                        if (manager.getQuestionnaire().answerChecker(options.get(currentQuestion).get(i), currentQuestion)) {
-//                            currentQuestion++;
-//                            System.out.println("YOUR ANSWER IS CORRECT");
-//                        } else {
-//                            currentQuestion++;
-//                            System.out.println("WRONG");
-//                        }
-//                    }
-//                } else {
-//
-//                }
-//            }
-//        }
-//        for(int i = 0; i < 4; i++) {
-//            if (choicesBounds[i].contains(touchPoint.x, touchPoint.y)) {
-//                sprite.draw(choicesScreen[i],
-//                        manager.getCamera().position.x * Constants.PPM - choicesScreen[i].getRegionWidth() / 2,
-//                        (manager.getCamera().position.y * Constants.PPM - choicesScreen[i].getRegionHeight() - 20) * i + 1);
-//            }
-//            if (currentQuestion <= manager.getQuestionnaire().getQuestionLimit() - 1) {
-//                manager.getFont().draw(sprite, options.get(currentQuestion).get(i),
-//                        10 + manager.getCamera().position.x * Constants.PPM - choicesScreen[i].getRegionWidth() / 2,
-//                        (manager.getCamera().position.y * Constants.PPM - choicesScreen[i].getRegionHeight()) * i + 1);
-//            }
-//        }
-//    }
 
     public boolean isInComputer() {
         return inComputer;
