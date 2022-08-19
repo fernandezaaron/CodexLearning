@@ -6,10 +6,16 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.utils.viewport.Viewport;
+
 import com.codex.learning.states.State;
 import com.codex.learning.utility.filereader.Questionnaire;
 
@@ -34,10 +40,14 @@ public class Manager {
     private TextureRegion settingsStateSheet;
 
     private TextureRegion pauseStateSheet;
+    private Skin skin;
+    private TextureAtlas atlas;
 
     private BitmapFont font;
 
     private Questionnaire questionnaire;
+    private Stage stage;
+    private Viewport viewport;
 
     public Manager(){
 
@@ -68,11 +78,23 @@ public class Manager {
         font = new BitmapFont(Gdx.files.internal(Constants.FONT_STYLE));
         font.getData().scale(0.7f);
 
+
+
         camera = new OrthographicCamera(Constants.SCREEN_WIDTH, Constants.SCREEN_WIDTH);
         camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 
+
+
+        stage = new Stage();
+        atlas = new TextureAtlas(Gdx.files.internal(Constants.ATLAS_UTILITY_PATH));
+        skin = new Skin(Gdx.files.internal(Constants.JSON_DIALOG_BOX_SKIN_PATH));
+        skin.addRegions(atlas);
+
+
+
         states = new Stack<State>();
     }
+
 
     public void push(State state){
         System.out.println(state + " is pushed");
@@ -114,6 +136,19 @@ public class Manager {
     public OrthographicCamera getCamera() {
         return camera;
     }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public Skin getSkin() {
+        return skin;
+    }
+
+    public TextureAtlas getAtlas() {
+        return atlas;
+    }
+
     public TextureRegion getMainMenu() {
         return mainMenu;
     }
@@ -155,6 +190,7 @@ public class Manager {
     public void setCl(Contact cl) {
         this.cl = cl;
     }
+
 
     public void setMusic(String file){
         music = Gdx.audio.newMusic(Gdx.files.internal(file));

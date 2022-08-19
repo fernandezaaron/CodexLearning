@@ -1,13 +1,27 @@
 package com.codex.learning.states.minigames;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.*;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.List;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.utils.Align;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.FuzzyLogic;
 import com.codex.learning.utility.Manager;
+
+import org.apache.poi.ss.formula.functions.T;
+
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -16,11 +30,22 @@ public class CodeRiddle extends State {
 
     private TextureRegion screen;
 
-    private TextureRegion questionScreen, passedScoreScreen;
+    private TextureRegion answerScreen, passedScoreScreen;
     private TextureRegion[] choicesScreen;
+    private TextureAtlas atlas;
+    private Skin skin;
+    private Stage stage;
+    private ScrollPane scrollPane;
+    private Label text;
+    private Table table, scrollTable;
+    private Group group;
+    private List.ListStyle listStyle;
+    private com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle labelStyle;
+
 
     private Rectangle[] choicesBounds;
     private Vector3 touchPoint;
+    private TextButton[] textButtons;
 
     private ArrayList<String> questions;
     private ArrayList<ArrayList<String>> options;
@@ -43,32 +68,79 @@ public class CodeRiddle extends State {
 
         inComputer = false;
         touchPoint = new Vector3();
-        screen = new TextureRegion(manager.getPcStateSheet(), Constants.PC_SCREEN_X, Constants.PC_SCREEN_Y, Constants.PC_SCREEN_WIDTH, Constants.PC_SCREEN_HEIGHT);
 
-        questionScreen = new TextureRegion(manager.getPcStateSheet(), Constants.PC_QUESTION_X, Constants.PC_QUESTION_Y, Constants.PC_QUESTION_WIDTH, Constants.PC_QUESTION_HEIGHT);
-        passedScoreScreen = new TextureRegion(manager.getPcStateSheet(), Constants.PC_PASSED_X, Constants.PC_PASSED_Y, Constants.PC_PASSED_WIDTH, Constants.PC_PASSED_HEIGHT);
+//        skin = new Skin(Gdx.files.internal("text/DialogBox.json"));
+//        atlas = new TextureAtlas(Gdx.files.internal("./text/DialogBox.atlas"));
+//        skin.addRegions(atlas);
+//        manager.getSkin().load(Constants.JSON_DIALOG_BOX_SKIN_PATH);
+        table = new Table();
+        scrollTable = new Table();
+        group = new Group();
 
-        choicesScreen = new TextureRegion[4];
-        choicesBounds = new Rectangle[4];
-        for(int i = 0; i < 4; i++){
-            choicesScreen[i] = new TextureRegion(manager.getPcStateSheet(), Constants.PC_CHOICES_X, Constants.PC_CHOICES_Y, Constants.PC_CHOICES_WIDTH, Constants.PC_CHOICES_HEIGHT);
-            choicesBounds[i] = new Rectangle(
-                    -550,
-                    -(75 * (i + 1)),
-                    Constants.PC_CHOICES_WIDTH, Constants.PC_CHOICES_HEIGHT);
-        }
+        textButtons = new TextButton[4];
 
-        getAQuestion("Stage 1", "Novice");
+        scrollTable.setSkin(manager.getSkin());
+        scrollTable.setBackground("questions");
+
+        table.setSkin(manager.getSkin());
+        table.setBackground("dialogbox1");
+
+        text = new Label("\n", manager.getSkin());
+
+        Drawable dr = manager.getSkin().getDrawable("dialogbox1");
+        listStyle = new List.ListStyle();
+        listStyle.font = manager.getFont();
+        listStyle.background = dr;
+        listStyle.down = dr;
+        listStyle.over = dr;
+        listStyle.selection = dr;
+        manager.getSkin().add("default", listStyle);
+
+
+        labelStyle = new com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle();
+        labelStyle.font = manager.getFont();
+        labelStyle.font.setColor(com.badlogic.gdx.graphics.Color.BLACK);
+        manager.getSkin().add("default", labelStyle);
+
+        manager.getFont().setColor(Color.BLACK);
+        manager.getSkin().add("pokemon", manager.getFont());
+
+
+        inComputer = false;
+//        touchPoint = new Vector3();
+//        screen = new TextureRegion(manager.getPcStateSheet(), Constants.PC_SCREEN_X, Constants.PC_SCREEN_Y, Constants.PC_SCREEN_WIDTH, Constants.PC_SCREEN_HEIGHT);
+//
+//
+//        answerScreen = new TextureRegion(manager.getPcStateSheet(), Constants.PC_QUESTION_X, Constants.PC_QUESTION_Y, Constants.PC_QUESTION_WIDTH, Constants.PC_QUESTION_HEIGHT);
+//        passedScoreScreen = new TextureRegion(manager.getPcStateSheet(), Constants.PC_PASSED_X, Constants.PC_PASSED_Y, Constants.PC_PASSED_WIDTH, Constants.PC_PASSED_HEIGHT);
+//
+//        choicesScreen = new TextureRegion[4];
+//        choicesBounds = new Rectangle[4];
+//        for(int i = 0; i < 4; i++){
+//            choicesScreen[i] = new TextureRegion(manager.getPcStateSheet(), Constants.PC_CHOICES_X, Constants.PC_CHOICES_Y, Constants.PC_CHOICES_WIDTH, Constants.PC_CHOICES_HEIGHT);
+//            choicesBounds[i] = new Rectangle(
+//                    (int) -100,
+//                    (int) -(40 * (i + 1)),
+//                    Constants.PC_CHOICES_WIDTH, Constants.PC_CHOICES_HEIGHT);
+//        }
+
+        getAQuestion("", "");
 
         currentQuestion = 0;
     }
 
     @Override
     public void update(float delta) {
+
         if(isInComputer()){
             timer += Gdx.graphics.getDeltaTime();
         }
+
+        castToTable(delta);
+        manager.getStage().act(delta);
+
     }
+
 
     @Override
     public void render(SpriteBatch sprite) {
@@ -76,34 +148,106 @@ public class CodeRiddle extends State {
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.begin();
 
-        if(isInComputer()){
-            sprite.draw(screen,
-                    manager.getCamera().position.x * Constants.PPM - screen.getRegionWidth() / 2,
-                    manager.getCamera().position.y * Constants.PPM - screen.getRegionHeight() / 2);
-            sprite.draw(questionScreen,
-                    manager.getCamera().position.x * Constants.PPM - questionScreen.getRegionWidth() / 2,
-                    manager.getCamera().position.y * Constants.PPM - questionScreen.getRegionHeight() / 1.25f);
-            drawObject(sprite);
+        manager.getStage().draw();
 
-            if (currentQuestion <= manager.getQuestionnaire().getQuestionLimit() - 1) {
-                manager.getFont().draw(sprite, questions.get(currentQuestion),
-                        10 + manager.getCamera().position.x * Constants.PPM - questionScreen.getRegionWidth() / 2,
-                        -(manager.getCamera().position.y * Constants.PPM - questionScreen.getRegionHeight()) / 1.25f);
-            }
-            else{
-                System.out.println("ERROR - " + error);
-                fuzzyLogic.setNumberOfErrors(error);
-                fuzzyLogic.fuzzyNumberOfError();
-
-                fuzzyLogic.setTimeConsumptions(fuzzyLogic.getTimeConsumptions() + timer);
-                fuzzyLogic.fuzzyTimeConsumption();
-
-                sprite.draw(passedScoreScreen, manager.getCamera().position.x * Constants.PPM - passedScoreScreen.getRegionWidth()/2,
-                        manager.getCamera().position.y * Constants.PPM - passedScoreScreen.getRegionHeight()/2);
-            }
-        }
         sprite.end();
     }
+
+    public void castToTable(float delta){
+
+        if(isInComputer()){
+            table.setFillParent(true);
+//            table.debug();
+            table.defaults().size(500, 150);
+            table.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM + 25,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM + 15);
+//            text.setText("questions.get(currentQuestion\nasd\nasd\nquestions.get(currentQuesasdasdadadation\nasd\nasd\nasd\nasd\nasd\nquestions.get(currentQuestion\nasd\nasd" +
+//                    "\nquestions.get(currentQuestion\nasd\nasd\nquestions.get(currentQuesasdasdadadation\nasd\nasd\nasd\nasd\nasd\nquestions.get(currentQuestion\nasd\nasd" +
+//                    "\nquestions.get(currentQuestion\nasd\nasd\nquestions.get(currentQuesasdasdadadation\nasd\nasd\nasd\nasd\nasd\nquestions.get(currentQuestion\nasd\nasd" +
+//                    "\nquestions.get(currentQuestion\nasd\nasd\nquestions.get(currentQuesasdasdadadation\nasd\nasd\nasd\nasd\nasd\nquestions.get(currentQuestion\nasd\nasd");
+
+            text.setWrap(true);
+           if(currentQuestion == manager.getQuestionnaire().getQuestionLimit()){
+               System.out.println("done na");
+               text.setText("TAPOS KANA LODS");
+
+               for(int j=0; j<4; j++){
+                   textButtons[j].setText(" ");
+               }
+
+           }else{
+               if(text.getText().contains(questions.get(currentQuestion))){
+                   System.out.println("oh meron nayan lods");
+               }else{
+                   text.setText(questions.get(currentQuestion));
+
+
+                   for(int i=0; i<4; i++){
+                       textButtons[i] = new TextButton(options.get(currentQuestion).get(i), manager.getSkin());
+                       scrollTable.add(textButtons[i]).grow().padLeft(10f).center();
+                       scrollTable.row();
+                   }
+
+                   for(int i=0; i<4; i++){
+                       final int tempI = i;
+                       textButtons[i].addListener(new InputListener(){
+
+                           @Override
+                           public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+
+                               if(currentQuestion <= manager.getQuestionnaire().getQuestionLimit()-1){
+                                   if(manager.getQuestionnaire().answerChecker(options.get(currentQuestion).get(tempI), currentQuestion)){
+
+                                       currentQuestion++;
+                                       System.out.println("Your Answer is correct!");
+
+                                   }else{
+                                       currentQuestion++;
+                                       System.out.println("bobo ka");
+                                   }
+                               }else {
+
+                               }
+                               return true;
+                           }
+
+                           @Override
+                           public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                               if(currentQuestion<= manager.getQuestionnaire().getQuestionLimit()-1){
+                                   text.setText(questions.get(currentQuestion));
+                                   for(int j=0; j<4; j++){
+                                       textButtons[j].setText(options.get(currentQuestion).get(j));
+                                   }
+                               }else{
+                                   text.setText("YOU ARE DONE xD");
+                                   for(int j=0; j<4; j++){
+                                       textButtons[j].setText(" ");
+                                   }
+                               }
+                           }
+
+                       });
+                   }
+               }
+
+           }
+
+           if(!table.hasChildren()){
+               scrollPane = new ScrollPane(text, manager.getSkin());
+               scrollPane.layout();
+               scrollPane.updateVisualScroll();
+               scrollPane.setForceScroll(false,true);
+//               scrollPane.debugAll();
+
+               table.add(scrollPane).height(200).padTop(25f);
+               table.row();
+               table.add(scrollTable).height(250).padBottom(15f);
+               table.pack();
+           }
+
+            manager.getStage().addActor(table);
+        }
+    }
+
 
     @Override
     public void dispose() {
@@ -119,6 +263,7 @@ public class CodeRiddle extends State {
 
         fuzzyLogic.setTotalQuestions(manager.getQuestionnaire().getQuestionLimit());
     }
+
 
     public void drawObject(SpriteBatch sprite){
         manager.getCamera().unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
@@ -159,6 +304,39 @@ public class CodeRiddle extends State {
             }
         }
     }
+
+//    public void drawObject(SpriteBatch sprite){
+//        manager.getCamera().unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
+//        if(Gdx.input.justTouched()) {
+//            for (int i = 0; i < 4; i++) {
+//                if (currentQuestion <= manager.getQuestionnaire().getQuestionLimit() - 1) {
+//                    if (choicesBounds[i].contains(touchPoint.x, touchPoint.y)) {
+//                        if (manager.getQuestionnaire().answerChecker(options.get(currentQuestion).get(i), currentQuestion)) {
+//                            currentQuestion++;
+//                            System.out.println("YOUR ANSWER IS CORRECT");
+//                        } else {
+//                            currentQuestion++;
+//                            System.out.println("WRONG");
+//                        }
+//                    }
+//                } else {
+//
+//                }
+//            }
+//        }
+//        for(int i = 0; i < 4; i++) {
+//            if (choicesBounds[i].contains(touchPoint.x, touchPoint.y)) {
+//                sprite.draw(choicesScreen[i],
+//                        manager.getCamera().position.x * Constants.PPM - choicesScreen[i].getRegionWidth() / 2,
+//                        (manager.getCamera().position.y * Constants.PPM - choicesScreen[i].getRegionHeight() - 20) * i + 1);
+//            }
+//            if (currentQuestion <= manager.getQuestionnaire().getQuestionLimit() - 1) {
+//                manager.getFont().draw(sprite, options.get(currentQuestion).get(i),
+//                        10 + manager.getCamera().position.x * Constants.PPM - choicesScreen[i].getRegionWidth() / 2,
+//                        (manager.getCamera().position.y * Constants.PPM - choicesScreen[i].getRegionHeight()) * i + 1);
+//            }
+//        }
+//    }
 
     public boolean isInComputer() {
         return inComputer;
