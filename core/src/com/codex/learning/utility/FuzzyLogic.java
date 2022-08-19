@@ -59,14 +59,10 @@ public class FuzzyLogic {
             setNumberOfErrorsRules("MEDIUM");
             setPercentNumberOfErrors(50);
         }
-        else if(getNumberOfErrors() > d){
+        else if(getNumberOfErrors() > d) {
             setNumberOfErrorsRules("VERY HIGH");
             setPercentNumberOfErrors(0);
         }
-
-        System.out.println("RULE = " + getNumberOfErrorsRules());
-        System.out.println("PERCENT = " + getPercentNumberOfErrors());
-
     }
 
     public void fuzzyTimeConsumption(){

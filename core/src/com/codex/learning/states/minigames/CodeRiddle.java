@@ -64,6 +64,7 @@ public class CodeRiddle extends State {
         super(manager);
 
         this.fuzzyLogic = fuzzyLogic;
+        timer = 0;
         error = 0;
 
 //        skin = new Skin(Gdx.files.internal("text/DialogBox.json"));
@@ -111,30 +112,33 @@ public class CodeRiddle extends State {
 
     @Override
     public void update(float delta) {
-
-        if(isInComputer()){
-            timer += Gdx.graphics.getDeltaTime();
-        }
-        castToTable(delta);
+        castToTable();
         manager.getStage().act(delta);
-
     }
 
 
     @Override
     public void render(SpriteBatch sprite) {
+        if(isInComputer()){
+            timer += Gdx.graphics.getDeltaTime();
+        }
+        System.out.println("TIMER = " + timer);
+
         sprite.enableBlending();
+
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.begin();
 
         manager.getStage().draw();
 
         sprite.end();
+
     }
 
-    public void castToTable(float delta){
+    public void castToTable(){
 
         if(isInComputer()){
+
             table.setFillParent(true);
 //            table.debug();
             table.defaults().size(500, 150);
