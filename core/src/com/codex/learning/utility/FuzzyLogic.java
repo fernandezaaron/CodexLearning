@@ -22,45 +22,48 @@ public class FuzzyLogic {
 
     private int cookies;
 
+    private int totalQuestions;
+
 
     public FuzzyLogic(){
         numberOfErrors = 0;
         timeConsumptions = 0;
         correctOutput = 0;
         numberOfAttempts = 0;
+        totalQuestions = 0;
 
         timeConsumptionRules = "";
     }
-
     public void fuzzyNumberOfError(){
         int a = 0;
-        int b = 1;
-        int c = 3;
-        int d = 5;
+        int b = (int) (getTotalQuestions() * .30);
+        int c = (int) (getTotalQuestions() * .60);
+        int d = (int) (getTotalQuestions() * .90);
 
         setFuzzyNumberOfErrors(Math.max(min((getNumberOfErrors() - a)/(b - a), 1,
                 (d - getNumberOfErrors()) / (d - c)), 0));
 
-        if(getNumberOfErrors() > a && getNumberOfErrors() < b){
-            setNumberOfErrorsRules("LOW");
+
+        if(getNumberOfErrors() <= a){
+            setNumberOfErrorsRules("VERY LOW");
             setPercentNumberOfErrors(100);
         }
-        else if(getNumberOfErrors() > c && getNumberOfErrors() < d){
+        else if(getNumberOfErrors() >= a && getNumberOfErrors() <= b){
+            setNumberOfErrorsRules("LOW");
+            setPercentNumberOfErrors(75);
+        }
+        else if(getNumberOfErrors() >= c && getNumberOfErrors() <= d){
             setNumberOfErrorsRules("HIGH");
-            setPercentNumberOfErrors(50);
+            setPercentNumberOfErrors(25);
         }
         else if(getNumberOfErrors() >= b && getNumberOfErrors() <= c){
             setNumberOfErrorsRules("MEDIUM");
-            setPercentNumberOfErrors(75);
+            setPercentNumberOfErrors(50);
         }
-        else{
+        else if(getNumberOfErrors() > d){
             setNumberOfErrorsRules("VERY HIGH");
-            setPercentNumberOfErrors(25);
+            setPercentNumberOfErrors(0);
         }
-
-        System.out.println("PERCENT = " + getPercentNumberOfErrors());
-        System.out.println("RULES = " + getNumberOfErrorsRules());
-
     }
 
     public void fuzzyTimeConsumption(){
@@ -72,21 +75,25 @@ public class FuzzyLogic {
         setFuzzyTimeConsumptions(Math.max(min((getTimeConsumptions() - a)/(b - a), 1,
                 (d - getTimeConsumptions()) / (d - c)), 0));
 
-        if(getTimeConsumptions() > a && getTimeConsumptions() < b){
-            setTimeConsumptionRules("LOW");
+        if(getTimeConsumptions() <= a){
+            setTimeConsumptionRules("VERY LOW");
             setPercentTimeConsumptions(100);
         }
-        else if(getTimeConsumptions() > c && getTimeConsumptions() < d){
+        else if(getTimeConsumptions() >= a && getTimeConsumptions() <= b){
+            setTimeConsumptionRules("LOW");
+            setPercentTimeConsumptions(75);
+        }
+        else if(getTimeConsumptions() >= c && getTimeConsumptions() <= d){
             setTimeConsumptionRules("HIGH");
-            setPercentTimeConsumptions(50);
+            setPercentTimeConsumptions(25);
         }
         else if(getTimeConsumptions() >= b && getTimeConsumptions() <= c){
             setTimeConsumptionRules("MEDIUM");
-            setPercentTimeConsumptions(75);
+            setPercentTimeConsumptions(50);
         }
         else{
             setTimeConsumptionRules("VERY HIGH");
-            setPercentTimeConsumptions(25);
+            setPercentTimeConsumptions(0);
         }
     }
 
@@ -271,6 +278,14 @@ public class FuzzyLogic {
 
     public void setPercentNumberOfAttempts(int percentNumberOfAttempts) {
         this.percentNumberOfAttempts = percentNumberOfAttempts;
+    }
+
+    public int getTotalQuestions() {
+        return totalQuestions;
+    }
+
+    public void setTotalQuestions(int totalQuestions) {
+        this.totalQuestions = totalQuestions;
     }
 
     public int getCookies() {

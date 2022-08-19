@@ -12,7 +12,7 @@ public abstract class DatabaseReader {
 
     public DatabaseReader() {
         try {
-            FileInputStream fs = new FileInputStream("assets/questions_excel/Minigames.xlsx");
+            FileInputStream fs = new FileInputStream("assets/excel/Minigames.xlsx");
             workbook = new XSSFWorkbook(fs);
         }
         catch(FileNotFoundException e) {

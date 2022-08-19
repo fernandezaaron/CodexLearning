@@ -20,6 +20,7 @@ public class Computer extends Entity {
     private CodeRiddle codeRiddle;
     private FuzzyLogic fuzzyLogic;
 
+
     public Computer(Manager manager, FuzzyLogic fuzzyLogic) {
         super(manager);
         this.fuzzyLogic = fuzzyLogic;

@@ -11,6 +11,9 @@ public class ExpertSystem {
         currentBehavior = null;
     }
 
+    public void writeFile(){
+
+    }
 
     public int getTotalCookies() {
         return totalCookies;

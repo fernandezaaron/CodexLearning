@@ -11,16 +11,29 @@ import com.codex.learning.utility.Manager;
 //This class is used to have a response in the circles in stage select stage.
 public class StageSelectState extends State{
     private TextureRegion orangeCircle, grayCircle;
+    private TextureRegion noCookie, oneCookie, twoCookies, threeCookies;
+    private TextureRegion[] currentCookie;
     private Vector3 touchpoint;
-    private Circle stages[] = new Circle[17];
+    private Circle[] stages;
     private Settings settings;
+
+    private int[] numberOfCookies;
 
 
     public StageSelectState(Manager manager){
         super(manager);
+        stages = new Circle[17];
+        currentCookie = new TextureRegion[17];
+        numberOfCookies = new int[17];
+
 
         orangeCircle = new TextureRegion(manager.getUtility(), Constants.ORANGE_CIRCLE_X, Constants.ORANGE_CIRCLE_Y, Constants.ORANGE_CIRCLE_R, Constants.ORANGE_CIRCLE_R);
         grayCircle = new TextureRegion(manager.getUtility(), Constants.GRAY_CIRCLE_X, Constants.GRAY_CIRCLE_Y, Constants.GRAY_CIRCLE_R, Constants.GRAY_CIRCLE_R);
+        noCookie = new TextureRegion(manager.getUtility(), Constants.COOKIES_X, Constants.COOKIES_ZERO_Y, Constants.COOKIES_WIDTH, Constants.COOKIES_HEIGHT);
+        oneCookie = new TextureRegion(manager.getUtility(), Constants.COOKIES_X, Constants.COOKIES_ONE_Y, Constants.COOKIES_WIDTH, Constants.COOKIES_HEIGHT);
+        twoCookies = new TextureRegion(manager.getUtility(), Constants.COOKIES_X, Constants.COOKIES_TWO_Y, Constants.COOKIES_WIDTH, Constants.COOKIES_HEIGHT);
+        threeCookies = new TextureRegion(manager.getUtility(), Constants.COOKIES_X, Constants.COOKIES_THREE_Y, Constants.COOKIES_WIDTH, Constants.COOKIES_HEIGHT);
+
 
         touchpoint = new Vector3();
         stages[0] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_1_X,
@@ -82,12 +95,33 @@ public class StageSelectState extends State{
         sprite.begin();
         sprite.draw(manager.getStageSelect(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         drawObject(sprite);
+        drawCookies(sprite);
         sprite.end();
     }
 
     @Override
     public void dispose() {
 
+    }
+
+    public void drawCookies(SpriteBatch sprite){
+        for(int i = 0; i < stages.length; i++){
+            numberOfCookies[i] = 3;
+            if(numberOfCookies[i] == 0){
+                currentCookie[i] = noCookie;
+            }
+            else if(numberOfCookies[i] == 1){
+                currentCookie[i] = oneCookie;
+            }
+            else if(numberOfCookies[i] == 2){
+                currentCookie[i] = twoCookies;
+            }
+            else if(numberOfCookies[i] == 3){
+                currentCookie[i] = threeCookies;
+            }
+            sprite.draw(currentCookie[i], stages[i].x - Constants.ORANGE_CIRCLE_R / 2 - 10,
+                    (stages[i].y - Constants.ORANGE_CIRCLE_R / 2) + 75, Constants.COOKIES_WIDTH, Constants.COOKIES_HEIGHT);
+        }
     }
 
     public void input(){

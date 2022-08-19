@@ -2,7 +2,6 @@ package com.codex.learning.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
@@ -21,6 +20,8 @@ public class PlayState extends State{
     private HouseMap house;
     private Computer computer;
 
+    private float timer;
+
 
     private Blocks[] totalBlocks;
     private int blockCount;
@@ -37,6 +38,7 @@ public class PlayState extends State{
 
     public PlayState(Manager manager) {
         super(manager);
+        timer = 0;
         pause = new PauseState(manager);
         house = new HouseMap(manager);
 
@@ -113,6 +115,11 @@ public class PlayState extends State{
     public void update(float delta) {
         manager.getWorld().step(1/60f,6,2);
         if(pause.isRunning()){
+            timer += Gdx.graphics.getDeltaTime();
+
+//            System.out.println("TIMER IS - " + timer);
+
+
             if(!computer.getCodeRiddle().isInComputer()){
                 // WILL BE USED, DON'T ERASE
                 for(int i = 0; i < 3; i++){
@@ -180,7 +187,6 @@ public class PlayState extends State{
 
     @Override
     public void render(SpriteBatch sprite) {
-
         manager.getCamera().update();
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
@@ -257,8 +263,6 @@ public class PlayState extends State{
                 }
             }
         }
-
-
 
         house.dispose();
     }

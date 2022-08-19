@@ -31,12 +31,15 @@ public class CodeRiddle extends State {
 
     private FuzzyLogic fuzzyLogic;
 
+    private float timer;
 
     public CodeRiddle(Manager manager, FuzzyLogic fuzzyLogic) {
         super(manager);
 
         this.fuzzyLogic = fuzzyLogic;
         error = 0;
+        timer = 0;
+
 
         inComputer = false;
         touchPoint = new Vector3();
@@ -62,7 +65,9 @@ public class CodeRiddle extends State {
 
     @Override
     public void update(float delta) {
-
+        if(isInComputer()){
+            timer += Gdx.graphics.getDeltaTime();
+        }
     }
 
     @Override
@@ -89,6 +94,10 @@ public class CodeRiddle extends State {
                 System.out.println("ERROR - " + error);
                 fuzzyLogic.setNumberOfErrors(error);
                 fuzzyLogic.fuzzyNumberOfError();
+
+                fuzzyLogic.setTimeConsumptions(fuzzyLogic.getTimeConsumptions() + timer);
+                fuzzyLogic.fuzzyTimeConsumption();
+
                 sprite.draw(passedScoreScreen, manager.getCamera().position.x * Constants.PPM - passedScoreScreen.getRegionWidth()/2,
                         manager.getCamera().position.y * Constants.PPM - passedScoreScreen.getRegionHeight()/2);
             }
@@ -107,6 +116,8 @@ public class CodeRiddle extends State {
         questions = manager.getQuestionnaire().getQuestions();
 
         options = manager.getQuestionnaire().getOptions();
+
+        fuzzyLogic.setTotalQuestions(manager.getQuestionnaire().getQuestionLimit());
     }
 
     public void drawObject(SpriteBatch sprite){
