@@ -22,7 +22,7 @@ public class Game extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		manager = new Manager();
 
-		manager.push(new PlayState(manager));
+		manager.push(new MenuState(manager));
 		Gdx.input.setInputProcessor(manager.getStage());
 
 //		img = new Texture(Constants.BACKGROUND_PATH);

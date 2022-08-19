@@ -63,6 +63,9 @@ public class CodeRiddle extends State {
     public CodeRiddle(Manager manager, FuzzyLogic fuzzyLogic) {
         super(manager);
 
+        this.fuzzyLogic = fuzzyLogic;
+        error = 0;
+
 //        skin = new Skin(Gdx.files.internal("text/DialogBox.json"));
 //        atlas = new TextureAtlas(Gdx.files.internal("./text/DialogBox.atlas"));
 //        skin.addRegions(atlas);
@@ -101,22 +104,6 @@ public class CodeRiddle extends State {
 
 
         inComputer = false;
-//        touchPoint = new Vector3();
-//        screen = new TextureRegion(manager.getPcStateSheet(), Constants.PC_SCREEN_X, Constants.PC_SCREEN_Y, Constants.PC_SCREEN_WIDTH, Constants.PC_SCREEN_HEIGHT);
-//
-//
-//        answerScreen = new TextureRegion(manager.getPcStateSheet(), Constants.PC_QUESTION_X, Constants.PC_QUESTION_Y, Constants.PC_QUESTION_WIDTH, Constants.PC_QUESTION_HEIGHT);
-//        passedScoreScreen = new TextureRegion(manager.getPcStateSheet(), Constants.PC_PASSED_X, Constants.PC_PASSED_Y, Constants.PC_PASSED_WIDTH, Constants.PC_PASSED_HEIGHT);
-//
-//        choicesScreen = new TextureRegion[4];
-//        choicesBounds = new Rectangle[4];
-//        for(int i = 0; i < 4; i++){
-//            choicesScreen[i] = new TextureRegion(manager.getPcStateSheet(), Constants.PC_CHOICES_X, Constants.PC_CHOICES_Y, Constants.PC_CHOICES_WIDTH, Constants.PC_CHOICES_HEIGHT);
-//            choicesBounds[i] = new Rectangle(
-//                    (int) -100,
-//                    (int) -(40 * (i + 1)),
-//                    Constants.PC_CHOICES_WIDTH, Constants.PC_CHOICES_HEIGHT);
-//        }
 
         getAQuestion("Stage 1", "Novice");
         currentQuestion = 0;
@@ -194,10 +181,9 @@ public class CodeRiddle extends State {
 
                                    }else{
                                        currentQuestion++;
+                                       error++;
                                        System.out.println("bobo ka");
                                    }
-                               }else {
-
                                }
                                return true;
                            }
@@ -210,6 +196,12 @@ public class CodeRiddle extends State {
                                        textButtons[j].setText(options.get(currentQuestion).get(j));
                                    }
                                }else{
+                                   fuzzyLogic.setNumberOfErrors(error);
+                                   fuzzyLogic.setTimeConsumptions(timer);
+
+                                   fuzzyLogic.fuzzyNumberOfError();
+                                   fuzzyLogic.fuzzyTimeConsumption();
+
                                    text.setText("YOU ARE DONE xD");
                                    for(int j=0; j<4; j++){
                                        textButtons[j].setText(" ");
@@ -255,7 +247,7 @@ public class CodeRiddle extends State {
 
         fuzzyLogic.setTotalQuestions(manager.getQuestionnaire().getQuestionLimit());
     }
-    
+
 
     public boolean isInComputer() {
         return inComputer;
