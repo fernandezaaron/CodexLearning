@@ -111,13 +111,9 @@ public class CodeRiddle extends State {
 
     @Override
     public void update(float delta) {
-
-        if(isInComputer()){
-            timer += Gdx.graphics.getDeltaTime();
-        }
+        
         castToTable(delta);
         manager.getStage().act(delta);
-
     }
 
 
@@ -126,7 +122,11 @@ public class CodeRiddle extends State {
         sprite.enableBlending();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.begin();
+        if(isInComputer()){
+            timer += Gdx.graphics.getDeltaTime();
+            System.out.println(timer);
 
+        }
         manager.getStage().draw();
 
         sprite.end();
@@ -135,6 +135,7 @@ public class CodeRiddle extends State {
     public void castToTable(float delta){
 
         if(isInComputer()){
+
             table.setFillParent(true);
 //            table.debug();
             table.defaults().size(500, 150);
