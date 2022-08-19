@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
@@ -37,7 +38,8 @@ public class Manager {
     private TextureRegion settingsStateSheet;
 
     private TextureRegion pauseStateSheet;
-
+    private Skin skin;
+    private TextureAtlas atlas;
 
     private BitmapFont font;
 
@@ -82,7 +84,9 @@ public class Manager {
 
 
         stage = new Stage();
-        //stage.getViewport().update((int) camera.viewportWidth, (int) camera.viewportHeight, true);
+        atlas = new TextureAtlas(Gdx.files.internal(Constants.ATLAS_UTILITY_PATH));
+        skin = new Skin(Gdx.files.internal(Constants.JSON_DIALOG_BOX_SKIN_PATH));
+        skin.addRegions(atlas);
 
 
 
@@ -135,6 +139,14 @@ public class Manager {
         return stage;
     }
 
+    public Skin getSkin() {
+        return skin;
+    }
+
+    public TextureAtlas getAtlas() {
+        return atlas;
+    }
+
     public TextureRegion getMainMenu() {
         return mainMenu;
     }
@@ -176,6 +188,7 @@ public class Manager {
     public void setCl(Contact cl) {
         this.cl = cl;
     }
+
 
     public void setMusic(String file){
         music = Gdx.audio.newMusic(Gdx.files.internal(file));

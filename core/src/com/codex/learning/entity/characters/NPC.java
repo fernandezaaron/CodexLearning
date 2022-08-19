@@ -42,31 +42,18 @@ public class NPC extends Entity {
 //        Create a body without collision yet.
         this.position = position;
         this.size = size;
-        stage = new Stage();
-       // stage.getViewport().update(Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2, true);
-        //stage.getCamera().update();
-
-        skin = new Skin(Gdx.files.internal("./text/DialogBox.json"));
         table = new Table();
-        atlas = new TextureAtlas(Gdx.files.internal("./text/DialogBox.atlas"));
-        skin.addRegions(atlas);
-        skin.load(Gdx.files.internal("./text/DialogBox.json"));
-        System.out.println(atlas.findRegion("dialogbox1"));
-
-
 
         labelStyle = new Label.LabelStyle();
         labelStyle.font = manager.getFont();
         labelStyle.font.setColor(Color.BLACK);
-        skin.add("default", labelStyle);
+        manager.getSkin().add("default", labelStyle);
 
         manager.getFont().setColor(Color.BLACK);
-        skin.add("pokemon", manager.getFont());
+        manager.getSkin().add("pokemon", manager.getFont());
 
-        //   table.setDebug(true);
-        // stage.setDebugAll(true);
-        db = new DialogueBox(skin, "dialogbox2");
-        //stage.getViewport().update(Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2);
+        db = new DialogueBox(manager.getSkin(), "dialogbox2");
+
 
 
 
@@ -98,22 +85,12 @@ public class NPC extends Entity {
                 Constants.JEDI_GRANDPA_WIDTH,Constants.JEDI_GRANDPA_HEIGHT);
 
         dialogueSkin = new TextureRegion(manager.getPcStateSheet(), Constants.PC_QUESTION_X, Constants.PC_QUESTION_Y, Constants.PC_QUESTION_WIDTH, Constants.PC_QUESTION_HEIGHT);
-      //  skin.add("dialogueSkin", dialogueSkin);
-
-
-//        skin.add("default-font", manager.getFont());
-
-
-
     }
 
     @Override
     public void update(float delta) {
-//        cameraUpdate();
         npcInteraction(delta);
         db.act(delta);
-        //stage.act(delta);
-        //stage.draw();
 
     }
 
@@ -125,24 +102,14 @@ public class NPC extends Entity {
         sprite.draw(jediGrandpa, body.getPosition().x * Constants.PPM - jediGrandpa.getRegionWidth() / 2,
                 body.getPosition().y * Constants.PPM - jediGrandpa.getRegionHeight() / 2);
         table.draw(sprite, 1);
+
         sprite.end();
 
-        //stage.draw();
-
     }
-//    private void cameraUpdate(){
-//        Vector3 position = manager.getCamera().position;
-//        position.x = this.position.x * Constants.PPM;
-//        position.y = this.position.y * Constants.PPM;
-//        manager.getCamera().position.set(position);
-//        manager.getCamera().update();
-//    }
 
     public void npcInteraction(float delta){
         if(isInContact() && Gdx.input.isKeyJustPressed(Input.Keys.E)){
             System.out.println("Jedigrandpa");;
-            //table.setFillParent(true);
-
             if(!db.isOpen()){
                 System.out.println("here");
                 db.textAnimation("JEDIGRANDPA BABYYYYYYYYYY");
@@ -150,12 +117,12 @@ public class NPC extends Entity {
                 table.setHeight(250);
                 table.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/Constants.PPM/2, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/Constants.PPM/2 - 400);
             }
-
         }
         if(Gdx.input.justTouched() && db.isOpen()){
            table.reset();
            db.setOpen(false);
         }
+        manager.getStage().addActor(table);
     }
 
     public boolean isInContact() {

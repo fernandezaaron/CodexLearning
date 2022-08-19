@@ -6,6 +6,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.codex.learning.entity.blocks.BlockDispenser;
 import com.codex.learning.entity.blocks.BlockHolder;
 import com.codex.learning.entity.blocks.Blocks;
@@ -162,6 +163,16 @@ public class PlayState extends State{
                 }
                 if(computer.getCodeRiddle().isInComputer() && Gdx.input.isKeyJustPressed(Input.Keys.F)){
                     computer.getCodeRiddle().setInComputer(false);
+
+                    for (int i =0 ; i<manager.getStage().getActors().size; i++){
+                        System.out.println(manager.getStage().getActors().get(i));
+                        if(manager.getStage().getActors().get(i).toString().equals("Table")){
+                            System.out.println("true");
+                            manager.getStage().getActors().get(i).remove();
+                            manager.getStage().clear();
+                        }
+                    }
+//                    manager.getStage().clear();
                 }
             }
         }else{
