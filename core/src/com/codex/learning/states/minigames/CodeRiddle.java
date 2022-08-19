@@ -1,16 +1,14 @@
 package com.codex.learning.states.minigames;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.List;
@@ -180,10 +178,10 @@ public class CodeRiddle extends State {
             table.defaults().size(500, 150);
 //            table.setPosition(manager.getStage().getWidth()/2 , manager.getStage().getHeight()/2 , Align.bottomLeft);
             table.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM + 25,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM + 15);
-//            text.setText("questions.get(currentQuestion\nasd\nasd\nquestions.get(currentQuesasdasdadadation\nasd\nasd\nasd\nasd\nasd\nquestions.get(currentQuestion\nasd\nasd" +
-//                    "\nquestions.get(currentQuestion\nasd\nasd\nquestions.get(currentQuesasdasdadadation\nasd\nasd\nasd\nasd\nasd\nquestions.get(currentQuestion\nasd\nasd" +
-//                    "\nquestions.get(currentQuestion\nasd\nasd\nquestions.get(currentQuesasdasdadadation\nasd\nasd\nasd\nasd\nasd\nquestions.get(currentQuestion\nasd\nasd" +
-//                    "\nquestions.get(currentQuestion\nasd\nasd\nquestions.get(currentQuesasdasdadadation\nasd\nasd\nasd\nasd\nasd\nquestions.get(currentQuestion\nasd\nasd");
+            text.setText("questions.get(currentQuestion\nasd\nasd\nquestions.get(currentQuesasdasdadadation\nasd\nasd\nasd\nasd\nasd\nquestions.get(currentQuestion\nasd\nasd" +
+                    "\nquestions.get(currentQuestion\nasd\nasd\nquestions.get(currentQuesasdasdadadation\nasd\nasd\nasd\nasd\nasd\nquestions.get(currentQuestion\nasd\nasd" +
+                    "\nquestions.get(currentQuestion\nasd\nasd\nquestions.get(currentQuesasdasdadadation\nasd\nasd\nasd\nasd\nasd\nquestions.get(currentQuestion\nasd\nasd" +
+                    "\nquestions.get(currentQuestion\nasd\nasd\nquestions.get(currentQuesasdasdadadation\nasd\nasd\nasd\nasd\nasd\nquestions.get(currentQuestion\nasd\nasd");
 
            // text.setFontScale(2.2f);
             text.setWrap(true);
@@ -192,7 +190,7 @@ public class CodeRiddle extends State {
 //            list.setItems(new String[]{questions.get(currentQuestion)});
 
 //            scrollTable.add(new Label("QUESTION: \n", skin)).top().left().padLeft(10f);
-            text.setText(questions.get(currentQuestion));
+//            text.setText(questions.get(currentQuestion));
             for(int i=0; i<4; i++){
                 textButtons[i] = new TextButton(options.get(currentQuestion).get(i), skin);
                 scrollTable.add(textButtons[i]).grow().padLeft(10f).center();
@@ -205,68 +203,57 @@ public class CodeRiddle extends State {
 
                     @Override
                     public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-//                        System.out.println(tempI);
-//                        System.out.println(currentQuestion);
-//                        System.out.println(manager.getQuestionnaire().getQuestionLimit());
-                        if(currentQuestion < manager.getQuestionnaire().getQuestionLimit() - 1){
-                            if(manager.getQuestionnaire().answerChecker(options.get(currentQuestion).get(tempI), currentQuestion)){
-                                currentQuestion++;
-                                text.setText(questions.get(currentQuestion));
-                                for(int j=0; j<4; j++){
-                                    textButtons[j].setText(options.get(currentQuestion).get(j));
-                                }
 
+                        if(currentQuestion <= manager.getQuestionnaire().getQuestionLimit()-1){
+                            if(manager.getQuestionnaire().answerChecker(options.get(currentQuestion).get(tempI), currentQuestion)){
+
+                                currentQuestion++;
                                 System.out.println("Your Answer is correct!");
+
                             }else{
                                 currentQuestion++;
-                                text.setText(questions.get(currentQuestion));
-                                for(int j=0; j<4; j++){
-                                    textButtons[j].setText(options.get(currentQuestion).get(j));
-                                }
                                 System.out.println("bobo ka");
                             }
                         }else {
                             System.out.println("tapos na");
                         }
+//                        System.out.println("new+ " + currentQuestion);
+
+                        //naglagay ako ng separate if condition para sa pagset ng text kasi nag iindexoutofbounds pag sinama ko sa currentquestion++
 
                         return true;
+                    }
+
+                    @Override
+                    public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                        if(currentQuestion<= manager.getQuestionnaire().getQuestionLimit()-1){
+                            text.setText(questions.get(currentQuestion));
+                            for(int j=0; j<4; j++){
+                                textButtons[j].setText(options.get(currentQuestion).get(j));
+                            }
+                        }
                     }
 
                 });
             }
 
 
+
+
+
             scrollPane = new ScrollPane(text, skin);
             scrollPane.layout();
             scrollPane.updateVisualScroll();
             scrollPane.setForceScroll(false,true);
-//            scrollPane.setScrollingDisabled(true,false);
             scrollPane.debugAll();
-
-
-//            scrollPane.setPosition(table.getX(), table.getY());
-//            System.out.println(scrollPane.getHeight() +" "+ scrollPane.getWidth());
 
             table.add(scrollPane).height(200).padTop(25f);
             table.row();
             table.add(scrollTable).height(250).padBottom(15f);
             table.pack();
-
-//            System.out.println(scrollPane.getX() + " " + scrollPane.getY());
-//            System.out.println(table.getX() + " " + table.getY());
-//            System.out.println(questions.get(currentQuestion));
-
-
-
             manager.getStage().addActor(table);
-
-
         }
-
-
     }
-
-
 
 
     @Override

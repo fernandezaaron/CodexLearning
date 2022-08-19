@@ -50,7 +50,17 @@
 
   "com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {
     "default": {
-        "font": "default-font"
+        "font": "default-font",
+        "pressedOffsetX": 3,
+        "pressedOffsetY": -1,
+        "checkedDownFontColor": white
+
+    }
+  }
+
+  "com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle": {
+    "default": {
+      "font": "default-font"
     }
   }
 
