@@ -320,6 +320,15 @@ public class Constants {
     public static final int BLOCK_MACHINE_WIDTH = 79;
     public static final int BLOCK_MACHINE_HEIGHT = 187;
 
+    public static final int COOKIES_X = 617;
+    public static final int COOKIES_ZERO_Y = 136;
+    public static final int COOKIES_ONE_Y = 92;
+    public static final int COOKIES_TWO_Y = 47;
+    public static final int COOKIES_THREE_Y = 2;
+    public static final int COOKIES_WIDTH = 95;
+    public static final int COOKIES_HEIGHT = 43;
+
+
     //END OF UTILITY SHEET
 
 }

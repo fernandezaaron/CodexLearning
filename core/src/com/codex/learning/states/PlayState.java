@@ -2,7 +2,6 @@ package com.codex.learning.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
@@ -22,6 +21,9 @@ public class PlayState extends State{
     private HouseMap house;
     private Computer computer;
 
+    private float timer;
+
+
     private Blocks[] totalBlocks;
     private int blockCount;
     private boolean blockSpawn;
@@ -32,11 +34,18 @@ public class PlayState extends State{
 
     private PauseState pause;
 
+    private FuzzyLogic fuzzyLogic;
+
+    private Blocks sample;
+
 
     public PlayState(Manager manager) {
         super(manager);
+        timer = 0;
         pause = new PauseState(manager);
         house = new HouseMap(manager);
+
+        fuzzyLogic = new FuzzyLogic();
 
 
         // WILL BE USED, DON'T ERASE
@@ -46,7 +55,7 @@ public class PlayState extends State{
 
         blockDispensers = new BlockDispenser[2];
 
-        computer = new Computer(manager);
+        computer = new Computer(manager, fuzzyLogic);
         computer.create(new Vector2(-18, 2.8f), new Vector2(0.6f, 0.6f), 0);
 
         // WILL BE USED, DON'T ERASE
@@ -109,6 +118,11 @@ public class PlayState extends State{
     public void update(float delta) {
         manager.getWorld().step(1/60f,6,2);
         if(pause.isRunning()){
+            timer += Gdx.graphics.getDeltaTime();
+
+//            System.out.println("TIMER IS - " + timer);
+
+
             if(!computer.getCodeRiddle().isInComputer()){
                 // WILL BE USED, DON'T ERASE
                 for(int i = 0; i < 3; i++){
@@ -186,7 +200,6 @@ public class PlayState extends State{
 
     @Override
     public void render(SpriteBatch sprite) {
-
         manager.getCamera().update();
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
@@ -263,8 +276,6 @@ public class PlayState extends State{
                 }
             }
         }
-
-
 
         house.dispose();
     }

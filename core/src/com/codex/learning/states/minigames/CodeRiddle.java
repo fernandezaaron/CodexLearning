@@ -17,8 +17,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.Constants;
+import com.codex.learning.utility.FuzzyLogic;
 import com.codex.learning.utility.Manager;
+
 import org.apache.poi.ss.formula.functions.T;
+
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -47,14 +50,25 @@ public class CodeRiddle extends State {
     private ArrayList<String> questions;
     private ArrayList<ArrayList<String>> options;
 
-
-
     private boolean inComputer;
     private int currentQuestion;
+    private int error;
 
+    private FuzzyLogic fuzzyLogic;
 
-    public CodeRiddle(Manager manager) {
+    private float timer;
+
+    public CodeRiddle(Manager manager, FuzzyLogic fuzzyLogic) {
         super(manager);
+
+        this.fuzzyLogic = fuzzyLogic;
+        error = 0;
+        timer = 0;
+
+
+        inComputer = false;
+        touchPoint = new Vector3();
+
 //        skin = new Skin(Gdx.files.internal("text/DialogBox.json"));
 //        atlas = new TextureAtlas(Gdx.files.internal("./text/DialogBox.atlas"));
 //        skin.addRegions(atlas);
@@ -111,13 +125,20 @@ public class CodeRiddle extends State {
 //        }
 
         getAQuestion("", "");
+
         currentQuestion = 0;
     }
 
     @Override
     public void update(float delta) {
+
+        if(isInComputer()){
+            timer += Gdx.graphics.getDeltaTime();
+        }
+
         castToTable(delta);
         manager.getStage().act(delta);
+
     }
 
 
@@ -126,7 +147,9 @@ public class CodeRiddle extends State {
         sprite.enableBlending();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.begin();
+
         manager.getStage().draw();
+
         sprite.end();
     }
 
@@ -232,11 +255,54 @@ public class CodeRiddle extends State {
     }
 
     public void getAQuestion(String stage, String expertiseLevel){
-        manager.getQuestionnaire().questionDisplay("","");
+        manager.getQuestionnaire().questionDisplay(stage,expertiseLevel);
 
         questions = manager.getQuestionnaire().getQuestions();
 
         options = manager.getQuestionnaire().getOptions();
+
+        fuzzyLogic.setTotalQuestions(manager.getQuestionnaire().getQuestionLimit());
+    }
+
+
+    public void drawObject(SpriteBatch sprite){
+        manager.getCamera().unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
+
+        if(Gdx.input.justTouched()){
+            for(int i = 0; i < 4; i++){
+                if (currentQuestion <= manager.getQuestionnaire().getQuestionLimit() - 1) {
+                    if (choicesBounds[i].contains(touchPoint.x, touchPoint.y)) {
+
+                        if (manager.getQuestionnaire().answerChecker(options.get(currentQuestion).get(i), currentQuestion)) {
+                            currentQuestion++;
+
+                            System.out.println("YOUR ANSWER IS CORRECT");
+                        } else {
+                            currentQuestion++;
+                            error++;
+                            System.out.println("WRONG");
+                        }
+                    }
+                }
+                else{
+
+                }
+            }
+        }
+
+
+        for(int i = 0; i < 4; i++) {
+            if (choicesBounds[i].contains(touchPoint.x, touchPoint.y)) {
+                sprite.draw(choicesScreen[i],
+                        manager.getCamera().position.x * Constants.PPM - choicesScreen[i].getRegionWidth() / 2,
+                        (manager.getCamera().position.y * Constants.PPM - choicesScreen[i].getRegionHeight() - 20) * i + 1);
+            }
+            if (currentQuestion <= manager.getQuestionnaire().getQuestionLimit() - 1) {
+                manager.getFont().draw(sprite, options.get(currentQuestion).get(i),
+                        10 + manager.getCamera().position.x * Constants.PPM - choicesScreen[i].getRegionWidth() / 2,
+                        (manager.getCamera().position.y * Constants.PPM - choicesScreen[i].getRegionHeight()) * i + 1);
+            }
+        }
     }
 
 //    public void drawObject(SpriteBatch sprite){

@@ -38,7 +38,6 @@ public class Contact implements ContactListener {
                 jedisaur = (Character) fa.getUserData();
                 blocks = (Blocks) fb.getUserData();
             }
-            System.out.println("Block yes");
             blocks.setInContact(true);
             if(jedisaur.isCarrying()){
                 jedisaur.setPickUpAble(false);
@@ -65,7 +64,6 @@ public class Contact implements ContactListener {
             }
             else{
                 if(blockDispenser.getLimit() == 0){
-                    System.out.println("ubos na :D");
                     jedisaur.setPickUpAble(false);
                     blockDispenser.setInContact(false);
                 }else {
