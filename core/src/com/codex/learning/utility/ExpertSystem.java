@@ -1,6 +1,7 @@
 package com.codex.learning.utility;
 
 public class ExpertSystem {
+    private int[] cookies;
     private int totalCookies;
     private String expertiseLevel;
     private String currentBehavior;
@@ -9,6 +10,10 @@ public class ExpertSystem {
     public ExpertSystem(){
 
         currentBehavior = null;
+    }
+
+    public void updateExpertiseLevel(){
+
     }
 
     public void writeFile(){

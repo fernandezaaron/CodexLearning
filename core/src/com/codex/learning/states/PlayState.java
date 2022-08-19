@@ -35,6 +35,8 @@ public class PlayState extends State{
 
     private FuzzyLogic fuzzyLogic;
 
+    private Blocks sample;
+
 
     public PlayState(Manager manager) {
         super(manager);
