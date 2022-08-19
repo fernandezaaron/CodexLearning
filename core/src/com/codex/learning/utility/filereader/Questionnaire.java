@@ -103,6 +103,8 @@ public class Questionnaire extends DatabaseReader {
     }
 
     public boolean answerChecker(String chosenAnswer, int index){
+//        System.out.println("ASDASDQWD - " + answers);
+
         if(chosenAnswer == answers.get(index)){
             return true;
         }

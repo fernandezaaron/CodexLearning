@@ -43,7 +43,6 @@ public class FuzzyLogic {
         setFuzzyNumberOfErrors(Math.max(min((getNumberOfErrors() - a)/(b - a), 1,
                 (d - getNumberOfErrors()) / (d - c)), 0));
 
-
         if(getNumberOfErrors() <= a){
             setNumberOfErrorsRules("VERY LOW");
             setPercentNumberOfErrors(100);
@@ -64,6 +63,10 @@ public class FuzzyLogic {
             setNumberOfErrorsRules("VERY HIGH");
             setPercentNumberOfErrors(0);
         }
+
+        System.out.println("RULE = " + getNumberOfErrorsRules());
+        System.out.println("PERCENT = " + getPercentNumberOfErrors());
+
     }
 
     public void fuzzyTimeConsumption(){
@@ -95,6 +98,9 @@ public class FuzzyLogic {
             setTimeConsumptionRules("VERY HIGH");
             setPercentTimeConsumptions(0);
         }
+
+        System.out.println("RULE = " + getTimeConsumptionRules());
+        System.out.println("PERCENT = " + getPercentTimeConsumptions());
     }
 
     public void fuzzyCorrectOutput(){
