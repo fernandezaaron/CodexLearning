@@ -111,7 +111,7 @@ public class CodeRiddle extends State {
 
     @Override
     public void update(float delta) {
-        
+
         castToTable(delta);
         manager.getStage().act(delta);
     }
