@@ -113,7 +113,7 @@ public class CodeRiddle extends State {
     public void update(float delta) {
 
         castToTable(delta);
-        manager.getStage().act(delta);
+//        manager.getStage().act(delta);
     }
 
 
@@ -127,6 +127,7 @@ public class CodeRiddle extends State {
             System.out.println(timer);
 
         }
+        manager.getStage().act();
         manager.getStage().draw();
 
         sprite.end();
@@ -219,17 +220,20 @@ public class CodeRiddle extends State {
            if(!table.hasChildren()){
                scrollPane = new ScrollPane(text, manager.getSkin());
                scrollPane.layout();
-               scrollPane.updateVisualScroll();
+//               scrollPane.updateVisualScroll();
+                scrollPane.setScrollbarsOnTop(true);
                scrollPane.setForceScroll(false,true);
 //               scrollPane.debugAll();
-
+               scrollPane.setSmoothScrolling(true);
                table.add(scrollPane).height(200).padTop(25f);
                table.row();
                table.add(scrollTable).height(250).padBottom(15f);
                table.pack();
            }
 
+
             manager.getStage().addActor(table);
+            manager.getStage().setScrollFocus(table.getChild(0));
         }
     }
 

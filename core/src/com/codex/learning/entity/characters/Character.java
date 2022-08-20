@@ -360,9 +360,10 @@ public class Character extends Entity {
     }
     private void cameraUpdate(){
         Vector3 position = manager.getCamera().position;
-        position.x = this.position.x * Constants.PPM;
-        position.y = this.position.y * Constants.PPM;
+        position.x = Constants.SCREEN_WIDTH/2/Constants.PPM;
+        position.y = Constants.SCREEN_HEIGHT/2/Constants.PPM;
         manager.getCamera().position.set(position);
+//        manager.getCamera().position.set(new Vector2(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT))
         manager.getCamera().update();
 
     }
