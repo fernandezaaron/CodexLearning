@@ -67,8 +67,8 @@ public class PauseState extends State {
         if(state == Constants.GAME_PAUSED){
             manager.getCamera().unproject(coords.set(Gdx.input.getX(), Gdx.input.getY(), 0));
             sprite.draw(pauseMenu,
-                    manager.getCamera().position.x * Constants.PPM - pauseMenu.getRegionWidth() / 2,
-                    manager.getCamera().position.y * Constants.PPM - pauseMenu.getRegionHeight() / 2);
+                    manager.getCamera().position.x / Constants.PPM - pauseMenu.getRegionWidth() / 2,
+                    manager.getCamera().position.y / Constants.PPM - pauseMenu.getRegionHeight() / 2);
 
             if(continueBounds.contains(coords.x, coords.y)){
                 sprite.draw(hlContinueButton, manager.getCamera().position.x - 300, manager.getCamera().position.y + Constants.PPM);

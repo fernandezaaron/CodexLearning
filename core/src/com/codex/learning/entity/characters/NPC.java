@@ -29,7 +29,7 @@ public class NPC extends Entity {
     private boolean inContact;
     private Skin skin;
     private Stage stage;
-    private Table table;
+    private Table table, image;
     private DialogueBox db;
     private Label.LabelStyle labelStyle;
     private TextureAtlas atlas;
@@ -43,6 +43,8 @@ public class NPC extends Entity {
         this.position = position;
         this.size = size;
         table = new Table();
+        image = new Table(manager.getSkin());
+        image.setBackground("dialogbox2");
 
         labelStyle = new Label.LabelStyle();
         labelStyle.font = manager.getFont();
@@ -113,7 +115,8 @@ public class NPC extends Entity {
             if(!db.isOpen()){
                 System.out.println("here");
                 db.textAnimation("JEDIGRANDPA BABYYYYYYYYYY");
-                table.add(db).align(Align.center);
+                table.add(image).align(Align.left).width(250).padRight(15f);
+                table.add(db).align(Align.right).width(1000);
                 table.setHeight(250);
                 table.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/Constants.PPM/2, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/Constants.PPM/2 - 400);
             }
