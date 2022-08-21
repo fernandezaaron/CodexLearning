@@ -121,7 +121,10 @@ public class PlayState extends State{
         if(pause.isRunning()){
             timer += Gdx.graphics.getDeltaTime();
 
-//            System.out.println("TIMER IS - " + timer);
+            System.out.println("TIMER IS - " + timer);
+            if(timer > 10){
+                System.out.println("10 secs");
+            }
 
 
             if(!computer.getCodeRiddle().isInComputer()){

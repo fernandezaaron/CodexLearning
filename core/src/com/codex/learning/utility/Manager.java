@@ -82,6 +82,7 @@ public class Manager {
         font.getData().scale(0.7f);
 
         decisionTree = new DecisionTree();
+        decisionTree.createTree();
 
         camera = new OrthographicCamera(Constants.SCREEN_WIDTH, Constants.SCREEN_WIDTH);
         camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);

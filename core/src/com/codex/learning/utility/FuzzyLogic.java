@@ -44,7 +44,7 @@ public class FuzzyLogic {
                 (d - getNumberOfErrors()) / (d - c)), 0));
 
         if(getNumberOfErrors() <= a){
-            setNumberOfErrorsRules("VERY LOW");
+            setNumberOfErrorsRules("LOW");
             setPercentNumberOfErrors(100);
         }
         else if(getNumberOfErrors() >= a && getNumberOfErrors() <= b){
@@ -60,7 +60,7 @@ public class FuzzyLogic {
             setPercentNumberOfErrors(50);
         }
         else if(getNumberOfErrors() > d) {
-            setNumberOfErrorsRules("VERY HIGH");
+            setNumberOfErrorsRules("HIGH");
             setPercentNumberOfErrors(0);
         }
     }
@@ -75,7 +75,7 @@ public class FuzzyLogic {
                 (d - getTimeConsumptions()) / (d - c)), 0));
 
         if(getTimeConsumptions() <= a){
-            setTimeConsumptionRules("VERY LOW");
+            setTimeConsumptionRules("LOW");
             setPercentTimeConsumptions(100);
         }
         else if(getTimeConsumptions() >= a && getTimeConsumptions() <= b){
@@ -91,7 +91,7 @@ public class FuzzyLogic {
             setPercentTimeConsumptions(50);
         }
         else{
-            setTimeConsumptionRules("VERY HIGH");
+            setTimeConsumptionRules("HIGH");
             setPercentTimeConsumptions(0);
         }
 
@@ -133,7 +133,7 @@ public class FuzzyLogic {
              setPercentNumberOfAttempts(50);
          }
          else if(getNumberOfAttempts() >= c){
-             setNumberOfAttemptsRules("VERY HIGH");
+             setNumberOfAttemptsRules("HIGH");
              setPercentNumberOfAttempts(25);
          }
     }

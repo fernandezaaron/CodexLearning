@@ -122,7 +122,6 @@ public class CodeRiddle extends State {
         if(isInComputer()){
             timer += Gdx.graphics.getDeltaTime();
         }
-        System.out.println("TIMER = " + timer);
 
         sprite.enableBlending();
 

@@ -1,19 +1,27 @@
 package com.codex.learning.utility.decisiontree;
 
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+
 
 public class DecisionTree {
 
     private ArrayList<String> headers;
+    private Double impurity;
+    private Double infoGain;
+    private Node tree;
 
     public DecisionTree(){
         this.headers = Behavior.headers;
+    }
+
+    public void createTree(){
+        Question question = new Question(Behavior.headers, 1, "LOW");
+        ArrayList<ArrayList<ArrayList<String>>> trueFalseList = partition(Behavior.trainingData, question);
+        ArrayList<ArrayList<String>> trueList = trueFalseList.get(0);
+        ArrayList<ArrayList<String>> falseList = trueFalseList.get(1);
+        impurity = gini(Behavior.trainingData);
+        infoGain = infoGain(trueList, falseList, impurity);
+        tree = buildTree(Behavior.trainingData);
     }
 
     /**
@@ -313,6 +321,30 @@ public class DecisionTree {
             printPredictions.add(label + percent + "%");
         }
         return printPredictions;
+    }
+
+    public Double getImpurity() {
+        return impurity;
+    }
+
+    public void setImpurity(Double impurity) {
+        this.impurity = impurity;
+    }
+
+    public Double getInfoGain() {
+        return infoGain;
+    }
+
+    public void setInfoGain(Double infoGain) {
+        this.infoGain = infoGain;
+    }
+
+    public Node getTree() {
+        return tree;
+    }
+
+    public void setTree(Node tree) {
+        this.tree = tree;
     }
 }
 
