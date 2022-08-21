@@ -124,15 +124,13 @@ public class PlayState extends State{
     public void update(float delta) {
         manager.getWorld().step(1/60f,6,2);
         if(pause.isRunning()){
-            timer += Gdx.graphics.getDeltaTime();
-
-            System.out.println("TIMER IS - " + timer);
-            if(timer > 10){
-                System.out.println("10 secs");
-            }
-
 
             if(!computer.getCodeRiddle().isInComputer()){
+                timer += Gdx.graphics.getDeltaTime();
+                System.out.println("TIMER IS - " + timer);
+                if(timer > 10){
+                    System.out.println("10 secs");
+                }
                 // WILL BE USED, DON'T ERASE
                 for(int i = 0; i < 3; i++){
 //                    blockHolders[i].update(delta);

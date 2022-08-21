@@ -210,7 +210,7 @@ public class CodeRiddle extends State {
                                    fuzzyLogic.fuzzyNumberOfError();
                                    fuzzyLogic.fuzzyTimeConsumption();
 
-                                   text.setText("YOU ARE DONE xD");
+                                   text.setText("PRESS F TO CLOSE");
                                    for(int j=0; j<4; j++){
                                        textButtons[j].setText(" ");
                                    }
