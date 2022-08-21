@@ -5,6 +5,8 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
+import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.codex.learning.entity.blocks.BlockDispenser;
 import com.codex.learning.entity.blocks.BlockHolder;
@@ -123,13 +125,14 @@ public class PlayState extends State{
     @Override
     public void update(float delta) {
         manager.getWorld().step(1/60f,6,2);
+//        System.out.println(jedisaur.getBody().getPosition().x + " " + jedisaur.getBody().getPosition().y);
         if(pause.isRunning()){
 
             if(!computer.getCodeRiddle().isInComputer()){
                 timer += Gdx.graphics.getDeltaTime();
-                System.out.println("TIMER IS - " + timer);
+//                System.out.println("TIMER IS - " + timer);
                 if(timer > 10){
-                    System.out.println("10 secs");
+//                    System.out.println("10 secs");
                 }
                 // WILL BE USED, DON'T ERASE
                 for(int i = 0; i < 3; i++){
@@ -171,6 +174,7 @@ public class PlayState extends State{
                 // WILL BE USED, DON'T ERASE
 
                 house.exitDoor(jedisaur);
+                house.enterPlayRoom(jedisaur);
                 jediGrandpa.update(delta);
                 jedisaur.update(delta);
                 computer.update(delta);

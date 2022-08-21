@@ -45,6 +45,7 @@ public class Blocks extends Entity {
         fixtureDef.shape = shape;
         fixtureDef.friction = 5;
 
+
         body = manager.getWorld().createBody(def);
         body.createFixture(fixtureDef).setUserData(this);
         body.setLinearVelocity(0, 0);
