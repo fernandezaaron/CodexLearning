@@ -17,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import com.codex.learning.states.State;
+import com.codex.learning.utility.decisiontree.DecisionTree;
 import com.codex.learning.utility.filereader.Questionnaire;
 
 import java.util.Stack;
@@ -49,6 +50,8 @@ public class Manager {
     private Stage stage;
     private Viewport viewport;
 
+    private DecisionTree decisionTree;
+
     public Manager(){
 
         b2dr = new Box2DDebugRenderer();
@@ -78,7 +81,7 @@ public class Manager {
         font = new BitmapFont(Gdx.files.internal(Constants.FONT_STYLE));
         font.getData().scale(0.7f);
 
-
+        decisionTree = new DecisionTree();
 
         camera = new OrthographicCamera(Constants.SCREEN_WIDTH, Constants.SCREEN_WIDTH);
         camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
@@ -217,5 +220,13 @@ public class Manager {
 
     public void setQuestionnaire(Questionnaire questionnaire) {
         this.questionnaire = questionnaire;
+    }
+
+    public DecisionTree getDecisionTree() {
+        return decisionTree;
+    }
+
+    public void setDecisionTree(DecisionTree decisionTree) {
+        this.decisionTree = decisionTree;
     }
 }
