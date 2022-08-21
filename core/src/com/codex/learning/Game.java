@@ -46,7 +46,6 @@ public class Game extends ApplicationAdapter {
 	@Override
 	public void resize(int width, int height){
 //		manager.getCamera().setToOrtho(false, width, height);
-
 		manager.getStage().getViewport().update(width, height, true);
 	}
 	
