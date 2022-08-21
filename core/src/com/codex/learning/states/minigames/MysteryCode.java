@@ -154,6 +154,20 @@ public class MysteryCode extends State {
                         }
                     }
                 }
+
+                //kung gagamitin mo to remove the blocks[i][j].update muna sa taas pero i havent tried pag magkasabay sila naka on for sure dodoble HAHA
+//                for(int i=0; i<blocks.length; i++){
+//                    for(int j = 0; j<blocks[i].length; j++){
+//                        if(blocks[i][j] != null){
+//                            blocks[i][j].update(delta);
+//                            if(blocks[i][j].isInContact()){
+//                                jedisaur.carryBlock(blocks[i][j]);
+//                                System.out.println("jedisaur carrying ");
+//                            }
+//                        }
+//
+//                    }
+//                }
 //                // WILL BE USED, DON'T ERASE
 //
                 for(int i = 0; i < 2; i++){
