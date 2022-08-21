@@ -38,13 +38,27 @@ public class Contact implements ContactListener {
                 jedisaur = (Character) fa.getUserData();
                 blocks = (Blocks) fb.getUserData();
             }
+<<<<<<< HEAD
             blocks.setInContact(true);
             if(jedisaur.isCarrying()){
+=======
+            System.out.println("Block yes");
+
+            if(blocks.isPreDefinedContact()){
+                blocks.setInContact(false);
+>>>>>>> origin/jy_test
                 jedisaur.setPickUpAble(false);
             }
             else{
-                jedisaur.setPickUpAble(true);
+                blocks.setInContact(true);
+                if(jedisaur.isCarrying()){
+                    jedisaur.setPickUpAble(false);
+                }
+                else{
+                    jedisaur.setPickUpAble(true);
+                }
             }
+
         }
 
         if(isDispenserContact(fa, fb)){
@@ -148,6 +162,7 @@ public class Contact implements ContactListener {
                 jedisaur = (Character) fa.getUserData();
                 blocks = (Blocks) fb.getUserData();
             }
+
             blocks.setInContact(false);
             jedisaur.setPickUpAble(false);
         }

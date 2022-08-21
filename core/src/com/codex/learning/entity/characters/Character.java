@@ -379,6 +379,7 @@ public class Character extends Entity {
         if(isCarrying() && carry == 0){
             carry = 1;
             setCopyBlock(block);
+            System.out.println(copyBlock);
         }
         if(getCopyBlock() != null){
             getCopyBlock().getBody().setType(BodyDef.BodyType.DynamicBody);
