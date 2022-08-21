@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
+import com.codex.learning.utility.decisiontree.Behavior;
 import org.apache.poi.ss.formula.functions.T;
 
 import java.awt.*;
@@ -128,6 +129,7 @@ public class PauseState extends State {
                 }
                 if(retryBounds.contains(coords.x, coords.y)){
                     manager.getMusic().stop();
+                    Behavior.currentDataSet.clear();
                     manager.set(new PlayState(manager));
                 }
                 if(stageBounds.contains(coords.x, coords.y)){

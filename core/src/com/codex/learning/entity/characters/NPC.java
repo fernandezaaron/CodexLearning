@@ -56,9 +56,6 @@ public class NPC extends Entity {
 
         db = new DialogueBox(manager.getSkin(), "dialogbox2");
 
-
-
-
         BodyDef def = new BodyDef();
         def.type = BodyDef.BodyType.StaticBody;
         def.position.set(this.position);

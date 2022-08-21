@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Behavior {
-    public ArrayList<String> currentDataSet = new ArrayList<>();
+    public static ArrayList<String> currentDataSet = new ArrayList<>();
 
     public static ArrayList<String> headers = new ArrayList<>
             (Arrays.asList("Movement Detected", "Time Consumption", "Number of Attempts", "Number of Error", "Number of Block Interaction", "BEHAVIORS"));
@@ -46,12 +46,4 @@ public class Behavior {
                     new ArrayList<String>(Arrays.asList("NO", "HIGH", "HIGH", "HIGH", "HIGH", "FRUSTRATED"))
             )
     );
-
-    public ArrayList<String> getCurrentDataSet() {
-        return currentDataSet;
-    }
-
-    public void setCurrentDataSet(ArrayList<String> currentDataSet) {
-        this.currentDataSet = currentDataSet;
-    }
 }

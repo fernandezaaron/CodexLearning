@@ -119,10 +119,6 @@ public class CodeRiddle extends State {
 
     @Override
     public void render(SpriteBatch sprite) {
-        if(isInComputer()){
-            timer += Gdx.graphics.getDeltaTime();
-        }
-
         sprite.enableBlending();
 
         sprite.setProjectionMatrix(manager.getCamera().combined);
