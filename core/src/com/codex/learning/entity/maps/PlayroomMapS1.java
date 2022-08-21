@@ -39,7 +39,7 @@ public class PlayroomMapS1 extends State {
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.enableBlending();
-//        sprite.draw(manager.getPlayroomStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        sprite.draw(manager.getPlayroomStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         checkDoor(sprite, atDoor);
         sprite.end();
     }
