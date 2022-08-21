@@ -41,10 +41,10 @@
   "com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle": {
     "default": {
         "vScroll": "verticalScroll",
-        "hScroll": "hScroll",
-        "background": "dialogbox1",
+        "hScroll": "horizontalScroll",
+        "background": "questionsScreen",
         "vScrollKnob": "verticalScrollKnob",
-        "hScrollKnob": "hScrollKnob"
+        "hScrollKnob": "horizontalScrollKnob"
     }
   }
 

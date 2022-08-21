@@ -15,6 +15,9 @@ import com.codex.learning.entity.characters.NPC;
 import com.codex.learning.entity.maps.HouseMap;
 import com.codex.learning.utility.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class PlayState extends State{
     private Character jedisaur;
     private NPC jediGrandpa;
@@ -46,6 +49,8 @@ public class PlayState extends State{
         house = new HouseMap(manager);
 
         fuzzyLogic = new FuzzyLogic();
+
+
 
 
         // WILL BE USED, DON'T ERASE

@@ -77,10 +77,10 @@ public class CodeRiddle extends State {
         textButtons = new TextButton[4];
 
         scrollTable.setSkin(manager.getSkin());
-        scrollTable.setBackground("questions");
+        scrollTable.setBackground("optionScreen");
 
         table.setSkin(manager.getSkin());
-        table.setBackground("dialogbox1");
+        table.setBackground("PCSCREEN");
 
         text = new Label("\n", manager.getSkin());
 
@@ -140,7 +140,7 @@ public class CodeRiddle extends State {
             table.setFillParent(true);
 //            table.debug();
             table.defaults().size(500, 150);
-            table.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM + 25,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM + 15);
+            table.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM - 10);
 //            text.setText("questions.get(currentQuestion\nasd\nasd\nquestions.get(currentQuesasdasdadadation\nasd\nasd\nasd\nasd\nasd\nquestions.get(currentQuestion\nasd\nasd" +
 //                    "\nquestions.get(currentQuestion\nasd\nasd\nquestions.get(currentQuesasdasdadadation\nasd\nasd\nasd\nasd\nasd\nquestions.get(currentQuestion\nasd\nasd" +
 //                    "\nquestions.get(currentQuestion\nasd\nasd\nquestions.get(currentQuesasdasdadadation\nasd\nasd\nasd\nasd\nasd\nquestions.get(currentQuestion\nasd\nasd" +
@@ -160,7 +160,7 @@ public class CodeRiddle extends State {
                    System.out.println("oh meron nayan lods");
                }else{
                    text.setText(questions.get(currentQuestion));
-
+                   text.setAlignment(Align.center);
 
                    for(int i=0; i<4; i++){
                        textButtons[i] = new TextButton(options.get(currentQuestion).get(i), manager.getSkin());
@@ -225,15 +225,16 @@ public class CodeRiddle extends State {
                scrollPane.setForceScroll(false,true);
 //               scrollPane.debugAll();
                scrollPane.setSmoothScrolling(true);
-               table.add(scrollPane).height(200).padTop(25f);
+               table.add(scrollPane).height(150).padTop(25f);
                table.row();
-               table.add(scrollTable).height(250).padBottom(15f);
+               table.add(scrollTable).height(200).padBottom(15f);
                table.pack();
            }
 
 
             manager.getStage().addActor(table);
-            manager.getStage().setScrollFocus(table.getChild(0));
+//           manager.getStage().setDebugAll(true);
+           // manager.getStage().setScrollFocus(table.getChild(0));
         }
     }
 
