@@ -17,6 +17,7 @@ import com.codex.learning.entity.maps.PlayroomMapS1;
 import com.codex.learning.states.PauseState;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.Constants;
+import com.codex.learning.utility.FuzzyLogic;
 import com.codex.learning.utility.Manager;
 import com.sun.org.apache.bcel.internal.Const;
 
@@ -63,7 +64,7 @@ public class MysteryCode extends State {
 
         blockDispensers = new BlockDispenser[2];
 
-        computer = new Computer(manager);
+        computer = new Computer(manager, new FuzzyLogic());
         computer.create(new Vector2(-18, 2.8f), new Vector2(0.6f, 0.6f), 0);
 
         getAMinigame("Stage 1", "Poor");
@@ -84,7 +85,7 @@ public class MysteryCode extends State {
                         blockHolders[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.22f), Constants.BLOCK_HOLDER_HEIGHT), 0);
                         System.out.println(minigameContainer[i][j]);
                     } else {
-                        blocks[i][j] = new Blocks(manager, "\"" + minigameContainer[i][j] + "\"", minigameContainer[i][j]);
+                        blocks[i][j] = new Blocks(manager, "\"" + minigameContainer[i][j] + "\"", minigameContainer[i][j], true);
                         if (currentStringLength == 1){
                             blocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.4f), Constants.BLOCKS_HEIGHT), 0);
                             blocks[i][j].setPreDefinedContact(true);
@@ -318,7 +319,7 @@ public class MysteryCode extends State {
 
     public void getAMinigame(String stage, String expertiseLevel){
         manager.getQuestionnaire().minigameDisplay(stage,expertiseLevel);
-        minigameContainer = manager.getQuestionnaire().getMinigame();
+//        minigameContainer = manager.getQuestionnaire().getMinigame();
         minigameContainerLimit = manager.getQuestionnaire().getMinigameLimit();
     }
 }

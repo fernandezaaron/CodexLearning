@@ -27,38 +27,36 @@ public class Contact implements ContactListener {
             return;
         }
 
-        if(isBlockContact(fa, fb)){
+        if(isBlockContact(fa, fb)) {
             Blocks blocks;
             Character jedisaur;
-            if(fa.getUserData() instanceof Blocks){
+            if (fa.getUserData() instanceof Blocks) {
                 blocks = (Blocks) fa.getUserData();
                 jedisaur = (Character) fb.getUserData();
-            }
-            else{
+            } else {
                 jedisaur = (Character) fa.getUserData();
                 blocks = (Blocks) fb.getUserData();
             }
-<<<<<<< HEAD
+
             blocks.setInContact(true);
-            if(jedisaur.isCarrying()){
-=======
-            System.out.println("Block yes");
+            if (jedisaur.isCarrying()) {
 
-            if(blocks.isPreDefinedContact()){
-                blocks.setInContact(false);
->>>>>>> origin/jy_test
-                jedisaur.setPickUpAble(false);
-            }
-            else{
-                blocks.setInContact(true);
-                if(jedisaur.isCarrying()){
+                System.out.println("Block yes");
+
+                if (blocks.isPreDefinedContact()) {
+                    blocks.setInContact(false);
+
                     jedisaur.setPickUpAble(false);
+                } else {
+                    blocks.setInContact(true);
+                    if (jedisaur.isCarrying()) {
+                        jedisaur.setPickUpAble(false);
+                    } else {
+                        jedisaur.setPickUpAble(true);
+                    }
                 }
-                else{
-                    jedisaur.setPickUpAble(true);
-                }
-            }
 
+            }
         }
 
         if(isDispenserContact(fa, fb)){

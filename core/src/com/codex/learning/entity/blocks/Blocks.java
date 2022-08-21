@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.scenes.scene2d.ui.Tree;
 import com.codex.learning.entity.Entity;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
@@ -17,13 +18,14 @@ public class Blocks extends Entity {
     private ShapeRenderer shadowColor;
     private ShapeRenderer mainColor;
     protected boolean inContact;
-    private boolean preDefinedContact ;
+    private boolean preDefinedContact;
+    private boolean isPredefined;
     private Vector2 dupliSize;
-
-    public Blocks(Manager manager, String id, String name) {
+    public Blocks(Manager manager, String id, String name, boolean isPredefined) {
         super(manager);
         this.id = id;
         this.name = name;
+        this.isPredefined = isPredefined;
     }
 
     @Override
@@ -45,6 +47,10 @@ public class Blocks extends Entity {
         fixtureDef.density = density;
         fixtureDef.shape = shape;
         fixtureDef.friction = 5;
+
+        if(isPredefined){
+            fixtureDef.isSensor = true;
+        }
 
 
         body = manager.getWorld().createBody(def);

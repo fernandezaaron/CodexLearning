@@ -190,12 +190,12 @@ public class Questionnaire extends DatabaseReader {
     public void questionDisplay(String stage, String expertiseLevel) {
         adjustDifficulty(expertiseLevel);
 
-<<<<<<< HEAD
+
 
         difficulty = levels.get(randomizer.nextInt(levels.size()));
-=======
+
         System.out.println("QUESTION LIMIT - " + questionLimit);
->>>>>>> origin/jy_test
+
         while(question == null) {
             difficulty = levels.get(randomizer.nextInt(levels.size()));
 
