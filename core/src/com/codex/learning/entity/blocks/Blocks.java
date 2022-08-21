@@ -17,6 +17,7 @@ public class Blocks extends Entity {
     private ShapeRenderer shadowColor;
     private ShapeRenderer mainColor;
     protected boolean inContact;
+    private boolean preDefinedContact ;
     private Vector2 dupliSize;
 
     public Blocks(Manager manager, String id, String name) {
@@ -57,6 +58,7 @@ public class Blocks extends Entity {
         mainColor.translate(this.size.x, - (this.size.y * Constants.PPM) / 10f, 0);
 
         inContact = false;
+        preDefinedContact = false;
     }
 
     @Override
@@ -93,6 +95,13 @@ public class Blocks extends Entity {
         sprite.end();
     }
 
+    public boolean isPreDefinedContact() {
+        return preDefinedContact;
+    }
+
+    public void setPreDefinedContact(boolean preDefinedContact) {
+        this.preDefinedContact = preDefinedContact;
+    }
 
     public boolean isInContact() {
         return inContact;
