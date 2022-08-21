@@ -85,10 +85,16 @@ public class MysteryCode extends State {
                         System.out.println(minigameContainer[i][j]);
                     } else {
                         blocks[i][j] = new Blocks(manager, "\"" + minigameContainer[i][j] + "\"", minigameContainer[i][j]);
-                        if (currentStringLength == 1)
+                        if (currentStringLength == 1){
                             blocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.4f), Constants.BLOCKS_HEIGHT), 0);
-                        else
+                            blocks[i][j].setPreDefinedContact(true);
+                        }
+
+                        else{
                             blocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.23f), Constants.BLOCKS_HEIGHT), 0);
+                            blocks[i][j].setPreDefinedContact(true);
+                        }
+
                     }
                     currentCell++;
                     System.out.println(xStartingPoint + " " + minigameContainer[i][j]);
