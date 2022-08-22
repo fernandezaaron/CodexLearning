@@ -20,6 +20,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.codex.learning.entity.Entity;
 import com.codex.learning.utility.Constants;
+import com.codex.learning.utility.Dialogue;
 import com.codex.learning.utility.DialogueBox;
 import com.codex.learning.utility.Manager;
 
@@ -32,7 +33,8 @@ public class NPC extends Entity {
     private Table table, image;
     private DialogueBox db;
     private Label.LabelStyle labelStyle;
-    private TextureAtlas atlas;
+    private Dialogue dialogue;
+    private int nextStatement;
     public NPC(Manager manager) {
         super(manager);
     }
@@ -44,7 +46,7 @@ public class NPC extends Entity {
         this.size = size;
         table = new Table();
         image = new Table(manager.getSkin());
-        image.setBackground("dialogbox2");
+        image.setBackground("jediGrandpaAvatar");
 
         labelStyle = new Label.LabelStyle();
         labelStyle.font = manager.getFont();
@@ -55,7 +57,7 @@ public class NPC extends Entity {
         manager.getSkin().add("pokemon", manager.getFont());
 
         db = new DialogueBox(manager.getSkin(), "dialogbox2");
-
+        dialogue = new Dialogue();
 
 
 
@@ -79,6 +81,7 @@ public class NPC extends Entity {
         shape.dispose();
 
         inContact = false;
+        nextStatement = 0;
 
         this.size.x /= Constants.PPM;
         this.size.y /= Constants.PPM;
@@ -114,17 +117,26 @@ public class NPC extends Entity {
             System.out.println("Jedigrandpa");;
             if(!db.isOpen()){
                 System.out.println("here");
-                db.textAnimation("JEDIGRANDPA BABYYYYYYYYYY");
-                table.add(image).align(Align.left).width(250).padRight(15f);
+                db.textAnimation(dialogue.reader(nextStatement));
+
+                table.add(image).align(Align.left).height(250).width(250).padRight(15f);
                 table.add(db).align(Align.right).width(1000);
                 table.setHeight(250);
                 table.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/Constants.PPM/2, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/Constants.PPM/2 - 400);
             }
         }
-        if(Gdx.input.justTouched() && db.isOpen()){
+
+        if(!dialogue.isStatementEnd() && Gdx.input.justTouched() && db.isOpen()){
+            nextStatement++;
+            System.out.println(nextStatement);
+            db.textAnimation(dialogue.reader(nextStatement));
+        }
+        if(dialogue.isStatementEnd() && Gdx.input.justTouched() && db.isOpen()){
            table.reset();
            db.setOpen(false);
+           nextStatement = 0;
         }
+
         manager.getStage().addActor(table);
     }
 
