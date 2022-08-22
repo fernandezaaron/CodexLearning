@@ -114,7 +114,7 @@ public class BlockDispenser extends Entity {
     public void createBlock(Vector2 position){
         if(isInContact() && limit > 0 && Gdx.input.isKeyJustPressed(Input.Keys.E)){
 
-            blocks[limit] = new Blocks(manager, id, name);
+            blocks[limit] = new Blocks(manager, id, name, false);
             blocks[limit].create(new Vector2(position.x, position.y + 3),
                     blockSize,0);
             blocks[limit].setInContact(true);

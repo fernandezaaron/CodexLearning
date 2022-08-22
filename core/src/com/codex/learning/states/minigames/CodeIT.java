@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class FillInTheBlock extends State {
+public class CodeIT extends State {
 
     private Character jedisaur;
     private NPC jediGrandpa;
@@ -39,17 +39,15 @@ public class FillInTheBlock extends State {
     private ArrayList<ArrayList<String>> minigameContainer;
     private int minigameContainerLimit;
     private Random randomizer;
-    private ArrayList<Integer> banishCells;
     private ArrayList<String> answerPoolContainer;
     private int currentCell;
 
-    public FillInTheBlock(Manager manager) {
+    public CodeIT(Manager manager) {
         super(manager);
         pause = new PauseState(manager);
         playroom = new PlayroomMapS1(manager);
 
         randomizer = new Random();
-        banishCells = new ArrayList<Integer>();
 
         getAMinigame("Stage 1", "Poor");
 
@@ -63,11 +61,6 @@ public class FillInTheBlock extends State {
         computer = new Computer(manager);
         computer.create(new Vector2(-18, 2.8f), new Vector2(0.6f, 0.6f), 0);
 
-        // CREATES RANDOM NUMBER TO REMOVE CELLS FROM MINIGAME
-        for(int i = 0; i <= 5; i++) {
-            banishCells.add(randomizer.nextInt(minigameContainerLimit - 1) + 1);
-        }
-
         // START MINIGAME CREATION
         int yStartingPoint = 8, currentCell = 0;
         for(int i = 0; i < minigameContainer.size(); i++) {
@@ -75,19 +68,11 @@ public class FillInTheBlock extends State {
             for(int j = 0; j < minigameContainer.get(i).size(); j++) {
                 if(minigameContainer.get(i).get(j) != null) {
                     float currentStringLength = (float) String.valueOf(minigameContainer.get(i).get(j)).length();
-                    if (banishCells.contains(currentCell)) {
-                        blockHolders[i][j] = new BlockHolder(manager, "\"" + minigameContainer.get(i).get(j) + "\"");
-                        blockHolders[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.22f), Constants.BLOCK_HOLDER_HEIGHT), 0);
-                        answerPoolContainer.add(minigameContainer.get(i).get(j));
-                        System.out.println(minigameContainer.get(i).get(j));
-                    } else {
-                        questionBlocks[i][j] = new Blocks(manager, "\"" + minigameContainer.get(i).get(j) + "\"", minigameContainer.get(i).get(j), true);
-                        if (currentStringLength == 1)
-                            questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.4f), Constants.BLOCKS_HEIGHT), 0);
-                        else
-                            questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.23f), Constants.BLOCKS_HEIGHT), 0);
-                    }
-                    currentCell++;
+                    blockHolders[i][j] = new BlockHolder(manager, "\"" + minigameContainer.get(i).get(j) + "\"");
+                    blockHolders[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.22f), Constants.BLOCK_HOLDER_HEIGHT), 0);
+                    answerPoolContainer.add(minigameContainer.get(i).get(j));
+                    System.out.println(minigameContainer.get(i).get(j));
+
                     System.out.println(xStartingPoint + " " + minigameContainer.get(i).get(j));
                     System.out.println(String.valueOf(minigameContainer.get(i).get(j)).length() + "     " + (float) String.valueOf(minigameContainer.get(i).get(j)).length());
 
@@ -145,11 +130,7 @@ public class FillInTheBlock extends State {
                 for(int i = 0; i < minigameContainer.size(); i++) {
                     for (int j = 0; j < minigameContainer.get(i).size(); j++) {
                         if (minigameContainer.get(i).get(j) != null) {
-                            if(banishCells.contains(currentCell))
-                                blockHolders[i][j].update(delta);
-                            else
-                                questionBlocks[i][j].update(delta);
-                            currentCell++;
+                            blockHolders[i][j].update(delta);
                         }
                     }
                 }
@@ -180,12 +161,9 @@ public class FillInTheBlock extends State {
                 for(int i = 0; i < minigameContainer.size(); i++) {
                     for (int j = 0; j < minigameContainer.get(i).size(); j++) {
                         if (minigameContainer.get(i).get(j) != null) {
-                            if(banishCells.contains(currentCell)) {
-                                if (blockHolders[i][j].isInContact()) {
-                                    jedisaur.dropBlock(blockHolders[i][j]);
-                                }
+                            if (blockHolders[i][j].isInContact()) {
+                                jedisaur.dropBlock(blockHolders[i][j]);
                             }
-                            currentCell++;
                         }
                     }
                 }
@@ -232,12 +210,7 @@ public class FillInTheBlock extends State {
         for(int i = 0; i < minigameContainer.size(); i++) {
             for (int j = 0; j < minigameContainer.get(i).size(); j++) {
                 if (minigameContainer.get(i).get(j) != null) {
-                    if(banishCells.contains(currentCell)) {
-                        blockHolders[i][j].render(sprite);
-                    }
-                    else
-                        questionBlocks[i][j].render(sprite);
-                    currentCell++;
+                    blockHolders[i][j].render(sprite);
                 }
             }
         }
@@ -272,7 +245,6 @@ public class FillInTheBlock extends State {
             for (int j = 0; j < minigameContainer.get(i).size(); j++) {
                 if (minigameContainer.get(i).get(j) != null) {
                     blockHolders[i][j].disposeBody();
-                    questionBlocks[i][j].disposeBody();
                 }
             }
         }
