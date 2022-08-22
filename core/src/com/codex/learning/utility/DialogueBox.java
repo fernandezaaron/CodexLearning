@@ -20,8 +20,10 @@ public class DialogueBox extends Table {
         //this.pack();
         this.setSkin(skin);
         this.setBackground(skin.getDrawable(name));
-        textLabel = new Label("\n", skin);
-        this.add(textLabel).align(Align.left).pad(50f);
+        textLabel = new Label(" ", skin);
+        textLabel.setWrap(true);
+        this.add(textLabel).align(Align.left).pad(50f).grow();
+
        // this.setPosition(this.getX(), this.getY());
         isAnimating = false;
         isOpen = false;
@@ -57,14 +59,17 @@ public class DialogueBox extends Table {
                 setAnimating(false);
                 animationTimer = animationTotalTime;
             }
+
             String displayedText = "";
 //            System.out.println(delta);
             int stringSize = (int) ((animationTimer/animationTotalTime)*text.length());
             for(int i=0; i<stringSize; i++){
                 displayedText += text.charAt(i);
+
             }
             if(!displayedText.equals(textLabel.getText().toString())){
-                setText(displayedText);
+                textLabel.setText(displayedText);
+
 //                System.out.println(displayedText);
             }
         }
@@ -91,9 +96,9 @@ public class DialogueBox extends Table {
         isOpen = open;
     }
 
-    @Override
-    public float getPrefWidth(){
-        return 200f;
-    }
+//    @Override
+//    public float getPrefWidth(){
+//        return 200f;
+//    }
 
 }

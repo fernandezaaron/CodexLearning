@@ -1,88 +1,109 @@
 DialogBox.png
-size: 2036, 2236
+size: 1841, 2400
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 choices
   rotate: false
-  xy: 628, 0
+  xy: 615, 0
   size: 1115, 76
   orig: 1115, 76
   offset: 0, 0
   index: -1
 dialogbox1
   rotate: false
-  xy: 0, 885
+  xy: 0, 698
   size: 1115, 351
   orig: 1115, 351
   offset: 0, 0
   index: -1
 dialogbox2
   rotate: false
-  xy: 0, 495
+  xy: 0, 372
   size: 1000, 231
   orig: 1000, 231
   offset: 0, 0
   index: -1
 exit
   rotate: false
-  xy: 0, 169
+  xy: 1000, 372
   size: 662, 326
   orig: 662, 326
   offset: 0, 0
   index: -1
 horizontalScroll
   rotate: false
-  xy: 190, 0
+  xy: 165, 0
   size: 438, 33
   orig: 438, 33
   offset: 0, 0
   index: -1
 horizontalScrollKnob
   rotate: false
-  xy: 25, 0
+  xy: 0, 0
   size: 165, 29
   orig: 165, 29
   offset: 0, 0
   index: -1
+jediGrandpaAvatar
+  rotate: false
+  xy: 0, 169
+  size: 180, 180
+  orig: 180, 180
+  offset: 0, 0
+  index: -1
+jediProfAvatar
+  rotate: false
+  xy: 180, 169
+  size: 180, 180
+  orig: 180, 180
+  offset: 0, 0
+  index: -1
+jedisaurAvatar
+  rotate: false
+  xy: 360, 169
+  size: 180, 180
+  orig: 180, 180
+  offset: 0, 0
+  index: -1
 optionScreen
   rotate: false
-  xy: 1000, 495
+  xy: 0, 1049
   size: 920, 390
   orig: 920, 390
   offset: 0, 0
   index: -1
 PCSCREEN
   rotate: false
-  xy: 0, 1336
+  xy: 0, 1500
   size: 1600, 900
   orig: 1600, 900
   offset: 0, 0
   index: -1
 questions
   rotate: false
-  xy: 662, 169
+  xy: 540, 169
   size: 1111, 203
   orig: 1111, 203
   offset: 0, 0
   index: -1
 questionsScreen
   rotate: false
-  xy: 1115, 885
+  xy: 920, 1049
   size: 921, 451
   orig: 921, 451
   offset: 0, 0
   index: -1
 verticalScroll
   rotate: false
-  xy: 12, 0
+  xy: 1730, 0
   size: 13, 169
   orig: 13, 169
   offset: 0, 0
   index: -1
 verticalScrollKnob
   rotate: false
-  xy: 0, 0
+  xy: 603, 0
   size: 12, 69
   orig: 12, 69
   offset: 0, 0
