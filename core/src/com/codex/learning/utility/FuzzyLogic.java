@@ -32,7 +32,10 @@ public class FuzzyLogic {
         numberOfAttempts = 0;
         totalQuestions = 0;
 
-        timeConsumptionRules = "";
+        numberOfErrorsRules = "MEDIUM";
+        timeConsumptionRules = "MEDIUM";
+        correctOutputRules = "MEDIUM";
+        numberOfAttemptsRules = "MEDIUM";
     }
     public void fuzzyNumberOfError(){
         int a = 0;

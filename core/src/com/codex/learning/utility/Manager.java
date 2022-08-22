@@ -16,7 +16,9 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import com.codex.learning.entity.characters.Character;
 import com.codex.learning.states.State;
+import com.codex.learning.utility.decisiontree.Behavior;
 import com.codex.learning.utility.decisiontree.DecisionTree;
 import com.codex.learning.utility.filereader.Questionnaire;
 
@@ -51,6 +53,9 @@ public class Manager {
     private Viewport viewport;
 
     private DecisionTree decisionTree;
+
+    private boolean moving;
+    private int numberOfBlockInteraction;
 
     public Manager(){
 
@@ -229,5 +234,50 @@ public class Manager {
 
     public void setDecisionTree(DecisionTree decisionTree) {
         this.decisionTree = decisionTree;
+    }
+
+    public boolean isMoving() {
+        return moving;
+    }
+
+    public void setMoving(boolean moving) {
+        this.moving = moving;
+    }
+
+    public void checkBehavior(int timer, int numberOfBlockInteract, FuzzyLogic fuzzyLogic){
+        String movement = (isMoving()) ? "YES":"NO";
+        String interact = checkNumberOfBlockInteractionRule(numberOfBlockInteract);
+
+
+        if(timer % 300 == 0 && timer > 0){
+            Behavior.currentDataSet.add(movement);
+            Behavior.currentDataSet.add(fuzzyLogic.getTimeConsumptionRules());
+            Behavior.currentDataSet.add(fuzzyLogic.getNumberOfErrorsRules());
+            Behavior.currentDataSet.add(fuzzyLogic.getNumberOfAttemptsRules());
+            Behavior.currentDataSet.add(interact);
+            System.out.println(getDecisionTree().classify(Behavior.currentDataSet, getDecisionTree().getTree()));
+            Behavior.currentDataSet.clear();
+        }
+    }
+
+    public String checkNumberOfBlockInteractionRule(int numberOfBlockInteraction){
+        if(numberOfBlockInteraction <= 10){
+            return "LOW";
+        }
+        else if(numberOfBlockInteraction <= 20){
+            return "MEDIUM";
+        }
+        else{
+            return "HIGH";
+        }
+    }
+
+    public void checkIfMoving(int timer, Character character){
+        if(!character.isMoving() && timer > 50){
+            setMoving(true);
+        }
+        else{
+            setMoving(false);
+        }
     }
 }
