@@ -58,6 +58,8 @@ public class Blocks extends Entity {
         body.setLinearVelocity(0, 0);
         shape.dispose();
 
+
+
         shadowColor = new ShapeRenderer();
         shadowColor.translate(this.size.x, 0, 0);
 

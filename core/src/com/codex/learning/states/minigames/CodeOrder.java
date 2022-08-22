@@ -138,7 +138,7 @@ public class CodeOrder extends State {
                         answerBlocks[i].update(delta);
                         if(answerBlocks[i].isInContact()){
                             jedisaur.carryBlock(answerBlocks[i]);
-                            System.out.println("jedisaur carrying ");
+//                            System.out.println("jedisaur carrying ");
                         }
                     }
                 }
