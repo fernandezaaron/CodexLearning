@@ -57,6 +57,8 @@ public class Manager {
     private boolean moving;
     private int numberOfBlockInteraction;
 
+    private ExpertSystem expertSystem;
+
     public Manager(){
 
         b2dr = new Box2DDebugRenderer();
@@ -100,7 +102,7 @@ public class Manager {
         skin = new Skin(Gdx.files.internal(Constants.JSON_DIALOG_BOX_SKIN_PATH));
         skin.addRegions(atlas);
 
-
+        expertSystem = new ExpertSystem();
 
         states = new Stack<State>();
     }
@@ -283,5 +285,13 @@ public class Manager {
         else{
             setMoving(false);
         }
+    }
+
+    public ExpertSystem getExpertSystem() {
+        return expertSystem;
+    }
+
+    public void setExpertSystem(ExpertSystem expertSystem) {
+        this.expertSystem = expertSystem;
     }
 }

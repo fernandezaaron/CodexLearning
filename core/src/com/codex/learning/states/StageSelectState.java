@@ -19,14 +19,19 @@ public class StageSelectState extends State{
     private Circle[] stages;
     private Settings settings;
 
+    private boolean zeroCookie;
+    private boolean[] allowToPlay;
     private int[] numberOfCookies;
 
 
     public StageSelectState(Manager manager){
         super(manager);
         stages = new Circle[17];
+
+        zeroCookie = false;
         currentCookie = new TextureRegion[17];
-        numberOfCookies = new int[17];
+        allowToPlay = new boolean[17];
+        numberOfCookies = manager.getExpertSystem().getCookies();
 
 
         orangeCircle = new TextureRegion(manager.getUtility(), Constants.ORANGE_CIRCLE_X, Constants.ORANGE_CIRCLE_Y, Constants.ORANGE_CIRCLE_R, Constants.ORANGE_CIRCLE_R);
@@ -82,10 +87,6 @@ public class StageSelectState extends State{
         }else {
             manager.setMusic(Constants.HOUSE_MUSIC);
         }
-
-
-
-
     }
     @Override
     public void update(float delta) {
@@ -96,8 +97,8 @@ public class StageSelectState extends State{
     public void render(SpriteBatch sprite) {
         sprite.begin();
         sprite.draw(manager.getStageSelect(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-        drawObject(sprite);
         drawCookies(sprite);
+        drawObject(sprite);
         sprite.end();
     }
 
@@ -108,20 +109,26 @@ public class StageSelectState extends State{
 
     public void drawCookies(SpriteBatch sprite){
         for(int i = 0; i < stages.length; i++){
-            numberOfCookies[i] = 3;
             if(numberOfCookies[i] == 0){
                 currentCookie[i] = noCookie;
+                if(!zeroCookie){
+                    allowToPlay[i] = true;
+                    zeroCookie = true;
+                }
             }
             else if(numberOfCookies[i] == 1){
                 currentCookie[i] = oneCookie;
+                allowToPlay[i] = true;
             }
             else if(numberOfCookies[i] == 2){
                 currentCookie[i] = twoCookies;
+                allowToPlay[i] = true;
             }
             else if(numberOfCookies[i] == 3){
                 currentCookie[i] = threeCookies;
+                allowToPlay[i] = true;
             }
-            sprite.draw(currentCookie[i], stages[i].x - Constants.ORANGE_CIRCLE_R / 2 - 10,
+            sprite.draw(currentCookie[i], stages[i].x - Constants.ORANGE_CIRCLE_R / 2 - 13,
                     (stages[i].y - Constants.ORANGE_CIRCLE_R / 2) + 75, Constants.COOKIES_WIDTH, Constants.COOKIES_HEIGHT);
         }
     }
@@ -129,16 +136,20 @@ public class StageSelectState extends State{
     public void input(){
         if(Gdx.input.justTouched()){
             manager.getCamera().unproject(touchpoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
+
+            // LATEST ZERO COOKIES MUST BE PLAYABLE
             for(int i = 0; i < stages.length; i++){
-                if(stages[i].contains(touchpoint.x, touchpoint.y)){
-                    manager.getMusic().stop();
-                    manager.set(new FillInTheBlock(manager));
-                    System.out.println("You clicked at stage " + (i + 1)  + "!!");
+                System.out.println(i + "  -  " + allowToPlay[i]);
+                if(allowToPlay[i]){
+                    if(stages[i].contains(touchpoint.x, touchpoint.y)){
+                        manager.getMusic().stop();
+                        manager.set(new FillInTheBlock(manager));
+                        System.out.println("You clicked at stage " + (i + 1)  + "!!");
 
-                    // ITO COMMENT OUT TO COMPARE
+                        // ITO COMMENT OUT TO COMPARE
 //                    manager.getReader().getQuestions("Easy","Stage 1","");
-                    // ITO COMMENT OUT TO COMPARE
-
+                        // ITO COMMENT OUT TO COMPARE
+                    }
                 }
             }
         }
@@ -151,11 +162,11 @@ public class StageSelectState extends State{
                       stages[i].y - Constants.ORANGE_CIRCLE_R / 2, Constants.ORANGE_CIRCLE_R, Constants.ORANGE_CIRCLE_R);
 //            sprite.draw(orangeCircle, (manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f) + stages[i].x - Constants.ORANGE_CIRCLE_R / 2,
 //                    (manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f) +  stages[i].y - Constants.ORANGE_CIRCLE_R / 2, Constants.ORANGE_CIRCLE_R, Constants.ORANGE_CIRCLE_R);
-            if(stages[i].contains(touchpoint.x, touchpoint.y)){
-                sprite.draw(grayCircle,  stages[i].x - Constants.GRAY_CIRCLE_R / 2 ,
-                         stages[i].y - Constants.GRAY_CIRCLE_R / 2, Constants.GRAY_CIRCLE_R, Constants.GRAY_CIRCLE_R);
-//                sprite.draw(grayCircle, (manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f) + (stages[i].x - Constants.GRAY_CIRCLE_R / 2) ,
-//                        (manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f) + (stages[i].y - Constants.GRAY_CIRCLE_R / 2), Constants.GRAY_CIRCLE_R, Constants.GRAY_CIRCLE_R);
+            if(allowToPlay[i]) {
+                if (stages[i].contains(touchpoint.x, touchpoint.y)) {
+                    sprite.draw(grayCircle, stages[i].x - Constants.GRAY_CIRCLE_R / 2,
+                            stages[i].y - Constants.GRAY_CIRCLE_R / 2, Constants.GRAY_CIRCLE_R, Constants.GRAY_CIRCLE_R);
+                }
             }
         }
     }

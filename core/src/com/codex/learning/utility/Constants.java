@@ -31,6 +31,9 @@ public class Constants {
     // JSON ASSET PATH
     public static final String JSON_DIALOG_BOX_SKIN_PATH = "text/DialogBox.json";
 
+    // SAVE FILE ASSET PATH
+    public static final String SAVE_FILE_PATH = "assets/text/SaveFile.txt";
+
     // ATLAS ASSET PATH
     public static final String ATLAS_UTILITY_PATH = "text/DialogBox.atlas";
     public static final String PNG_ATLAS_UTILITY_PATH = "text/DialogBox.png";
