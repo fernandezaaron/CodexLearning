@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ExpertSystem {
+    private int currentCookie;
     private int[] cookies;
     private int totalCookies;
     private String expertiseLevel;
@@ -14,13 +15,14 @@ public class ExpertSystem {
     public ExpertSystem(){
         cookies = new int[17];
         currentBehavior = null;
+        currentCookie = 0;
     }
 
     public void updateExpertiseLevel(){
 
     }
 
-    public void writeFile(){
+    public void writeFile(int[] cookies){
         try {
             File file = new File(Constants.SAVE_FILE_PATH);
             if (file.createNewFile()) {
@@ -28,9 +30,8 @@ public class ExpertSystem {
             }
             else {
                 FileWriter fileWriter = new FileWriter(Constants.SAVE_FILE_PATH, false);
-                System.out.println("LENGTHJ - " + cookies.length);
+
                 for(int i = 0; i < cookies.length; i++){
-                    cookies[i] = 2;
                     fileWriter.write(cookies[i] + ",");
                 }
                 fileWriter.close();
@@ -93,5 +94,13 @@ public class ExpertSystem {
 
     public void setCurrentBehavior(String currentBehavior) {
         this.currentBehavior = currentBehavior;
+    }
+
+    public int getCurrentCookie() {
+        return currentCookie;
+    }
+
+    public void setCurrentCookie(int currentCookie) {
+        this.currentCookie = currentCookie;
     }
 }

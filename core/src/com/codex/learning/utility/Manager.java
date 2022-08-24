@@ -253,8 +253,6 @@ public class Manager {
     public void checkBehavior(int timer, int numberOfBlockInteract, FuzzyLogic fuzzyLogic){
         String movement = (isMoving()) ? "YES":"NO";
         String interact = checkNumberOfBlockInteractionRule(numberOfBlockInteract);
-
-
         if(timer % 300 == 0 && timer > 0){
             Behavior.currentDataSet.add(movement);
             Behavior.currentDataSet.add(fuzzyLogic.getTimeConsumptionRules());
@@ -262,8 +260,13 @@ public class Manager {
             Behavior.currentDataSet.add(fuzzyLogic.getNumberOfAttemptsRules());
             Behavior.currentDataSet.add(interact);
             System.out.println(getDecisionTree().classify(Behavior.currentDataSet, getDecisionTree().getTree()));
+
             Behavior.currentDataSet.clear();
         }
+    }
+
+    public void checkFeedback(FuzzyLogic fuzzyLogic){
+
     }
 
     public String checkNumberOfBlockInteractionRule(int numberOfBlockInteraction){

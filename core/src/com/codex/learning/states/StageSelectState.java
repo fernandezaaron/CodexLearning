@@ -143,7 +143,7 @@ public class StageSelectState extends State{
                 if(allowToPlay[i]){
                     if(stages[i].contains(touchpoint.x, touchpoint.y)){
                         manager.getMusic().stop();
-                        manager.set(new FillInTheBlock(manager));
+                        manager.set(new PlayState(manager));
                         System.out.println("You clicked at stage " + (i + 1)  + "!!");
 
                         // ITO COMMENT OUT TO COMPARE

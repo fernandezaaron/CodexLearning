@@ -32,6 +32,11 @@ public class FuzzyLogic {
         numberOfAttempts = 0;
         totalQuestions = 0;
 
+        percentNumberOfErrors = 0;
+        percentTimeConsumptions = 0;
+        percentCorrectOutput = 0;
+        percentNumberOfAttempts = 0;
+
         numberOfErrorsRules = "MEDIUM";
         timeConsumptionRules = "MEDIUM";
         correctOutputRules = "MEDIUM";

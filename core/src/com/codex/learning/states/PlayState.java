@@ -129,6 +129,10 @@ public class PlayState extends State{
 //                System.out.println("TIMER IS - " +  timer);
                 manager.checkIfMoving((int) timer, jedisaur);
                 manager.checkBehavior((int) timer, jedisaur.getNumberOfBlockInteraction(), fuzzyLogic);
+
+                fuzzyLogic.calculateNumberOfCookies();
+                System.out.println(fuzzyLogic.getCookies());
+                manager.getExpertSystem().setCurrentCookie(fuzzyLogic.getCookies());
                 // WILL BE USED, DON'T ERASE
                 for(int i = 0; i < 3; i++){
 //                    blockHolders[i].update(delta);
@@ -281,7 +285,6 @@ public class PlayState extends State{
                 }
             }
         }
-
         house.dispose();
     }
 }
