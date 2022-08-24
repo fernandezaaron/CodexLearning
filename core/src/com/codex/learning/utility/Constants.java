@@ -12,7 +12,10 @@ public class Constants {
     // BACKGROUND ASSET PATH
     public static final String CLOUD_PATH = "background/clouds.png";
     public static final String HOUSE_PATH = "map/housemap.png";
+    public static final String SCHOOL_PATH = "map/jedischool.png";
     public static final String STAGE1_PATH = "map/playmap1.png";
+    public static final String STAGE2_PATH = "map/jedischoolplayroom.png";
+
     public static final String BACKGROUND_PATH = "background/mainmenu2.png";
     public static final String REPORT_CARD_SHEET_PATH = "background/reportcardspritesheet.png";
     public static final String SKY_BACKGROUND_PATH = "background/skyBG.png";
@@ -288,6 +291,11 @@ public class Constants {
     public static final int JEDI_GRANDPA_Y = 345;
     public static final int JEDI_GRANDPA_WIDTH = 79;
     public static final int JEDI_GRANDPA_HEIGHT = 108;
+
+    public static final int JEDI_PROF_X = 114;
+    public static final int JEDI_PROF_Y = 464;
+    public static final int JEDI_PROF_WIDTH = 89;
+    public static final int JEDI_PROF_HEIGHT = 116;
     //END OF JEDISAUR SPRITE SHEET
 
     //BLOCK SHEET

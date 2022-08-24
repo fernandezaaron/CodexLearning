@@ -47,7 +47,7 @@ public class FillInTheBlock extends State {
     public FillInTheBlock(Manager manager) {
         super(manager);
         pause = new PauseState(manager);
-        playroom = new PlayroomMapS1(manager);
+        playroom = new PlayroomMapS1(manager, 1);
 
         randomizer = new Random();
         banishCells = new ArrayList<Integer>();
@@ -122,7 +122,7 @@ public class FillInTheBlock extends State {
         jedisaur = new Character(manager);
         jedisaur.create(new Vector2(0, 0), new Vector2(1.2f, 1.75f), 1.6f);
 
-        jediGrandpa = new NPC(manager);
+        jediGrandpa = new NPC(manager, 1);
         jediGrandpa.create(new Vector2(-10, 0), new Vector2(1, 1.4f), 0);
 
         if(!manager.isMusicPaused()){

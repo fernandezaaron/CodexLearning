@@ -14,7 +14,9 @@ public class PlayroomMapS1 extends State {
     private Collisions upBorder, downBorder;
     private boolean atDoor;
     private TextureRegion door;
-    public PlayroomMapS1(Manager manager) {
+    private int stage;
+    private boolean inPlayroom;
+    public PlayroomMapS1(Manager manager, int stage) {
         super(manager);
 //      Create invisible collision for the character.
         upBorder = new Collisions(manager);
@@ -25,7 +27,8 @@ public class PlayroomMapS1 extends State {
 
 //      Used to exit the map
         atDoor = false;
-
+        inPlayroom = false;
+        this.stage = stage;
         door = new TextureRegion(manager.getReportCardSheet(), 48,195, 263, 119);
     }
 
@@ -39,7 +42,13 @@ public class PlayroomMapS1 extends State {
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.enableBlending();
-        sprite.draw(manager.getPlayroomStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        if(stage >=1 && stage <5){
+            sprite.draw(manager.getPlayroomStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        }
+        else if(stage >= 5 && stage < 12){
+            sprite.draw(manager.getPlayroomStage2(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        }
+
         checkDoor(sprite, atDoor);
         sprite.end();
     }
@@ -63,5 +72,21 @@ public class PlayroomMapS1 extends State {
         if(atDoor){
             sprite.draw(door, -693, -450);
         }
+    }
+
+    public int getStage() {
+        return stage;
+    }
+
+    public void setStage(int stage) {
+        this.stage = stage;
+    }
+
+    public boolean isInPlayroom() {
+        return inPlayroom;
+    }
+
+    public void setInPlayroom(boolean inPlayroom) {
+        this.inPlayroom = inPlayroom;
     }
 }

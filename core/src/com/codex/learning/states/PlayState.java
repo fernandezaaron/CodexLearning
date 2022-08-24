@@ -13,6 +13,7 @@ import com.codex.learning.entity.blocks.Computer;
 import com.codex.learning.entity.characters.Character;
 import com.codex.learning.entity.characters.NPC;
 import com.codex.learning.entity.maps.HouseMap;
+import com.codex.learning.entity.maps.PlayroomMapS1;
 import com.codex.learning.utility.*;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class PlayState extends State{
     private NPC jediGrandpa;
     private HouseMap house;
     private Computer computer;
+    private PlayroomMapS1 playroomMap;
 
     private float timer;
 
@@ -42,16 +44,14 @@ public class PlayState extends State{
     private Blocks sample;
 
 
-    public PlayState(Manager manager) {
+    public PlayState(Manager manager, int stage) {
         super(manager);
         timer = 0;
         pause = new PauseState(manager);
-        house = new HouseMap(manager);
+        house = new HouseMap(manager, stage);
+        playroomMap = new PlayroomMapS1(manager, stage);
 
         fuzzyLogic = new FuzzyLogic();
-
-
-
 
         // WILL BE USED, DON'T ERASE
         blocks = new Blocks[4];
@@ -99,9 +99,8 @@ public class PlayState extends State{
 
         jedisaur = new Character(manager);
         jedisaur.create(new Vector2(-15, -5), new Vector2(1.2f, 1.75f), 1.6f);
-//        jedisaur.getBody().getPosition().set(-20,0);
 
-        jediGrandpa = new NPC(manager);
+        jediGrandpa = new NPC(manager, stage);
         jediGrandpa.create(new Vector2(-10, 0), new Vector2(1, 1.4f), 0);
 
         totalBlocks = new Blocks[6];
@@ -115,23 +114,28 @@ public class PlayState extends State{
             manager.setMusic(Constants.HOUSE_MUSIC);
         }
 
-        System.out.println(manager.getCamera().position.x + " " + manager.getCamera().position.y);
+//        System.out.println(manager.getCamera().position.x + " " + manager.getCamera().position.y);
 
 
     }
 
     @Override
     public void update(float delta) {
+        if(!house.isInStartArea()){
+            jediGrandpa.disposeBody();
+            computer.disposeBody();
+            house.dispose();
+        }
         manager.getWorld().step(1/60f,6,2);
         if(pause.isRunning()){
             if(!computer.getCodeRiddle().isInComputer()){
                 timer += Gdx.graphics.getDeltaTime();
-//                System.out.println("TIMER IS - " +  timer);
+
                 manager.checkIfMoving((int) timer, jedisaur);
                 manager.checkBehavior((int) timer, jedisaur.getNumberOfBlockInteraction(), fuzzyLogic);
 
                 fuzzyLogic.calculateNumberOfCookies();
-                System.out.println(fuzzyLogic.getCookies());
+//                System.out.println(fuzzyLogic.getCookies());
                 manager.getExpertSystem().setCurrentCookie(fuzzyLogic.getCookies());
                 // WILL BE USED, DON'T ERASE
                 for(int i = 0; i < 3; i++){
@@ -176,7 +180,6 @@ public class PlayState extends State{
                 jediGrandpa.update(delta);
                 jedisaur.update(delta);
                 computer.update(delta);
-//            pause.update(delta);
             }
             else{
                 if(jedisaur.isMoving()){
@@ -216,11 +219,30 @@ public class PlayState extends State{
 
         sprite.end();
 
-        //house.render(sprite);
+        house.enterPlayRoom(jedisaur);
+
+        if(house.isInStartArea()){
+            house.render(sprite);
+            jediGrandpa.render(sprite);
+            if(computer.getCodeRiddle().isInComputer()){
+                jedisaur.render(sprite);
+                computer.render(sprite);
+            }
+            else{
+                computer.render(sprite);
+                jedisaur.render(sprite);
+            }
 
 
-        house.render(sprite);
-//
+        }else {
+            playroomMap.render(sprite);
+            jedisaur.render(sprite);
+        }
+
+
+
+
+
 //        for(int i = 0; i < 10; i++){
 //            blockHolders[i].render(sprite);
 //        }
@@ -244,16 +266,9 @@ public class PlayState extends State{
 //            blocks[i].render(sprite);
 //        }
 //
-        jediGrandpa.render(sprite);
 
-        if(computer.getCodeRiddle().isInComputer()){
-            jedisaur.render(sprite);
-            computer.render(sprite);
-        }
-        else{
-            computer.render(sprite);
-            jedisaur.render(sprite);
-        }
+
+
 //
         pause.render(sprite);
 

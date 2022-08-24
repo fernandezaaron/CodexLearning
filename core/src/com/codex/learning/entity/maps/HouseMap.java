@@ -12,9 +12,12 @@ import com.codex.learning.utility.Manager;
 
 public class HouseMap extends State {
     private Collisions upBorder, downBorder, table, cabinet, fridgeSink;
-    private boolean atDoor;
     private TextureRegion door;
-    public HouseMap(Manager manager) {
+
+    private boolean atDoor;
+    private boolean inStartArea;
+    private int stage;
+    public HouseMap(Manager manager, int stage) {
         super(manager);
 //      Create invisible collision for the character.
         upBorder = new Collisions(manager);
@@ -34,12 +37,14 @@ public class HouseMap extends State {
 
 //      Used to exit the map
         atDoor = false;
-
+        inStartArea = true;
+        this.stage = stage;
         door = new TextureRegion(manager.getReportCardSheet(), 48,195, 263, 119);
     }
 
     @Override
     public void update(float delta) {
+
     }
 
     @Override
@@ -48,7 +53,12 @@ public class HouseMap extends State {
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.enableBlending();
-        sprite.draw(manager.getStartHouse(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        if(stage >= 1 && stage < 5){
+            sprite.draw(manager.getStartHouse(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        }else if(stage >= 5 && stage < 12){
+            sprite.draw(manager.getStartSchool(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        }
+
         checkDoor(sprite, atDoor);
         sprite.end();
     }
@@ -79,7 +89,8 @@ public class HouseMap extends State {
 
     public void enterPlayRoom(Character character){
         if(character.getBody().getPosition().x > -5.3f && character.getBody().getPosition().y >-4 && character.getBody().getPosition().y < 2.5f){
-            System.out.println("playroom kana lods");
+//            System.out.println("playroom kana lods");
+            setInStartArea(false);
 
         }
     }
@@ -88,5 +99,13 @@ public class HouseMap extends State {
         if(atPlayroom){
             System.out.println("u are here");
         }
+    }
+
+    public boolean isInStartArea() {
+        return inStartArea;
+    }
+
+    public void setInStartArea(boolean inStartArea) {
+        this.inStartArea = inStartArea;
     }
 }

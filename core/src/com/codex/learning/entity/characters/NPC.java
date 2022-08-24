@@ -26,7 +26,7 @@ import com.codex.learning.utility.Manager;
 
 public class NPC extends Entity {
 
-    private TextureRegion jediGrandpa, dialogueSkin;
+    private TextureRegion jediGrandpa, jediProf;
     private boolean inContact;
     private Skin skin;
     private Stage stage;
@@ -35,8 +35,10 @@ public class NPC extends Entity {
     private Label.LabelStyle labelStyle;
     private Dialogue dialogue;
     private int nextStatement;
-    public NPC(Manager manager) {
+    private int stageSelect;
+    public NPC(Manager manager, int stage) {
         super(manager);
+        this.stageSelect = stage;
     }
 
     @Override
@@ -86,10 +88,11 @@ public class NPC extends Entity {
         this.size.x /= Constants.PPM;
         this.size.y /= Constants.PPM;
 
+        jediProf = new TextureRegion(manager.getSpriteSheet(), Constants.JEDI_PROF_X, Constants.JEDI_PROF_Y, Constants.JEDI_PROF_WIDTH, Constants.JEDI_PROF_HEIGHT);
         jediGrandpa = new TextureRegion(manager.getSpriteSheet(), Constants.JEDI_GRANDPA_X, Constants.JEDI_GRANDPA_Y,
                 Constants.JEDI_GRANDPA_WIDTH,Constants.JEDI_GRANDPA_HEIGHT);
 
-        dialogueSkin = new TextureRegion(manager.getPcStateSheet(), Constants.PC_QUESTION_X, Constants.PC_QUESTION_Y, Constants.PC_QUESTION_WIDTH, Constants.PC_QUESTION_HEIGHT);
+//        dialogueSkin = new TextureRegion(manager.getPcStateSheet(), Constants.PC_QUESTION_X, Constants.PC_QUESTION_Y, Constants.PC_QUESTION_WIDTH, Constants.PC_QUESTION_HEIGHT);
     }
 
     @Override
@@ -104,8 +107,14 @@ public class NPC extends Entity {
         sprite.enableBlending();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.begin();
-        sprite.draw(jediGrandpa, body.getPosition().x * Constants.PPM - jediGrandpa.getRegionWidth() / 2,
-                body.getPosition().y * Constants.PPM - jediGrandpa.getRegionHeight() / 2);
+        if(stageSelect >= 1 && stageSelect < 5){
+            sprite.draw(jediGrandpa, body.getPosition().x * Constants.PPM - jediGrandpa.getRegionWidth() / 2,
+                    body.getPosition().y * Constants.PPM - jediGrandpa.getRegionHeight() / 2);
+        }else if(stageSelect >=5 && stageSelect < 12) {
+            sprite.draw(jediProf, body.getPosition().x * Constants.PPM - jediGrandpa.getRegionWidth() / 2,
+                    body.getPosition().y * Constants.PPM - jediGrandpa.getRegionHeight() / 2);
+        }
+
         table.draw(sprite, 1);
 
         sprite.end();

@@ -130,7 +130,7 @@ public class PauseState extends State {
                 if(retryBounds.contains(coords.x, coords.y)){
                     manager.getMusic().stop();
                     Behavior.currentDataSet.clear();
-                    manager.set(new PlayState(manager));
+//                    manager.set(new PlayState(manager));
                 }
                 if(stageBounds.contains(coords.x, coords.y)){
                     manager.getMusic().stop();
