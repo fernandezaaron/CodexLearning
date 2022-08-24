@@ -48,7 +48,12 @@ public class NPC extends Entity {
         this.size = size;
         table = new Table();
         image = new Table(manager.getSkin());
-        image.setBackground("jediGrandpaAvatar");
+        if(stageSelect >= 1 && stageSelect < 5){
+            image.setBackground("jediGrandpaAvatar");
+        }else if(stageSelect >=5 && stageSelect < 12){
+            image.setBackground("jediProfAvatar");
+        }
+
 
         labelStyle = new Label.LabelStyle();
         labelStyle.font = manager.getFont();
