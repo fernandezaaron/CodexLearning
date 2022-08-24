@@ -16,8 +16,7 @@ public class HouseMap extends State {
 
     private boolean atDoor;
     private boolean inStartArea;
-    private int stage;
-    public HouseMap(Manager manager, int stage) {
+    public HouseMap(Manager manager) {
         super(manager);
 //      Create invisible collision for the character.
         upBorder = new Collisions(manager);
@@ -38,7 +37,6 @@ public class HouseMap extends State {
 //      Used to exit the map
         atDoor = false;
         inStartArea = true;
-        this.stage = stage;
         door = new TextureRegion(manager.getReportCardSheet(), 48,195, 263, 119);
     }
 
@@ -53,13 +51,10 @@ public class HouseMap extends State {
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.enableBlending();
-        if(stage >= 1 && stage < 5){
-            sprite.draw(manager.getStartHouse(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-        }else if(stage >= 5 && stage < 12){
-            sprite.draw(manager.getStartSchool(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-        }
 
-        checkDoor(sprite, atDoor);
+        sprite.draw(manager.getStartHouse(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+
+//        checkDoor(sprite, atDoor);
         sprite.end();
     }
 
@@ -107,5 +102,13 @@ public class HouseMap extends State {
 
     public void setInStartArea(boolean inStartArea) {
         this.inStartArea = inStartArea;
+    }
+
+    public void setActive(boolean active){
+        upBorder.getBody().setActive(active);
+        downBorder.getBody().setActive(active);
+        table.getBody().setActive(active);
+        cabinet.getBody().setActive(active);
+        fridgeSink.getBody().setActive(active);
     }
 }

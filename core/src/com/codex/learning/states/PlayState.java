@@ -3,9 +3,9 @@ package com.codex.learning.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.codex.learning.entity.blocks.BlockDispenser;
 import com.codex.learning.entity.blocks.BlockHolder;
 import com.codex.learning.entity.blocks.Blocks;
@@ -14,15 +14,14 @@ import com.codex.learning.entity.characters.Character;
 import com.codex.learning.entity.characters.NPC;
 import com.codex.learning.entity.maps.HouseMap;
 import com.codex.learning.entity.maps.PlayroomMapS1;
+import com.codex.learning.entity.maps.SchoolMap;
 import com.codex.learning.utility.*;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class PlayState extends State{
     private Character jedisaur;
     private NPC jediGrandpa;
     private HouseMap house;
+    private SchoolMap schoolMap;
     private Computer computer;
     private PlayroomMapS1 playroomMap;
 
@@ -43,13 +42,28 @@ public class PlayState extends State{
 
     private Blocks sample;
 
+    private boolean inStartArea, atDoor;
+    private TextureRegion door;
+    private int stage;
+
+
 
     public PlayState(Manager manager, int stage) {
         super(manager);
+        this.stage = stage;
         timer = 0;
         pause = new PauseState(manager);
-        house = new HouseMap(manager, stage);
+
+        if(stage >= 1 && stage < 5){
+            house = new HouseMap(manager);
+        }
+        else if(stage >= 5 && stage < 12){
+            schoolMap = new SchoolMap(manager);
+        }
+
+
         playroomMap = new PlayroomMapS1(manager, stage);
+
 
         fuzzyLogic = new FuzzyLogic();
 
@@ -114,17 +128,19 @@ public class PlayState extends State{
             manager.setMusic(Constants.HOUSE_MUSIC);
         }
 
-//        System.out.println(manager.getCamera().position.x + " " + manager.getCamera().position.y);
 
+        door = new TextureRegion(manager.getReportCardSheet(), 48,195, 263, 119);
+        inStartArea = true;
+        atDoor = false;
 
     }
 
     @Override
     public void update(float delta) {
-        if(!house.isInStartArea()){
-            jediGrandpa.disposeBody();
-            computer.disposeBody();
-            house.dispose();
+        if(!isInStartArea()){
+            activeBody(false);
+        }else {
+            activeBody(true);
         }
         manager.getWorld().step(1/60f,6,2);
         if(pause.isRunning()){
@@ -176,7 +192,7 @@ public class PlayState extends State{
 //                }
                 // WILL BE USED, DON'T ERASE
 
-                house.exitDoor(jedisaur);
+                exitDoor(jedisaur);
                 jediGrandpa.update(delta);
                 jedisaur.update(delta);
                 computer.update(delta);
@@ -213,34 +229,36 @@ public class PlayState extends State{
     @Override
     public void render(SpriteBatch sprite) {
         manager.getCamera().update();
-        sprite.begin();
-        sprite.setProjectionMatrix(manager.getCamera().combined);
+
+        enterPlayRoom(jedisaur);
+        exitPlayroom(jedisaur);
 
 
-        sprite.end();
-
-        house.enterPlayRoom(jedisaur);
-
-        if(house.isInStartArea()){
-            house.render(sprite);
+        if(isInStartArea()){
+            if(stage >= 1 && stage < 5){
+                house.render(sprite);
+            }
+            else if(stage >= 5 && stage < 12){
+                schoolMap.render(sprite);
+            }
             jediGrandpa.render(sprite);
             if(computer.getCodeRiddle().isInComputer()){
                 jedisaur.render(sprite);
                 computer.render(sprite);
             }
             else{
-                computer.render(sprite);
                 jedisaur.render(sprite);
+                computer.render(sprite);
             }
-
-
         }else {
             playroomMap.render(sprite);
             jedisaur.render(sprite);
         }
 
-
-
+        sprite.begin();
+        sprite.setProjectionMatrix(manager.getCamera().combined);
+        checkDoor(sprite, atDoor);
+        sprite.end();
 
 
 //        for(int i = 0; i < 10; i++){
@@ -300,6 +318,65 @@ public class PlayState extends State{
                 }
             }
         }
-        house.dispose();
+        if(stage >= 1 && stage < 5){
+            house.dispose();
+        }
+        else if(stage >= 5 && stage < 12){
+            schoolMap.dispose();
+        }
+
     }
+
+    public void activeBody(boolean active){
+         jediGrandpa.getBody().setActive(active);
+         computer.getBody().setActive(active);
+
+         if(stage >= 1 && stage < 5){
+             house.setActive(active);
+         }
+         else if(stage >= 5 && stage < 12){
+             schoolMap.setActive(active);
+         }
+
+         jediGrandpa.getBody().setAwake(active);
+         computer.getBody().setAwake(active);
+    }
+
+    public void exitDoor(Character character){
+        if(character.getBody().getPosition().x > -19.8f && character.getBody().getPosition().x < -15.5f && character.getBody().getPosition().y < -11){
+            manager.getMusic().stop();
+            manager.set(new StageSelectState(manager));
+        }
+
+        atDoor = character.getBody().getPosition().x > -19.8f && character.getBody().getPosition().x < -15.5f && character.getBody().getPosition().y < -10;
+    }
+
+    private void checkDoor(SpriteBatch sprite, boolean atDoor){
+        if(atDoor){
+            sprite.draw(door, -693, -450);
+        }
+    }
+
+    public void enterPlayRoom(Character character){
+        if(character.getBody().getPosition().x > -5.3f && character.getBody().getPosition().y >-4 && character.getBody().getPosition().y < 2.5f){
+            setInStartArea(false);
+
+        }
+    }
+
+    private void exitPlayroom(Character character){
+        if(!inStartArea && character.getBody().getPosition().x < -23 && character.getBody().getPosition().y > -4 && character.getBody().getPosition().y < 2.5f){
+            setInStartArea(true);
+        }
+    }
+
+    public boolean isInStartArea() {
+        return inStartArea;
+    }
+
+    public void setInStartArea(boolean inStartArea) {
+        this.inStartArea = inStartArea;
+    }
+
+
 }
