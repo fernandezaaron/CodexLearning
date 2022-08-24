@@ -251,6 +251,7 @@ public class Manager {
     }
 
     public void checkBehavior(int timer, int numberOfBlockInteract, FuzzyLogic fuzzyLogic){
+        String behavior = "";
         String movement = (isMoving()) ? "YES":"NO";
         String interact = checkNumberOfBlockInteractionRule(numberOfBlockInteract);
         if(timer % 300 == 0 && timer > 0){
@@ -259,8 +260,14 @@ public class Manager {
             Behavior.currentDataSet.add(fuzzyLogic.getNumberOfErrorsRules());
             Behavior.currentDataSet.add(fuzzyLogic.getNumberOfAttemptsRules());
             Behavior.currentDataSet.add(interact);
+            behavior = String.valueOf(getDecisionTree().classify(Behavior.currentDataSet, getDecisionTree().getTree()));
             System.out.println(getDecisionTree().classify(Behavior.currentDataSet, getDecisionTree().getTree()));
-
+            if(behavior == "ENGAGED"){
+                //file write
+            }
+            else{
+                //file write
+            }
             Behavior.currentDataSet.clear();
         }
     }
