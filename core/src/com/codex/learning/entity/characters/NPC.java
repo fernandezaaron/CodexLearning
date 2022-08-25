@@ -104,7 +104,6 @@ public class NPC extends Entity {
     public void update(float delta) {
         npcInteraction(delta);
         db.act(delta);
-
     }
 
     @Override
@@ -121,9 +120,7 @@ public class NPC extends Entity {
         }
 
         table.draw(sprite, 1);
-
         sprite.end();
-
     }
 
     public void npcInteraction(float delta){

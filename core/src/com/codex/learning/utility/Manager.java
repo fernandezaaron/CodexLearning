@@ -22,6 +22,8 @@ import com.codex.learning.utility.decisiontree.Behavior;
 import com.codex.learning.utility.decisiontree.DecisionTree;
 import com.codex.learning.utility.filereader.Questionnaire;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Stack;
 //This class is used to initiate all once a used assets to prevent multiple calls.
 public class Manager {
@@ -265,6 +267,7 @@ public class Manager {
         String behavior = "";
         String movement = (isMoving()) ? "YES":"NO";
         String interact = checkNumberOfBlockInteractionRule(numberOfBlockInteract);
+//        ArrayList<String> dataset = new ArrayList<String>(Arrays.asList(new String[]{"YES", "LOW", "MEDIUM", "LOW", "LOW"}));
         if(timer % 300 == 0 && timer > 0){
             Behavior.currentDataSet.add(movement);
             Behavior.currentDataSet.add(fuzzyLogic.getTimeConsumptionRules());

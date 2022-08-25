@@ -52,7 +52,7 @@ public class CodeRiddle extends State {
 
 
 
-    private boolean inComputer;
+    private boolean inComputer, isDone;
     private int currentQuestion;
     private int error;
 
@@ -105,7 +105,7 @@ public class CodeRiddle extends State {
 
 
         inComputer = false;
-
+        isDone = false;
         getAQuestion("Stage 1", "Novice");
         currentQuestion = 0;
     }
@@ -125,7 +125,7 @@ public class CodeRiddle extends State {
         sprite.begin();
         if(isInComputer()){
             timer += Gdx.graphics.getDeltaTime();
-            System.out.println(timer);
+//            System.out.println(timer);
 
         }
         manager.getStage().act();
@@ -140,13 +140,8 @@ public class CodeRiddle extends State {
         if(isInComputer()){
 
             table.setFillParent(true);
-//            table.debug();
             table.defaults().size(500, 150);
             table.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM - 10);
-//            text.setText("questions.get(currentQuestion\nasd\nasd\nquestions.get(currentQuesasdasdadadation\nasd\nasd\nasd\nasd\nasd\nquestions.get(currentQuestion\nasd\nasd" +
-//                    "\nquestions.get(currentQuestion\nasd\nasd\nquestions.get(currentQuesasdasdadadation\nasd\nasd\nasd\nasd\nasd\nquestions.get(currentQuestion\nasd\nasd" +
-//                    "\nquestions.get(currentQuestion\nasd\nasd\nquestions.get(currentQuesasdasdadadation\nasd\nasd\nasd\nasd\nasd\nquestions.get(currentQuestion\nasd\nasd" +
-//                    "\nquestions.get(currentQuestion\nasd\nasd\nquestions.get(currentQuesasdasdadadation\nasd\nasd\nasd\nasd\nasd\nquestions.get(currentQuestion\nasd\nasd");
 
             text.setWrap(true);
            if(currentQuestion == manager.getQuestionnaire().getQuestionLimit()){
@@ -206,7 +201,9 @@ public class CodeRiddle extends State {
                                    fuzzyLogic.fuzzyNumberOfError();
                                    fuzzyLogic.fuzzyTimeConsumption();
 
-                                   text.setText("PRESS F TO CLOSE");
+
+                                   text.setText("Your score is: \n" + (manager.getQuestionnaire().getQuestionLimit()-error) + "\n");
+                                   setDone(true);
                                    for(int j=0; j<4; j++){
                                        textButtons[j].setText(" ");
                                    }
@@ -222,10 +219,8 @@ public class CodeRiddle extends State {
            if(!table.hasChildren()){
                scrollPane = new ScrollPane(text, manager.getSkin());
                scrollPane.layout();
-//               scrollPane.updateVisualScroll();
-                scrollPane.setScrollbarsOnTop(true);
+               scrollPane.setScrollbarsOnTop(true);
                scrollPane.setForceScroll(false,true);
-//               scrollPane.debugAll();
                scrollPane.setSmoothScrolling(true);
                table.add(scrollPane).height(150).padTop(25f);
                table.row();
@@ -235,8 +230,6 @@ public class CodeRiddle extends State {
 
 
             manager.getStage().addActor(table);
-//           manager.getStage().setDebugAll(true);
-           // manager.getStage().setScrollFocus(table.getChild(0));
         }
     }
 
@@ -265,4 +258,11 @@ public class CodeRiddle extends State {
         this.inComputer = inComputer;
     }
 
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
+    }
 }

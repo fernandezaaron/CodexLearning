@@ -75,47 +75,19 @@ public class PlayState extends State{
         blockDispensers = new BlockDispenser[2];
 
         computer = new Computer(manager, fuzzyLogic);
-        computer.create(new Vector2(-18, 2.8f), new Vector2(0.6f, 0.6f), 0);
-
-        // WILL BE USED, DON'T ERASE
-        for(int i = 0; i < 10; i++){
-//            if(i == 0){
-//                blocks[i] = new Blocks(manager, "}", "   } ");
-//                blocks[i].create(new Vector2(1.2f + (i * 10), 0),
-//                        new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT), 0);
-//            }
-//            if(i == 1){
-//                blocks[i] = new Blocks(manager, "class", "class HelloWorld{");
-//                blocks[i].create(new Vector2(1.2f + (i * 10), 0),
-//                        new Vector2(Constants.BLOCKS_CLASS_WIDTH, Constants.BLOCKS_HEIGHT), 0);
-//            }
-//            if(i == 2){
-//                blocks[i] = new Blocks(manager, "args", "String[] args)");
-//                blocks[i].create(new Vector2(1.2f + (i * 10), 0),
-//                        new Vector2(Constants.BLOCKS_ARGS_WIDTH, Constants.BLOCKS_HEIGHT), 0);
-//            }
-            blockHolders[i] = new BlockHolder(manager, "}");
-            blockHolders[i].create(new Vector2(6f , i * 2), new Vector2(Constants.BLOCK_HOLDER_WIDTH, Constants.BLOCK_HOLDER_HEIGHT), 0);
+        if(stage >= 1 && stage < 5){
+            computer.create(new Vector2(-6, 2.8f), new Vector2(0.6f, 0.6f), 0);
         }
-        // WILL BE USED, DON'T ERASE
-
-        for(int i = 0; i < 2; i++){
-            if(i == 0){
-                blockDispensers[i] = new BlockDispenser(manager, "Down", "try", "   }  ",
-                        3, new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
-            }
-            else{
-                blockDispensers[i] = new BlockDispenser(manager, "Right", "hard", "   }  ",
-                        3, new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
-            }
-            blockDispensers[i].create(new Vector2(15 * i, -6), new Vector2(0.3f, 1.3f), 0);
+        else if(stage >=5 && stage < 12){
+            computer.create(new Vector2(-17, 6.5f), new Vector2(0.6f, 0.6f), 0);
         }
+
 
         jedisaur = new Character(manager);
-        jedisaur.create(new Vector2(-15, -5), new Vector2(1.2f, 1.75f), 1.6f);
+        jedisaur.create(new Vector2(0, -5), new Vector2(1.2f, 1.75f), 1.6f);
 
         jediGrandpa = new NPC(manager, stage);
-        jediGrandpa.create(new Vector2(-10, 0), new Vector2(1, 1.4f), 0);
+        jediGrandpa.create(new Vector2(0, 0), new Vector2(1, 1.4f), 0);
 
         totalBlocks = new Blocks[6];
         blockCount = 0;
@@ -245,10 +217,13 @@ public class PlayState extends State{
             if(computer.getCodeRiddle().isInComputer()){
                 jedisaur.render(sprite);
                 computer.render(sprite);
+
+
             }
             else{
-                jedisaur.render(sprite);
                 computer.render(sprite);
+                jedisaur.render(sprite);
+
             }
         }else {
             playroomMap.render(sprite);
@@ -324,7 +299,6 @@ public class PlayState extends State{
         else if(stage >= 5 && stage < 12){
             schoolMap.dispose();
         }
-
     }
 
     public void activeBody(boolean active){
@@ -358,15 +332,24 @@ public class PlayState extends State{
     }
 
     public void enterPlayRoom(Character character){
-        if(character.getBody().getPosition().x > -5.3f && character.getBody().getPosition().y >-4 && character.getBody().getPosition().y < 2.5f){
-            setInStartArea(false);
-
+        if(character.getBody().getPosition().x > 14f && character.getBody().getPosition().y >-4 && character.getBody().getPosition().y < 2.5f){
+            if(computer.isDone()){
+                setInStartArea(false);
+                house.setPlayroomActive(false);
+                jedisaur.getBody().setTransform(-20, 1, 0);
+                jedisaur.getBody().getPosition().set(-20, 1);
+            }
+            else {
+                System.out.println("bawal kapa pumasok jan xD");
+            }
         }
     }
 
     private void exitPlayroom(Character character){
         if(!inStartArea && character.getBody().getPosition().x < -23 && character.getBody().getPosition().y > -4 && character.getBody().getPosition().y < 2.5f){
             setInStartArea(true);
+            jedisaur.getBody().setTransform(14, 1, 0);
+            jedisaur.getBody().getPosition().set(14, 1);
         }
     }
 
