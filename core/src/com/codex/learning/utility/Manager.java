@@ -298,7 +298,10 @@ public class Manager {
 
     public String checkNumberOfBlockInteractionRule(int numberOfBlockInteraction, boolean computerDone){
         if(computerDone){
-            if(numberOfBlockInteraction <= 10){
+            if(numberOfBlockInteraction == 0){
+                return "";
+            }
+            else if(numberOfBlockInteraction <= 10){
                 return "LOW";
             }
             else if(numberOfBlockInteraction <= 20){
