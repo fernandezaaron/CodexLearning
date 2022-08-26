@@ -187,7 +187,12 @@ public class Questionnaire extends DatabaseReader {
     public void questionDisplay(String stage, String expertiseLevel) {
         adjustDifficulty(expertiseLevel);
 
+
+
+        difficulty = levels.get(randomizer.nextInt(levels.size()));
+
         System.out.println("QUESTION LIMIT - " + questionLimit);
+
         while(question == null) {
             difficulty = levels.get(randomizer.nextInt(levels.size()));
 
@@ -198,18 +203,23 @@ public class Questionnaire extends DatabaseReader {
             questionID = randomizer.nextInt(excelQuestionLimit - 1) + 1;
             question = getExcelQuestion(questionID, 4, difficulty, stage);
             if(question != null) {
+                if(questions.contains(question)){
+                    question = null;
+                    continue;
+                }
+                else{
+                    questions.add(question);
 
-                questions.add(question);
+                    options.add(new ArrayList<String>());
+                    options.get(numberOfQuestions).add(getCodeRiddle(questionID, 5));
+                    options.get(numberOfQuestions).add(getCodeRiddle(questionID, 6));
+                    options.get(numberOfQuestions).add(getCodeRiddle(questionID, 7));
+                    options.get(numberOfQuestions).add(getCodeRiddle(questionID, 8));
 
-                options.add(new ArrayList<String>());
-                options.get(numberOfQuestions).add(getCodeRiddle(questionID, 5));
-                options.get(numberOfQuestions).add(getCodeRiddle(questionID, 6));
-                options.get(numberOfQuestions).add(getCodeRiddle(questionID, 7));
-                options.get(numberOfQuestions).add(getCodeRiddle(questionID, 8));
+                    answers.add(getCodeRiddle(questionID, 9));
 
-                answers.add(getCodeRiddle(questionID, 9));
-
-                numberOfQuestions++;
+                    numberOfQuestions++;
+                }
             }
             question = null;
         }
@@ -234,6 +244,8 @@ public class Questionnaire extends DatabaseReader {
     }
 
     public boolean answerChecker(String chosenAnswer, int index){
+//        System.out.println("ASDASDQWD - " + answers);
+
         if(chosenAnswer == answers.get(index)){
             return true;
         }

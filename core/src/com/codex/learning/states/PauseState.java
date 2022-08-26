@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
+import com.codex.learning.utility.decisiontree.Behavior;
 import org.apache.poi.ss.formula.functions.T;
 
 import java.awt.*;
@@ -67,8 +68,8 @@ public class PauseState extends State {
         if(state == Constants.GAME_PAUSED){
             manager.getCamera().unproject(coords.set(Gdx.input.getX(), Gdx.input.getY(), 0));
             sprite.draw(pauseMenu,
-                    manager.getCamera().position.x * Constants.PPM - pauseMenu.getRegionWidth() / 2,
-                    manager.getCamera().position.y * Constants.PPM - pauseMenu.getRegionHeight() / 2);
+                    manager.getCamera().position.x / Constants.PPM - pauseMenu.getRegionWidth() / 2,
+                    manager.getCamera().position.y / Constants.PPM - pauseMenu.getRegionHeight() / 2);
 
             if(continueBounds.contains(coords.x, coords.y)){
                 sprite.draw(hlContinueButton, manager.getCamera().position.x - 300, manager.getCamera().position.y + Constants.PPM);
@@ -128,7 +129,8 @@ public class PauseState extends State {
                 }
                 if(retryBounds.contains(coords.x, coords.y)){
                     manager.getMusic().stop();
-                    manager.set(new PlayState(manager));
+                    Behavior.currentDataSet.clear();
+//                    manager.set(new PlayState(manager));
                 }
                 if(stageBounds.contains(coords.x, coords.y)){
                     manager.getMusic().stop();

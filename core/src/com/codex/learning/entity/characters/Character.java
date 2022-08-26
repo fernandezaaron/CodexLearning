@@ -32,6 +32,8 @@ public class Character extends Entity {
     private boolean fixture;
     private int carry;
 
+    private int numberOfBlockInteraction;
+
     private boolean atTop;
     private boolean atBot;
     private boolean atLeft;
@@ -68,6 +70,8 @@ public class Character extends Entity {
         body = manager.getWorld().createBody(def);
         body.createFixture(fixtureDef).setUserData(this);
         shape.dispose();
+
+        numberOfBlockInteraction = 0;
 
         // Used to check if the character is in the border of the map
         atTop = false;
@@ -360,9 +364,10 @@ public class Character extends Entity {
     }
     private void cameraUpdate(){
         Vector3 position = manager.getCamera().position;
-        position.x = this.position.x * Constants.PPM;
-        position.y = this.position.y * Constants.PPM;
+        position.x = Constants.SCREEN_WIDTH/2/Constants.PPM;
+        position.y = Constants.SCREEN_HEIGHT/2/Constants.PPM;
         manager.getCamera().position.set(position);
+//        manager.getCamera().position.set(new Vector2(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT))
         manager.getCamera().update();
 
     }
@@ -377,6 +382,7 @@ public class Character extends Entity {
     public void carryBlock(Blocks block){
         if(isCarrying() && carry == 0){
             carry = 1;
+            numberOfBlockInteraction++;
             setCopyBlock(block);
             System.out.println(copyBlock);
         }
@@ -491,5 +497,13 @@ public class Character extends Entity {
 
     public void setFixture(boolean fixture) {
         this.fixture = fixture;
+    }
+
+    public int getNumberOfBlockInteraction() {
+        return numberOfBlockInteraction;
+    }
+
+    public void setNumberOfBlockInteraction(int numberOfBlockInteraction) {
+        this.numberOfBlockInteraction = numberOfBlockInteraction;
     }
 }

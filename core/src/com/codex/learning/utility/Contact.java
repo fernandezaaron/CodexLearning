@@ -10,10 +10,10 @@ import com.codex.learning.entity.blocks.BlockHolder;
 import com.codex.learning.entity.blocks.Blocks;
 import com.codex.learning.entity.blocks.Computer;
 import com.codex.learning.entity.characters.Character;
+import com.codex.learning.entity.characters.NPC;
 
 //This class will allow the player to have collision detection
 public class Contact implements ContactListener {
-    private int numberOfCollision = 0;
     @Override
     public void beginContact(com.badlogic.gdx.physics.box2d.Contact contact) {
         Fixture fa = contact.getFixtureA();
@@ -27,36 +27,36 @@ public class Contact implements ContactListener {
             return;
         }
 
-        if(isBlockContact(fa, fb)){
+        if(isBlockContact(fa, fb)) {
             Blocks blocks;
             Character jedisaur;
-            if(fa.getUserData() instanceof Blocks){
+            if (fa.getUserData() instanceof Blocks) {
                 blocks = (Blocks) fa.getUserData();
                 jedisaur = (Character) fb.getUserData();
-            }
-            else{
+            } else {
                 jedisaur = (Character) fa.getUserData();
                 blocks = (Blocks) fb.getUserData();
             }
-            System.out.println(blocks.getBody().getUserData());
 
-            numberOfCollision++;
-            System.out.println(numberOfCollision);
+            blocks.setInContact(true);
+            if (jedisaur.isCarrying()) {
 
-            if(blocks.isPreDefinedContact() || numberOfCollision > 1){
-                blocks.setInContact(false);
-                jedisaur.setPickUpAble(false);
-            }
-            else{
-                blocks.setInContact(true);
-                if(jedisaur.isCarrying()){
+                System.out.println("Block yes");
+
+                if (blocks.isPreDefinedContact()) {
+                    blocks.setInContact(false);
+
                     jedisaur.setPickUpAble(false);
+                } else {
+                    blocks.setInContact(true);
+                    if (jedisaur.isCarrying()) {
+                        jedisaur.setPickUpAble(false);
+                    } else {
+                        jedisaur.setPickUpAble(true);
+                    }
                 }
-                else{
-                    jedisaur.setPickUpAble(true);
-                }
-            }
 
+            }
         }
 
         if(isDispenserContact(fa, fb)){
@@ -76,7 +76,6 @@ public class Contact implements ContactListener {
             }
             else{
                 if(blockDispenser.getLimit() == 0){
-                    System.out.println("ubos na :D");
                     jedisaur.setPickUpAble(false);
                     blockDispenser.setInContact(false);
                 }else {
@@ -121,6 +120,22 @@ public class Contact implements ContactListener {
             }
             computer.setInContact(true);
         }
+
+        if(isNPCContact(fa, fb)){
+            NPC npc;
+            Character jedisaur;
+
+            if(fa.getUserData() instanceof NPC){
+                npc = (NPC) fa.getUserData();
+                jedisaur = (Character) fb.getUserData();
+            }
+            else{
+                jedisaur = (Character) fa.getUserData();
+                npc = (NPC) fb.getUserData();
+            }
+            npc.setInContact(true);
+            System.out.println("NPC CONTACT");
+        }
         Gdx.app.log("BEGIN CONTACT", "");
     }
 
@@ -146,17 +161,8 @@ public class Contact implements ContactListener {
                 blocks = (Blocks) fb.getUserData();
             }
 
-            numberOfCollision--;
-            System.out.println(numberOfCollision);
             blocks.setInContact(false);
             jedisaur.setPickUpAble(false);
-
-            if(numberOfCollision == 1){
-                blocks.setInContact(true);
-                jedisaur.setPickUpAble(true);
-            }
-
-
         }
 
         if(isDispenserContact(fa, fb)){
@@ -204,6 +210,21 @@ public class Contact implements ContactListener {
             computer.setInContact(false);
         }
 
+        if(isNPCContact(fa, fb)){
+            NPC npc;
+            Character jedisaur;
+
+            if(fa.getUserData() instanceof NPC){
+                npc = (NPC) fa.getUserData();
+                jedisaur = (Character) fb.getUserData();
+            }
+            else{
+                jedisaur = (Character) fa.getUserData();
+                npc = (NPC) fb.getUserData();
+            }
+            npc.setInContact(false);
+        }
+
         Gdx.app.log("END CONTACT", "");
     }
 
@@ -221,7 +242,6 @@ public class Contact implements ContactListener {
         if(a.getUserData() instanceof Character || b.getUserData() instanceof Character) {
             if(a.getUserData() instanceof Blocks || b.getUserData() instanceof Blocks) {
                 return true;
-
             }
         }
         return false;
@@ -248,6 +268,15 @@ public class Contact implements ContactListener {
     private boolean isComputerContact(Fixture a, Fixture b){
         if(a.getUserData() instanceof Character || b.getUserData() instanceof Character){
             if(a.getUserData() instanceof Computer || b.getUserData() instanceof Computer){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isNPCContact(Fixture a, Fixture b){
+        if(a.getUserData() instanceof Character || b.getUserData() instanceof Character){
+            if(a.getUserData() instanceof NPC || b.getUserData() instanceof NPC){
                 return true;
             }
         }

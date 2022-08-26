@@ -11,15 +11,19 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.codex.learning.entity.Entity;
 import com.codex.learning.states.minigames.CodeRiddle;
 import com.codex.learning.utility.Constants;
+import com.codex.learning.utility.FuzzyLogic;
 import com.codex.learning.utility.Manager;
 
 public class Computer extends Entity {
     private TextureRegion pc;
-    private boolean inContact;
+    private boolean inContact, isDone;
     private CodeRiddle codeRiddle;
+    private FuzzyLogic fuzzyLogic;
 
-    public Computer(Manager manager) {
+
+    public Computer(Manager manager, FuzzyLogic fuzzyLogic) {
         super(manager);
+        this.fuzzyLogic = fuzzyLogic;
     }
 
     @Override
@@ -47,15 +51,17 @@ public class Computer extends Entity {
         shape.dispose();
 
         inContact = false;
+        isDone = false;
 
         pc = new TextureRegion(manager.getPcStateSheet(), Constants.PC_X, Constants.PC_Y, Constants.PC_WIDTH, Constants.PC_HEIGHT);
-        codeRiddle = new CodeRiddle(manager);
-
+        codeRiddle = new CodeRiddle(manager, fuzzyLogic);
     }
 
     @Override
     public void update(float delta) {
         checkIfClicked();
+        checkIfDone();
+        codeRiddle.update(delta);
     }
 
     @Override
@@ -74,6 +80,16 @@ public class Computer extends Entity {
         if(isInContact() && Gdx.input.isKeyJustPressed(Input.Keys.E)){
             codeRiddle.setInComputer(true);
         }
+
+    }
+
+    private void checkIfDone(){
+        if(codeRiddle.isDone()){
+            setDone(true);
+        }
+        else {
+            setDone(false);
+        }
     }
 
     public boolean isInContact() {
@@ -90,5 +106,13 @@ public class Computer extends Entity {
 
     public void setCodeRiddle(CodeRiddle codeRiddle) {
         this.codeRiddle = codeRiddle;
+    }
+
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
     }
 }

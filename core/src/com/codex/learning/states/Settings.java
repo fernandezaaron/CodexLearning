@@ -77,9 +77,6 @@ public class Settings extends State{
 
         }
 
-//        System.out.println("yes");
-
-
         sprite.end();
         manager.getCamera().update();
     }

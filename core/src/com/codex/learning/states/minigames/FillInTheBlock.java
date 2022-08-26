@@ -14,6 +14,7 @@ import com.codex.learning.entity.maps.PlayroomMapS1;
 import com.codex.learning.states.PauseState;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.Constants;
+import com.codex.learning.utility.FuzzyLogic;
 import com.codex.learning.utility.Manager;
 
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public class FillInTheBlock extends State {
     public FillInTheBlock(Manager manager) {
         super(manager);
         pause = new PauseState(manager);
-        playroom = new PlayroomMapS1(manager);
+        playroom = new PlayroomMapS1(manager, 1);
 
         randomizer = new Random();
         banishCells = new ArrayList<Integer>();
@@ -60,7 +61,7 @@ public class FillInTheBlock extends State {
 
         blockDispensers = new BlockDispenser[2];
 
-        computer = new Computer(manager);
+        computer = new Computer(manager, new FuzzyLogic());
         computer.create(new Vector2(-18, 2.8f), new Vector2(0.6f, 0.6f), 0);
 
         // CREATES RANDOM NUMBER TO REMOVE CELLS FROM MINIGAME
@@ -81,7 +82,7 @@ public class FillInTheBlock extends State {
                         answerPoolContainer.add(minigameContainer.get(i).get(j));
                         System.out.println(minigameContainer.get(i).get(j));
                     } else {
-                        questionBlocks[i][j] = new Blocks(manager, "\"" + minigameContainer.get(i).get(j) + "\"", minigameContainer.get(i).get(j), true);
+                        questionBlocks[i][j] = new Blocks(manager, "\"" + minigameContainer.get(i).get(j) + "\"", minigameContainer.get(i).get(j),true);
                         if (currentStringLength == 1)
                             questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.4f), Constants.BLOCKS_HEIGHT), 0);
                         else
@@ -115,13 +116,13 @@ public class FillInTheBlock extends State {
                 blockDispensers[i] = new BlockDispenser(manager, "Right", "main", " main ",
                         3, new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
             }
-            blockDispensers[i].create(new Vector2(13, 8 * i), new Vector2(0.3f, 1.3f), 0);
+            blockDispensers[i].create(new Vector2(15 * i, -6), new Vector2(0.3f, 1.3f), 0);
         }
 
         jedisaur = new Character(manager);
         jedisaur.create(new Vector2(0, 0), new Vector2(1.2f, 1.75f), 1.6f);
 
-        jediGrandpa = new NPC(manager);
+        jediGrandpa = new NPC(manager, 1);
         jediGrandpa.create(new Vector2(-10, 0), new Vector2(1, 1.4f), 0);
 
         if(!manager.isMusicPaused()){
