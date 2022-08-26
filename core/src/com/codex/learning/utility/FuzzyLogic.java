@@ -37,10 +37,10 @@ public class FuzzyLogic {
         percentCorrectOutput = 0;
         percentNumberOfAttempts = 0;
 
-        numberOfErrorsRules = "MEDIUM";
-        timeConsumptionRules = "MEDIUM";
-        correctOutputRules = "MEDIUM";
-        numberOfAttemptsRules = "MEDIUM";
+        numberOfErrorsRules = "";
+        timeConsumptionRules = "";
+        correctOutputRules = "";
+        numberOfAttemptsRules = "";
     }
     public void fuzzyNumberOfError(){
         int a = 0;
@@ -67,9 +67,12 @@ public class FuzzyLogic {
             setNumberOfErrorsRules("MEDIUM");
             setPercentNumberOfErrors(50);
         }
-        else if(getNumberOfErrors() > d) {
+        else if(getNumberOfErrors() >= d) {
             setNumberOfErrorsRules("HIGH");
             setPercentNumberOfErrors(0);
+        }
+        else{
+            setNumberOfErrorsRules("");
         }
     }
 
@@ -98,9 +101,12 @@ public class FuzzyLogic {
             setTimeConsumptionRules("MEDIUM");
             setPercentTimeConsumptions(50);
         }
-        else{
+        else if(getTimeConsumptions() >= d){
             setTimeConsumptionRules("HIGH");
             setPercentTimeConsumptions(0);
+        }
+        else{
+            setTimeConsumptionRules("");
         }
 
         System.out.println("RULE = " + getTimeConsumptionRules());
@@ -117,6 +123,8 @@ public class FuzzyLogic {
                 setCorrectOutputRules("NO");
                 setPercentCorrectOutput(0);
                 break;
+            default:
+                setCorrectOutputRules("");
         }
     }
 
@@ -143,6 +151,9 @@ public class FuzzyLogic {
          else if(getNumberOfAttempts() >= c){
              setNumberOfAttemptsRules("HIGH");
              setPercentNumberOfAttempts(25);
+         }
+         else{
+             setNumberOfAttemptsRules("");
          }
     }
 

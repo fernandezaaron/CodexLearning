@@ -36,6 +36,8 @@ public class NPC extends Entity {
     private Dialogue dialogue;
     private int nextStatement;
     private int stageSelect;
+
+    private boolean talking;
     public NPC(Manager manager, int stage) {
         super(manager);
         this.stageSelect = stage;
@@ -50,7 +52,7 @@ public class NPC extends Entity {
         image = new Table(manager.getSkin());
         if(stageSelect >= 1 && stageSelect < 5){
             image.setBackground("jediGrandpaAvatar");
-        }else if(stageSelect >=5 && stageSelect < 12){
+        }else if(stageSelect >= 5 && stageSelect < 12){
             image.setBackground("jediProfAvatar");
         }
 
@@ -89,6 +91,7 @@ public class NPC extends Entity {
 
         inContact = false;
         nextStatement = 0;
+        talking = false;
 
         this.size.x /= Constants.PPM;
         this.size.y /= Constants.PPM;
@@ -125,6 +128,7 @@ public class NPC extends Entity {
 
     public void npcInteraction(float delta){
         if(isInContact() && Gdx.input.isKeyJustPressed(Input.Keys.E)){
+            talking = true;
             System.out.println("Jedigrandpa");;
             if(!db.isOpen()){
                 System.out.println("here");
@@ -143,9 +147,10 @@ public class NPC extends Entity {
             db.textAnimation(dialogue.reader(nextStatement));
         }
         if(dialogue.isStatementEnd() && Gdx.input.justTouched() && db.isOpen()){
-           table.reset();
-           db.setOpen(false);
-           nextStatement = 0;
+            talking = false;
+            table.reset();
+            db.setOpen(false);
+            nextStatement = 0;
         }
 
         manager.getStage().addActor(table);
@@ -157,5 +162,13 @@ public class NPC extends Entity {
 
     public void setInContact(boolean inContact) {
         this.inContact = inContact;
+    }
+
+    public boolean isTalking() {
+        return talking;
+    }
+
+    public void setTalking(boolean talking) {
+        this.talking = talking;
     }
 }

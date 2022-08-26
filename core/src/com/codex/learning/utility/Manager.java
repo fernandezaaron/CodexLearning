@@ -267,7 +267,7 @@ public class Manager {
         String behavior = "";
         String movement = (isMoving()) ? "YES":"NO";
         String interact = checkNumberOfBlockInteractionRule(numberOfBlockInteract);
-//        ArrayList<String> dataset = new ArrayList<String>(Arrays.asList(new String[]{"YES", "LOW", "MEDIUM", "LOW", "LOW"}));
+        ArrayList<String> dataset = new ArrayList<String>(Arrays.asList(new String[]{movement, "LOW", "LOW", "", ""}));
         if(timer % 300 == 0 && timer > 0){
             Behavior.currentDataSet.add(movement);
             Behavior.currentDataSet.add(fuzzyLogic.getTimeConsumptionRules());
@@ -275,7 +275,7 @@ public class Manager {
             Behavior.currentDataSet.add(fuzzyLogic.getNumberOfAttemptsRules());
             Behavior.currentDataSet.add(interact);
             behavior = String.valueOf(getDecisionTree().classify(Behavior.currentDataSet, getDecisionTree().getTree()));
-            System.out.println(getDecisionTree().classify(Behavior.currentDataSet, getDecisionTree().getTree()));
+
             if(behavior == "ENGAGED"){
                 //file write
             }
@@ -284,6 +284,7 @@ public class Manager {
             }
             Behavior.currentDataSet.clear();
         }
+        System.out.println(getDecisionTree().classify(dataset, getDecisionTree().getTree()));
     }
 
     public void checkFeedback(FuzzyLogic fuzzyLogic){
