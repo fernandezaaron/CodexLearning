@@ -120,7 +120,7 @@ public class PlayState extends State{
                 timer += Gdx.graphics.getDeltaTime();
 
                 manager.checkIfMoving((int) timer, jedisaur);
-                manager.checkBehavior((int) timer, jedisaur.getNumberOfBlockInteraction(), fuzzyLogic);
+                manager.checkBehavior((int) timer, jedisaur.getNumberOfBlockInteraction(), computer.isDone(), fuzzyLogic);
 
                 fuzzyLogic.calculateNumberOfCookies();
 //                System.out.println(fuzzyLogic.getCookies());
