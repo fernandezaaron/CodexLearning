@@ -79,7 +79,7 @@ public class PlayState extends State{
             computer.create(new Vector2(-6, 2.8f), new Vector2(0.6f, 0.6f), 0);
         }
         else if(stage >=5 && stage < 12){
-            computer.create(new Vector2(-17, 6.5f), new Vector2(0.6f, 0.6f), 0);
+            computer.create(new Vector2(-4, 6.5f), new Vector2(0.6f, 0.6f), 0);
         }
 
 
@@ -274,25 +274,25 @@ public class PlayState extends State{
         computer.disposeBody();
 
         // WILL BE USED, DON'T ERASE
-        for(int i = 0; i < 3; i++){
-            blockHolders[i].disposeBody();
-//            blocks[i].disposeBody();
-        }
+//        for(int i = 0; i < 3; i++){
+//            blockHolders[i].disposeBody();
+////            blocks[i].disposeBody();
+//        }
         // WILL BE USED, DON'T ERASE
 
-        for(int i = 0; i < 2; i++){
-            blockDispensers[i].disposeBody();
-            if(blockDispensers[i].isCloned()){
-                for (Blocks b : blockDispensers[i].getBlocks()) {
-                    if (b != null) {
-                        b.disposeBody();
-                    }
-                    else{
-                        continue;
-                    }
-                }
-            }
-        }
+//        for(int i = 0; i < 2; i++){
+//            blockDispensers[i].disposeBody();
+//            if(blockDispensers[i].isCloned()){
+//                for (Blocks b : blockDispensers[i].getBlocks()) {
+//                    if (b != null) {
+//                        b.disposeBody();
+//                    }
+//                    else{
+//                        continue;
+//                    }
+//                }
+//            }
+//        }
         if(stage >= 1 && stage < 5){
             house.dispose();
         }
@@ -335,7 +335,13 @@ public class PlayState extends State{
         if(character.getBody().getPosition().x > 14f && character.getBody().getPosition().y >-4 && character.getBody().getPosition().y < 2.5f){
             if(computer.isDone()){
                 setInStartArea(false);
-                house.setPlayroomActive(false);
+                if(stage >= 1 && stage < 5){
+                    house.setPlayroomActive(false);
+                }
+                else if(stage >= 5 && stage < 12){
+                    schoolMap.setPlayroomActive(false);
+                }
+
                 jedisaur.getBody().setTransform(-20, 1, 0);
                 jedisaur.getBody().getPosition().set(-20, 1);
             }
