@@ -139,6 +139,7 @@ public class StageSelectState extends State{
 
             // LATEST ZERO COOKIES MUST BE PLAYABLE
             for(int i = 0; i < stages.length; i++){
+                System.out.println(i + "  -  " + allowToPlay[i]);
                 if(allowToPlay[i]){
                     if(stages[i].contains(touchpoint.x, touchpoint.y)){
                         manager.getMusic().stop();

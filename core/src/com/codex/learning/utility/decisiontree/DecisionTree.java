@@ -316,7 +316,7 @@ public class DecisionTree {
         for (String prediction: predictions){
             int pos = prediction.indexOf(":");
             Double count = Double.parseDouble(prediction.substring(pos+1));
-            String label = prediction.substring(0, pos);
+            String label = prediction.substring(0, pos+1);
             long percent = Math.round((count / total) * 100);
 //            printPredictions.add(label + percent + "%");
             printPredictions.add(label);
