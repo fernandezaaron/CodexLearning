@@ -58,7 +58,18 @@ public class Dialogue {
                     "Logical operators are used to determine the logic between variables or values:" + "\n\n&& - Logical and - Returns true if both statements are true" + "\n|| - Logical or - Returns true if one of the statements is true" +
                             "\n! - Logical not - Reverse the result, returns false if the result is true",
                     // Stage 2
-                    //
+                    // Conditional statements
+                    
+                    // Looping Statements
+
+                    // Arrays
+
+                    // Methods
+
+                    // Parameters
+
+                    // Parameters Overloading
+
                     // Stage 3
                     // Classes
                     "Our first topic is Classes", "Everything in Java is associated with classes and objects, along with its attributes and methods.", "For example: in real life, a car is an object. The car has attributes, such as weight and color, and methods, such as drive and brake.",
