@@ -263,7 +263,7 @@ public class Manager {
         this.moving = moving;
     }
 
-    public void checkBehavior(int timer, int numberOfBlockInteract, FuzzyLogic fuzzyLogic){
+    public void checkBehavior(int timer, int numberOfBlockInteract, boolean computerDone, FuzzyLogic fuzzyLogic){
         String behavior = "";
         String movement = (isMoving()) ? "YES":"NO";
         String interact = checkNumberOfBlockInteractionRule(numberOfBlockInteract);

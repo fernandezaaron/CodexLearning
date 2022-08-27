@@ -64,7 +64,7 @@ public class NPC extends Entity {
         manager.getSkin().add("pokemon", manager.getFont());
 
         db = new DialogueBox(manager.getSkin(), "dialogbox2");
-        dialogue = new Dialogue();
+        dialogue = new Dialogue(stageSelect);
 
 
 

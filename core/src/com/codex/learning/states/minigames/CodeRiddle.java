@@ -202,7 +202,7 @@ public class CodeRiddle extends State {
                                    fuzzyLogic.fuzzyTimeConsumption();
 
 
-                                   text.setText("Your score is: \n" + (manager.getQuestionnaire().getQuestionLimit()-error) + "\n");
+                                   text.setText("Your score is: \n" + (manager.getQuestionnaire().getQuestionLimit()-error) + "\n PRESS F TO CLOSE");
                                    setDone(true);
                                    for(int j=0; j<4; j++){
                                        textButtons[j].setText(" ");
