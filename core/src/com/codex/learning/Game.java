@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.codex.learning.states.MenuState;
+import com.codex.learning.states.PlayState;
+import com.codex.learning.states.StageSelectState;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
@@ -20,8 +22,8 @@ public class Game extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		manager = new Manager();
 
-
 		manager.push(new MenuState(manager));
+		Gdx.input.setInputProcessor(manager.getStage());
 
 //		img = new Texture(Constants.BACKGROUND_PATH);
 	}
@@ -35,9 +37,16 @@ public class Game extends ApplicationAdapter {
 		manager.render(batch);
 
 
+
 //		batch.begin();
 //		batch.draw(img, 0, 0);
 //		batch.end();
+	}
+
+	@Override
+	public void resize(int width, int height){
+//		manager.getCamera().setToOrtho(false, width, height);
+		manager.getStage().getViewport().update(width, height, true);
 	}
 	
 	@Override
