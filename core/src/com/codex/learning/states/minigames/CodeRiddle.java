@@ -1,13 +1,8 @@
 package com.codex.learning.states.minigames;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -20,31 +15,19 @@ import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.FuzzyLogic;
 import com.codex.learning.utility.Manager;
 
-import org.apache.poi.ss.formula.functions.T;
 
-
-import java.awt.*;
 import java.util.ArrayList;
 
 public class CodeRiddle extends State {
 
-    private TextureRegion screen;
 
-    private TextureRegion answerScreen, passedScoreScreen;
-    private TextureRegion[] choicesScreen;
-    private TextureAtlas atlas;
-    private Skin skin;
-    private Stage stage;
     private ScrollPane scrollPane;
     private Label text;
-    private Table table, scrollTable;
+    private Table table, optionsTable;
     private Group group;
     private List.ListStyle listStyle;
     private com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle labelStyle;
 
-
-    private Rectangle[] choicesBounds;
-    private Vector3 touchPoint;
     private TextButton[] textButtons;
 
     private ArrayList<String> questions;
@@ -60,7 +43,7 @@ public class CodeRiddle extends State {
 
     private float timer;
 
-    public CodeRiddle(Manager manager, FuzzyLogic fuzzyLogic) {
+    public CodeRiddle(Manager manager, FuzzyLogic fuzzyLogic, int stage) {
         super(manager);
 
         this.fuzzyLogic = fuzzyLogic;
@@ -72,13 +55,13 @@ public class CodeRiddle extends State {
 //        skin.addRegions(atlas);
 //        manager.getSkin().load(Constants.JSON_DIALOG_BOX_SKIN_PATH);
         table = new Table();
-        scrollTable = new Table();
+        optionsTable = new Table();
         group = new Group();
 
         textButtons = new TextButton[4];
 
-        scrollTable.setSkin(manager.getSkin());
-        scrollTable.setBackground("optionScreen");
+        optionsTable.setSkin(manager.getSkin());
+        optionsTable.setBackground("optionScreen");
 
         table.setSkin(manager.getSkin());
         table.setBackground("PCSCREEN");
@@ -106,7 +89,8 @@ public class CodeRiddle extends State {
 
         inComputer = false;
         isDone = false;
-        getAQuestion("Stage 1", "Novice");
+        getAQuestion(String.valueOf(stage), "Novice");
+        System.out.println(stage + " this is the stage");
         currentQuestion = 0;
     }
 
@@ -138,13 +122,13 @@ public class CodeRiddle extends State {
     public void castToTable(){
 
         if(isInComputer()){
-
             table.setFillParent(true);
             table.defaults().size(500, 150);
             table.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM - 10);
+            text.setDebug(true);
 
-            text.setWrap(true);
            if(currentQuestion == manager.getQuestionnaire().getQuestionLimit()){
+               text.setWrap(true);
                System.out.println("done na");
                text.setText("TAPOS KANA LODS");
 
@@ -153,6 +137,7 @@ public class CodeRiddle extends State {
                }
 
            }else{
+               text.setWrap(true);
                if(text.getText().contains(questions.get(currentQuestion))){
                    System.out.println("oh meron nayan lods");
                }else{
@@ -161,8 +146,8 @@ public class CodeRiddle extends State {
 
                    for(int i=0; i<4; i++){
                        textButtons[i] = new TextButton(options.get(currentQuestion).get(i), manager.getSkin());
-                       scrollTable.add(textButtons[i]).grow().padLeft(10f).center();
-                       scrollTable.row();
+                       optionsTable.add(textButtons[i]).grow().padLeft(10f).center();
+                       optionsTable.row();
                    }
 
                    for(int i=0; i<4; i++){
@@ -224,11 +209,11 @@ public class CodeRiddle extends State {
                scrollPane.setSmoothScrolling(true);
                table.add(scrollPane).height(150).padTop(25f);
                table.row();
-               table.add(scrollTable).height(200).padBottom(15f);
+               table.add(optionsTable).height(200).padBottom(15f);
                table.pack();
            }
 
-
+           table.setDebug(true);
             manager.getStage().addActor(table);
         }
     }
@@ -236,13 +221,14 @@ public class CodeRiddle extends State {
 
     @Override
     public void dispose() {
-
+        manager.getQuestionnaire().dispose();
     }
 
     public void getAQuestion(String stage, String expertiseLevel){
         manager.getQuestionnaire().questionDisplay(stage,expertiseLevel);
 
         questions = manager.getQuestionnaire().getQuestions();
+
 
         options = manager.getQuestionnaire().getOptions();
 
