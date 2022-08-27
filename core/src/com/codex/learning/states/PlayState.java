@@ -74,11 +74,12 @@ public class PlayState extends State{
 
         blockDispensers = new BlockDispenser[2];
 
-        computer = new Computer(manager, fuzzyLogic);
         if(stage >= 1 && stage < 5){
+            computer = new Computer(manager, fuzzyLogic, 1);
             computer.create(new Vector2(-6, 2.8f), new Vector2(0.6f, 0.6f), 0);
         }
         else if(stage >=5 && stage < 12){
+            computer = new Computer(manager, fuzzyLogic, 2);
             computer.create(new Vector2(-4, 6.5f), new Vector2(0.6f, 0.6f), 0);
         }
 

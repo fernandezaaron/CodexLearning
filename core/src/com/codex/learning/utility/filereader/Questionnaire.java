@@ -196,21 +196,25 @@ public class Questionnaire extends DatabaseReader {
 
         System.out.println("QUESTION LIMIT - " + questionLimit);
 
+        System.out.println(question);
         while(question == null) {
             difficulty = levels.get(randomizer.nextInt(levels.size()));
-
+//            System.out.println("am i here");
+//            System.out.println(numberOfQuestions);
             if(numberOfQuestions == questionLimit){
                 break;
             }
 
             questionID = randomizer.nextInt(excelQuestionLimit - 1) + 1;
             question = getExcelQuestion(questionID, 4, difficulty, stage);
+            System.out.println(stage + "stage here");
             if(question != null) {
                 if(questions.contains(question)){
                     question = null;
                     continue;
                 }
                 else{
+                    System.out.println("QUESTION: " + question);
                     questions.add(question);
 
                     options.add(new ArrayList<String>());
@@ -347,5 +351,7 @@ public class Questionnaire extends DatabaseReader {
         levels.clear();
         options.clear();
         answers.clear();
+        question = null;
+        numberOfQuestions = 0;
     }
 }

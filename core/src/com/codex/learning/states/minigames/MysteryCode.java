@@ -64,7 +64,7 @@ public class MysteryCode extends State {
 
         blockDispensers = new BlockDispenser[2];
 
-        computer = new Computer(manager, new FuzzyLogic());
+        computer = new Computer(manager, new FuzzyLogic(),1);
         computer.create(new Vector2(-18, 2.8f), new Vector2(0.6f, 0.6f), 0);
 
         getAMinigame("Stage 1", "Poor");

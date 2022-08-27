@@ -134,6 +134,7 @@ public class PauseState extends State {
                 }
                 if(stageBounds.contains(coords.x, coords.y)){
                     manager.getMusic().stop();
+                    manager.getQuestionnaire().dispose();
                     manager.set(new StageSelectState(manager));
 
                 }
@@ -142,6 +143,7 @@ public class PauseState extends State {
                 }
                 if(quitBounds.contains(coords.x, coords.y)){
                     manager.getMusic().stop();
+                    manager.getQuestionnaire().dispose();
                     manager.set(new MenuState(manager));
                 }
             }
