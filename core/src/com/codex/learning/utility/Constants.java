@@ -267,7 +267,6 @@ public class Constants {
     public static final int PC_FAILED_HEIGHT = 550;
 
 
-
     //END OF PC ASSETS
 
     //JEDISAUR SPRITE SHEET
@@ -292,10 +291,32 @@ public class Constants {
     public static final int JEDI_GRANDPA_WIDTH = 79;
     public static final int JEDI_GRANDPA_HEIGHT = 108;
 
+    public static final int JEDI_GRANDPA_SIDE_WIDTH = 72;
+    public static final int JEDI_GRANDPA_SIDE_HEIGHT = 110;
+    public static final int JEDI_GRANDPA_LEFT_X = 155;
+    public static final int JEDI_GRANDPA_RIGHT_X = 81;
+    public static final int JEDI_GRANDPA_SIDE_Y = 347;
+
+    public static final int JEDI_GRANDPA_TOP_WIDTH = 80;
+    public static final int JEDI_GRANDPA_TOP_HEIGHT = 110;
+    public static final int JEDI_GRANDPA_TOP_X = 231;
+    public static final int JEDI_GRANDPA_TOP_Y = 347;
+
     public static final int JEDI_PROF_X = 114;
     public static final int JEDI_PROF_Y = 464;
     public static final int JEDI_PROF_WIDTH = 89;
     public static final int JEDI_PROF_HEIGHT = 116;
+
+    public static final int JEDI_PROF_SIDE_WIDTH = 84;
+    public static final int JEDI_PROF_SIDE_HEIGHT = 118;
+    public static final int JEDI_PROF_LEFT_X = 205;
+    public static final int JEDI_PROF_RIGHT_X = 81;
+    public static final int JEDI_PROF_SIDE_Y = 461;
+
+    public static final int JEDI_PROF_TOP_WIDTH = 92;
+    public static final int JEDI_PROF_TOP_HEIGHT = 118;
+    public static final int JEDI_PROF_TOP_X = 290;
+    public static final int JEDI_PROF_TOP_Y = 461;
     //END OF JEDISAUR SPRITE SHEET
 
     //BLOCK SHEET

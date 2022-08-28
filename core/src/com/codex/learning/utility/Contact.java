@@ -134,6 +134,25 @@ public class Contact implements ContactListener {
                 npc = (NPC) fb.getUserData();
             }
             npc.setInContact(true);
+            if(npc.isTalking()){
+                switch (jedisaur.getDirection()){
+                    case "north":
+                        npc.setDirection("south");
+                        break;
+                    case "south":
+                        npc.setDirection("north");
+                        break;
+                    case "east":
+                        npc.setDirection("west");
+                        break;
+                    case "west":
+                        npc.setDirection("east");
+                        break;
+                }
+            }
+            else{
+                npc.setDirection("south");
+            }
             System.out.println("NPC CONTACT");
         }
         Gdx.app.log("BEGIN CONTACT", "");
