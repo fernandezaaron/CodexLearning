@@ -46,7 +46,11 @@ public class NPC extends Entity {
 //        Create a body without collision yet.
         this.position = position;
         this.size = size;
+
+        //initialize a table(just like how JPANEL works)
         table = new Table();
+        //provides an image of the NPC on the left hand side of the table
+
         image = new Table(manager.getSkin());
         if(stageSelect >= 1 && stageSelect < 5){
             image.setBackground("jediGrandpaAvatar");
@@ -54,7 +58,7 @@ public class NPC extends Entity {
             image.setBackground("jediProfAvatar");
         }
 
-
+        //style of the label (text) that will be added in the table
         labelStyle = new Label.LabelStyle();
         labelStyle.font = manager.getFont();
         labelStyle.font.setColor(Color.BLACK);
@@ -63,7 +67,9 @@ public class NPC extends Entity {
         manager.getFont().setColor(Color.BLACK);
         manager.getSkin().add("pokemon", manager.getFont());
 
+        //animates the text
         db = new DialogueBox(manager.getSkin(), "dialogbox2");
+        //dialogue of the NPC
         dialogue = new Dialogue(stageSelect);
 
 
@@ -127,6 +133,7 @@ public class NPC extends Entity {
         if(isInContact() && Gdx.input.isKeyJustPressed(Input.Keys.E)){
             System.out.println("Jedigrandpa");;
             if(!db.isOpen()){
+                //if the dialogue box is not yet open then animate the text and add it to the table to draw it
                 System.out.println("here");
                 db.textAnimation(dialogue.reader(nextStatement));
 
@@ -138,16 +145,19 @@ public class NPC extends Entity {
         }
 
         if(!dialogue.isStatementEnd() && Gdx.input.justTouched() && db.isOpen()){
+            //proceeds to the next statement if it is not the end
             nextStatement++;
             System.out.println(nextStatement);
             db.textAnimation(dialogue.reader(nextStatement));
         }
         if(dialogue.isStatementEnd() && Gdx.input.justTouched() && db.isOpen()){
+            //if at the end resets the table and the statement to the first index
            table.reset();
            db.setOpen(false);
            nextStatement = 0;
         }
 
+        
         manager.getStage().addActor(table);
     }
 
