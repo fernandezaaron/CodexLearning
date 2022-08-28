@@ -1,5 +1,7 @@
 package com.codex.learning.utility;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -75,10 +77,6 @@ public class DialogueBox extends Table {
         }
     }
 
-    public void close(){
-        this.reset();
-
-    }
 
     public boolean isAnimating() {
         return isAnimating;
