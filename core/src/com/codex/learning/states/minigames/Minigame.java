@@ -9,8 +9,6 @@ public class Minigame extends State {
     private FuzzyLogic fuzzyLogic;
     private int stageNumber;
     private int currentMinigame;
-    private FillInTheBlock;
-    private MysteryCode;
     public Minigame(Manager manager, int stageNumber, int currentMinigame){
         super(manager);
         this.stageNumber = stageNumber;
@@ -19,7 +17,11 @@ public class Minigame extends State {
 
         switch (currentMinigame){
             case 1:
-                manager.set(new FillInTheBlock((manager)));
+                FillInTheBlock fib = new FillInTheBlock(manager);
+                manager.set(fib);
+
+                break;
+
 
         }
     }

@@ -61,9 +61,6 @@ public class FillInTheBlock extends State {
 
         blockDispensers = new BlockDispenser[2];
 
-        computer = new Computer(manager, new FuzzyLogic(), 1);
-        computer.create(new Vector2(-18, 2.8f), new Vector2(0.6f, 0.6f), 0);
-
         // CREATES RANDOM NUMBER TO REMOVE CELLS FROM MINIGAME
         for(int i = 0; i <= 5; i++) {
             banishCells.add(randomizer.nextInt(minigameContainerLimit - 1) + 1);
@@ -195,7 +192,7 @@ public class FillInTheBlock extends State {
                 playroom.exitDoor(jedisaur);
                 jediGrandpa.update(delta);
                 jedisaur.update(delta);
-                computer.update(delta);
+
 //            pause.update(delta);
             }
             else{
@@ -204,9 +201,7 @@ public class FillInTheBlock extends State {
                     jedisaur.update(delta);
                     jedisaur.getBody().setLinearVelocity(0,0);
                 }
-                if(computer.getCodeRiddle().isInComputer() && Gdx.input.isKeyJustPressed(Input.Keys.F)){
-                    computer.getCodeRiddle().setInComputer(false);
-                }
+
             }
         }else{
             if(jedisaur.isMoving()){
