@@ -19,8 +19,6 @@ import com.codex.learning.utility.Manager;
 import java.util.ArrayList;
 
 public class CodeRiddle extends State {
-
-
     private ScrollPane scrollPane;
     private Label text;
     private Table table, optionsTable;
@@ -33,8 +31,6 @@ public class CodeRiddle extends State {
     private ArrayList<String> questions;
     private ArrayList<ArrayList<String>> options;
 
-
-
     private boolean inComputer, isDone;
     private int currentQuestion;
     private int error;
@@ -43,10 +39,10 @@ public class CodeRiddle extends State {
 
     private float timer;
 
-    public CodeRiddle(Manager manager, FuzzyLogic fuzzyLogic, int stage) {
+    public CodeRiddle(Manager manager, int stage) {
         super(manager);
 
-        this.fuzzyLogic = fuzzyLogic;
+        fuzzyLogic = new FuzzyLogic();
         timer = 0;
         error = 0;
 
@@ -181,7 +177,7 @@ public class CodeRiddle extends State {
                                    }
                                }else{
                                    fuzzyLogic.setNumberOfErrors(error);
-                                   fuzzyLogic.setTimeConsumptions(timer);
+                                   fuzzyLogic.setTimeConsumptions(fuzzyLogic.getTimeConsumptions() + timer);
 
                                    fuzzyLogic.fuzzyNumberOfError();
                                    fuzzyLogic.fuzzyTimeConsumption();
