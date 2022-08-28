@@ -89,13 +89,12 @@ public class Questionnaire extends DatabaseReader {
     public void minigameDisplay(String stage, String expertiseLevel) {
         adjustDifficulty(expertiseLevel);
 //        minigameHolder = new String[50][50];
-        minigameHolder = new ArrayList<ArrayList<String>>();
         while(minigameGetter == null) {
-//            questionID = randomizer.nextInt(excelMinigameLimit - 1) + 1;
-            questionID = 1;
+            questionID = randomizer.nextInt(excelMinigameLimit - 1) + 1;
+//            questionID = 6;
             difficulty = "Easy";
             findCell = findRow(minigameSheet, questionID);
-            System.out.println(questionID);
+            System.out.println(questionID + "asdasd");
             getMinigame(findCell, 4, difficulty, stage);
         }
         getAnswerPool(stage);
@@ -103,7 +102,8 @@ public class Questionnaire extends DatabaseReader {
 
     public void getMinigame(int row1, int col1, String diff, String stg) {
 //        minigameGetter = new String[50][50];
-
+        minigameHolder = new ArrayList<ArrayList<String>>();
+        System.out.println(row1);
         String difficultyacq = getMinigameInfo(row1, 2);
         String stageacq = getMinigameInfo(row1, 3);
 
@@ -120,13 +120,11 @@ public class Questionnaire extends DatabaseReader {
                         break;
                     }
                     else {
-//                        minigameGetter[i][j] = cell;
-//                        j++;
                         minigameGetter.add(cell);
                         minigameElementLimit++;
                     }
                 }
-//                i++;
+                System.out.println(minigameGetter);
                 minigameHolder.add(minigameGetter);
                 Row qRow = minigameSheet.getRow(x + 2);
                 Cell qCell = qRow.getCell(4);
@@ -178,7 +176,6 @@ public class Questionnaire extends DatabaseReader {
                 String getAnsCell = formatter.formatCellValue(ansCell);
                 if (getAnsCell != "") {
                     answerPool.add(getAnsCell);
-                    System.out.println(getAnsCell);
                     answerPoolSelection--;
                 } else {
                     continue;

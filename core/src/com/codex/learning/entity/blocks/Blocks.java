@@ -13,11 +13,14 @@ import com.codex.learning.entity.Entity;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
+import java.io.FileInputStream;
+
 public class Blocks extends Entity {
     private String id, name;
     private ShapeRenderer shadowColor;
     private ShapeRenderer mainColor;
     protected boolean inContact;
+
     private boolean preDefinedContact;
     private boolean isPredefined;
     private Vector2 dupliSize;
@@ -26,6 +29,7 @@ public class Blocks extends Entity {
         this.id = id;
         this.name = name;
         this.isPredefined = isPredefined;
+
     }
 
     @Override
@@ -47,6 +51,9 @@ public class Blocks extends Entity {
         fixtureDef.density = density;
         fixtureDef.shape = shape;
         fixtureDef.friction = 5;
+        if(isPredefined) {
+            fixtureDef.isSensor = true;
+        }
 
         if(isPredefined){
             fixtureDef.isSensor = true;
@@ -57,6 +64,8 @@ public class Blocks extends Entity {
         body.createFixture(fixtureDef).setUserData(this);
         body.setLinearVelocity(0, 0);
         shape.dispose();
+
+
 
         shadowColor = new ShapeRenderer();
         shadowColor.translate(this.size.x, 0, 0);
@@ -70,7 +79,6 @@ public class Blocks extends Entity {
 
     @Override
     public void update(float delta) {
-
     }
 
     @Override

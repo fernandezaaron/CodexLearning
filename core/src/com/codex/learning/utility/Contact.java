@@ -14,6 +14,7 @@ import com.codex.learning.entity.characters.NPC;
 
 //This class will allow the player to have collision detection
 public class Contact implements ContactListener {
+    private int numberOfCollision = 0;
     @Override
     public void beginContact(com.badlogic.gdx.physics.box2d.Contact contact) {
         Fixture fa = contact.getFixtureA();
@@ -37,23 +38,28 @@ public class Contact implements ContactListener {
                 jedisaur = (Character) fa.getUserData();
                 blocks = (Blocks) fb.getUserData();
             }
+            System.out.println(blocks.getBody().getUserData());
+
+            numberOfCollision++;
+            System.out.println(numberOfCollision);
 
             blocks.setInContact(true);
             if (jedisaur.isCarrying()) {
 
                 System.out.println("Block yes");
 
-                if (blocks.isPreDefinedContact()) {
-                    blocks.setInContact(false);
-
+            if(blocks.isPreDefinedContact() || numberOfCollision > 1){
+                blocks.setInContact(false);
+                jedisaur.setPickUpAble(false);
+            }
+            else{
+                blocks.setInContact(true);
+                if(jedisaur.isCarrying()){
                     jedisaur.setPickUpAble(false);
-                } else {
-                    blocks.setInContact(true);
-                    if (jedisaur.isCarrying()) {
-                        jedisaur.setPickUpAble(false);
-                    } else {
-                        jedisaur.setPickUpAble(true);
-                    }
+                }
+                else {
+                    jedisaur.setPickUpAble(true);
+                 }
                 }
 
             }
@@ -180,8 +186,17 @@ public class Contact implements ContactListener {
                 blocks = (Blocks) fb.getUserData();
             }
 
+            numberOfCollision--;
+            System.out.println(numberOfCollision);
             blocks.setInContact(false);
             jedisaur.setPickUpAble(false);
+
+            if(numberOfCollision == 1){
+                blocks.setInContact(true);
+                jedisaur.setPickUpAble(true);
+            }
+
+
         }
 
         if(isDispenserContact(fa, fb)){
@@ -261,6 +276,7 @@ public class Contact implements ContactListener {
         if(a.getUserData() instanceof Character || b.getUserData() instanceof Character) {
             if(a.getUserData() instanceof Blocks || b.getUserData() instanceof Blocks) {
                 return true;
+
             }
         }
         return false;
