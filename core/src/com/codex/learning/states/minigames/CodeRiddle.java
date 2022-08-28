@@ -14,6 +14,7 @@ import com.codex.learning.states.State;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.FuzzyLogic;
 import com.codex.learning.utility.Manager;
+import com.codex.learning.utility.decisiontree.DecisionTree;
 
 
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class CodeRiddle extends State {
     private int error;
 
     private FuzzyLogic fuzzyLogic;
+    private ArrayList<String> behavior;
 
     private float timer;
 
@@ -43,6 +45,7 @@ public class CodeRiddle extends State {
         super(manager);
 
         fuzzyLogic = new FuzzyLogic();
+        behavior = new ArrayList<>();
         timer = 0;
         error = 0;
 
@@ -121,7 +124,7 @@ public class CodeRiddle extends State {
             table.setFillParent(true);
             table.defaults().size(500, 150);
             table.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM - 10);
-            text.setDebug(true);
+//            text.setDebug(true);
 
            if(currentQuestion == manager.getQuestionnaire().getQuestionLimit()){
                text.setWrap(true);
@@ -209,7 +212,7 @@ public class CodeRiddle extends State {
                table.pack();
            }
 
-           table.setDebug(true);
+//           table.setDebug(true);
             manager.getStage().addActor(table);
         }
     }
@@ -229,6 +232,48 @@ public class CodeRiddle extends State {
         options = manager.getQuestionnaire().getOptions();
 
         fuzzyLogic.setTotalQuestions(manager.getQuestionnaire().getQuestionLimit());
+    }
+
+
+
+    // Time Consumption, Number of Error
+    public void updateBehavior(){
+        String currentBehavior = "";
+        String time = checkTimeConsumption((int) timer);
+        behavior.add("");
+        behavior.add(time);
+        behavior.add("");
+        behavior.add(fuzzyLogic.getNumberOfErrorsRules());
+        behavior.add("");
+        currentBehavior = String.valueOf(manager.getDecisionTree().classify(behavior, manager.getDecisionTree().getTree()));
+
+        currentBehavior = manager.removeBracket(currentBehavior);
+        if(currentBehavior.equals("ENGAGED") || currentBehavior.equals("NEUTRAL") || currentBehavior.equals("BORED")){
+            //GIVE FEEDBACK
+            System.out.println(currentBehavior);
+            System.out.println("Congrats");
+        }
+        else{
+            //GIVE HINTS
+            System.out.println(currentBehavior);
+            System.out.println("MAG-ARAL KA PA");
+        }
+        behavior.clear();
+    }
+
+    public String checkTimeConsumption(int timer){
+        if(timer <= 90){
+            return "LOW";
+        }
+        else if(timer <= 180){
+            return "MEDIUM";
+        }
+        else if(timer <= 270){
+            return "HIGH";
+        }
+        else{
+            return "";
+        }
     }
 
 

@@ -263,37 +263,87 @@ public class Manager {
         this.moving = moving;
     }
 
-    public void checkBehavior(int timer, int numberOfBlockInteract, boolean computerDone, FuzzyLogic fuzzyLogic){
-        String behavior = "";
-        String movement = (isMoving()) ? "YES":"NO";
-        String interact = checkNumberOfBlockInteractionRule(numberOfBlockInteract, computerDone);
+    public String removeBracket(String string){
+        StringBuilder stringBuilder = new StringBuilder(string);
 
-        ArrayList<String> dataset = new ArrayList<String>(Arrays.asList(new String[]{"YES", "HIGH", "LOW", "", ""}));
-        if(timer % 10 == 0 && timer > 0){
-            Behavior.currentDataSet.add(movement);
-            Behavior.currentDataSet.add(fuzzyLogic.getTimeConsumptionRules());
-            Behavior.currentDataSet.add(fuzzyLogic.getNumberOfErrorsRules());
-            Behavior.currentDataSet.add(fuzzyLogic.getNumberOfAttemptsRules());
-            Behavior.currentDataSet.add(interact);
-            behavior = String.valueOf(getDecisionTree().classify(Behavior.currentDataSet, getDecisionTree().getTree()));
-//            System.out.println(getDecisionTree().classify(Behavior.currentDataSet, getDecisionTree().getTree()));
-            if(behavior == "ENGAGED"){
-                System.out.println(Behavior.currentDataSet);
-                System.out.println("BEHAVIOR = " + behavior);
-                //file write
-            }
-            else{
-                System.out.println(Behavior.currentDataSet);
-                System.out.println("BEHAVIOR = " + behavior);
-                //file write
-            }
-            Behavior.currentDataSet.clear();
-        }
-//        System.out.println(getDecisionTree().classify(dataset, getDecisionTree().getTree()));
+        stringBuilder.deleteCharAt(string.length() - 1);
+        stringBuilder.deleteCharAt(0);
+
+        return stringBuilder.toString();
     }
 
-    public void checkFeedback(FuzzyLogic fuzzyLogic){
+    public void updateBehavior(int timer){
+        String currentBehavior = "";
+        String movement = (isMoving()) ? "YES":"NO";
+        String time = checkTimeConsumption(timer);
+        ArrayList<String> behavior = new ArrayList<>();
 
+        if(timer > 0 && timer % 10 == 0){
+            behavior.add(movement);
+            behavior.add("LOW");
+            behavior.add("");
+            behavior.add("");
+            behavior.add("");
+            currentBehavior = String.valueOf(getDecisionTree().classify(behavior, getDecisionTree().getTree()));
+            currentBehavior = removeBracket(currentBehavior);
+
+            if(currentBehavior.equals("ENGAGED")){
+                //GIVE FEEDBACK REGARDING ENGAGED
+                System.out.println(currentBehavior);
+                System.out.println("ENGAGED");
+            }
+            else{
+                //GIVE FEEDBACK REGARING NOT ENGAGED
+                System.out.println(behavior);
+                System.out.println(currentBehavior);
+                System.out.println("NOT ENGAGED");
+            }
+        }
+        behavior.clear();
+    }
+
+//    public void checkBehavior(int timer, int numberOfBlockInteract, boolean computerDone, FuzzyLogic fuzzyLogic){
+//        String behavior = "";
+//        String movement = (isMoving()) ? "YES":"NO";
+//        String interact = checkNumberOfBlockInteractionRule(numberOfBlockInteract, computerDone);
+//
+//        ArrayList<String> dataset = new ArrayList<String>(Arrays.asList(new String[]{"YES", "HIGH", "LOW", "", ""}));
+//        if(timer % 4333 == 0 && timer > 0){
+//            Behavior.currentDataSet.add(movement);
+//            Behavior.currentDataSet.add(fuzzyLogic.getTimeConsumptionRules());
+//            Behavior.currentDataSet.add(fuzzyLogic.getNumberOfErrorsRules());
+//            Behavior.currentDataSet.add(fuzzyLogic.getNumberOfAttemptsRules());
+//            Behavior.currentDataSet.add(interact);
+//            behavior = String.valueOf(getDecisionTree().classify(Behavior.currentDataSet, getDecisionTree().getTree()));
+////            System.out.println(getDecisionTree().classify(Behavior.currentDataSet, getDecisionTree().getTree()));
+//            if(behavior.equals("ENGAGED")){
+//                System.out.println(Behavior.currentDataSet);
+//                System.out.println("BEHAVIOR = " + behavior);
+//                //file write
+//            }
+//            else{
+//                System.out.println(Behavior.currentDataSet);
+//                System.out.println("BEHAVIOR = " + behavior);
+//                //file write
+//            }
+//            Behavior.currentDataSet.clear();
+//        }
+////        System.out.println(getDecisionTree().classify(dataset, getDecisionTree().getTree()));
+//    }
+
+    public String checkTimeConsumption(int timer){
+        if (timer <= 180){
+            return "LOW";
+        }
+        else if(timer <= 300){
+            return "MEDIUM";
+        }
+        else if(timer >= 300){
+            return "HIGH";
+        }
+        else{
+            return "";
+        }
     }
 
     public String checkNumberOfBlockInteractionRule(int numberOfBlockInteraction, boolean computerDone){
@@ -314,8 +364,8 @@ public class Manager {
         return "";
     }
 
-    public void checkIfMoving(int timer, Character character){
-        if(character.isMoving() && timer > 2){
+    public void checkIfMoving(Character character){
+        if(character.isMoving()){
             setMoving(true);
         }
         else{
