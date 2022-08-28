@@ -46,7 +46,7 @@ public class FillInTheBlock extends State {
     public FillInTheBlock(Manager manager) {
         super(manager);
         pause = new PauseState(manager);
-        playroom = new PlayroomMapS1(manager);
+        playroom = new PlayroomMapS1(manager,1);
 
         randomizer = new Random();
         banishCells = new ArrayList<Integer>();
@@ -59,9 +59,9 @@ public class FillInTheBlock extends State {
         // WILL BE USED, DON'T ERASE
 
         blockDispensers = new BlockDispenser[2];
-
-        computer = new Computer(manager);
-        computer.create(new Vector2(-18, 2.8f), new Vector2(0.6f, 0.6f), 0);
+//
+//        computer = new Computer(manager);
+//        computer.create(new Vector2(-18, 2.8f), new Vector2(0.6f, 0.6f), 0);
 
         // CREATES RANDOM NUMBER TO REMOVE CELLS FROM MINIGAME
         for(int i = 0; i <= 5; i++) {
@@ -121,7 +121,7 @@ public class FillInTheBlock extends State {
         jedisaur = new Character(manager);
         jedisaur.create(new Vector2(0, 0), new Vector2(1.2f, 1.75f), 1.6f);
 
-        jediGrandpa = new NPC(manager);
+        jediGrandpa = new NPC(manager, 1);
         jediGrandpa.create(new Vector2(-10, 0), new Vector2(1, 1.4f), 0);
 
         if(!manager.isMusicPaused()){
@@ -139,7 +139,6 @@ public class FillInTheBlock extends State {
     public void update(float delta) {
         manager.getWorld().step(1/60f,6,2);
         if(pause.isRunning()){
-            if(!computer.getCodeRiddle().isInComputer()){
                 // WILL BE USED, DON'T ERASE
                 currentCell = 0;
                 for(int i = 0; i < minigameContainer.size(); i++) {
@@ -191,22 +190,12 @@ public class FillInTheBlock extends State {
                 }
                 // WILL BE USED, DON'T ERASE
 
-                playroom.exitDoor(jedisaur);
+
                 jediGrandpa.update(delta);
                 jedisaur.update(delta);
-                computer.update(delta);
+
 //            pause.update(delta);
-            }
-            else{
-                if(jedisaur.isMoving()){
-                    jedisaur.setMoving(false);
-                    jedisaur.update(delta);
-                    jedisaur.getBody().setLinearVelocity(0,0);
-                }
-                if(computer.getCodeRiddle().isInComputer() && Gdx.input.isKeyJustPressed(Input.Keys.F)){
-                    computer.getCodeRiddle().setInComputer(false);
-                }
-            }
+
         }else{
             if(jedisaur.isMoving()){
                 jedisaur.setMoving(false);

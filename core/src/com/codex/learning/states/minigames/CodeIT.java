@@ -45,7 +45,7 @@ public class CodeIT extends State {
     public CodeIT(Manager manager) {
         super(manager);
         pause = new PauseState(manager);
-        playroom = new PlayroomMapS1(manager);
+        playroom = new PlayroomMapS1(manager,1);
 
         randomizer = new Random();
 
@@ -57,9 +57,9 @@ public class CodeIT extends State {
         // WILL BE USED, DON'T ERASE
 
         blockDispensers = new BlockDispenser[2];
-
-        computer = new Computer(manager);
-        computer.create(new Vector2(-18, 2.8f), new Vector2(0.6f, 0.6f), 0);
+//
+//        computer = new Computer(manager);
+//        computer.create(new Vector2(-18, 2.8f), new Vector2(0.6f, 0.6f), 0);
 
         // START MINIGAME CREATION
         int yStartingPoint = 8, currentCell = 0;
@@ -106,7 +106,7 @@ public class CodeIT extends State {
         jedisaur = new Character(manager);
         jedisaur.create(new Vector2(0, 0), new Vector2(1.2f, 1.75f), 1.6f);
 
-        jediGrandpa = new NPC(manager);
+        jediGrandpa = new NPC(manager,1);
         jediGrandpa.create(new Vector2(-10, 0), new Vector2(1, 1.4f), 0);
 
         if(!manager.isMusicPaused()){
@@ -169,7 +169,7 @@ public class CodeIT extends State {
                 }
                 // WILL BE USED, DON'T ERASE
 
-                playroom.exitDoor(jedisaur);
+
                 jediGrandpa.update(delta);
                 jedisaur.update(delta);
                 computer.update(delta);

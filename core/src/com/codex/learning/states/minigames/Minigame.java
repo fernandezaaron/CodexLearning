@@ -27,7 +27,7 @@ public class Minigame extends State {
         switch (currentMinigame){
             case 1:
                 fib = true;
-                s = new FillInTheBlock(manager, jedisaur);
+                s = new FillInTheBlock(manager);
                 System.out.println("1");
                 break;
             case 2:

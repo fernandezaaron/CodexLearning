@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b24edcde-939f-44c7-8971-d1a6639c5cf4" name="Changes" comment="" />
+    <list default="true" id="b24edcde-939f-44c7-8971-d1a6639c5cf4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/StageSelectState.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/StageSelectState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/FillInTheBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/FillInTheBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/Minigame.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/Minigame.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,7 +42,6 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/Game.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/FuzzyLogic.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../jediJump/core/src/com/jedijump/states/PlayState.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/MenuState.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java" root0="FORCE_HIGHLIGHTING" />
@@ -47,6 +53,7 @@
     <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Contact.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/Computer.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeRiddle.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/FuzzyLogic.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/maps/HouseMap.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/Character.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../jediJump/core/src/com/jedijump/states/PauseState.java" root0="FORCE_HIGHLIGHTING" />
