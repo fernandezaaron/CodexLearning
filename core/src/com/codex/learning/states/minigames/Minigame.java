@@ -1,6 +1,7 @@
 package com.codex.learning.states.minigames;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.codex.learning.entity.characters.Character;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.FuzzyLogic;
 import com.codex.learning.utility.Manager;
@@ -11,15 +12,30 @@ public class Minigame extends State {
     private int currentMinigame;
     private FillInTheBlock s;
     private MysteryCode h;
-    public Minigame(Manager manager, int stageNumber, int currentMinigame){
+    private boolean fib;
+    private Character jedisaur;
+    public Minigame(Manager manager, int stageNumber, int currentMinigame, Character jedisaur){
         super(manager);
         this.stageNumber = stageNumber;
-
+        this.currentMinigame = currentMinigame;
         fuzzyLogic = new FuzzyLogic();
+        fib = false;
+        this.jedisaur = jedisaur;
+    }
 
+    public void setMiniGame(){
         switch (currentMinigame){
             case 1:
-                manager.set(new FillInTheBlock((manager)));
+                fib = true;
+                s = new FillInTheBlock(manager, jedisaur);
+                System.out.println("1");
+                break;
+            case 2:
+                System.out.println("the minigame is Code-IT");
+                break;
+            case 3:
+                System.out.println("3");
+                break;
 
         }
     }
@@ -27,12 +43,17 @@ public class Minigame extends State {
 
     @Override
     public void update(float delta) {
+        if(fib){
+            s.update(delta);
+        }
 
     }
 
     @Override
     public void render(SpriteBatch sprite) {
-
+        if(fib){
+            s.render(sprite);
+        }
     }
 
     @Override

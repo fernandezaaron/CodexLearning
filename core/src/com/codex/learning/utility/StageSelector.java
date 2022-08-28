@@ -10,6 +10,7 @@ public class StageSelector {
         allowToPlay = false;
     }
 
+
     public int getStageNumber() {
         return stageNumber;
     }

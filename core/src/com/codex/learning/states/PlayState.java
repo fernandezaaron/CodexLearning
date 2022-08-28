@@ -15,6 +15,7 @@ import com.codex.learning.entity.characters.NPC;
 import com.codex.learning.entity.maps.HouseMap;
 import com.codex.learning.entity.maps.PlayroomMapS1;
 import com.codex.learning.entity.maps.SchoolMap;
+import com.codex.learning.states.minigames.Minigame;
 import com.codex.learning.utility.*;
 
 public class PlayState extends State{
@@ -24,6 +25,7 @@ public class PlayState extends State{
     private SchoolMap schoolMap;
     private Computer computer;
     private PlayroomMapS1 playroomMap;
+    private Minigame minigame;
 
     private float timer;
 
@@ -70,6 +72,8 @@ public class PlayState extends State{
         jediGrandpa = new NPC(manager, stage);
         jediGrandpa.create(new Vector2(0, 0), new Vector2(1, 1.4f), 0);
 
+        minigame = new Minigame(manager, stage, 1, jedisaur);
+
         if(!manager.isMusicPaused()){
             manager.setMusic(Constants.HOUSE_MUSIC);
             manager.getMusic().play();
@@ -83,14 +87,18 @@ public class PlayState extends State{
         inStartArea = true;
         atDoor = false;
 
+
+
     }
 
     @Override
     public void update(float delta) {
         if(!isInStartArea()){
             activeBody(false);
+            minigame.update(delta);
         }else {
             activeBody(true);
+
         }
         manager.getWorld().step(1/60f,6,2);
         if(pause.isRunning()){
@@ -173,7 +181,9 @@ public class PlayState extends State{
 
             }
         }else {
-            playroomMap.render(sprite);
+//            playroomMap.render(sprite);
+//            minigame.setMiniGame();
+            minigame.render(sprite);
             jedisaur.render(sprite);
         }
 
@@ -239,7 +249,7 @@ public class PlayState extends State{
                 else if(stage >= 5 && stage < 12){
                     schoolMap.setPlayroomActive(false);
                 }
-
+                minigame.setMiniGame();
                 jedisaur.getBody().setTransform(-20, 1, 0);
                 jedisaur.getBody().getPosition().set(-20, 1);
             }

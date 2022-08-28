@@ -7,6 +7,7 @@ import com.codex.learning.entity.Collisions;
 import com.codex.learning.entity.characters.Character;
 import com.codex.learning.states.StageSelectState;
 import com.codex.learning.states.State;
+import com.codex.learning.states.minigames.Minigame;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
@@ -16,6 +17,8 @@ public class PlayroomMapS1 extends State {
     private TextureRegion door;
     private int stage;
     private boolean inPlayroom;
+    private Minigame minigame;
+    private int randomNumber;
     public PlayroomMapS1(Manager manager, int stage) {
         super(manager);
 //      Create invisible collision for the character.
@@ -29,6 +32,8 @@ public class PlayroomMapS1 extends State {
         atDoor = false;
         inPlayroom = false;
         this.stage = stage;
+
+//        minigame = new Minigame(manager, stage, 2);
         door = new TextureRegion(manager.getReportCardSheet(), 48,195, 263, 119);
     }
 
@@ -49,7 +54,6 @@ public class PlayroomMapS1 extends State {
             sprite.draw(manager.getPlayroomStage2(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         }
 
-        checkDoor(sprite, atDoor);
         sprite.end();
     }
 
@@ -59,20 +63,7 @@ public class PlayroomMapS1 extends State {
         downBorder.disposeBody();
     }
 
-    public void exitDoor(Character character){
-        if(character.getBody().getPosition().x > -19.8f && character.getBody().getPosition().x < -15.5f && character.getBody().getPosition().y < -11){
-            manager.getMusic().stop();
-            manager.set(new StageSelectState(manager));
-        }
 
-        atDoor = character.getBody().getPosition().x > -19.8f && character.getBody().getPosition().x < -15.5f && character.getBody().getPosition().y < -10;
-    }
-
-    private void checkDoor(SpriteBatch sprite, boolean atDoor){
-        if(atDoor){
-            sprite.draw(door, -693, -450);
-        }
-    }
 
     public int getStage() {
         return stage;

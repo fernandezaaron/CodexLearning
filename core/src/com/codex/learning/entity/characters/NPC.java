@@ -157,7 +157,7 @@ public class NPC extends Entity {
            nextStatement = 0;
         }
 
-        
+
         manager.getStage().addActor(table);
     }
 

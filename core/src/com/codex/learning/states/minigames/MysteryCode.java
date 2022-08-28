@@ -213,7 +213,7 @@ public class MysteryCode extends State {
                 }
                 // WILL BE USED, DON'T ERASE
 
-                playroom.exitDoor(jedisaur);
+
                 jediGrandpa.update(delta);
                 jedisaur.update(delta);
                 computer.update(delta);

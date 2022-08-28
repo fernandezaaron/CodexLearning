@@ -21,6 +21,7 @@ public class StageSelectState extends State{
     private Settings settings;
 
     private StageSelector[] stageSelector;
+    private StageSelector ss;
 
     private boolean zeroCookie;
 
@@ -37,6 +38,9 @@ public class StageSelectState extends State{
             stageSelector[i] = new StageSelector();
             stageSelector[i].setNumberOfCookies(manager.getExpertSystem().getCookies(i));
         }
+
+
+
 
 
         orangeCircle = new TextureRegion(manager.getUtility(), Constants.ORANGE_CIRCLE_X, Constants.ORANGE_CIRCLE_Y, Constants.ORANGE_CIRCLE_R, Constants.ORANGE_CIRCLE_R);
@@ -147,8 +151,9 @@ public class StageSelectState extends State{
                 if(stageSelector[i].isAllowToPlay()){
                     if(stages[i].contains(touchpoint.x, touchpoint.y)){
                         manager.getMusic().stop();
-                        manager.set(new PlayState(manager, i+1));
-                        System.out.println("You clicked at stage " + (i + 1)  + "!!");
+                        stageSelector[i].setStageNumber(i+1);
+                        manager.set(new PlayState(manager, stageSelector[i].getStageNumber()));
+                        System.out.println("You clicked at stage " + stageSelector[i].getStageNumber()  + "!!");
 
                         // ITO COMMENT OUT TO COMPARE
 //                    manager.getReader().getQuestions("Easy","Stage 1","");
