@@ -97,17 +97,19 @@ public class PlayState extends State{
             if(!computer.getCodeRiddle().isInComputer()){
                 timer += Gdx.graphics.getDeltaTime();
 
+
                 if(computer.isDone()){
                     computer.getCodeRiddle().updateBehavior();
                 }
 
+                // CHECK THE BEHAVIOR IN STATE
                 manager.checkIfMoving(jedisaur);
                 manager.updateBehavior((int) timer);
 //                manager.checkBehavior((int) timer, jedisaur.getNumberOfBlockInteraction(), computer.isDone(), fuzzyLogic);
 
-                fuzzyLogic.calculateNumberOfCookies();
+//                fuzzyLogic.calculateNumberOfCookies();
 //                System.out.println(fuzzyLogic.getCookies());
-                manager.getExpertSystem().setCurrentCookie(fuzzyLogic.getCookies());
+//                manager.getExpertSystem().setCurrentCookie(fuzzyLogic.getCookies());
 
                 exitDoor(jedisaur);
                 jediGrandpa.update(delta);
