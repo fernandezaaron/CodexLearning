@@ -185,14 +185,9 @@ public class FillInTheBlock extends State {
     @Override
     public void render(SpriteBatch sprite) {
         sprite.enableBlending();
-        sprite.setProjectionMatrix(manager.getCamera().combined);
-
         manager.getCamera().update();
-        sprite.begin();
-        sprite.setProjectionMatrix(manager.getCamera().combined);
-        sprite.end();
 
-        playroom.render(sprite);
+//        playroom.render(sprite);
 
         currentCell = 0;
         for(int i = 0; i < minigameContainer.size(); i++) {
