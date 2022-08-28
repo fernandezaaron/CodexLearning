@@ -134,7 +134,7 @@ public class Contact implements ContactListener {
                 npc = (NPC) fb.getUserData();
             }
             npc.setInContact(true);
-            if(npc.isTalking()){
+            if(npc.isInContact()){
                 switch (jedisaur.getDirection()){
                     case "north":
                         npc.setDirection("south");
