@@ -9,8 +9,8 @@ public class Minigame extends State {
     private FuzzyLogic fuzzyLogic;
     private int stageNumber;
     private int currentMinigame;
-    private FillInTheBlock;
-    private MysteryCode;
+    private FillInTheBlock s;
+    private MysteryCode h;
     public Minigame(Manager manager, int stageNumber, int currentMinigame){
         super(manager);
         this.stageNumber = stageNumber;
