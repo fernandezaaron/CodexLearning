@@ -112,8 +112,8 @@ public class FillInTheBlock extends State {
             }
             blockDispensers[i].create(new Vector2(15 * i, -6), new Vector2(0.3f, 1.3f), 0);
         }
-
         this.jedisaur = jedisaur;
+//        this.jedisaur.create(new Vector2(0, -5), new Vector2(1.2f, 1.75f), 1.6f);
 
     }
 
@@ -171,7 +171,7 @@ public class FillInTheBlock extends State {
            }
        }
        // WILL BE USED, DON'T ERASE
-
+//        jedisaur.update(delta);
 
 
 
