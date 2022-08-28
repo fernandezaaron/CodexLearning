@@ -13,7 +13,7 @@ public class DialogueBox extends Table {
     private String text = "";
     private float animationTimer = 0f;
     private float animationTotalTime = 0f;
-    private float TEXT_SPEED = 0.06f;
+    private float TEXT_SPEED = 0.03f;
     private boolean isAnimating, isOpen;
     private Label textLabel;
 
