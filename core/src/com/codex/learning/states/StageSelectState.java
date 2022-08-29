@@ -157,7 +157,7 @@ public class StageSelectState extends State{
                         manager.getMusic().stop();
                         stageSelector[i].setStageNumber(i+1);
                         manager.set(new PlayState(manager, stageSelector[i].getStageNumber()));
-//                        manager.set(new FillInTheBlock(manager));
+//                        manager.set(new MysteryCode(manager, 1));
                         System.out.println("You clicked at stage " + stageSelector[i].getStageNumber()  + "!!");
 
 

@@ -1,6 +1,7 @@
 package com.codex.learning.states.minigames;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.codex.learning.entity.blocks.Blocks;
 import com.codex.learning.entity.characters.Character;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.FuzzyLogic;
@@ -14,6 +15,8 @@ public class Minigame extends State {
     private MysteryCode h;
     private boolean fib, mc;
     private Character jedisaur;
+    private Blocks[] answerBlock;
+
     public Minigame(Manager manager, int stageNumber, int currentMinigame, Character jedisaur){
         super(manager);
         this.stageNumber = stageNumber;
@@ -21,6 +24,23 @@ public class Minigame extends State {
         fuzzyLogic = new FuzzyLogic();
         fib = false;
         mc = false;
+        this.jedisaur = jedisaur;
+    }
+
+    public Minigame(Manager manager, int stageNumber, int currentMinigame){
+        super(manager);
+        this.stageNumber = stageNumber;
+        this.currentMinigame = currentMinigame;
+        fuzzyLogic = new FuzzyLogic();
+        fib = false;
+        mc = false;
+    }
+
+    public Character getJedisaur() {
+        return jedisaur;
+    }
+
+    public void setJedisaur(Character jedisaur) {
         this.jedisaur = jedisaur;
     }
 
@@ -33,13 +53,22 @@ public class Minigame extends State {
                 break;
             case 2:
                 mc = true;
-                h = new MysteryCode(manager, stageNumber, jedisaur);
+                h = new MysteryCode(manager, stageNumber);
+
                 break;
             case 3:
                 System.out.println("3");
                 break;
 
         }
+    }
+
+    public Blocks[] getBlocks(){
+        if(mc){
+            return h.getAnswerBlocks();
+        }
+
+        return h.getAnswerBlocks();
     }
 
 
@@ -50,6 +79,7 @@ public class Minigame extends State {
         }
         else if(mc){
             h.update(delta);
+            h.setJedisaur(getJedisaur());
         }
 
     }
@@ -79,5 +109,13 @@ public class Minigame extends State {
         if(fib){
             s.setActive(active);
         }
+    }
+
+    public Blocks[] getAnswerBlock() {
+        return answerBlock;
+    }
+
+    public void setAnswerBlock(Blocks[] answerBlock) {
+        this.answerBlock = answerBlock;
     }
 }

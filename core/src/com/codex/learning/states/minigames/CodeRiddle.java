@@ -249,13 +249,13 @@ public class CodeRiddle extends State {
         currentBehavior = manager.removeBracket(currentBehavior);
         if(currentBehavior.equals("ENGAGED") || currentBehavior.equals("NEUTRAL") || currentBehavior.equals("BORED")){
             //GIVE FEEDBACK
-            System.out.println(currentBehavior);
-            System.out.println("Congrats");
+//            System.out.println(currentBehavior);
+//            System.out.println("Congrats");
         }
         else{
             //GIVE HINTS
-            System.out.println(currentBehavior);
-            System.out.println("MAG-ARAL KA PA");
+//            System.out.println(currentBehavior);
+//            System.out.println("MAG-ARAL KA PA");
         }
         behavior.clear();
     }

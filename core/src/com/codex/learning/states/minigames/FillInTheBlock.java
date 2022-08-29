@@ -160,6 +160,7 @@ public class FillInTheBlock extends State {
                      if(banishCells.contains(currentCell)) {
                          if (blockHolders[i][j].isInContact()) {
                              jedisaur.dropBlock(blockHolders[i][j]);
+                             System.out.println("dropped" + blockHolders[i][j]);
                          }
                      }
                      currentCell++;
