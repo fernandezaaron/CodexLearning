@@ -24,7 +24,6 @@ import java.util.Random;
 public class CodeOrder extends State {
 
     private Character jedisaur;
-    private NPC jediGrandpa;
     private PlayroomMapS1 playroom;
 
     private Blocks[] answerBlocks;
@@ -100,9 +99,6 @@ public class CodeOrder extends State {
         jedisaur = new Character(manager);
         jedisaur.create(new Vector2(0, 0), new Vector2(1.2f, 1.75f), 1.6f);
 
-        jediGrandpa = new NPC(manager, 1);
-        jediGrandpa.create(new Vector2(-10, 0), new Vector2(1, 1.4f), 0);
-
         if(!manager.isMusicPaused()){
             manager.setMusic(Constants.HOUSE_MUSIC);
             manager.getMusic().play();
@@ -117,49 +113,48 @@ public class CodeOrder extends State {
     @Override
     public void update(float delta) {
         manager.getWorld().step(1/60f,6,2);
-        if(pause.isRunning()){
-                // WILL BE USED, DON'T ERASE
-                currentCell = 0;
-                for(int i = 0; i < minigameContainer.size(); i++) {
-                    if (minigameContainer.get(i) != null) {
-                        blockHolders[i].update(delta);
-                    }
+        if(pause.isRunning()) {
+            // WILL BE USED, DON'T ERASE
+            currentCell = 0;
+            for (int i = 0; i < minigameContainer.size(); i++) {
+                if (minigameContainer.get(i) != null) {
+                    blockHolders[i].update(delta);
                 }
+            }
 
-                //kung gagamitin mo to remove the blocks[i][j].update muna sa taas pero i havent tried pag magkasabay sila naka on for sure dodoble HAHA
-                for(int i=0; i < answerBlocks.length; i++){
-                    if(answerBlocks[i] != null){
-                        answerBlocks[i].update(delta);
-                        if(answerBlocks[i].isInContact()){
-                            jedisaur.carryBlock(answerBlocks[i]);
+            //kung gagamitin mo to remove the blocks[i][j].update muna sa taas pero i havent tried pag magkasabay sila naka on for sure dodoble HAHA
+            for (int i = 0; i < answerBlocks.length; i++) {
+                if (answerBlocks[i] != null) {
+                    answerBlocks[i].update(delta);
+                    if (answerBlocks[i].isInContact()) {
+                        jedisaur.carryBlock(answerBlocks[i]);
 //                            System.out.println("jedisaur carrying ");
-                        }
                     }
                 }
-                // WILL BE USED, DON'T ERASE
+            }
+            // WILL BE USED, DON'T ERASE
 
 
-                // WILL BE USED, DON'T ERASE
-                currentCell = 0;
-                for(int i = 0; i < minigameContainer.size(); i++) {
-                    if (minigameContainer.get(i) != null) {
-                        if (blockHolders[i].isInContact()) {
-                            jedisaur.dropBlock(blockHolders[i]);
-                        }
-                    }
-
-                }
-                // WILL BE USED, DON'T ERASE
-
-                for(int i = 0; i < answerPoolContainer.size();i++) {
-                    if(answerBlocks[i] != null) {
-                        answerBlocks[i].update(delta);
+            // WILL BE USED, DON'T ERASE
+            currentCell = 0;
+            for (int i = 0; i < minigameContainer.size(); i++) {
+                if (minigameContainer.get(i) != null) {
+                    if (blockHolders[i].isInContact()) {
+                        jedisaur.dropBlock(blockHolders[i]);
                     }
                 }
 
-                playroom.exitDoor(jedisaur);
-                jediGrandpa.update(delta);
-                jedisaur.update(delta);
+            }
+            // WILL BE USED, DON'T ERASE
+
+            for (int i = 0; i < answerPoolContainer.size(); i++) {
+                if (answerBlocks[i] != null) {
+                    answerBlocks[i].update(delta);
+                }
+            }
+
+            playroom.exitDoor(jedisaur);
+            jedisaur.update(delta);
 //            pause.update(delta);
         }else{
             if(jedisaur.isMoving()){
@@ -197,7 +192,6 @@ public class CodeOrder extends State {
             }
         }
 
-        jediGrandpa.render(sprite);
         jedisaur.render(sprite);
 
         pause.render(sprite);
@@ -206,7 +200,6 @@ public class CodeOrder extends State {
     @Override
     public void dispose() {
         jedisaur.disposeBody();
-        jediGrandpa.disposeBody();
 
         // WILL BE USED, DON'T ERASE
         for(int i = 0; i < minigameContainer.size(); i++) {
