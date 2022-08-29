@@ -68,6 +68,14 @@ public class ExpertSystem {
         return cookies;
     }
 
+    public int getCookies(int index) {
+        return cookies[index];
+    }
+
+    public void editCookie(int index){
+        cookies[index] = getCurrentCookie();
+    }
+
     public void setCookies(int[] cookies) {
         this.cookies = cookies;
     }

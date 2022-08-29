@@ -459,6 +459,14 @@ public class Character extends Entity {
         }
     }
 
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
     public Blocks getCopyBlock() {
         return copyBlock;
     }

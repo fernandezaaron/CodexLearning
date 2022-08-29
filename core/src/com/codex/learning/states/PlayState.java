@@ -15,6 +15,7 @@ import com.codex.learning.entity.characters.NPC;
 import com.codex.learning.entity.maps.HouseMap;
 import com.codex.learning.entity.maps.PlayroomMapS1;
 import com.codex.learning.entity.maps.SchoolMap;
+import com.codex.learning.states.minigames.Minigame;
 import com.codex.learning.utility.*;
 
 public class PlayState extends State{
@@ -24,23 +25,13 @@ public class PlayState extends State{
     private SchoolMap schoolMap;
     private Computer computer;
     private PlayroomMapS1 playroomMap;
+    private Minigame minigame;
 
     private float timer;
-
-
-    private Blocks[] totalBlocks;
-    private int blockCount;
-    private boolean blockSpawn;
-
-    private Blocks[] blocks;
-    private BlockHolder[] blockHolders;
-    private BlockDispenser[] blockDispensers;
 
     private PauseState pause;
 
     private FuzzyLogic fuzzyLogic;
-
-    private Blocks sample;
 
     private boolean inStartArea, atDoor;
     private TextureRegion door;
@@ -63,23 +54,15 @@ public class PlayState extends State{
 
 
         playroomMap = new PlayroomMapS1(manager, stage);
-
-
         fuzzyLogic = new FuzzyLogic();
 
-        // WILL BE USED, DON'T ERASE
-        blocks = new Blocks[4];
-        blockHolders = new BlockHolder[10];
-        // WILL BE USED, DON'T ERASE
-
-        blockDispensers = new BlockDispenser[2];
-
-        computer = new Computer(manager, fuzzyLogic);
         if(stage >= 1 && stage < 5){
+            computer = new Computer(manager, fuzzyLogic, 1);
             computer.create(new Vector2(-6, 2.8f), new Vector2(0.6f, 0.6f), 0);
         }
         else if(stage >=5 && stage < 12){
-            computer.create(new Vector2(-17, 6.5f), new Vector2(0.6f, 0.6f), 0);
+            computer = new Computer(manager, fuzzyLogic, 2);
+            computer.create(new Vector2(-4, 6.5f), new Vector2(0.6f, 0.6f), 0);
         }
 
 
@@ -89,8 +72,7 @@ public class PlayState extends State{
         jediGrandpa = new NPC(manager, stage);
         jediGrandpa.create(new Vector2(0, 0), new Vector2(1, 1.4f), 0);
 
-        totalBlocks = new Blocks[6];
-        blockCount = 0;
+        minigame = new Minigame(manager, stage, 2, jedisaur);
 
         if(!manager.isMusicPaused()){
             manager.setMusic(Constants.HOUSE_MUSIC);
@@ -105,64 +87,53 @@ public class PlayState extends State{
         inStartArea = true;
         atDoor = false;
 
+
+
     }
 
     @Override
     public void update(float delta) {
         if(!isInStartArea()){
             activeBody(false);
+            minigame.update(delta);
         }else {
             activeBody(true);
+
         }
         manager.getWorld().step(1/60f,6,2);
         if(pause.isRunning()){
             if(!computer.getCodeRiddle().isInComputer()){
                 timer += Gdx.graphics.getDeltaTime();
 
-                manager.checkIfMoving((int) timer, jedisaur);
-                manager.checkBehavior((int) timer, jedisaur.getNumberOfBlockInteraction(), computer.isDone(), fuzzyLogic);
 
-                fuzzyLogic.calculateNumberOfCookies();
-//                System.out.println(fuzzyLogic.getCookies());
-                manager.getExpertSystem().setCurrentCookie(fuzzyLogic.getCookies());
-                // WILL BE USED, DON'T ERASE
-                for(int i = 0; i < 3; i++){
-//                    blockHolders[i].update(delta);
-//                blocks[i].update(delta);
+                if(computer.isDone()){
+                    computer.getCodeRiddle().updateBehavior();
                 }
-//                // WILL BE USED, DON'T ERASE
-//
-//                for(int i = 0; i < 2; i++){
-////                blockDispensers[i].update(delta);
-//                    blockDispensers[i].createBlock(new Vector2(jedisaur.getBody().getPosition().x, jedisaur.getBody().getPosition().y));
-//                }
-////
-//                for(int i = 0; i < 2; i++) {
-//                    if(blockDispensers[i].isCloned()){
-//                        for (Blocks b : blockDispensers[i].getBlocks()) {
-//                            if (b != null) {
-//                                b.update(delta);
-//                                if(b.isInContact()){
-//                                    jedisaur.carryBlock(b);
-//                                }
-//                            }
-//                            else{
-//                                continue;
-//                            }
-//                        }
-//                    }
-//                }
 
-                // WILL BE USED, DON'T ERASE
-//                for(int i = 0; i < 10; i++){
-////                if(blocks[i].isInContact()){
-////                    jedisaur.carryBlock(blocks[i]);
-////                }
-//                    if(blockHolders[i].isInContact()){
-//                        jedisaur.dropBlock(blockHolders[i]);
-//                    }
-//                }
-                // WILL BE USED, DON'T ERASE
+                // CHECK THE BEHAVIOR IN STATE
+                manager.checkIfMoving(jedisaur);
+                manager.updateBehavior((int) timer);
+//                manager.checkBehavior((int) timer, jedisaur.getNumberOfBlockInteraction(), computer.isDone(), fuzzyLogic);
+
+                // if(npc.isDone()){
+                //Use to calculate number of cookies
+                //System.out.println(fuzzyLogic.getCookies());
+
+//                manager.getExpertSystem().setCurrentCookie(fuzzyLogic.calculateFuzzy(
+//                  computer.getCodeRiddle().getFuzzyLogic().getNumberOfErrors(),
+//                  computer.getCodeRiddle().getFuzzyLogic().getTimeConsumptions() + timer,);
+
+                // Update the number of cookie to write in the file
+//                manager.getExpertSystem().editCookie(stage - 1);
+                // Update the cookies in the stage select state
+//                manager.getExpertSystem().writeFile(manager.getExpertSystem().getCookies());
+
+                // Write the behavior in a file
+
+//              }
+
+
+
 
                 exitDoor(jedisaur);
                 jediGrandpa.update(delta);
@@ -208,7 +179,7 @@ public class PlayState extends State{
 
         if(isInStartArea()){
             if(stage >= 1 && stage < 5){
-                house.render(sprite);
+//                house.render(sprite);
             }
             else if(stage >= 5 && stage < 12){
                 schoolMap.render(sprite);
@@ -226,7 +197,9 @@ public class PlayState extends State{
 
             }
         }else {
-            playroomMap.render(sprite);
+//            playroomMap.render(sprite);
+//            minigame.setMiniGame();
+            minigame.render(sprite);
             jedisaur.render(sprite);
         }
 
@@ -234,35 +207,6 @@ public class PlayState extends State{
         sprite.setProjectionMatrix(manager.getCamera().combined);
         checkDoor(sprite, atDoor);
         sprite.end();
-
-
-//        for(int i = 0; i < 10; i++){
-//            blockHolders[i].render(sprite);
-//        }
-////
-//        for(int i = 0; i < 2; i++){
-//            blockDispensers[i].render(sprite);
-//            if(blockDispensers[i].isCloned()){
-//                for (Blocks b : blockDispensers[i].getBlocks()) {
-//                    if (b != null) {
-//                        b.render(sprite);
-//                    }
-//                    else{
-//                        continue;
-//                    }
-//                }
-//            }
-//        }
-
-
-//        for(int i = 0; i < 3; i++){
-//            blocks[i].render(sprite);
-//        }
-//
-
-
-
-//
         pause.render(sprite);
 
     }
@@ -273,26 +217,6 @@ public class PlayState extends State{
         jediGrandpa.disposeBody();
         computer.disposeBody();
 
-        // WILL BE USED, DON'T ERASE
-        for(int i = 0; i < 3; i++){
-            blockHolders[i].disposeBody();
-//            blocks[i].disposeBody();
-        }
-        // WILL BE USED, DON'T ERASE
-
-        for(int i = 0; i < 2; i++){
-            blockDispensers[i].disposeBody();
-            if(blockDispensers[i].isCloned()){
-                for (Blocks b : blockDispensers[i].getBlocks()) {
-                    if (b != null) {
-                        b.disposeBody();
-                    }
-                    else{
-                        continue;
-                    }
-                }
-            }
-        }
         if(stage >= 1 && stage < 5){
             house.dispose();
         }
@@ -332,10 +256,17 @@ public class PlayState extends State{
     }
 
     public void enterPlayRoom(Character character){
-        if(character.getBody().getPosition().x > 14f && character.getBody().getPosition().y >-4 && character.getBody().getPosition().y < 2.5f){
+        if(character.getBody().getPosition().x > 14f && character.getBody().getPosition().y >-4 && character.getBody().getPosition().y < 2.5f && isInStartArea()){
             if(computer.isDone()){
                 setInStartArea(false);
-                house.setPlayroomActive(false);
+                if(stage >= 1 && stage < 5){
+                    house.setPlayroomActive(false);
+                }
+                else if(stage >= 5 && stage < 12){
+                    schoolMap.setPlayroomActive(false);
+                }
+
+                minigame.setMiniGame();
                 jedisaur.getBody().setTransform(-20, 1, 0);
                 jedisaur.getBody().getPosition().set(-20, 1);
             }
@@ -348,6 +279,7 @@ public class PlayState extends State{
     private void exitPlayroom(Character character){
         if(!inStartArea && character.getBody().getPosition().x < -23 && character.getBody().getPosition().y > -4 && character.getBody().getPosition().y < 2.5f){
             setInStartArea(true);
+            minigame.dispose();
             jedisaur.getBody().setTransform(14, 1, 0);
             jedisaur.getBody().getPosition().set(14, 1);
         }
@@ -360,6 +292,4 @@ public class PlayState extends State{
     public void setInStartArea(boolean inStartArea) {
         this.inStartArea = inStartArea;
     }
-
-
 }

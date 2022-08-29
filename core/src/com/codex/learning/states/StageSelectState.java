@@ -5,11 +5,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector3;
+
 import com.codex.learning.states.minigames.CodeOrder;
+
 import com.codex.learning.states.minigames.FillInTheBlock;
 import com.codex.learning.states.minigames.MysteryCode;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
+import com.codex.learning.utility.StageSelector;
 
 //This class is used to have a response in the circles in stage select stage.
 public class StageSelectState extends State{
@@ -20,19 +23,27 @@ public class StageSelectState extends State{
     private Circle[] stages;
     private Settings settings;
 
-    private boolean zeroCookie;
-    private boolean[] allowToPlay;
-    private int[] numberOfCookies;
+    private StageSelector[] stageSelector;
+    private StageSelector ss;
 
+    private boolean zeroCookie;
 
     public StageSelectState(Manager manager){
         super(manager);
         stages = new Circle[17];
 
+        stageSelector = new StageSelector[17];
+
         zeroCookie = false;
         currentCookie = new TextureRegion[17];
-        allowToPlay = new boolean[17];
-        numberOfCookies = manager.getExpertSystem().getCookies();
+
+        for(int i = 0; i < stages.length; i++){
+            stageSelector[i] = new StageSelector();
+            stageSelector[i].setNumberOfCookies(manager.getExpertSystem().getCookies(i));
+        }
+
+
+
 
 
         orangeCircle = new TextureRegion(manager.getUtility(), Constants.ORANGE_CIRCLE_X, Constants.ORANGE_CIRCLE_Y, Constants.ORANGE_CIRCLE_R, Constants.ORANGE_CIRCLE_R);
@@ -110,24 +121,24 @@ public class StageSelectState extends State{
 
     public void drawCookies(SpriteBatch sprite){
         for(int i = 0; i < stages.length; i++){
-            if(numberOfCookies[i] == 0){
+            if(stageSelector[i].getNumberOfCookies() == 0){
                 currentCookie[i] = noCookie;
                 if(!zeroCookie){
-                    allowToPlay[i] = true;
+                    stageSelector[i].setAllowToPlay(true);
                     zeroCookie = true;
                 }
             }
-            else if(numberOfCookies[i] == 1){
+            else if(stageSelector[i].getNumberOfCookies() == 1){
                 currentCookie[i] = oneCookie;
-                allowToPlay[i] = true;
+                stageSelector[i].setAllowToPlay(true);
             }
-            else if(numberOfCookies[i] == 2){
+            else if(stageSelector[i].getNumberOfCookies() == 2){
                 currentCookie[i] = twoCookies;
-                allowToPlay[i] = true;
+                stageSelector[i].setAllowToPlay(true);
             }
-            else if(numberOfCookies[i] == 3){
+            else if(stageSelector[i].getNumberOfCookies() == 3){
                 currentCookie[i] = threeCookies;
-                allowToPlay[i] = true;
+                stageSelector[i].setAllowToPlay(true);
             }
             sprite.draw(currentCookie[i], stages[i].x - Constants.ORANGE_CIRCLE_R / 2 - 13,
                     (stages[i].y - Constants.ORANGE_CIRCLE_R / 2) + 75, Constants.COOKIES_WIDTH, Constants.COOKIES_HEIGHT);
@@ -140,11 +151,15 @@ public class StageSelectState extends State{
 
             // LATEST ZERO COOKIES MUST BE PLAYABLE
             for(int i = 0; i < stages.length; i++){
-                if(allowToPlay[i]){
+
+                if(stageSelector[i].isAllowToPlay()){
                     if(stages[i].contains(touchpoint.x, touchpoint.y)){
                         manager.getMusic().stop();
-                        manager.set(new MysteryCode(manager));
-                        System.out.println("You clicked at stage " + (i + 1)  + "!!");
+                        stageSelector[i].setStageNumber(i+1);
+                        manager.set(new PlayState(manager, stageSelector[i].getStageNumber()));
+//                        manager.set(new FillInTheBlock(manager));
+                        System.out.println("You clicked at stage " + stageSelector[i].getStageNumber()  + "!!");
+
 
                         // ITO COMMENT OUT TO COMPARE
 //                    manager.getReader().getQuestions("Easy","Stage 1","");
@@ -162,7 +177,7 @@ public class StageSelectState extends State{
                       stages[i].y - Constants.ORANGE_CIRCLE_R / 2, Constants.ORANGE_CIRCLE_R, Constants.ORANGE_CIRCLE_R);
 //            sprite.draw(orangeCircle, (manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f) + stages[i].x - Constants.ORANGE_CIRCLE_R / 2,
 //                    (manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f) +  stages[i].y - Constants.ORANGE_CIRCLE_R / 2, Constants.ORANGE_CIRCLE_R, Constants.ORANGE_CIRCLE_R);
-            if(allowToPlay[i]) {
+            if(stageSelector[i].isAllowToPlay()) {
                 if (stages[i].contains(touchpoint.x, touchpoint.y)) {
                     sprite.draw(grayCircle, stages[i].x - Constants.GRAY_CIRCLE_R / 2,
                             stages[i].y - Constants.GRAY_CIRCLE_R / 2, Constants.GRAY_CIRCLE_R, Constants.GRAY_CIRCLE_R);

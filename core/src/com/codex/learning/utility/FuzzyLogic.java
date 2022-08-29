@@ -42,6 +42,27 @@ public class FuzzyLogic {
         correctOutputRules = "";
         numberOfAttemptsRules = "";
     }
+
+    public int calculateFuzzy(int numberOfErrors, int timeConsumptions, int correctOutput, int numberOfAttempts){
+        setNumberOfErrors(numberOfErrors);
+        // Add Time Consumption of Computer, Playstate, and Last Minigame
+        setTimeConsumptions(timeConsumptions);
+        // Get the Fuzzy of the Last Minigame
+        setCorrectOutput(correctOutput);
+        setNumberOfAttempts(numberOfAttempts);
+
+        // Fuzzify All Value
+        fuzzyNumberOfError();
+        fuzzyTimeConsumption();
+        fuzzyCorrectOutput();
+        fuzzyNumberOfAttempt();
+
+        // Calculate the number of cookies
+        calculateNumberOfCookies();
+
+        return getCookies();
+    }
+
     public void fuzzyNumberOfError(){
         int a = 0;
         int b = (int) (getTotalQuestions() * .30);
@@ -136,25 +157,25 @@ public class FuzzyLogic {
         setFuzzyNumberOfAttempts(Math.max(Math.min((getFuzzyNumberOfAttempts() - a)/(b - a),
                 (c - getFuzzyNumberOfAttempts())/(c - b)), 0));
 
-         if(getNumberOfAttempts() <= a){
-             setNumberOfAttemptsRules("LOW");
-             setPercentNumberOfAttempts(100);
-         }
-         else if(getNumberOfAttempts() >= a && getNumberOfAttempts() <= b){
-             setNumberOfAttemptsRules("MEDIUM");
-             setPercentNumberOfAttempts(75);
-         }
-         else if(getNumberOfAttempts() >= b && getNumberOfAttempts() <= c){
-             setNumberOfAttemptsRules("HIGH");
-             setPercentNumberOfAttempts(50);
-         }
-         else if(getNumberOfAttempts() >= c){
-             setNumberOfAttemptsRules("HIGH");
-             setPercentNumberOfAttempts(25);
-         }
-         else{
-             setNumberOfAttemptsRules("");
-         }
+        if(getNumberOfAttempts() <= a){
+            setNumberOfAttemptsRules("LOW");
+            setPercentNumberOfAttempts(100);
+        }
+        else if(getNumberOfAttempts() >= a && getNumberOfAttempts() <= b){
+            setNumberOfAttemptsRules("MEDIUM");
+            setPercentNumberOfAttempts(75);
+        }
+        else if(getNumberOfAttempts() >= b && getNumberOfAttempts() <= c){
+            setNumberOfAttemptsRules("HIGH");
+            setPercentNumberOfAttempts(50);
+        }
+        else if(getNumberOfAttempts() >= c){
+            setNumberOfAttemptsRules("HIGH");
+            setPercentNumberOfAttempts(25);
+        }
+        else{
+            setNumberOfAttemptsRules("");
+        }
     }
 
     public void calculateNumberOfCookies(){

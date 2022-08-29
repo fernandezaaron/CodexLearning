@@ -1,13 +1,8 @@
 package com.codex.learning.states.minigames;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -19,51 +14,38 @@ import com.codex.learning.states.State;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.FuzzyLogic;
 import com.codex.learning.utility.Manager;
+import com.codex.learning.utility.decisiontree.DecisionTree;
 
-import org.apache.poi.ss.formula.functions.T;
 
-
-import java.awt.*;
 import java.util.ArrayList;
 
 public class CodeRiddle extends State {
-
-    private TextureRegion screen;
-
-    private TextureRegion answerScreen, passedScoreScreen;
-    private TextureRegion[] choicesScreen;
-    private TextureAtlas atlas;
-    private Skin skin;
-    private Stage stage;
     private ScrollPane scrollPane;
     private Label text;
-    private Table table, scrollTable;
+    private Table table, optionsTable;
     private Group group;
     private List.ListStyle listStyle;
     private com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle labelStyle;
 
-
-    private Rectangle[] choicesBounds;
-    private Vector3 touchPoint;
     private TextButton[] textButtons;
 
     private ArrayList<String> questions;
     private ArrayList<ArrayList<String>> options;
-
-
 
     private boolean inComputer, isDone;
     private int currentQuestion;
     private int error;
 
     private FuzzyLogic fuzzyLogic;
+    private ArrayList<String> behavior;
 
     private float timer;
 
-    public CodeRiddle(Manager manager, FuzzyLogic fuzzyLogic) {
+    public CodeRiddle(Manager manager, int stage) {
         super(manager);
 
-        this.fuzzyLogic = fuzzyLogic;
+        fuzzyLogic = new FuzzyLogic();
+        behavior = new ArrayList<>();
         timer = 0;
         error = 0;
 
@@ -72,13 +54,13 @@ public class CodeRiddle extends State {
 //        skin.addRegions(atlas);
 //        manager.getSkin().load(Constants.JSON_DIALOG_BOX_SKIN_PATH);
         table = new Table();
-        scrollTable = new Table();
+        optionsTable = new Table();
         group = new Group();
 
         textButtons = new TextButton[4];
 
-        scrollTable.setSkin(manager.getSkin());
-        scrollTable.setBackground("optionScreen");
+        optionsTable.setSkin(manager.getSkin());
+        optionsTable.setBackground("optionScreen");
 
         table.setSkin(manager.getSkin());
         table.setBackground("PCSCREEN");
@@ -106,7 +88,8 @@ public class CodeRiddle extends State {
 
         inComputer = false;
         isDone = false;
-        getAQuestion("Stage 1", "Novice");
+        getAQuestion(String.valueOf(stage), "Novice");
+        System.out.println(stage + " this is the stage");
         currentQuestion = 0;
     }
 
@@ -138,21 +121,21 @@ public class CodeRiddle extends State {
     public void castToTable(){
 
         if(isInComputer()){
-
             table.setFillParent(true);
             table.defaults().size(500, 150);
             table.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM - 10);
+//            text.setDebug(true);
 
-            text.setWrap(true);
            if(currentQuestion == manager.getQuestionnaire().getQuestionLimit()){
-               System.out.println("done na");
-               text.setText("TAPOS KANA LODS");
+               text.setWrap(true);
+               text.setText("Press \"F\" t to close the Computer");
 
                for(int j=0; j<4; j++){
                    textButtons[j].setText(" ");
                }
 
            }else{
+               text.setWrap(true);
                if(text.getText().contains(questions.get(currentQuestion))){
                    System.out.println("oh meron nayan lods");
                }else{
@@ -161,8 +144,8 @@ public class CodeRiddle extends State {
 
                    for(int i=0; i<4; i++){
                        textButtons[i] = new TextButton(options.get(currentQuestion).get(i), manager.getSkin());
-                       scrollTable.add(textButtons[i]).grow().padLeft(10f).center();
-                       scrollTable.row();
+                       optionsTable.add(textButtons[i]).grow().padLeft(10f).center();
+                       optionsTable.row();
                    }
 
                    for(int i=0; i<4; i++){
@@ -196,13 +179,13 @@ public class CodeRiddle extends State {
                                    }
                                }else{
                                    fuzzyLogic.setNumberOfErrors(error);
-                                   fuzzyLogic.setTimeConsumptions(timer);
+                                   fuzzyLogic.setTimeConsumptions(fuzzyLogic.getTimeConsumptions() + timer);
 
                                    fuzzyLogic.fuzzyNumberOfError();
                                    fuzzyLogic.fuzzyTimeConsumption();
 
 
-                                   text.setText("Your score is: \n" + (manager.getQuestionnaire().getQuestionLimit()-error) + "\n");
+                                   text.setText("Your score is: \n" + (manager.getQuestionnaire().getQuestionLimit()-error) + "\n PRESS F TO CLOSE");
                                    setDone(true);
                                    for(int j=0; j<4; j++){
                                        textButtons[j].setText(" ");
@@ -224,11 +207,11 @@ public class CodeRiddle extends State {
                scrollPane.setSmoothScrolling(true);
                table.add(scrollPane).height(150).padTop(25f);
                table.row();
-               table.add(scrollTable).height(200).padBottom(15f);
+               table.add(optionsTable).height(200).padBottom(15f);
                table.pack();
            }
 
-
+//           table.setDebug(true);
             manager.getStage().addActor(table);
         }
     }
@@ -236,7 +219,7 @@ public class CodeRiddle extends State {
 
     @Override
     public void dispose() {
-
+        manager.getQuestionnaire().dispose();
     }
 
     public void getAQuestion(String stage, String expertiseLevel){
@@ -244,9 +227,52 @@ public class CodeRiddle extends State {
 
         questions = manager.getQuestionnaire().getQuestions();
 
+
         options = manager.getQuestionnaire().getOptions();
 
         fuzzyLogic.setTotalQuestions(manager.getQuestionnaire().getQuestionLimit());
+    }
+
+
+
+    // Time Consumption, Number of Error
+    public void updateBehavior(){
+        String currentBehavior = "";
+        String time = checkTimeConsumption((int) timer);
+        behavior.add("");
+        behavior.add(time);
+        behavior.add("");
+        behavior.add(fuzzyLogic.getNumberOfErrorsRules());
+        behavior.add("");
+        currentBehavior = String.valueOf(manager.getDecisionTree().classify(behavior, manager.getDecisionTree().getTree()));
+
+        currentBehavior = manager.removeBracket(currentBehavior);
+        if(currentBehavior.equals("ENGAGED") || currentBehavior.equals("NEUTRAL") || currentBehavior.equals("BORED")){
+            //GIVE FEEDBACK
+            System.out.println(currentBehavior);
+            System.out.println("Congrats");
+        }
+        else{
+            //GIVE HINTS
+            System.out.println(currentBehavior);
+            System.out.println("MAG-ARAL KA PA");
+        }
+        behavior.clear();
+    }
+
+    public String checkTimeConsumption(int timer){
+        if(timer <= 90){
+            return "LOW";
+        }
+        else if(timer <= 180){
+            return "MEDIUM";
+        }
+        else if(timer <= 270){
+            return "HIGH";
+        }
+        else{
+            return "";
+        }
     }
 
 
@@ -264,5 +290,13 @@ public class CodeRiddle extends State {
 
     public void setDone(boolean done) {
         isDone = done;
+    }
+
+    public FuzzyLogic getFuzzyLogic() {
+        return fuzzyLogic;
+    }
+
+    public void setFuzzyLogic(FuzzyLogic fuzzyLogic) {
+        this.fuzzyLogic = fuzzyLogic;
     }
 }

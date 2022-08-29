@@ -153,8 +153,6 @@ public class CodeOrder extends State {
                 }
             }
 
-            playroom.exitDoor(jedisaur);
-            jedisaur.update(delta);
 //            pause.update(delta);
         }else{
             if(jedisaur.isMoving()){

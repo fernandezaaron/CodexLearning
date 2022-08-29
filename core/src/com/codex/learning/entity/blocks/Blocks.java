@@ -134,6 +134,10 @@ public class Blocks extends Entity {
     public void setDupliSize(Vector2 dupliSize) {
         this.dupliSize = dupliSize;
     }
+
+    public void setActive(boolean active){
+        body.setActive(active);
+    }
 }
 
 //package com.codex.learning.entity.blocks;

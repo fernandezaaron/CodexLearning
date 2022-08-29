@@ -14,6 +14,7 @@ import com.codex.learning.entity.characters.NPC;
 
 //This class will allow the player to have collision detection
 public class Contact implements ContactListener {
+    private int numberOfCollision = 0;
     @Override
     public void beginContact(com.badlogic.gdx.physics.box2d.Contact contact) {
         Fixture fa = contact.getFixtureA();
@@ -38,24 +39,30 @@ public class Contact implements ContactListener {
                 blocks = (Blocks) fb.getUserData();
             }
 
+            System.out.println(blocks.getBody().getUserData());
+
+            numberOfCollision++;
+            System.out.println(numberOfCollision);
+
+
             blocks.setInContact(true);
             if (jedisaur.isCarrying()) {
 
                 System.out.println("Block yes");
 
-                if (blocks.isPreDefinedContact()) {
+                if (blocks.isPreDefinedContact() || numberOfCollision > 1) {
                     blocks.setInContact(false);
-
                     jedisaur.setPickUpAble(false);
                 } else {
                     blocks.setInContact(true);
                     if (jedisaur.isCarrying()) {
                         jedisaur.setPickUpAble(false);
+
                     } else {
                         jedisaur.setPickUpAble(true);
                     }
-                }
 
+                }
             }
         }
 
@@ -134,6 +141,25 @@ public class Contact implements ContactListener {
                 npc = (NPC) fb.getUserData();
             }
             npc.setInContact(true);
+            if(npc.isInContact()){
+                switch (jedisaur.getDirection()){
+                    case "north":
+                        npc.setDirection("south");
+                        break;
+                    case "south":
+                        npc.setDirection("north");
+                        break;
+                    case "east":
+                        npc.setDirection("west");
+                        break;
+                    case "west":
+                        npc.setDirection("east");
+                        break;
+                }
+            }
+            else{
+                npc.setDirection("south");
+            }
             System.out.println("NPC CONTACT");
         }
         Gdx.app.log("BEGIN CONTACT", "");

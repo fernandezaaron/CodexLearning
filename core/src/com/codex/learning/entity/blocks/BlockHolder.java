@@ -62,6 +62,7 @@ public class BlockHolder extends Entity {
 
         highlightBlock = new ShapeRenderer();
         highlightBlock.translate(this.size.x + (Constants.PPM / 5f), - (this.size.y * Constants.PPM) / 9.2f, 0);
+
     }
 
     @Override
@@ -154,6 +155,11 @@ public class BlockHolder extends Entity {
     public void setCopyBlock(Blocks copyBlock) {
         this.copyBlock = copyBlock;
     }
+
+    public void setActive(boolean setActive){
+        body.setActive(setActive);
+    }
+
 }
 
 
