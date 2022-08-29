@@ -1,13 +1,15 @@
 package com.codex.learning.utility;
 
 public class StageSelector {
-    int numberOfCookies;
-    boolean allowToPlay;
     int stageNumber;
+    int numberOfCookies;
+    String stageTopic;
+    boolean allowToPlay;
 
     public StageSelector(){
         numberOfCookies = 0;
         allowToPlay = false;
+
     }
 
 
@@ -17,6 +19,14 @@ public class StageSelector {
 
     public void setStageNumber(int stageNumber) {
         this.stageNumber = stageNumber;
+    }
+
+    public String getStageTopic() {
+        return stageTopic;
+    }
+
+    public void setStageTopic(String stageTopic) {
+        this.stageTopic = stageTopic;
     }
 
     public int getNumberOfCookies() {

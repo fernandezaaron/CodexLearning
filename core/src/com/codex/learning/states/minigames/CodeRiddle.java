@@ -128,8 +128,7 @@ public class CodeRiddle extends State {
 
            if(currentQuestion == manager.getQuestionnaire().getQuestionLimit()){
                text.setWrap(true);
-               System.out.println("done na");
-               text.setText("TAPOS KANA LODS");
+               text.setText("Press \"F\" t to close the Computer");
 
                for(int j=0; j<4; j++){
                    textButtons[j].setText(" ");
@@ -291,5 +290,13 @@ public class CodeRiddle extends State {
 
     public void setDone(boolean done) {
         isDone = done;
+    }
+
+    public FuzzyLogic getFuzzyLogic() {
+        return fuzzyLogic;
+    }
+
+    public void setFuzzyLogic(FuzzyLogic fuzzyLogic) {
+        this.fuzzyLogic = fuzzyLogic;
     }
 }

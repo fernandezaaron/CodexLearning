@@ -22,6 +22,7 @@ import com.codex.learning.utility.decisiontree.Behavior;
 import com.codex.learning.utility.decisiontree.DecisionTree;
 import com.codex.learning.utility.filereader.Questionnaire;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Stack;
@@ -271,7 +272,44 @@ public class Manager {
 
         return stringBuilder.toString();
     }
+    public ArrayList<ArrayList<String>> readDataFirst(){
+        try {
+            ArrayList<ArrayList<String>> data = new ArrayList<>();
+            FileReader fileReader = new FileReader(Constants.DATA_GATHERED_FILE_PATH);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            boolean header = true;
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] word = line.split(",");
+                data.add(new ArrayList<>(Arrays.asList(word)));
+            }
+            bufferedReader.close();
+            fileReader.close();
+            return data;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
+    public void writeDataGathering(int stageNumber, String stageTopic, int numberOfCookie){
+        try {
+            File file = new File(Constants.DATA_GATHERED_FILE_PATH);
+            if (file.createNewFile()) {
+                System.out.println("File created: " + file.getName());
+            }
+            else {
+                ArrayList<ArrayList<String>> data = readDataFirst();
+                FileWriter fileWriter = new FileWriter(Constants.DATA_GATHERED_FILE_PATH, false);
+
+                
+                fileWriter.close();
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void updateBehavior(int timer){
         String currentBehavior = "";
         String movement = (isMoving()) ? "YES":"NO";
