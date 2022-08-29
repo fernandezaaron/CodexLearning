@@ -107,9 +107,25 @@ public class PlayState extends State{
                 manager.updateBehavior((int) timer);
 //                manager.checkBehavior((int) timer, jedisaur.getNumberOfBlockInteraction(), computer.isDone(), fuzzyLogic);
 
-//                fuzzyLogic.calculateNumberOfCookies();
-//                System.out.println(fuzzyLogic.getCookies());
-//                manager.getExpertSystem().setCurrentCookie(fuzzyLogic.getCookies());
+                // if(npc.isDone()){
+                //Use to calculate number of cookies
+                //System.out.println(fuzzyLogic.getCookies());
+
+//                manager.getExpertSystem().setCurrentCookie(fuzzyLogic.calculateFuzzy(
+//                  computer.getCodeRiddle().getFuzzyLogic().getNumberOfErrors(),
+//                  computer.getCodeRiddle().getFuzzyLogic().getTimeConsumptions() + timer,);
+
+                // Update the number of cookie to write in the file
+//                manager.getExpertSystem().editCookie(stage - 1);
+                // Update the cookies in the stage select state
+//                manager.getExpertSystem().writeFile(manager.getExpertSystem().getCookies());
+
+                // Write the behavior in a file
+
+//              }
+
+
+
 
                 exitDoor(jedisaur);
                 jediGrandpa.update(delta);
