@@ -141,7 +141,6 @@ public class MysteryCode extends State {
         jedisaur = new Character(manager);
         jedisaur.create(new Vector2(0, 0), new Vector2(1.2f, 1.75f), 1.6f);
 
-
         if(!manager.isMusicPaused()){
             manager.setMusic(Constants.HOUSE_MUSIC);
             manager.getMusic().play();
