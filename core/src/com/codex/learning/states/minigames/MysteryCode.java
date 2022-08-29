@@ -175,6 +175,7 @@ public class MysteryCode extends State {
                         if (banishCells.contains(currentCell)) {
                             if (blockHolders[i][j].isInContact()) {
                                 jedisaur.dropBlock(blockHolders[i][j]);
+                                System.out.println("dropped to: " + blockHolders[i][j]);
                             }
                         }
                         currentCell++;
