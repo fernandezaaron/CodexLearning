@@ -38,9 +38,9 @@ public class MysteryCode extends State {
     private Random randomizer;
     private ArrayList<Integer> banishCells;
     private ArrayList<String> answerPoolContainer;
-    private int currentCell;
+    private int currentCell, stage;
 
-    public MysteryCode(Manager manager) {
+    public MysteryCode(Manager manager, int stage, Character jedisaur) {
         super(manager);
         pause = new PauseState(manager);
         playroom = new PlayroomMapS1(manager, 1);
@@ -53,13 +53,9 @@ public class MysteryCode extends State {
         blockHolders = new BlockHolder[20][20];
         // WILL BE USED, DON'T ERASE
 
-<<<<<<< HEAD
-//        computer = new Computer(manager);
-//        computer.create(new Vector2(-18, 2.8f), new Vector2(0.6f, 0.6f), 0);
+        this.stage = stage;
 
-=======
->>>>>>> jy_test
-        getAMinigame("Stage 1", "Poor");
+        getAMinigame(String.valueOf(stage), "Poor");
 
         for(int i = 0; i <= 10; i++) {
             banishCells.add(randomizer.nextInt(minigameContainerLimit - 1) + 1);
@@ -76,7 +72,6 @@ public class MysteryCode extends State {
                         blockHolders[i][j] = new BlockHolder(manager, "\"" + minigameContainer.get(i).get(j) + "\"");
                         if (currentStringLength <= 3) {
                             blockHolders[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.5f), Constants.BLOCK_HOLDER_HEIGHT), 0);
-
                         }
                         else {
                             blockHolders[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.23f), Constants.BLOCK_HOLDER_HEIGHT), 0);
@@ -143,34 +138,19 @@ public class MysteryCode extends State {
             AnsPoolY -= 2.5;
         }
 
-        jedisaur = new Character(manager);
-        jedisaur.create(new Vector2(0, 0), new Vector2(1.2f, 1.75f), 1.6f);
+        this.jedisaur = jedisaur;
 
-<<<<<<< HEAD
-//        jediGrandpa = new NPC(manager);
-//        jediGrandpa.create(new Vector2(-10, 0), new Vector2(1, 1.4f), 0);
-=======
->>>>>>> jy_test
 
-        if(!manager.isMusicPaused()){
-            manager.setMusic(Constants.HOUSE_MUSIC);
-            manager.getMusic().play();
-            manager.getMusic().setLooping(true);
-        }else {
-            manager.setMusic(Constants.HOUSE_MUSIC);
-        }
     }
 
     @Override
     public void update(float delta) {
-        manager.getWorld().step(1/60f,6,2);
-        if(pause.isRunning()){
             // WILL BE USED, DON'T ERASE
             currentCell = 0;
-            for(int i = 0; i < minigameContainer.size(); i++) {
+            for (int i = 0; i < minigameContainer.size(); i++) {
                 for (int j = 0; j < minigameContainer.get(i).size(); j++) {
                     if (minigameContainer.get(i).get(j) != null) {
-                        if(banishCells.contains(currentCell))
+                        if (banishCells.contains(currentCell))
                             blockHolders[i][j].update(delta);
                         else
                             questionBlocks[i][j].update(delta);
@@ -179,21 +159,20 @@ public class MysteryCode extends State {
                 }
             }
             //kung gagamitin mo to remove the blocks[i][j].update muna sa taas pero i havent tried pag magkasabay sila naka on for sure dodoble HAHA
-            for(int i=0; i < answerBlocks.length; i++){
-                if(answerBlocks[i] != null){
+            for (int i = 0; i < answerBlocks.length; i++) {
+                if (answerBlocks[i] != null) {
                     answerBlocks[i].update(delta);
-                    if(answerBlocks[i].isInContact()){
+                    if (answerBlocks[i].isInContact()) {
                         jedisaur.carryBlock(answerBlocks[i]);
                     }
                 }
             }
             // WILL BE USED, DON'T ERASE
-            // WILL BE USED, DON'T ERASE
             currentCell = 0;
-            for(int i = 0; i < minigameContainer.size(); i++) {
+            for (int i = 0; i < minigameContainer.size(); i++) {
                 for (int j = 0; j < minigameContainer.get(i).size(); j++) {
                     if (minigameContainer.get(i).get(j) != null) {
-                        if(banishCells.contains(currentCell)) {
+                        if (banishCells.contains(currentCell)) {
                             if (blockHolders[i][j].isInContact()) {
                                 jedisaur.dropBlock(blockHolders[i][j]);
                             }
@@ -201,45 +180,23 @@ public class MysteryCode extends State {
                         currentCell++;
                     }
                 }
-<<<<<<< HEAD
-                // WILL BE USED, DON'T ERASE
-
-                for(int i = 0; i < answerPoolContainer.size();i++) {
-                    if(answerBlocks[i] != null) {
-                        answerBlocks[i].update(delta);
-                    }
-                }
+            }
 
 
-                jediGrandpa.update(delta);
-                jedisaur.update(delta);
-                computer.update(delta);
-//            pause.update(delta);
-=======
->>>>>>> jy_test
-            }
-            // WILL BE USED, DON'T ERASE
-            for(int i = 0; i < answerPoolContainer.size();i++) {
-                if(answerBlocks[i] != null) {
-                    answerBlocks[i].update(delta);
-                }
-            }
-            playroom.exitDoor(jedisaur);
-            jedisaur.update(delta);
-        }else{
-            if(jedisaur.isMoving()){
-                jedisaur.setMoving(false);
-                jedisaur.update(delta);
-                jedisaur.getBody().setLinearVelocity(0,0);
-            }
+             // WILL BE USED, DON'T ERASE
+             for (int i = 0; i < answerPoolContainer.size(); i++) {
+                 if (answerBlocks[i] != null) {
+                     answerBlocks[i].update(delta);
+                 }
+             }
+
+
         }
-    }
+
 
     @Override
     public void render(SpriteBatch sprite) {
         sprite.enableBlending();
-        sprite.setProjectionMatrix(manager.getCamera().combined);
-
         manager.getCamera().update();
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
@@ -267,27 +224,31 @@ public class MysteryCode extends State {
             }
         }
 
-        jedisaur.render(sprite);
-
-        pause.render(sprite);
     }
 
     @Override
     public void dispose() {
-        jedisaur.disposeBody();
 
         // WILL BE USED, DON'T ERASE
+
+        currentCell = 0;
         for(int i = 0; i < minigameContainer.size(); i++) {
             for (int j = 0; j < minigameContainer.get(i).size(); j++) {
                 if (minigameContainer.get(i).get(j) != null) {
-                    blockHolders[i][j].disposeBody();
-                    questionBlocks[i][j].disposeBody();
+                    if(banishCells.contains(currentCell)) {
+                        blockHolders[i][j].disposeBody();
+                    }
+                    else
+                        questionBlocks[i][j].disposeBody();
+                    currentCell++;
                 }
             }
         }
 
         for(int i = 0; i < answerPoolContainer.size(); i++) {
-            answerBlocks[i].disposeBody();
+            if(answerBlocks[i] != null) {
+                answerBlocks[i].disposeBody();
+            }
         }
         // WILL BE USED, DON'T ERASE
         playroom.dispose();

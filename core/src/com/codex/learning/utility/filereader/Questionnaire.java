@@ -186,12 +186,7 @@ public class Questionnaire extends DatabaseReader {
 
         difficulty = levels.get(randomizer.nextInt(levels.size()));
 
-<<<<<<< HEAD
-        System.out.println("QUESTION LIMIT - " + questionLimit);
 
-        System.out.println(question);
-=======
->>>>>>> jy_test
         while(question == null) {
             difficulty = levels.get(randomizer.nextInt(levels.size()));
 //            System.out.println("am i here");

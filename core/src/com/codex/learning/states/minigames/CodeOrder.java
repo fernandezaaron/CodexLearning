@@ -57,12 +57,6 @@ public class CodeOrder extends State {
         answerPoolContainer = new ArrayList<String>();
         // WILL BE USED, DON'T ERASE
 
-<<<<<<< HEAD
-//        computer = new Computer(manager);
-//        computer.create(new Vector2(-18, 2.8f), new Vector2(0.6f, 0.6f), 0);
-
-=======
->>>>>>> jy_test
         // START MINIGAME CREATION
         int yStartingPoint = 8, currentCell = 0;
         float xStartingPoint = -23.0f;
@@ -105,12 +99,6 @@ public class CodeOrder extends State {
         jedisaur = new Character(manager);
         jedisaur.create(new Vector2(0, 0), new Vector2(1.2f, 1.75f), 1.6f);
 
-<<<<<<< HEAD
-        jediGrandpa = new NPC(manager,1);
-        jediGrandpa.create(new Vector2(-10, 0), new Vector2(1, 1.4f), 0);
-
-=======
->>>>>>> jy_test
         if(!manager.isMusicPaused()){
             manager.setMusic(Constants.HOUSE_MUSIC);
             manager.getMusic().play();
@@ -156,12 +144,6 @@ public class CodeOrder extends State {
                     }
                 }
 
-<<<<<<< HEAD
-
-                jediGrandpa.update(delta);
-                jedisaur.update(delta);
-                computer.update(delta);
-=======
             }
             // WILL BE USED, DON'T ERASE
 
@@ -171,9 +153,6 @@ public class CodeOrder extends State {
                 }
             }
 
-            playroom.exitDoor(jedisaur);
-            jedisaur.update(delta);
->>>>>>> jy_test
 //            pause.update(delta);
         }else{
             if(jedisaur.isMoving()){

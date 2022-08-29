@@ -72,7 +72,7 @@ public class PlayState extends State{
         jediGrandpa = new NPC(manager, stage);
         jediGrandpa.create(new Vector2(0, 0), new Vector2(1, 1.4f), 0);
 
-        minigame = new Minigame(manager, stage, 1, jedisaur);
+        minigame = new Minigame(manager, stage, 2, jedisaur);
 
         if(!manager.isMusicPaused()){
             manager.setMusic(Constants.HOUSE_MUSIC);
@@ -179,7 +179,7 @@ public class PlayState extends State{
 
         if(isInStartArea()){
             if(stage >= 1 && stage < 5){
-                house.render(sprite);
+//                house.render(sprite);
             }
             else if(stage >= 5 && stage < 12){
                 schoolMap.render(sprite);
@@ -256,7 +256,7 @@ public class PlayState extends State{
     }
 
     public void enterPlayRoom(Character character){
-        if(character.getBody().getPosition().x > 14f && character.getBody().getPosition().y >-4 && character.getBody().getPosition().y < 2.5f){
+        if(character.getBody().getPosition().x > 14f && character.getBody().getPosition().y >-4 && character.getBody().getPosition().y < 2.5f && isInStartArea()){
             if(computer.isDone()){
                 setInStartArea(false);
                 if(stage >= 1 && stage < 5){
@@ -279,6 +279,7 @@ public class PlayState extends State{
     private void exitPlayroom(Character character){
         if(!inStartArea && character.getBody().getPosition().x < -23 && character.getBody().getPosition().y > -4 && character.getBody().getPosition().y < 2.5f){
             setInStartArea(true);
+            minigame.dispose();
             jedisaur.getBody().setTransform(14, 1, 0);
             jedisaur.getBody().getPosition().set(14, 1);
         }

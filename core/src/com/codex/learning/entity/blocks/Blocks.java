@@ -18,10 +18,6 @@ public class Blocks extends Entity {
     private ShapeRenderer shadowColor;
     private ShapeRenderer mainColor;
     protected boolean inContact;
-<<<<<<< HEAD
-
-=======
->>>>>>> jy_test
     private boolean preDefinedContact;
     private boolean isPredefined;
     private Vector2 dupliSize;
@@ -30,10 +26,6 @@ public class Blocks extends Entity {
         this.id = id;
         this.name = name;
         this.isPredefined = isPredefined;
-<<<<<<< HEAD
-
-=======
->>>>>>> jy_test
     }
 
     @Override
@@ -141,6 +133,10 @@ public class Blocks extends Entity {
 
     public void setDupliSize(Vector2 dupliSize) {
         this.dupliSize = dupliSize;
+    }
+
+    public void setActive(boolean active){
+        body.setActive(active);
     }
 }
 

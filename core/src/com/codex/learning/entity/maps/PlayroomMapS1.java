@@ -54,10 +54,7 @@ public class PlayroomMapS1 extends State {
             sprite.draw(manager.getPlayroomStage2(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         }
 
-<<<<<<< HEAD
-=======
-        checkDoor(sprite, atDoor);
->>>>>>> jy_test
+
         sprite.end();
     }
 

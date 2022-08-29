@@ -44,11 +44,9 @@ public class CodeIT extends State {
     public CodeIT(Manager manager) {
         super(manager);
         pause = new PauseState(manager);
-<<<<<<< HEAD
+
         playroom = new PlayroomMapS1(manager,1);
-=======
-        playroom = new PlayroomMapS1(manager, 1);
->>>>>>> jy_test
+
 
         randomizer = new Random();
 
@@ -60,12 +58,7 @@ public class CodeIT extends State {
         // WILL BE USED, DON'T ERASE
 
         blockDispensers = new BlockDispenser[2];
-<<<<<<< HEAD
-//
-//        computer = new Computer(manager);
-//        computer.create(new Vector2(-18, 2.8f), new Vector2(0.6f, 0.6f), 0);
-=======
->>>>>>> jy_test
+
 
         // START MINIGAME CREATION
         int yStartingPoint = 8, currentCell = 0;
@@ -112,12 +105,6 @@ public class CodeIT extends State {
         jedisaur = new Character(manager);
         jedisaur.create(new Vector2(0, 0), new Vector2(1.2f, 1.75f), 1.6f);
 
-<<<<<<< HEAD
-        jediGrandpa = new NPC(manager,1);
-        jediGrandpa.create(new Vector2(-10, 0), new Vector2(1, 1.4f), 0);
-
-=======
->>>>>>> jy_test
         if(!manager.isMusicPaused()){
             manager.setMusic(Constants.HOUSE_MUSIC);
             manager.getMusic().play();
@@ -141,7 +128,7 @@ public class CodeIT extends State {
                         blockHolders[i][j].update(delta);
                     }
                 }
-<<<<<<< HEAD
+            }
                 // WILL BE USED, DON'T ERASE
 
                 for(int i = 0; i < 2; i++){
@@ -178,9 +165,9 @@ public class CodeIT extends State {
                 // WILL BE USED, DON'T ERASE
 
 
-                jediGrandpa.update(delta);
+
                 jedisaur.update(delta);
-                computer.update(delta);
+
 //            pause.update(delta);
             }
             else{
@@ -189,57 +176,17 @@ public class CodeIT extends State {
                     jedisaur.update(delta);
                     jedisaur.getBody().setLinearVelocity(0,0);
                 }
-                if(computer.getCodeRiddle().isInComputer() && Gdx.input.isKeyJustPressed(Input.Keys.F)){
-                    computer.getCodeRiddle().setInComputer(false);
-                }
-=======
->>>>>>> jy_test
+
             }
             // WILL BE USED, DON'T ERASE
 
-            for (int i = 0; i < 2; i++) {
-                blockDispensers[i].createBlock(new Vector2(jedisaur.getBody().getPosition().x, jedisaur.getBody().getPosition().y));
-            }
 
-            for (int i = 0; i < 2; i++) {
-                if (blockDispensers[i].isCloned()) {
-                    for (Blocks b : blockDispensers[i].getBlocks()) {
-                        if (b != null) {
-                            b.update(delta);
-                            if (b.isInContact()) {
-                                jedisaur.carryBlock(b);
-                            }
-                        } else {
-                            continue;
-                        }
-                    }
-                }
-            }
 
-            // WILL BE USED, DON'T ERASE
-            currentCell = 0;
-            for (int i = 0; i < minigameContainer.size(); i++) {
-                for (int j = 0; j < minigameContainer.get(i).size(); j++) {
-                    if (minigameContainer.get(i).get(j) != null) {
-                        if (blockHolders[i][j].isInContact()) {
-                            jedisaur.dropBlock(blockHolders[i][j]);
-                        }
-                    }
-                }
-            }
-            // WILL BE USED, DON'T ERASE
 
-            playroom.exitDoor(jedisaur);
-            jedisaur.update(delta);
-        }
-        else{
-            if(jedisaur.isMoving()){
-                jedisaur.setMoving(false);
-                jedisaur.update(delta);
-                jedisaur.getBody().setLinearVelocity(0,0);
-            }
-        }
+
     }
+
+
 
     @Override
     public void render(SpriteBatch sprite) {

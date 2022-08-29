@@ -12,7 +12,7 @@ public class Minigame extends State {
     private int currentMinigame;
     private FillInTheBlock s;
     private MysteryCode h;
-    private boolean fib;
+    private boolean fib, mc;
     private Character jedisaur;
     public Minigame(Manager manager, int stageNumber, int currentMinigame, Character jedisaur){
         super(manager);
@@ -20,6 +20,7 @@ public class Minigame extends State {
         this.currentMinigame = currentMinigame;
         fuzzyLogic = new FuzzyLogic();
         fib = false;
+        mc = false;
         this.jedisaur = jedisaur;
     }
 
@@ -31,7 +32,8 @@ public class Minigame extends State {
                 System.out.println("1");
                 break;
             case 2:
-                System.out.println("the minigame is Code-IT");
+                mc = true;
+                h = new MysteryCode(manager, stageNumber, jedisaur);
                 break;
             case 3:
                 System.out.println("3");
@@ -46,6 +48,9 @@ public class Minigame extends State {
         if(fib){
             s.update(delta);
         }
+        else if(mc){
+            h.update(delta);
+        }
 
     }
 
@@ -54,10 +59,25 @@ public class Minigame extends State {
         if(fib){
             s.render(sprite);
         }
+        else if(mc){
+            h.render(sprite);
+        }
     }
+
 
     @Override
     public void dispose() {
+        if(fib){
+            s.dispose();
+        }
+        else if(mc){
+            h.dispose();
+        }
+    }
 
+    public void setActive(boolean active){
+        if(fib){
+            s.setActive(active);
+        }
     }
 }
