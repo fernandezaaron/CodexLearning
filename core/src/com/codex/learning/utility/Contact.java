@@ -14,7 +14,6 @@ import com.codex.learning.entity.characters.NPC;
 
 //This class will allow the player to have collision detection
 public class Contact implements ContactListener {
-    private int numberOfCollision = 0;
     @Override
     public void beginContact(com.badlogic.gdx.physics.box2d.Contact contact) {
         Fixture fa = contact.getFixtureA();
@@ -38,16 +37,20 @@ public class Contact implements ContactListener {
                 jedisaur = (Character) fa.getUserData();
                 blocks = (Blocks) fb.getUserData();
             }
+<<<<<<< HEAD
             System.out.println(blocks.getBody().getUserData());
 
             numberOfCollision++;
             System.out.println(numberOfCollision);
+=======
+>>>>>>> jy_test
 
             blocks.setInContact(true);
             if (jedisaur.isCarrying()) {
 
                 System.out.println("Block yes");
 
+<<<<<<< HEAD
             if(blocks.isPreDefinedContact() || numberOfCollision > 1){
                 blocks.setInContact(false);
                 jedisaur.setPickUpAble(false);
@@ -55,6 +58,11 @@ public class Contact implements ContactListener {
             else{
                 blocks.setInContact(true);
                 if(jedisaur.isCarrying()){
+=======
+                if (blocks.isPreDefinedContact()) {
+                    blocks.setInContact(false);
+
+>>>>>>> jy_test
                     jedisaur.setPickUpAble(false);
                 }
                 else {
@@ -186,17 +194,8 @@ public class Contact implements ContactListener {
                 blocks = (Blocks) fb.getUserData();
             }
 
-            numberOfCollision--;
-            System.out.println(numberOfCollision);
             blocks.setInContact(false);
             jedisaur.setPickUpAble(false);
-
-            if(numberOfCollision == 1){
-                blocks.setInContact(true);
-                jedisaur.setPickUpAble(true);
-            }
-
-
         }
 
         if(isDispenserContact(fa, fb)){
@@ -276,7 +275,6 @@ public class Contact implements ContactListener {
         if(a.getUserData() instanceof Character || b.getUserData() instanceof Character) {
             if(a.getUserData() instanceof Blocks || b.getUserData() instanceof Blocks) {
                 return true;
-
             }
         }
         return false;

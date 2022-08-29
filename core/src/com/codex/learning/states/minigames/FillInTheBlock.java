@@ -23,12 +23,7 @@ import java.util.Random;
 public class FillInTheBlock extends State {
 
     private Character jedisaur;
-    private NPC jediGrandpa;
     private PlayroomMapS1 playroom;
-    private Computer computer;
-
-    private int blockCount;
-    private boolean blockSpawn;
 
     private Blocks[][] questionBlocks;
     private BlockHolder[][] blockHolders;
@@ -77,7 +72,11 @@ public class FillInTheBlock extends State {
                         answerPoolContainer.add(minigameContainer.get(i).get(j));
                         System.out.println(minigameContainer.get(i).get(j));
                     } else {
+<<<<<<< HEAD
                         questionBlocks[i][j] = new Blocks(manager, "\"" + minigameContainer.get(i).get(j) + "\"", minigameContainer.get(i).get(j), true);
+=======
+                        questionBlocks[i][j] = new Blocks(manager, "\"" + minigameContainer.get(i).get(j) + "\"", minigameContainer.get(i).get(j),true);
+>>>>>>> jy_test
                         if (currentStringLength == 1)
                             questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.4f), Constants.BLOCKS_HEIGHT), 0);
                         else
@@ -111,14 +110,30 @@ public class FillInTheBlock extends State {
                 blockDispensers[i] = new BlockDispenser(manager, "Right", "main", " main ",
                         3, new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
             }
-            blockDispensers[i].create(new Vector2(13, 8 * i), new Vector2(0.3f, 1.3f), 0);
+            blockDispensers[i].create(new Vector2(15 * i, -6), new Vector2(0.3f, 1.3f), 0);
         }
 
+<<<<<<< HEAD
         this.jedisaur = character;
+=======
+        jedisaur = new Character(manager);
+        jedisaur.create(new Vector2(0, 0), new Vector2(1.2f, 1.75f), 1.6f);
+
+        if(!manager.isMusicPaused()){
+            manager.setMusic(Constants.HOUSE_MUSIC);
+            manager.getMusic().play();
+            manager.getMusic().setLooping(true);
+        }else {
+            manager.setMusic(Constants.HOUSE_MUSIC);
+        }
+
+        System.out.println(manager.getCamera().position.x + " " + manager.getCamera().position.y);
+>>>>>>> jy_test
     }
 
     @Override
     public void update(float delta) {
+<<<<<<< HEAD
          currentCell = 0;
          for(int i = 0; i < minigameContainer.size(); i++) {
              for (int j = 0; j < minigameContainer.get(i).size(); j++) {
@@ -169,6 +184,69 @@ public class FillInTheBlock extends State {
 
 
 
+=======
+        manager.getWorld().step(1/60f,6,2);
+        if(pause.isRunning()) {
+            // WILL BE USED, DON'T ERASE
+            currentCell = 0;
+            for (int i = 0; i < minigameContainer.size(); i++) {
+                for (int j = 0; j < minigameContainer.get(i).size(); j++) {
+                    if (minigameContainer.get(i).get(j) != null) {
+                        if (banishCells.contains(currentCell))
+                            blockHolders[i][j].update(delta);
+                        else
+                            questionBlocks[i][j].update(delta);
+                        currentCell++;
+                    }
+                }
+            }
+            // WILL BE USED, DON'T ERASE
+
+            for (int i = 0; i < 2; i++) {
+                blockDispensers[i].createBlock(new Vector2(jedisaur.getBody().getPosition().x, jedisaur.getBody().getPosition().y));
+            }
+
+            for (int i = 0; i < 2; i++) {
+                if (blockDispensers[i].isCloned()) {
+                    for (Blocks b : blockDispensers[i].getBlocks()) {
+                        if (b != null) {
+                            b.update(delta);
+                            if (b.isInContact()) {
+                                jedisaur.carryBlock(b);
+                            }
+                        } else {
+                            continue;
+                        }
+                    }
+                }
+            }
+
+            // WILL BE USED, DON'T ERASE
+            currentCell = 0;
+            for (int i = 0; i < minigameContainer.size(); i++) {
+                for (int j = 0; j < minigameContainer.get(i).size(); j++) {
+                    if (minigameContainer.get(i).get(j) != null) {
+                        if (banishCells.contains(currentCell)) {
+                            if (blockHolders[i][j].isInContact()) {
+                                jedisaur.dropBlock(blockHolders[i][j]);
+                            }
+                        }
+                        currentCell++;
+                    }
+                }
+            }
+            // WILL BE USED, DON'T ERASE
+
+            playroom.exitDoor(jedisaur);
+            jedisaur.update(delta);
+        }else{
+            if(jedisaur.isMoving()){
+                jedisaur.setMoving(false);
+                jedisaur.update(delta);
+                jedisaur.getBody().setLinearVelocity(0,0);
+            }
+        }
+>>>>>>> jy_test
     }
 
     @Override
@@ -208,10 +286,21 @@ public class FillInTheBlock extends State {
             }
         }
 
+<<<<<<< HEAD
+=======
+        jedisaur.render(sprite);
+
+        pause.render(sprite);
+>>>>>>> jy_test
     }
 
     @Override
     public void dispose() {
+<<<<<<< HEAD
+=======
+        jedisaur.disposeBody();
+
+>>>>>>> jy_test
         // WILL BE USED, DON'T ERASE
         for(int i = 0; i < minigameContainer.size(); i++) {
             for (int j = 0; j < minigameContainer.get(i).size(); j++) {

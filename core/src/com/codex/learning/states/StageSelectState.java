@@ -5,6 +5,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector3;
+<<<<<<< HEAD
+=======
+import com.codex.learning.states.minigames.CodeOrder;
+>>>>>>> jy_test
 import com.codex.learning.states.minigames.FillInTheBlock;
 import com.codex.learning.states.minigames.MysteryCode;
 import com.codex.learning.utility.Constants;
@@ -148,6 +152,7 @@ public class StageSelectState extends State{
 
             // LATEST ZERO COOKIES MUST BE PLAYABLE
             for(int i = 0; i < stages.length; i++){
+<<<<<<< HEAD
                 if(stageSelector[i].isAllowToPlay()){
                     if(stages[i].contains(touchpoint.x, touchpoint.y)){
                         manager.getMusic().stop();
@@ -155,6 +160,13 @@ public class StageSelectState extends State{
                         manager.set(new PlayState(manager, stageSelector[i].getStageNumber()));
 //                        manager.set(new FillInTheBlock(manager));
                         System.out.println("You clicked at stage " + stageSelector[i].getStageNumber()  + "!!");
+=======
+                if(allowToPlay[i]){
+                    if(stages[i].contains(touchpoint.x, touchpoint.y)){
+                        manager.getMusic().stop();
+                        manager.set(new MysteryCode(manager));
+                        System.out.println("You clicked at stage " + (i + 1)  + "!!");
+>>>>>>> jy_test
 
                         // ITO COMMENT OUT TO COMPARE
 //                    manager.getReader().getQuestions("Easy","Stage 1","");

@@ -94,7 +94,6 @@ public class Questionnaire extends DatabaseReader {
 //            questionID = 6;
             difficulty = "Easy";
             findCell = findRow(minigameSheet, questionID);
-            System.out.println(questionID + "asdasd");
             getMinigame(findCell, 4, difficulty, stage);
         }
         getAnswerPool(stage);
@@ -103,7 +102,6 @@ public class Questionnaire extends DatabaseReader {
     public void getMinigame(int row1, int col1, String diff, String stg) {
 //        minigameGetter = new String[50][50];
         minigameHolder = new ArrayList<ArrayList<String>>();
-        System.out.println(row1);
         String difficultyacq = getMinigameInfo(row1, 2);
         String stageacq = getMinigameInfo(row1, 3);
 
@@ -124,7 +122,6 @@ public class Questionnaire extends DatabaseReader {
                         minigameElementLimit++;
                     }
                 }
-                System.out.println(minigameGetter);
                 minigameHolder.add(minigameGetter);
                 Row qRow = minigameSheet.getRow(x + 2);
                 Cell qCell = qRow.getCell(4);
@@ -187,13 +184,14 @@ public class Questionnaire extends DatabaseReader {
     public void questionDisplay(String stage, String expertiseLevel) {
         adjustDifficulty(expertiseLevel);
 
-
-
         difficulty = levels.get(randomizer.nextInt(levels.size()));
 
+<<<<<<< HEAD
         System.out.println("QUESTION LIMIT - " + questionLimit);
 
         System.out.println(question);
+=======
+>>>>>>> jy_test
         while(question == null) {
             difficulty = levels.get(randomizer.nextInt(levels.size()));
 //            System.out.println("am i here");
@@ -248,8 +246,6 @@ public class Questionnaire extends DatabaseReader {
     }
 
     public boolean answerChecker(String chosenAnswer, int index){
-//        System.out.println("ASDASDQWD - " + answers);
-
         if(chosenAnswer == answers.get(index)){
             return true;
         }

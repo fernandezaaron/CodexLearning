@@ -14,6 +14,7 @@ import com.codex.learning.entity.maps.PlayroomMapS1;
 import com.codex.learning.states.PauseState;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.Constants;
+import com.codex.learning.utility.FuzzyLogic;
 import com.codex.learning.utility.Manager;
 
 import java.util.ArrayList;
@@ -23,9 +24,7 @@ import java.util.Random;
 public class CodeIT extends State {
 
     private Character jedisaur;
-    private NPC jediGrandpa;
     private PlayroomMapS1 playroom;
-    private Computer computer;
 
     private int blockCount;
     private boolean blockSpawn;
@@ -45,7 +44,11 @@ public class CodeIT extends State {
     public CodeIT(Manager manager) {
         super(manager);
         pause = new PauseState(manager);
+<<<<<<< HEAD
         playroom = new PlayroomMapS1(manager,1);
+=======
+        playroom = new PlayroomMapS1(manager, 1);
+>>>>>>> jy_test
 
         randomizer = new Random();
 
@@ -57,9 +60,12 @@ public class CodeIT extends State {
         // WILL BE USED, DON'T ERASE
 
         blockDispensers = new BlockDispenser[2];
+<<<<<<< HEAD
 //
 //        computer = new Computer(manager);
 //        computer.create(new Vector2(-18, 2.8f), new Vector2(0.6f, 0.6f), 0);
+=======
+>>>>>>> jy_test
 
         // START MINIGAME CREATION
         int yStartingPoint = 8, currentCell = 0;
@@ -106,9 +112,12 @@ public class CodeIT extends State {
         jedisaur = new Character(manager);
         jedisaur.create(new Vector2(0, 0), new Vector2(1.2f, 1.75f), 1.6f);
 
+<<<<<<< HEAD
         jediGrandpa = new NPC(manager,1);
         jediGrandpa.create(new Vector2(-10, 0), new Vector2(1, 1.4f), 0);
 
+=======
+>>>>>>> jy_test
         if(!manager.isMusicPaused()){
             manager.setMusic(Constants.HOUSE_MUSIC);
             manager.getMusic().play();
@@ -123,17 +132,16 @@ public class CodeIT extends State {
     @Override
     public void update(float delta) {
         manager.getWorld().step(1/60f,6,2);
-        if(pause.isRunning()){
-            if(!computer.getCodeRiddle().isInComputer()){
-                // WILL BE USED, DON'T ERASE
-                currentCell = 0;
-                for(int i = 0; i < minigameContainer.size(); i++) {
-                    for (int j = 0; j < minigameContainer.get(i).size(); j++) {
-                        if (minigameContainer.get(i).get(j) != null) {
-                            blockHolders[i][j].update(delta);
-                        }
+        if(pause.isRunning()) {
+            // WILL BE USED, DON'T ERASE
+            currentCell = 0;
+            for (int i = 0; i < minigameContainer.size(); i++) {
+                for (int j = 0; j < minigameContainer.get(i).size(); j++) {
+                    if (minigameContainer.get(i).get(j) != null) {
+                        blockHolders[i][j].update(delta);
                     }
                 }
+<<<<<<< HEAD
                 // WILL BE USED, DON'T ERASE
 
                 for(int i = 0; i < 2; i++){
@@ -184,8 +192,47 @@ public class CodeIT extends State {
                 if(computer.getCodeRiddle().isInComputer() && Gdx.input.isKeyJustPressed(Input.Keys.F)){
                     computer.getCodeRiddle().setInComputer(false);
                 }
+=======
+>>>>>>> jy_test
             }
-        }else{
+            // WILL BE USED, DON'T ERASE
+
+            for (int i = 0; i < 2; i++) {
+                blockDispensers[i].createBlock(new Vector2(jedisaur.getBody().getPosition().x, jedisaur.getBody().getPosition().y));
+            }
+
+            for (int i = 0; i < 2; i++) {
+                if (blockDispensers[i].isCloned()) {
+                    for (Blocks b : blockDispensers[i].getBlocks()) {
+                        if (b != null) {
+                            b.update(delta);
+                            if (b.isInContact()) {
+                                jedisaur.carryBlock(b);
+                            }
+                        } else {
+                            continue;
+                        }
+                    }
+                }
+            }
+
+            // WILL BE USED, DON'T ERASE
+            currentCell = 0;
+            for (int i = 0; i < minigameContainer.size(); i++) {
+                for (int j = 0; j < minigameContainer.get(i).size(); j++) {
+                    if (minigameContainer.get(i).get(j) != null) {
+                        if (blockHolders[i][j].isInContact()) {
+                            jedisaur.dropBlock(blockHolders[i][j]);
+                        }
+                    }
+                }
+            }
+            // WILL BE USED, DON'T ERASE
+
+            playroom.exitDoor(jedisaur);
+            jedisaur.update(delta);
+        }
+        else{
             if(jedisaur.isMoving()){
                 jedisaur.setMoving(false);
                 jedisaur.update(delta);
@@ -229,7 +276,6 @@ public class CodeIT extends State {
             }
         }
 
-        jediGrandpa.render(sprite);
         jedisaur.render(sprite);
 
         pause.render(sprite);
@@ -238,7 +284,6 @@ public class CodeIT extends State {
     @Override
     public void dispose() {
         jedisaur.disposeBody();
-        jediGrandpa.disposeBody();
 
         // WILL BE USED, DON'T ERASE
         for(int i = 0; i < minigameContainer.size(); i++) {
