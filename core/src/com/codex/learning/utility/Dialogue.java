@@ -59,26 +59,113 @@ public class Dialogue {
                             "\n! - Logical not - Reverse the result, returns false if the result is true",
                     // Stage 2
                     // Conditional statements
-                    
+                    "Our first topic is Conditional statements", "Java has the following conditional statements:" + "\n\nif, else, else if, and switch",
+                    "Use if to specify a block of code to be executed, if a specified condition is true" + "\nfor example: " + "\nint x = 20;\n" + "int y = 18;\n" + "if (x > y) {\n" + "  System.out.println(\"x is greater than y\");\n" + "}",
+                    "Use else to specify a block of code to be executed, if the same condition is false" + "\nfor example: " + "\nint time = 20;\n" + "if (time < 18) {\n" + "  System.out.println(\"Good day.\");\n" + "} else {\n" + "  System.out.println(\"Good evening.\");\n" + "}",
+                    "Use else if to specify a new condition to test, if the first condition is false" + "\nfor example: " + "int time = 22;\n" + "\nif (time < 10) {\n" + "  System.out.println(\"Good morning.\");\n" + "} else if (time < 20) {\n" + "  System.out.println(\"Good day.\");\n" + "} else {\n" + "  System.out.println(\"Good evening.\");\n" + "}",
+                    "There is also a short-hand if else, which is known as the ternary operator because it consists of three operands.", "It can be used to replace multiple lines of code with a single line, and is most often used to replace simple if else statements:",
+                    "For example" + "int time = 20;\n" + "String result = (time < 18) ? \"Good day.\" : \"Good evening.\";\n" + "System.out.println(result);",
+                    "Use switch to specify many alternative blocks of code to be executed", "The switch expression is evaluated once.", "he value of the expression is compared with the values of each case.", "If there is a match, the associated block of code is executed.", "The break and default keywords are optional",
+                    "When Java reaches a break keyword, it breaks out of the switch block.\n" + "This will stop the execution of more code and case testing inside the block.\n" + "When a match is found, and the job is done, it's time for a break. There is no need for more testing.",
+                    "The default keyword specifies some code to run if there is no case match:", "Example" + "\n\nint day = 4;\n" + "switch (day) {\n" + "  case 6:\n" + "    System.out.println(\"Today is Saturday\");\n" + "    break;\n" + "  case 7:\n" +
+                    "    System.out.println(\"Today is Sunday\");\n" + "    break;\n" + "  default:\n" + "    System.out.println(\"Looking forward to the Weekend\");\n" + "}",
                     // Looping Statements
-
+                    "Our second topic is Looping Statements", "Loops can execute a block of code as long as a specified condition is reached.", "Loops are handy because they save time, reduce errors, and they make code more readable.", "The while loop loops through a block of code as long as a specified condition is true:",
+                    "Example:" + "\n\nint i = 0;\n" + "while (i < 5) {\n" + "  System.out.println(i);\n" + "  i++;\n" + "}",
+                    "The do/while loop is a variant of the while loop. This loop will execute the code block once, before checking if the condition is true, then it will repeat the loop as long as the condition is true.",
+                    "Example:" + "\n\nint i = 0;\n" + "do {\n" + "  System.out.println(i);\n" + "  i++;\n" + "}\n" + "while (i < 5);",
+                    "When you know exactly how many times you want to loop through a block of code, use the for loop instead of a while loop:", "Syntax\n" + "for (statement 1; statement 2; statement 3) {" + "}" + "\nStatement 1 is executed (one time) before the execution of the code block.\n" + "Statement 2 defines the condition for executing the code block.\n" + "Statement 3 is executed (every time) after the code block has been executed.",
+                    "Example" + "\n\nfor (int i = 0; i < 5; i++) {\n" + "  System.out.println(i);\n" + "}",
+                    "There is also a \"for-each\" loop, which is used exclusively to loop through elements in an array:", "Example" + "\n\nString[] cars = {\"Volvo\", \"BMW\", \"Ford\", \"Mazda\"};\n" + "for (String i : cars) {\n" + "  System.out.println(i);\n" + "}",
+                    "You have already seen the break statement used in an earlier chapter of this tutorial. It was used to \"jump out\" of a switch statement.", "The break statement can also be used to jump out of a loop.",
+                    "Example" + "\n\nfor (int i = 0; i < 10; i++) {\n" + "  if (i == 4) {\n" + "    break;\n" + "  }\n" + "  System.out.println(i);\n" + "}",
+                    "You can also use break in while loops:", "Example" + "\n\nint i = 0;\n" + "while (i < 10) {\n" + "  System.out.println(i);\n" + "  i++;\n" + "  if (i == 4) {\n" + "    break;\n" + "  }\n" + "}",
+                    "The continue statement breaks one iteration (in the loop), if a specified condition occurs, and continues with the next iteration in the loop.",
+                    "Example" + "\n\nfor (int i = 0; i < 10; i++) {\n" + "  if (i == 4) {\n" + "    continue;\n" + "  }\n" + "  System.out.println(i);\n" + "}",
+                    "You can also use continue in while loops:", "Example" + "int i = 0;\n" + "while (i < 10) {\n" + "  if (i == 4) {\n" + "    i++;\n" + "    continue;\n" + "  }\n" + "  System.out.println(i);\n" + "  i++;\n" + "}",
                     // Arrays
-
+                    "Our third topic is Arrays", "Arrays are used to store multiple values in a single variable, instead of declaring separate variables for each value.","To declare an array, define the variable type with square brackets:" + "\n\nFor example:" + "\nString[] elements;",
+                    "To insert values to it, we can use an array literal - place the values in a comma-separated list, inside curly braces:" + "\n\nFor example:" + "\nString[] elements = {\"Air\", \"Water\", \"Earth\", \"Fire\"};", "To create an array of integers, you could write:" + "\nint[] myNum = {1, 2, 3, 4};",
+                    "Array indexes start with 0: [0] is the first element. [1] is the second element, etc.", "You access an array element by referring to the index number." + "\n\nFor example" + "\nString[] elements = {\"Air\", \"Water\", \"Earth\", \"Fire\"};" + "\nSystem.out.println(elements[0]);",
+                    "To change the value of a specific element, refer to the index number:" + "\n\nFor example:" + "\nString[] elements = {\"Air\", \"Water\", \"Earth\", \"Fire\"};" + "\nelements[0] = \"metal\";" + "\nSystem.out.println(elements[0]);",
+                    "To find out how many elements an array has, use the length property:" + "\n\nFor example:" + "\nString[] elements = {\"Air\", \"Water\", \"Earth\", \"Fire\"};" + "\nSystem.out.println(elements.length);",
+                    "You can loop through the array elements with the for loop, and use the length property to specify how many times the loop should run." + "\n\nFor example:" + "\nString[] elements = {\"Air\", \"Water\", \"Earth\", \"Fire\"};\n" + "for (int i = 0; i < elements.length; i++) {\n" + "  System.out.println(elements[i]);\n" + "}",
+                    "There is also a \"for-each\" loop, which is used exclusively to loop through elements in arrays:" + "\n\nFor example:" + "\nString[] elements = {\"Air\", \"Water\", \"Earth\", \"Fire\"};\n" + "for (String i : elements) {\n" + "  System.out.println(i);\n" + "}",
+                    "A multidimensional array is an array of arrays." + "\nTo create a two-dimensional array, add each array within its own set of curly braces:" + "\n\nFor example:" + "\nint[][] myNumbers = { {1, 2, 3, 4}, {5, 6, 7} };",
+                    "To access the elements of the myNumbers array, specify two indexes: one for the array, and one for the element inside that array. This example accesses the third element (2) in the second array (1) of myNumbers:", "For example" + "\n\nint[][] myNumbers = { {1, 2, 3, 4}, {5, 6, 7} };\n" + "int x = myNumbers[1][2];",
+                    "We can also use a for loop inside another for loop to get the elements of a two-dimensional array", "For example" + "\n\n  public static void main(String[] args) {\n" + "    int[][] myNumbers = { {1, 2, 3, 4}, {5, 6, 7} };\n" + "    for (int i = 0; i < myNumbers.length; ++i) {\n" + "      for(int j = 0; j < myNumbers[i].length; ++j) {\n" +
+                    "        System.out.println(myNumbers[i][j]);\n" + "      }\n" + "    }\n" + "  }",
                     // Methods
-
+                    "Our fourth topic is Methods", "A method is a block of code which only runs when it is called." + "\nYou can pass data, known as parameters, into a method.", "Methods are used to perform certain actions, and they are also known as functions.",
+                    "A method must be declared within a class. It is defined with the name of the method, followed by parentheses (). Java provides some pre-defined methods, such as System.out.println(), but you can also create your own methods to perform certain actions:",
+                    "Create a method inside Main:" + "\n\n Example:" + "\npublic class Main {\n" + "  static void myMethod() {\n" + "    // code to be executed\n" + "  }\n" + "}",
+                    "To call a method in Java, write the method's name followed by two parentheses () and a semicolon;", "For example" + "\n\npublic class Main {\n" + "  static void myMethod() {\n" + "    System.out.println(\"I just got executed!\");\n" + "  }\n" + "\n" + "  public static void main(String[] args) {\n" +
+                    "    myMethod();\n" + "  }\n" + "}",
                     // Parameters
-
+                    "Our fifth topic is Parameters","Information can be passed to methods as parameter. Parameters act as variables inside the method.","Parameters are specified after the method name, inside the parentheses. You can add as many parameters as you want, just separate them with a comma.",
+                    "For example" + "\n\npublic class Main {\n" + "  static void myMethod(String fname) {\n" + "    System.out.println(fname + \" Refsnes\");\n" + "  }\n" + "\n" + "  public static void main(String[] args) {\n" + "    myMethod(\"Liam\");\n" + "  }\n" + "}",
+                    "You can have as many parameters as you like:", "For example" + "\n\npublic class Main {\n" + "  static void myMethod(String fname, int age) {\n" + "    System.out.println(fname + \" is \" + age);\n" + "  }\n" + "\n" + "  public static void main(String[] args) {\n" + "    myMethod(\"Liam\", 5);\n" + "  }\n" + "}",
+                    "It is common to use if...else statements inside methods:", "For example" + "\n\npublic class Main {\n" + "\n" + "  static void checkAge(int age) {\n" + "\n" + "    if (age < 18) {\n" + "      System.out.println(\"Access denied - You are not old enough!\");\n" + "\n" +
+                    "    } else {\n" + "      System.out.println(\"Access granted - You are old enough!\");\n" + "    }\n" + "\n" + "  }\n" + "\n" + "  public static void main(String[] args) {\n" + "    checkAge(20);\n" + "  }\n" + "}",
                     // Parameters Overloading
-
+                    "Our Sixth topic is Parameters overloading", "multiple methods can have the same name with different parameters:" + "\n\nFor example:" + "\nint myMethod(int x)\n" + "float myMethod(float x)\n" + "double myMethod(double x, double y)",
+                    "Instead of defining two methods that should do the same thing, it is better to overload one.", "For example" + "\n\nstatic int plusMethod(int x, int y) {\n" + "  return x + y;\n" + "}\n" + "\n" +
+                    "static double plusMethod(double x, double y) {\n" + "  return x + y;\n" + "}\n" + "\n" +
+                    "public static void main(String[] args) {\n" + "  int myNum1 = plusMethod(8, 5);\n" + "  double myNum2 = plusMethod(4.3, 6.26);\n" + "}",
                     // Stage 3
                     // Classes
                     "Our first topic is Classes", "Everything in Java is associated with classes and objects, along with its attributes and methods.", "For example: in real life, a car is an object. The car has attributes, such as weight and color, and methods, such as drive and brake.",
                     "A Class is like an object constructor, or a \"blueprint\" for creating objects.", "To create a class, use the keyword class:" + "\n\nExample" + "\npublic class Main {\n" + "  int x = 5;\n" + "}" + "\n\nRemember that a class should always start with an uppercase first letter, and that the name of the java file should match the class name.",
-                    "",
                     // Objects
                     "Our last topic is Objects", "In Java, an object is created from a class. We have already created the class named Main, so now we can use this to create objects", "To create an object of Main, specify the class name, followed by the object name, and use the keyword new:" + "\n\nFor example:" +
                     "\npublic class Main {\n" + "  int x = 5;\n" + "\n" + "  public static void main(String[] args) {\n" + "    Main myObj = new Main();\n" + "    System.out.println(myObj.x);\n" + "  }\n" + "}",
-                    "You can create multiple objects of one class:" + "\nExample" + "\n\npublic static void main(String[] args) {\n" + "    Main myObj1 = new Main();  // Object 1\n" + "    Main myObj2 = new Main();  // Object 2\n" + "    System.out.println(myObj1.x);\n" + "    System.out.println(myObj2.x);\n" + "  }"
+                    "You can create multiple objects of one class:" + "\nExample" + "\n\npublic static void main(String[] args) {\n" + "    Main myObj1 = new Main();  // Object 1\n" + "    Main myObj2 = new Main();  // Object 2\n" + "    System.out.println(myObj1.x);\n" + "    System.out.println(myObj2.x);\n" + "  }",
+
+                    // Feedbacks
+                    // Stage complete
+                    "Good job", "Wow, that's impressive work.", "You are a fast learner.", "I'm so proud of your effort.", "How did you do this so fast?", "Terrific job!",
+                    "Wow, you are so skilled!", "This is insanely good.", "Fantastic!", "Your level of expertise is impressive.", "This proves you are ready for more here.",
+                    "Now this is good work.","Your progress is truly inspiring.","Outstanding work!", "You are a fast learner.",
+                    // Time consumption
+                    "Congratulations you've completed the stage in less than 5 minutes","Good job you've completed the stage in less than 10 minutes", "Nice you've completed the stage in less than 15 minutes", "You've completed the stage you're doing this right",
+                    "You've passed the 5 minute mark.","You've passed the 10 minute mark.","You've passed the 15 minute mark.",
+
+                    // Stage failed
+                    "You should pay attention to JediGrandpa's teaches and try again", "Recall all your mistakes and try again.", "Visit and talk to JediGrandpa to recall the lesson and try again ",
+
+
+                    // Hints
+                    // Stage 1
+                    // Syntax
+                    "Did you check the end of every code statement?", "Did you check the class name if it's uppercase or lowercase?",
+                    // Comments
+                    "Multi-line comments must start and ends with a?",
+                    // Variables
+                    "",
+                    // Data Types
+                    "",
+                    // Type Casting
+                    "",
+                    // Operators
+                    "",
+                    // Stage 2
+                    // Conditional Statements
+                    "",
+                    // Looping Statements
+                    "",
+                    // Arrays
+                    "",
+                    // Methods
+                    "",
+                    // Parameters
+                    "",
+                    // Parameters Overloading
+                    "",
+                    // Stage 3
+                    // Classes
+                    "",
+                    // Objects
+                    ""
             }));
     private boolean statementEnd;
     float myFloatNum = 5.99f;
