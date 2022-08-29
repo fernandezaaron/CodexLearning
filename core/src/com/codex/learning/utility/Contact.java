@@ -56,6 +56,8 @@ public class Contact implements ContactListener {
                     }
                 }
 
+            }else{
+                jedisaur.setPickUpAble(true);
             }
         }
 
