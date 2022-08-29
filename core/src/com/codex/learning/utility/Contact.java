@@ -53,16 +53,21 @@ public class Contact implements ContactListener {
                 if (blocks.isPreDefinedContact() || numberOfCollision > 1) {
                     blocks.setInContact(false);
                     jedisaur.setPickUpAble(false);
+
                 } else {
                     blocks.setInContact(true);
                     if (jedisaur.isCarrying()) {
                         jedisaur.setPickUpAble(false);
 
-                    } else {
+                    }
+                    else {
                         jedisaur.setPickUpAble(true);
                     }
-
                 }
+            }
+            else {
+                blocks.setInContact(true);
+                jedisaur.setPickUpAble(true);
             }
         }
 
