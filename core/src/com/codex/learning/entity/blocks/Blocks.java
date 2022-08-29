@@ -62,7 +62,7 @@ public class Blocks extends Entity {
         shadowColor.translate(this.size.x, 0, 0);
 
         mainColor = new ShapeRenderer();
-        mainColor.translate(this.size.x, - (this.size.y * Constants.PPM) / 10f, 0);
+        mainColor.translate(this.size.x + (Constants.PPM / 5f), - (this.size.y * Constants.PPM) / 10f, 0);
 
         inContact = false;
         preDefinedContact = false;
@@ -97,7 +97,7 @@ public class Blocks extends Entity {
 
         sprite.begin();
         manager.getFont().draw(sprite, this.name,
-                (this.size.x * Constants.PPM * 0.15f + (Constants.PPM * body.getPosition().x)),
+                (this.size.x * Constants.PPM * 0.3f + 3f + (Constants.PPM * body.getPosition().x)),
                 (this.size.y - (this.size.y * (Constants.PPM * 0.5f)) + (Constants.PPM * body.getPosition().y)));
         sprite.end();
     }

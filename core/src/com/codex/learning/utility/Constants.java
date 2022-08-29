@@ -37,6 +37,9 @@ public class Constants {
     // SAVE FILE ASSET PATH
     public static final String SAVE_FILE_PATH = "assets/text/SaveFile.txt";
 
+    // EXCEL FILE ASSET PATH
+    public static final String EXCEL_FILE_PATH = "assets/excel/Minigames.xlsx";
+
     // ATLAS ASSET PATH
     public static final String ATLAS_UTILITY_PATH = "text/DialogBox.atlas";
     public static final String PNG_ATLAS_UTILITY_PATH = "text/DialogBox.png";

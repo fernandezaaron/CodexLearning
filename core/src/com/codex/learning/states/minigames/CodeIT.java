@@ -14,6 +14,7 @@ import com.codex.learning.entity.maps.PlayroomMapS1;
 import com.codex.learning.states.PauseState;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.Constants;
+import com.codex.learning.utility.FuzzyLogic;
 import com.codex.learning.utility.Manager;
 
 import java.util.ArrayList;
@@ -45,7 +46,7 @@ public class CodeIT extends State {
     public CodeIT(Manager manager) {
         super(manager);
         pause = new PauseState(manager);
-        playroom = new PlayroomMapS1(manager);
+        playroom = new PlayroomMapS1(manager, 1);
 
         randomizer = new Random();
 
@@ -58,7 +59,7 @@ public class CodeIT extends State {
 
         blockDispensers = new BlockDispenser[2];
 
-        computer = new Computer(manager);
+        computer = new Computer(manager, new FuzzyLogic());
         computer.create(new Vector2(-18, 2.8f), new Vector2(0.6f, 0.6f), 0);
 
         // START MINIGAME CREATION
@@ -106,7 +107,7 @@ public class CodeIT extends State {
         jedisaur = new Character(manager);
         jedisaur.create(new Vector2(0, 0), new Vector2(1.2f, 1.75f), 1.6f);
 
-        jediGrandpa = new NPC(manager);
+        jediGrandpa = new NPC(manager, 1);
         jediGrandpa.create(new Vector2(-10, 0), new Vector2(1, 1.4f), 0);
 
         if(!manager.isMusicPaused()){
