@@ -12,7 +12,10 @@ public class Constants {
     // BACKGROUND ASSET PATH
     public static final String CLOUD_PATH = "background/clouds.png";
     public static final String HOUSE_PATH = "map/housemap.png";
+    public static final String SCHOOL_PATH = "map/jedischool.png";
     public static final String STAGE1_PATH = "map/playmap1.png";
+    public static final String STAGE2_PATH = "map/jedischoolplayroom.png";
+
     public static final String BACKGROUND_PATH = "background/mainmenu2.png";
     public static final String REPORT_CARD_SHEET_PATH = "background/reportcardspritesheet.png";
     public static final String SKY_BACKGROUND_PATH = "background/skyBG.png";
@@ -29,7 +32,17 @@ public class Constants {
     public static final String FONT_STYLE = "font/PokemonClassic.fnt";
 
     // JSON ASSET PATH
-    public static final String JSON_SKIN_PATH = "json/uiskin.json";
+    public static final String JSON_DIALOG_BOX_SKIN_PATH = "text/DialogBox.json";
+
+    // SAVE FILE ASSET PATH
+    public static final String SAVE_FILE_PATH = "assets/text/SaveFile.txt";
+
+    // EXCEL FILE ASSET PATH
+    public static final String EXCEL_FILE_PATH = "assets/excel/Minigames.xlsx";
+
+    // ATLAS ASSET PATH
+    public static final String ATLAS_UTILITY_PATH = "text/DialogBox.atlas";
+    public static final String PNG_ATLAS_UTILITY_PATH = "text/DialogBox.png";
 
     // MAP ASSET PATH
     public static final String PAUSE_STATE_PATH = "background/pausespritesheet.png";
@@ -281,6 +294,11 @@ public class Constants {
     public static final int JEDI_GRANDPA_Y = 345;
     public static final int JEDI_GRANDPA_WIDTH = 79;
     public static final int JEDI_GRANDPA_HEIGHT = 108;
+
+    public static final int JEDI_PROF_X = 114;
+    public static final int JEDI_PROF_Y = 464;
+    public static final int JEDI_PROF_WIDTH = 89;
+    public static final int JEDI_PROF_HEIGHT = 116;
     //END OF JEDISAUR SPRITE SHEET
 
     //BLOCK SHEET
@@ -316,6 +334,15 @@ public class Constants {
     public static final int BLOCK_MACHINE_Y = 409;
     public static final int BLOCK_MACHINE_WIDTH = 79;
     public static final int BLOCK_MACHINE_HEIGHT = 187;
+
+    public static final int COOKIES_X = 617;
+    public static final int COOKIES_ZERO_Y = 136;
+    public static final int COOKIES_ONE_Y = 92;
+    public static final int COOKIES_TWO_Y = 47;
+    public static final int COOKIES_THREE_Y = 2;
+    public static final int COOKIES_WIDTH = 95;
+    public static final int COOKIES_HEIGHT = 43;
+
 
     //END OF UTILITY SHEET
 

@@ -8,26 +8,24 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.scenes.scene2d.ui.Tree;
 import com.codex.learning.entity.Entity;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
-
-import java.io.FileInputStream;
 
 public class Blocks extends Entity {
     private String id, name;
     private ShapeRenderer shadowColor;
     private ShapeRenderer mainColor;
     protected boolean inContact;
-    private boolean preDefinedContact ;
+    private boolean preDefinedContact;
     private boolean isPredefined;
     private Vector2 dupliSize;
-
-    public Blocks(Manager manager, String id, String name, boolean isPreDefined) {
+    public Blocks(Manager manager, String id, String name, boolean isPredefined) {
         super(manager);
         this.id = id;
         this.name = name;
-        this.isPredefined = isPreDefined;
+        this.isPredefined = isPredefined;
     }
 
     @Override
@@ -49,22 +47,22 @@ public class Blocks extends Entity {
         fixtureDef.density = density;
         fixtureDef.shape = shape;
         fixtureDef.friction = 5;
-        if(isPredefined) {
+
+        if(isPredefined){
             fixtureDef.isSensor = true;
         }
+
 
         body = manager.getWorld().createBody(def);
         body.createFixture(fixtureDef).setUserData(this);
         body.setLinearVelocity(0, 0);
         shape.dispose();
 
-
-
         shadowColor = new ShapeRenderer();
         shadowColor.translate(this.size.x, 0, 0);
 
         mainColor = new ShapeRenderer();
-        mainColor.translate(this.size.x, - (this.size.y * Constants.PPM) / 10f, 0);
+        mainColor.translate(this.size.x + (Constants.PPM / 5f), - (this.size.y * Constants.PPM) / 10f, 0);
 
         inContact = false;
         preDefinedContact = false;
@@ -72,6 +70,7 @@ public class Blocks extends Entity {
 
     @Override
     public void update(float delta) {
+
     }
 
     @Override
@@ -97,8 +96,13 @@ public class Blocks extends Entity {
         mainColor.end();
 
         sprite.begin();
-        manager.getFont().draw(sprite, this.name,
-                (this.size.x * Constants.PPM * 0.15f + (Constants.PPM * body.getPosition().x)),
+        if(this.size.x <= 3)
+            manager.getFont().draw(sprite, this.name,
+                    (this.size.x * Constants.PPM * 0.3f + 10f + (Constants.PPM * body.getPosition().x)),
+                    (this.size.y - (this.size.y * (Constants.PPM * 0.5f)) + (Constants.PPM * body.getPosition().y)));
+        else
+            manager.getFont().draw(sprite, this.name,
+                (this.size.x * Constants.PPM * 0.3f + 3f + (Constants.PPM * body.getPosition().x)),
                 (this.size.y - (this.size.y * (Constants.PPM * 0.5f)) + (Constants.PPM * body.getPosition().y)));
         sprite.end();
     }

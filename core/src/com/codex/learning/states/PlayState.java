@@ -2,8 +2,8 @@ package com.codex.learning.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
 import com.codex.learning.entity.blocks.BlockDispenser;
@@ -13,13 +13,20 @@ import com.codex.learning.entity.blocks.Computer;
 import com.codex.learning.entity.characters.Character;
 import com.codex.learning.entity.characters.NPC;
 import com.codex.learning.entity.maps.HouseMap;
+import com.codex.learning.entity.maps.PlayroomMapS1;
+import com.codex.learning.entity.maps.SchoolMap;
 import com.codex.learning.utility.*;
 
 public class PlayState extends State{
     private Character jedisaur;
     private NPC jediGrandpa;
     private HouseMap house;
+    private SchoolMap schoolMap;
     private Computer computer;
+    private PlayroomMapS1 playroomMap;
+
+    private float timer;
+
 
     private Blocks[] totalBlocks;
     private int blockCount;
@@ -31,12 +38,34 @@ public class PlayState extends State{
 
     private PauseState pause;
 
+    private FuzzyLogic fuzzyLogic;
 
-    public PlayState(Manager manager) {
+    private Blocks sample;
+
+    private boolean inStartArea, atDoor;
+    private TextureRegion door;
+    private int stage;
+
+
+
+    public PlayState(Manager manager, int stage) {
         super(manager);
+        this.stage = stage;
+        timer = 0;
         pause = new PauseState(manager);
-        house = new HouseMap(manager);
 
+        if(stage >= 1 && stage < 5){
+            house = new HouseMap(manager);
+        }
+        else if(stage >= 5 && stage < 12){
+            schoolMap = new SchoolMap(manager);
+        }
+
+
+        playroomMap = new PlayroomMapS1(manager, stage);
+
+
+        fuzzyLogic = new FuzzyLogic();
 
         // WILL BE USED, DON'T ERASE
         blocks = new Blocks[4];
@@ -45,48 +74,20 @@ public class PlayState extends State{
 
         blockDispensers = new BlockDispenser[2];
 
-        computer = new Computer(manager);
-        computer.create(new Vector2(-18, 2.8f), new Vector2(0.6f, 0.6f), 0);
-
-        // WILL BE USED, DON'T ERASE
-        for(int i = 0; i < 10; i++){
-//            if(i == 0){
-//                blocks[i] = new Blocks(manager, "}", "   } ");
-//                blocks[i].create(new Vector2(1.2f + (i * 10), 0),
-//                        new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT), 0);
-//            }
-//            if(i == 1){
-//                blocks[i] = new Blocks(manager, "class", "class HelloWorld{");
-//                blocks[i].create(new Vector2(1.2f + (i * 10), 0),
-//                        new Vector2(Constants.BLOCKS_CLASS_WIDTH, Constants.BLOCKS_HEIGHT), 0);
-//            }
-//            if(i == 2){
-//                blocks[i] = new Blocks(manager, "args", "String[] args)");
-//                blocks[i].create(new Vector2(1.2f + (i * 10), 0),
-//                        new Vector2(Constants.BLOCKS_ARGS_WIDTH, Constants.BLOCKS_HEIGHT), 0);
-//            }
-            blockHolders[i] = new BlockHolder(manager, "}");
-            blockHolders[i].create(new Vector2(6f , i * 2), new Vector2(Constants.BLOCK_HOLDER_WIDTH, Constants.BLOCK_HOLDER_HEIGHT), 0);
+        computer = new Computer(manager, fuzzyLogic);
+        if(stage >= 1 && stage < 5){
+            computer.create(new Vector2(-6, 2.8f), new Vector2(0.6f, 0.6f), 0);
         }
-        // WILL BE USED, DON'T ERASE
-
-        for(int i = 0; i < 2; i++){
-            if(i == 0){
-                blockDispensers[i] = new BlockDispenser(manager, "Down", "try", "   }  ",
-                        3, new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
-            }
-            else{
-                blockDispensers[i] = new BlockDispenser(manager, "Right", "hard", "   }  ",
-                        3, new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
-            }
-            blockDispensers[i].create(new Vector2(15 * i, -6), new Vector2(0.3f, 1.3f), 0);
+        else if(stage >=5 && stage < 12){
+            computer.create(new Vector2(-17, 6.5f), new Vector2(0.6f, 0.6f), 0);
         }
+
 
         jedisaur = new Character(manager);
-        jedisaur.create(new Vector2(0, 0), new Vector2(1.2f, 1.75f), 1.6f);
+        jedisaur.create(new Vector2(0, -5), new Vector2(1.2f, 1.75f), 1.6f);
 
-        jediGrandpa = new NPC(manager);
-        jediGrandpa.create(new Vector2(-10, 0), new Vector2(1, 1.4f), 0);
+        jediGrandpa = new NPC(manager, stage);
+        jediGrandpa.create(new Vector2(0, 0), new Vector2(1, 1.4f), 0);
 
         totalBlocks = new Blocks[6];
         blockCount = 0;
@@ -99,60 +100,74 @@ public class PlayState extends State{
             manager.setMusic(Constants.HOUSE_MUSIC);
         }
 
-        System.out.println(manager.getCamera().position.x + " " + manager.getCamera().position.y);
 
+        door = new TextureRegion(manager.getReportCardSheet(), 48,195, 263, 119);
+        inStartArea = true;
+        atDoor = false;
 
     }
 
     @Override
     public void update(float delta) {
+        if(!isInStartArea()){
+            activeBody(false);
+        }else {
+            activeBody(true);
+        }
         manager.getWorld().step(1/60f,6,2);
         if(pause.isRunning()){
             if(!computer.getCodeRiddle().isInComputer()){
+                timer += Gdx.graphics.getDeltaTime();
+
+                manager.checkIfMoving((int) timer, jedisaur);
+                manager.checkBehavior((int) timer, jedisaur.getNumberOfBlockInteraction(), computer.isDone(), fuzzyLogic);
+
+                fuzzyLogic.calculateNumberOfCookies();
+//                System.out.println(fuzzyLogic.getCookies());
+                manager.getExpertSystem().setCurrentCookie(fuzzyLogic.getCookies());
                 // WILL BE USED, DON'T ERASE
                 for(int i = 0; i < 3; i++){
-                    blockHolders[i].update(delta);
+//                    blockHolders[i].update(delta);
 //                blocks[i].update(delta);
                 }
 //                // WILL BE USED, DON'T ERASE
 //
-                for(int i = 0; i < 2; i++){
-//                blockDispensers[i].update(delta);
-                    blockDispensers[i].createBlock(new Vector2(jedisaur.getBody().getPosition().x, jedisaur.getBody().getPosition().y));
-                }
-//
-                for(int i = 0; i < 2; i++) {
-                    if(blockDispensers[i].isCloned()){
-                        for (Blocks b : blockDispensers[i].getBlocks()) {
-                            if (b != null) {
-                                b.update(delta);
-                                if(b.isInContact()){
-                                    jedisaur.carryBlock(b);
-                                }
-                            }
-                            else{
-                                continue;
-                            }
-                        }
-                    }
-                }
-
-                // WILL BE USED, DON'T ERASE
-                for(int i = 0; i < 10; i++){
-//                if(blocks[i].isInContact()){
-//                    jedisaur.carryBlock(blocks[i]);
+//                for(int i = 0; i < 2; i++){
+////                blockDispensers[i].update(delta);
+//                    blockDispensers[i].createBlock(new Vector2(jedisaur.getBody().getPosition().x, jedisaur.getBody().getPosition().y));
 //                }
-                    if(blockHolders[i].isInContact()){
-                        jedisaur.dropBlock(blockHolders[i]);
-                    }
-                }
+////
+//                for(int i = 0; i < 2; i++) {
+//                    if(blockDispensers[i].isCloned()){
+//                        for (Blocks b : blockDispensers[i].getBlocks()) {
+//                            if (b != null) {
+//                                b.update(delta);
+//                                if(b.isInContact()){
+//                                    jedisaur.carryBlock(b);
+//                                }
+//                            }
+//                            else{
+//                                continue;
+//                            }
+//                        }
+//                    }
+//                }
+
+                // WILL BE USED, DON'T ERASE
+//                for(int i = 0; i < 10; i++){
+////                if(blocks[i].isInContact()){
+////                    jedisaur.carryBlock(blocks[i]);
+////                }
+//                    if(blockHolders[i].isInContact()){
+//                        jedisaur.dropBlock(blockHolders[i]);
+//                    }
+//                }
                 // WILL BE USED, DON'T ERASE
 
-                house.exitDoor(jedisaur);
+                exitDoor(jedisaur);
                 jediGrandpa.update(delta);
                 jedisaur.update(delta);
                 computer.update(delta);
-//            pause.update(delta);
             }
             else{
                 if(jedisaur.isMoving()){
@@ -162,6 +177,16 @@ public class PlayState extends State{
                 }
                 if(computer.getCodeRiddle().isInComputer() && Gdx.input.isKeyJustPressed(Input.Keys.F)){
                     computer.getCodeRiddle().setInComputer(false);
+//not working pa
+//                    for (int i =0 ; i<manager.getStage().getActors().size; i++){
+//                        System.out.println(manager.getStage().getActors().get(i));
+//                        if(manager.getStage().getActors().get(i).toString().equals("Table")){
+//                            System.out.println("true");
+//                            manager.getStage().getActors().get(i).remove();
+////                            manager.getStage().clear();
+//                        }
+//                    }
+                    manager.getStage().clear();
                 }
             }
         }else{
@@ -175,52 +200,68 @@ public class PlayState extends State{
 
     @Override
     public void render(SpriteBatch sprite) {
-
         manager.getCamera().update();
+
+        enterPlayRoom(jedisaur);
+        exitPlayroom(jedisaur);
+
+
+        if(isInStartArea()){
+            if(stage >= 1 && stage < 5){
+                house.render(sprite);
+            }
+            else if(stage >= 5 && stage < 12){
+                schoolMap.render(sprite);
+            }
+            jediGrandpa.render(sprite);
+            if(computer.getCodeRiddle().isInComputer()){
+                jedisaur.render(sprite);
+                computer.render(sprite);
+
+
+            }
+            else{
+                computer.render(sprite);
+                jedisaur.render(sprite);
+
+            }
+        }else {
+            playroomMap.render(sprite);
+            jedisaur.render(sprite);
+        }
+
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
-
-
+        checkDoor(sprite, atDoor);
         sprite.end();
 
-        house.render(sprite);
 
-
-      //  house.render(sprite);
-//
-        for(int i = 0; i < 10; i++){
-            blockHolders[i].render(sprite);
-        }
-//
-        for(int i = 0; i < 2; i++){
-            blockDispensers[i].render(sprite);
-            if(blockDispensers[i].isCloned()){
-                for (Blocks b : blockDispensers[i].getBlocks()) {
-                    if (b != null) {
-                        b.render(sprite);
-                    }
-                    else{
-                        continue;
-                    }
-                }
-            }
-        }
+//        for(int i = 0; i < 10; i++){
+//            blockHolders[i].render(sprite);
+//        }
+////
+//        for(int i = 0; i < 2; i++){
+//            blockDispensers[i].render(sprite);
+//            if(blockDispensers[i].isCloned()){
+//                for (Blocks b : blockDispensers[i].getBlocks()) {
+//                    if (b != null) {
+//                        b.render(sprite);
+//                    }
+//                    else{
+//                        continue;
+//                    }
+//                }
+//            }
+//        }
 
 
 //        for(int i = 0; i < 3; i++){
 //            blocks[i].render(sprite);
 //        }
 //
-        jediGrandpa.render(sprite);
 
-        if(computer.getCodeRiddle().isInComputer()){
-            jedisaur.render(sprite);
-            computer.render(sprite);
-        }
-        else{
-            computer.render(sprite);
-            jedisaur.render(sprite);
-        }
+
+
 //
         pause.render(sprite);
 
@@ -252,9 +293,73 @@ public class PlayState extends State{
                 }
             }
         }
-
-
-
-        house.dispose();
+        if(stage >= 1 && stage < 5){
+            house.dispose();
+        }
+        else if(stage >= 5 && stage < 12){
+            schoolMap.dispose();
+        }
     }
+
+    public void activeBody(boolean active){
+         jediGrandpa.getBody().setActive(active);
+         computer.getBody().setActive(active);
+
+         if(stage >= 1 && stage < 5){
+             house.setActive(active);
+         }
+         else if(stage >= 5 && stage < 12){
+             schoolMap.setActive(active);
+         }
+
+         jediGrandpa.getBody().setAwake(active);
+         computer.getBody().setAwake(active);
+    }
+
+    public void exitDoor(Character character){
+        if(character.getBody().getPosition().x > -19.8f && character.getBody().getPosition().x < -15.5f && character.getBody().getPosition().y < -11){
+            manager.getMusic().stop();
+            manager.set(new StageSelectState(manager));
+        }
+
+        atDoor = character.getBody().getPosition().x > -19.8f && character.getBody().getPosition().x < -15.5f && character.getBody().getPosition().y < -10;
+    }
+
+    private void checkDoor(SpriteBatch sprite, boolean atDoor){
+        if(atDoor){
+            sprite.draw(door, -693, -450);
+        }
+    }
+
+    public void enterPlayRoom(Character character){
+        if(character.getBody().getPosition().x > 14f && character.getBody().getPosition().y >-4 && character.getBody().getPosition().y < 2.5f){
+            if(computer.isDone()){
+                setInStartArea(false);
+                house.setPlayroomActive(false);
+                jedisaur.getBody().setTransform(-20, 1, 0);
+                jedisaur.getBody().getPosition().set(-20, 1);
+            }
+            else {
+                System.out.println("bawal kapa pumasok jan xD");
+            }
+        }
+    }
+
+    private void exitPlayroom(Character character){
+        if(!inStartArea && character.getBody().getPosition().x < -23 && character.getBody().getPosition().y > -4 && character.getBody().getPosition().y < 2.5f){
+            setInStartArea(true);
+            jedisaur.getBody().setTransform(14, 1, 0);
+            jedisaur.getBody().getPosition().set(14, 1);
+        }
+    }
+
+    public boolean isInStartArea() {
+        return inStartArea;
+    }
+
+    public void setInStartArea(boolean inStartArea) {
+        this.inStartArea = inStartArea;
+    }
+
+
 }

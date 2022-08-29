@@ -94,7 +94,6 @@ public class Questionnaire extends DatabaseReader {
 //            questionID = 6;
             difficulty = "Easy";
             findCell = findRow(minigameSheet, questionID);
-            System.out.println(questionID + "asdasd");
             getMinigame(findCell, 4, difficulty, stage);
         }
         getAnswerPool(stage);
@@ -103,7 +102,6 @@ public class Questionnaire extends DatabaseReader {
     public void getMinigame(int row1, int col1, String diff, String stg) {
 //        minigameGetter = new String[50][50];
         minigameHolder = new ArrayList<ArrayList<String>>();
-        System.out.println(row1);
         String difficultyacq = getMinigameInfo(row1, 2);
         String stageacq = getMinigameInfo(row1, 3);
 
@@ -124,7 +122,6 @@ public class Questionnaire extends DatabaseReader {
                         minigameElementLimit++;
                     }
                 }
-                System.out.println(minigameGetter);
                 minigameHolder.add(minigameGetter);
                 Row qRow = minigameSheet.getRow(x + 2);
                 Cell qCell = qRow.getCell(4);
@@ -187,7 +184,8 @@ public class Questionnaire extends DatabaseReader {
     public void questionDisplay(String stage, String expertiseLevel) {
         adjustDifficulty(expertiseLevel);
 
-        System.out.println("QUESTION LIMIT - " + questionLimit);
+        difficulty = levels.get(randomizer.nextInt(levels.size()));
+
         while(question == null) {
             difficulty = levels.get(randomizer.nextInt(levels.size()));
 
@@ -198,18 +196,23 @@ public class Questionnaire extends DatabaseReader {
             questionID = randomizer.nextInt(excelQuestionLimit - 1) + 1;
             question = getExcelQuestion(questionID, 4, difficulty, stage);
             if(question != null) {
+                if(questions.contains(question)){
+                    question = null;
+                    continue;
+                }
+                else{
+                    questions.add(question);
 
-                questions.add(question);
+                    options.add(new ArrayList<String>());
+                    options.get(numberOfQuestions).add(getCodeRiddle(questionID, 5));
+                    options.get(numberOfQuestions).add(getCodeRiddle(questionID, 6));
+                    options.get(numberOfQuestions).add(getCodeRiddle(questionID, 7));
+                    options.get(numberOfQuestions).add(getCodeRiddle(questionID, 8));
 
-                options.add(new ArrayList<String>());
-                options.get(numberOfQuestions).add(getCodeRiddle(questionID, 5));
-                options.get(numberOfQuestions).add(getCodeRiddle(questionID, 6));
-                options.get(numberOfQuestions).add(getCodeRiddle(questionID, 7));
-                options.get(numberOfQuestions).add(getCodeRiddle(questionID, 8));
+                    answers.add(getCodeRiddle(questionID, 9));
 
-                answers.add(getCodeRiddle(questionID, 9));
-
-                numberOfQuestions++;
+                    numberOfQuestions++;
+                }
             }
             question = null;
         }
