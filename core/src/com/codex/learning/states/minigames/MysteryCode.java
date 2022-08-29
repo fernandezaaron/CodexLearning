@@ -138,6 +138,7 @@ public class MysteryCode extends State {
             AnsPoolY -= 2.5;
         }
 
+
         jedisaur = new Character(manager);
         jedisaur.create(new Vector2(0, 0), new Vector2(1.2f, 1.75f), 1.6f);
 
