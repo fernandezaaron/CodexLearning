@@ -43,15 +43,14 @@ public class FillInTheBlock extends State {
     private ArrayList<String> answerPoolContainer;
     private int currentCell;
 
-    public FillInTheBlock(Manager manager) {
+    public FillInTheBlock(Manager manager, int stage, Character character) {
         super(manager);
-        pause = new PauseState(manager);
-        playroom = new PlayroomMapS1(manager,1);
+        playroom = new PlayroomMapS1(manager,stage);
 
         randomizer = new Random();
         banishCells = new ArrayList<Integer>();
 
-        getAMinigame("Stage 1", "Poor");
+        getAMinigame(String.valueOf(stage), "Poor");
 
         // WILL BE USED, DON'T ERASE
         questionBlocks = new Blocks[20][20];
@@ -59,9 +58,6 @@ public class FillInTheBlock extends State {
         // WILL BE USED, DON'T ERASE
 
         blockDispensers = new BlockDispenser[2];
-//
-//        computer = new Computer(manager);
-//        computer.create(new Vector2(-18, 2.8f), new Vector2(0.6f, 0.6f), 0);
 
         // CREATES RANDOM NUMBER TO REMOVE CELLS FROM MINIGAME
         for(int i = 0; i <= 5; i++) {
@@ -118,103 +114,70 @@ public class FillInTheBlock extends State {
             blockDispensers[i].create(new Vector2(13, 8 * i), new Vector2(0.3f, 1.3f), 0);
         }
 
-        jedisaur = new Character(manager);
-        jedisaur.create(new Vector2(0, 0), new Vector2(1.2f, 1.75f), 1.6f);
-
-        jediGrandpa = new NPC(manager, 1);
-        jediGrandpa.create(new Vector2(-10, 0), new Vector2(1, 1.4f), 0);
-
-        if(!manager.isMusicPaused()){
-            manager.setMusic(Constants.HOUSE_MUSIC);
-            manager.getMusic().play();
-            manager.getMusic().setLooping(true);
-        }else {
-            manager.setMusic(Constants.HOUSE_MUSIC);
-        }
-
-        System.out.println(manager.getCamera().position.x + " " + manager.getCamera().position.y);
+        this.jedisaur = character;
     }
 
     @Override
     public void update(float delta) {
-        manager.getWorld().step(1/60f,6,2);
-        if(pause.isRunning()){
-                // WILL BE USED, DON'T ERASE
-                currentCell = 0;
-                for(int i = 0; i < minigameContainer.size(); i++) {
-                    for (int j = 0; j < minigameContainer.get(i).size(); j++) {
-                        if (minigameContainer.get(i).get(j) != null) {
-                            if(banishCells.contains(currentCell))
-                                blockHolders[i][j].update(delta);
-                            else
-                                questionBlocks[i][j].update(delta);
-                            currentCell++;
-                        }
-                    }
-                }
-                // WILL BE USED, DON'T ERASE
-
-                for(int i = 0; i < 2; i++){
-                    blockDispensers[i].createBlock(new Vector2(jedisaur.getBody().getPosition().x, jedisaur.getBody().getPosition().y));
-                }
-
-                for(int i = 0; i < 2; i++) {
-                    if(blockDispensers[i].isCloned()){
-                        for (Blocks b : blockDispensers[i].getBlocks()) {
-                            if (b != null) {
-                                b.update(delta);
-                                if(b.isInContact()){
-                                    jedisaur.carryBlock(b);
-                                }
-                            }
-                            else{
-                                continue;
-                            }
-                        }
-                    }
-                }
-
-                // WILL BE USED, DON'T ERASE
-                currentCell = 0;
-                for(int i = 0; i < minigameContainer.size(); i++) {
-                    for (int j = 0; j < minigameContainer.get(i).size(); j++) {
-                        if (minigameContainer.get(i).get(j) != null) {
-                            if(banishCells.contains(currentCell)) {
-                                if (blockHolders[i][j].isInContact()) {
-                                    jedisaur.dropBlock(blockHolders[i][j]);
-                                }
-                            }
-                            currentCell++;
-                        }
-                    }
-                }
-                // WILL BE USED, DON'T ERASE
+         currentCell = 0;
+         for(int i = 0; i < minigameContainer.size(); i++) {
+             for (int j = 0; j < minigameContainer.get(i).size(); j++) {
+                 if (minigameContainer.get(i).get(j) != null) {
+                     if(banishCells.contains(currentCell))
+                         blockHolders[i][j].update(delta);
+                     else
+                         questionBlocks[i][j].update(delta);
+                     currentCell++;
+                 }
+             }
+         }
 
 
-                jediGrandpa.update(delta);
-                jedisaur.update(delta);
+         for(int i = 0; i < 2; i++){
+             blockDispensers[i].createBlock(new Vector2(jedisaur.getBody().getPosition().x, jedisaur.getBody().getPosition().y));
+         }
 
-//            pause.update(delta);
+         for(int i = 0; i < 2; i++) {
+             if(blockDispensers[i].isCloned()){
+                 for (Blocks b : blockDispensers[i].getBlocks()) {
+                     if (b != null) {
+                         b.update(delta);
+                         if(b.isInContact()){
+                             jedisaur.carryBlock(b);
+                         }
+                     }
+                     else{
+                         continue;
+                     }
+                 }
+             }
+         }
 
-        }else{
-            if(jedisaur.isMoving()){
-                jedisaur.setMoving(false);
-                jedisaur.update(delta);
-                jedisaur.getBody().setLinearVelocity(0,0);
-            }
-        }
+         currentCell = 0;
+         for(int i = 0; i < minigameContainer.size(); i++) {
+             for (int j = 0; j < minigameContainer.get(i).size(); j++) {
+                 if (minigameContainer.get(i).get(j) != null) {
+                     if(banishCells.contains(currentCell)) {
+                         if (blockHolders[i][j].isInContact()) {
+                             jedisaur.dropBlock(blockHolders[i][j]);
+                         }
+                     }
+                     currentCell++;
+                 }
+             }
+         }
+
+
+
     }
 
     @Override
     public void render(SpriteBatch sprite) {
         sprite.enableBlending();
-        sprite.setProjectionMatrix(manager.getCamera().combined);
-
         manager.getCamera().update();
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.end();
-
         playroom.render(sprite);
 
         currentCell = 0;
@@ -245,17 +208,10 @@ public class FillInTheBlock extends State {
             }
         }
 
-        jediGrandpa.render(sprite);
-        jedisaur.render(sprite);
-
-        pause.render(sprite);
     }
 
     @Override
     public void dispose() {
-        jedisaur.disposeBody();
-        jediGrandpa.disposeBody();
-
         // WILL BE USED, DON'T ERASE
         for(int i = 0; i < minigameContainer.size(); i++) {
             for (int j = 0; j < minigameContainer.get(i).size(); j++) {

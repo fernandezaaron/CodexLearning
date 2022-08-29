@@ -265,6 +265,7 @@ public class PlayState extends State{
                 else if(stage >= 5 && stage < 12){
                     schoolMap.setPlayroomActive(false);
                 }
+
                 minigame.setMiniGame();
                 jedisaur.getBody().setTransform(-20, 1, 0);
                 jedisaur.getBody().getPosition().set(-20, 1);
