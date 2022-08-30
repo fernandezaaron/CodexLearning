@@ -181,7 +181,7 @@ public class Questionnaire extends DatabaseReader {
         }
     }
 
-    public void questionDisplay(String stage, String expertiseLevel) {
+    public void questionDisplay(String stage, String stageTopic, String expertiseLevel) {
         adjustDifficulty(expertiseLevel);
 
         difficulty = levels.get(randomizer.nextInt(levels.size()));
@@ -196,7 +196,7 @@ public class Questionnaire extends DatabaseReader {
             }
 
             questionID = randomizer.nextInt(excelQuestionLimit - 1) + 1;
-            question = getExcelQuestion(questionID, 4, difficulty, stage);
+            question = getExcelQuestion(questionID, 4, difficulty, stage, stageTopic);
             System.out.println(stage + "stage here");
             if(question != null) {
                 if(questions.contains(question)){
@@ -230,10 +230,10 @@ public class Questionnaire extends DatabaseReader {
         return stageValue;
     }
 
-    public String getExcelQuestion(int row1, int col1, String difficulty, String stage) {
+    public String getExcelQuestion(int row1, int col1, String difficulty, String stage, String topic) {
         if((int) questionSheet.
                 getRow(row1).getCell(0).getNumericCellValue() == row1 &&
-                getCodeRiddle(row1, 2).equals(difficulty) &&
+                getCodeRiddle(row1, 1).equals(topic) && getCodeRiddle(row1, 2).equals(difficulty) &&
                 (getCodeRiddle(row1, 3).equals(stage))) {
             return getWorkbook().getSheet("CodeRiddle").getRow(row1).getCell(col1).getStringCellValue();
         }
@@ -261,7 +261,7 @@ public class Questionnaire extends DatabaseReader {
             case "Average":
                 levels.add("Medium");
                 levels.add("Hard");
-                questionLimit = 4;
+                questionLimit = 2;
                 break;
             case "Expert":
                 levels.add("Hard");

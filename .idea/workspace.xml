@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="7d6fe2c7-098b-4435-9d5a-8917e2b9dfa3" name="Changes" comment="gege">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/MysteryCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/MysteryCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/excel/Minigames.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/excel/Minigames.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeRiddle.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeRiddle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/FuzzyLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/FuzzyLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/filereader/Questionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/filereader/Questionnaire.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

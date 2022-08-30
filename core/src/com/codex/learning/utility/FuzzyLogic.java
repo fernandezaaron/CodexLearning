@@ -69,8 +69,10 @@ public class FuzzyLogic {
         int c = (int) (getTotalQuestions() * .60);
         int d = (int) (getTotalQuestions() * .90);
 
-        setFuzzyNumberOfErrors(Math.max(min((getNumberOfErrors() - a)/(b - a), 1,
-                (d - getNumberOfErrors()) / (d - c)), 0));
+//        if(getNumberOfErrors() != 0) {
+//            setFuzzyNumberOfErrors(Math.max(min((getNumberOfErrors() - a) / (b - a), 1,
+//                    (d - getNumberOfErrors()) / (d - c)), 0));
+//        }
 
         if(getNumberOfErrors() <= a){
             setNumberOfErrorsRules("LOW");

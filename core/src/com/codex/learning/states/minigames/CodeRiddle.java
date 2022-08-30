@@ -88,7 +88,7 @@ public class CodeRiddle extends State {
 
         inComputer = false;
         isDone = false;
-        getAQuestion(String.valueOf(stage), "Novice");
+        getAQuestion(String.valueOf(stage), "Average");
         System.out.println(stage + " this is the stage");
         currentQuestion = 0;
     }
@@ -223,7 +223,7 @@ public class CodeRiddle extends State {
     }
 
     public void getAQuestion(String stage, String expertiseLevel){
-        manager.getQuestionnaire().questionDisplay(stage,expertiseLevel);
+        manager.getQuestionnaire().questionDisplay(stage,"Syntax",expertiseLevel);
 
         questions = manager.getQuestionnaire().getQuestions();
 
