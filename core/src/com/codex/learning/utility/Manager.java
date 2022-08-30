@@ -54,6 +54,7 @@ public class Manager {
     private Questionnaire questionnaire;
     private Stage stage;
     private Viewport viewport;
+    private StageSelector stageSelector;
 
     private DecisionTree decisionTree;
 
@@ -71,6 +72,7 @@ public class Manager {
         world.setContactListener(cl);
 
         questionnaire = new Questionnaire();
+        stageSelector = new StageSelector();
 
         background = new TextureRegion(new Texture(Constants.BACKGROUND_PATH));
         mainMenu = new TextureRegion(new Texture(Constants.MENU_TEXT_PATH));
@@ -254,6 +256,14 @@ public class Manager {
 
     public void setDecisionTree(DecisionTree decisionTree) {
         this.decisionTree = decisionTree;
+    }
+
+    public StageSelector getStageSelector() {
+        return stageSelector;
+    }
+
+    public void setStageSelector(StageSelector stageSelector) {
+        this.stageSelector = stageSelector;
     }
 
     public boolean isMoving() {

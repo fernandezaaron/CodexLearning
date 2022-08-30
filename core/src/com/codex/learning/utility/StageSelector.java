@@ -4,13 +4,31 @@ public class StageSelector {
     int stageNumber = 0;
     int[] currentStage;
     int[] numberOfCookies;
-    String stageTopic;
-    boolean allowToPlay;
+    boolean[] allowToPlay;
+
 
     public StageSelector(){
         currentStage = new int[17];
         numberOfCookies = new int[17];
-        allowToPlay = false;
+        allowToPlay = new boolean[17];
+
+
+        for(int i=0 ;i<currentStage.length; i++){
+            numberOfCookies[i] = 0;
+            allowToPlay[i] = false;
+        }
+    }
+
+    public String map(){
+        if (stageNumber >= 1 && stageNumber < 5){
+            return "1";
+        }
+        else if(stageNumber >= 5 && stageNumber < 12){
+            return "2";
+        }
+        else{
+            return "3";
+        }
 
     }
 
@@ -18,39 +36,47 @@ public class StageSelector {
         return currentStage;
     }
 
-    public void setCurrentStage(int index, int stageNumber) {
-        this.currentStage[index] = stageNumber;
+    public int getCurrentStage(int index){
+        return currentStage[index];
+    }
+
+    public int getStageNumber(){
+        return stageNumber;
+    }
+
+    public int setStageNumber(int stageNumber){
+        return this.stageNumber = stageNumber;
+    }
+
+    public void setCurrentStage(int index) {
+        this.currentStage[index] = getStageNumber();
     }
 
     public int[] getNumberOfCookies() {
         return numberOfCookies;
     }
 
-    public void setNumberOfCookies(int[] numberOfCookies) {
-        this.numberOfCookies = numberOfCookies;
+    public int getNumberOfCookies(int index) {
+        return numberOfCookies[index];
     }
 
-    public String getStageTopic() {
-        return stageTopic;
+    public void setNumberOfCookies(int index, int numberOfCookies) {
+        this.numberOfCookies[index] = numberOfCookies;
     }
 
-    public void setStageTopic(String stageTopic) {
-        this.stageTopic = stageTopic;
-    }
-
-//    public int getNumberOfCookies() {
-//        return numberOfCookies;
-//    }
-//
-//    public void setNumberOfCookies(int numberOfCookies) {
-//        this.numberOfCookies = numberOfCookies;
-//    }
-
-    public boolean isAllowToPlay() {
+    public boolean[] getAllowToPlay() {
         return allowToPlay;
     }
 
-    public void setAllowToPlay(boolean allowToPlay) {
-        this.allowToPlay = allowToPlay;
+    public boolean getAllowToPlay(int index){
+        return allowToPlay[index];
     }
+
+    public void setAllowToPlay(int index, boolean allowToPlay) {
+        this.allowToPlay[index] = allowToPlay;
+    }
+
+
+
+
 }

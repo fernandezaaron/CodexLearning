@@ -29,8 +29,6 @@ public class NPC extends Entity {
     private String direction;
     private boolean inContact;
     private boolean talking;
-    private Skin skin;
-    private Stage stage;
     private Table table, image;
     private DialogueBox db;
     private Label.LabelStyle labelStyle;
