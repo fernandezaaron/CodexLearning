@@ -39,6 +39,7 @@ public class MysteryCode extends State {
     private ArrayList<Integer> banishCells;
     private ArrayList<String> answerPoolContainer;
     private int currentCell, stage;
+    private String stageSelect;
 
     public MysteryCode(Manager manager, int stage, Character jedisaur) {
         super(manager);
@@ -55,7 +56,14 @@ public class MysteryCode extends State {
 
         this.stage = stage;
 
-        getAMinigame(String.valueOf(stage), "Poor");
+        if(stage >= 1 && stage < 5){
+            getAMinigame("1", "Poor");
+        }
+        else if(stage >= 5 && stage < 12){
+            getAMinigame("2", "Poor");
+        }
+
+
 
         for(int i = 0; i <= 10; i++) {
             banishCells.add(randomizer.nextInt(minigameContainerLimit - 1) + 1);
