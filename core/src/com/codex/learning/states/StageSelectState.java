@@ -42,10 +42,6 @@ public class StageSelectState extends State{
             stageSelector[i].setNumberOfCookies(manager.getExpertSystem().getCookies(i));
         }
 
-
-
-
-
         orangeCircle = new TextureRegion(manager.getUtility(), Constants.ORANGE_CIRCLE_X, Constants.ORANGE_CIRCLE_Y, Constants.ORANGE_CIRCLE_R, Constants.ORANGE_CIRCLE_R);
         grayCircle = new TextureRegion(manager.getUtility(), Constants.GRAY_CIRCLE_X, Constants.GRAY_CIRCLE_Y, Constants.GRAY_CIRCLE_R, Constants.GRAY_CIRCLE_R);
         noCookie = new TextureRegion(manager.getUtility(), Constants.COOKIES_X, Constants.COOKIES_ZERO_Y, Constants.COOKIES_WIDTH, Constants.COOKIES_HEIGHT);
