@@ -72,7 +72,7 @@ public class PlayState extends State{
         jediGrandpa = new NPC(manager, stage);
         jediGrandpa.create(new Vector2(0, 0), new Vector2(1, 1.4f), 0);
 
-        minigame = new Minigame(manager, stage, 2, jedisaur);
+        minigame = new Minigame(manager, stage, 1, jedisaur);
 
         if(!manager.isMusicPaused()){
             manager.setMusic(Constants.HOUSE_MUSIC);
@@ -93,6 +93,7 @@ public class PlayState extends State{
 
     @Override
     public void update(float delta) {
+        manager.getWorld().step(1/60f,6,2);
         if(!isInStartArea()){
             activeBody(false);
             minigame.update(delta);
@@ -100,7 +101,6 @@ public class PlayState extends State{
             activeBody(true);
 
         }
-        manager.getWorld().step(1/60f,6,2);
         if(pause.isRunning()){
             if(!computer.getCodeRiddle().isInComputer()){
                 timer += Gdx.graphics.getDeltaTime();

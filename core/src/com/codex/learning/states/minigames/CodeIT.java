@@ -66,19 +66,13 @@ public class CodeIT extends State {
             float xStartingPoint = -23.0f;
             for(int j = 0; j < minigameContainer.get(i).size(); j++) {
                 if(minigameContainer.get(i).get(j) != null) {
-                    float currentStringLength = (float) String.valueOf(minigameContainer.get(i).get(j)).length();
                     blockHolders[i][j] = new BlockHolder(manager, "\"" + minigameContainer.get(i).get(j) + "\"");
-                    blockHolders[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.22f), Constants.BLOCK_HOLDER_HEIGHT), 0);
+                    blockHolders[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2(Constants.BLOCK_HOLDER_WIDTH * 3, Constants.BLOCK_HOLDER_HEIGHT), 0);
                     answerPoolContainer.add(minigameContainer.get(i).get(j));
-                    System.out.println(minigameContainer.get(i).get(j));
+                    xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 10;
 
                     System.out.println(xStartingPoint + " " + minigameContainer.get(i).get(j));
                     System.out.println(String.valueOf(minigameContainer.get(i).get(j)).length() + "     " + (float) String.valueOf(minigameContainer.get(i).get(j)).length());
-
-                    if(currentStringLength <= 2)
-                        xStartingPoint += currentStringLength + 0.5f;
-                    else
-                        xStartingPoint += currentStringLength / 1.8f;
                 }
             }
             yStartingPoint -= 2;

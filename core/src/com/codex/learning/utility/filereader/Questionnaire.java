@@ -27,8 +27,6 @@ public class Questionnaire extends DatabaseReader {
 
     private Sheet minigameSheet, questionSheet, answerPoolSheet;
 
-//    private String[][] minigameGetter;
-//    private String[][] minigameHolder;
     private ArrayList<ArrayList<String>> minigameHolder;
     private ArrayList<String> minigameGetter;
     private ArrayList<String> answerPool;
@@ -183,10 +181,6 @@ public class Questionnaire extends DatabaseReader {
 
     public void questionDisplay(String stage, String expertiseLevel) {
         adjustDifficulty(expertiseLevel);
-
-        difficulty = levels.get(randomizer.nextInt(levels.size()));
-
-
         while(question == null) {
             difficulty = levels.get(randomizer.nextInt(levels.size()));
 //            System.out.println("am i here");
@@ -277,14 +271,6 @@ public class Questionnaire extends DatabaseReader {
     public void setQuestions(ArrayList<String> questions) {
         this.questions = questions;
     }
-
-//    public String[][] getMinigame() {
-//        return minigameHolder;
-//    }
-//
-//    public void setMinigame(String[][] minigameHolder) {
-//        this.minigameHolder = minigameHolder;
-//    }
 
     public ArrayList<ArrayList<String>> getMinigame() {
         return minigameHolder;

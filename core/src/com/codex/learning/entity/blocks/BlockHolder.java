@@ -58,10 +58,10 @@ public class BlockHolder extends Entity {
         setCopyBlock(null);
 
         normalBlock = new ShapeRenderer();
-        normalBlock.translate(this.size.x + (Constants.PPM / 5f), - (this.size.y * Constants.PPM) / 9.2f, 0);
+        normalBlock.translate(this.size.x + (Constants.PPM / 5f), - (this.size.y * Constants.PPM) / 10f, 0);
 
         highlightBlock = new ShapeRenderer();
-        highlightBlock.translate(this.size.x + (Constants.PPM / 5f), - (this.size.y * Constants.PPM) / 9.2f, 0);
+        highlightBlock.translate(this.size.x + (Constants.PPM / 5f), - (this.size.y * Constants.PPM) / 10f, 0);
 
     }
 
@@ -79,7 +79,7 @@ public class BlockHolder extends Entity {
             highlightBlock.setProjectionMatrix(manager.getCamera().combined);
             highlightBlock.setColor(246/255f, 228/255f, 216/255f, 0.0f);
             highlightBlock.begin(ShapeRenderer.ShapeType.Filled);
-            highlightBlock.rect((this.size.x  * 2 + (Constants.PPM * body.getPosition().x)),
+            highlightBlock.rect((this.size.x + (Constants.PPM * body.getPosition().x)),
                     (this.size.y * 2 + (Constants.PPM * body.getPosition().y)),
                     (this.size.x + (this.size.x * Constants.PPM)) * 2,
                     - (this.size.y * Constants.PPM * 2.1f));
@@ -92,7 +92,7 @@ public class BlockHolder extends Entity {
             normalBlock.setProjectionMatrix(manager.getCamera().combined);
             normalBlock.setColor(201/255f, 186/255f, 176/255f, 0.0f);
             normalBlock.begin(ShapeRenderer.ShapeType.Filled);
-            normalBlock.rect((this.size.x  * 2 + (Constants.PPM * body.getPosition().x)),
+            normalBlock.rect((this.size.x + (Constants.PPM * body.getPosition().x)),
                     (this.size.y * 2 + (Constants.PPM * body.getPosition().y)),
                     (this.size.x + (this.size.x * Constants.PPM)) * 2,
                     - (this.size.y * Constants.PPM * 2.1f));

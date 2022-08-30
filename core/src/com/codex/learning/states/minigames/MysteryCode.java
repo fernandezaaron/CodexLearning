@@ -42,10 +42,8 @@ public class MysteryCode extends State {
         randomizer = new Random();
         banishCells = new ArrayList<Integer>();
 
-        // WILL BE USED, DON'T ERASE
         questionBlocks = new Blocks[20][20];
         blockHolders = new BlockHolder[20][20];
-        // WILL BE USED, DON'T ERASE
 
         this.stage = stage;
 
@@ -64,32 +62,25 @@ public class MysteryCode extends State {
                     float currentStringLength = (float) String.valueOf(minigameContainer.get(i).get(j)).length();
                     if (banishCells.contains(currentCell)) {
                         blockHolders[i][j] = new BlockHolder(manager, "\"" + minigameContainer.get(i).get(j) + "\"");
-                        if (currentStringLength <= 3) {
-                            blockHolders[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.5f), Constants.BLOCK_HOLDER_HEIGHT), 0);
-                        }
-                        else {
-                            blockHolders[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.23f), Constants.BLOCK_HOLDER_HEIGHT), 0);
-                        }
+                        blockHolders[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2(Constants.BLOCK_HOLDER_WIDTH * 3, Constants.BLOCK_HOLDER_HEIGHT), 0);
                         answerPoolContainer.add(minigameContainer.get(i).get(j));
+                        xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 10;
                     } else {
                         questionBlocks[i][j] = new Blocks(manager, "\"" + minigameContainer.get(i).get(j) + "\"", minigameContainer.get(i).get(j), true);
                         if (currentStringLength <= 3){
                             questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.5f), Constants.BLOCKS_HEIGHT), 0);
                             questionBlocks[i][j].setPreDefinedContact(true);
+                            xStartingPoint += currentStringLength + 0.5f;
                         }
 
                         else{
                             questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.23f), Constants.BLOCKS_HEIGHT), 0);
                             questionBlocks[i][j].setPreDefinedContact(true);
+                            xStartingPoint += currentStringLength / 1.8f;
                         }
 
                     }
                     currentCell++;
-
-                    if(currentStringLength <= 3)
-                        xStartingPoint += currentStringLength + 0.5f;
-                    else
-                        xStartingPoint += currentStringLength / 1.8f;
                 }
             }
             yStartingPoint -= 2;
@@ -106,9 +97,9 @@ public class MysteryCode extends State {
         for(int i = 0; i < ansPoolSize; i++) {
             float AnsPoolX = 11;
             int totalLineLength = 0;
-            while (totalLineLength < 12) {
+            while (totalLineLength <= 12) {
                 float currentStringLength = (float) String.valueOf(answerPoolContainer.get(currentAnsCell)).length();
-                totalLineLength += currentStringLength;
+                totalLineLength += currentStringLength + (AnsPoolX - 11);
                 answerBlocks[currentAnsCell] = new Blocks(manager, "\"" + answerPoolContainer.get(currentAnsCell) + "\"", answerPoolContainer.get(currentAnsCell), true);
                 if (answerPoolContainer.get(currentAnsCell) != null) {
                     if (currentStringLength <= 3)
@@ -116,9 +107,9 @@ public class MysteryCode extends State {
                     else
                         answerBlocks[currentAnsCell].create(new Vector2(AnsPoolX, AnsPoolY), new Vector2((currentStringLength * 0.23f), Constants.BLOCKS_HEIGHT), 0);
                     if (currentStringLength <= 3)
-                        AnsPoolX += currentStringLength + 0.7f;
+                        AnsPoolX += currentStringLength + 1.0f;
                     else
-                        AnsPoolX += currentStringLength / 1.6f;
+                        AnsPoolX += currentStringLength / 1.3f;
                     if (currentAnsCell == ansPoolSize - 1) {
                         break;
                     } else {
@@ -155,7 +146,6 @@ public class MysteryCode extends State {
                 answerBlocks[i].update(delta);
                 if (answerBlocks[i].isInContact()) {
                     jedisaur.carryBlock(answerBlocks[i]);
-                    System.out.println("carried");
                 }
             }
         }
@@ -167,7 +157,6 @@ public class MysteryCode extends State {
                     if (banishCells.contains(currentCell)) {
                         if (blockHolders[i][j].isInContact()) {
                             jedisaur.dropBlock(blockHolders[i][j]);
-                            System.out.println("dropped");
                         }
                     }
                     currentCell++;
