@@ -21,10 +21,10 @@ public class sample extends State {
 
         for(int i=0; i<5; i++){
             blockHolders[i] = new BlockHolder(manager, "asd");
-            blockHolders[i].create(new Vector2(4*i,0), new Vector2(1.5f, 1.5f), 0);
+            blockHolders[i].create(new Vector2(4*i,-4), new Vector2(1.5f, 1.5f), 0);
 
 
-            blocks[i] = new Blocks(manager, "asd", "name", false);
+            blocks[i] = new Blocks(manager, "asd", String.valueOf(i), false);
             blocks[i].create(new Vector2(10, 3*i), new Vector2(0.8f, 0.8f), 0);
         }
 
