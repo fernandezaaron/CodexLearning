@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Tree;
 import com.codex.learning.entity.Entity;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
+import org.graalvm.compiler.serviceprovider.IsolateUtil;
 
 public class Blocks extends Entity {
     private String id, name;
@@ -102,7 +103,7 @@ public class Blocks extends Entity {
                     (this.size.y - (this.size.y * (Constants.PPM * 0.5f)) + (Constants.PPM * body.getPosition().y)));
         else
             manager.getFont().draw(sprite, this.name,
-                (this.size.x * Constants.PPM * 0.3f + 3f + (Constants.PPM * body.getPosition().x)),
+                (this.size.x + 20f + (Constants.PPM * body.getPosition().x)),
                 (this.size.y - (this.size.y * (Constants.PPM * 0.5f)) + (Constants.PPM * body.getPosition().y)));
         sprite.end();
     }

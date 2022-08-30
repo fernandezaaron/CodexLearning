@@ -1,16 +1,10 @@
 package com.codex.learning.states.minigames;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.codex.learning.entity.blocks.BlockHolder;
 import com.codex.learning.entity.blocks.Blocks;
-import com.codex.learning.entity.blocks.Computer;
 import com.codex.learning.entity.characters.Character;
-import com.codex.learning.entity.characters.NPC;
 import com.codex.learning.entity.maps.PlayroomMapS1;
 import com.codex.learning.states.PauseState;
 import com.codex.learning.states.State;
@@ -137,61 +131,58 @@ public class MysteryCode extends State {
             }
             AnsPoolY -= 2.5;
         }
-
         this.jedisaur = jedisaur;
-
-
     }
 
     @Override
     public void update(float delta) {
-            // WILL BE USED, DON'T ERASE
-            currentCell = 0;
-            for (int i = 0; i < minigameContainer.size(); i++) {
-                for (int j = 0; j < minigameContainer.get(i).size(); j++) {
-                    if (minigameContainer.get(i).get(j) != null) {
-                        if (banishCells.contains(currentCell))
-                            blockHolders[i][j].update(delta);
-                        else
-                            questionBlocks[i][j].update(delta);
-                        currentCell++;
-                    }
+        // WILL BE USED, DON'T ERASE
+        currentCell = 0;
+        for (int i = 0; i < minigameContainer.size(); i++) {
+            for (int j = 0; j < minigameContainer.get(i).size(); j++) {
+                if (minigameContainer.get(i).get(j) != null) {
+                    if (banishCells.contains(currentCell))
+                        blockHolders[i][j].update(delta);
+                    else
+                        questionBlocks[i][j].update(delta);
+                    currentCell++;
                 }
             }
-            //kung gagamitin mo to remove the blocks[i][j].update muna sa taas pero i havent tried pag magkasabay sila naka on for sure dodoble HAHA
-            for (int i = 0; i < answerBlocks.length; i++) {
-                if (answerBlocks[i] != null) {
-                    answerBlocks[i].update(delta);
-                    if (answerBlocks[i].isInContact()) {
-                        jedisaur.carryBlock(answerBlocks[i]);
-                    }
-                }
-            }
-            // WILL BE USED, DON'T ERASE
-            currentCell = 0;
-            for (int i = 0; i < minigameContainer.size(); i++) {
-                for (int j = 0; j < minigameContainer.get(i).size(); j++) {
-                    if (minigameContainer.get(i).get(j) != null) {
-                        if (banishCells.contains(currentCell)) {
-                            if (blockHolders[i][j].isInContact()) {
-                                jedisaur.dropBlock(blockHolders[i][j]);
-                            }
-                        }
-                        currentCell++;
-                    }
-                }
-            }
-
-
-             // WILL BE USED, DON'T ERASE
-             for (int i = 0; i < answerPoolContainer.size(); i++) {
-                 if (answerBlocks[i] != null) {
-                     answerBlocks[i].update(delta);
-                 }
-             }
-
-
         }
+        //kung gagamitin mo to remove the blocks[i][j].update muna sa taas pero i havent tried pag magkasabay sila naka on for sure dodoble HAHA
+        for (int i = 0; i < answerBlocks.length; i++) {
+            if (answerBlocks[i] != null) {
+                answerBlocks[i].update(delta);
+                if (answerBlocks[i].isInContact()) {
+                    jedisaur.carryBlock(answerBlocks[i]);
+                    System.out.println("carried");
+                }
+            }
+        }
+        // WILL BE USED, DON'T ERASE
+        currentCell = 0;
+        for (int i = 0; i < minigameContainer.size(); i++) {
+            for (int j = 0; j < minigameContainer.get(i).size(); j++) {
+                if (minigameContainer.get(i).get(j) != null) {
+                    if (banishCells.contains(currentCell)) {
+                        if (blockHolders[i][j].isInContact()) {
+                            jedisaur.dropBlock(blockHolders[i][j]);
+                            System.out.println("dropped");
+                        }
+                    }
+                    currentCell++;
+                }
+            }
+        }
+
+
+        // WILL BE USED, DON'T ERASE
+        for (int i = 0; i < answerPoolContainer.size(); i++) {
+            if (answerBlocks[i] != null) {
+                answerBlocks[i].update(delta);
+            }
+        }
+    }
 
 
     @Override

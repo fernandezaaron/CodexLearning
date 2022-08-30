@@ -104,8 +104,8 @@ public class FillInTheBlock extends State {
                 }
             }
             else{
-                blockDispensers[i] = new BlockDispenser(manager, "Right", "main", " main ",
-                        3, new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
+                blockDispensers[i] = new BlockDispenser(manager, "Right", "blocks", " main ",
+                        1, new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
             }
             blockDispensers[i].create(new Vector2(15 * i, -6), new Vector2(0.3f, 1.3f), 0);
         }
@@ -133,7 +133,7 @@ public class FillInTheBlock extends State {
              }
          }
 
-         for(int i = 0; i < 2; i++){
+         for(int i = 0; i < 2; i++) {
              blockDispensers[i].createBlock(new Vector2(jedisaur.getBody().getPosition().x, jedisaur.getBody().getPosition().y));
          }
 
