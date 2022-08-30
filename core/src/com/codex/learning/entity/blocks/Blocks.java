@@ -41,7 +41,7 @@ public class Blocks extends Entity {
         PolygonShape shape = new PolygonShape();
 
         shape.setAsBox(this.size.x, this.size.y,
-                new Vector2(0, -(this.size.y - this.size.y / 3)), 0);
+                new Vector2(this.size.x + this.size.x / 3, -(this.size.y - this.size.y / 3)), 0);
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.density = density;

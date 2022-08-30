@@ -10,6 +10,7 @@ public class StageSelector {
         numberOfCookies = 0;
         allowToPlay = false;
 
+
     }
 
 

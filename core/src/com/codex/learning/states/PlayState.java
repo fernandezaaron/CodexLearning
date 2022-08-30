@@ -20,6 +20,8 @@ import com.codex.learning.states.minigames.Minigame;
 import com.codex.learning.states.minigames.MysteryCode;
 import com.codex.learning.utility.*;
 
+import java.util.Random;
+
 public class PlayState extends State{
     private Character jedisaur;
     private NPC jediGrandpa;
@@ -28,11 +30,9 @@ public class PlayState extends State{
     private Computer computer;
     private PlayroomMapS1 playroomMap;
     private Minigame minigame;
-    private FillInTheBlock fib;
-    private MysteryCode mc;
+    private Random rand;
+    private int randomMinigame;
 
-    private BlockHolder[] blockHolders;
-    private Blocks[] blocks;
 
     private boolean inMysteryCode, inFillInTheBlock;
 
@@ -53,24 +53,14 @@ public class PlayState extends State{
         this.stage = stage;
         timer = 0;
         pause = new PauseState(manager);
+        rand = new Random();
+        randomMinigame = rand.nextInt(3-1)+1;
 
         if(stage >= 1 && stage < 5){
             house = new HouseMap(manager);
         }
         else if(stage >= 5 && stage < 12){
             schoolMap = new SchoolMap(manager);
-        }
-
-        blockHolders = new BlockHolder[5];
-        blocks = new Blocks[5];
-
-        for(int i=0; i<5; i++){
-            blockHolders[i] = new BlockHolder(manager, "asd");
-            blockHolders[i].create(new Vector2(4*i,-4), new Vector2(1.5f, 1.5f), 0);
-
-
-            blocks[i] = new Blocks(manager, "asd", String.valueOf(i), false);
-            blocks[i].create(new Vector2(10, 3*i), new Vector2(0.8f, 0.8f), 0);
         }
 
         playroomMap = new PlayroomMapS1(manager, stage);
@@ -92,7 +82,7 @@ public class PlayState extends State{
         jediGrandpa = new NPC(manager, stage);
         jediGrandpa.create(new Vector2(0, 0), new Vector2(1, 1.4f), 0);
 
-        minigame = new Minigame(manager, stage, 2, jedisaur);
+        minigame = new Minigame(manager, stage, randomMinigame, jedisaur);
 
         if(!manager.isMusicPaused()){
             manager.setMusic(Constants.HOUSE_MUSIC);
@@ -109,81 +99,70 @@ public class PlayState extends State{
         inFillInTheBlock = false;
         inMysteryCode = false;
 
-
-
     }
 
     @Override
     public void update(float delta) {
+        manager.getWorld().step(1/60f,6,2);
         if(!isInStartArea()){
             activeBody(false);
-//            updateMinigame(delta);
-//            System.out.println(minigame.getBlocks() + " Playstate block");
-//            minigame.update(delta);
-            for(int i=0; i<5; i++){
-                if(blockHolders[i].isInContact()){
-                    jedisaur.dropBlock(blockHolders[i]);
-                }
-                blockHolders[i].update(delta);
-                if(blocks[i].isInContact()){
-                    jedisaur.carryBlock(blocks[i]);
-                }
+            minigame.update(delta);
 
-                blocks[i].update(delta);
-            }
         }else {
             activeBody(true);
 
         }
-        manager.getWorld().step(1/60f,6,2);
+
         if(pause.isRunning()){
-            if(!computer.getCodeRiddle().isInComputer()){
-                timer += Gdx.graphics.getDeltaTime();
+            if(jediGrandpa.isTalking()){
+                jedisaurStop(delta);
+                jediGrandpa.update(delta);
+            }
+            else{
+                if(!computer.getCodeRiddle().isInComputer()){
+                    timer += Gdx.graphics.getDeltaTime();
 
 
-                if(computer.isDone()){
-                    computer.getCodeRiddle().updateBehavior();
-                }
+                    if(computer.isDone()){
+                        computer.getCodeRiddle().updateBehavior();
+                    }
 
-                // CHECK THE BEHAVIOR IN STATE
-                manager.checkIfMoving(jedisaur);
-                manager.updateBehavior((int) timer);
+                    // CHECK THE BEHAVIOR IN STATE
+                    manager.checkIfMoving(jedisaur);
+                    manager.updateBehavior((int) timer);
 //                manager.checkBehavior((int) timer, jedisaur.getNumberOfBlockInteraction(), computer.isDone(), fuzzyLogic);
 
-                // if(npc.isDone()){
-                //Use to calculate number of cookies
-                //System.out.println(fuzzyLogic.getCookies());
+                    // if(npc.isDone()){
+                    //Use to calculate number of cookies
+                    //System.out.println(fuzzyLogic.getCookies());
 
 //                manager.getExpertSystem().setCurrentCookie(fuzzyLogic.calculateFuzzy(
 //                  computer.getCodeRiddle().getFuzzyLogic().getNumberOfErrors(),
 //                  computer.getCodeRiddle().getFuzzyLogic().getTimeConsumptions() + timer,);
 
-                // Update the number of cookie to write in the file
+                    // Update the number of cookie to write in the file
 //                manager.getExpertSystem().editCookie(stage - 1);
-                // Update the cookies in the stage select state
+                    // Update the cookies in the stage select state
 //                manager.getExpertSystem().writeFile(manager.getExpertSystem().getCookies());
 
-                // Write the behavior in a file
+                    // Write the behavior in a file
 
 //              }
 
 
 
 
-                exitDoor(jedisaur);
-                jediGrandpa.update(delta);
-                jedisaur.update(delta);
-                computer.update(delta);
-
-            }
-            else{
-                if(jedisaur.isMoving()){
-                    jedisaur.setMoving(false);
+                    exitDoor(jedisaur);
+                    jediGrandpa.update(delta);
                     jedisaur.update(delta);
-                    jedisaur.getBody().setLinearVelocity(0,0);
+                    computer.update(delta);
+
+
                 }
-                if(computer.getCodeRiddle().isInComputer() && Gdx.input.isKeyJustPressed(Input.Keys.F)){
-                    computer.getCodeRiddle().setInComputer(false);
+                else{
+                    jedisaurStop(delta);
+                    if(computer.getCodeRiddle().isInComputer() && Gdx.input.isKeyJustPressed(Input.Keys.F)){
+                        computer.getCodeRiddle().setInComputer(false);
 //not working pa
 //                    for (int i =0 ; i<manager.getStage().getActors().size; i++){
 //                        System.out.println(manager.getStage().getActors().get(i));
@@ -193,16 +172,16 @@ public class PlayState extends State{
 ////                            manager.getStage().clear();
 //                        }
 //                    }
-                    manager.getStage().clear();
+                        manager.getStage().clear();
+                    }
                 }
             }
+
         }else{
-            if(jedisaur.isMoving()){
-                jedisaur.setMoving(false);
-                jedisaur.update(delta);
-                jedisaur.getBody().setLinearVelocity(0,0);
-            }
+            jedisaurStop(delta);
         }
+
+
     }
 
     @Override
@@ -215,7 +194,7 @@ public class PlayState extends State{
 
         if(isInStartArea()){
             if(stage >= 1 && stage < 5){
-//                house.render(sprite);
+                house.render(sprite);
             }
             else if(stage >= 5 && stage < 12){
                 schoolMap.render(sprite);
@@ -233,17 +212,7 @@ public class PlayState extends State{
 
             }
         }else {
-//            playroomMap.render(sprite);
-//            minigame.setMiniGame();
-//            minigame.render(sprite);
-//            renderMinigame(sprite);
-            for(int i=0; i<5; i++){
-                blockHolders[i].render(sprite);
-            }
-
-            for(int i=0; i<5; i++){
-                blocks[i].render(sprite);
-            }
+            minigame.render(sprite);
             jedisaur.render(sprite);
         }
 
@@ -270,50 +239,11 @@ public class PlayState extends State{
         }
     }
 
-    public void setMiniGame(int stageNumber, int currentMinigame){
-        switch (currentMinigame){
-            case 1:
-                inFillInTheBlock = true;
-                fib = new FillInTheBlock(manager, stageNumber, jedisaur);
-                System.out.println("1");
-                break;
-            case 2:
-                inMysteryCode = true;
-                mc = new MysteryCode(manager, stageNumber);
-
-                break;
-            case 3:
-                System.out.println("3");
-                break;
-
-        }
-
-    }
-
-    public void updateMinigame(float delta){
-        if(inFillInTheBlock){
-            fib.update(delta);
-        }
-        else if(inMysteryCode){
-            mc.update(delta);
-        }
-    }
-
-    public void renderMinigame(SpriteBatch spriteBatch){
-        if(inFillInTheBlock){
-            fib.render(spriteBatch);
-        }
-        else if(inMysteryCode){
-            mc.render(spriteBatch);
-        }
-    }
-
-    public void disposeMinigame(){
-        if(inFillInTheBlock){
-            fib.dispose();
-        }
-        else if(inMysteryCode){
-            mc.dispose();
+    public void jedisaurStop(float delta){
+        if(jedisaur.isMoving()){
+            jedisaur.setMoving(false);
+            jedisaur.update(delta);
+            jedisaur.getBody().setLinearVelocity(0,0);
         }
     }
 
@@ -357,7 +287,7 @@ public class PlayState extends State{
                 else if(stage >= 5 && stage < 12){
                     schoolMap.setPlayroomActive(false);
                 }
-//                setMiniGame(stage, 1);
+
                 minigame.setMiniGame();
                 jedisaur.getBody().setTransform(-20, 1, 0);
                 jedisaur.getBody().getPosition().set(-20, 1);
@@ -372,7 +302,6 @@ public class PlayState extends State{
         if(!inStartArea && character.getBody().getPosition().x < -23 && character.getBody().getPosition().y > -4 && character.getBody().getPosition().y < 2.5f){
             setInStartArea(true);
             minigame.dispose();
-            disposeMinigame();
             jedisaur.getBody().setTransform(14, 1, 0);
             jedisaur.getBody().getPosition().set(14, 1);
         }

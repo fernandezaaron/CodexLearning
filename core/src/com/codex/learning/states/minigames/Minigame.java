@@ -16,7 +16,6 @@ public class Minigame extends State {
     private MysteryCode h;
     private boolean fib, mc, samplebool;
     private Character jedisaur;
-    private Blocks[] answerBlock;
 
     public Minigame(Manager manager, int stageNumber, int currentMinigame, Character jedisaur){
         super(manager);
@@ -34,17 +33,10 @@ public class Minigame extends State {
         this.currentMinigame = currentMinigame;
         fuzzyLogic = new FuzzyLogic();
         fib = false;
-         samplebool = false;
+        samplebool = false;
         mc = false;
     }
 
-    public Character getJedisaur() {
-        return jedisaur;
-    }
-
-    public void setJedisaur(Character jedisaur) {
-        this.jedisaur = jedisaur;
-    }
 
     public void setMiniGame(){
         switch (currentMinigame){
@@ -67,13 +59,6 @@ public class Minigame extends State {
         }
     }
 
-    public Blocks[] getBlocks(){
-        if(mc){
-            return h.getAnswerBlocks();
-        }
-
-        return h.getAnswerBlocks();
-    }
 
 
     @Override
@@ -83,7 +68,6 @@ public class Minigame extends State {
         }
         else if(mc){
             h.update(delta);
-//            h.setJedisaur(getJedisaur());
         }else if(samplebool){
             sample.update(delta);
         }
@@ -121,11 +105,4 @@ public class Minigame extends State {
         }
     }
 
-    public Blocks[] getAnswerBlock() {
-        return answerBlock;
-    }
-
-    public void setAnswerBlock(Blocks[] answerBlock) {
-        this.answerBlock = answerBlock;
-    }
 }
