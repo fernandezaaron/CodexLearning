@@ -15,7 +15,9 @@ import com.codex.learning.entity.characters.NPC;
 import com.codex.learning.entity.maps.HouseMap;
 import com.codex.learning.entity.maps.PlayroomMapS1;
 import com.codex.learning.entity.maps.SchoolMap;
+import com.codex.learning.states.minigames.FillInTheBlock;
 import com.codex.learning.states.minigames.Minigame;
+import com.codex.learning.states.minigames.MysteryCode;
 import com.codex.learning.utility.*;
 
 public class PlayState extends State{
@@ -26,6 +28,10 @@ public class PlayState extends State{
     private Computer computer;
     private PlayroomMapS1 playroomMap;
     private Minigame minigame;
+    private FillInTheBlock fib;
+    private MysteryCode mc;
+
+    private boolean inMysteryCode, inFillInTheBlock;
 
     private float timer;
 
@@ -72,7 +78,7 @@ public class PlayState extends State{
         jediGrandpa = new NPC(manager, stage);
         jediGrandpa.create(new Vector2(0, 0), new Vector2(1, 1.4f), 0);
 
-        minigame = new Minigame(manager, stage, 2);
+        minigame = new Minigame(manager, stage, 3, jedisaur);
 
         if(!manager.isMusicPaused()){
             manager.setMusic(Constants.HOUSE_MUSIC);
@@ -86,6 +92,8 @@ public class PlayState extends State{
         door = new TextureRegion(manager.getReportCardSheet(), 48,195, 263, 119);
         inStartArea = true;
         atDoor = false;
+        inFillInTheBlock = false;
+        inMysteryCode = false;
 
 
 
@@ -95,7 +103,8 @@ public class PlayState extends State{
     public void update(float delta) {
         if(!isInStartArea()){
             activeBody(false);
-            System.out.println(minigame.getBlocks() + " Playstate block");
+//            updateMinigame(delta);
+//            System.out.println(minigame.getBlocks() + " Playstate block");
             minigame.update(delta);
 
         }else {
@@ -203,6 +212,7 @@ public class PlayState extends State{
 //            playroomMap.render(sprite);
 //            minigame.setMiniGame();
             minigame.render(sprite);
+//            renderMinigame(sprite);
             jedisaur.render(sprite);
         }
 
@@ -225,6 +235,53 @@ public class PlayState extends State{
         }
         else if(stage >= 5 && stage < 12){
             schoolMap.dispose();
+        }
+    }
+
+    public void setMiniGame(int stageNumber, int currentMinigame){
+        switch (currentMinigame){
+            case 1:
+                inFillInTheBlock = true;
+                fib = new FillInTheBlock(manager, stageNumber, jedisaur);
+                System.out.println("1");
+                break;
+            case 2:
+                inMysteryCode = true;
+                mc = new MysteryCode(manager, stageNumber);
+
+                break;
+            case 3:
+                System.out.println("3");
+                break;
+
+        }
+
+    }
+
+    public void updateMinigame(float delta){
+        if(inFillInTheBlock){
+            fib.update(delta);
+        }
+        else if(inMysteryCode){
+            mc.update(delta);
+        }
+    }
+
+    public void renderMinigame(SpriteBatch spriteBatch){
+        if(inFillInTheBlock){
+            fib.render(spriteBatch);
+        }
+        else if(inMysteryCode){
+            mc.render(spriteBatch);
+        }
+    }
+
+    public void disposeMinigame(){
+        if(inFillInTheBlock){
+            fib.dispose();
+        }
+        else if(inMysteryCode){
+            mc.dispose();
         }
     }
 
@@ -268,7 +325,7 @@ public class PlayState extends State{
                 else if(stage >= 5 && stage < 12){
                     schoolMap.setPlayroomActive(false);
                 }
-
+//                setMiniGame(stage, 1);
                 minigame.setMiniGame();
                 jedisaur.getBody().setTransform(-20, 1, 0);
                 jedisaur.getBody().getPosition().set(-20, 1);
@@ -283,6 +340,7 @@ public class PlayState extends State{
         if(!inStartArea && character.getBody().getPosition().x < -23 && character.getBody().getPosition().y > -4 && character.getBody().getPosition().y < 2.5f){
             setInStartArea(true);
             minigame.dispose();
+            disposeMinigame();
             jedisaur.getBody().setTransform(14, 1, 0);
             jedisaur.getBody().getPosition().set(14, 1);
         }
