@@ -132,20 +132,7 @@ public class PlayState extends State{
                     manager.updateBehavior((int) timer);
 //                manager.checkBehavior((int) timer, jedisaur.getNumberOfBlockInteraction(), computer.isDone(), fuzzyLogic);
 
-                    // if(npc.isDone()){
-                    //Use to calculate number of cookies
-                    //System.out.println(fuzzyLogic.getCookies());
 
-//                manager.getExpertSystem().setCurrentCookie(fuzzyLogic.calculateFuzzy(
-//                  computer.getCodeRiddle().getFuzzyLogic().getNumberOfErrors(),
-//                  computer.getCodeRiddle().getFuzzyLogic().getTimeConsumptions() + timer,);
-
-                    // Update the number of cookie to write in the file
-//                manager.getExpertSystem().editCookie(stage - 1);
-                    // Update the cookies in the stage select state
-//                manager.getExpertSystem().writeFile(manager.getExpertSystem().getCookies());
-
-                    // Write the behavior in a file
 
 //              }
 
@@ -159,6 +146,22 @@ public class PlayState extends State{
 
 
                 }
+//                else if(playroom.isDone && npc.hasSubmitted && computer.isDone){
+//                    //Use to calculate number of cookies
+//                    //System.out.println(fuzzyLogic.getCookies());
+//
+////                manager.getExpertSystem().setCurrentCookie(fuzzyLogic.calculateFuzzy(
+////                  computer.getCodeRiddle().getFuzzyLogic().getNumberOfErrors(),
+////                  computer.getCodeRiddle().getFuzzyLogic().getTimeConsumptions() + timer,);
+//
+//                    // Update the number of cookie to write in the file
+////                manager.getExpertSystem().editCookie(stage - 1);
+//                    // Update the cookies in the stage select state
+////                manager.getExpertSystem().writeFile(manager.getExpertSystem().getCookies());
+//
+//                    // Write the behavior in a file
+//                }
+
                 else{
                     jedisaurStop(delta);
                     if(computer.getCodeRiddle().isInComputer() && Gdx.input.isKeyJustPressed(Input.Keys.F)){
