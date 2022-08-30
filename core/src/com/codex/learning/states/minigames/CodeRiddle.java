@@ -224,16 +224,10 @@ public class CodeRiddle extends State {
 
     public void getAQuestion(String stage, String expertiseLevel){
         manager.getQuestionnaire().questionDisplay(stage,expertiseLevel);
-
         questions = manager.getQuestionnaire().getQuestions();
-
-
         options = manager.getQuestionnaire().getOptions();
-
         fuzzyLogic.setTotalQuestions(manager.getQuestionnaire().getQuestionLimit());
     }
-
-
 
     // Time Consumption, Number of Error
     public void updateBehavior(){

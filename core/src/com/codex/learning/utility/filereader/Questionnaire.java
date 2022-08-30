@@ -183,8 +183,6 @@ public class Questionnaire extends DatabaseReader {
         adjustDifficulty(expertiseLevel);
         while(question == null) {
             difficulty = levels.get(randomizer.nextInt(levels.size()));
-//            System.out.println("am i here");
-//            System.out.println(numberOfQuestions);
             if(numberOfQuestions == questionLimit){
                 break;
             }
