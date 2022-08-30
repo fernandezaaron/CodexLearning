@@ -191,9 +191,14 @@ public class Contact implements ContactListener {
                 jedisaur = (Character) fa.getUserData();
                 blocks = (Blocks) fb.getUserData();
             }
-
+            numberOfCollision--;
+            System.out.println(numberOfCollision);
             blocks.setInContact(false);
             jedisaur.setPickUpAble(false);
+            if(numberOfCollision == 1){
+                blocks.setInContact(true);
+                jedisaur.setPickUpAble(true);
+            }
         }
 
         if(isDispenserContact(fa, fb)){
