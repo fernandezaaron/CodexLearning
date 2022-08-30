@@ -291,7 +291,7 @@ public class Manager {
         }
         return null;
     }
-
+    // Stage #, Stage Topic, Cookie Number, Dataset (5), Behavior
     public void writeDataGathering(int stageNumber, String stageTopic, int numberOfCookie){
         try {
             File file = new File(Constants.DATA_GATHERED_FILE_PATH);

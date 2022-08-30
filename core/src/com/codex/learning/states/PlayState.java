@@ -136,9 +136,6 @@ public class PlayState extends State{
 
 //              }
 
-
-
-
                     exitDoor(jedisaur);
                     jediGrandpa.update(delta);
                     jedisaur.update(delta);
@@ -158,6 +155,7 @@ public class PlayState extends State{
 ////                manager.getExpertSystem().editCookie(stage - 1);
 //                    // Update the cookies in the stage select state
 ////                manager.getExpertSystem().writeFile(manager.getExpertSystem().getCookies());
+//                    manager.getExpertSystem().readFile();
 //
 //                    // Write the behavior in a file
 //                }
