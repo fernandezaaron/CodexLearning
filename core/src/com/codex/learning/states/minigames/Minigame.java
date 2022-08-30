@@ -55,7 +55,7 @@ public class Minigame extends State {
                 break;
             case 2:
                 mc = true;
-                h = new MysteryCode(manager, stageNumber);
+                h = new MysteryCode(manager, stageNumber, jedisaur);
 
                 break;
             case 3:

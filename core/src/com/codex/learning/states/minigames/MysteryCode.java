@@ -138,7 +138,7 @@ public class MysteryCode extends State {
             AnsPoolY -= 2.5;
         }
 
-//        this.jedisaur = jedisaur;
+        this.jedisaur = jedisaur;
 
 
     }
@@ -268,9 +268,9 @@ public class MysteryCode extends State {
                 if (answerBlocks[i] != null) {
                     answerBlocks[i].update(delta);
                     if (answerBlocks[i].isInContact()) {
-                        setAnswerBlock(i, answerBlocks[i]);
+//                        setAnswerBlock(i, answerBlocks[i]);
                         System.out.println(getAnswerBlocks());
-//                        getJedisaur().carryBlock(answerBlocks[i]);
+                        jedisaur.carryBlock(answerBlocks[i]);
                     }
                 }
             }
@@ -281,7 +281,7 @@ public class MysteryCode extends State {
                     if (minigameContainer.get(i).get(j) != null) {
                         if (banishCells.contains(currentCell)) {
                             if (blockHolders[i][j].isInContact()) {
-                                getJedisaur().dropBlock(blockHolders[i][j]);
+                                jedisaur.dropBlock(blockHolders[i][j]);
                                 System.out.println("dropped to: " + blockHolders[i][j]);
                             }
                         }

@@ -31,6 +31,9 @@ public class PlayState extends State{
     private FillInTheBlock fib;
     private MysteryCode mc;
 
+    private BlockHolder[] blockHolders;
+    private Blocks[] blocks;
+
     private boolean inMysteryCode, inFillInTheBlock;
 
     private float timer;
@@ -58,6 +61,17 @@ public class PlayState extends State{
             schoolMap = new SchoolMap(manager);
         }
 
+        blockHolders = new BlockHolder[5];
+        blocks = new Blocks[5];
+
+        for(int i=0; i<5; i++){
+            blockHolders[i] = new BlockHolder(manager, "asd");
+            blockHolders[i].create(new Vector2(4*i,-4), new Vector2(1.5f, 1.5f), 0);
+
+
+            blocks[i] = new Blocks(manager, "asd", String.valueOf(i), false);
+            blocks[i].create(new Vector2(10, 3*i), new Vector2(0.8f, 0.8f), 0);
+        }
 
         playroomMap = new PlayroomMapS1(manager, stage);
         fuzzyLogic = new FuzzyLogic();
@@ -78,7 +92,7 @@ public class PlayState extends State{
         jediGrandpa = new NPC(manager, stage);
         jediGrandpa.create(new Vector2(0, 0), new Vector2(1, 1.4f), 0);
 
-        minigame = new Minigame(manager, stage, 3, jedisaur);
+        minigame = new Minigame(manager, stage, 2, jedisaur);
 
         if(!manager.isMusicPaused()){
             manager.setMusic(Constants.HOUSE_MUSIC);
@@ -105,8 +119,18 @@ public class PlayState extends State{
             activeBody(false);
 //            updateMinigame(delta);
 //            System.out.println(minigame.getBlocks() + " Playstate block");
-            minigame.update(delta);
+//            minigame.update(delta);
+            for(int i=0; i<5; i++){
+                if(blockHolders[i].isInContact()){
+                    jedisaur.dropBlock(blockHolders[i]);
+                }
+                blockHolders[i].update(delta);
+                if(blocks[i].isInContact()){
+                    jedisaur.carryBlock(blocks[i]);
+                }
 
+                blocks[i].update(delta);
+            }
         }else {
             activeBody(true);
 
@@ -211,10 +235,18 @@ public class PlayState extends State{
         }else {
 //            playroomMap.render(sprite);
 //            minigame.setMiniGame();
-            minigame.render(sprite);
+//            minigame.render(sprite);
 //            renderMinigame(sprite);
+            for(int i=0; i<5; i++){
+                blockHolders[i].render(sprite);
+            }
+
+            for(int i=0; i<5; i++){
+                blocks[i].render(sprite);
+            }
             jedisaur.render(sprite);
         }
+
 
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
