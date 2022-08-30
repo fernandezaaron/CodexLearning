@@ -1,25 +1,33 @@
 package com.codex.learning.utility;
 
 public class StageSelector {
-    int stageNumber;
-    int numberOfCookies;
+    int stageNumber = 0;
+    int[] currentStage;
+    int[] numberOfCookies;
     String stageTopic;
     boolean allowToPlay;
 
     public StageSelector(){
-        numberOfCookies = 0;
+        currentStage = new int[17];
+        numberOfCookies = new int[17];
         allowToPlay = false;
 
-
     }
 
-
-    public int getStageNumber() {
-        return stageNumber;
+    public int[] getCurrentStage() {
+        return currentStage;
     }
 
-    public void setStageNumber(int stageNumber) {
-        this.stageNumber = stageNumber;
+    public void setCurrentStage(int index, int stageNumber) {
+        this.currentStage[index] = stageNumber;
+    }
+
+    public int[] getNumberOfCookies() {
+        return numberOfCookies;
+    }
+
+    public void setNumberOfCookies(int[] numberOfCookies) {
+        this.numberOfCookies = numberOfCookies;
     }
 
     public String getStageTopic() {
@@ -30,13 +38,13 @@ public class StageSelector {
         this.stageTopic = stageTopic;
     }
 
-    public int getNumberOfCookies() {
-        return numberOfCookies;
-    }
-
-    public void setNumberOfCookies(int numberOfCookies) {
-        this.numberOfCookies = numberOfCookies;
-    }
+//    public int getNumberOfCookies() {
+//        return numberOfCookies;
+//    }
+//
+//    public void setNumberOfCookies(int numberOfCookies) {
+//        this.numberOfCookies = numberOfCookies;
+//    }
 
     public boolean isAllowToPlay() {
         return allowToPlay;

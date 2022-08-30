@@ -32,15 +32,22 @@ public class StageSelectState extends State{
         super(manager);
         stages = new Circle[17];
 
-        stageSelector = new StageSelector[17];
+//        stageSelector = new StageSelector[17];
+
+        ss = new StageSelector();
+
+        for(int i=0; i < stages.length; i++){
+            ss.setNumberOfCookies(manager.getExpertSystem().getCookies(i));
+        }
+
 
         zeroCookie = false;
         currentCookie = new TextureRegion[17];
 
-        for(int i = 0; i < stages.length; i++){
-            stageSelector[i] = new StageSelector();
-            stageSelector[i].setNumberOfCookies(manager.getExpertSystem().getCookies(i));
-        }
+//        for(int i = 0; i < stages.length; i++){
+//            stageSelector[i] = new StageSelector();
+//            stageSelector[i].setNumberOfCookies(manager.getExpertSystem().getCookies(i));
+//        }
 
 
 
@@ -121,7 +128,7 @@ public class StageSelectState extends State{
 
     public void drawCookies(SpriteBatch sprite){
         for(int i = 0; i < stages.length; i++){
-            if(stageSelector[i].getNumberOfCookies() == 0){
+            if(ss.getNumberOfCookies(). == 0){
                 currentCookie[i] = noCookie;
                 if(!zeroCookie){
                     stageSelector[i].setAllowToPlay(true);
@@ -177,7 +184,7 @@ public class StageSelectState extends State{
                       stages[i].y - Constants.ORANGE_CIRCLE_R / 2, Constants.ORANGE_CIRCLE_R, Constants.ORANGE_CIRCLE_R);
 //            sprite.draw(orangeCircle, (manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f) + stages[i].x - Constants.ORANGE_CIRCLE_R / 2,
 //                    (manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f) +  stages[i].y - Constants.ORANGE_CIRCLE_R / 2, Constants.ORANGE_CIRCLE_R, Constants.ORANGE_CIRCLE_R);
-            if(stageSelector[i].isAllowToPlay()) {
+            if(ss.isAllowToPlay()) {
                 if (stages[i].contains(touchpoint.x, touchpoint.y)) {
                     sprite.draw(grayCircle, stages[i].x - Constants.GRAY_CIRCLE_R / 2,
                             stages[i].y - Constants.GRAY_CIRCLE_R / 2, Constants.GRAY_CIRCLE_R, Constants.GRAY_CIRCLE_R);
