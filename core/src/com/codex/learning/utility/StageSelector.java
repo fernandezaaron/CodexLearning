@@ -8,9 +8,9 @@ public class StageSelector {
 
 
     public StageSelector(){
-        currentStage = new int[17];
-        numberOfCookies = new int[17];
-        allowToPlay = new boolean[17];
+        currentStage = new int[16];
+        numberOfCookies = new int[16];
+        allowToPlay = new boolean[16];
 
 
         for(int i=0 ;i<currentStage.length; i++){
@@ -23,7 +23,7 @@ public class StageSelector {
         if (stageNumber >= 1 && stageNumber < 5){
             return "1";
         }
-        else if(stageNumber >= 5 && stageNumber < 12){
+        else if(stageNumber >= 5 && stageNumber < 11){
             return "2";
         }
         else{

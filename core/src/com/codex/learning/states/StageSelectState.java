@@ -26,14 +26,14 @@ public class StageSelectState extends State{
 
     public StageSelectState(Manager manager){
         super(manager);
-        stages = new Circle[17];
+        stages = new Circle[16];
 
         for(int i=0; i < stages.length; i++){
             manager.getStageSelector().setNumberOfCookies(i, manager.getExpertSystem().getCookies(i));
         }
 
         zeroCookie = false;
-        currentCookie = new TextureRegion[17];
+        currentCookie = new TextureRegion[16];
 
 
         orangeCircle = new TextureRegion(manager.getUtility(), Constants.ORANGE_CIRCLE_X, Constants.ORANGE_CIRCLE_Y, Constants.ORANGE_CIRCLE_R, Constants.ORANGE_CIRCLE_R);
@@ -65,19 +65,19 @@ public class StageSelectState extends State{
                 manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2 + Constants.STAGE_1_9_Y, Constants.STAGE_RADIUS);
         stages[9] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_10_X,
                 manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2 + Constants.STAGE_1_10_Y, Constants.STAGE_RADIUS);
-        stages[10] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_11_X,
-                manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2 + Constants.STAGE_1_11_Y, Constants.STAGE_RADIUS);
-        stages[11] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_12_X,
+//        stages[10] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_11_X,
+//                manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2 + Constants.STAGE_1_11_Y, Constants.STAGE_RADIUS);
+        stages[10] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_12_X,
                 manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2 + Constants.STAGE_1_12_Y, Constants.STAGE_RADIUS);
-        stages[12] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_13_X,
+        stages[11] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_13_X,
                 manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2 + Constants.STAGE_1_13_Y, Constants.STAGE_RADIUS);
-        stages[13] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_14_X,
+        stages[12] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_14_X,
                 manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2 + Constants.STAGE_1_14_Y, Constants.STAGE_RADIUS);
-        stages[14] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_15_X,
+        stages[13] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_15_X,
                 manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2 + Constants.STAGE_1_15_Y, Constants.STAGE_RADIUS);
-        stages[15] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_16_X,
+        stages[14] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_16_X,
                 manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2 + Constants.STAGE_1_16_Y, Constants.STAGE_RADIUS);
-        stages[16] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 +Constants.STAGE_1_17_X,
+        stages[15] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 +Constants.STAGE_1_17_X,
                 manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2 + Constants.STAGE_1_17_Y, Constants.STAGE_RADIUS);
 
         System.out.println(manager.isMusicPaused());
