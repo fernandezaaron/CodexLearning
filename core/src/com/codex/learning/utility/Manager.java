@@ -302,17 +302,49 @@ public class Manager {
         return null;
     }
     // Stage #, Stage Topic, Cookie Number, Dataset (5), Behavior
+    // Input after the game too
     public void writeDataGathering(int stageNumber, String stageTopic, int numberOfCookie){
         try {
+            int counter = 0;
+            int length = 0;
+            ArrayList<String> replace = new ArrayList<>(Arrays.asList(String.valueOf(stageNumber), stageTopic, String.valueOf(numberOfCookie), "YES", "HIGH", "MEDIUM", "LOW", "LOW", "ENGAGED"));
             File file = new File(Constants.DATA_GATHERED_FILE_PATH);
             if (file.createNewFile()) {
                 System.out.println("File created: " + file.getName());
             }
             else {
                 ArrayList<ArrayList<String>> data = readDataFirst();
+                System.out.println(data);
+
+                for(ArrayList<String> i: data){
+                    if(i.get(0).equals(String.valueOf(stageNumber))){
+                        i.clear();
+                        break;
+                    }
+                    else{
+                        counter++;
+                    }
+                }
+
+                data.add(counter, replace);
+
                 FileWriter fileWriter = new FileWriter(Constants.DATA_GATHERED_FILE_PATH, false);
 
-                
+                for(ArrayList<String> arrayList: data){
+                    if(arrayList.isEmpty()){
+                        continue;
+                    }
+                    else{
+                        for(String i: arrayList){
+                            if(length == arrayList.size()){
+                                fileWriter.write("\n");
+                                length = 0;
+                            }
+                            length++;
+                            fileWriter.write(i + ",");
+                        }
+                    }
+                }
                 fileWriter.close();
             }
         }
