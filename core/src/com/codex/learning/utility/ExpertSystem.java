@@ -15,7 +15,7 @@ public class ExpertSystem {
     private String currentBehavior;
 
     public ExpertSystem(){
-        cookies = new int[17];
+        cookies = new int[16];
         currentBehavior = null;
         currentCookie = 0;
         totalUserCookies = 0;

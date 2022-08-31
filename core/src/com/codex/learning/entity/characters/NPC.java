@@ -73,7 +73,6 @@ public class NPC extends Entity {
 
         talking = false;
 
-
         BodyDef def = new BodyDef();
         def.type = BodyDef.BodyType.StaticBody;
         def.position.set(this.position);
