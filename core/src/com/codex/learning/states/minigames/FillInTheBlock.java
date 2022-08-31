@@ -40,7 +40,7 @@ public class FillInTheBlock extends State {
 
     public FillInTheBlock(Manager manager, Character character) {
         super(manager);
-        playroom = new PlayroomMapS1(manager,manager.getStageSelector().getStageNumber());
+        playroom = new PlayroomMapS1(manager);
 
         randomizer = new Random();
         banishCells = new ArrayList<Integer>();

@@ -44,7 +44,7 @@ public class MysteryCode extends State {
     public MysteryCode(Manager manager, Character jedisaur) {
         super(manager);
         pause = new PauseState(manager);
-        playroom = new PlayroomMapS1(manager, 1);
+        playroom = new PlayroomMapS1(manager);
 
         randomizer = new Random();
         banishCells = new ArrayList<Integer>();

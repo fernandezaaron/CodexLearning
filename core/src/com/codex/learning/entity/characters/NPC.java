@@ -127,7 +127,7 @@ public class NPC extends Entity {
         sprite.enableBlending();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.begin();
-        if(stageSelect >= 1 && stageSelect < 5){
+        if(stageSelect >= 1 && stageSelect < 5 || (manager.getStageSelector().map().equals("3"))){
             if(isTalking()){
                 switch (direction){
                     case "north":
@@ -156,6 +156,9 @@ public class NPC extends Entity {
         }else if(stageSelect >= 5 && stageSelect < 12) {
             sprite.draw(jediProfDown, body.getPosition().x * Constants.PPM - jediGrandpaDown.getRegionWidth() / 2,
                     body.getPosition().y * Constants.PPM - jediGrandpaDown.getRegionHeight() / 2);
+        }
+        else {
+
         }
 
         table.draw(sprite, 1);

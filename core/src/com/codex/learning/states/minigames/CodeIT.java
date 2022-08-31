@@ -45,7 +45,7 @@ public class CodeIT extends State {
         super(manager);
         pause = new PauseState(manager);
 
-        playroom = new PlayroomMapS1(manager,1);
+        playroom = new PlayroomMapS1(manager);
 
 
         randomizer = new Random();

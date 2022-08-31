@@ -9,6 +9,7 @@ import com.codex.learning.entity.blocks.Computer;
 import com.codex.learning.entity.characters.Character;
 import com.codex.learning.entity.characters.NPC;
 import com.codex.learning.entity.maps.HouseMap;
+import com.codex.learning.entity.maps.OfficeMap;
 import com.codex.learning.entity.maps.PlayroomMapS1;
 import com.codex.learning.entity.maps.SchoolMap;
 import com.codex.learning.states.minigames.Minigame;
@@ -21,6 +22,7 @@ public class PlayState extends State{
     private NPC jediGrandpa;
     private HouseMap house;
     private SchoolMap schoolMap;
+    private OfficeMap officeMap;
     private Computer computer;
     private PlayroomMapS1 playroomMap;
     private Minigame minigame;
@@ -60,8 +62,13 @@ public class PlayState extends State{
             computer = new Computer(manager, fuzzyLogic);
             computer.create(new Vector2(-4, 6.5f), new Vector2(0.6f, 0.6f), 0);
         }
+        else if(manager.getStageSelector().map().equals("3")){
+            officeMap = new OfficeMap(manager);
+            computer = new Computer(manager, fuzzyLogic);
+            computer.create(new Vector2(-6.5f, 10.2f), new Vector2(0.6f, 0.6f), 0);
+        }
 
-        playroomMap = new PlayroomMapS1(manager, stage);
+        playroomMap = new PlayroomMapS1(manager);
         fuzzyLogic = new FuzzyLogic();
 
         jedisaur = new Character(manager);
@@ -187,6 +194,9 @@ public class PlayState extends State{
             }
             else if(manager.getStageSelector().map().equals("2")){
                 schoolMap.render(sprite);
+            }
+            else if(manager.getStageSelector().map().equals("3")){
+                officeMap.render(sprite);
             }
             jediGrandpa.render(sprite);
             if(computer.getCodeRiddle().isInComputer()){

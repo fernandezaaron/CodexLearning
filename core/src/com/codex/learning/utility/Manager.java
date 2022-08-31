@@ -37,7 +37,7 @@ public class Manager {
     private boolean musicPaused;
 
     private TextureRegion mainMenu, background;
-    private TextureRegion startHouse, playroomStage1, playroomStage2, startSchool;
+    private TextureRegion startHouse, playroomStage1, playroomStage2, startSchool, startOffice, playroomStage3;
     private TextureRegion stageSelect, utility;
     private TextureRegion spriteSheet;
     private TextureRegion blockSheet;
@@ -79,8 +79,11 @@ public class Manager {
 
         startHouse = new TextureRegion(new Texture(Constants.HOUSE_PATH));
         startSchool = new TextureRegion(new Texture(Constants.SCHOOL_PATH));
+        startOffice = new TextureRegion(new Texture(Constants.OFFICE_PATH));
+
         playroomStage1 = new TextureRegion(new Texture(Constants.STAGE1_PATH));
         playroomStage2 = new TextureRegion(new Texture(Constants.STAGE2_PATH));
+        playroomStage3 = new TextureRegion(new Texture(Constants.STAGE3_PATH));
 
         stageSelect = new TextureRegion(new Texture(Constants.STAGE_SELECT_PATH));
         utility = new TextureRegion(new Texture(Constants.UTILITY_SHEET_PATH));
@@ -187,6 +190,14 @@ public class Manager {
 
     public TextureRegion getStartSchool() {
         return startSchool;
+    }
+
+    public TextureRegion getStartOffice() {
+        return startOffice;
+    }
+
+    public TextureRegion getPlayroomStage3() {
+        return playroomStage3;
     }
 
     public TextureRegion getStageSelect() {

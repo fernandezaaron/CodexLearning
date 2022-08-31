@@ -13,8 +13,11 @@ public class Constants {
     public static final String CLOUD_PATH = "background/clouds.png";
     public static final String HOUSE_PATH = "map/housemap.png";
     public static final String SCHOOL_PATH = "map/jedischool.png";
+    public static final String OFFICE_PATH = "map/jedioffice.png";
+
     public static final String STAGE1_PATH = "map/playmap1.png";
     public static final String STAGE2_PATH = "map/jedischoolplayroom.png";
+    public static final String STAGE3_PATH = "map/jediofficePlayroom.png";
 
     public static final String BACKGROUND_PATH = "background/mainmenu2.png";
     public static final String REPORT_CARD_SHEET_PATH = "background/reportcardspritesheet.png";

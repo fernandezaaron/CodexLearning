@@ -44,7 +44,7 @@ public class CodeOrder extends State {
     public CodeOrder(Manager manager) {
         super(manager);
         pause = new PauseState(manager);
-        playroom = new PlayroomMapS1(manager,1);
+        playroom = new PlayroomMapS1(manager);
 
         randomizer = new Random();
         banishCells = new ArrayList<Integer>();
