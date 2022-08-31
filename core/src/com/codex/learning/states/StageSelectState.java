@@ -28,11 +28,9 @@ public class StageSelectState extends State{
         super(manager);
         stages = new Circle[17];
 
-
         for(int i=0; i < stages.length; i++){
             manager.getStageSelector().setNumberOfCookies(i, manager.getExpertSystem().getCookies(i));
         }
-
 
         zeroCookie = false;
         currentCookie = new TextureRegion[17];

@@ -29,7 +29,6 @@ public class StageSelector {
         else{
             return "3";
         }
-
     }
 
     public int[] getCurrentStage() {

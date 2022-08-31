@@ -90,7 +90,7 @@ public class CodeRiddle extends State {
         isDone = false;
 
         System.out.println(manager.getStageSelector().map() + "map");
-        getAQuestion(manager.getStageSelector().map(), "Novice");
+        getAQuestion(manager.getStageSelector().map(), manager.getExpertSystem().getExpertiseLevel());
         System.out.println(manager.getStageSelector().getStageNumber() + " this is the stage");
         currentQuestion = 0;
     }
