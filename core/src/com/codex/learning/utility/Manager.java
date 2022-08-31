@@ -63,6 +63,7 @@ public class Manager {
 
     private ExpertSystem expertSystem;
 
+    private Dialogue dialogue;
     public Manager(){
 
         b2dr = new Box2DDebugRenderer();
@@ -115,6 +116,8 @@ public class Manager {
         expertSystem = new ExpertSystem();
 
         states = new Stack<State>();
+
+        dialogue = new Dialogue();
     }
 
 
@@ -470,5 +473,13 @@ public class Manager {
 
     public void setExpertSystem(ExpertSystem expertSystem) {
         this.expertSystem = expertSystem;
+    }
+
+    public Dialogue getDialogue() {
+        return dialogue;
+    }
+
+    public void setDialogue(Dialogue dialogue) {
+        this.dialogue = dialogue;
     }
 }

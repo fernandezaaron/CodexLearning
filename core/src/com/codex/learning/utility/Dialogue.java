@@ -273,8 +273,7 @@ public class Dialogue {
     private int stage;
     private String topic;
 
-    public Dialogue(int stage){
-        this.stage = stage;
+    public Dialogue(){
         statementEnd = false;
     }
 
@@ -282,17 +281,24 @@ public class Dialogue {
 
         System.out.println(getNpcName());
         System.out.println(stage);
-        if(nextStatement == introductionDialogue.get(stage-1).size()){
+        if(nextStatement == introductionDialogue.get(getStage() - 1).size()){
             System.out.println("true");
             setStatementEnd(true);
         }else{
             setStatementEnd(false);
             System.out.println("dumaan ako dito");
-            return introductionDialogue.get(stage-1).get(nextStatement);
-
+            return introductionDialogue.get(getStage() - 1).get(nextStatement);
         }
 
         return "";
+    }
+
+    public int getStage() {
+        return stage;
+    }
+
+    public void setStage(int stage) {
+        this.stage = stage;
     }
 
     public boolean isStatementEnd() {
