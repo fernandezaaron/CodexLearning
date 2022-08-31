@@ -1,7 +1,7 @@
 package com.codex.learning.utility;
 
 public class StageSelector {
-    int stageNumber;
+    int stageNumber = 0;
     int[] currentStage;
     int[] numberOfCookies;
     boolean[] allowToPlay;
@@ -11,7 +11,7 @@ public class StageSelector {
         currentStage = new int[17];
         numberOfCookies = new int[17];
         allowToPlay = new boolean[17];
-        stageNumber = 0;
+
 
         for(int i=0 ;i<currentStage.length; i++){
             numberOfCookies[i] = 0;
@@ -30,13 +30,6 @@ public class StageSelector {
             return "3";
         }
 
-    }
-
-    public void resetArray(){
-        for(int i=0 ;i<currentStage.length; i++){
-            numberOfCookies[i] = 0;
-            allowToPlay[i] = false;
-        }
     }
 
     public int[] getCurrentStage() {
