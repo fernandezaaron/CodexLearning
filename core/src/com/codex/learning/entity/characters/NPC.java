@@ -180,10 +180,10 @@ public class NPC extends Entity {
             }
         }
 
-        if(!(manager.getDialogue().isStatementEnd() && Gdx.input.justTouched() && db.isOpen())){
+        if(!manager.getDialogue().isStatementEnd() && Gdx.input.justTouched() && db.isOpen()){
             //proceeds to the next statement if it is not the end
             nextStatement++;
-            System.out.println(nextStatement);
+            System.out.println(nextStatement + "asd");
             db.textAnimation((manager.getDialogue().reader(nextStatement)));
         }
         if((manager.getDialogue().isStatementEnd() && Gdx.input.justTouched() && db.isOpen())){

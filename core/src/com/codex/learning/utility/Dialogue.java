@@ -280,7 +280,6 @@ public class Dialogue {
     public String reader(int nextStatement){
 
         System.out.println(getNpcName());
-        System.out.println(stage);
         if(nextStatement == introductionDialogue.get(getStage() - 1).size()){
             System.out.println("true");
             setStatementEnd(true);
