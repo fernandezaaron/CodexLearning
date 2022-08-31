@@ -41,7 +41,7 @@ public class CodeRiddle extends State {
 
     private float timer;
 
-    public CodeRiddle(Manager manager, int stage) {
+    public CodeRiddle(Manager manager) {
         super(manager);
 
         fuzzyLogic = new FuzzyLogic();
@@ -88,8 +88,10 @@ public class CodeRiddle extends State {
 
         inComputer = false;
         isDone = false;
-        getAQuestion(String.valueOf(stage), "Average");
-        System.out.println(stage + " this is the stage");
+
+        System.out.println(manager.getStageSelector().map() + "map");
+        getAQuestion(manager.getStageSelector().map(), "Novice");
+        System.out.println(manager.getStageSelector().getStageNumber() + " this is the stage");
         currentQuestion = 0;
     }
 
@@ -223,7 +225,7 @@ public class CodeRiddle extends State {
     }
 
     public void getAQuestion(String stage, String expertiseLevel){
-        manager.getQuestionnaire().questionDisplay(stage,"Syntax",expertiseLevel);
+        manager.getQuestionnaire().questionDisplay(stage,String.valueOf(manager.getStageSelector().getStageNumber()),expertiseLevel);
 
         questions = manager.getQuestionnaire().getQuestions();
 

@@ -19,13 +19,12 @@ public class Computer extends Entity {
     private boolean inContact, isDone;
     private CodeRiddle codeRiddle;
     private FuzzyLogic fuzzyLogic;
-    private int stage;
 
 
-    public Computer(Manager manager, FuzzyLogic fuzzyLogic, int stage) {
+
+    public Computer(Manager manager, FuzzyLogic fuzzyLogic) {
         super(manager);
         this.fuzzyLogic = fuzzyLogic;
-        this.stage = stage;
     }
 
     @Override
@@ -56,7 +55,7 @@ public class Computer extends Entity {
         isDone = false;
 
         pc = new TextureRegion(manager.getPcStateSheet(), Constants.PC_X, Constants.PC_Y, Constants.PC_WIDTH, Constants.PC_HEIGHT);
-        codeRiddle = new CodeRiddle(manager, stage);
+        codeRiddle = new CodeRiddle(manager);
     }
 
     @Override

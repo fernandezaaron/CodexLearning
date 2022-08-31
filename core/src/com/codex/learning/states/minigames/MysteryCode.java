@@ -41,7 +41,7 @@ public class MysteryCode extends State {
     private int currentCell, stage;
     private String stageSelect;
 
-    public MysteryCode(Manager manager, int stage, Character jedisaur) {
+    public MysteryCode(Manager manager, Character jedisaur) {
         super(manager);
         pause = new PauseState(manager);
         playroom = new PlayroomMapS1(manager, 1);
@@ -54,14 +54,11 @@ public class MysteryCode extends State {
         blockHolders = new BlockHolder[20][20];
         // WILL BE USED, DON'T ERASE
 
-        this.stage = stage;
+        this.stage = manager.getStageSelector().getStageNumber();
 
-        if(stage >= 1 && stage < 5){
-            getAMinigame("1", "Poor");
-        }
-        else if(stage >= 5 && stage < 12){
-            getAMinigame("2", "Poor");
-        }
+        getAMinigame(manager.getStageSelector().map(), "Poor");
+
+
 
 
 

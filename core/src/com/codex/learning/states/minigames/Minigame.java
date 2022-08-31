@@ -9,7 +9,6 @@ import com.codex.learning.utility.Manager;
 
 public class Minigame extends State {
     private FuzzyLogic fuzzyLogic;
-    private int stageNumber;
     private int currentMinigame;
     private FillInTheBlock s;
     private sample sample;
@@ -17,9 +16,8 @@ public class Minigame extends State {
     private boolean fib, mc, samplebool;
     private Character jedisaur;
 
-    public Minigame(Manager manager, int stageNumber, int currentMinigame, Character jedisaur){
+    public Minigame(Manager manager, int currentMinigame, Character jedisaur){
         super(manager);
-        this.stageNumber = stageNumber;
         this.currentMinigame = currentMinigame;
         fuzzyLogic = new FuzzyLogic();
         fib = false;
@@ -27,27 +25,16 @@ public class Minigame extends State {
         this.jedisaur = jedisaur;
     }
 
-    public Minigame(Manager manager, int stageNumber, int currentMinigame){
-        super(manager);
-        this.stageNumber = stageNumber;
-        this.currentMinigame = currentMinigame;
-        fuzzyLogic = new FuzzyLogic();
-        fib = false;
-        samplebool = false;
-        mc = false;
-    }
-
-
     public void setMiniGame(){
         switch (currentMinigame){
             case 1:
                 fib = true;
-                s = new FillInTheBlock(manager, stageNumber, jedisaur);
+                s = new FillInTheBlock(manager, jedisaur);
                 System.out.println("1");
                 break;
             case 2:
                 mc = true;
-                h = new MysteryCode(manager, stageNumber, jedisaur);
+                h = new MysteryCode(manager, jedisaur);
 
                 break;
             case 3:

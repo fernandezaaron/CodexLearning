@@ -5,19 +5,13 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-
-import com.codex.learning.entity.blocks.BlockDispenser;
-import com.codex.learning.entity.blocks.BlockHolder;
-import com.codex.learning.entity.blocks.Blocks;
 import com.codex.learning.entity.blocks.Computer;
 import com.codex.learning.entity.characters.Character;
 import com.codex.learning.entity.characters.NPC;
 import com.codex.learning.entity.maps.HouseMap;
 import com.codex.learning.entity.maps.PlayroomMapS1;
 import com.codex.learning.entity.maps.SchoolMap;
-import com.codex.learning.states.minigames.FillInTheBlock;
 import com.codex.learning.states.minigames.Minigame;
-import com.codex.learning.states.minigames.MysteryCode;
 import com.codex.learning.utility.*;
 
 import java.util.Random;
@@ -48,33 +42,27 @@ public class PlayState extends State{
 
 
 
-    public PlayState(Manager manager, int stage) {
+    public PlayState(Manager manager) {
         super(manager);
-        this.stage = stage;
+        this.stage = manager.getStageSelector().getStageNumber();
         timer = 0;
         pause = new PauseState(manager);
         rand = new Random();
         randomMinigame = rand.nextInt(3-1)+1;
 
-        if(stage >= 1 && stage < 5){
+        if(manager.getStageSelector().map().equals("1")){
             house = new HouseMap(manager);
+            computer = new Computer(manager, fuzzyLogic);
+            computer.create(new Vector2(-6, 2.8f), new Vector2(0.6f, 0.6f), 0);
         }
-        else if(stage >= 5 && stage < 12){
+        else if(manager.getStageSelector().map().equals("2")){
             schoolMap = new SchoolMap(manager);
+            computer = new Computer(manager, fuzzyLogic);
+            computer.create(new Vector2(-4, 6.5f), new Vector2(0.6f, 0.6f), 0);
         }
 
         playroomMap = new PlayroomMapS1(manager, stage);
         fuzzyLogic = new FuzzyLogic();
-
-        if(stage >= 1 && stage < 5){
-            computer = new Computer(manager, fuzzyLogic, 1);
-            computer.create(new Vector2(-6, 2.8f), new Vector2(0.6f, 0.6f), 0);
-        }
-        else if(stage >=5 && stage < 12){
-            computer = new Computer(manager, fuzzyLogic, 2);
-            computer.create(new Vector2(-4, 6.5f), new Vector2(0.6f, 0.6f), 0);
-        }
-
 
         jedisaur = new Character(manager);
         jedisaur.create(new Vector2(0, -5), new Vector2(1.2f, 1.75f), 1.6f);
@@ -82,7 +70,7 @@ public class PlayState extends State{
         jediGrandpa = new NPC(manager, stage);
         jediGrandpa.create(new Vector2(0, 0), new Vector2(1, 1.4f), 0);
 
-        minigame = new Minigame(manager, stage, randomMinigame, jedisaur);
+        minigame = new Minigame(manager, randomMinigame, jedisaur);
 
         if(!manager.isMusicPaused()){
             manager.setMusic(Constants.HOUSE_MUSIC);
@@ -194,36 +182,31 @@ public class PlayState extends State{
 
 
         if(isInStartArea()){
-            if(stage >= 1 && stage < 5){
+            if(manager.getStageSelector().map().equals("1")){
                 house.render(sprite);
             }
-            else if(stage >= 5 && stage < 12){
+            else if(manager.getStageSelector().map().equals("2")){
                 schoolMap.render(sprite);
             }
             jediGrandpa.render(sprite);
             if(computer.getCodeRiddle().isInComputer()){
                 jedisaur.render(sprite);
                 computer.render(sprite);
-
-
             }
             else{
                 computer.render(sprite);
                 jedisaur.render(sprite);
-
             }
         }else {
             minigame.render(sprite);
             jedisaur.render(sprite);
         }
 
-
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         checkDoor(sprite, atDoor);
         sprite.end();
         pause.render(sprite);
-
     }
 
     @Override
@@ -232,10 +215,10 @@ public class PlayState extends State{
         jediGrandpa.disposeBody();
         computer.disposeBody();
 
-        if(stage >= 1 && stage < 5){
+        if(manager.getStageSelector().map().equals("1")){
             house.dispose();
         }
-        else if(stage >= 5 && stage < 12){
+        else if(manager.getStageSelector().map().equals("2")){
             schoolMap.dispose();
         }
     }
@@ -252,10 +235,10 @@ public class PlayState extends State{
          jediGrandpa.getBody().setActive(active);
          computer.getBody().setActive(active);
 
-         if(stage >= 1 && stage < 5){
+         if(manager.getStageSelector().map().equals("1")){
              house.setActive(active);
          }
-         else if(stage >= 5 && stage < 12){
+         else if(manager.getStageSelector().map().equals("2")){
              schoolMap.setActive(active);
          }
 
@@ -282,10 +265,10 @@ public class PlayState extends State{
         if(character.getBody().getPosition().x > 14f && character.getBody().getPosition().y >-4 && character.getBody().getPosition().y < 2.5f && isInStartArea()){
             if(computer.isDone()){
                 setInStartArea(false);
-                if(stage >= 1 && stage < 5){
+                if(manager.getStageSelector().map().equals("1")){
                     house.setPlayroomActive(false);
                 }
-                else if(stage >= 5 && stage < 12){
+                else if(manager.getStageSelector().map().equals("2")){
                     schoolMap.setPlayroomActive(false);
                 }
 

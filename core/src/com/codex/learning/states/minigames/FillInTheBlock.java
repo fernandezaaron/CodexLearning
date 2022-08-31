@@ -38,14 +38,14 @@ public class FillInTheBlock extends State {
     private ArrayList<String> answerPoolContainer;
     private int currentCell;
 
-    public FillInTheBlock(Manager manager, int stage, Character character) {
+    public FillInTheBlock(Manager manager, Character character) {
         super(manager);
-        playroom = new PlayroomMapS1(manager,stage);
+        playroom = new PlayroomMapS1(manager,manager.getStageSelector().getStageNumber());
 
         randomizer = new Random();
         banishCells = new ArrayList<Integer>();
 
-        getAMinigame(String.valueOf(stage), "Poor");
+        getAMinigame(manager.getStageSelector().map(), "Poor");
 
         // WILL BE USED, DON'T ERASE
         questionBlocks = new Blocks[20][20];
