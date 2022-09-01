@@ -1,25 +1,50 @@
 package com.codex.learning.utility;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ExpertSystem {
+
     private int currentCookie;
+
     private int[] cookies;
-    private int totalCookies;
+    private int totalUserCookies;
+    private int overAllCookies;
+
+
     private String expertiseLevel;
     private String currentBehavior;
-
 
     public ExpertSystem(){
         cookies = new int[17];
         currentBehavior = null;
         currentCookie = 0;
+        totalUserCookies = 0;
+        overAllCookies = 0;
     }
 
-    public void updateExpertiseLevel(){
+    public String updateExpertiseLevel(){
+        for(int i: cookies){
+            totalUserCookies = totalUserCookies + i;
+            if(i != 0){
+                overAllCookies = overAllCookies + 3;
+            }
+        }
+        int a = (int) (overAllCookies * .69);
+        int b = (int) (overAllCookies * .80);
+        int c = (int) (overAllCookies * .90);
 
+        if(totalUserCookies < a){
+            return "Poor";
+        }
+        else if(totalUserCookies < b){
+            return "Novice";
+        }
+        else if(totalUserCookies < c){
+            return "Average";
+        }
+        else{
+            return "Expert";
+        }
     }
 
     public void writeFile(int[] cookies){
@@ -56,6 +81,8 @@ public class ExpertSystem {
                     counter++;
                 }
             }
+
+            setExpertiseLevel(updateExpertiseLevel());
             bufferedReader.close();
             fileReader.close();
         }
@@ -80,12 +107,12 @@ public class ExpertSystem {
         this.cookies = cookies;
     }
 
-    public int getTotalCookies() {
-        return totalCookies;
+    public int getTotalUserCookies() {
+        return totalUserCookies;
     }
 
-    public void setTotalCookies(int totalCookies) {
-        this.totalCookies = totalCookies;
+    public void setTotalUserCookies(int totalUserCookies) {
+        this.totalUserCookies = totalUserCookies;
     }
 
     public String getExpertiseLevel() {

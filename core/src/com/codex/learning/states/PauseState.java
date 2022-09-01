@@ -18,6 +18,7 @@ public class PauseState extends State {
     private TextureRegion continueButton, retryButton, stageSelectButton, quitButton, settingsButton;
     private TextureRegion hlContinueButton, hlRetryButton, hlStageSelectButton, hlQuitButton, hlSettingsButton;
     private int state;
+    private int stage;
     private Rectangle continueBounds, retryBounds, stageBounds, quitBounds, settingsBounds;
     private Vector3 coords;
     private boolean isRunning;
@@ -48,6 +49,8 @@ public class PauseState extends State {
         settingsBounds = new Rectangle(-200, -200, Constants.SETTINGS_BUTTON_WIDTH, Constants.SETTINGS_BUTTON_HEIGHT);
 
         settings.setSettings(false);
+
+        this.stage = stage;
     }
 
     @Override
@@ -130,7 +133,7 @@ public class PauseState extends State {
                 if(retryBounds.contains(coords.x, coords.y)){
                     manager.getMusic().stop();
                     Behavior.currentDataSet.clear();
-//                    manager.set(new PlayState(manager));
+                    manager.set(new PlayState(manager));
                 }
                 if(stageBounds.contains(coords.x, coords.y)){
                     manager.getMusic().stop();

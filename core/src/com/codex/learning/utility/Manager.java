@@ -37,7 +37,7 @@ public class Manager {
     private boolean musicPaused;
 
     private TextureRegion mainMenu, background;
-    private TextureRegion startHouse, playroomStage1, playroomStage2, startSchool;
+    private TextureRegion startHouse, playroomStage1, playroomStage2, startSchool, startOffice, playroomStage3;
     private TextureRegion stageSelect, utility;
     private TextureRegion spriteSheet;
     private TextureRegion blockSheet;
@@ -54,6 +54,7 @@ public class Manager {
     private Questionnaire questionnaire;
     private Stage stage;
     private Viewport viewport;
+    private StageSelector stageSelector;
 
     private DecisionTree decisionTree;
 
@@ -71,14 +72,18 @@ public class Manager {
         world.setContactListener(cl);
 
         questionnaire = new Questionnaire();
+        stageSelector = new StageSelector();
 
         background = new TextureRegion(new Texture(Constants.BACKGROUND_PATH));
         mainMenu = new TextureRegion(new Texture(Constants.MENU_TEXT_PATH));
 
         startHouse = new TextureRegion(new Texture(Constants.HOUSE_PATH));
         startSchool = new TextureRegion(new Texture(Constants.SCHOOL_PATH));
+        startOffice = new TextureRegion(new Texture(Constants.OFFICE_PATH));
+
         playroomStage1 = new TextureRegion(new Texture(Constants.STAGE1_PATH));
         playroomStage2 = new TextureRegion(new Texture(Constants.STAGE2_PATH));
+        playroomStage3 = new TextureRegion(new Texture(Constants.STAGE3_PATH));
 
         stageSelect = new TextureRegion(new Texture(Constants.STAGE_SELECT_PATH));
         utility = new TextureRegion(new Texture(Constants.UTILITY_SHEET_PATH));
@@ -187,6 +192,14 @@ public class Manager {
         return startSchool;
     }
 
+    public TextureRegion getStartOffice() {
+        return startOffice;
+    }
+
+    public TextureRegion getPlayroomStage3() {
+        return playroomStage3;
+    }
+
     public TextureRegion getStageSelect() {
         return stageSelect;
     }
@@ -256,6 +269,14 @@ public class Manager {
         this.decisionTree = decisionTree;
     }
 
+    public StageSelector getStageSelector() {
+        return stageSelector;
+    }
+
+    public void setStageSelector(StageSelector stageSelector) {
+        this.stageSelector = stageSelector;
+    }
+
     public boolean isMoving() {
         return moving;
     }
@@ -291,18 +312,50 @@ public class Manager {
         }
         return null;
     }
-
+    // Stage #, Stage Topic, Cookie Number, Dataset (5), Behavior
+    // Input after the game too
     public void writeDataGathering(int stageNumber, String stageTopic, int numberOfCookie){
         try {
+            int counter = 0;
+            int length = 0;
+            ArrayList<String> replace = new ArrayList<>(Arrays.asList(String.valueOf(stageNumber), stageTopic, String.valueOf(numberOfCookie), "YES", "HIGH", "MEDIUM", "LOW", "LOW", "ENGAGED"));
             File file = new File(Constants.DATA_GATHERED_FILE_PATH);
             if (file.createNewFile()) {
                 System.out.println("File created: " + file.getName());
             }
             else {
                 ArrayList<ArrayList<String>> data = readDataFirst();
+                System.out.println(data);
+
+                for(ArrayList<String> i: data){
+                    if(i.get(0).equals(String.valueOf(stageNumber))){
+                        i.clear();
+                        break;
+                    }
+                    else{
+                        counter++;
+                    }
+                }
+
+                data.add(counter, replace);
+
                 FileWriter fileWriter = new FileWriter(Constants.DATA_GATHERED_FILE_PATH, false);
 
-                
+                for(ArrayList<String> arrayList: data){
+                    if(arrayList.isEmpty()){
+                        continue;
+                    }
+                    else{
+                        for(String i: arrayList){
+                            if(length == arrayList.size()){
+                                fileWriter.write("\n");
+                                length = 0;
+                            }
+                            length++;
+                            fileWriter.write(i + ",");
+                        }
+                    }
+                }
                 fileWriter.close();
             }
         }

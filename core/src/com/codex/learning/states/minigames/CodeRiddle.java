@@ -41,7 +41,7 @@ public class CodeRiddle extends State {
 
     private float timer;
 
-    public CodeRiddle(Manager manager, int stage) {
+    public CodeRiddle(Manager manager) {
         super(manager);
 
         fuzzyLogic = new FuzzyLogic();
@@ -88,8 +88,11 @@ public class CodeRiddle extends State {
 
         inComputer = false;
         isDone = false;
-        getAQuestion(String.valueOf(stage), "Novice");
-        System.out.println(stage + " this is the stage");
+
+        System.out.println(manager.getStageSelector().map() + "map");
+        getAQuestion(manager.getStageSelector().map(), manager.getExpertSystem().getExpertiseLevel());
+        System.out.println(manager.getExpertSystem().getExpertiseLevel());
+        System.out.println(manager.getStageSelector().getStageNumber() + " this is the stage");
         currentQuestion = 0;
     }
 
@@ -223,11 +226,17 @@ public class CodeRiddle extends State {
     }
 
     public void getAQuestion(String stage, String expertiseLevel){
-        manager.getQuestionnaire().questionDisplay(stage,expertiseLevel);
+        manager.getQuestionnaire().questionDisplay(stage,String.valueOf(manager.getStageSelector().getStageNumber()),expertiseLevel);
+
         questions = manager.getQuestionnaire().getQuestions();
+
+
         options = manager.getQuestionnaire().getOptions();
+
         fuzzyLogic.setTotalQuestions(manager.getQuestionnaire().getQuestionLimit());
     }
+
+
 
     // Time Consumption, Number of Error
     public void updateBehavior(){
@@ -243,6 +252,7 @@ public class CodeRiddle extends State {
         currentBehavior = manager.removeBracket(currentBehavior);
         if(currentBehavior.equals("ENGAGED") || currentBehavior.equals("NEUTRAL") || currentBehavior.equals("BORED")){
             //GIVE FEEDBACK
+
 //            System.out.println(currentBehavior);
 //            System.out.println("Congrats");
         }

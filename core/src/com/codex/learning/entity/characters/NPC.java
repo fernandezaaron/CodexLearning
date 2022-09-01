@@ -29,17 +29,15 @@ public class NPC extends Entity {
     private String direction;
     private boolean inContact;
     private boolean talking;
-    private Skin skin;
-    private Stage stage;
     private Table table, image;
     private DialogueBox db;
     private Label.LabelStyle labelStyle;
     private Dialogue dialogue;
     private int nextStatement;
-    private int stageSelect;
-    public NPC(Manager manager, int stage) {
+
+    public NPC(Manager manager) {
         super(manager);
-        this.stageSelect = stage;
+
     }
 
     @Override
@@ -53,9 +51,9 @@ public class NPC extends Entity {
         //provides an image of the NPC on the left hand side of the table
 
         image = new Table(manager.getSkin());
-        if(stageSelect >= 1 && stageSelect < 5){
+        if(manager.getStageSelector().map().equals("1") || manager.getStageSelector().map().equals("3")){
             image.setBackground("jediGrandpaAvatar");
-        }else if(stageSelect >=5 && stageSelect < 12){
+        }else if(manager.getStageSelector().map().equals("2")){
             image.setBackground("jediProfAvatar");
         }
 
@@ -71,7 +69,7 @@ public class NPC extends Entity {
         //animates the text
         db = new DialogueBox(manager.getSkin(), "dialogbox2");
         //dialogue of the NPC
-        dialogue = new Dialogue(stageSelect);
+        dialogue = new Dialogue(manager.getStageSelector().getStageNumber());
 
         talking = false;
 
@@ -129,7 +127,7 @@ public class NPC extends Entity {
         sprite.enableBlending();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.begin();
-        if(stageSelect >= 1 && stageSelect < 5){
+        if(manager.getStageSelector().map().equals("1") || (manager.getStageSelector().map().equals("3"))){
             if(isTalking()){
                 switch (direction){
                     case "north":
@@ -155,9 +153,12 @@ public class NPC extends Entity {
                         body.getPosition().y * Constants.PPM - jediGrandpaDown.getRegionHeight() / 2);
             }
 
-        }else if(stageSelect >= 5 && stageSelect < 12) {
+        }else if(manager.getStageSelector().map().equals("2")) {
             sprite.draw(jediProfDown, body.getPosition().x * Constants.PPM - jediGrandpaDown.getRegionWidth() / 2,
                     body.getPosition().y * Constants.PPM - jediGrandpaDown.getRegionHeight() / 2);
+        }
+        else {
+
         }
 
         table.draw(sprite, 1);

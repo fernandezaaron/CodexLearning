@@ -1,6 +1,7 @@
 package com.codex.learning.states.minigames;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.codex.learning.entity.blocks.Blocks;
 import com.codex.learning.entity.characters.Character;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.FuzzyLogic;
@@ -8,15 +9,15 @@ import com.codex.learning.utility.Manager;
 
 public class Minigame extends State {
     private FuzzyLogic fuzzyLogic;
-    private int stageNumber;
     private int currentMinigame;
     private FillInTheBlock s;
+    private sample sample;
     private MysteryCode h;
-    private boolean fib, mc;
+    private boolean fib, mc, samplebool;
     private Character jedisaur;
-    public Minigame(Manager manager, int stageNumber, int currentMinigame, Character jedisaur){
+
+    public Minigame(Manager manager, int currentMinigame, Character jedisaur){
         super(manager);
-        this.stageNumber = stageNumber;
         this.currentMinigame = currentMinigame;
         fuzzyLogic = new FuzzyLogic();
         fib = false;
@@ -28,19 +29,23 @@ public class Minigame extends State {
         switch (currentMinigame){
             case 1:
                 fib = true;
-                s = new FillInTheBlock(manager, stageNumber, jedisaur);
+                s = new FillInTheBlock(manager, jedisaur);
                 System.out.println("1");
                 break;
             case 2:
                 mc = true;
-                h = new MysteryCode(manager, stageNumber, jedisaur);
+                h = new MysteryCode(manager, jedisaur);
+
                 break;
             case 3:
+                samplebool = true;
+                sample = new sample(manager, jedisaur);
                 System.out.println("3");
                 break;
 
         }
     }
+
 
 
     @Override
@@ -50,6 +55,8 @@ public class Minigame extends State {
         }
         else if(mc){
             h.update(delta);
+        }else if(samplebool){
+            sample.update(delta);
         }
 
     }
@@ -61,6 +68,8 @@ public class Minigame extends State {
         }
         else if(mc){
             h.render(sprite);
+        }else if(samplebool){
+            sample.render(sprite);
         }
     }
 
@@ -72,6 +81,8 @@ public class Minigame extends State {
         }
         else if(mc){
             h.dispose();
+        }else if(samplebool){
+            sample.dispose();
         }
     }
 
@@ -80,4 +91,5 @@ public class Minigame extends State {
             s.setActive(active);
         }
     }
+
 }

@@ -21,29 +21,19 @@ public class StageSelectState extends State{
     private TextureRegion[] currentCookie;
     private Vector3 touchpoint;
     private Circle[] stages;
-    private Settings settings;
-
-    private StageSelector[] stageSelector;
-    private StageSelector ss;
 
     private boolean zeroCookie;
 
     public StageSelectState(Manager manager){
         super(manager);
-        stages = new Circle[17];
+        stages = new Circle[16];
 
-        stageSelector = new StageSelector[17];
-
-        zeroCookie = false;
-        currentCookie = new TextureRegion[17];
-
-        for(int i = 0; i < stages.length; i++){
-            stageSelector[i] = new StageSelector();
-            stageSelector[i].setNumberOfCookies(manager.getExpertSystem().getCookies(i));
+        for(int i=0; i < stages.length; i++){
+            manager.getStageSelector().setNumberOfCookies(i, manager.getExpertSystem().getCookies(i));
         }
 
-
-
+        zeroCookie = false;
+        currentCookie = new TextureRegion[16];
 
 
         orangeCircle = new TextureRegion(manager.getUtility(), Constants.ORANGE_CIRCLE_X, Constants.ORANGE_CIRCLE_Y, Constants.ORANGE_CIRCLE_R, Constants.ORANGE_CIRCLE_R);
@@ -75,19 +65,19 @@ public class StageSelectState extends State{
                 manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2 + Constants.STAGE_1_9_Y, Constants.STAGE_RADIUS);
         stages[9] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_10_X,
                 manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2 + Constants.STAGE_1_10_Y, Constants.STAGE_RADIUS);
-        stages[10] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_11_X,
-                manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2 + Constants.STAGE_1_11_Y, Constants.STAGE_RADIUS);
-        stages[11] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_12_X,
+//        stages[10] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_11_X,
+//                manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2 + Constants.STAGE_1_11_Y, Constants.STAGE_RADIUS);
+        stages[10] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_12_X,
                 manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2 + Constants.STAGE_1_12_Y, Constants.STAGE_RADIUS);
-        stages[12] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_13_X,
+        stages[11] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_13_X,
                 manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2 + Constants.STAGE_1_13_Y, Constants.STAGE_RADIUS);
-        stages[13] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_14_X,
+        stages[12] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_14_X,
                 manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2 + Constants.STAGE_1_14_Y, Constants.STAGE_RADIUS);
-        stages[14] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_15_X,
+        stages[13] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_15_X,
                 manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2 + Constants.STAGE_1_15_Y, Constants.STAGE_RADIUS);
-        stages[15] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_16_X,
+        stages[14] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_16_X,
                 manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2 + Constants.STAGE_1_16_Y, Constants.STAGE_RADIUS);
-        stages[16] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 +Constants.STAGE_1_17_X,
+        stages[15] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 +Constants.STAGE_1_17_X,
                 manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2 + Constants.STAGE_1_17_Y, Constants.STAGE_RADIUS);
 
         System.out.println(manager.isMusicPaused());
@@ -121,24 +111,25 @@ public class StageSelectState extends State{
 
     public void drawCookies(SpriteBatch sprite){
         for(int i = 0; i < stages.length; i++){
-            if(stageSelector[i].getNumberOfCookies() == 0){
+            if(manager.getStageSelector().getNumberOfCookies(i) == 0){
                 currentCookie[i] = noCookie;
+
                 if(!zeroCookie){
-                    stageSelector[i].setAllowToPlay(true);
+                    manager.getStageSelector().setAllowToPlay(i,true);
                     zeroCookie = true;
                 }
             }
-            else if(stageSelector[i].getNumberOfCookies() == 1){
+            else if(manager.getStageSelector().getNumberOfCookies(i) == 1){
                 currentCookie[i] = oneCookie;
-                stageSelector[i].setAllowToPlay(true);
+                manager.getStageSelector().setAllowToPlay(i,true);
             }
-            else if(stageSelector[i].getNumberOfCookies() == 2){
+            else if(manager.getStageSelector().getNumberOfCookies(i) == 2){
                 currentCookie[i] = twoCookies;
-                stageSelector[i].setAllowToPlay(true);
+                manager.getStageSelector().setAllowToPlay(i,true);
             }
-            else if(stageSelector[i].getNumberOfCookies() == 3){
+            else if(manager.getStageSelector().getNumberOfCookies(i) == 3){
                 currentCookie[i] = threeCookies;
-                stageSelector[i].setAllowToPlay(true);
+                manager.getStageSelector().setAllowToPlay(i,true);
             }
             sprite.draw(currentCookie[i], stages[i].x - Constants.ORANGE_CIRCLE_R / 2 - 13,
                     (stages[i].y - Constants.ORANGE_CIRCLE_R / 2) + 75, Constants.COOKIES_WIDTH, Constants.COOKIES_HEIGHT);
@@ -152,13 +143,13 @@ public class StageSelectState extends State{
             // LATEST ZERO COOKIES MUST BE PLAYABLE
             for(int i = 0; i < stages.length; i++){
 
-                if(stageSelector[i].isAllowToPlay()){
+                if(manager.getStageSelector().getAllowToPlay(i)){
                     if(stages[i].contains(touchpoint.x, touchpoint.y)){
                         manager.getMusic().stop();
-                        stageSelector[i].setStageNumber(i+1);
-                        manager.set(new PlayState(manager, stageSelector[i].getStageNumber()));
-//                        manager.set(new FillInTheBlock(manager));
-                        System.out.println("You clicked at stage " + stageSelector[i].getStageNumber()  + "!!");
+                        manager.getStageSelector().setStageNumber(i+1);
+                        manager.getStageSelector().setCurrentStage(i);
+                        manager.set(new PlayState(manager));
+                        System.out.println("You clicked at stage " + manager.getStageSelector().getCurrentStage(i)  + "!!");
 
 
                         // ITO COMMENT OUT TO COMPARE
@@ -177,7 +168,7 @@ public class StageSelectState extends State{
                       stages[i].y - Constants.ORANGE_CIRCLE_R / 2, Constants.ORANGE_CIRCLE_R, Constants.ORANGE_CIRCLE_R);
 //            sprite.draw(orangeCircle, (manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f) + stages[i].x - Constants.ORANGE_CIRCLE_R / 2,
 //                    (manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f) +  stages[i].y - Constants.ORANGE_CIRCLE_R / 2, Constants.ORANGE_CIRCLE_R, Constants.ORANGE_CIRCLE_R);
-            if(stageSelector[i].isAllowToPlay()) {
+            if(manager.getStageSelector().getAllowToPlay(i)) {
                 if (stages[i].contains(touchpoint.x, touchpoint.y)) {
                     sprite.draw(grayCircle, stages[i].x - Constants.GRAY_CIRCLE_R / 2,
                             stages[i].y - Constants.GRAY_CIRCLE_R / 2, Constants.GRAY_CIRCLE_R, Constants.GRAY_CIRCLE_R);

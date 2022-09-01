@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Questionnaire extends DatabaseReader {
-    private String question, difficulty;
+    private String question, difficulty, stageTopic;
 
     private ArrayList<String> questions;
     private ArrayList<ArrayList<String>> options;
@@ -27,17 +27,22 @@ public class Questionnaire extends DatabaseReader {
 
     private Sheet minigameSheet, questionSheet, answerPoolSheet;
 
+//    private String[][] minigameGetter;
+//    private String[][] minigameHolder;
     private ArrayList<ArrayList<String>> minigameHolder;
     private ArrayList<String> minigameGetter;
     private ArrayList<String> answerPool;
+    private ArrayList<String> topic;
 
     public Questionnaire() {
         questions = new ArrayList<>();
         options = new ArrayList<>();
         answers = new ArrayList<>();
+        topic = new ArrayList<>();
 
         question = null;
         difficulty = null;
+        stageTopic = null;
         stageValue = null;
 
         numberOfQuestions = 0;
@@ -179,17 +184,25 @@ public class Questionnaire extends DatabaseReader {
         }
     }
 
-    public void questionDisplay(String stage, String expertiseLevel) {
+    public void questionDisplay(String stage,String topics,String expertiseLevel) {
         adjustDifficulty(expertiseLevel);
+        addTopic(topics);
+
+        difficulty = levels.get(randomizer.nextInt(levels.size()));
+
+
         while(question == null) {
             difficulty = levels.get(randomizer.nextInt(levels.size()));
+            topics = topic.get(randomizer.nextInt(topic.size()));
+//            System.out.println(stageTopic);
+//            System.out.println("am i here");
+//            System.out.println(numberOfQuestions);
             if(numberOfQuestions == questionLimit){
                 break;
             }
 
             questionID = randomizer.nextInt(excelQuestionLimit - 1) + 1;
-            question = getExcelQuestion(questionID, 4, difficulty, stage);
-            System.out.println(stage + "stage here");
+            question = getExcelQuestion(questionID, 4, difficulty, stage, topics);
             if(question != null) {
                 if(questions.contains(question)){
                     question = null;
@@ -222,10 +235,10 @@ public class Questionnaire extends DatabaseReader {
         return stageValue;
     }
 
-    public String getExcelQuestion(int row1, int col1, String difficulty, String stage) {
+    public String getExcelQuestion(int row1, int col1, String difficulty, String stage, String topic) {
         if((int) questionSheet.
                 getRow(row1).getCell(0).getNumericCellValue() == row1 &&
-                getCodeRiddle(row1, 2).equals(difficulty) &&
+                getCodeRiddle(row1, 1).equals(topic) && getCodeRiddle(row1, 2).equals(difficulty) &&
                 (getCodeRiddle(row1, 3).equals(stage))) {
             return getWorkbook().getSheet("CodeRiddle").getRow(row1).getCell(col1).getStringCellValue();
         }
@@ -253,13 +266,83 @@ public class Questionnaire extends DatabaseReader {
             case "Average":
                 levels.add("Medium");
                 levels.add("Hard");
-                questionLimit = 4;
+                questionLimit = 2;
                 break;
             case "Expert":
                 levels.add("Hard");
                 questionLimit = 3;
                 break;
         }
+    }
+
+    public void addTopic(String stageNumber){
+        System.out.println(stageNumber);
+        switch (stageNumber){
+            case "1":
+                topic.add("Syntax");
+                topic.add("Comments");
+                break;
+            case "2":
+                topic.add("Variables");
+                topic.add("Data Types");
+                topic.add("Type Casting");
+                break;
+            case "3":
+                topic.add("Operators");
+                break;
+            case "4":
+                topic.add("Syntax");
+                topic.add("Comments");
+                topic.add("Variables");
+                topic.add("Data Types");
+                topic.add("Type Casting");
+                topic.add("Operators");
+                break;
+            case "5":
+                topic.add("Conditional");
+                break;
+            case "6":
+                topic.add("Loops");
+                break;
+            case "7":
+                topic.add("Arrays");
+                break;
+            case "8":
+                topic.add("Methods");
+                break;
+            case "9":
+                topic.add("Parameters");
+                topic.add("Parameter Overloading");
+                break;
+            case "10":
+                topic.add("Conditional");
+                topic.add("Loops");
+                topic.add("Arrays");
+                topic.add("Methods");
+                topic.add("Parameters");
+                topic.add("Parameter Overloading");
+                break;
+            case "11":
+                topic.add("Classes");
+                break;
+            case "12":
+                topic.add("Objects");
+                break;
+            case "13":
+                topic.add("Classes");
+                topic.add("Objects");
+                break;
+        }
+
+    }
+
+
+    public ArrayList<String> getTopic() {
+        return topic;
+    }
+
+    public void setTopic(ArrayList<String> topic) {
+        this.topic = topic;
     }
 
     public ArrayList<String> getQuestions() {
@@ -269,6 +352,7 @@ public class Questionnaire extends DatabaseReader {
     public void setQuestions(ArrayList<String> questions) {
         this.questions = questions;
     }
+
 
     public ArrayList<ArrayList<String>> getMinigame() {
         return minigameHolder;
@@ -323,6 +407,7 @@ public class Questionnaire extends DatabaseReader {
         levels.clear();
         options.clear();
         answers.clear();
+        topic.clear();
         question = null;
         numberOfQuestions = 0;
     }

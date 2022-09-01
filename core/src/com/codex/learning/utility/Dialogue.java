@@ -6,6 +6,8 @@ import java.util.Arrays;
 public class Dialogue {
 
 
+
+
     private ArrayList<ArrayList<String>> introductionDialogue = new ArrayList<>(Arrays.asList(
             new ArrayList<String>(Arrays.asList("Hi I am, JediGrandpa", "I have a task for you to do", "But first lets study first on the topic",
                     //syntax
@@ -163,6 +165,105 @@ public class Dialogue {
 
 
     )
+    );
+
+    private ArrayList<ArrayList<String>> feedbackContainer = new ArrayList<>(
+            Arrays.asList(
+                    new ArrayList<String>(Arrays.asList(
+                            // Stage complete
+                            "Good job", "Wow, that's impressive work.", "You are a fast learner.", "I'm so proud of your effort.", "How did you do this so fast?", "Terrific job!",
+                            "Wow, you are so skilled!", "This is insanely good.", "Fantastic!", "Your level of expertise is impressive.", "This proves you are ready for more here.",
+                            "Now this is good work.","Your progress is truly inspiring.","Outstanding work!", "You are a fast learner."
+
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            "Congratulations you've completed the stage in less than 5 minutes","Good job you've completed the stage in less than 10 minutes", "Nice you've completed the stage in less than 15 minutes", "You've completed the stage you're doing this right",
+                            "You've passed the 5 minute mark.","You've passed the 10 minute mark.","You've passed the 15 minute mark."
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Stage failed
+                            "You should pay attention to JediGrandpa's teaches and try again", "Recall all your mistakes and try again.", "Visit and talk to JediGrandpa to recall the lesson and try again ",
+                            "Try again to learn from your mistakes"
+                    ))
+            )
+    );
+
+
+    private ArrayList<ArrayList<String>> hintsContainer = new ArrayList<>(
+            Arrays.asList(
+                    new ArrayList<String>(Arrays.asList(
+                            // Stage 1
+                            // Syntax
+                            "Did you check the end of every code statement?", "Did you check the class name if it's uppercase or lowercase?",
+                            "Multi-line comments must start and ends with?"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Variables
+                            "The value of a String should be surrounded by?", "Unlike String, the value of char should be surrounded by?", "In float it is just like a double variable but it has an f at the end of the number",
+                            "In boolean the value should not be surrounded by single or double quotes", "in int the values should not have a decimal point",
+                            "The variable name should not contain whitespaces",
+                            // Data Types
+                            "int data type can only have whole numbers", "String is a primitive data type", "unlike String, char is a non-primitive data type", "boolean is the only one that has a bit size",
+                            // Type Casting
+                            "You can't convert double to int automatically", "Use widening casting to convert small size to larger size"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Operators
+                            "Use Arithmetic Operators to perform math operations", "Use proper assignment operations to assign value to a variable",
+                            "You can use Comparison operations to compare two values"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Stage 2
+                            // Conditional Statements
+                            "Check the condition in the if-statement if the condition is true", "Check the condition in the else-if statement if it is true",
+                            "When using short hand check if you use a the proper ternary operator","Don't forget the expression when using switch case","Don't forget to use break after every switch statements"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Looping Statements
+                            "In using a while loop always check if the condition in properly set.", "Don't forget to increase or decrease the variable in the condition", "" +
+                                    "Don't forget there are 3 statements in a for loop", "Check if statement if it uses the correct comparison operator in a for loop",
+                            "check variable name and array name if it is correct in using the for-each loop"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Arrays
+                            "Did you properly declare an array", "Did you use the proper brackets in declaring an array", "Did you use the array length properly",
+                            "0 is the first index in an array when accessing it", "When using for loop in arrays you will use the length property of an array",
+                            "Did you properly put brackets in declaring an multidimensional array","In Multidimensional array you will need to specify two indexes when calling or accessing the elements"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Methods
+                            "Did you properly declare your own method", "Did you properly call a method", "Did you use the pre-defined methods properly"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Parameters
+                            "Did you properly set the parameters in a method", "Every parameters you set must be separated by a comma", "You can use primitive data types instead of void keyword if you want a return value in a method",
+                            // Parameters Overloading
+                            "You can't override the method when it is final or static", "Constructors in a method cannot be overridden",
+                            "Use the proper variable type in when calling a method you override "
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Stage 3
+                            // Classes
+                            "Don't forget the keyword when creating a class", "THe name of the java file should match the class name", "Use proper syntax when creating a class"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Objects
+                            "Did you specify the class name before the object name", "there should be a new keyword when creating an object", "Did you properly create an object"
+                    ))
+
+
+            )
     );
 
 
