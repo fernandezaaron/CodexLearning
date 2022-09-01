@@ -52,8 +52,8 @@ public class PlayState extends State{
         timer = 0;
         pause = new PauseState(manager);
         rand = new Random();
-        randomMinigame = rand.nextInt(3-1)+1;
-
+//        randomMinigame = rand.nextInt(3-1)+1;
+        randomMinigame = 2;
         if(manager.getStageSelector().map().equals("1")){
             house = new HouseMap(manager);
             computer = new Computer(manager, fuzzyLogic);

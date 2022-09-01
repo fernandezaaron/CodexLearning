@@ -388,7 +388,8 @@ public class Character extends Entity {
         }
         if(getCopyBlock() != null){
             getCopyBlock().getBody().setType(BodyDef.BodyType.DynamicBody);
-            getCopyBlock().getBody().setTransform(body.getPosition().x, body.getPosition().y + 3f, 0);
+            getCopyBlock().getBody().setTransform(body.getPosition().x - (block.getDupliSize().x), body.getPosition().y + 3f, 0);
+            System.out.println(this.size.x + " sa character");
         }
         block.getBody().setType(BodyDef.BodyType.StaticBody);
     }
@@ -408,6 +409,7 @@ public class Character extends Entity {
         if(blockHolder.isOccupied()){
             blockHolder.setCopyBlock(getCopyBlock());
             setFixture(true);
+            System.out.println(numberOfBlockInteraction);
         }
         else{
             blockHolder.setCopyBlock(null);

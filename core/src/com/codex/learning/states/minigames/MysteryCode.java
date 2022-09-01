@@ -58,10 +58,6 @@ public class MysteryCode extends State {
 
         getAMinigame(manager.getStageSelector().map(), "Poor");
 
-
-
-
-
         for(int i = 0; i <= 10; i++) {
             banishCells.add(randomizer.nextInt(minigameContainerLimit - 1) + 1);
         }
@@ -75,32 +71,25 @@ public class MysteryCode extends State {
                     float currentStringLength = (float) String.valueOf(minigameContainer.get(i).get(j)).length();
                     if (banishCells.contains(currentCell)) {
                         blockHolders[i][j] = new BlockHolder(manager, "\"" + minigameContainer.get(i).get(j) + "\"");
-                        if (currentStringLength <= 3) {
-                            blockHolders[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.5f), Constants.BLOCK_HOLDER_HEIGHT), 0);
-                        }
-                        else {
-                            blockHolders[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.23f), Constants.BLOCK_HOLDER_HEIGHT), 0);
-                        }
+                        blockHolders[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2(Constants.BLOCK_HOLDER_WIDTH * 2, Constants.BLOCK_HOLDER_HEIGHT), 0);
                         answerPoolContainer.add(minigameContainer.get(i).get(j));
+                        xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 5;
                     } else {
                         questionBlocks[i][j] = new Blocks(manager, "\"" + minigameContainer.get(i).get(j) + "\"", minigameContainer.get(i).get(j), true);
                         if (currentStringLength <= 3){
                             questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.5f), Constants.BLOCKS_HEIGHT), 0);
                             questionBlocks[i][j].setPreDefinedContact(true);
+                            xStartingPoint += currentStringLength + 0.5f;
                         }
 
                         else{
                             questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.23f), Constants.BLOCKS_HEIGHT), 0);
                             questionBlocks[i][j].setPreDefinedContact(true);
+                            xStartingPoint += currentStringLength / 1.8f;
                         }
 
                     }
                     currentCell++;
-
-                    if(currentStringLength <= 3)
-                        xStartingPoint += currentStringLength + 0.5f;
-                    else
-                        xStartingPoint += currentStringLength / 1.8f;
                 }
             }
             yStartingPoint -= 2;
@@ -117,9 +106,9 @@ public class MysteryCode extends State {
         for(int i = 0; i < ansPoolSize; i++) {
             float AnsPoolX = 11;
             int totalLineLength = 0;
-            while (totalLineLength < 12) {
+            while (totalLineLength <= 12) {
                 float currentStringLength = (float) String.valueOf(answerPoolContainer.get(currentAnsCell)).length();
-                totalLineLength += currentStringLength;
+                totalLineLength += currentStringLength + (AnsPoolX - 11);
                 answerBlocks[currentAnsCell] = new Blocks(manager, "\"" + answerPoolContainer.get(currentAnsCell) + "\"", answerPoolContainer.get(currentAnsCell), true);
                 if (answerPoolContainer.get(currentAnsCell) != null) {
                     if (currentStringLength <= 3)
@@ -127,9 +116,9 @@ public class MysteryCode extends State {
                     else
                         answerBlocks[currentAnsCell].create(new Vector2(AnsPoolX, AnsPoolY), new Vector2((currentStringLength * 0.23f), Constants.BLOCKS_HEIGHT), 0);
                     if (currentStringLength <= 3)
-                        AnsPoolX += currentStringLength + 0.7f;
+                        AnsPoolX += currentStringLength + 1.0f;
                     else
-                        AnsPoolX += currentStringLength / 1.6f;
+                        AnsPoolX += currentStringLength / 1.3f;
                     if (currentAnsCell == ansPoolSize - 1) {
                         break;
                     } else {
@@ -151,20 +140,20 @@ public class MysteryCode extends State {
 
     @Override
     public void update(float delta) {
-            // WILL BE USED, DON'T ERASE
-//        manager.getWorld().step(1/60f,6,2);
-            currentCell = 0;
-            for (int i = 0; i < minigameContainer.size(); i++) {
-                for (int j = 0; j < minigameContainer.get(i).size(); j++) {
-                    if (minigameContainer.get(i).get(j) != null) {
-                        if (banishCells.contains(currentCell))
-                            blockHolders[i][j].update(delta);
-                        else
-                            questionBlocks[i][j].update(delta);
-                        currentCell++;
-                    }
-                }
-            }
+        // WILL BE USED, DON'T ERASE
+//               manager.getWorld().step(1/60f,6,2);
+               currentCell = 0;
+               for (int i = 0; i < minigameContainer.size(); i++) {
+                   for (int j = 0; j < minigameContainer.get(i).size(); j++) {
+                       if (minigameContainer.get(i).get(j) != null) {
+                           if (banishCells.contains(currentCell))
+                               blockHolders[i][j].update(delta);
+                           else
+                               questionBlocks[i][j].update(delta);
+                           currentCell++;
+                       }
+                   }
+               }
             //kung gagamitin mo to remove the blocks[i][j].update muna sa taas pero i havent tried pag magkasabay sila naka on for sure dodoble HAHA
             for (int i = 0; i < answerBlocks.length; i++) {
                 if (answerBlocks[i] != null) {
@@ -267,7 +256,7 @@ public class MysteryCode extends State {
     }
 
     public void getAMinigame(String stage, String expertiseLevel){
-        manager.getQuestionnaire().minigameDisplay(stage,expertiseLevel);
+        manager.getQuestionnaire().minigameDisplay(stage,String.valueOf(manager.getStageSelector().getStageNumber()),expertiseLevel);
         minigameContainer = manager.getQuestionnaire().getMinigame();
         minigameContainerLimit = manager.getQuestionnaire().getMinigameLimit();
         answerPoolContainer = manager.getQuestionnaire().getAnswerPool();

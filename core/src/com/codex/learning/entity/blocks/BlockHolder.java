@@ -16,7 +16,7 @@ import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
 public class BlockHolder extends Entity {
-    private ShapeRenderer normalBlock, highlightBlock;
+    private ShapeRenderer normalBlock, highlightBlock, occupiedBlock;
     private boolean inContact;
     private boolean occupied;
     private Blocks copyBlock;
@@ -58,10 +58,13 @@ public class BlockHolder extends Entity {
         setCopyBlock(null);
 
         normalBlock = new ShapeRenderer();
-        normalBlock.translate(this.size.x + (Constants.PPM / 5f), - (this.size.y * Constants.PPM) / 9.2f, 0);
+        normalBlock.translate(this.size.x + (Constants.PPM / 5f), - (this.size.y * Constants.PPM) / 10f, 0);
 
         highlightBlock = new ShapeRenderer();
-        highlightBlock.translate(this.size.x + (Constants.PPM / 5f), - (this.size.y * Constants.PPM) / 9.2f, 0);
+        highlightBlock.translate(this.size.x + (Constants.PPM / 5f), - (this.size.y * Constants.PPM) / 10f, 0);
+
+        occupiedBlock = new ShapeRenderer();
+        occupiedBlock.translate(this.size.x + (Constants.PPM / 5f), - (this.size.y * Constants.PPM) / 10f, 0);
 
     }
 
@@ -79,7 +82,7 @@ public class BlockHolder extends Entity {
             highlightBlock.setProjectionMatrix(manager.getCamera().combined);
             highlightBlock.setColor(246/255f, 228/255f, 216/255f, 0.0f);
             highlightBlock.begin(ShapeRenderer.ShapeType.Filled);
-            highlightBlock.rect((this.size.x  * 2 + (Constants.PPM * body.getPosition().x)),
+            highlightBlock.rect((this.size.x + (Constants.PPM * body.getPosition().x)),
                     (this.size.y * 2 + (Constants.PPM * body.getPosition().y)),
                     (this.size.x + (this.size.x * Constants.PPM)) * 2,
                     - (this.size.y * Constants.PPM * 2.1f));
@@ -88,11 +91,21 @@ public class BlockHolder extends Entity {
 //                    body.getPosition().x * Constants.PPM - highlightBlock.getRegionWidth() / 2,
 //                    body.getPosition().y * Constants.PPM - highlightBlock.getRegionHeight() / 2);
         }
+        else if(isOccupied()) {
+            occupiedBlock.setProjectionMatrix(manager.getCamera().combined);
+            occupiedBlock.setColor(0/255f, 186/255f, 0/255f, 0.0f);
+            occupiedBlock.begin(ShapeRenderer.ShapeType.Filled);
+            occupiedBlock.rect((this.size.x + (Constants.PPM * body.getPosition().x)),
+                    (this.size.y * 2 + (Constants.PPM * body.getPosition().y)),
+                    (this.size.x + (this.size.x * Constants.PPM)) * 2,
+                    - (this.size.y * Constants.PPM * 2.1f));
+            occupiedBlock.end();
+        }
         else{
             normalBlock.setProjectionMatrix(manager.getCamera().combined);
             normalBlock.setColor(201/255f, 186/255f, 176/255f, 0.0f);
             normalBlock.begin(ShapeRenderer.ShapeType.Filled);
-            normalBlock.rect((this.size.x  * 2 + (Constants.PPM * body.getPosition().x)),
+            normalBlock.rect((this.size.x + (Constants.PPM * body.getPosition().x)),
                     (this.size.y * 2 + (Constants.PPM * body.getPosition().y)),
                     (this.size.x + (this.size.x * Constants.PPM)) * 2,
                     - (this.size.y * Constants.PPM * 2.1f));
