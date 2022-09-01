@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d6fe2c7-098b-4435-9d5a-8917e2b9dfa3" name="Changes" comment="gitna na buhat ni jedisaur">
+    <list default="true" id="7d6fe2c7-098b-4435-9d5a-8917e2b9dfa3" name="Changes" comment="maayos na ata dispenser">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeIT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeRiddle.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeRiddle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/filereader/Questionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/filereader/Questionnaire.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/excel/Minigames.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/excel/Minigames.xlsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661874447445</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="maayos na ata dispenser">
+      <created>1661876268569</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1661876268569</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -153,7 +158,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="gege" />
     <MESSAGE value="gitna na buhat ni jedisaur" />
-    <option name="LAST_COMMIT_MESSAGE" value="gitna na buhat ni jedisaur" />
+    <MESSAGE value="maayos na ata dispenser" />
+    <option name="LAST_COMMIT_MESSAGE" value="maayos na ata dispenser" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
