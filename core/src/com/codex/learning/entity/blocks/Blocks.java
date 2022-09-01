@@ -80,9 +80,9 @@ public class Blocks extends Entity {
         shadowColor.setProjectionMatrix(manager.getCamera().combined);
         shadowColor.setColor(201/255f, 186/255f, 176/255f, 0.0f);
         shadowColor.begin(ShapeRenderer.ShapeType.Filled);
-        shadowColor.rect((this.size.x  * 2 + (Constants.PPM * body.getPosition().x)),
+        shadowColor.rect((this.size.x  * 2 + (Constants.PPM * body.getPosition().x)) + 5,
                 (this.size.y * 2 + (Constants.PPM * body.getPosition().y)),
-                (this.name.length() + (this.size.x * Constants.PPM)) * 2,
+                (this.name.length() + (this.size.x * Constants.PPM)) * 2.2f,
                 - (this.size.y * Constants.PPM * 2.1f));
         shadowColor.end();
 
@@ -91,7 +91,7 @@ public class Blocks extends Entity {
         mainColor.begin(ShapeRenderer.ShapeType.Filled);
         mainColor.rect((this.size.x * 2 + (Constants.PPM * body.getPosition().x)),
                 (this.size.y * 2 + (Constants.PPM * body.getPosition().y)),
-                (this.name.length() + (this.size.x * Constants.PPM)) * 1.9f,
+                (this.name.length() + (this.size.x * Constants.PPM)) * 2.7f,
                 - (this.size.y * Constants.PPM * 1.7f));
         mainColor.end();
 
@@ -102,7 +102,7 @@ public class Blocks extends Entity {
                     (this.size.y - (this.size.y * (Constants.PPM * 0.5f)) + (Constants.PPM * body.getPosition().y)));
         else
             manager.getFont().draw(sprite, this.name,
-                (this.size.x + 20f + (Constants.PPM * body.getPosition().x)),
+                (this.size.x + 10 + (Constants.PPM / body.getPosition().x)),
                 (this.size.y - (this.size.y * (Constants.PPM * 0.5f)) + (Constants.PPM * body.getPosition().y)));
         sprite.end();
     }
