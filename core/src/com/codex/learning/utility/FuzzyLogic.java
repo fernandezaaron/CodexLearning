@@ -131,9 +131,6 @@ public class FuzzyLogic {
         else{
             setTimeConsumptionRules("");
         }
-
-        System.out.println("RULE = " + getTimeConsumptionRules());
-        System.out.println("PERCENT = " + getPercentTimeConsumptions());
     }
 
     public void fuzzyCorrectOutput(){

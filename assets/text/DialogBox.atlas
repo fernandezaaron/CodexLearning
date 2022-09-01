@@ -52,16 +52,23 @@ jediGrandpaAvatar
   orig: 180, 180
   offset: 0, 0
   index: -1
-jediProfAvatar
+jediOfficeAvatar
   rotate: false
   xy: 180, 169
   size: 180, 180
   orig: 180, 180
   offset: 0, 0
   index: -1
-jedisaurAvatar
+jediProfAvatar
   rotate: false
   xy: 360, 169
+  size: 180, 180
+  orig: 180, 180
+  offset: 0, 0
+  index: -1
+jedisaurAvatar
+  rotate: false
+  xy: 540, 169
   size: 180, 180
   orig: 180, 180
   offset: 0, 0
@@ -82,7 +89,7 @@ PCSCREEN
   index: -1
 questions
   rotate: false
-  xy: 540, 169
+  xy: 720, 169
   size: 1111, 203
   orig: 1111, 203
   offset: 0, 0

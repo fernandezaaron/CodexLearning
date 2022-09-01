@@ -42,6 +42,8 @@ public class PlayState extends State{
     private TextureRegion door;
     private int stage;
 
+    private boolean computerOnce;
+
 
 
     public PlayState(Manager manager) {
@@ -87,6 +89,8 @@ public class PlayState extends State{
             manager.setMusic(Constants.HOUSE_MUSIC);
         }
 
+        computerOnce = true;
+
 
         door = new TextureRegion(manager.getReportCardSheet(), 48,195, 263, 119);
         inStartArea = true;
@@ -118,8 +122,9 @@ public class PlayState extends State{
                     timer += Gdx.graphics.getDeltaTime();
 
 
-                    if(computer.isDone()){
-                        computer.getCodeRiddle().updateBehavior();
+                    if(computer.isDone() && computerOnce){
+                        computer.getCodeRiddle().resultFeedback();
+                        computerOnce = false;
                     }
 
                     // CHECK THE BEHAVIOR IN STATE
@@ -138,7 +143,7 @@ public class PlayState extends State{
 
 
                 }
-//                else if(playroom.isDone && npc.hasSubmitted && computer.isDone){
+//                else if(playroom.isDone && npc.hasSubmitted){
 //                    //Use to calculate number of cookies
 //                    //System.out.println(fuzzyLogic.getCookies());
 //
