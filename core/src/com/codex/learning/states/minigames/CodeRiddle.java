@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.Constants;
+import com.codex.learning.utility.DialogueBox;
 import com.codex.learning.utility.FuzzyLogic;
 import com.codex.learning.utility.Manager;
 import com.codex.learning.utility.decisiontree.DecisionTree;
@@ -22,7 +23,8 @@ import java.util.ArrayList;
 public class CodeRiddle extends State {
     private ScrollPane scrollPane;
     private Label text;
-    private Table table, optionsTable;
+    private Table table, optionsTable, feedbackTable, avatarImage;
+    private DialogueBox dialogueBox;;
     private Group group;
     private List.ListStyle listStyle;
     private com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle labelStyle;
@@ -55,7 +57,12 @@ public class CodeRiddle extends State {
 //        manager.getSkin().load(Constants.JSON_DIALOG_BOX_SKIN_PATH);
         table = new Table();
         optionsTable = new Table();
+        feedbackTable = new Table(manager.getSkin());
+        avatarImage = new Table(manager.getSkin());
         group = new Group();
+
+
+        dialogueBox = new DialogueBox(manager.getSkin(), "dialogbox2");
 
         textButtons = new TextButton[4];
 
@@ -216,8 +223,18 @@ public class CodeRiddle extends State {
 
 //           table.setDebug(true);
             manager.getStage().addActor(table);
+            createFeedBackTable("i love u");
         }
     }
+
+    public void createFeedBackTable(String text){
+        feedbackTable.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM + 400,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM + 300);
+        dialogueBox.textAnimation(text);
+        feedbackTable.defaults().width(300);
+        feedbackTable.add(dialogueBox).align(Align.right);
+        manager.getStage().addActor(feedbackTable);
+    }
+
 
 
     @Override
