@@ -3,6 +3,7 @@ package com.codex.learning.utility.filereader;
 import com.codex.learning.utility.filereader.DatabaseReader;
 import org.apache.poi.ss.usermodel.*;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -16,7 +17,7 @@ public class Questionnaire extends DatabaseReader {
 
     private ArrayList<String> levels;
 
-    private int questionID, excelQuestionLimit, questionLimit, excelMinigameLimit, minigameElementLimit, answerPoolLimit, answerPoolSelection, findCell;
+    private int questionID, excelQuestionLimit, questionLimit, excelMinigameLimit, minigameElementLimit, answerPoolLimit, dispenserPoolSelection, answerPoolSelection, findCell;
 
     private String stageValue;
     private Random randomizer;
@@ -27,12 +28,12 @@ public class Questionnaire extends DatabaseReader {
 
     private Sheet minigameSheet, questionSheet, answerPoolSheet;
 
-//    private String[][] minigameGetter;
-//    private String[][] minigameHolder;
     private ArrayList<ArrayList<String>> minigameHolder;
     private ArrayList<String> minigameGetter;
     private ArrayList<String> answerPool;
     private ArrayList<String> topic;
+    private ArrayList<Integer> randomPool;
+    private ArrayList<String> dispenserPool;
 
     public Questionnaire() {
         questions = new ArrayList<>();
@@ -53,10 +54,12 @@ public class Questionnaire extends DatabaseReader {
         minigameElementLimit = 0;
         answerPoolLimit = 200;
         answerPoolSelection = 10;
+        dispenserPoolSelection = 3;
         randomizer = new Random();
 
         levels = new ArrayList<String>();
         answerPool = new ArrayList<String>();
+        dispenserPool = new ArrayList<String>();
 
         formatter = new DataFormatter();
 
@@ -89,30 +92,28 @@ public class Questionnaire extends DatabaseReader {
     }
     // end for minigames
 
-    public void minigameDisplay(String stage, String expertiseLevel) {
+    public void minigameDisplay(String stage,String topics,String expertiseLevel) {
         adjustDifficulty(expertiseLevel);
-//        minigameHolder = new String[50][50];
+        addTopic(topics);
+        topics = topic.get(randomizer.nextInt(topic.size()));
         while(minigameGetter == null) {
             questionID = randomizer.nextInt(excelMinigameLimit - 1) + 1;
-//            questionID = 6;
-            difficulty = "Easy";
+            difficulty = levels.get(randomizer.nextInt(levels.size()));
             findCell = findRow(minigameSheet, questionID);
             getMinigame(findCell, 4, difficulty, stage);
         }
-        getAnswerPool(stage);
+        getAnswerPool(stage, topics);
+        getDispenserPool(stage, topics);
     }
 
     public void getMinigame(int row1, int col1, String diff, String stg) {
-//        minigameGetter = new String[50][50];
         minigameHolder = new ArrayList<ArrayList<String>>();
         String difficultyacq = getMinigameInfo(row1, 2);
         String stageacq = getMinigameInfo(row1, 3);
 
         if((difficultyacq != null && difficultyacq.equals(diff)) && (stageacq != null && stageacq.equals(stg))) {
-//            int i = 0, j;
             for(int x = row1; x > 0; x++) {
                 minigameGetter = new ArrayList<String>();
-//                j = 0;
                 for(int y = col1; y > 0; y++) {
                     Row qRow = minigameSheet.getRow(x + 1);
                     Cell qCell = qRow.getCell(y);
@@ -133,17 +134,9 @@ public class Questionnaire extends DatabaseReader {
                     break;
                 }
             }
-//            for(int row = 0; row < 50; row++) {
-//                for (int col = 0; col < 50; col++) {
-//                    if (minigameGetter[row][col] != null) {
-//                        minigameHolder[row][col] = minigameGetter[row][col];
-//                    }
-//                }
-//            }
         }
         else
-//            minigameGetter = null;
-              minigameHolder = null;
+            minigameHolder = null;
     }
 
     public String getMinigameInfo(int row1, int col1) {
@@ -161,26 +154,67 @@ public class Questionnaire extends DatabaseReader {
         }
     }
 
-    public void getAnswerPool(String stage) {
+    public void getAnswerPool(String stage, String topics) {
         int getNumber = 0;
+        randomPool = new ArrayList<>();
         while(answerPoolSelection != 0) {
             getNumber = randomizer.nextInt(80 - 1) + 1;
             Row excelRow = answerPoolSheet.getRow(getNumber);
             Cell excelCell = excelRow.getCell(2);
+            Cell excelTopic = excelRow.getCell(1);
             String getExcelStage = formatter.formatCellValue(excelCell);
-            if((int) answerPoolSheet.
-                    getRow(getNumber).getCell(0).getNumericCellValue() == getNumber &&
-                    (getExcelStage.equals(stage))) {
-                Row ansRow = answerPoolSheet.getRow(getNumber);
-                Cell ansCell = ansRow.getCell(3);
-                String getAnsCell = formatter.formatCellValue(ansCell);
-                if (getAnsCell != "") {
-                    answerPool.add(getAnsCell);
-                    answerPoolSelection--;
-                } else {
-                    continue;
+            String getExcelTopic = formatter.formatCellValue(excelTopic);
+            if(!randomPool.contains(getNumber)){
+                if ((int) answerPoolSheet.
+                        getRow(getNumber).getCell(0).getNumericCellValue() == getNumber &&
+                        (getExcelTopic.equals(topics)) &&
+                        (getExcelStage.equals(stage))) {
+                    Row ansRow = answerPoolSheet.getRow(getNumber);
+                    Cell ansCell = ansRow.getCell(3);
+                    String getAnsCell = formatter.formatCellValue(ansCell);
+                    if (getAnsCell != "") {
+                        answerPool.add(getAnsCell);
+                        randomPool.add(getNumber);
+                        answerPoolSelection--;
+                    } else {
+                        continue;
+                    }
                 }
             }
+            else
+                continue;
+        }
+    }
+
+    public void getDispenserPool(String stage, String topics) {
+        int getNumber = 0;
+        randomPool = new ArrayList<>();
+        while(dispenserPoolSelection != 0) {
+            getNumber = randomizer.nextInt(80 - 1) + 1;
+            Row excelRow = answerPoolSheet.getRow(getNumber);
+            Cell excelCell = excelRow.getCell(2);
+            Cell excelTopic = excelRow.getCell(1);
+            String getExcelStage = formatter.formatCellValue(excelCell);
+            String getExcelTopic = formatter.formatCellValue(excelTopic);
+            if(!randomPool.contains(getNumber)){
+                if ((int) answerPoolSheet.
+                        getRow(getNumber).getCell(0).getNumericCellValue() == getNumber &&
+                        (getExcelTopic.equals(topics)) &&
+                        (getExcelStage.equals(stage))) {
+                    Row ansRow = answerPoolSheet.getRow(getNumber);
+                    Cell ansCell = ansRow.getCell(3);
+                    String getAnsCell = formatter.formatCellValue(ansCell);
+                    if (getAnsCell != "") {
+                        dispenserPool.add(getAnsCell);
+                        randomPool.add(getNumber);
+                        dispenserPoolSelection--;
+                    } else {
+                        continue;
+                    }
+                }
+            }
+            else
+                continue;
         }
     }
 
@@ -365,6 +399,10 @@ public class Questionnaire extends DatabaseReader {
     public ArrayList<String> getAnswerPool(){return answerPool;}
 
     public void setAnswerPool(ArrayList<String> answerPool){this.answerPool = answerPool;}
+
+    public ArrayList<String> getDispenserPool(){return  dispenserPool;}
+
+    public void setDispenserPool(ArrayList<String> dispenserPool){this.dispenserPool = dispenserPool;}
 
     public ArrayList<ArrayList<String>> getOptions() {
         return options;

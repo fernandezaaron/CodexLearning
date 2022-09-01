@@ -409,6 +409,7 @@ public class Character extends Entity {
         if(blockHolder.isOccupied()){
             blockHolder.setCopyBlock(getCopyBlock());
             setFixture(true);
+            System.out.println(numberOfBlockInteraction);
         }
         else{
             blockHolder.setCopyBlock(null);

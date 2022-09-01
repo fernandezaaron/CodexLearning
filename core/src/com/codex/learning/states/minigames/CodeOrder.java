@@ -41,7 +41,7 @@ public class CodeOrder extends State {
     private int currentCell;
     private String mergeResult;
 
-    public CodeOrder(Manager manager, int stage, Character jedisaur) {
+    public CodeOrder(Manager manager, Character jedisaur) {
         super(manager);
         pause = new PauseState(manager);
         playroom = new PlayroomMapS1(manager);
@@ -49,7 +49,7 @@ public class CodeOrder extends State {
         randomizer = new Random();
         banishCells = new ArrayList<Integer>();
 
-        getAMinigame(String.valueOf(stage), "Poor");
+        getAMinigame(manager.getStageSelector().map(), "Poor");
 
         // WILL BE USED, DON'T ERASE
         questionBlocks = new Blocks[20][20];
@@ -203,7 +203,7 @@ public class CodeOrder extends State {
     }
 
     public void getAMinigame(String stage, String expertiseLevel){
-        manager.getQuestionnaire().minigameDisplay(stage,expertiseLevel);
+        manager.getQuestionnaire().minigameDisplay(stage,String.valueOf(manager.getStageSelector().getStageNumber()),expertiseLevel);
         minigameContainer = manager.getQuestionnaire().getMinigame();
         minigameContainerLimit = manager.getQuestionnaire().getMinigameLimit();
     }

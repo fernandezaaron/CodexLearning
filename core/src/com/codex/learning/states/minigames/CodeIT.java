@@ -38,7 +38,7 @@ public class CodeIT extends State {
     private ArrayList<ArrayList<String>> minigameContainer;
     private int minigameContainerLimit;
     private Random randomizer;
-    private ArrayList<String> answerPoolContainer;
+    private ArrayList<String> getAnswerPool;
     private int currentCell;
 
     public CodeIT(Manager manager, int stage, Character character) {
@@ -67,7 +67,7 @@ public class CodeIT extends State {
                 if(minigameContainer.get(i).get(j) != null) {
                     blockHolders[i][j] = new BlockHolder(manager, "\"" + minigameContainer.get(i).get(j) + "\"");
                     blockHolders[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2(Constants.BLOCK_HOLDER_WIDTH * 3, Constants.BLOCK_HOLDER_HEIGHT), 0);
-                    answerPoolContainer.add(minigameContainer.get(i).get(j));
+                    getAnswerPool.add(minigameContainer.get(i).get(j));
                     xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 10;
 
                     System.out.println(xStartingPoint + " " + minigameContainer.get(i).get(j));
@@ -76,16 +76,16 @@ public class CodeIT extends State {
             }
             yStartingPoint -= 2;
         }
-        Collections.shuffle(answerPoolContainer);
+        Collections.shuffle(getAnswerPool);
         // END MINIGAME CREATION
 
         int currentAnsCell = 0;
-        int ansPoolSize = answerPoolContainer.size();
+        int ansPoolSize = getAnswerPool.size();
         int xposition = -22, yposition = -6;
         for(int i = 0; i < ansPoolSize; i++) {
-            blockDispensers[i] = new BlockDispenser(manager, "Down", answerPoolContainer.get(currentAnsCell), answerPoolContainer.get(currentAnsCell),
+            blockDispensers[i] = new BlockDispenser(manager, "Down", getAnswerPool.get(currentAnsCell), getAnswerPool.get(currentAnsCell),
                     1, new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
-            System.out.println(answerPoolContainer.get(currentAnsCell));
+            System.out.println(getAnswerPool.get(currentAnsCell));
             currentAnsCell++;
             blockDispensers[i].create(new Vector2(xposition, yposition), new Vector2(0.3f, 1.3f), 0);
             xposition += 5;
@@ -235,17 +235,17 @@ public class CodeIT extends State {
     }
 
     public void getAMinigame(String stage, String expertiseLevel){
-        manager.getQuestionnaire().minigameDisplay(stage,expertiseLevel);
+        manager.getQuestionnaire().minigameDisplay(stage,String.valueOf(manager.getStageSelector().getStageNumber()),expertiseLevel);
         minigameContainer = manager.getQuestionnaire().getMinigame();
         minigameContainerLimit = manager.getQuestionnaire().getMinigameLimit();
-        answerPoolContainer = manager.getQuestionnaire().getAnswerPool();
+        getAnswerPool = manager.getQuestionnaire().getAnswerPool();
     }
 
     public ArrayList<String> getAnswerPoolContainer() {
-        return answerPoolContainer;
+        return getAnswerPool;
     }
 
     public void setAnswerPoolContainer(ArrayList<String> answerPoolContainer) {
-        this.answerPoolContainer = answerPoolContainer;
+        this.getAnswerPool = answerPoolContainer;
     }
 }
