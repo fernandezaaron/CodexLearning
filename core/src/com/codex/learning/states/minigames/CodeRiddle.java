@@ -274,10 +274,6 @@ public class CodeRiddle extends State {
         manager.getStage().addActor(feedbackTable);
     }
 
-
-
-
-
     @Override
     public void dispose() {
         manager.getQuestionnaire().dispose();
