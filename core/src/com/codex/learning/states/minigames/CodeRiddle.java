@@ -252,6 +252,7 @@ public class CodeRiddle extends State {
         currentBehavior = manager.removeBracket(currentBehavior);
         if(currentBehavior.equals("ENGAGED") || currentBehavior.equals("NEUTRAL") || currentBehavior.equals("BORED")){
             //GIVE FEEDBACK
+            System.out.println(behavior + " = " + currentBehavior);
 
 //            System.out.println(currentBehavior);
 //            System.out.println("Congrats");
@@ -262,6 +263,16 @@ public class CodeRiddle extends State {
 //            System.out.println("MAG-ARAL KA PA");
         }
         behavior.clear();
+    }
+
+    public void resultFeedback(){
+        System.out.println(fuzzyLogic.getPercentNumberOfErrors());
+        if(fuzzyLogic.getPercentNumberOfErrors() < 70){
+            System.out.println(manager.getDialogue().resultFeedback(1));
+        }
+        else{
+            System.out.println(manager.getDialogue().resultFeedback(0));
+        }
     }
 
     public String checkTimeConsumption(int timer){
