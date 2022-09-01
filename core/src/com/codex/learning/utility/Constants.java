@@ -317,13 +317,31 @@ public class Constants {
     public static final int JEDI_PROF_SIDE_WIDTH = 84;
     public static final int JEDI_PROF_SIDE_HEIGHT = 118;
     public static final int JEDI_PROF_LEFT_X = 205;
-    public static final int JEDI_PROF_RIGHT_X = 81;
+    public static final int JEDI_PROF_RIGHT_X = 384;
     public static final int JEDI_PROF_SIDE_Y = 461;
 
     public static final int JEDI_PROF_TOP_WIDTH = 92;
     public static final int JEDI_PROF_TOP_HEIGHT = 118;
     public static final int JEDI_PROF_TOP_X = 290;
     public static final int JEDI_PROF_TOP_Y = 461;
+
+    public static final int JEDI_MANAGER_X = 2;
+    public static final int JEDI_MANAGER_Y = 602;
+    public static final int JEDI_MANAGER_WIDTH = 84;
+    public static final int JEDI_MANAGER_HEIGHT = 110;
+
+    public static final int JEDI_MANAGER_SIDE_WIDTH = 75;
+    public static final int JEDI_MANAGER_SIDE_HEIGHT = 110;
+    public static final int JEDI_MANAGER_LEFT_X = 170;
+    public static final int JEDI_MANAGER_RIGHT_X = 95;
+    public static final int JEDI_MANAGER_SIDE_Y = 602;
+
+    public static final int JEDI_MANAGER_TOP_WIDTH = 84;
+    public static final int JEDI_MANAGER_TOP_HEIGHT = 110;
+    public static final int JEDI_MANAGER_TOP_X = 253;
+    public static final int JEDI_MANAGER_TOP_Y = 602;
+
+
     //END OF JEDISAUR SPRITE SHEET
 
     //BLOCK SHEET

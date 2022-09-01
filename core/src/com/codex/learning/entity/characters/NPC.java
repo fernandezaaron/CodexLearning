@@ -22,10 +22,10 @@ import com.codex.learning.utility.Manager;
 
 public class NPC extends Entity {
 
-    private TextureRegion jediGrandpaDown, jediProfDown;
-    private TextureRegion jediGrandpaLeft, jediProfLeft;
-    private TextureRegion jediGrandpaRight, jediProfRight;
-    private TextureRegion jediGrandpaTop, jediProfTop;
+    private TextureRegion jediGrandpaDown, jediProfDown, jediOfficeDown;
+    private TextureRegion jediGrandpaLeft, jediProfLeft, jediOfficeLeft;
+    private TextureRegion jediGrandpaRight, jediProfRight, jediOfficeRight;
+    private TextureRegion jediGrandpaTop, jediProfTop, jediOfficeTop;
     private String direction;
     private boolean inContact;
     private boolean talking;
@@ -51,10 +51,12 @@ public class NPC extends Entity {
         //provides an image of the NPC on the left hand side of the table
 
         image = new Table(manager.getSkin());
-        if(manager.getStageSelector().map().equals("1") || manager.getStageSelector().map().equals("3")){
+        if(manager.getStageSelector().map().equals("1")){
             image.setBackground("jediGrandpaAvatar");
         }else if(manager.getStageSelector().map().equals("2")){
             image.setBackground("jediProfAvatar");
+        }else{
+            image.setBackground("jediOfficeAvatar");
         }
 
         //style of the label (text) that will be added in the table
@@ -102,14 +104,22 @@ public class NPC extends Entity {
         jediGrandpaDown = new TextureRegion(manager.getSpriteSheet(), Constants.JEDI_GRANDPA_X, Constants.JEDI_GRANDPA_Y,
                 Constants.JEDI_GRANDPA_WIDTH,Constants.JEDI_GRANDPA_HEIGHT);
         jediProfDown = new TextureRegion(manager.getSpriteSheet(), Constants.JEDI_PROF_X, Constants.JEDI_PROF_Y, Constants.JEDI_PROF_WIDTH, Constants.JEDI_PROF_HEIGHT);
+        jediOfficeDown = new TextureRegion(manager.getSpriteSheet(), Constants.JEDI_MANAGER_X, Constants.JEDI_MANAGER_Y, Constants.JEDI_MANAGER_WIDTH, Constants.JEDI_MANAGER_HEIGHT);
 
         jediGrandpaLeft = new TextureRegion(manager.getSpriteSheet(), Constants.JEDI_GRANDPA_LEFT_X, Constants.JEDI_GRANDPA_SIDE_Y, Constants.JEDI_GRANDPA_SIDE_WIDTH, Constants.JEDI_GRANDPA_SIDE_HEIGHT);
         jediProfLeft = new TextureRegion(manager.getSpriteSheet(), Constants.JEDI_PROF_LEFT_X, Constants.JEDI_PROF_SIDE_Y, Constants.JEDI_PROF_SIDE_WIDTH, Constants.JEDI_PROF_SIDE_HEIGHT);
+        jediOfficeLeft = new TextureRegion(manager.getSpriteSheet(), Constants.JEDI_MANAGER_LEFT_X, Constants.JEDI_MANAGER_SIDE_Y, Constants.JEDI_MANAGER_SIDE_WIDTH, Constants.JEDI_MANAGER_SIDE_HEIGHT);
+
 
         jediGrandpaRight = new TextureRegion(manager.getSpriteSheet(), Constants.JEDI_GRANDPA_RIGHT_X, Constants.JEDI_GRANDPA_SIDE_Y, Constants.JEDI_GRANDPA_SIDE_WIDTH, Constants.JEDI_GRANDPA_SIDE_HEIGHT);
+        jediProfRight = new TextureRegion(manager.getSpriteSheet(), Constants.JEDI_PROF_RIGHT_X, Constants.JEDI_PROF_SIDE_Y, Constants.JEDI_PROF_SIDE_WIDTH, Constants.JEDI_PROF_SIDE_HEIGHT);
+        jediOfficeRight = new TextureRegion(manager.getSpriteSheet(), Constants.JEDI_MANAGER_RIGHT_X, Constants.JEDI_MANAGER_SIDE_Y, Constants.JEDI_MANAGER_SIDE_WIDTH, Constants.JEDI_MANAGER_SIDE_HEIGHT);
+
 
         jediGrandpaTop = new TextureRegion(manager.getSpriteSheet(), Constants.JEDI_GRANDPA_TOP_X, Constants.JEDI_GRANDPA_TOP_Y, Constants.JEDI_GRANDPA_TOP_WIDTH, Constants.JEDI_GRANDPA_TOP_HEIGHT);
         jediProfTop = new TextureRegion(manager.getSpriteSheet(), Constants.JEDI_PROF_TOP_X, Constants.JEDI_PROF_TOP_Y, Constants.JEDI_PROF_TOP_WIDTH, Constants.JEDI_PROF_TOP_HEIGHT);
+        jediOfficeTop = new TextureRegion(manager.getSpriteSheet(), Constants.JEDI_MANAGER_TOP_X, Constants.JEDI_MANAGER_TOP_Y, Constants.JEDI_MANAGER_TOP_WIDTH, Constants.JEDI_MANAGER_TOP_HEIGHT);
+
 
         direction = "south";
 //        dialogueSkin = new TextureRegion(manager.getPcStateSheet(), Constants.PC_QUESTION_X, Constants.PC_QUESTION_Y, Constants.PC_QUESTION_WIDTH, Constants.PC_QUESTION_HEIGHT);
@@ -126,7 +136,7 @@ public class NPC extends Entity {
         sprite.enableBlending();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.begin();
-        if(manager.getStageSelector().map().equals("1") || (manager.getStageSelector().map().equals("3"))){
+        if(manager.getStageSelector().map().equals("1")){
             if(isTalking()){
                 switch (direction){
                     case "north":
@@ -153,11 +163,57 @@ public class NPC extends Entity {
             }
 
         }else if(manager.getStageSelector().map().equals("2")) {
-            sprite.draw(jediProfDown, body.getPosition().x * Constants.PPM - jediGrandpaDown.getRegionWidth() / 2,
-                    body.getPosition().y * Constants.PPM - jediGrandpaDown.getRegionHeight() / 2);
+            if(isTalking()){
+                switch (direction){
+                    case "north":
+                        sprite.draw(jediProfTop, body.getPosition().x * Constants.PPM - jediProfTop.getRegionWidth() / 2,
+                                body.getPosition().y * Constants.PPM - jediProfTop.getRegionHeight() / 2);
+                        break;
+                    case "south":
+                        sprite.draw(jediProfDown, body.getPosition().x * Constants.PPM - jediProfDown.getRegionWidth() / 2,
+                                body.getPosition().y * Constants.PPM - jediProfDown.getRegionHeight() / 2);
+                        break;
+                    case "east":
+                        sprite.draw(jediProfRight, body.getPosition().x * Constants.PPM - jediProfRight.getRegionWidth() / 2,
+                                body.getPosition().y * Constants.PPM - jediProfRight.getRegionHeight() / 2);
+                        break;
+                    case "west":
+                        sprite.draw(jediProfLeft, body.getPosition().x * Constants.PPM - jediProfLeft.getRegionWidth() / 2,
+                                body.getPosition().y * Constants.PPM - jediProfLeft.getRegionHeight() / 2);
+                        break;
+                }
+            }
+            else {
+                sprite.draw(jediProfDown, body.getPosition().x * Constants.PPM - jediProfDown.getRegionWidth() / 2,
+                        body.getPosition().y * Constants.PPM - jediProfDown.getRegionHeight() / 2);
+            }
+
         }
         else {
-
+            if(isTalking()){
+                switch (direction){
+                    case "north":
+                        sprite.draw(jediOfficeTop, body.getPosition().x * Constants.PPM - jediOfficeTop.getRegionWidth() / 2,
+                                body.getPosition().y * Constants.PPM - jediOfficeTop.getRegionHeight() / 2);
+                        break;
+                    case "south":
+                        sprite.draw(jediOfficeDown, body.getPosition().x * Constants.PPM - jediOfficeDown.getRegionWidth() / 2,
+                                body.getPosition().y * Constants.PPM - jediOfficeDown.getRegionHeight() / 2);
+                        break;
+                    case "east":
+                        sprite.draw(jediOfficeRight, body.getPosition().x * Constants.PPM - jediOfficeRight.getRegionWidth() / 2,
+                                body.getPosition().y * Constants.PPM - jediOfficeRight.getRegionHeight() / 2);
+                        break;
+                    case "west":
+                        sprite.draw(jediOfficeLeft, body.getPosition().x * Constants.PPM - jediOfficeLeft.getRegionWidth() / 2,
+                                body.getPosition().y * Constants.PPM - jediOfficeLeft.getRegionHeight() / 2);
+                        break;
+                }
+            }
+            else {
+                sprite.draw(jediOfficeDown, body.getPosition().x * Constants.PPM - jediOfficeDown.getRegionWidth() / 2,
+                        body.getPosition().y * Constants.PPM - jediOfficeDown.getRegionHeight() / 2);
+            }
         }
 
         table.draw(sprite, 1);
