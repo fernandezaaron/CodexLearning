@@ -206,18 +206,19 @@ public class Dialogue {
                             // Stage 1
                             // Syntax
                             "Did you check the end of every code statement?", "Did you check the class name if it's uppercase or lowercase?",
-                            "Multi-line comments must start and ends with?"
+                            "Multi-line comments must start and ends with?", "You should put the single-line comment after the code"
                     )),
 
                     new ArrayList<String>(Arrays.asList(
                             // Variables
                             "The value of a String should be surrounded by?", "Unlike String, the value of char should be surrounded by?", "In float it is just like a double variable but it has an f at the end of the number",
                             "In boolean the value should not be surrounded by single or double quotes", "in int the values should not have a decimal point",
-                            "The variable name should not contain whitespaces",
+                            "The variable name should not contain whitespaces", "you can't overwrite a variable if it has a final keyword in it",
                             // Data Types
-                            "int data type can only have whole numbers", "String is a primitive data type", "unlike String, char is a non-primitive data type", "boolean is the only one that has a bit size",
+                            "int data type can only have whole numbers", "String is a primitive data type", "unlike String, char is a non-primitive data type", "boolean is the only one that has a bit size", "There are only 8 primitive types", "The highest size of the primitive data type is 8 bytes",
                             // Type Casting
-                            "You can't convert double to int automatically", "Use widening casting to convert small size to larger size"
+                            "You can't convert double to int automatically", "Use widening casting to convert small size to larger size", "Use narrowing casting to convert larger size to smaller size",
+                            "In narrowing casting you must place the variable type in parentheses in front of the value"
                     )),
 
                     new ArrayList<String>(Arrays.asList(
