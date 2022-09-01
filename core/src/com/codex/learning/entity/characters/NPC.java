@@ -71,10 +71,9 @@ public class NPC extends Entity {
         //animates the text
         db = new DialogueBox(manager.getSkin(), "dialogbox2");
         //dialogue of the NPC
-        dialogue = new Dialogue(manager.getStageSelector().getStageNumber());
+        manager.getDialogue().setStage(manager.getStageSelector().getStageNumber());
 
         talking = false;
-
 
         BodyDef def = new BodyDef();
         def.type = BodyDef.BodyType.StaticBody;
@@ -228,7 +227,7 @@ public class NPC extends Entity {
             if(!db.isOpen()){
                 //if the dialogue box is not yet open then animate the text and add it to the table to draw it
                 System.out.println("here");
-                db.textAnimation(dialogue.reader(nextStatement));
+                db.textAnimation(manager.getDialogue().reader(nextStatement));
 
                 table.add(image).align(Align.left).height(250).width(250).padRight(15f);
                 table.add(db).align(Align.right).width(1000);
@@ -237,13 +236,13 @@ public class NPC extends Entity {
             }
         }
 
-        if(!dialogue.isStatementEnd() && Gdx.input.justTouched() && db.isOpen()){
+        if(!manager.getDialogue().isStatementEnd() && Gdx.input.justTouched() && db.isOpen()){
             //proceeds to the next statement if it is not the end
             nextStatement++;
-            System.out.println(nextStatement);
-            db.textAnimation(dialogue.reader(nextStatement));
+            System.out.println(nextStatement + "asd");
+            db.textAnimation((manager.getDialogue().reader(nextStatement)));
         }
-        if(dialogue.isStatementEnd() && Gdx.input.justTouched() && db.isOpen()){
+        if((manager.getDialogue().isStatementEnd() && Gdx.input.justTouched() && db.isOpen())){
             setTalking(false);
             //if at the end resets the table and the statement to the first index
             table.reset();

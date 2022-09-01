@@ -2,6 +2,7 @@ package com.codex.learning.utility;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 public class Dialogue {
 
@@ -167,22 +168,27 @@ public class Dialogue {
     )
     );
 
-    private ArrayList<ArrayList<String>> feedbackContainer = new ArrayList<>(
+    private ArrayList<ArrayList<String>> resultFeedback = new ArrayList<>(
             Arrays.asList(
-                    new ArrayList<String>(Arrays.asList(
-                            // Stage complete
+                    new ArrayList<>(Arrays.asList(
+                            // After minigame if passed
                             "Good job", "Wow, that's impressive work.", "You are a fast learner.", "I'm so proud of your effort.", "How did you do this so fast?", "Terrific job!",
                             "Wow, you are so skilled!", "This is insanely good.", "Fantastic!", "Your level of expertise is impressive.", "This proves you are ready for more here.",
                             "Now this is good work.","Your progress is truly inspiring.","Outstanding work!", "You are a fast learner."
-
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
+                            // After minigame if low score
+                            "You should review xD", "Please review"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Stage Complete
                             "Congratulations you've completed the stage in less than 5 minutes","Good job you've completed the stage in less than 10 minutes", "Nice you've completed the stage in less than 15 minutes", "You've completed the stage you're doing this right",
                             "You've passed the 5 minute mark.","You've passed the 10 minute mark.","You've passed the 15 minute mark."
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Stage failed
                             "You should pay attention to JediGrandpa's teaches and try again", "Recall all your mistakes and try again.", "Visit and talk to JediGrandpa to recall the lesson and try again ",
                             "Try again to learn from your mistakes"
@@ -190,6 +196,9 @@ public class Dialogue {
             )
     );
 
+//
+//    private ArrayList<ArrayList<String>> behaviorFeedback = new ArrayList<>(
+//            Arrays.asList());
 
     private ArrayList<ArrayList<String>> hintsContainer = new ArrayList<>(
             Arrays.asList(
@@ -273,26 +282,39 @@ public class Dialogue {
     private int stage;
     private String topic;
 
-    public Dialogue(int stage){
-        this.stage = stage;
+    public Dialogue(){
         statementEnd = false;
     }
 
     public String reader(int nextStatement){
 
         System.out.println(getNpcName());
-        System.out.println(stage);
-        if(nextStatement == introductionDialogue.get(stage-1).size()){
+        if(nextStatement == introductionDialogue.get(getStage() - 1).size()){
             System.out.println("true");
             setStatementEnd(true);
         }else{
             setStatementEnd(false);
             System.out.println("dumaan ako dito");
-            return introductionDialogue.get(stage-1).get(nextStatement);
-
+            return introductionDialogue.get(getStage() - 1).get(nextStatement);
         }
 
         return "";
+    }
+
+    public String resultFeedback(int index){
+        Random random = new Random();
+        int limit = resultFeedback.get(index).size() - 1;
+        int number = random.nextInt(limit);
+
+        return resultFeedback.get(index).get(number);
+    }
+
+    public int getStage() {
+        return stage;
+    }
+
+    public void setStage(int stage) {
+        this.stage = stage;
     }
 
     public boolean isStatementEnd() {
