@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.codex.learning.states.State;
@@ -31,10 +32,11 @@ public class CodeRiddle extends State {
 
     private TextButton[] textButtons;
 
+
     private ArrayList<String> questions;
     private ArrayList<ArrayList<String>> options;
 
-    private boolean inComputer, isDone;
+    private boolean inComputer, isDone, isGivingHints;
     private int currentQuestion;
     private int error;
 
@@ -62,7 +64,17 @@ public class CodeRiddle extends State {
         group = new Group();
 
 
+
         dialogueBox = new DialogueBox(manager.getSkin(), "dialogbox2");
+
+        if(manager.getStageSelector().map().equals("1")){
+            avatarImage.setBackground("jediGrandpaAvatar");
+        }else if(manager.getStageSelector().map().equals("2")){
+            avatarImage.setBackground("jediProfAvatar");
+        }else{
+            avatarImage.setBackground("jediOfficeAvatar");
+        }
+
 
         textButtons = new TextButton[4];
 
@@ -95,6 +107,7 @@ public class CodeRiddle extends State {
 
         inComputer = false;
         isDone = false;
+        isGivingHints = true;
 
         System.out.println(manager.getStageSelector().map() + "map");
         getAQuestion(manager.getStageSelector().map(), manager.getExpertSystem().getExpertiseLevel());
@@ -223,17 +236,45 @@ public class CodeRiddle extends State {
 
 //           table.setDebug(true);
             manager.getStage().addActor(table);
-            createFeedBackTable("i love u");
+
+               createFeedBackTable("i love u");
+
+
         }
     }
 
     public void createFeedBackTable(String text){
-        feedbackTable.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM + 400,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM + 300);
-        dialogueBox.textAnimation(text);
-        feedbackTable.defaults().width(300);
-        feedbackTable.add(dialogueBox).align(Align.right);
+        feedbackTable.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM + 200,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM + 400);
+        dialogueBox.setOpen(false);
+
+        //if is giving hints open a dialogue box
+        if(isGivingHints){
+            if(!dialogueBox.isOpen()){
+                dialogueBox.textAnimation(text);
+                if(!feedbackTable.hasChildren()) {
+                    feedbackTable.defaults().width(600).height(50);
+                    feedbackTable.add(avatarImage).width(50).height(50).padRight(15f);
+                    feedbackTable.add(dialogueBox).align(Align.right).width(300);
+//                    manager.getDialogue().setStatementEnd(true);
+                }
+            }
+        }
+
+        feedbackTable.addListener(new ClickListener(){
+
+            @Override
+            public void clicked(InputEvent ie, float x, float y){
+                //resets closes the table
+                feedbackTable.reset();
+
+            }
+        });
+
+
         manager.getStage().addActor(feedbackTable);
     }
+
+
 
 
 
@@ -322,6 +363,14 @@ public class CodeRiddle extends State {
 
     public void setDone(boolean done) {
         isDone = done;
+    }
+
+    public boolean isGivingHints() {
+        return isGivingHints;
+    }
+
+    public void setGivingHints(boolean givingHints) {
+        isGivingHints = givingHints;
     }
 
     public FuzzyLogic getFuzzyLogic() {

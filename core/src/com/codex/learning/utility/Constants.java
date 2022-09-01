@@ -316,8 +316,8 @@ public class Constants {
 
     public static final int JEDI_PROF_SIDE_WIDTH = 84;
     public static final int JEDI_PROF_SIDE_HEIGHT = 118;
-    public static final int JEDI_PROF_LEFT_X = 205;
-    public static final int JEDI_PROF_RIGHT_X = 384;
+    public static final int JEDI_PROF_LEFT_X = 384;
+    public static final int JEDI_PROF_RIGHT_X = 205;
     public static final int JEDI_PROF_SIDE_Y = 461;
 
     public static final int JEDI_PROF_TOP_WIDTH = 92;
