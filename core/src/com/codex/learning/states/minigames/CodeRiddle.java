@@ -159,7 +159,7 @@ public class CodeRiddle extends State {
                     break;
             }
             table.setFillParent(true);
-            table.defaults().size(500, 150);
+            table.defaults().size(500, 180);
             table.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM - 10);
 //            text.setDebug(true);
 
@@ -174,12 +174,10 @@ public class CodeRiddle extends State {
            }
            else{
                text.setWrap(true);
-               if(text.getText().contains(questions.get(currentQuestion))){
-                   System.out.println("oh meron nayan lods");
-               }
-               else{
+               if(!(text.getText().contains(questions.get(currentQuestion)))){
                    text.setText(questions.get(currentQuestion));
-                   text.setAlignment(Align.center);
+                   text.setAlignment(Align.left);
+
 
                    for(int i=0; i<4; i++){
                        textButtons[i] = new TextButton(options.get(currentQuestion).get(i), manager.getSkin());
@@ -225,8 +223,8 @@ public class CodeRiddle extends State {
                                    fuzzyLogic.fuzzyNumberOfError();
                                    fuzzyLogic.fuzzyTimeConsumption();
 
-
-                                   text.setText("Your score is: \n" + (manager.getQuestionnaire().getQuestionLimit()-error) + "\n PRESS F TO CLOSE");
+                                   text.setAlignment(Align.center);
+                                   text.setText("Your score is: " + (manager.getQuestionnaire().getQuestionLimit() - error) + "/" + manager.getQuestionnaire().getQuestionLimit() + "\n PRESS F TO CLOSE");
                                    setDone(true);
                                    for(int j=0; j<4; j++){
                                        textButtons[j].setText(" ");
@@ -273,7 +271,7 @@ public class CodeRiddle extends State {
                 if(!resultFeedbackTable.hasChildren()) {
                     resultFeedbackTable.defaults().width(600).height(50);
                     resultFeedbackTable.add(avatarImage).width(50).height(50).padRight(15f);
-                    resultFeedbackTable.add(dialogueBox).align(Align.right).width(300);
+                    resultFeedbackTable.add(dialogueBox).align(Align.left).width(300);
 //                    manager.getDialogue().setStatementEnd(true);
                 }
             }
