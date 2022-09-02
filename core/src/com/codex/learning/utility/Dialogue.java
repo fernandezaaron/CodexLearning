@@ -172,27 +172,41 @@ public class Dialogue {
             Arrays.asList(
                     new ArrayList<>(Arrays.asList(
                             // Right answer for JediGrandpa
-                            "Great job Jedisaur!", "You deserve my cookie!", "You are definitely my Grandson!", "You're as smart as me :)",
-                            "You can do this!!"
+                            "Great job Jedisaur!", "You deserve my cookie!", "You are definitely my Grandson!",
+                            "You're as smart as me :)", "You can do this!!"
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Wrong answer for JediGrandpa
-                            "Please don't stay up playing all night..", "I taught you a while ago...", "Read the question carefully..",
-                            "Be careful my Grandson"
+                            "Please don't stay up playing all night..", "I taught you a while ago...",
+                            "Read the question carefully..", "Be careful my Grandson"
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Right answer for JediProf
-                            "You actually listened during the lecture", "You really studied last night huh", "Keep up the good work!",
-                            "How are you so good at this??", "Have you studied this before?"
+                            "You actually listened during the lecture", "You really studied last night huh",
+                            "Keep up the good work!", "How are you so good at this??", "Have you studied this before?"
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Wrong answer for JediProf
-                            "Your answer is wrong......", "Read the question carefully", "Please be mindful of the question given",
-                            "Please Review the module"
+                            "Your answer is wrong......", "Read the question carefully",
+                            "Please be mindful of the question given", "Please Review the module"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Right answer for JediManager
+                            "Great Job!", "You deserve a raise!!", "I hired you for this!",
+                            "I knew you can do it!", "Great Work"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Wrong answer for JediManager
+                            "Do your job properly!!", "Don't mess it up",
+                            "Don't make me fire you..", "Do it right!"
                     ))
+
+
             )
     );
 
@@ -335,6 +349,14 @@ public class Dialogue {
         int number = random.nextInt(limit);
 
         return resultFeedback.get(index).get(number);
+    }
+
+    public String codeRiddleFeedback(int index){
+        Random random = new Random();
+        int limit = codeRiddleFeedback.get(index).size() - 1;
+        int number = random.nextInt(limit);
+
+        return codeRiddleFeedback.get(index).get(number);
     }
 
     public int getStage() {

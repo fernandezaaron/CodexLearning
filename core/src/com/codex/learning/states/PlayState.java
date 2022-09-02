@@ -131,9 +131,7 @@ public class PlayState extends State{
                     manager.checkIfMoving(jedisaur);
                     manager.updateBehavior((int) timer);
 //                manager.checkBehavior((int) timer, jedisaur.getNumberOfBlockInteraction(), computer.isDone(), fuzzyLogic);
-
-
-
+                    
 //              }
 
                     exitDoor(jedisaur);

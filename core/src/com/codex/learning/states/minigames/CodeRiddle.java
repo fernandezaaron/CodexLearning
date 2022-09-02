@@ -16,7 +16,6 @@ import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.DialogueBox;
 import com.codex.learning.utility.FuzzyLogic;
 import com.codex.learning.utility.Manager;
-import com.codex.learning.utility.decisiontree.DecisionTree;
 
 
 import java.util.ArrayList;
@@ -24,7 +23,7 @@ import java.util.ArrayList;
 public class CodeRiddle extends State {
     private ScrollPane scrollPane;
     private Label text;
-    private Table table, optionsTable, feedbackTable, avatarImage;
+    private Table table, optionsTable, codeRiddleFeedbackTable, resultFeedbackTable, avatarImage;
     private DialogueBox dialogueBox;;
     private Group group;
     private List.ListStyle listStyle;
@@ -59,7 +58,8 @@ public class CodeRiddle extends State {
 //        manager.getSkin().load(Constants.JSON_DIALOG_BOX_SKIN_PATH);
         table = new Table();
         optionsTable = new Table();
-        feedbackTable = new Table(manager.getSkin());
+        codeRiddleFeedbackTable = new Table(manager.getSkin());
+        resultFeedbackTable = new Table(manager.getSkin());
         avatarImage = new Table(manager.getSkin());
         group = new Group();
 
@@ -131,8 +131,6 @@ public class CodeRiddle extends State {
         sprite.begin();
         if(isInComputer()){
             timer += Gdx.graphics.getDeltaTime();
-//            System.out.println(timer);
-
         }
         manager.getStage().act();
         manager.getStage().draw();
@@ -142,8 +140,24 @@ public class CodeRiddle extends State {
     }
 
     public void castToTable(){
+        int right = 0;
+        int wrong = 0;
 
         if(isInComputer()){
+            switch (manager.getStageSelector().map()){
+                case "1":
+                    right = 0;
+                    wrong = 1;
+                    break;
+                case "2":
+                    right = 2;
+                    wrong = 3;
+                    break;
+                case "3":
+                    right = 4;
+                    wrong = 5;
+                    break;
+            }
             table.setFillParent(true);
             table.defaults().size(500, 150);
             table.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM - 10);
@@ -157,11 +171,13 @@ public class CodeRiddle extends State {
                    textButtons[j].setText(" ");
                }
 
-           }else{
+           }
+           else{
                text.setWrap(true);
                if(text.getText().contains(questions.get(currentQuestion))){
                    System.out.println("oh meron nayan lods");
-               }else{
+               }
+               else{
                    text.setText(questions.get(currentQuestion));
                    text.setAlignment(Align.center);
 
@@ -173,6 +189,8 @@ public class CodeRiddle extends State {
 
                    for(int i=0; i<4; i++){
                        final int tempI = i;
+                       final int finalRight = right;
+                       final int finalWrong = wrong;
                        textButtons[i].addListener(new InputListener(){
 
                            @Override
@@ -182,12 +200,12 @@ public class CodeRiddle extends State {
                                    if(manager.getQuestionnaire().answerChecker(options.get(currentQuestion).get(tempI), currentQuestion)){
 
                                        currentQuestion++;
-                                       System.out.println("Your Answer is correct!");
+                                       createFeedBackTable(manager.getDialogue().codeRiddleFeedback(finalRight));
 
                                    }else{
                                        currentQuestion++;
                                        error++;
-                                       System.out.println("bobo ka");
+                                       createFeedBackTable(manager.getDialogue().codeRiddleFeedback(finalWrong));
                                    }
                                }
                                return true;
@@ -236,42 +254,73 @@ public class CodeRiddle extends State {
 
 //           table.setDebug(true);
             manager.getStage().addActor(table);
-
-               createFeedBackTable("i love u");
-
-
         }
     }
 
+    public void resultFeedback(){
+        resultFeedbackTable.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM + 200,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM + 400);
+        dialogueBox.setOpen(false);
+
+        if(isGivingHints){
+            if(!dialogueBox.isOpen()){
+                if(fuzzyLogic.getPercentNumberOfErrors() < 70){
+                    dialogueBox.textAnimation(manager.getDialogue().resultFeedback(1));
+                }
+                else{
+                    dialogueBox.textAnimation(manager.getDialogue().resultFeedback(0));
+                }
+
+                if(!resultFeedbackTable.hasChildren()) {
+                    resultFeedbackTable.defaults().width(600).height(50);
+                    resultFeedbackTable.add(avatarImage).width(50).height(50).padRight(15f);
+                    resultFeedbackTable.add(dialogueBox).align(Align.right).width(300);
+//                    manager.getDialogue().setStatementEnd(true);
+                }
+            }
+        }
+
+        resultFeedbackTable.addListener(new ClickListener(){
+
+            @Override
+            public void clicked(InputEvent ie, float x, float y){
+                //resets closes the table
+                resultFeedbackTable.reset();
+            }
+        });
+
+
+        manager.getStage().addActor(resultFeedbackTable);
+    }
+
     public void createFeedBackTable(String text){
-        feedbackTable.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM + 200,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM + 400);
+        codeRiddleFeedbackTable.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM + 200,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM + 400);
         dialogueBox.setOpen(false);
 
         //if is giving hints open a dialogue box
         if(isGivingHints){
             if(!dialogueBox.isOpen()){
                 dialogueBox.textAnimation(text);
-                if(!feedbackTable.hasChildren()) {
-                    feedbackTable.defaults().width(600).height(50);
-                    feedbackTable.add(avatarImage).width(50).height(50).padRight(15f);
-                    feedbackTable.add(dialogueBox).align(Align.right).width(300);
+                if(!codeRiddleFeedbackTable.hasChildren()) {
+                    codeRiddleFeedbackTable.defaults().width(600).height(50);
+                    codeRiddleFeedbackTable.add(avatarImage).width(50).height(50).padRight(15f);
+                    codeRiddleFeedbackTable.add(dialogueBox).align(Align.right).width(300);
 //                    manager.getDialogue().setStatementEnd(true);
                 }
             }
         }
 
-        feedbackTable.addListener(new ClickListener(){
+        codeRiddleFeedbackTable.addListener(new ClickListener(){
 
             @Override
             public void clicked(InputEvent ie, float x, float y){
                 //resets closes the table
-                feedbackTable.reset();
+                codeRiddleFeedbackTable.reset();
 
             }
         });
 
 
-        manager.getStage().addActor(feedbackTable);
+        manager.getStage().addActor(codeRiddleFeedbackTable);
     }
 
     @Override
@@ -317,16 +366,6 @@ public class CodeRiddle extends State {
 //            System.out.println("MAG-ARAL KA PA");
         }
         behavior.clear();
-    }
-
-    public void resultFeedback(){
-        System.out.println(fuzzyLogic.getPercentNumberOfErrors());
-        if(fuzzyLogic.getPercentNumberOfErrors() < 70){
-            System.out.println(manager.getDialogue().resultFeedback(1));
-        }
-        else{
-            System.out.println(manager.getDialogue().resultFeedback(0));
-        }
     }
 
     public String checkTimeConsumption(int timer){
