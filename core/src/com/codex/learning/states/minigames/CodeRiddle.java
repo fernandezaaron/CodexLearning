@@ -264,10 +264,10 @@ public class CodeRiddle extends State {
         if(isGivingHints){
             if(!dialogueBox.isOpen()){
                 if(fuzzyLogic.getPercentNumberOfErrors() < 70){
-                    dialogueBox.textAnimation(manager.getDialogue().resultFeedback(1));
+                    dialogueBox.textAnimation(manager.getDialogue().resultFeedback(1) + " Your score is " + (manager.getQuestionnaire().getQuestionLimit() - fuzzyLogic.getNumberOfErrors()));
                 }
                 else{
-                    dialogueBox.textAnimation(manager.getDialogue().resultFeedback(0));
+                    dialogueBox.textAnimation(manager.getDialogue().resultFeedback(0) + " Your score is " + (manager.getQuestionnaire().getQuestionLimit() - fuzzyLogic.getNumberOfErrors()));
                 }
 
                 if(!resultFeedbackTable.hasChildren()) {

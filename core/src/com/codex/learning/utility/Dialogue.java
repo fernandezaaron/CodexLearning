@@ -214,14 +214,14 @@ public class Dialogue {
             Arrays.asList(
                     new ArrayList<>(Arrays.asList(
                             // After minigame if passed
-                            "Good job", "Wow, that's impressive work.", "You are a fast learner.", "I'm so proud of your effort.", "How did you do this so fast?", "Terrific job!",
+                            "Good job!", "Wow, that's impressive work.", "You are a fast learner.", "I'm so proud of your effort.", "How did you do this so fast?", "Terrific job!",
                             "Wow, you are so skilled!", "This is insanely good.", "Fantastic!", "Your level of expertise is impressive.", "This proves you are ready for more here.",
                             "Now this is good work.","Your progress is truly inspiring."
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // After minigame if low score
-                            "You should review xD", "Please review"
+                            "You should review xD", "Please review.."
                     )),
 
                     new ArrayList<>(Arrays.asList(
