@@ -38,6 +38,7 @@ public class Character extends Entity {
     private boolean atBot;
     private boolean atLeft;
     private boolean atRight;
+    private boolean isDropped;
 
     private Box2DDebugRenderer b2dr;
 
@@ -86,6 +87,7 @@ public class Character extends Entity {
         // Used to check if the character is carrying a block
         isCarrying = false;
         setCopyBlock(null);
+        isDropped = false;
 
         // Used to know the last keyboard pressed of the user
         direction = "south";
@@ -389,7 +391,7 @@ public class Character extends Entity {
         if(getCopyBlock() != null){
             getCopyBlock().getBody().setType(BodyDef.BodyType.DynamicBody);
             getCopyBlock().getBody().setTransform(body.getPosition().x - (block.getDupliSize().x), body.getPosition().y + 3f, 0);
-            System.out.println(this.size.x + " sa character");
+//            System.out.println(this.size.x + " sa character");
         }
         block.getBody().setType(BodyDef.BodyType.StaticBody);
     }
@@ -434,6 +436,7 @@ public class Character extends Entity {
             }
 
             // Character Adjustment
+            setDropped(true);
             setCopyBlock(null);
             carry = 0;
             setPickUpAble(false);
@@ -458,6 +461,7 @@ public class Character extends Entity {
                 blockHolder.setOccupied(false);
                 setPickUpAble(true);
             }
+            setDropped(false);
         }
     }
 
@@ -507,6 +511,14 @@ public class Character extends Entity {
 
     public void setFixture(boolean fixture) {
         this.fixture = fixture;
+    }
+
+    public boolean isDropped() {
+        return isDropped;
+    }
+
+    public void setDropped(boolean dropped) {
+        isDropped = dropped;
     }
 
     public int getNumberOfBlockInteraction() {
