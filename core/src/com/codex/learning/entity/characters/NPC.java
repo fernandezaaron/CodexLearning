@@ -230,7 +230,7 @@ public class NPC extends Entity {
                 db.textAnimation(manager.getDialogue().reader(nextStatement));
 
                 table.add(image).align(Align.left).height(250).width(250).padRight(15f);
-                table.add(db).align(Align.right).width(1000);
+                table.add(db).align(Align.left).width(1000);
                 table.setHeight(250);
                 table.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/Constants.PPM/2, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/Constants.PPM/2 - 400);
             }
