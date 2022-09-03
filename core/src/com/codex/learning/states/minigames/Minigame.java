@@ -13,7 +13,7 @@ public class Minigame extends State {
     private int currentMinigame;
     private FillInTheBlock s;
     private sample sample;
-    private FillInTheBlock h;
+    private CodeIT h;
     private boolean fib, mc, samplebool;
     private Character jedisaur;
 
@@ -35,7 +35,7 @@ public class Minigame extends State {
                 break;
             case 2:
                 mc = true;
-                h = new FillInTheBlock(manager, jedisaur);
+                h = new CodeIT(manager, jedisaur);
 
                 break;
             case 3:
