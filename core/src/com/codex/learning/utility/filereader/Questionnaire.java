@@ -53,7 +53,7 @@ public class Questionnaire extends DatabaseReader {
         excelMinigameLimit = 53;
         minigameElementLimit = 0;
         answerPoolLimit = 200;
-        answerPoolSelection = 10;
+        answerPoolSelection = 5;
         dispenserPoolSelection = 3;
         randomizer = new Random();
 

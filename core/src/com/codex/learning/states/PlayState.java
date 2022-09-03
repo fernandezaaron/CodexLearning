@@ -275,7 +275,7 @@ public class PlayState extends State{
 
     public void enterPlayRoom(Character character){
         if(character.getBody().getPosition().x > 14f && character.getBody().getPosition().y >-4 && character.getBody().getPosition().y < 2.5f && isInStartArea()){
-            if(computer.isDone()){
+//            if(computer.isDone()){
                 setInStartArea(false);
                 if(manager.getStageSelector().map().equals("1")){
                     house.setPlayroomActive(false);
@@ -287,10 +287,10 @@ public class PlayState extends State{
                 minigame.setMiniGame();
                 jedisaur.getBody().setTransform(-20, 1, 0);
                 jedisaur.getBody().getPosition().set(-20, 1);
-            }
-            else {
-                System.out.println("bawal kapa pumasok jan xD");
-            }
+//            }
+//            else {
+//                System.out.println("bawal kapa pumasok jan xD");
+//            }
         }
     }
 
