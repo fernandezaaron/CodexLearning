@@ -95,15 +95,15 @@ public class Questionnaire extends DatabaseReader {
     public void minigameDisplay(String stage,String topics,String expertiseLevel) {
         adjustDifficulty(expertiseLevel);
         addTopic(topics);
-        topics = topic.get(randomizer.nextInt(topic.size()));
         while(minigameGetter == null) {
             questionID = randomizer.nextInt(excelMinigameLimit - 1) + 1;
             difficulty = levels.get(randomizer.nextInt(levels.size()));
+            stageTopic = topic.get(randomizer.nextInt(topic.size()));
             findCell = findRow(minigameSheet, questionID);
             getMinigame(findCell, 4, difficulty, stage);
         }
-        getAnswerPool(stage, topics);
-        getDispenserPool(stage, topics);
+        getAnswerPool(stage, stageTopic);
+        getDispenserPool(stage, stageTopic);
     }
 
     public void getMinigame(int row1, int col1, String diff, String stg) {
@@ -158,7 +158,7 @@ public class Questionnaire extends DatabaseReader {
         int getNumber = 0;
         randomPool = new ArrayList<>();
         while(answerPoolSelection != 0) {
-            getNumber = randomizer.nextInt(80 - 1) + 1;
+            getNumber = randomizer.nextInt(145 - 1) + 1;
             Row excelRow = answerPoolSheet.getRow(getNumber);
             Cell excelCell = excelRow.getCell(2);
             Cell excelTopic = excelRow.getCell(1);
@@ -188,9 +188,9 @@ public class Questionnaire extends DatabaseReader {
 
     public void getDispenserPool(String stage, String topics) {
         int getNumber = 0;
-        randomPool = new ArrayList<>();
+        dispenserPool = new ArrayList<>();
         while(dispenserPoolSelection != 0) {
-            getNumber = randomizer.nextInt(80 - 1) + 1;
+            getNumber = randomizer.nextInt(145 - 1) + 1;
             Row excelRow = answerPoolSheet.getRow(getNumber);
             Cell excelCell = excelRow.getCell(2);
             Cell excelTopic = excelRow.getCell(1);

@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d6fe2c7-098b-4435-9d5a-8917e2b9dfa3" name="Changes" comment="gege">
+    <list default="true" id="7d6fe2c7-098b-4435-9d5a-8917e2b9dfa3" name="Changes" comment="magic">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/excel/Minigames.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/excel/Minigames.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/BlockHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/BlockHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/Character.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeIT.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeOrder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/FillInTheBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/FillInTheBlock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/Minigame.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/Minigame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/MysteryCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/MysteryCode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/filereader/Questionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/filereader/Questionnaire.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -122,6 +117,14 @@
       <option name="presentableId" value="Default" />
       <updated>1650520661994</updated>
     </task>
+    <task id="LOCAL-00001" summary="magic">
+      <created>1662037760547</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1662037760547</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -135,6 +138,10 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="magic" />
+    <option name="LAST_COMMIT_MESSAGE" value="magic" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
