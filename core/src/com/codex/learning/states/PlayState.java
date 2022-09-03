@@ -133,13 +133,10 @@ public class PlayState extends State{
 //                manager.checkBehavior((int) timer, jedisaur.getNumberOfBlockInteraction(), computer.isDone(), fuzzyLogic);
                     
 //              }
-
                     exitDoor(jedisaur);
                     jediGrandpa.update(delta);
                     jedisaur.update(delta);
                     computer.update(delta);
-
-
                 }
 //                else if(playroom.isDone && npc.hasSubmitted){
 //                    //Use to calculate number of cookies
@@ -178,6 +175,8 @@ public class PlayState extends State{
 
         }else{
             jedisaurStop(delta);
+            computer.getCodeRiddle().setInComputer(false);
+            manager.getStage().clear();
         }
 
 
