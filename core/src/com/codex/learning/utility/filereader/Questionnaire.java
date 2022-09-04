@@ -530,6 +530,10 @@ public class Questionnaire extends DatabaseReader {
 
     public void setAnswerPool(ArrayList<String> answerPool){this.answerPool = answerPool;}
 
+    public ArrayList<String> getDispenserPool(){return  dispenserPool;}
+
+    public void setDispenserPool(ArrayList<String> dispenserPool){this.dispenserPool = dispenserPool;}
+
     public ArrayList<ArrayList<String>> getOptions() {
         return options;
     }

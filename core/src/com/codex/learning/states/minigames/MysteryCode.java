@@ -184,7 +184,7 @@ public class MysteryCode extends State {
                             if (blockHolders[i][j].isInContact()) {
                                 jedisaur.dropBlock(blockHolders[i][j]);
                                 if(jedisaur.isDropped()){
-                                    questionBlocks[i][j-1].getBody().setTransform(questionBlocks[i][j-1].getBody().getPosition().x - blockHolders[i][j].getBody().getPosition().x, 0, 0);
+//                                    questionBlocks[i][j-1].getBody().setTransform(questionBlocks[i][j-1].getBody().getPosition().x - blockHolders[i][j].getBody().getPosition().x, 0, 0);
                                 }
 
                                 System.out.println("dropped to: " + blockHolders[i][j]);
