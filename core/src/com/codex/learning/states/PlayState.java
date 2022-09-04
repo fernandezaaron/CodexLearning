@@ -52,8 +52,8 @@ public class PlayState extends State{
         timer = 0;
         pause = new PauseState(manager);
         rand = new Random();
-        randomMinigame = rand.nextInt(3-1)+1;
-
+//        randomMinigame = rand.nextInt(3-1)+1;
+        randomMinigame = 2;
         if(manager.getStageSelector().map().equals("1")){
             house = new HouseMap(manager);
             computer = new Computer(manager, fuzzyLogic);
@@ -133,13 +133,10 @@ public class PlayState extends State{
 //                manager.checkBehavior((int) timer, jedisaur.getNumberOfBlockInteraction(), computer.isDone(), fuzzyLogic);
                     
 //              }
-
                     exitDoor(jedisaur);
                     jediGrandpa.update(delta);
                     jedisaur.update(delta);
                     computer.update(delta);
-
-
                 }
 //                else if(playroom.isDone && npc.hasSubmitted){
 //                    //Use to calculate number of cookies
@@ -178,6 +175,8 @@ public class PlayState extends State{
 
         }else{
             jedisaurStop(delta);
+            computer.getCodeRiddle().setInComputer(false);
+            manager.getStage().clear();
         }
 
 
@@ -276,7 +275,7 @@ public class PlayState extends State{
 
     public void enterPlayRoom(Character character){
         if(character.getBody().getPosition().x > 14f && character.getBody().getPosition().y >-4 && character.getBody().getPosition().y < 2.5f && isInStartArea()){
-            if(computer.isDone()){
+//            if(computer.isDone()){
                 setInStartArea(false);
                 if(manager.getStageSelector().map().equals("1")){
                     house.setPlayroomActive(false);
@@ -288,10 +287,10 @@ public class PlayState extends State{
                 minigame.setMiniGame();
                 jedisaur.getBody().setTransform(-20, 1, 0);
                 jedisaur.getBody().getPosition().set(-20, 1);
-            }
-            else {
-                System.out.println("bawal kapa pumasok jan xD");
-            }
+//            }
+//            else {
+//                System.out.println("bawal kapa pumasok jan xD");
+//            }
         }
     }
 

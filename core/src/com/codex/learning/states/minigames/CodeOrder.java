@@ -41,7 +41,7 @@ public class CodeOrder extends State {
     private int currentCell;
     private String mergeResult;
 
-    public CodeOrder(Manager manager) {
+    public CodeOrder(Manager manager, Character jedisaur) {
         super(manager);
         pause = new PauseState(manager);
         playroom = new PlayroomMapS1(manager);
@@ -49,7 +49,7 @@ public class CodeOrder extends State {
         randomizer = new Random();
         banishCells = new ArrayList<Integer>();
 
-        getAMinigame("Stage 1", "Poor");
+        getAMinigame(manager.getStageSelector().map(), "Poor");
 
         // WILL BE USED, DON'T ERASE
         questionBlocks = new Blocks[20][20];
@@ -75,7 +75,7 @@ public class CodeOrder extends State {
             }
             float currentStringLength = (float) String.valueOf(answerPoolContainer.get(i)).length();
             blockHolders[i] = new BlockHolder(manager, "\"" + answerPoolContainer.get(i) + "\"");
-            blockHolders[i].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2(Constants.BLOCK_HOLDER_WIDTH, Constants.BLOCK_HOLDER_HEIGHT), 0);
+            blockHolders[i].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2(Constants.BLOCK_HOLDER_WIDTH * 10f, Constants.BLOCK_HOLDER_HEIGHT), 0);
             yStartingPoint -= 2;
         }
         // WILL BE USED, DON'T ERASE
@@ -96,23 +96,15 @@ public class CodeOrder extends State {
             AnsPoolY -= 2.5;
         }
 
-        jedisaur = new Character(manager);
-        jedisaur.create(new Vector2(0, 0), new Vector2(1.2f, 1.75f), 1.6f);
+//        jedisaur = new Character(manager);
+//        jedisaur.create(new Vector2(0, 0), new Vector2(1.2f, 1.75f), 1.6f);
 
-        if(!manager.isMusicPaused()){
-            manager.setMusic(Constants.HOUSE_MUSIC);
-            manager.getMusic().play();
-            manager.getMusic().setLooping(true);
-        }else {
-            manager.setMusic(Constants.HOUSE_MUSIC);
-        }
-
-        System.out.println(manager.getCamera().position.x + " " + manager.getCamera().position.y);
+        this.jedisaur = jedisaur;
     }
 
     @Override
     public void update(float delta) {
-        manager.getWorld().step(1/60f,6,2);
+//        manager.getWorld().step(1/60f,6,2);
         if(pause.isRunning()) {
             // WILL BE USED, DON'T ERASE
             currentCell = 0;
@@ -138,12 +130,9 @@ public class CodeOrder extends State {
             // WILL BE USED, DON'T ERASE
             currentCell = 0;
             for (int i = 0; i < minigameContainer.size(); i++) {
-                if (minigameContainer.get(i) != null) {
-                    if (blockHolders[i].isInContact()) {
-                        jedisaur.dropBlock(blockHolders[i]);
-                    }
+                if (blockHolders[i].isInContact()) {
+                    jedisaur.dropBlock(blockHolders[i]);
                 }
-
             }
             // WILL BE USED, DON'T ERASE
 
@@ -190,7 +179,7 @@ public class CodeOrder extends State {
             }
         }
 
-        jedisaur.render(sprite);
+//        jedisaur.render(sprite);
 
         pause.render(sprite);
     }
@@ -214,7 +203,7 @@ public class CodeOrder extends State {
     }
 
     public void getAMinigame(String stage, String expertiseLevel){
-        manager.getQuestionnaire().minigameDisplay(stage,expertiseLevel);
+        manager.getQuestionnaire().minigameDisplay(stage,String.valueOf(manager.getStageSelector().getStageNumber()),expertiseLevel);
         minigameContainer = manager.getQuestionnaire().getMinigame();
         minigameContainerLimit = manager.getQuestionnaire().getMinigameLimit();
     }
