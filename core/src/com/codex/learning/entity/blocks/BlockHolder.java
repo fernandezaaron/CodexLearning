@@ -19,6 +19,7 @@ public class BlockHolder extends Entity {
 //    private ShapeRenderer normalBlock, highlightBlock, occupiedBlock;
     private boolean inContact;
     private boolean occupied;
+    private boolean isBlockHolder;
     private Blocks copyBlock;
     private TextureRegion normalBlock, highlightBlock;
     private String correctID;
@@ -55,6 +56,7 @@ public class BlockHolder extends Entity {
 
         inContact = false;
         occupied = false;
+        isBlockHolder = true;
         setCopyBlock(null);
 
 //        normalBlock = new ShapeRenderer();
@@ -176,6 +178,13 @@ public class BlockHolder extends Entity {
         body.setActive(setActive);
     }
 
+    public boolean isBlockHolder() {
+        return isBlockHolder;
+    }
+
+    public void setBlockHolder(boolean blockHolder) {
+        isBlockHolder = blockHolder;
+    }
 }
 
 

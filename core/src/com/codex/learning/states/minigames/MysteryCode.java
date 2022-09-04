@@ -155,7 +155,7 @@ public class MysteryCode extends State {
                    for (int j = 0; j < minigameContainer.get(i).size(); j++) {
                        if (minigameContainer.get(i).get(j) != null) {
                            if (banishCells.contains(currentCell)){
-                               System.out.println(i + " " + j);
+//                               System.out.println(i + " " + j);
                                blockHolders[i][j].update(delta);
                            }
                            else
@@ -181,19 +181,52 @@ public class MysteryCode extends State {
                 for (int j = 0; j < minigameContainer.get(i).size(); j++) {
                     if (minigameContainer.get(i).get(j) != null) {
                         if (banishCells.contains(currentCell)) {
+
                             if (blockHolders[i][j].isInContact()) {
                                 jedisaur.dropBlock(blockHolders[i][j]);
-                                if(jedisaur.isDropped()){
-                                    questionBlocks[i][j-1].getBody().setTransform(questionBlocks[i][j-1].getBody().getPosition().x - blockHolders[i][j].getBody().getPosition().x, 0, 0);
-                                }
-
-                                System.out.println("dropped to: " + blockHolders[i][j]);
+//                                System.out.println("dropped to: " + blockHolders[i][j]);
                             }
                         }
                         currentCell++;
                     }
                 }
             }
+
+        currentCell = 0;
+        for (int i = 0; i < minigameContainer.size(); i++) {
+            for (int j = 0; j < minigameContainer.get(i).size(); j++) {
+                if (minigameContainer.get(i).get(j) != null) {
+                    if (banishCells.contains(currentCell)) {
+                        if (blockHolders[i][j].isInContact()) {
+                        if(jedisaur.isDropped()){
+//                            System.out.println(jedisaur.getCopyBlock().getDupliSize());
+                            System.out.println(blockHolders[i][j].getCopyBlock() + "asdad");
+//                                    System.out.println("j: " + j + "j--: " + j--);
+                            if(banishCells.contains(currentCell-1)){
+                                System.out.println("this is a blockholder");
+                                blockHolders[i][j-1].getBody().setTransform(blockHolders[i][j].getBody().getPosition().x - 3.5f, blockHolders[i][j].getBody().getPosition().y, 0);
+                                System.out.println(currentCell);
+                            }
+                            else if(banishCells.contains(currentCell+1)){
+                                blockHolders[i][j+1].getBody().setTransform(blockHolders[i][j].getBody().getPosition().x + 3.5f, blockHolders[i][j].getBody().getPosition().y, 0);
+                            }
+                            else {
+                                System.out.println("not a blockholder");
+                                for(int k=j-1; k>=0; k--){
+                                    questionBlocks[i][k].getBody().setTransform(questionBlocks[i][k].getBody().getPosition().x- 3.5f , questionBlocks[i][k].getBody().getPosition().y, 0);
+                                }
+                            }
+
+                            jedisaur.setDropped(false);
+                        }
+                    }
+                    }
+                    currentCell++;
+                }
+            }
+        }
+
+
 
 
              // WILL BE USED, DON'T ERASE
