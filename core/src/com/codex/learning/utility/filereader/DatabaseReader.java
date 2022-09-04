@@ -11,10 +11,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public abstract class DatabaseReader {
     private Workbook workbook;
-    private Sheet minigameSheet;
-    private Sheet questionSheet;
-    private Sheet answerPoolSheet;
-    private Sheet responseSheet;
 
     public DatabaseReader() {
         try {
@@ -27,26 +23,26 @@ public abstract class DatabaseReader {
         catch(IOException e) {
             e.printStackTrace();
         }
-        minigameSheet = workbook.getSheet("Minigame");
-        questionSheet = workbook.getSheet("CodeRiddle");
-        answerPoolSheet = workbook.getSheet("AnswerPool2");
-        responseSheet = workbook.getSheet("Response");
     }
 
     public Sheet getMinigameSheet() {
+        Sheet minigameSheet = workbook.getSheet("Minigames");
         return minigameSheet;
     }
 
     public Sheet getQuestionSheet() {
-        return questionSheet;
+        Sheet minigameSheet = workbook.getSheet("CodeRiddle");
+        return minigameSheet;
     }
 
-    public Sheet getAnswerPoolSheet() {
-        return answerPoolSheet;
+    public Sheet    getAnswerPoolSheet() {
+        Sheet minigameSheet = workbook.getSheet("AnswerPool");
+        return minigameSheet;
     }
 
     public Sheet getResponseSheet() {
-        return responseSheet;
+        Sheet minigameSheet = workbook.getSheet("Response");
+        return minigameSheet;
     }
 
     public Workbook getWorkbook() {

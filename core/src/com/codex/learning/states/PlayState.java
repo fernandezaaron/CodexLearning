@@ -79,7 +79,7 @@ public class PlayState extends State{
         jediGrandpa = new NPC(manager);
         jediGrandpa.create(new Vector2(0, 0), new Vector2(1, 1.4f), 0);
 
-        minigame = new Minigame(manager, 2, jedisaur);
+        minigame = new Minigame(manager, randomMinigame, jedisaur);
 
         if(!manager.isMusicPaused()){
             manager.setMusic(Constants.HOUSE_MUSIC);
