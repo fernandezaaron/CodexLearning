@@ -250,6 +250,19 @@ public class Dialogue {
 
 
     // Code: Order will have its own hint
+    private ArrayList<ArrayList<String>> codeOrderHints = new ArrayList<>(
+            Arrays.asList(
+                    new ArrayList<String>(Arrays.asList(
+                            // Syntax
+                            "Arrange the block according to the output needed",
+                            "Don't forget the output needed",
+                            "Try to remember the basic structure on how to create a java program",
+                            "Always check the brackets when arranging the code blocks",
+                            "Remember that public static void main is where you output the code"
+                    ))
+            )
+    );
+
 
     // Mystery Code and Fill in the Block has the same hints
     private ArrayList<ArrayList<String>> twoHintsContainer = new ArrayList<>(
@@ -326,6 +339,165 @@ public class Dialogue {
                     new ArrayList<String>(Arrays.asList(
                             // Objects
                             "Did you specify the class name before the object name", "there should be a new keyword when creating an object", "Did you properly create an object"
+                    ))
+            )
+    );
+
+    private ArrayList<ArrayList<String>> minigameQuestionDialogue = new ArrayList<>(
+            Arrays.asList(
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 1
+                            "Hey there Grandson! I want you to output a \"Hello World!\" \n " +
+                            "in the program by fixing the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is syntax! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 2
+                            "Hey there Grandson! I want you to output \"7\" \n " +
+                            "in the program by fixing the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is syntax! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 3
+                            "Hey there Grandson! I want you to output \"Hello World! 123\" \n " +
+                            "in the program by fixing the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is syntax! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 4
+                            "Hey there Grandson! I want you to output \"Hello World 7\" and \"Hello World 9\"\n " +
+                            "in the program by fixing the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is syntax! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 5
+                            "Hey there Grandson! I want you to output \"Hello World 123\" and \"Hello World 321\"\n " +
+                            "in the program by fixing the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is syntax! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 6
+                            "Hey there Grandson! I want you to output \"Hello World 2+5\" and \"Hello World 3+6\"\n " +
+                            "in the program by fixing the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is syntax! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 7
+                            "Hey there Grandson! I want you to output \"Hello World1234\" and \"Hello World3210\"\n " +
+                            "in the program by fixing the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is syntax! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 8
+                            "Hey there Grandson! I want you to output \"123Hello World321\" and \"321Hello World123\"\n " +
+                            "in the program by fixing the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is syntax! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 9
+                            "Hey there Grandson! I want you to output \"123Hello World123\" and \"321Hello World321\"\n " +
+                            "in the program by fixing the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is syntax! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 10
+                            "Hey there Grandson! I want you to put a comment \"This is a single-line comment\" \n " +
+                            "above that outputs \"Hello World!\" by fixing the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about comments! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 11
+                            "Hey there Grandson! I want you to put a comment \"This is a multi-line comment\" \n " +
+                            "above that outputs \"Hello World!\" by fixing the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about comments! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 12
+                            "Hey there Grandson! I want you to put a comment \"// = single-line comment\"\n " +
+                            "and \"/* */ = multi-line comment\" in a two separate single-line comment \n" +
+                            "above that outputs \"Hello World!\" by fixing the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about comments! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 13
+                            "Hey there Grandson! I want you to put a comment \"// = single-line comment\" \n" +
+                            "in a multi-line comment, and \"/* */ = multi-line comment\" in a single-line comment \n" +
+                            "above that outputs \"Hello World!\" by fixing the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about comments! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 14
+                            "Hey there Grandson! I want you to put a multi-line comment saying \n" +
+                            "\"The program outputs Hello World! \n" +
+                            "It is a String output \n" +
+                            "multi-line comment was used.\" \n" +
+                            "above that outputs \"Hello World!\" by fixing the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about comments! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 15
+                            "Hey there Grandson! I want you to put a single-line comment saying \n" +
+                            "\"The program outputs Hello World! \n" +
+                            "It is a String output \n" +
+                            "single-line comment was used.\" \n" +
+                            "above that outputs \"Hello World!\" by fixing the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about comments! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 16
+                            "Hey there Grandson! I want you to output \"My name is Jedisaur.\" \n" +
+                            "and the Jedisaur will be a String variable named name. \n" +
+                            "Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about variables! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 17
+                            "Hey there Grandson! I want you to output \"My Grandpa's name is JediGrandpa\" \n" +
+                            "and the JediGrandpa will be a String variable named name. \n" +
+                            "Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about variables! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 18
+                            "Hey there Grandson! I want you to output \"I will now be a 1st year student soon.\" \n" +
+                            "and the 1 will be an Integer variable named year. \n" +
+                            "Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about variables! \n" +
+                            "Make sure to not mess this up. Good luck!"
                     ))
             )
     );
