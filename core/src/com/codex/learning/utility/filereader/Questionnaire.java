@@ -22,6 +22,7 @@ public class Questionnaire extends DatabaseReader {
     private Random randomizer;
 
     private int numberOfQuestions;
+    private int hints;
 
     private DataFormatter formatter;
 
@@ -47,6 +48,7 @@ public class Questionnaire extends DatabaseReader {
 
         numberOfQuestions = 0;
         questionLimit = 0;
+        hints = 0;
 
         excelQuestionLimit = 196;
         excelMinigameLimit = 53;
@@ -168,9 +170,8 @@ public class Questionnaire extends DatabaseReader {
             Row excelRow = answerPoolSheet.getRow(getNumber);
             Cell excelCell = excelRow.getCell(2);
             String getExcelStage = formatter.formatCellValue(excelCell);
-            if((int) answerPoolSheet.
-                    getRow(getNumber).getCell(0).getNumericCellValue() == getNumber &&
-                    (getExcelStage.equals(stage))) {
+            if((int) answerPoolSheet.getRow(getNumber).getCell(0).getNumericCellValue() == getNumber
+                    && (getExcelStage.equals(stage))) {
                 Row ansRow = answerPoolSheet.getRow(getNumber);
                 Cell ansCell = ansRow.getCell(3);
                 String getAnsCell = formatter.formatCellValue(ansCell);
@@ -257,20 +258,24 @@ public class Questionnaire extends DatabaseReader {
             case "Poor":
                 levels.add("Easy");
                 questionLimit = 10;
+                hints = 5;
                 break;
             case "Novice":
                 levels.add("Easy");
                 levels.add("Medium");
                 questionLimit = 5;
+                hints = 3;
                 break;
             case "Average":
                 levels.add("Medium");
                 levels.add("Hard");
                 questionLimit = 2;
+                hints = 2;
                 break;
             case "Expert":
                 levels.add("Hard");
                 questionLimit = 3;
+                hints = 1;
                 break;
         }
     }

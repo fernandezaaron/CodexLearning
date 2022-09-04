@@ -168,6 +168,7 @@ public class Dialogue {
     )
     );
 
+    // This variable will show in code riddle minigame everytime the user got a correct or wrong answer
     private ArrayList<ArrayList<String>> codeRiddleFeedback = new ArrayList<>(
             Arrays.asList(
                     new ArrayList<>(Arrays.asList(
@@ -210,6 +211,7 @@ public class Dialogue {
             )
     );
 
+    // This variable will be shown after the minigame
     private ArrayList<ArrayList<String>> resultFeedback = new ArrayList<>(
             Arrays.asList(
                     new ArrayList<>(Arrays.asList(
@@ -242,37 +244,50 @@ public class Dialogue {
 //    private ArrayList<ArrayList<String>> behaviorFeedback = new ArrayList<>(
 //            Arrays.asList());
 
-    private ArrayList<ArrayList<String>> hintsContainer = new ArrayList<>(
+    //"public static void main is always the start of each java program"
+
+    // This variable will show in every 30 secs when the AI detects the behavior of the user is not engaged
+
+
+    // Code: Order will have its own hint
+
+    // Mystery Code and Fill in the Block has the same hints
+    private ArrayList<ArrayList<String>> twoHintsContainer = new ArrayList<>(
             Arrays.asList(
                     new ArrayList<String>(Arrays.asList(
-                            // Stage 1
-                            // Syntax
-                            "Did you check the end of every code statement?", "Did you check the class name if it's uppercase or lowercase?",
-                            "Multi-line comments must start and ends with?"
+                            // Minigame ID 1
+                            "Remember that this is java programming",
+                            "Try to remember the basic structure on how to create a java program",
+                            "Make sure to check the syntax of the code",
+                            "Make sure that there's always a closing statement",
+                            "Don't be confuse on how to print an output in java"
                     )),
 
                     new ArrayList<String>(Arrays.asList(
-                            // Variables
-                            "The value of a String should be surrounded by?", "Unlike String, the value of char should be surrounded by?", "In float it is just like a double variable but it has an f at the end of the number",
-                            "In boolean the value should not be surrounded by single or double quotes", "in int the values should not have a decimal point",
-                            "The variable name should not contain whitespaces",
-                            // Data Types
-                            "int data type can only have whole numbers", "String is a primitive data type", "unlike String, char is a non-primitive data type", "boolean is the only one that has a bit size",
-                            // Type Casting
-                            "You can't convert double to int automatically", "Use widening casting to convert small size to larger size"
+                            // Minigame ID 2
+                            "Try to remember the basic structure on how to create a java program",
+                            "Make sure to check the syntax of the code",
+                            "Don't forget to check the closing statement",
+                            "Remember that the output of Integer and String values are different",
+                            "Plus sign can also be in the output of Integer"
                     )),
 
                     new ArrayList<String>(Arrays.asList(
-                            // Operators
-                            "Use Arithmetic Operators to perform math operations", "Use proper assignment operations to assign value to a variable",
-                            "You can use Comparison operations to compare two values"
+                            // Minigame ID 3
+                            "Basic java program structure..",
+                            "Make sure to check the syntax of the code",
+                            "Don't forget to check the closing statement",
+                            "Remember that the output is an Integer",
+                            "Integer also has order of operation when being output"
                     )),
 
                     new ArrayList<String>(Arrays.asList(
-                            // Stage 2
-                            // Conditional Statements
-                            "Check the condition in the if-statement if the condition is true", "Check the condition in the else-if statement if it is true",
-                            "When using short hand check if you use a the proper ternary operator","Don't forget the expression when using switch case","Don't forget to use break after every switch statements"
+                            // Minigame ID 4
+                            "Basic java program structure..",
+                            "Make sure to check the syntax of the code",
+                            "Don't forget to check the closing statement",
+                            "Remember that the output is an Integer",
+                            "Integer also has order of operation when being output"
                     )),
 
                     new ArrayList<String>(Arrays.asList(
@@ -312,8 +327,6 @@ public class Dialogue {
                             // Objects
                             "Did you specify the class name before the object name", "there should be a new keyword when creating an object", "Did you properly create an object"
                     ))
-
-
             )
     );
 
