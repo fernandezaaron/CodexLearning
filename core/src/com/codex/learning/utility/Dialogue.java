@@ -259,6 +259,42 @@ public class Dialogue {
                             "Try to remember the basic structure on how to create a java program",
                             "Always check the brackets when arranging the code blocks",
                             "Remember that public static void main is where you output the code"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Comments
+                            "Arrange the block according to the output needed",
+                            "Don't forget the output needed",
+                            "Remember the difference between the two comments",
+                            "Remember that public static void main is where you output the code",
+                            "Comments can be placed everywhere in the code, try to recall"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Variables
+                            "Arrange the block according to the output needed",
+                            "Don't forget the output needed",
+                            "Remember the difference between the two comments",
+                            "Remember that public static void main is where you output the code",
+                            "Comments can be placed everywhere in the code, try to recall"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Data Types
+                            "Arrange the block according to the output needed",
+                            "Don't forget the output needed",
+                            "Don't be confused to all the Data Types in Java",
+                            "Data Types are just classification of a variable",
+                            "Declaration of the Data Types are always above the print"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Type Casting
+                            "Arrange the block according to the output needed",
+                            "Don't forget the output needed",
+                            "There are different ways on how to Type Cast a variable",
+                            "Not all variables can be Type Cast",
+                            "Type Casting is always at the right side of a variable"
                     ))
             )
     );
@@ -268,7 +304,7 @@ public class Dialogue {
     private ArrayList<ArrayList<String>> twoHintsContainer = new ArrayList<>(
             Arrays.asList(
                     new ArrayList<String>(Arrays.asList(
-                            // Minigame ID 1
+                            // Syntax
                             "Remember that this is java programming",
                             "Try to remember the basic structure on how to create a java program",
                             "Make sure to check the syntax of the code",
@@ -502,12 +538,155 @@ public class Dialogue {
 
                     new ArrayList<String>(Arrays.asList(
                             // Minigame ID 19
+                            "Hey there Grandson! I want you to output \"My name is Jedisaur.\" and \"I am 8 years old\" \n" +
+                            "The Jedisaur will be a String variable named name, and the 8 will be an \n" +
+                            "Integer variable named age. Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about variables! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 20
+                            "Hey there Grandson! I want you to output \"My name is Jedisaur.\" \n" +
+                            "and \"My GrandPa's name is JediGrandpa\" \n" +
+                            "The Jedisaur will be a String variable named myName, and the JediGrandpa will be a \n" +
+                            "String variable named yourName. Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about variables! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 21
                             "Hey there Grandson! I want you to output \"I will now be a 1st year student soon.\" \n" +
-                            "and the 1 will be an Integer variable named year. \n" +
+                            "and \"I am 8 years old\" The 1 will be an Integer variable named year, \n" +
+                            "and the 8 will be an Integer variable named age. \n" +
                             "Fix the structure of the given code. \n " +
                             "Take note that the topic that I'm teaching you is about variables! \n" +
                             "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 22
+                            "Hey there Grandson! I want you to output \"My name is Jedisaur.\", \n" +
+                            "\"I will now be a 1st year student soon.\", and \"I am 8 years old\" \n" +
+                            "The Jedisaur will be a String variable named name, 1 will be an Integer variable named year. \n" +
+                            "And the 8 will be an Integer variable named age. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about variables! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 23
+                            "Hey there Grandson! I want you to output \"My name is Jedisaur.\", \n" +
+                            "\"My GrandPa's name is JediGrandpa.\", and \"I am the only Grandson.\". \n" +
+                            "The Jedisaur will be a String variable named myName, and the JediGrandpa will be a \n" +
+                            "String variable named yourName. Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about variables! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 24
+                            "Hey there Grandson! I want you to output \"My name is Jedisaur.\" \n" +
+                            "\"I will now be a 1st year student soon.\", and \"I am a dinosaur.\". \n" +
+                            "The Jedisaur will be a String variable named name, and 1 will be an \n" +
+                            "Integer variable named year. Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about variables! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 25
+                            "Hey there Grandson! I want you to output \"Jedisaur is 8 years old\", and \n" +
+                            "\"A height of 5.9ft.\". The Jedisaur will be a String variable named name, \n" +
+                            "and 8 will be an Integer variable named age, and 5.9 will be a Float variable \n" +
+                            "named height. Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Data Types! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 26
+                            "Hey there Grandson! I want you to output \"I got 3A\", and \n" +
+                            "\"in Math.\". The 3 will be an Integer variable named number, \n" +
+                            "A will be a Character variable named grade, and Math will be a String variable \n" +
+                            "named subject. Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Data Types! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 27
+                            "Hey there Grandson! I want you to output \"true\", \n" +
+                            "\"A\", and \"Math\". The true will be a boolean variable named bool, \n" +
+                            "A will be a Character variable named grade, and Math will be a String variable \n" +
+                            "named subject. Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Data Types! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 28
+                            "Hey there Grandson! I want you to output \"false\", \n" +
+                            "\"3\", and \"5.9\". The false will be a boolean variable named bool, \n" +
+                            "A will be a Character variable named grade, and 5.9 will be a Float variable \n" +
+                            "named height. Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Data Types! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 29
+                            "Hey there Grandson! I want you to output \"This is true\", \n" +
+                            "\"Jedisaur is 8 years old\", and \"A height of 5.9ft.\". \n" +
+                            "The Jedisaur will be a String variable named name, \n" +
+                            "and 8 will be an Integer variable named age, and 5.9 will be a Float variable \n" +
+                            "named height. Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Data Types! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 30
+                            "Hey there Grandson! I want you to output \"This is false\", \n" +
+                            "\"Jedisaur is 8 years old\", and \"A height of 5.9ft.\". \n" +
+                            "The Jedisaur will be a String variable named name, \n" +
+                            "and 8 will be an Integer variable named age, and 5.9 will be a Float variable \n" +
+                            "named height. Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Data Types! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 31
+                            "Hey there Grandson! I want you to output \"5.9\", \n" +
+                            "and \"5.\". The 5.9 will be a float variable named num, \n" +
+                            "and 5 will be a converted value from Float variable, it will be named convert \n" +
+                            "as an Integer variable. Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Type Casting! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 32
+                            "Hey there Grandson! I want you to output \"3\", \n" +
+                            "and \"3.\". The 3 will be an Integer variable named num, \n" +
+                            "and 3 will be a converted value from Integer variable, it will be named convert \n" +
+                            "as a String variable. Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Type Casting! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 32
+                            "Hey there Grandson! I want you to output \"My height is 5.9ft\", \n" +
+                            "and \"I have 5 subjects\". The 5.9 will be a float variable named num, \n" +
+                            "and 5 will be a converted value from Float variable, it will be named convert \n" +
+                            "as an Integer variable. Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Type Casting! \n" +
+                            "Make sure to not mess this up. Good luck!"
                     ))
+
             )
     );
 
