@@ -542,7 +542,7 @@ public class Dialogue {
                     )),
 
                     new ArrayList<String>(Arrays.asList(
-                            // Stage 3 - easy
+                            // Stage 1 - medium
                             // CodeRiddle
                             // AnswerID - 83
                             "Method, subclasses, and reference are not reserved words",
@@ -592,6 +592,60 @@ public class Dialogue {
                             "If you use this % operator it will only return the division remainder",
                             // AnswerID - 106
                             "This will not compile because of the symbol !"
+
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Stage 2 - medium
+                            // CodeRiddle
+                            // AnswerID - 107
+                            "Using System.exit will automatically exit the program",
+                            // AnswerID - 108
+                            "Carefully solve the problem",
+                            // AnswerID - 109
+                            "Carefully check the comparison operator that was used",
+                            // AnswerID - 110
+                            "Carefully place the values in the variables and check the conditions in the if else-if",
+                            // AnswerID - 111
+                            "When you use a loop it will run until it has encountered a false statement",
+                            // AnswerID - 112
+                            "Carefully check the condition in the while loop",
+                            // AnswerID - 113
+                            "Note that the value of count is 0 and carefully check the condition",
+                            // AnswerID - 114
+                            "Carefully check the code and it's condition",
+                            // AnswerID - 115
+                            "Carefully note that there are 2 increment used in the loop",
+                            // AnswerID - 116
+                            "Carefully follow the syntax: type [] variablename = {values}",
+                            // AnswerID - 117
+                            "Remember in arrays it's index starts at 0",
+                            // AnswerID - 118
+                            "Null will be the value of an array you declared without assigning a value",
+                            // AnswerID - 119
+                            "Length will show how many elements in an array",
+                            // AnswerID - 120
+                            "The answer is in the question",
+                            // AnswerID - 121
+                            "It is related to throw",
+                            // AnswerID - 122
+                            "Instance method need an object before you can call it",
+                            // AnswerID - 123
+                            "You need to capitalize the U and C",
+                            // AnswerID - 124
+                            "Remember that method can make a program readable, avoid repeating a code and can break a program into smaller parts",
+                            // AnswerID - 125
+                            "When you use a float it will automatically have a decimal point if it is a whole number",
+                            // AnswerID - 126
+                            "Carefully understand the code and place the value of x inside the parentheses and solve",
+                            // AnswerID - 127
+                            "We use overriding if we have the same name of a method in sub class and super class",
+                            // AnswerID - 128
+                            "Carefully check the conditions in every method",
+                            // AnswerID - 129
+                            "Carefully replace the variable with it's value and check the conditions within the method",
+                            // AnswerID - 130
+                            "Carefully solve the problem and note that it is declared as double so it will automatically have a decimal point at the end"
 
                     ))
 
