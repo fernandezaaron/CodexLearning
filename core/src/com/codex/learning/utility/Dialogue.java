@@ -179,7 +179,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // After minigame if low score
-                            "You should review xD", "Please review"
+                            "You should review xD", "Please review", "Try to focus on the topic you got a low score", "Did you really understand the lesson?"
                     )),
 
                     new ArrayList<>(Arrays.asList(
@@ -190,15 +190,50 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Stage failed
-                            "You should pay attention to JediGrandpa's teaches and try again", "Recall all your mistakes and try again.", "Visit and talk to JediGrandpa to recall the lesson and try again ",
+                            "You should pay attention to JediGrandpa's teaches and try again", "Recall all your mistakes and try again.",
+                            "Visit and talk to JediGrandpa to recall the lesson and try again ",
                             "Try again to learn from your mistakes"
                     ))
             )
     );
 
-//
-//    private ArrayList<ArrayList<String>> behaviorFeedback = new ArrayList<>(
-//            Arrays.asList());
+
+   private ArrayList<ArrayList<String>> behaviorFeedback = new ArrayList<>(
+            Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
+                            // Player Engaged
+                            "Wow you're more engaged than i thought", "Keep doing what you are doing","Keep up the good work",
+                            "How come you are more engaged than other people", "Wow you already mastered this topic", "Do you find the question to be Exciting?",
+                            "Does the question challenge you?"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Player Neutral
+                            ""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Player Bored
+                            "Do you find the topic to be somewhat boring?", "Does the question not challenge you?", "Is the question easy for you, and that's why you are bored?",
+                            "How come you are bored in answering the question?"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Player Confused
+                            "Take a deep breathe and recall the lesson", "Go back to to the topic that you are confused", "Read the topic carefully until you understand it",
+                            "Read the question carefully and try to understand it", "You're confused maybe you want to use a hint", "Don't give up",
+                            "Maybe you just need a different perspective to answer it"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Player Frustrated
+                            "Calm down you can solve it", "Clear your mind and look at the question again", "Take a few minutes break",
+                            "Relax and review the lesson","Don't be mad and use a hint so that you can move on from this question" ,
+                            "Maybe you just need to take a break"
+                    ))
+            )
+   );
+
 
     private ArrayList<ArrayList<String>> hintsContainer = new ArrayList<>(
             Arrays.asList(
@@ -270,6 +305,294 @@ public class Dialogue {
                     new ArrayList<String>(Arrays.asList(
                             // Objects
                             "Did you specify the class name before the object name", "there should be a new keyword when creating an object", "Did you properly create an object"
+                    )),
+
+                /*    new ArrayList<String>(Arrays.asList(
+                            // Minigames
+                            // Stage 1 - easy
+                            // Minigame_ID - 1
+                            "It is a simple code that will print out the firstname and lastname",
+                            // Minigame_ID - 2
+                            "The output should be 50",
+                            // Minigame_ID - 3
+                            "The first output should be 43, then 1, followed by 19 and the last one is 13",
+                            // Minigame_ID - 4
+                            "The output will form a big JAVA word when printed out",
+                            // Minigame_ID - 5
+                            "The system will ask you to input two numbers and the output is usually false unless you put the two numbers as 0.5 ",
+                            // Minigame_ID - 6
+                            "The first output should be 10 and the next output should be 10.0"
+
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Stage 2 - easy
+                            // Minigame_ID - 7
+                            "It will ask to input two numbers and if the two numbers are equal the output should be \"Numbers are equal\" else it is not equal",
+                            // Minigame_ID - 8
+                            "It is a simple loop that will print all the odd numbers from 1 to 100",
+                            // Minigame_ID - 9
+                            "It is a simple loop that will print \"java is fun\" five times",
+                            // Minigame_ID - 10
+                            "This is a loop that will print out the value of sum = 1, 3, 10 until it reaches 500500",
+                            // Minigame_ID - 11
+                            "This is just a simple method, when the method is called it will pass along the first names of liam, jenny, anja inside the method and it will print out their full names",
+                            // Minigame_ID - 12
+                            "This is a simple method that will overwrite the value of x and it will print out 8"
+
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Stage 3 - easy
+                            // Minigame_ID - 13
+                            "When the object is called it will print the value of 5",
+                            // Minigame_ID - 14
+                            "When the object is called it will print the value of 25",
+                            // Minigame_ID - 15
+                            "When you call the class you will need to add 2 values of the parameters to print the students name and id",
+                            // Minigame_ID - 16
+                            "When you call this class it print the value of count",
+                            // Minigame_ID - 17
+                            "This is a sample of a class called Dog wherein it is called it will print out the following: \"Dogs!\" and \"Creating\" a dog ",
+                            // Minigame_ID - 18
+                            "This will print out the factorial of 5"
+
+                    )), */
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Stage 1 - easy
+                            // CodeRiddle
+                            // AnswerID - 1
+                            "Inside of the parenthesis there should be a [] at the end",
+                            // AnswerID - 2
+                            "Only the first letter is capital then the rest is lowercase",
+                            // AnswerID - 3
+                            "It has the word semi in it",
+                            // AnswerID - 4
+                            "It has the word colon in it",
+                            // AnswerID - 5
+                            "It has the word System in it",
+                            // AnswerID - 6
+                            "This * should be in side the comment",
+                            // AnswerID - 7
+                            "It has the word beef",
+                            // AnswerID - 8
+                            "It should not be enclosed by \"\" or ''",
+                            // AnswerID - 9
+                            "There should be an f after the number",
+                            // AnswerID - 10
+                            "It is short form for floating",
+                            // AnswerID - 11
+                            "It is short form for character",
+                            // AnswerID - 12
+                            "It is not an integer because it has decimal point and it should not be enclosed by \"\" or ''",
+                            // AnswerID - 13
+                            "The variable type should come first and the value should be enclosed by \"\" ",
+                            // AnswerID - 14
+                            "It should start with 0 and it ends with ---35",
+                            // AnswerID - 15
+                            "There are only 2 data types that can hold digits and integer can't hold decimals",
+                            // AnswerID - 16
+                            "Char and boolean doesn't need to be enclosed in a double quotes",
+                            // AnswerID - 17
+                            "Only boolean has 2 values",
+                            // AnswerID - 18
+                            "String can hold more than one characters",
+                            // AnswerID - 19
+                            "String can also hold numbers and characters but it must me enclosed with double quotes",
+                            // AnswerID - 20
+                            "Integer can hold whole numbers",
+                            // AnswerID - 21
+                            "Integers can hold numbers that has decimal on it",
+                            // AnswerID - 22
+                            "Protected is used as an access modifier, volatile is for threads and abstract is for classes and methods ",
+                            // AnswerID - 23
+                            "Only int to long can be converted automatically",
+                            // AnswerID - 24
+                            "If you want to automatically convert it should be from smaller to larger type size",
+                            // AnswerID - 25
+                            "If any operand is double the result of expression is double",
+                            // AnswerID - 26
+                            "It is just like converting float to int",
+                            // AnswerID - 27
+                            "You can convert the data type if you manually place the type in parentheses in front of the value",
+                            // AnswerID - 28
+                            "Int can hold byte or literal numbers",
+                            // AnswerID - 29
+                            "If you see this ++, it will automatically add 1",
+                            // AnswerID - 30
+                            "Only ==, !=, >, <, >=, <=, can be used to compare two values ",
+                            // AnswerID - 31
+                            "Only division and multiplication has the same precedence",
+                            // AnswerID - 32
+                            "If ++ is called increment then -- is called?",
+                            // AnswerID - 33
+                            "you cant use x as the multiplication operator",
+                            // AnswerID - 34
+                            "You need to use + to combine a message to another message or variable to be displayed together"
+
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Stage 2 - easy
+                            // CodeRiddle
+                            // AnswerID - 35
+                            "Only && can be used to replace the nested if",
+                            // AnswerID - 36
+                            "Default is used if some code to run if there is no case match",
+                            // AnswerID - 37
+                            "Relational operators is used for conditions",
+                            // AnswerID - 38
+                            "Remember if, else, if-else, if-else-if are used in conditional statements",
+                            // AnswerID - 39
+                            "The fall through will happen if we don't have a break statement in a switch",
+                            // AnswerID - 40
+                            "Logical errors run but it produce wrong output",
+                            // AnswerID - 41
+                            "A is not equal a so that means it is not true",
+                            // AnswerID - 42
+                            "You don't need to put and else in every if statements",
+                            // AnswerID - 43
+                            "If the statement is true it will run in the if-else statement",
+                            // AnswerID - 44
+                            "Never stops or in other words infinite",
+                            // AnswerID - 45
+                            "You can always stop a loop if you put a break in it",
+                            // AnswerID - 46
+                            "The correct syntax for the while loop is: while(condition)",
+                            // AnswerID - 47
+                            "In the switch statement if it matches the values of expression it will execute that part of the code",
+                            // AnswerID - 48
+                            "This will print 10 times because the value of count is 0 in the beginning",
+                            // AnswerID - 49
+                            "This will print 10 times because the value of count is 0 in the beginning before it prints Welcome to java",
+                            // AnswerID - 50
+                            "This will print 3 and while printing it will keep subtracting it until it reaches 0",
+                            // AnswerID - 51
+                            "This will print 10 times because the value of count is 1 in the beginning and it will stop if the value of count is 10",
+                            // AnswerID - 52
+                            "Remembre the sysntax: variable variablename [] = {values}",
+                            // AnswerID - 53
+                            "It is an object that can hold group of values",
+                            // AnswerID - 54
+                            "Array can hold group of values that has the same type",
+                            // AnswerID - 55
+                            "Remember array starts ay index 0",
+                            // AnswerID - 56
+                            "Always start counting in 0 in array",
+                            // AnswerID - 57
+                            "It should be 4 because you start at 0",
+                            // AnswerID - 58
+                            "Methods is a collection of statements ",
+                            // AnswerID - 59
+                            "It should be public double",
+                            // AnswerID - 60
+                            "If you want to restrict the access you need to add private",
+                            // AnswerID - 61
+                            "To get the highest value you use Math.max()",
+                            // AnswerID - 62
+                            "Method can control the program",
+                            // AnswerID - 63
+                            "You must use return keyword to return a value",
+                            // AnswerID - 64
+                            "Parameteers are varaibles passed into a method",
+                            // AnswerID - 65
+                            "Check the values of parameters that was used in int = w, then check the parameters of the method carefully before solving",
+                            // AnswerID - 66
+                            "It will print the values of a, b, and c",
+                            // AnswerID - 67
+                            "You must first solve the value inside the parenthesis then the outside",
+                            // AnswerID - 68
+                            "It will be compilation error because c is not declared in the method of sum"
+
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Stage 3 - easy
+                            // CodeRiddle
+                            // AnswerID - 69
+                            "You can't import if you don't use the import keyword",
+                            // AnswerID - 70
+                            "The class always defines an object",
+                            // AnswerID - 71
+                            "Objects is always an instance of a class",
+                            // AnswerID - 72
+                            "You can't declare a class if you don't use a class keyword",
+                            // AnswerID - 73
+                            "Class variables are shared in every instances in a class",
+                            // AnswerID - 74
+                            "Boolean default value is false or 0 or null",
+                            // AnswerID - 75
+                            "Default constructor are always provided and it is a non-arg",
+                            // AnswerID - 76
+                            "Objecs can represent an entity at the real world",
+                            // AnswerID - 77
+                            "Remember the syntax: class name object name = new class name",
+                            // AnswerID - 78
+                            "Object always represent and entity",
+                            // AnswerID - 79
+                            "When you invoke an object you will also get its reference of the object",
+                            // AnswerID - 80
+                            "You will need a constructor to  call or create an object",
+                            // AnswerID - 81
+                            "Remember that when you call an object it's reference is also passed",
+                            // AnswerID - 82
+                            "The value dates is null because it has not been set, remember to use [] when accessing or declaring a new array"
+
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Stage 3 - easy
+                            // CodeRiddle
+                            // AnswerID - 83
+                            "Method, subclasses, and reference are not reserved words",
+                            // AnswerID - 84
+                            "Use the comparison operator called equal to",
+                            // AnswerID - 85
+                            "Comment is always optional in describing a code",
+                            // AnswerID - 86
+                            "Boolean variables has only two value and it is 1 byte per value, if you convert it to bit: 1 byte = 8 bit",
+                            // AnswerID - 87
+                            "All variables default value is 0",
+                            // AnswerID - 88
+                            "Class can consist of local, class or instance variable",
+                            // AnswerID - 89
+                            "Double can only hold whole numbers and decimal numbers only",
+                            // AnswerID - 90
+                            "If you use relational operator it's return value is either true or false",
+                            // AnswerID - 91
+                            "String value can be declared null or it can be declared many letters enclosed in a double quote",
+                            // AnswerID - 92
+                            "String, float, double, interface, class are examples of a keyword",
+                            // AnswerID - 93
+                            "Short can store from -32--- to -----",
+                            // AnswerID - 94
+                            "Only double can be returned in transcendental",
+                            // AnswerID - 95
+                            "Unicode defines fully international character set ",
+                            // AnswerID - 96
+                            "Boolean has only two values and these are??",
+                            // AnswerID - 97
+                            "Carefully check the values assigned in the variables",
+                            // AnswerID - 98
+                            "The expression should only have the same data type  ",
+                            // AnswerID - 99
+                            "It should be a whole number when you multiply the convert it to double",
+                            // AnswerID - 100
+                            "Convert it into a whole number before you multiply",
+                            // AnswerID - 101
+                            "You can't type cast boolean to numbers",
+                            // AnswerID - 102
+                            "Binary operator has 2 operands",
+                            // AnswerID - 103
+                            "Only [] and () are the highest",
+                            // AnswerID - 104
+                            "If the expression has ++ in it then it will always add 1 to it",
+                            // AnswerID - 105
+                            "If you use this % operator it will only return the division remainder",
+                            // AnswerID - 106
+                            "This will not compile because of the symbol !"
+
                     ))
 
 
