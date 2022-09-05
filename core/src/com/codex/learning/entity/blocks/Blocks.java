@@ -21,6 +21,7 @@ public class Blocks extends Entity {
     protected boolean inContact;
     private boolean preDefinedContact;
     private boolean isPredefined;
+    private boolean isBlock;
     private Vector2 dupliSize;
     public Blocks(Manager manager, String id, String name, boolean isPredefined) {
         super(manager);
@@ -78,6 +79,7 @@ public class Blocks extends Entity {
 
         inContact = false;
         preDefinedContact = false;
+        isBlock = true;
     }
 
         @Override
@@ -111,6 +113,12 @@ public class Blocks extends Entity {
         manager.getFont().draw(sprite, this.name,
                 (this.size.x - (this.size.x * (Constants.PPM * 1.1f)) + (Constants.PPM * body.getPosition().x)),
                 (this.size.y - (this.size.y * (Constants.PPM * 0.5f)) + (Constants.PPM * body.getPosition().y)));
+
+        if(isUppercase(this.name)){
+            manager.getFont().draw(sprite, this.name,
+                    (this.size.x - (this.size.x * (Constants.PPM * 1.1f)) + (Constants.PPM * body.getPosition().x)),
+                    (this.size.y - (this.size.y * (Constants.PPM * 0.5f)) + (Constants.PPM * body.getPosition().y)), 0, 1, true);
+        }
         sprite.end();
     }
 
@@ -158,6 +166,13 @@ public class Blocks extends Entity {
         body.setActive(active);
     }
 
+    public boolean isBlock() {
+        return isBlock;
+    }
+
+    public void setBlock(boolean block) {
+        isBlock = block;
+    }
 }
 //public class Blocks extends Entity {
 //    private String id, name;
