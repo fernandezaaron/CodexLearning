@@ -498,6 +498,15 @@ public class Dialogue {
                             "Fix the structure of the given code. \n " +
                             "Take note that the topic that I'm teaching you is about variables! \n" +
                             "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<String>(Arrays.asList(
+                            // Minigame ID 19
+                            "Hey there Grandson! I want you to output \"I will now be a 1st year student soon.\" \n" +
+                            "and the 1 will be an Integer variable named year. \n" +
+                            "Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about variables! \n" +
+                            "Make sure to not mess this up. Good luck!"
                     ))
             )
     );
