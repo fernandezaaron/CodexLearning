@@ -295,6 +295,24 @@ public class Dialogue {
                             "There are different ways on how to Type Cast a variable",
                             "Not all variables can be Type Cast",
                             "Type Casting is always at the right side of a variable"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Operators
+                            "Arrange the block according to the output needed",
+                            "Don't forget the output needed",
+                            "Remember the order of operations",
+                            "Try to solve the numbers one at the time",
+                            "Don't be confused by the increments"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Conditional Statement
+                            "Arrange the block according to the output needed",
+                            "Don't forget the output needed",
+                            "Remember the Conditional Statement Syntax",
+                            "Try to check if the statement makes sense",
+                            "Else statement or Default are always at the bottom"
                     ))
             )
     );
@@ -753,6 +771,126 @@ public class Dialogue {
                             "and think of a way on how to solve this problem. \n " +
                             "Fix the structure of the given code. \n " +
                             "Take note that the topic that I'm teaching you is about Operators! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 43
+                            "Hey there Grandson! I want you to output \"True\". \n" +
+                            "There will be a variable called bool with a value of true. \n" +
+                            "The else condition will be a \"False\". \n" +
+                            "Think of a way on how to solve this problem. \n " +
+                            "Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Conditional Statement! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 44
+                            "Hey there Grandson! I want you to output \"False\". \n" +
+                            "There will be a variable called bool with a value of false. \n" +
+                            "The else condition will be a \"False\". \n" +
+                            "Think of a way on how to solve this problem. \n " +
+                            "Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Conditional Statement! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 45
+                            "Hey there Grandson! I want you to output \"A is greater\". \n" +
+                            "There will be a variable called num1 with a value of 5, \n" +
+                            "and 3 will be called num2. The else condition will be \"B is lower\". \n" +
+                            "Think of a way on how to solve this problem. \n " +
+                            "Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Conditional Statement! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 46
+                            "Hey there Grandson! I want you to output \"B is lower\". \n" +
+                            "There will be a variable called num1 with a value of 5, \n" +
+                            "and 3 will be called num2. The else condition will be \"B is lower\". \n" +
+                            "Think of a way on how to solve this problem. \n " +
+                            "Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Conditional Statement! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 47
+                            "Hey there Grandson! I want you to output \"C is lower\". \n" +
+                            "There will be a variable called num1 with a value of 5, \n" +
+                            "num2 with a value of 3, and num3 with a value of 1. \n" +
+                            "The if condition will be \"A is greater\", \n" +
+                            "and else if condition will be \"B is greater\". \n" +
+                            "Think of a way on how to solve this problem. \n " +
+                            "Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Conditional Statement! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 48
+                            "Hey there Grandson! I want you to output \"B is greater\". \n" +
+                            "There will be a variable called num1 with a value of 5, \n" +
+                            "num2 with a value of 3, and num3 with a value of 1. \n" +
+                            "The if condition will be \"A is greater\", \n" +
+                            "and else condition will be \"C is lower\". \n" +
+                            "Think of a way on how to solve this problem. \n " +
+                            "Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Conditional Statement! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 49
+                            "Hey there Grandson! I want you to output \"A Grade\". \n" +
+                            "There will be a variable called letter with a value of A, \n" +
+                            "it will be a switch-case condition. \n" +
+                            "The default is \"No Grade\". \n" +
+                            "Think of a way on how to solve this problem. \n " +
+                            "Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Conditional Statement! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 50
+                            "Hey there Grandson! I want you to output \"No Grade\". \n" +
+                            "There will be a variable called letter with a value of B, \n" +
+                            "it will be a switch-case condition. \n" +
+                            "The only case statement is \"A Grade\". \n" +
+                            "Think of a way on how to solve this problem. \n " +
+                            "Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Conditional Statement! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 51
+                            "Hey there Grandson! I want you to output \"Up\". \n" +
+                            "There will be a variable called direction with a value of North, \n" +
+                            "it will be a switch-case condition. \n" +
+                            "The only case statements are \"Up\", and \"Down\". \n" +
+                            "The default statement is \"No Direction\". \n" +
+                            "Think of a way on how to solve this problem. \n " +
+                            "Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Conditional Statement! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 52
+                            "Hey there Grandson! I want you to output \"Down\". \n" +
+                            "There will be a variable called direction with a value of South, \n" +
+                            "it will be a switch-case condition. \n" +
+                            "The only case statements are \"Up\", and \"Down\". \n" +
+                            "The default statement is \"No Direction\". \n" +
+                            "Think of a way on how to solve this problem. \n " +
+                            "Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Conditional Statement! \n" +
                             "Make sure to not mess this up. Good luck!"
                     ))
             )
