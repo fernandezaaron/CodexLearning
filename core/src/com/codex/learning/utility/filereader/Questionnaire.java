@@ -93,8 +93,13 @@ public class Questionnaire extends DatabaseReader {
     // end for minigames
 
     public void minigameDisplay(String stage,String topics,String expertiseLevel) {
+        //adjusts the difficulty using a switch statement of a String
         adjustDifficulty(expertiseLevel);
+
+        //adds topic depending on the stage number given
         addTopic(topics);
+
+        //this line gets all the questions included in the topic
         topics = topic.get(randomizer.nextInt(topic.size()));
         while(minigameGetter == null) {
             questionID = randomizer.nextInt(excelMinigameLimit - 1) + 1;
