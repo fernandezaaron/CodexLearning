@@ -700,7 +700,7 @@ public class Dialogue {
                             // Minigame ID 37
                             "Hey there Grandson! I want you to output \"2\", \n" +
                             "and \"10\". There will be no variable this time and \n" +
-                            "Think of a way on how to solve this problem. \n " +
+                            "think of a way on how to solve this problem. \n " +
                             "Fix the structure of the given code. \n " +
                             "Take note that the topic that I'm teaching you is about Operators! \n" +
                             "Make sure to not mess this up. Good luck!"
@@ -710,12 +710,51 @@ public class Dialogue {
                             // Minigame ID 38
                             "Hey there Grandson! I want you to output \"2\", \n" +
                             "and \"8\". There will be no variable this time and \n" +
-                            "Think of a way on how to solve this problem. \n " +
+                            "think of a way on how to solve this problem. \n " +
+                            "Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Operators! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 39
+                            "Hey there Grandson! I want you to output \"1\", \"2\", \n" +
+                            "and \"3\". There will be a variable called num with a value of 5 \n" +
+                            "and think of a way on how to solve this problem. \n " +
+                            "Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Operators! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 40
+                            "Hey there Grandson! I want you to output \"5\", \"4\", \n" +
+                            "and \"3\". There will be a variable called num with a value of 5 \n" +
+                            "and think of a way on how to solve this problem. \n " +
+                            "Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Operators! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 41
+                            "Hey there Grandson! I want you to output \"2\", \"4\", \"4\", \n" +
+                            "and \"3\". There will be a variable called num with a value of 3 \n" +
+                            "and think of a way on how to solve this problem. \n " +
+                            "Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Operators! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 42
+                            "Hey there Grandson! I want you to output \"7\", \"4\", \"5\", \n" +
+                            "and \"4\". There will be a variable called num with a value of 3 \n" +
+                            "and think of a way on how to solve this problem. \n " +
                             "Fix the structure of the given code. \n " +
                             "Take note that the topic that I'm teaching you is about Operators! \n" +
                             "Make sure to not mess this up. Good luck!"
                     ))
-
             )
     );
 
