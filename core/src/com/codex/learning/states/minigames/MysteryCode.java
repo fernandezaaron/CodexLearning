@@ -81,7 +81,7 @@ public class MysteryCode extends State {
                         if (currentStringLength <= 3){
                             questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.4f), Constants.BLOCKS_HEIGHT), 0);
                             questionBlocks[i][j].setPreDefinedContact(true);
-                            System.out.println(questionBlocks[i][j].getDupliSize().x );
+//                            System.out.println(questionBlocks[i][j].getDupliSize().x );
 //                            System.out.println(-questionBlocks[i][j].getBody().getPosition().x);
 
 
@@ -92,7 +92,7 @@ public class MysteryCode extends State {
                             questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.23f), Constants.BLOCKS_HEIGHT), 0);
                             questionBlocks[i][j].setPreDefinedContact(true);
 //                            xStartingPoint += currentStringLength / 2.2f;
-                            System.out.println(questionBlocks[i][j].getDupliSize().x );
+//                            System.out.println(questionBlocks[i][j].getDupliSize().x );
 
 //                            xStartingPoint =  questionBlocks[i][j].getDupliSize().x + questionBlocks[i][j].getBody().getPosition().x + 1.5f;
                         }
@@ -154,7 +154,7 @@ public class MysteryCode extends State {
                    for (int j = 0; j < minigameContainer.get(i).size(); j++) {
                        if (minigameContainer.get(i).get(j) != null) {
                            if (banishCells.contains(currentCell)){
-                               System.out.println(i + " " + j);
+//                               System.out.println(i + " " + j);
                                blockHolders[i][j].update(delta);
                            }
                            else
@@ -203,21 +203,21 @@ public class MysteryCode extends State {
                             blockHolders[i][j].update(delta);
                             if(jedisaur.isDropped()){
 //                            System.out.println(jedisaur.getCopyBlock().getDupliSize());
-                                System.out.println(blockSize);
-                                System.out.println(blockHolders[i][j].getCopyBlock() + "asdad");
+//                                System.out.println(blockSize);
+//                                System.out.println(blockHolders[i][j].getCopyBlock() + "asdad");
 
                                 int currentCurrentCell = currentCell;
                                 for(int k=j-1; k>=0; k--){
                                     currentCurrentCell--;
                                     if(banishCells.contains(currentCurrentCell)){
-                                        System.out.println("left true");
+//                                        System.out.println("left true");
                                         blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
                                     }
                                     else{
-                                        System.out.println("left false");
+//                                        System.out.println("left false");
                                         questionBlocks[i][k].getBody().setTransform(questionBlocks[i][k].getBody().getPosition().x - blockSize+0.5f, questionBlocks[i][k].getBody().getPosition().y, 0);
                                     }
-                                    System.out.println("k-1: " + k);
+//                                    System.out.println("k-1: " + k);
                                 }
 
 //                            currentCurrentCell = currentCell;
@@ -239,17 +239,17 @@ public class MysteryCode extends State {
                                 currentCurrentCell = currentCell;
                                 for(int k=j+1; k<minigameContainer.get(i).size(); k++){
                                     currentCurrentCell++;
-                                    System.out.println("k-1: START" + k);
-                                    System.out.println(banishCells.size() + "banish");
+//                                    System.out.println("k-1: START" + k);
+//                                    System.out.println(banishCells.size() + "banish");
                                     if(banishCells.contains(currentCurrentCell)){
-                                        System.out.println("left true");
+//                                        System.out.println("left true");
                                         blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x + blockSize-0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
                                     }
                                     else{
-                                        System.out.println("left false");
+//                                        System.out.println("left false");
                                         questionBlocks[i][k].getBody().setTransform(questionBlocks[i][k].getBody().getPosition().x + blockSize-0.5f , questionBlocks[i][k].getBody().getPosition().y, 0);
                                     }
-                                    System.out.println("k-1: " + k);
+//                                    System.out.println("k-1: " + k);
                                 }
                                 jedisaur.setDropped(false);
                             }

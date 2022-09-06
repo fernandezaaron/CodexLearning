@@ -10,7 +10,7 @@ public class Dialogue {
 
 
     private ArrayList<ArrayList<String>> introductionDialogue = new ArrayList<>(Arrays.asList(
-            new ArrayList<String>(Arrays.asList("Hi I am, JediGrandpa", "I have a task for you to do", "But first lets study first on the topic",
+            new ArrayList<>(Arrays.asList("Hi I am, JediGrandpa", "I have a task for you to do", "But first lets study first on the topic",
                     //syntax
                     "The first topic is Syntax", "The syntax of Java refers to the set of rules defining how a Java program is written and interpreted.",
                     "The syntax is mostly derived from C and C++. Unlike in C++, in Java there are no global functions or variables" ,
@@ -26,7 +26,7 @@ public class Dialogue {
                     "This example uses a multi-line comment (a comment block) to explain the code:" + "\n\n/* The code below will print the words Hello World\n" +"to the screen, and it is amazing */",
                     "As for your task, you will be going to the COMPUTER beside me.", "After finishing all the questions in the COMPUTER, you can now proceed to the PLAYROOM on my RIGHT",
                     "The PLAYROOM however contains a random MINI-GAME that will test your CODING CAPABILITIES")),
-            new ArrayList<String>(Arrays.asList(
+            new ArrayList<>(Arrays.asList(
                     //variables
                     "Once again I am JediGrandpa,", "I have a task for you to do", "But first lets study on the topic",
                     "Our topic for this stage will be Variables", "Variables are containers for storing data values.", "In Java, there are different types of variables",
@@ -50,7 +50,7 @@ public class Dialogue {
                             "byte -> short -> char -> int -> long -> float -> double", "For example:" + "\n\n int myInt = 9;\n" + "double myDouble = myInt;",
                     "Narrowing Casting (manually) - converting a larger type to a smaller size type\n" +
                             "double -> float -> long -> int -> char -> short -> byte", "For example:" + "double myDouble = 9.78d;\n" + "int myInt = (int) myDouble")),
-            new ArrayList<String>(Arrays.asList(
+            new ArrayList<>(Arrays.asList(
                     //operators
                     "You may know who I am already and I have a task for you to do again", "This is for you to master the topic do not complain", "now then, lets study on the next topic",
                     "Our fifth topic is Operators", "Operators are used to perform operations on variables and values.", "Java divides the operators into the following groups:" +
@@ -67,14 +67,14 @@ public class Dialogue {
                     "Logical operators are used to determine the logic between variables or values:" + "\n\n&& - Logical and - Returns true if both statements are true" + "\n|| - Logical or - Returns true if one of the statements is true" +
                             "\n! - Logical not - Reverse the result, returns false if the result is true"
             )),
-            new ArrayList<String>(Arrays.asList(
+            new ArrayList<>(Arrays.asList(
                     "We have met once again and this will probably be the last I would see you :(",
                     "Our last meeting will check your mastery on the first stage. ",
                     "There will be a quiz that includes all the topics we have covered from the first stage",
                     "After proving your mastery on the topic and passing the quiz",
                     "You will be able to proceed to the next stage, which is the School!"
             )),
-            new ArrayList<String>(Arrays.asList(
+            new ArrayList<>(Arrays.asList(
                     // Conditional Statements
                     "Our first topic is Conditional statements", "Java has the following conditional statements:" + "\n\nif, else, else if, and switch",
                     "Use if to specify a block of code to be executed, if a specified condition is true" + "\nfor example: " + "\nint x = 20;\n" + "int y = 18;\n" + "if (x > y) {\n" + "  System.out.println(\"x is greater than y\");\n" + "}",
@@ -88,7 +88,7 @@ public class Dialogue {
                             "    System.out.println(\"Today is Sunday\");\n" + "    break;\n" + "  default:\n" + "    System.out.println(\"Looking forward to the Weekend\");\n" + "}"
             )),
 
-            new ArrayList<String>(Arrays.asList(
+            new ArrayList<>(Arrays.asList(
                     // Looping Statements
                     "Our second topic is Looping Statements", "Loops can execute a block of code as long as a specified condition is reached.", "Loops are handy because they save time, reduce errors, and they make code more readable.", "The while loop loops through a block of code as long as a specified condition is true:",
                     "Example:" + "\n\nint i = 0;\n" + "while (i < 5) {\n" + "  System.out.println(i);\n" + "  i++;\n" + "}",
@@ -105,7 +105,7 @@ public class Dialogue {
                     "You can also use continue in while loops:", "Example" + "int i = 0;\n" + "while (i < 10) {\n" + "  if (i == 4) {\n" + "    i++;\n" + "    continue;\n" + "  }\n" + "  System.out.println(i);\n" + "  i++;\n" + "}"
             )),
 
-            new ArrayList<String>(Arrays.asList(
+            new ArrayList<>(Arrays.asList(
                     // Arrays
                     "Our third topic is Arrays", "Arrays are used to store multiple values in a single variable, instead of declaring separate variables for each value.","To declare an array, define the variable type with square brackets:" + "\n\nFor example:" + "\nString[] elements;",
                     "To insert values to it, we can use an array literal - place the values in a comma-separated list, inside curly braces:" + "\n\nFor example:" + "\nString[] elements = {\"Air\", \"Water\", \"Earth\", \"Fire\"};", "To create an array of integers, you could write:" + "\nint[] myNum = {1, 2, 3, 4};",
@@ -120,7 +120,7 @@ public class Dialogue {
                             "        System.out.println(myNumbers[i][j]);\n" + "      }\n" + "    }\n" + "  }"
             )),
 
-            new ArrayList<String>(Arrays.asList(
+            new ArrayList<>(Arrays.asList(
                     // Methods
                     "Our fourth topic is Methods", "A method is a block of code which only runs when it is called." + "\nYou can pass data, known as parameters, into a method.", "Methods are used to perform certain actions, and they are also known as functions.",
                     "A method must be declared within a class. It is defined with the name of the method, followed by parentheses (). Java provides some pre-defined methods, such as System.out.println(), but you can also create your own methods to perform certain actions:",
@@ -129,7 +129,7 @@ public class Dialogue {
                             "    myMethod();\n" + "  }\n" + "}"
             )),
 
-            new ArrayList<String>(Arrays.asList(
+            new ArrayList<>(Arrays.asList(
                     // Parameters
                     "Our fifth topic is Parameters","Information can be passed to methods as parameter. Parameters act as variables inside the method.","Parameters are specified after the method name, inside the parentheses. You can add as many parameters as you want, just separate them with a comma.",
                     "For example" + "\n\npublic class Main {\n" + "  static void myMethod(String fname) {\n" + "    System.out.println(fname + \" Refsnes\");\n" + "  }\n" + "\n" + "  public static void main(String[] args) {\n" + "    myMethod(\"Liam\");\n" + "  }\n" + "}",
@@ -137,7 +137,7 @@ public class Dialogue {
                     "It is common to use if...else statements inside methods:", "For example" + "\n\npublic class Main {\n" + "\n" + "  static void checkAge(int age) {\n" + "\n" + "    if (age < 18) {\n" + "      System.out.println(\"Access denied - You are not old enough!\");\n" + "\n" +
                             "    } else {\n" + "      System.out.println(\"Access granted - You are old enough!\");\n" + "    }\n" + "\n" + "  }\n" + "\n" + "  public static void main(String[] args) {\n" + "    checkAge(20);\n" + "  }\n" + "}"
             )),
-            new ArrayList<String>(Arrays.asList(
+            new ArrayList<>(Arrays.asList(
                     // Parameters Overloading
                     "Our Sixth topic is Parameters overloading", "multiple methods can have the same name with different parameters:" + "\n\nFor example:" + "\nint myMethod(int x)\n" + "float myMethod(float x)\n" + "double myMethod(double x, double y)",
                     "Instead of defining two methods that should do the same thing, it is better to overload one.", "For example" + "\n\nstatic int plusMethod(int x, int y) {\n" + "  return x + y;\n" + "}\n" + "\n" +
@@ -145,7 +145,7 @@ public class Dialogue {
                             "public static void main(String[] args) {\n" + "  int myNum1 = plusMethod(8, 5);\n" + "  double myNum2 = plusMethod(4.3, 6.26);\n" + "}"
             )),
 
-            new ArrayList<String>(Arrays.asList(
+            new ArrayList<>(Arrays.asList(
                     "We have met once again and this will probably be the last I would see you :(",
                     "Our last meeting will check your mastery on the first stage. ",
                     "There will be a quiz that includes all the topics we have covered from the first stage",
@@ -153,7 +153,7 @@ public class Dialogue {
                     "You will be able to proceed to the next stage, which is the School!"
             )),
 
-            new ArrayList<String>(Arrays.asList(
+            new ArrayList<>(Arrays.asList(
                     //classes
                     "Our first topic is Classes", "Everything in Java is associated with classes and objects, along with its attributes and methods.", "For example: in real life, a car is an object. The car has attributes, such as weight and color, and methods, such as drive and brake.",
                     "A Class is like an object constructor, or a \"blueprint\" for creating objects.", "To create a class, use the keyword class:" + "\n\nExample" + "\npublic class Main {\n" + "  int x = 5;\n" + "}" + "\n\nRemember that a class should always start with an uppercase first letter, and that the name of the java file should match the class name.",
@@ -252,7 +252,7 @@ public class Dialogue {
     // Code: Order will have its own hint
     private ArrayList<ArrayList<String>> codeOrderHints = new ArrayList<>(
             Arrays.asList(
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Syntax
                             "Arrange the block according to the output needed",
                             "Don't forget the output needed",
@@ -261,7 +261,7 @@ public class Dialogue {
                             "Remember that public static void main is where you output the code"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Comments
                             "Arrange the block according to the output needed",
                             "Don't forget the output needed",
@@ -270,7 +270,7 @@ public class Dialogue {
                             "Comments can be placed everywhere in the code, try to recall"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Variables
                             "Arrange the block according to the output needed",
                             "Don't forget the output needed",
@@ -279,7 +279,7 @@ public class Dialogue {
                             "Comments can be placed everywhere in the code, try to recall"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Data Types
                             "Arrange the block according to the output needed",
                             "Don't forget the output needed",
@@ -288,7 +288,7 @@ public class Dialogue {
                             "Declaration of the Data Types are always above the print"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Type Casting
                             "Arrange the block according to the output needed",
                             "Don't forget the output needed",
@@ -303,7 +303,7 @@ public class Dialogue {
     // Mystery Code and Fill in the Block has the same hints
     private ArrayList<ArrayList<String>> twoHintsContainer = new ArrayList<>(
             Arrays.asList(
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Syntax
                             "Remember that this is java programming",
                             "Try to remember the basic structure on how to create a java program",
@@ -312,76 +312,47 @@ public class Dialogue {
                             "Don't be confuse on how to print an output in java"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
-                            // Minigame ID 2
-                            "Try to remember the basic structure on how to create a java program",
+                    new ArrayList<>(Arrays.asList(
+                            // Comments
+                            "Try to remember the output of the program and where to place the comments",
+                            "Try to remember on how to create a comment in java program",
                             "Make sure to check the syntax of the code",
                             "Don't forget to check the closing statement",
-                            "Remember that the output of Integer and String values are different",
-                            "Plus sign can also be in the output of Integer"
+                            "Remember that there are two kinds of comments in java"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
-                            // Minigame ID 3
-                            "Basic java program structure..",
-                            "Make sure to check the syntax of the code",
+                    new ArrayList<>(Arrays.asList(
+                            // Variables
+                            "Try to remember the output of the program",
+                            "Make sure to double check the variables",
                             "Don't forget to check the closing statement",
-                            "Remember that the output is an Integer",
-                            "Integer also has order of operation when being output"
+                            "Output of the program depends on the variable",
+                            "Place the variable as the output if necessary"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
-                            // Minigame ID 4
-                            "Basic java program structure..",
-                            "Make sure to check the syntax of the code",
+                    new ArrayList<>(Arrays.asList(
+                            // Data Types
+                            "Try to remember the output of the program",
+                            "Make sure to check data declared in the variables",
                             "Don't forget to check the closing statement",
-                            "Remember that the output is an Integer",
-                            "Integer also has order of operation when being output"
+                            "Output of the program depends on the variable",
+                            "Place the variable as the output if necessary"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
-                            // Looping Statements
-                            "In using a while loop always check if the condition in properly set.", "Don't forget to increase or decrease the variable in the condition", "" +
-                                    "Don't forget there are 3 statements in a for loop", "Check if statement if it uses the correct comparison operator in a for loop",
-                            "check variable name and array name if it is correct in using the for-each loop"
-                    )),
-
-                    new ArrayList<String>(Arrays.asList(
-                            // Arrays
-                            "Did you properly declare an array", "Did you use the proper brackets in declaring an array", "Did you use the array length properly",
-                            "0 is the first index in an array when accessing it", "When using for loop in arrays you will use the length property of an array",
-                            "Did you properly put brackets in declaring an multidimensional array","In Multidimensional array you will need to specify two indexes when calling or accessing the elements"
-                    )),
-
-                    new ArrayList<String>(Arrays.asList(
-                            // Methods
-                            "Did you properly declare your own method", "Did you properly call a method", "Did you use the pre-defined methods properly"
-                    )),
-
-                    new ArrayList<String>(Arrays.asList(
-                            // Parameters
-                            "Did you properly set the parameters in a method", "Every parameters you set must be separated by a comma", "You can use primitive data types instead of void keyword if you want a return value in a method",
-                            // Parameters Overloading
-                            "You can't override the method when it is final or static", "Constructors in a method cannot be overridden",
-                            "Use the proper variable type in when calling a method you override "
-                    )),
-
-                    new ArrayList<String>(Arrays.asList(
-                            // Stage 3
-                            // Classes
-                            "Don't forget the keyword when creating a class", "THe name of the java file should match the class name", "Use proper syntax when creating a class"
-                    )),
-
-                    new ArrayList<String>(Arrays.asList(
-                            // Objects
-                            "Did you specify the class name before the object name", "there should be a new keyword when creating an object", "Did you properly create an object"
+                    new ArrayList<>(Arrays.asList(
+                            // Type Casting
+                            "Try to remember the output of the program",
+                            "Don't forget to check the closing statement",
+                            "There are multiple ways to type cast a variable",
+                            "Output of the program depends on the variable",
+                            "Place the variable as the output if necessary"
                     ))
             )
     );
 
     private ArrayList<ArrayList<String>> minigameQuestionDialogue = new ArrayList<>(
             Arrays.asList(
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 1
                             "Hey there Grandson! I want you to output a \"Hello World!\" \n " +
                             "in the program by fixing the structure of the given code. \n " +
@@ -389,7 +360,7 @@ public class Dialogue {
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 2
                             "Hey there Grandson! I want you to output \"7\" \n " +
                             "in the program by fixing the structure of the given code. \n " +
@@ -397,7 +368,7 @@ public class Dialogue {
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 3
                             "Hey there Grandson! I want you to output \"Hello World! 123\" \n " +
                             "in the program by fixing the structure of the given code. \n " +
@@ -405,7 +376,7 @@ public class Dialogue {
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 4
                             "Hey there Grandson! I want you to output \"Hello World 7\" and \"Hello World 9\"\n " +
                             "in the program by fixing the structure of the given code. \n " +
@@ -413,7 +384,7 @@ public class Dialogue {
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 5
                             "Hey there Grandson! I want you to output \"Hello World 123\" and \"Hello World 321\"\n " +
                             "in the program by fixing the structure of the given code. \n " +
@@ -421,7 +392,7 @@ public class Dialogue {
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 6
                             "Hey there Grandson! I want you to output \"Hello World 2+5\" and \"Hello World 3+6\"\n " +
                             "in the program by fixing the structure of the given code. \n " +
@@ -429,15 +400,15 @@ public class Dialogue {
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 7
-                            "Hey there Grandson! I want you to output \"Hello World1234\" and \"Hello World3210\"\n " +
-                            "in the program by fixing the structure of the given code. \n " +
+                            "Hey there Grandson! I want you to output \"Hello World\", \n" +
+                            "\"JediLand Home\", \"JediGrandpa\", and \"Jedisaur\" \n" +
                             "Take note that the topic that I'm teaching you is syntax! \n" +
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 8
                             "Hey there Grandson! I want you to output \"Hello World\", \n" +
                             "\"JediLand\", \"JediGrandpa\", and \"Jedisaur123\" \n" +
@@ -446,7 +417,7 @@ public class Dialogue {
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 9
                             "Hey there Grandson! I want you to output \"123Hello World123\" and \"321Hello World321\"\n " +
                             "in the program by fixing the structure of the given code. \n " +
@@ -454,7 +425,7 @@ public class Dialogue {
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 10
                             "Hey there Grandson! I want you to put a comment \"This is a single-line comment\" \n " +
                             "above that outputs \"Hello World!\" by fixing the structure of the given code. \n " +
@@ -462,7 +433,7 @@ public class Dialogue {
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 11
                             "Hey there Grandson! I want you to put a comment \"This is a multi-line comment\" \n " +
                             "above that outputs \"Hello World!\" by fixing the structure of the given code. \n " +
@@ -470,7 +441,7 @@ public class Dialogue {
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 12
                             "Hey there Grandson! I want you to put a comment \"// = single-line comment\"\n " +
                             "and \"/* */ = multi-line comment\" in a two separate single-line comment \n" +
@@ -479,7 +450,7 @@ public class Dialogue {
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 13
                             "Hey there Grandson! I want you to put a comment \"// = single-line comment\" \n" +
                             "in a multi-line comment, and \"/* */ = multi-line comment\" in a single-line comment \n" +
@@ -488,7 +459,7 @@ public class Dialogue {
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 14
                             "Hey there Grandson! I want you to put a multi-line comment saying \n" +
                             "\"The program outputs Hello World! \n" +
@@ -499,7 +470,7 @@ public class Dialogue {
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 15
                             "Hey there Grandson! I want you to put a single-line comment saying \n" +
                             "\"The program outputs Hello World! \n" +
@@ -510,7 +481,7 @@ public class Dialogue {
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 16
                             "Hey there Grandson! I want you to output \"My name is Jedisaur.\" \n" +
                             "and the Jedisaur will be a String variable named name. \n" +
@@ -519,7 +490,7 @@ public class Dialogue {
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 17
                             "Hey there Grandson! I want you to output \"My Grandpa's name is JediGrandpa\" \n" +
                             "and the JediGrandpa will be a String variable named name. \n" +
@@ -528,7 +499,7 @@ public class Dialogue {
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 18
                             "Hey there Grandson! I want you to output \"I will now be a 1st year student soon.\" \n" +
                             "and the 1 will be an Integer variable named year. \n" +
@@ -537,7 +508,7 @@ public class Dialogue {
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 19
                             "Hey there Grandson! I want you to output \"My name is Jedisaur.\" and \"I am 8 years old\" \n" +
                             "The Jedisaur will be a String variable named name, and the 8 will be an \n" +
@@ -546,7 +517,7 @@ public class Dialogue {
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 20
                             "Hey there Grandson! I want you to output \"My name is Jedisaur.\" \n" +
                             "and \"My GrandPa's name is JediGrandpa\" \n" +
@@ -556,7 +527,7 @@ public class Dialogue {
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 21
                             "Hey there Grandson! I want you to output \"I will now be a 1st year student soon.\" \n" +
                             "and \"I am 8 years old\" The 1 will be an Integer variable named year, \n" +
@@ -566,7 +537,7 @@ public class Dialogue {
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 22
                             "Hey there Grandson! I want you to output \"My name is Jedisaur.\", \n" +
                             "\"I will now be a 1st year student soon.\", and \"I am 8 years old\" \n" +
@@ -576,7 +547,7 @@ public class Dialogue {
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 23
                             "Hey there Grandson! I want you to output \"My name is Jedisaur.\", \n" +
                             "\"My GrandPa's name is JediGrandpa.\", and \"I am the only Grandson.\". \n" +
@@ -586,7 +557,7 @@ public class Dialogue {
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 24
                             "Hey there Grandson! I want you to output \"My name is Jedisaur.\" \n" +
                             "\"I will now be a 1st year student soon.\", and \"I am a dinosaur.\". \n" +
@@ -596,7 +567,7 @@ public class Dialogue {
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 25
                             "Hey there Grandson! I want you to output \"Jedisaur is 8 years old\", and \n" +
                             "\"A height of 5.9ft.\". The Jedisaur will be a String variable named name, \n" +
@@ -606,7 +577,7 @@ public class Dialogue {
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 26
                             "Hey there Grandson! I want you to output \"I got 3A\", and \n" +
                             "\"in Math.\". The 3 will be an Integer variable named number, \n" +
@@ -616,7 +587,7 @@ public class Dialogue {
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 27
                             "Hey there Grandson! I want you to output \"true\", \n" +
                             "\"A\", and \"Math\". The true will be a boolean variable named bool, \n" +
@@ -626,7 +597,7 @@ public class Dialogue {
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 28
                             "Hey there Grandson! I want you to output \"false\", \n" +
                             "\"3\", and \"5.9\". The false will be a boolean variable named bool, \n" +
@@ -636,7 +607,7 @@ public class Dialogue {
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 29
                             "Hey there Grandson! I want you to output \"This is true\", \n" +
                             "\"Jedisaur is 8 years old\", and \"A height of 5.9ft.\". \n" +
@@ -647,7 +618,7 @@ public class Dialogue {
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 30
                             "Hey there Grandson! I want you to output \"This is false\", \n" +
                             "\"Jedisaur is 8 years old\", and \"A height of 5.9ft.\". \n" +
@@ -658,33 +629,90 @@ public class Dialogue {
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 31
                             "Hey there Grandson! I want you to output \"5.9\", \n" +
                             "and \"5.\". The 5.9 will be a float variable named num, \n" +
-                            "and 5 will be a converted value from Float variable, it will be named convert \n" +
+                            "and 5 will be a converted value from a Float variable, it will be named convert \n" +
                             "as an Integer variable. Fix the structure of the given code. \n " +
                             "Take note that the topic that I'm teaching you is about Type Casting! \n" +
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
                             // Minigame ID 32
                             "Hey there Grandson! I want you to output \"3\", \n" +
                             "and \"3.\". The 3 will be an Integer variable named num, \n" +
-                            "and 3 will be a converted value from Integer variable, it will be named convert \n" +
+                            "and 3 will be a converted value from an Integer variable, it will be named convert \n" +
                             "as a String variable. Fix the structure of the given code. \n " +
                             "Take note that the topic that I'm teaching you is about Type Casting! \n" +
                             "Make sure to not mess this up. Good luck!"
                     )),
 
-                    new ArrayList<String>(Arrays.asList(
-                            // Minigame ID 32
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 33
                             "Hey there Grandson! I want you to output \"My height is 5.9ft\", \n" +
                             "and \"I have 5 subjects\". The 5.9 will be a float variable named num, \n" +
-                            "and 5 will be a converted value from Float variable, it will be named convert \n" +
+                            "and 5 will be a converted value from a Float variable, it will be named convert \n" +
                             "as an Integer variable. Fix the structure of the given code. \n " +
                             "Take note that the topic that I'm teaching you is about Type Casting! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 34
+                            "Hey there Grandson! I want you to output \"3 = 3\", \n" +
+                            "and \"3 != 3\". The 3 will be an Integer variable named num, \n" +
+                            "the other 3 will be an Integer variable named num2, \n" +
+                            "and 3 will be a converted value from an Integer variable, it will be named convert \n" +
+                            "as a String variable. Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Type Casting! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 35
+                            "Hey there Grandson! I want you to output \"5.9 is similar to 6.7\", \n" +
+                            "\"5.9 is different to 5\", and \"5 is similar to 4\". \n" +
+                            "The 5.9 will be a Float variable named num, \n" +
+                            "the 6.7 will be a Float variable named num2, \n" +
+                            "the 5 will be a converted value from a Float variable, it will be named convert \n" +
+                            "as an Integer variable, and 4 will be an Integer variable named num3. \n" +
+                            "Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Type Casting! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 36
+                            "Hey there Grandson! I want you to output \"true is similar to false\", \n" +
+                            "\"true != false\", and \"true is different to true\". \n" +
+                            "The true will be a Boolean variable named bool, \n" +
+                            "the false will be a Boolean variable named bool2, \n" +
+                            "and the true will be a converted value from a Boolean variable, \n" +
+                            "it will be named convert as a String variable. \n" +
+                            "Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Type Casting! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 37
+                            "Hey there Grandson! I want you to output \"2\", \n" +
+                            "and \"10\". There will be no variable this time and \n" +
+                            "Think of a way on how to solve this problem. \n " +
+                            "Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Operators! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 38
+                            "Hey there Grandson! I want you to output \"2\", \n" +
+                            "and \"8\". There will be no variable this time and \n" +
+                            "Think of a way on how to solve this problem. \n " +
+                            "Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Operators! \n" +
                             "Make sure to not mess this up. Good luck!"
                     ))
 

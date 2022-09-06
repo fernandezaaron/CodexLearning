@@ -127,23 +127,26 @@ public class Questionnaire extends DatabaseReader {
     public void minigameDisplay(String stage,String topics,String expertiseLevel) {
         adjustDifficulty(expertiseLevel);
         addTopic(topics);
-        topics = topic.get(randomizer.nextInt(topic.size()));
+
         while(minigameGetter == null) {
+            topics = topic.get(randomizer.nextInt(topic.size()));
+            System.out.println("TOPIC = " + topics);
             questionID = randomizer.nextInt(excelMinigameLimit - 1) + 1;
             difficulty = levels.get(randomizer.nextInt(levels.size()));
             findCell = findRow(minigameSheet, questionID);
-            getMinigame(findCell, 4, difficulty, stage);
+            getMinigame(findCell, 4, difficulty, topics);
         }
         getAnswerPool(stage, topics);
         getDispenserPool(stage, topics);
     }
 
-    public void getMinigame(int row1, int col1, String difficulty, String stage) {
+    public void getMinigame(int row1, int col1, String difficulty, String stageTopic) {
         minigameHolder = new ArrayList<ArrayList<String>>();
+        String stageTopicacq = getMinigameInfo(row1, 1);
         String difficultyacq = getMinigameInfo(row1, 2);
-        String stageacq = getMinigameInfo(row1, 3);
 
-        if((difficultyacq != null && difficultyacq.equals(difficulty)) && (stageacq != null && stageacq.equals(stage))) {
+
+        if((difficultyacq != null && difficultyacq.equals(difficulty)) && (stageTopicacq != null && stageTopicacq.equals(stageTopic))) {
             for(int x = row1; x > 0; x++) {
                 minigameGetter = new ArrayList<String>();
                 for(int y = col1; y > 0; y++) {
@@ -344,7 +347,7 @@ public class Questionnaire extends DatabaseReader {
 //        }
 //    }
 
-    public void questionDisplay(String stage,String topics,String expertiseLevel) {
+    public void questionDisplay(String stage, String topics, String expertiseLevel) {
         adjustDifficulty(expertiseLevel);
         addTopic(topics);
 
