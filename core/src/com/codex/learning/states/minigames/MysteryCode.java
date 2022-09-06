@@ -154,13 +154,10 @@ public class MysteryCode extends State {
                    for (int j = 0; j < minigameContainer.get(i).size(); j++) {
                        if (minigameContainer.get(i).get(j) != null) {
                            if (banishCells.contains(currentCell)){
-//                               System.out.println(i + " " + j);
                                blockHolders[i][j].update(delta);
                            }
                            else
                                questionBlocks[i][j].update(delta);
-
-//                           System.out.println(currentCell);
                            currentCell++;
                        }
                    }
@@ -168,7 +165,6 @@ public class MysteryCode extends State {
             //kung gagamitin mo to remove the blocks[i][j].update muna sa taas pero i havent tried pag magkasabay sila naka on for sure dodoble HAHA
             for (int i = 0; i < answerBlocks.length; i++) {
                 if (answerBlocks[i] != null) {
-                    answerBlocks[i].update(delta);
                     if (answerBlocks[i].isInContact()) {
                         jedisaur.carryBlock(answerBlocks[i]);
                     }
@@ -182,14 +178,13 @@ public class MysteryCode extends State {
                     if (banishCells.contains(currentCell)) {
                         if (blockHolders[i][j].isInContact()) {
                             jedisaur.dropBlock(blockHolders[i][j]);
-//                                System.out.println("dropped to: " + blockHolders[i][j]);
                         }
                     }
                     currentCell++;
                 }
             }
         }
-
+        /* below this is used for padding */
         if(jedisaur.isCarrying()){
             blockSize = jedisaur.getCopyBlock().getDupliSize().x;
         }
@@ -202,22 +197,74 @@ public class MysteryCode extends State {
                         if (blockHolders[i][j].isInContact()) {
                             blockHolders[i][j].update(delta);
                             if(jedisaur.isDropped()){
-//                            System.out.println(jedisaur.getCopyBlock().getDupliSize());
-//                                System.out.println(blockSize);
-//                                System.out.println(blockHolders[i][j].getCopyBlock() + "asdad");
 
+                                /* tempCurrentCell is used for a local iteration of currentcell
+                                    since currentcell iterates the whole indeces from 1-N */
+
+                                int tempCurrentCell = currentCell;
+
+                                /* left iteration of blocks */
+                                for(int k=j-1; k>=0; k--){
+                                    tempCurrentCell--;
+                                    /* checks if the arraylist is a blockholder or if it is inside the arraylist */
+                                    if(banishCells.contains(tempCurrentCell)){
+                                        blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+                                    }
+                                    else{
+                                        questionBlocks[i][k].getBody().setTransform(questionBlocks[i][k].getBody().getPosition().x - blockSize+0.5f, questionBlocks[i][k].getBody().getPosition().y, 0);
+                                    }
+                                }
+
+                                tempCurrentCell = currentCell;
+
+                                /* for the blocks occupying blockholders */
+
+
+                                if(blockHolders[i][j].isOccupied()){
+                                    System.out.println(j + " " + blockHolders[i][j].getCopyBlock());
+                                    for(int k=j-1; k>=0; k--){
+//                                        tempCurrentCell--;
+////                                        if(banishCells.contains(tempCurrentCell)){
+//                                        if(blockHolders[i][k].getCopyBlock().isGenerated()){
+////                                            System.out.println(k + " is occupied :D");
+//                                            System.out.println(k + "" + blockHolders[i][k].getCopyBlock());
+////                                            blockHolders[i][k].getCopyBlock().getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+//                                                //                                        answerBlocks[i].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+//                                        }
+////                                        }
+                                    }
+                                }
+
+                                tempCurrentCell = currentCell;
+
+                                /* right iteration of blocks */
+                                for(int k=j+1; k<minigameContainer.get(i).size(); k++){
+                                    tempCurrentCell++;
+                                    if(banishCells.contains(tempCurrentCell)){
+                                        blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x + blockSize-0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+                                    }
+                                    else{
+                                        questionBlocks[i][k].getBody().setTransform(questionBlocks[i][k].getBody().getPosition().x + blockSize-0.5f , questionBlocks[i][k].getBody().getPosition().y, 0);
+                                    }
+                                }
+                            jedisaur.setDropped(false);
+                            }
+
+                            /* made a new boolean flag for whenever jedisaur HAS PICKEDUP
+                               because if jedisaur ISCARRYING it will always return to true thus will
+                               manipulate the x-axis whenever the user carries a block
+                            */
+
+                            if(jedisaur.isPickedUp()){
                                 int currentCurrentCell = currentCell;
                                 for(int k=j-1; k>=0; k--){
                                     currentCurrentCell--;
                                     if(banishCells.contains(currentCurrentCell)){
-//                                        System.out.println("left true");
-                                        blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+                                        blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x + blockSize-0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
                                     }
                                     else{
-//                                        System.out.println("left false");
-                                        questionBlocks[i][k].getBody().setTransform(questionBlocks[i][k].getBody().getPosition().x - blockSize+0.5f, questionBlocks[i][k].getBody().getPosition().y, 0);
+                                        questionBlocks[i][k].getBody().setTransform(questionBlocks[i][k].getBody().getPosition().x + blockSize-0.5f, questionBlocks[i][k].getBody().getPosition().y, 0);
                                     }
-//                                    System.out.println("k-1: " + k);
                                 }
 
 //                            currentCurrentCell = currentCell;
@@ -231,28 +278,25 @@ public class MysteryCode extends State {
 //                                    if(blockHolders[i][k].isOccupied()){
 //                                        System.out.println("is occupied :D");
 //                                        blockHolders[i][k].getCopyBlock().getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+//                                        answerBlocks[k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
 //                                    }
 //                                }
-//                                System.out.println("k-1: " + k);
 //                            }
 
                                 currentCurrentCell = currentCell;
                                 for(int k=j+1; k<minigameContainer.get(i).size(); k++){
                                     currentCurrentCell++;
-//                                    System.out.println("k-1: START" + k);
-//                                    System.out.println(banishCells.size() + "banish");
                                     if(banishCells.contains(currentCurrentCell)){
-//                                        System.out.println("left true");
-                                        blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x + blockSize-0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+                                        blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
                                     }
                                     else{
-//                                        System.out.println("left false");
-                                        questionBlocks[i][k].getBody().setTransform(questionBlocks[i][k].getBody().getPosition().x + blockSize-0.5f , questionBlocks[i][k].getBody().getPosition().y, 0);
+                                        questionBlocks[i][k].getBody().setTransform(questionBlocks[i][k].getBody().getPosition().x - blockSize+0.5f , questionBlocks[i][k].getBody().getPosition().y, 0);
                                     }
-//                                    System.out.println("k-1: " + k);
                                 }
-                                jedisaur.setDropped(false);
+                                jedisaur.setPickedUp(false);
                             }
+
+
                         }
                     }
                     currentCell++;
