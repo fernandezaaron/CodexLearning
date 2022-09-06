@@ -439,7 +439,8 @@ public class Dialogue {
 
                     new ArrayList<String>(Arrays.asList(
                             // Minigame ID 8
-                            "Hey there Grandson! I want you to output \"123Hello World321\" and \"321Hello World123\"\n " +
+                            "Hey there Grandson! I want you to output \"Hello World\", \n" +
+                            "\"JediLand\", \"JediGrandpa\", and \"Jedisaur123\" \n" +
                             "in the program by fixing the structure of the given code. \n " +
                             "Take note that the topic that I'm teaching you is syntax! \n" +
                             "Make sure to not mess this up. Good luck!"

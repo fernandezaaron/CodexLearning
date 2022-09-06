@@ -138,12 +138,12 @@ public class Questionnaire extends DatabaseReader {
         getDispenserPool(stage, topics);
     }
 
-    public void getMinigame(int row1, int col1, String diff, String stg) {
+    public void getMinigame(int row1, int col1, String difficulty, String stage) {
         minigameHolder = new ArrayList<ArrayList<String>>();
         String difficultyacq = getMinigameInfo(row1, 2);
         String stageacq = getMinigameInfo(row1, 3);
 
-        if((difficultyacq != null && difficultyacq.equals(diff)) && (stageacq != null && stageacq.equals(stg))) {
+        if((difficultyacq != null && difficultyacq.equals(difficulty)) && (stageacq != null && stageacq.equals(stage))) {
             for(int x = row1; x > 0; x++) {
                 minigameGetter = new ArrayList<String>();
                 for(int y = col1; y > 0; y++) {
@@ -386,7 +386,7 @@ public class Questionnaire extends DatabaseReader {
             question = null;
         }
     }
-
+    // For Code Riddle Minigame
     public String getCodeRiddle(int rows, int col){
         Row row = questionSheet.getRow(rows);
         Cell cell = row.getCell(col);
