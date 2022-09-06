@@ -22,6 +22,7 @@ public class ExpertSystem {
         overAllCookies = 0;
     }
 
+    // To determine the expert level of the user
     public String updateExpertiseLevel(){
         for(int i: cookies){
             totalUserCookies = totalUserCookies + i;
@@ -47,6 +48,7 @@ public class ExpertSystem {
         }
     }
 
+    // Write the save file of the user
     public void writeFile(int[] cookies){
         try {
             File file = new File(Constants.SAVE_FILE_PATH);
@@ -67,6 +69,7 @@ public class ExpertSystem {
         }
     }
 
+    // Read the save file of the user
     public void readFile(){
         try {
             FileReader fileReader = new FileReader(Constants.SAVE_FILE_PATH);
