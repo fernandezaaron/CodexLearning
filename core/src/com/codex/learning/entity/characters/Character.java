@@ -38,7 +38,7 @@ public class Character extends Entity {
     private boolean atBot;
     private boolean atLeft;
     private boolean atRight;
-    private boolean isDropped;
+    private boolean isDropped, pickedUp;
 
     private Box2DDebugRenderer b2dr;
 
@@ -88,6 +88,7 @@ public class Character extends Entity {
         isCarrying = false;
         setCopyBlock(null);
         isDropped = false;
+        pickedUp = false;
 
         // Used to know the last keyboard pressed of the user
         direction = "south";
@@ -435,12 +436,15 @@ public class Character extends Entity {
                 blockHolder.createFixture(getCopyBlock().getDupliSize().x, getCopyBlock().getDupliSize().y);
             }
 
+            blockHolder.setCopyBlock(getCopyBlock());
+            System.out.println(blockHolder.getCopyBlock() + "character");
             // Character Adjustment
             setDropped(true);
             setCopyBlock(null);
             carry = 0;
             setPickUpAble(false);
             setCarrying(false);
+            setPickedUp(false);
         }
         else if(Gdx.input.isKeyJustPressed(Input.Keys.E) && isFixture() && blockHolder.isOccupied()){
 
@@ -453,6 +457,8 @@ public class Character extends Entity {
                 blockHolder.createDefaultFixture();
             }
 
+
+
             if(isCarrying()){
                 blockHolder.setOccupied(true);
                 setPickUpAble(false);
@@ -462,6 +468,8 @@ public class Character extends Entity {
                 setPickUpAble(true);
             }
             setDropped(false);
+            setPickedUp(true);
+
         }
     }
 
@@ -519,6 +527,14 @@ public class Character extends Entity {
 
     public void setDropped(boolean dropped) {
         isDropped = dropped;
+    }
+
+    public boolean isPickedUp() {
+        return pickedUp;
+    }
+
+    public void setPickedUp(boolean pickedUp) {
+        this.pickedUp = pickedUp;
     }
 
     public int getNumberOfBlockInteraction() {

@@ -374,7 +374,7 @@ public class Manager {
 
         if(timer > 0 && timer % 10 == 0){
             behavior.add(movement);
-            behavior.add("LOW");
+            behavior.add(time);
             behavior.add("");
             behavior.add("");
             behavior.add("");
