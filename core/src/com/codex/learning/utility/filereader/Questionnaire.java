@@ -1,11 +1,9 @@
 package com.codex.learning.utility.filereader;
 
-import com.codex.learning.utility.filereader.DatabaseReader;
 import org.apache.poi.ss.usermodel.*;
 
-import java.lang.reflect.Array;
+import java.net.Inet4Address;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class Questionnaire extends DatabaseReader {
@@ -29,6 +27,8 @@ public class Questionnaire extends DatabaseReader {
     private Sheet minigameSheet, questionSheet, answerPoolSheet;
 
     private ArrayList<ArrayList<String>> minigameHolder;
+    private ArrayList<ArrayList<Integer>> banishPerRow;
+    private ArrayList<Integer> banishThisNumber;
     private ArrayList<String> minigameGetter;
     private ArrayList<String> answerPool;
     private ArrayList<String> topic;
@@ -60,6 +60,7 @@ public class Questionnaire extends DatabaseReader {
         levels = new ArrayList<String>();
         answerPool = new ArrayList<String>();
         dispenserPool = new ArrayList<String>();
+        banishThisNumber = new ArrayList<Integer>();
 
         formatter = new DataFormatter();
 
@@ -108,12 +109,14 @@ public class Questionnaire extends DatabaseReader {
 
     public void getMinigame(int row1, int col1, String diff, String stg) {
         minigameHolder = new ArrayList<ArrayList<String>>();
+        banishPerRow = new ArrayList<ArrayList<Integer>>();
         String difficultyacq = getMinigameInfo(row1, 2);
         String stageacq = getMinigameInfo(row1, 3);
 
         if((difficultyacq != null && difficultyacq.equals(diff)) && (stageacq != null && stageacq.equals(stg))) {
             for(int x = row1; x > 0; x++) {
                 minigameGetter = new ArrayList<String>();
+                banishThisNumber = new ArrayList<Integer>();
                 for(int y = col1; y > 0; y++) {
                     Row qRow = minigameSheet.getRow(x + 1);
                     Cell qCell = qRow.getCell(y);
@@ -123,10 +126,14 @@ public class Questionnaire extends DatabaseReader {
                     }
                     else {
                         minigameGetter.add(cell);
+//                        System.out.println("sa minigameelement ba?");
+                        banishThisNumber.add(minigameElementLimit);
                         minigameElementLimit++;
                     }
                 }
                 minigameHolder.add(minigameGetter);
+                banishPerRow.add(banishThisNumber);
+                System.out.println("sa banishperrow? " + banishPerRow);
                 Row qRow = minigameSheet.getRow(x + 2);
                 Cell qCell = qRow.getCell(4);
                 String cell = formatter.formatCellValue(qCell);
@@ -370,6 +377,13 @@ public class Questionnaire extends DatabaseReader {
 
     }
 
+    public ArrayList<ArrayList<Integer>> getBanishPerRow() {
+        return banishPerRow;
+    }
+
+    public void setBanishPerRow(ArrayList<ArrayList<Integer>> banishPerRow) {
+        this.banishPerRow = banishPerRow;
+    }
 
     public ArrayList<String> getTopic() {
         return topic;

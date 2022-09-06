@@ -33,9 +33,11 @@ public class FillInTheBlock extends State {
     private PauseState pause;
 
     private ArrayList<ArrayList<String>> minigameContainer;
-    private int minigameContainerLimit;
+    private ArrayList<ArrayList<Integer>> banishPerRow;
     private Random randomizer;
     private ArrayList<Integer> banishCells;
+    private ArrayList<Integer> duplicatePool;
+    private ArrayList<String> banishPoolContainer;
     private ArrayList<String> dispenserPoolContainer;
     private int currentCell;
 
@@ -45,6 +47,8 @@ public class FillInTheBlock extends State {
 
         randomizer = new Random();
         banishCells = new ArrayList<Integer>();
+        duplicatePool = new ArrayList<Integer>();
+        banishPoolContainer = new ArrayList<String>();
 
         getAMinigame(manager.getStageSelector().map(), "Poor");
 
@@ -54,28 +58,70 @@ public class FillInTheBlock extends State {
         // WILL BE USED, DON'T ERASE
 
         // CREATES RANDOM NUMBER TO REMOVE CELLS FROM MINIGAME
-        for(int i = 0; i <= 5; i++) {
-            banishCells.add(randomizer.nextInt(minigameContainerLimit - 1) + 1);
+        for(int i = 0; i < banishPerRow.size(); i++) {
+            int banishNumberIterator = randomizer.nextInt(2) + 1;
+            for(int j = 0; j < banishPerRow.get(i).size(); j++) {
+                int banishNumber = randomizer.nextInt(banishPerRow.get(i).size() - 1) + banishPerRow.get(i).get(0);
+                if(banishNumberIterator == 0) {
+                    break;
+                }
+                else if(!banishCells.contains(banishNumber)) {
+                    banishCells.add(banishNumber);
+                    banishNumberIterator--;
+                }
+            }
         }
 
+        int currentCell = 0;
+        for(int i = 0; i < minigameContainer.size(); i++) {
+            for(int j = 0; j < minigameContainer.get(i).size(); j++) {
+                if(minigameContainer.get(i).get(j) != null) {
+                    if (banishCells.contains(currentCell) || banishPoolContainer.contains(minigameContainer.get(i).get(j))) {
+                        banishPoolContainer.add(minigameContainer.get(i).get(j));
+                    }
+                    System.out.println("pool " + banishPoolContainer);
+                }
+                currentCell++;
+            }
+        }
+
+        for(int i = 0; i < banishPoolContainer.size(); i++) {
+            String banished = banishPoolContainer.get(i);
+            int dupes = 1;
+            System.out.println("eto tunay " + banishPoolContainer.get(i));
+            for(int j = 0; j < banishPoolContainer.size(); j++) {
+                System.out.println(banishPoolContainer.get(i) + " dupe " + banishPoolContainer.get(j));
+                if(banishPoolContainer.get(j).equals(banished) && i != j) {
+                    dupes += 1;
+                    System.out.println("pumasok dupe");
+                    banishPoolContainer.remove(j);
+                }
+            }
+            System.out.println("luh tapos na dupe");
+            duplicatePool.add(dupes);
+        }
+        System.out.println("pool " + banishPoolContainer);
+        System.out.println("pool " + duplicatePool);
+
         // START MINIGAME CREATION
-        int yStartingPoint = 11, currentCell = 0;
+        int yStartingPoint = 8;
+        currentCell = 0;
         for(int i = 0; i < minigameContainer.size(); i++) {
             float xStartingPoint = -23.0f;
             for(int j = 0; j < minigameContainer.get(i).size(); j++) {
                 if(minigameContainer.get(i).get(j) != null) {
                     float currentStringLength = (float) String.valueOf(minigameContainer.get(i).get(j)).length();
-                    if (banishCells.contains(currentCell)) {
+                    if(banishPoolContainer.contains(minigameContainer.get(i).get(j))) {
                         blockHolders[i][j] = new BlockHolder(manager, "\"" + minigameContainer.get(i).get(j) + "\"");
                         blockHolders[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2(Constants.BLOCK_HOLDER_WIDTH * 3, Constants.BLOCK_HOLDER_HEIGHT), 0);
-                        dispenserPoolContainer.add(minigameContainer.get(i).get(j));
-                        xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 13;
-                    } else {
+                        xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 10;
+                    }
+                    else {
                         questionBlocks[i][j] = new Blocks(manager, "\"" + minigameContainer.get(i).get(j) + "\"", minigameContainer.get(i).get(j), true);
                         if (currentStringLength <= 3){
                             questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.5f), Constants.BLOCKS_HEIGHT), 0);
                             questionBlocks[i][j].setPreDefinedContact(true);
-                            xStartingPoint += currentStringLength + 2f;
+                            xStartingPoint += currentStringLength + 0.5f;
                         }
 
                         else{
@@ -84,30 +130,40 @@ public class FillInTheBlock extends State {
                             xStartingPoint += currentStringLength / 1.8f;
                         }
                     }
-                    currentCell++;
+//                    currentCell++;
                 }
             }
             yStartingPoint -= 2;
         }
-        Collections.shuffle(dispenserPoolContainer);
         // END MINIGAME CREATION
 
-        blockDispensers = new BlockDispenser[dispenserPoolContainer.size()];
+        blockDispensers = new BlockDispenser[banishPoolContainer.size() + dispenserPoolContainer.size()];
 
-        int currentAnsCell = 0;
-        int ansPoolSize = dispenserPoolContainer.size();
-        int xposition = -22, yposition = -6;
+        int ansPoolSize = banishPoolContainer.size();
+        System.out.println(ansPoolSize);
+        int xposition = -22, yposition = -9;
         for(int i = 0; i < ansPoolSize; i++) {
-            blockDispensers[i] = new BlockDispenser(manager, "Down", dispenserPoolContainer.get(currentAnsCell), dispenserPoolContainer.get(currentAnsCell),
+            blockDispensers[i] = new BlockDispenser(manager, "Down", banishPoolContainer.get(i), banishPoolContainer.get(i),
+                    duplicatePool.get(i), new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
+            blockDispensers[i].create(new Vector2(xposition, yposition), new Vector2(0.3f, 1.3f), 0);
+            System.out.println(banishPoolContainer.get(i) + " many " + duplicatePool.get(i));
+            xposition += 5;
+            if(xposition == 23) {
+                yposition -= 6;
+                xposition = -22;
+            }
+        }
+        int j = 0;
+        for(int i = ansPoolSize; i < dispenserPoolContainer.size() + ansPoolSize; i++) {
+            blockDispensers[i] = new BlockDispenser(manager, "Down", dispenserPoolContainer.get(j), dispenserPoolContainer.get(j),
                     1, new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
-            System.out.println(dispenserPoolContainer.get(currentAnsCell));
-            currentAnsCell++;
             blockDispensers[i].create(new Vector2(xposition, yposition), new Vector2(0.3f, 1.3f), 0);
             xposition += 5;
             if(xposition == 23) {
                 yposition -= 6;
                 xposition = -22;
             }
+            j++;
         }
 
         this.jedisaur = character;
@@ -120,7 +176,7 @@ public class FillInTheBlock extends State {
          for(int i = 0; i < minigameContainer.size(); i++) {
              for (int j = 0; j < minigameContainer.get(i).size(); j++) {
                  if (minigameContainer.get(i).get(j) != null) {
-                     if(banishCells.contains(currentCell))
+                     if(banishPoolContainer.contains(minigameContainer.get(i).get(j)))
                          blockHolders[i][j].update(delta);
                      else
                          questionBlocks[i][j].update(delta);
@@ -129,11 +185,11 @@ public class FillInTheBlock extends State {
              }
          }
 
-         for(int i = 0; i < getAnswerPoolContainer().size(); i++) {
+         for(int i = 0; i < banishPoolContainer.size() + dispenserPoolContainer.size(); i++) {
              blockDispensers[i].createBlock(new Vector2(jedisaur.getBody().getPosition().x, jedisaur.getBody().getPosition().y));
          }
 
-         for(int i = 0; i < getAnswerPoolContainer().size(); i++) {
+         for(int i = 0; i < banishPoolContainer.size() + dispenserPoolContainer.size(); i++) {
              if(blockDispensers[i].isCloned()){
                  for (Blocks b : blockDispensers[i].getBlocks()) {
                      if (b != null) {
@@ -149,17 +205,15 @@ public class FillInTheBlock extends State {
              }
          }
 
-         currentCell = 0;
          for(int i = 0; i < minigameContainer.size(); i++) {
              for (int j = 0; j < minigameContainer.get(i).size(); j++) {
                  if (minigameContainer.get(i).get(j) != null) {
-                     if(banishCells.contains(currentCell)) {
+                     if(banishPoolContainer.contains(minigameContainer.get(i).get(j))) {
                          if (blockHolders[i][j].isInContact()) {
                              jedisaur.dropBlock(blockHolders[i][j]);
                              System.out.println("dropped" + blockHolders[i][j]);
                          }
                      }
-                     currentCell++;
                  }
              }
          }
@@ -179,7 +233,7 @@ public class FillInTheBlock extends State {
         for(int i = 0; i < minigameContainer.size(); i++) {
             for (int j = 0; j < minigameContainer.get(i).size(); j++) {
                 if (minigameContainer.get(i).get(j) != null) {
-                    if(banishCells.contains(currentCell)) {
+                    if(banishPoolContainer.contains(minigameContainer.get(i).get(j))) {
                         blockHolders[i][j].render(sprite);
                     }
                     else
@@ -189,7 +243,7 @@ public class FillInTheBlock extends State {
             }
         }
 
-        for(int i = 0; i < getAnswerPoolContainer().size(); i++){
+        for(int i = 0; i < banishPoolContainer.size() + dispenserPoolContainer.size(); i++){
             blockDispensers[i].render(sprite);
             if(blockDispensers[i].isCloned()){
                 for (Blocks b : blockDispensers[i].getBlocks()) {
@@ -202,24 +256,20 @@ public class FillInTheBlock extends State {
                 }
             }
         }
-
-
     }
 
     @Override
     public void dispose() {
 
         // WILL BE USED, DON'T ERASE
-        currentCell = 0;
         for(int i = 0; i < minigameContainer.size(); i++) {
             for (int j = 0; j < minigameContainer.get(i).size(); j++) {
                 if (minigameContainer.get(i).get(j) != null) {
-                    if(banishCells.contains(currentCell)) {
+                    if(banishPoolContainer.contains(minigameContainer.get(i).get(j))) {
                         blockHolders[i][j].disposeBody();
                     }
                     else
                         questionBlocks[i][j].disposeBody();
-                    currentCell++;
                 }
             }
         }
@@ -227,7 +277,7 @@ public class FillInTheBlock extends State {
 
         // WILL BE USED, DON'T ERASE
 
-        for(int i = 0; i < getAnswerPoolContainer().size(); i++){
+        for(int i = 0; i < banishPoolContainer.size() + dispenserPoolContainer.size(); i++){
             blockDispensers[i].disposeBody();
             if(blockDispensers[i].isCloned()){
                 for (Blocks b : blockDispensers[i].getBlocks()) {
@@ -247,7 +297,7 @@ public class FillInTheBlock extends State {
     public void getAMinigame(String stage, String expertiseLevel){
         manager.getQuestionnaire().minigameDisplay(stage,String.valueOf(manager.getStageSelector().getStageNumber()),expertiseLevel);
         minigameContainer = manager.getQuestionnaire().getMinigame();
-        minigameContainerLimit = manager.getQuestionnaire().getMinigameLimit();
+        banishPerRow = manager.getQuestionnaire().getBanishPerRow();
         dispenserPoolContainer = manager.getQuestionnaire().getDispenserPool();
     }
 
@@ -265,7 +315,7 @@ public class FillInTheBlock extends State {
         for(int i = 0; i < minigameContainer.size(); i++) {
             for (int j = 0; j < minigameContainer.get(i).size(); j++) {
                 if (minigameContainer.get(i).get(j) != null) {
-                    if(banishCells.contains(currentCell)) {
+                    if(banishPoolContainer.contains(minigameContainer.get(i).get(j))) {
                         blockHolders[i][j].setActive(false);
                     }
                     else
@@ -277,7 +327,7 @@ public class FillInTheBlock extends State {
 
 //         WILL BE USED, DON'T ERASE
 
-        for(int i = 0; i < 2; i++){
+        for(int i = 0; i < banishPoolContainer.size() + dispenserPoolContainer.size(); i++){
             blockDispensers[i].disposeBody();
             if(blockDispensers[i].isCloned()){
                 for (Blocks b : blockDispensers[i].getBlocks()) {

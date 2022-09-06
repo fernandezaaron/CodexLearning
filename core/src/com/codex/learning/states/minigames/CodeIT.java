@@ -79,8 +79,6 @@ public class CodeIT extends State {
 //        Collections.shuffle(getAnswerPool);
         // END MINIGAME CREATION
 
-        blockDispensers = new BlockDispenser[getAnswerPool.size()];
-
         for(int i = 0; i < getAnswerPool.size(); i++) {
             String banished = getAnswerPool.get(i);
             int dupes = 1;
@@ -98,6 +96,8 @@ public class CodeIT extends State {
         }
         System.out.println("pool " + getAnswerPool);
         System.out.println("pool " + duplicatePool);
+
+        blockDispensers = new BlockDispenser[getAnswerPool.size()];
 
         int ansPoolSize = getAnswerPool.size();
         System.out.println(ansPoolSize);
@@ -119,63 +119,46 @@ public class CodeIT extends State {
 
     @Override
     public void update(float delta) {
-        if (pause.isRunning()) {
-            // WILL BE USED, DON'T ERASE
-            currentCell = 0;
-            for (int i = 0; i < minigameContainer.size(); i++) {
-                for (int j = 0; j < minigameContainer.get(i).size(); j++) {
-                    if (minigameContainer.get(i).get(j) != null) {
-                        blockHolders[i][j].update(delta);
-                    }
+        // WILL BE USED, DON'T ERASE
+        currentCell = 0;
+        for (int i = 0; i < minigameContainer.size(); i++) {
+            for (int j = 0; j < minigameContainer.get(i).size(); j++) {
+                if (minigameContainer.get(i).get(j) != null) {
+                    blockHolders[i][j].update(delta);
                 }
             }
-            // WILL BE USED, DON'T ERASE
-
-            for (int i = 0; i < getAnswerPool.size(); i++) {
-                blockDispensers[i].createBlock(new Vector2(jedisaur.getBody().getPosition().x, jedisaur.getBody().getPosition().y));
-            }
-
-            for (int i = 0; i < getAnswerPool.size(); i++) {
-                if (blockDispensers[i].isCloned()) {
-                    for (Blocks b : blockDispensers[i].getBlocks()) {
-                        if (b != null) {
-                            b.update(delta);
-                            if (b.isInContact()) {
-                                jedisaur.carryBlock(b);
-                            }
-                        } else {
-                            continue;
-                        }
-                    }
-                }
-            }
-
-            // WILL BE USED, DON'T ERASE
-            currentCell = 0;
-            for (int i = 0; i < minigameContainer.size(); i++) {
-                for (int j = 0; j < minigameContainer.get(i).size(); j++) {
-                    if (minigameContainer.get(i).get(j) != null) {
-                        if (blockHolders[i][j].isInContact()) {
-                            jedisaur.dropBlock(blockHolders[i][j]);
-                        }
-                    }
-                }
-            }
-            // WILL BE USED, DON'T ERASE
-
-
-            jedisaur.update(delta);
-
-//            pause.update(delta);
-        } else {
-            if (jedisaur.isMoving()) {
-                jedisaur.setMoving(false);
-                jedisaur.update(delta);
-                jedisaur.getBody().setLinearVelocity(0, 0);
-            }
-
         }
         // WILL BE USED, DON'T ERASE
+        for (int i = 0; i < getAnswerPool.size(); i++) {
+            blockDispensers[i].createBlock(new Vector2(jedisaur.getBody().getPosition().x, jedisaur.getBody().getPosition().y));
+        }
+        for (int i = 0; i < getAnswerPool.size(); i++) {
+            if (blockDispensers[i].isCloned()) {
+                for (Blocks b : blockDispensers[i].getBlocks()) {
+                    if (b != null) {
+                        b.update(delta);
+                        if (b.isInContact()) {
+                            jedisaur.carryBlock(b);
+                        }
+                    } else {
+                        continue;
+                    }
+                }
+            }
+        }
+        // WILL BE USED, DON'T ERASE
+        currentCell = 0;
+        for (int i = 0; i < minigameContainer.size(); i++) {
+            for (int j = 0; j < minigameContainer.get(i).size(); j++) {
+                if (minigameContainer.get(i).get(j) != null) {
+                    if (blockHolders[i][j].isInContact()) {
+                        jedisaur.dropBlock(blockHolders[i][j]);
+                    }
+                }
+            }
+        }
+        // WILL BE USED, DON'T ERASE
+
     }
 
 
@@ -183,13 +166,10 @@ public class CodeIT extends State {
     @Override
     public void render(SpriteBatch sprite) {
         sprite.enableBlending();
-        sprite.setProjectionMatrix(manager.getCamera().combined);
-
         manager.getCamera().update();
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.end();
-
         playroom.render(sprite);
 
         currentCell = 0;
@@ -214,15 +194,10 @@ public class CodeIT extends State {
                 }
             }
         }
-
-        jedisaur.render(sprite);
-
-        pause.render(sprite);
     }
 
     @Override
     public void dispose() {
-        jedisaur.disposeBody();
 
         // WILL BE USED, DON'T ERASE
         for(int i = 0; i < minigameContainer.size(); i++) {
