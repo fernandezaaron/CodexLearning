@@ -6,14 +6,13 @@ import com.codex.learning.entity.characters.Character;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.FuzzyLogic;
 import com.codex.learning.utility.Manager;
-import org.apache.xmlbeans.impl.xb.ltgfmt.Code;
 
 public class Minigame extends State {
     private FuzzyLogic fuzzyLogic;
     private int currentMinigame;
     private FillInTheBlock s;
     private sample sample;
-    private CodeIT h;
+    private MysteryCode h;
     private boolean fib, mc, samplebool;
     private Character jedisaur;
 
@@ -35,7 +34,7 @@ public class Minigame extends State {
                 break;
             case 2:
                 mc = true;
-                h = new CodeIT(manager, jedisaur);
+                h = new MysteryCode(manager, jedisaur);
 
                 break;
             case 3:

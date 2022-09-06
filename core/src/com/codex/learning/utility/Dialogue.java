@@ -168,18 +168,60 @@ public class Dialogue {
     )
     );
 
+    private ArrayList<ArrayList<String>> codeRiddleFeedback = new ArrayList<>(
+            Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
+                            // Right answer for JediGrandpa
+                            "Great job Jedisaur!", "You deserve my cookie!", "You are definitely my Grandson!",
+                            "You're as smart as me :)", "You can do this!!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Wrong answer for JediGrandpa
+                            "Please don't stay up playing all night..", "I taught you a while ago...",
+                            "Read the question carefully..", "Be careful my Grandson"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Right answer for JediProf
+                            "You actually listened during the lecture", "You really studied last night huh",
+                            "Keep up the good work!", "How are you so good at this??", "Have you studied this before?"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Wrong answer for JediProf
+                            "Your answer is wrong......", "Read the question carefully",
+                            "Please be mindful of the question given", "Please Review the module"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Right answer for JediManager
+                            "Great Job!", "You deserve a raise!!", "I hired you for this!",
+                            "I knew you can do it!", "Great Work"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Wrong answer for JediManager
+                            "Do your job properly!!", "Don't mess it up",
+                            "Don't make me fire you..", "Do it right!"
+                    ))
+
+
+            )
+    );
+
     private ArrayList<ArrayList<String>> resultFeedback = new ArrayList<>(
             Arrays.asList(
                     new ArrayList<>(Arrays.asList(
                             // After minigame if passed
-                            "Good job", "Wow, that's impressive work.", "You are a fast learner.", "I'm so proud of your effort.", "How did you do this so fast?", "Terrific job!",
+                            "Good job!", "Wow, that's impressive work.", "You are a fast learner.", "I'm so proud of your effort.", "How did you do this so fast?", "Terrific job!",
                             "Wow, you are so skilled!", "This is insanely good.", "Fantastic!", "Your level of expertise is impressive.", "This proves you are ready for more here.",
-                            "Now this is good work.","Your progress is truly inspiring.","Outstanding work!", "You are a fast learner."
+                            "Now this is good work.","Your progress is truly inspiring."
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // After minigame if low score
-                            "You should review xD", "Please review"
+                            "You should review xD", "Please review.."
                     )),
 
                     new ArrayList<>(Arrays.asList(
@@ -307,6 +349,14 @@ public class Dialogue {
         int number = random.nextInt(limit);
 
         return resultFeedback.get(index).get(number);
+    }
+
+    public String codeRiddleFeedback(int index){
+        Random random = new Random();
+        int limit = codeRiddleFeedback.get(index).size() - 1;
+        int number = random.nextInt(limit);
+
+        return codeRiddleFeedback.get(index).get(number);
     }
 
     public int getStage() {
