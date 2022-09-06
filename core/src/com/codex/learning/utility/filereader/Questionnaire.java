@@ -124,6 +124,7 @@ public class Questionnaire extends DatabaseReader {
     }
     // end for minigames
 
+
     public void minigameDisplay(String stage,String topics,String expertiseLevel) {
         adjustDifficulty(expertiseLevel);
         addTopic(topics);
@@ -140,12 +141,14 @@ public class Questionnaire extends DatabaseReader {
         getDispenserPool(stage, topics);
     }
 
+    // Function to get the problem code in the excel file
     public void getMinigame(int row1, int col1, String difficulty, String stageTopic) {
         minigameHolder = new ArrayList<ArrayList<String>>();
         String stageTopicacq = getMinigameInfo(row1, 1);
         String difficultyacq = getMinigameInfo(row1, 2);
 
 
+        // Check the difficulty and the stage topic
         if((difficultyacq != null && difficultyacq.equals(difficulty)) && (stageTopicacq != null && stageTopicacq.equals(stageTopic))) {
             for(int x = row1; x > 0; x++) {
                 minigameGetter = new ArrayList<String>();
