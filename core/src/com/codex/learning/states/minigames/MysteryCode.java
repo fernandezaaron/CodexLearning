@@ -36,7 +36,7 @@ public class MysteryCode extends State {
     float blockSize;
 
     private ArrayList<ArrayList<String>> minigameContainer;
-    private int minigameContainerLimit;
+    private ArrayList<ArrayList<Integer>> banishPerRow;
     private Random randomizer;
     private ArrayList<Integer> banishCells;
     private ArrayList<String> answerPoolContainer;
@@ -63,9 +63,29 @@ public class MysteryCode extends State {
 
         getAMinigame(manager.getStageSelector().map(), "Poor");
 
-        for(int i = 0; i <= 10; i++) {
-            banishCells.add(randomizer.nextInt(minigameContainerLimit - 1) + 1);
+        // GENERATES THE NUMBER OF THE BLOCKS TO BE REMOVED
+        for(int i = 0; i < banishPerRow.size(); i++) {
+            int banishNumberIterator = randomizer.nextInt(2) + 1;
+            System.out.println(banishNumberIterator);
+            for(int j = 0; j < banishPerRow.get(i).size(); j++) {
+                System.out.println((banishPerRow.get(i).size()) + "    " + banishPerRow.get(i).get(0));
+                int banishNumber = randomizer.nextInt(banishPerRow.get(i).size() - 1) + banishPerRow.get(i).get(0);
+                System.out.println(banishNumber);
+                if(banishNumberIterator == 0) {
+                    System.out.println("berak");
+                    break;
+                }
+                else if(!banishCells.contains(banishNumber)) {
+                    banishCells.add(banishNumber);
+                    banishNumberIterator--;
+                    System.out.println("baka sa iterator " + banishNumberIterator +
+                            " eh sa last element " + (banishPerRow.get(i).size() - 1) +
+                            " first? " + banishPerRow.get(i).get(0) +
+                            " eto ibabanish " + banishNumber);
+                }
+            }
         }
+        System.out.println("nagbreak?");
 
         // START MINIGAME CREATION
         int yStartingPoint = 11, currentCell = 0;
@@ -432,7 +452,7 @@ public class MysteryCode extends State {
     public void getAMinigame(String stage, String expertiseLevel){
         manager.getQuestionnaire().minigameDisplay(stage,String.valueOf(manager.getStageSelector().getStageNumber()), expertiseLevel);
         minigameContainer = manager.getQuestionnaire().getMinigame();
-        minigameContainerLimit = manager.getQuestionnaire().getMinigameLimit();
+        banishPerRow = manager.getQuestionnaire().getBanishPerRow();
         answerPoolContainer = manager.getQuestionnaire().getAnswerPool();
     }
 
