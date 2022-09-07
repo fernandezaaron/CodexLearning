@@ -873,7 +873,7 @@ public class Dialogue {
                             "Hey there Grandson! I want you to output \"Up\". \n" +
                             "There will be a variable called direction with a value of North, \n" +
                             "it will be a switch-case condition. \n" +
-                            "The only case statements are \"Up\", and \"Down\". \n" +
+                            "The case statements are \"Up\", and \"Down\". \n" +
                             "The default statement is \"No Direction\". \n" +
                             "Think of a way on how to solve this problem. \n " +
                             "Fix the structure of the given code. \n " +
@@ -883,16 +883,156 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 52
-                            "Hey there Grandson! I want you to output \"Down\". \n" +
-                            "There will be a variable called direction with a value of South, \n" +
+                            "Hey there Grandson! I want you to output \"South\". \n" +
+                            "There will be a variable called direction with a value of A, \n" +
                             "it will be a switch-case condition. \n" +
-                            "The only case statements are \"Up\", and \"Down\". \n" +
+                            "The case statements are \"Up\", and \"Down\". \n" +
                             "The default statement is \"No Direction\". \n" +
                             "Think of a way on how to solve this problem. \n " +
                             "Fix the structure of the given code. \n " +
                             "Take note that the topic that I'm teaching you is about Conditional Statement! \n" +
                             "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 53
+                            "Hey there Grandson! I want you to output \"A Grade\". \n" +
+                            "There will be a variable called letter with a value of A, \n" +
+                            "it will be a switch-case condition. \n" +
+                            "The case statements are \"A Grade\", and \"B Grade\". \n" +
+                            "The default statement is \"No Grade\". \n" +
+                            "Think of a way on how to solve this problem. \n " +
+                            "Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Conditional Statement! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 54
+                            "Hey there Grandson! I want you to output \"No Grade\". \n" +
+                            "There will be a variable called letter with a value of C, \n" +
+                            "it will be a switch-case condition. \n" +
+                            "The only case statements are \"A Grade\", and \"B Grade\". \n" +
+                            "The default statement is \"No Grade\". \n" +
+                            "Think of a way on how to solve this problem. \n " +
+                            "Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Conditional Statement! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 55
+                            "Hey there Grandson! I want you to output \"Hello World\" 5 times. \n" +
+                            "There will be no initialized variable since it will be a For Loop. \n" +
+                            "Think of a way on how to solve this problem. \n " +
+                            "Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Loops! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 56
+                            "Hey there Grandson! I want you to output \"Hello World\" 5 times. \n" +
+                            "There will be a variable called i and its value is 0. It will be a While Loop. \n" +
+                            "Think of a way on how to solve this problem. \n " +
+                            "Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Loops! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 57
+                            "Hey there Grandson! I want you to output \"Hello World\" 5 times. \n" +
+                            "There will be a variable called i and its value is 0. It will be a Do-While Loop. \n" +
+                            "Think of a way on how to solve this problem. \n " +
+                            "Fix the structure of the given code. \n " +
+                            "Take note that the topic that I'm teaching you is about Loops! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 58
+                            "Hey there Grandson! I want you to output the value of \"i\", and \n" +
+                            "\" Hello World\" 5 times. There will be no initialized variable since \n" +
+                            "it will be a For Loop. Think of a way on how to solve this problem. \n" +
+                            "Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Loops! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 59
+                            "Hey there Grandson! I want you to output the value of \"i\" \n"+
+                            "\"Hello World\" 5 times. There will be a variable called i and its value is 0.\n" +
+                            "It will be a While Loop. Think of a way on how to solve this problem. \n" +
+                            "Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Loops! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 60
+                            "Hey there Grandson! I want you to output the value of \"i\" \n" +
+                            "\"Hello World\" 5 times. There will be a variable called i and its value is 0. \n" +
+                            "It will be a Do-While Loop. Think of a way on how to solve this problem. \n" +
+                            "Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Loops! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 61
+                            "Hey there Grandson! I want you to output the value of \"i\", and \n" +
+                            "\" Hello World\" 3 times. There will be no initialized variable since \n" +
+                            "it will be a For Loop. There will be a conditional statement for the loop to stop. \n" +
+                            "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Loops! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 62
+                            "Hey there Grandson! I want you to output the value of \"i\" \n"+
+                            "\"Hello World\" 3 times. There will be a variable called i and its value is 0.\n" +
+                            "It will be a While Loop. There will be a conditional statement for the loop to stop. \n" +
+                            "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Loops! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 63
+                            "Hey there Grandson! I want you to output the value of \"i\" \n" +
+                            "\"Hello World\" 3 times. There will be a variable called i and its value is 0. \n" +
+                            "It will be a Do-While Loop. There will be a conditional statement for the loop to stop. \n" +
+                            "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Loops! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 64
+                            "Hey there Grandson! I want you to output the elements in the array by \n" +
+                            "using a for loop. There will be a variable called array and its value is. \n" +
+                            "\"Jedisaur\", \"is\", \"in\", and \"Jediland\". \n" +
+                            "It will be a Do-While Loop. There will be a conditional statement for the loop to stop. \n" +
+                            "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Loops! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 65
+                            "Hey there Grandson! I want you to output the elements in the array by \n" +
+                            "using a for loop. There will be a variable called array and its value is. \n" +
+                            "\"Jedisaur\", \"is\", \"going\", \"to\", and \"Jediland\". \n" +
+                            "It will be a Do-While Loop. There will be a conditional statement for the loop to stop. \n" +
+                            "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Loops! \n" +
+                            "Make sure to not mess this up. Good luck!"
                     ))
+
+
             )
     );
 

@@ -48,7 +48,7 @@ public class PlayState extends State{
 
     public PlayState(Manager manager) {
         super(manager);
-        this.stage = manager.getStageSelector().getStageNumber();
+        this.stage = manager.getStageSelector().getStageMap();
         timer = 0;
         pause = new PauseState(manager);
         rand = new Random();
