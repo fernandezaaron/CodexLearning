@@ -1015,7 +1015,7 @@ public class Dialogue {
                             "Hey there Grandson! I want you to output the elements in the array by \n" +
                             "using a for loop. There will be a variable called array and its value is. \n" +
                             "\"Jedisaur\", \"is\", \"in\", and \"Jediland\". \n" +
-                            "It will be a Do-While Loop. There will be a conditional statement for the loop to stop. \n" +
+                            "The only way to output is to print it. \n" +
                             "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
                             "Take note that the topic that I'm teaching you is about Loops! \n" +
                             "Make sure to not mess this up. Good luck!"
@@ -1026,11 +1026,170 @@ public class Dialogue {
                             "Hey there Grandson! I want you to output the elements in the array by \n" +
                             "using a for loop. There will be a variable called array and its value is. \n" +
                             "\"Jedisaur\", \"is\", \"going\", \"to\", and \"Jediland\". \n" +
-                            "It will be a Do-While Loop. There will be a conditional statement for the loop to stop. \n" +
+                            "The only way to output is to print it. \n" +
                             "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
                             "Take note that the topic that I'm teaching you is about Loops! \n" +
                             "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 66
+                            "Hey there Grandson! I want you to output the elements in the array by \n" +
+                            "using a for loop. There will be a variable called array and its value is. \n" +
+                            "\"Jedisaur\", \"is\", \"in\", and \"Jediland\". \n" +
+                            "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Arrays! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 67
+                            "Hey there Grandson! I want you to output the elements in the array by \n" +
+                            "using a for loop. There will be a variable called array and its value is. \n" +
+                            "\"Jedisaur\", \"is\", \"going\", \"to\", and \"Jediland\". \n" +
+                            "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Arrays! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 68
+                            "Hey there Grandson! I want you to output the elements in the array by \n" +
+                            "using a while loop. There will be a variable called array and its value is. \n" +
+                            "\"Jedisaur\", \"is\", \"in\", and \"Jediland\". A counter variable will be set to 0. \n" +
+                            "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Arrays! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 69
+                            "Hey there Grandson! I want you to output the elements in the array by \n" +
+                            "using a for loop. There will be a variable called array and its value is. \n" +
+                            "\"Jedisaur\", \"is\", \"going\", \"to\", and \"Jediland\". \n" +
+                            "A counter variable will be set to 0. \n" +
+                            "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Arrays! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 70
+                            "Hey there Grandson! I want you to output \"Hello!\" by using a method called greet.\n" +
+                            "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Methods! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 71
+                            "Hey there Grandson! I want you to output \"Hi!\" by using a method called greet.\n" +
+                            "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Methods! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 72
+                            "Hey there Grandson! I want you to output \"Hello Jedisaur\" \n" +
+                            "by using a method called greet.The greet method will only return the word \"Hello\". \n" +
+                            "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Methods! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 73
+                            "Hey there Grandson! I want you to output \"Hi Jedisaur\" \n" +
+                            "by using a method called greet.The greet method will only return the word \"Hi\". \n" +
+                            "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Methods! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 74
+                            "Hey there Grandson! I want you to output \"Hello Jedisaur\" \n" +
+                            "by using a method called greet, and name. \n" +
+                            "The greet method will only return the word \"Hello\". \n" +
+                            "While the name method will only return the word \"Jedisaur\". \n" +
+                            "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Methods! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 75
+                            "Hey there Grandson! I want you to output \"Hi Jedisaur\" \n" +
+                            "by using a method called greet, and name. \n" +
+                            "The greet method will only return the word \"Hi\".\n" +
+                            "While the name method will only return the word \"Jedisaur\". \n" +
+                            "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Methods! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 76
+                            "Hey there Grandson! I want you to output \"Hi Jedisaur\" \n" +
+                            "by using a method called greet with a parameter of name. \n" +
+                            "The greet method will show the word \"Hi\" and the name Jedisaur.\n" +
+                            "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Parameters! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 77
+                            "Hey there Grandson! I want you to output \"Hi Jedisaur\" \n" +
+                            "by using a method called greet with a parameter of greet, and name. \n" +
+                            "The greet method will show the greet \"Hi\" and the name \"Jedisaur\".\n" +
+                            "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Parameter Overloading! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 78
+                            "Hey there Grandson! I want you to output \"10\" \n" +
+                            "by using a method called solve with a parameter of num. \n" +
+                            "The solve method will return the value of num plus 5. \n" +
+                            "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Parameters! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 79
+                            "Hey there Grandson! I want you to output \"10\" \n" +
+                            "by using a method called solve with a parameter of num and num2. \n" +
+                            "The solve method will return the value of num plus num2. \n" +
+                            "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Parameter Overloading! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 80
+                            "Hey there Grandson! I want you to output \"false\" \n" +
+                            "by using a method called opposite with a parameter of bool. \n" +
+                            "The opposite method will return the opposite value of bool. \n" +
+                            "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Parameters! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 81
+                            "Hey there Grandson! I want you to output \"-1\" \n" +
+                            "by using a method called opposite with a parameter of num. \n" +
+                            "The opposite method will return the opposite value of num. \n" +
+                            "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Parameters! \n" +
+                            "Make sure to not mess this up. Good luck!"
                     ))
+
+
 
 
             )

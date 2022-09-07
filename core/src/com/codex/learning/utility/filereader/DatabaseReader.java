@@ -41,7 +41,7 @@ public abstract class DatabaseReader {
         return questionSheet;
     }
 
-    public Sheet    getAnswerPoolSheet() {
+    public Sheet getAnswerPoolSheet() {
         return answerPoolSheet;
     }
 
