@@ -10,7 +10,7 @@ public class Dialogue {
 
 
     private ArrayList<ArrayList<String>> introductionDialogue = new ArrayList<>(Arrays.asList(
-            new ArrayList<String>(Arrays.asList("Welcome to Jediland, Jedisaur.", "Hi I am, JediGrandpa", "From today, you'll be my Padawan, and I'll teach you the ways of a true Jedi.",
+            new ArrayList<String>(Arrays.asList("Welcome to JediLand, Jedisaur.", "Hi I am, JediGrandpa", "From today, you'll be my Padawan, and I'll teach you the ways of a true Jedi.",
                     "Instead of teaching you how to use the force, I'll teach you the fundamentals of Java.", "These teachings have been passed down by many generations, and they were developed by: James Gosling in May 1995", "I have a task for you to do young one", "But first lets study first on the topic",
                     //syntax
                     "The first topic is Syntax", "The syntax of Java refers to the set of rules defining how a Java program is written and interpreted.",
@@ -153,7 +153,7 @@ public class Dialogue {
                     "Our last meeting will check your mastery on the second stage. ",
                     "There will be a quiz that includes all the topics we have covered from the second stage",
                     "After proving your mastery on the topic and passing the quiz",
-                    "You will be able to proceed to the next stage, which is the Company!"
+                    "You will be able to proceed to the next stage, which is the Corporation!"
             )),
 
             new ArrayList<String>(Arrays.asList(
@@ -502,7 +502,7 @@ public class Dialogue {
                             // AnswerID - 51
                             "This will print 10 times because the value of count is 1 in the beginning and it will stop if the value of count is 10",
                             // AnswerID - 52
-                            "Remembre the sysntax: variable variablename [] = {values}",
+                            "Remember the syntax: variable VariableName [] = {values}",
                             // AnswerID - 53
                             "It is an object that can hold group of values",
                             // AnswerID - 54
@@ -526,7 +526,7 @@ public class Dialogue {
                             // AnswerID - 63
                             "You must use return keyword to return a value",
                             // AnswerID - 64
-                            "Parameteers are varaibles passed into a method",
+                            "Parameters are variables passed into a method",
                             // AnswerID - 65
                             "Check the values of parameters that was used in int = w, then check the parameters of the method carefully before solving",
                             // AnswerID - 66
@@ -556,7 +556,7 @@ public class Dialogue {
                             // AnswerID - 75
                             "Default constructor are always provided and it is a non-arg",
                             // AnswerID - 76
-                            "Objecs can represent an entity at the real world",
+                            "Objects can represent an entity at the real world",
                             // AnswerID - 77
                             "Remember the syntax: class name object name = new class name",
                             // AnswerID - 78
@@ -648,7 +648,7 @@ public class Dialogue {
                             // AnswerID - 115
                             "Carefully note that there are 2 increment used in the loop",
                             // AnswerID - 116
-                            "Carefully follow the syntax: type [] variablename = {values}",
+                            "Carefully follow the syntax: type [] VriableName = {values}",
                             // AnswerID - 117
                             "Remember in arrays it's index starts at 0",
                             // AnswerID - 118
