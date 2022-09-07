@@ -233,7 +233,7 @@ public class Dialogue {
                             // Player Neutral
                             "Sounds like you've got it under control", "Trust your ability to answer the question", "Keep answering you can do it!","Just take one step at a time in answering",
                             "You can still do better than the last time", "You've come prepared in this topic", "Wow, you're answering the question better than I thought",
-                            "Your progress is truly inspiring.", "", "" // 8
+                            "Your progress is truly inspiring", "", "" // 8
                     )),
 
                     new ArrayList<>(Arrays.asList(
