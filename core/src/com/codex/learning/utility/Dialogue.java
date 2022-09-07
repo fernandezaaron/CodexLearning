@@ -364,7 +364,89 @@ public class Dialogue {
                             "There are multiple ways to type cast a variable",
                             "Output of the program depends on the variable",
                             "Place the variable as the output if necessary"
-                    ))
+                    )),
+
+                    // HERE start
+                    new ArrayList<>(Arrays.asList(
+                            // Operators
+                            "Try to remember the output of the program",
+                            "Don't forget to check the closing statement",
+                            "There are multiple ways to type cast a variable",
+                            "Output of the program depends on the variable",
+                            "Place the variable as the output if necessary"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Conditional Statement
+                            "Try to remember the output of the program",
+                            "Don't forget to check the closing statement",
+                            "There are multiple ways to type cast a variable",
+                            "Output of the program depends on the variable",
+                            "Place the variable as the output if necessary"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Loops
+                            "Try to remember the output of the program",
+                            "Don't forget to check the closing statement",
+                            "There are multiple ways to type cast a variable",
+                            "Output of the program depends on the variable",
+                            "Place the variable as the output if necessary"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Arrays
+                            "Try to remember the output of the program",
+                            "Don't forget to check the closing statement",
+                            "There are multiple ways to type cast a variable",
+                            "Output of the program depends on the variable",
+                            "Place the variable as the output if necessary"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Methods
+                            "Try to remember the output of the program",
+                            "Don't forget to check the closing statement",
+                            "There are multiple ways to type cast a variable",
+                            "Output of the program depends on the variable",
+                            "Place the variable as the output if necessary"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Parameters
+                            "Try to remember the output of the program",
+                            "Don't forget to check the closing statement",
+                            "There are multiple ways to type cast a variable",
+                            "Output of the program depends on the variable",
+                            "Place the variable as the output if necessary"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Parameters Overloading
+                            "Try to remember the output of the program",
+                            "Don't forget to check the closing statement",
+                            "There are multiple ways to type cast a variable",
+                            "Output of the program depends on the variable",
+                            "Place the variable as the output if necessary"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Objects
+                            "Try to remember the output of the program",
+                            "Don't forget to check the closing statement",
+                            "There are multiple ways to type cast a variable",
+                            "Output of the program depends on the variable",
+                            "Place the variable as the output if necessary"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Classes
+                            "Try to remember the output of the program",
+                            "Don't forget to check the closing statement",
+                            "There are multiple ways to type cast a variable",
+                            "Output of the program depends on the variable",
+                            "Place the variable as the output if necessary"
+                    )),
             )
     );
 
