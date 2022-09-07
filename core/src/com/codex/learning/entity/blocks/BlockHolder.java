@@ -132,12 +132,10 @@ public class BlockHolder extends Entity {
     }
 
     public Blocks getCopyBlock() {
-        System.out.println("returning " + copyBlock);
         return copyBlock;
     }
 
     public void setCopyBlock(Blocks copyBlock) {
-        System.out.println("setting " + copyBlock);
         this.copyBlock = copyBlock;
     }
 
