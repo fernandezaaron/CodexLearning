@@ -212,7 +212,8 @@ public class Dialogue {
                             // Stage failed
                             "You should pay attention to JediGrandpa's teaches and try again", "Recall all your mistakes and try again.",
                             "Visit and talk to JediGrandpa to recall the lesson and try again ", "Maybe you didn't understand the topic",
-                            "Try again to learn from your mistakes", "Maybe that's why you failed. You didn't learn from your mistakes", "Try and try until you've succeeded" // 7
+                            "Try again to learn from your mistakes", "Maybe that's why you failed. You didn't learn from your mistakes",
+                            "Try and try until you've succeeded" // 7
                     ))
             )
     );
