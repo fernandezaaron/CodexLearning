@@ -28,8 +28,9 @@ public class MysteryCode extends State {
 
     private Blocks[] answerBlocks;
 
-    private Blocks[][] questionBlocks;
+    private Blocks[][] questionBlocks, answerBlocksArray;
     private BlockHolder[][] blockHolders;
+    private ArrayList<ArrayList<Blocks>> blocksArrayList;
 
     private PauseState pause;
     float blockSize;
@@ -53,7 +54,9 @@ public class MysteryCode extends State {
 
         // WILL BE USED, DON'T ERASE
         questionBlocks = new Blocks[20][20];
+        answerBlocksArray = new Blocks[20][20];
         blockHolders = new BlockHolder[20][20];
+        blocksArrayList = new ArrayList<>();
         // WILL BE USED, DON'T ERASE
 
         this.stage = manager.getStageSelector().getStageNumber();
@@ -69,6 +72,7 @@ public class MysteryCode extends State {
         for(int i = 0; i < minigameContainer.size(); i++) {
             float xStartingPoint = -18.0f;
             for (int j = 0; j < minigameContainer.get(i).size(); j++) {
+                blocksArrayList.add(new ArrayList<Blocks>());
                 if(minigameContainer.get(i).get(j) != null) {
                     float currentStringLength = (float) String.valueOf(minigameContainer.get(i).get(j)).length();
                     if (banishCells.contains(currentCell)) {
@@ -178,24 +182,21 @@ public class MysteryCode extends State {
                     if (banishCells.contains(currentCell)) {
                         if (blockHolders[i][j].isInContact()) {
                             jedisaur.dropBlock(blockHolders[i][j]);
+                            if(jedisaur.isDropped() && !blocksArrayList.get(i).contains(blockHolders[i][j].getCopyBlock())){
+                                    blocksArrayList.get(i).add(blockHolders[i][j].getCopyBlock());
+
+                                }
+                            }
                         }
-                    }
-                    currentCell++;
+                        currentCell++;
                 }
             }
         }
-
-        // WILL BE USED, DON'T ERASE
-        for (int i = 0; i < answerPoolContainer.size(); i++) {
-            if (answerBlocks[i] != null) {
-                answerBlocks[i].update(delta);
-            }
-        }
-
-        /* below this is used for padding */
+        /** below this is used for padding **/
         if(jedisaur.isCarrying()){
             blockSize = jedisaur.getCopyBlock().getDupliSize().x;
         }
+
 
         currentCell = 0;
         for (int i = 0; i < minigameContainer.size(); i++) {
@@ -206,53 +207,63 @@ public class MysteryCode extends State {
                             blockHolders[i][j].update(delta);
                             if(jedisaur.isDropped()){
 
-                                /* tempCurrentCell is used for a local iteration of currentcell
-                                    since currentcell iterates the whole indeces from 1-N */
+                                /** tempCurrentCell is used for a local iteration of currentcell
+                                    since currentcell iterates the whole indeces from 1-N **/
 
                                 int tempCurrentCell = currentCell;
 
-                                /* left iteration of blocks */
+                                /** left iteration of blocks **/
                                 for(int k=j-1; k>=0; k--){
                                     tempCurrentCell--;
-                                    /* checks if the arraylist is a blockholder or if it is inside the arraylist */
+                                    /** checks if the index is a blockholder or if it is inside the arraylist **/
                                     if(banishCells.contains(tempCurrentCell)){
                                         blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
-                                        System.out.println("element j " + j + " element k " + k);
-                                        if(blockHolders[i][k].isOccupied()) {
-                                            System.out.println("element k generated " + k + " block " + blockHolders[i][k].getCopyBlock());
-                                            blockHolders[i][k].getCopyBlock().getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
-                                        }
-                                        else
-                                            continue;
                                     }
                                     else{
                                         questionBlocks[i][k].getBody().setTransform(questionBlocks[i][k].getBody().getPosition().x - blockSize+0.5f, questionBlocks[i][k].getBody().getPosition().y, 0);
                                     }
                                 }
 
+
+
+                                /** for the blocks occupying the blockholders
+                                 * it iterates from the max value of the arraylist(i), and finds the
+                                 * blockholders from the leftside of the currentCell
+                                 * if it is true and the blockholder is occupied, transform the copyblocks of blockholders stored in the arraylist **/
                                 tempCurrentCell = currentCell;
-
-                                /* for the blocks occupying blockholders */
-
-
-                                if(blockHolders[i][j].isOccupied()){
-                                    System.out.println(j + " " + blockHolders[i][j].getCopyBlock());
+                                int blockArrayIndex = blocksArrayList.get(i).size()-1;
                                     for(int k=j-1; k>=0; k--){
-//                                        tempCurrentCell--;
-////                                        if(banishCells.contains(tempCurrentCell)){
-//                                        if(blockHolders[i][k].getCopyBlock().isGenerated()){
-////                                            System.out.println(k + " is occupied :D");
-//                                            System.out.println(k + "" + blockHolders[i][k].getCopyBlock());
-////                                            blockHolders[i][k].getCopyBlock().getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
-//                                              answerBlocks[i].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
-//                                        }
-////                                        }
+                                        System.out.println(blockArrayIndex + " current");
+                                        tempCurrentCell--;
+                                        if(banishCells.contains(tempCurrentCell)){
+                                            if(blockHolders[i][k].isOccupied()){
+                                                blockArrayIndex--;
+                                                System.out.println("array index: " + blockArrayIndex);
+                                                System.out.println(blocksArrayList.get(i).get(blockArrayIndex));
+                                                blocksArrayList.get(i).get(blockArrayIndex).getBody().setTransform(blockHolders[i][k].getBody().getPosition().x, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
+                                            }
+                                        }
+                                    }
+
+                                /** right blocks in the blockholders **/
+                                tempCurrentCell = currentCell;
+                                blockArrayIndex = blocksArrayList.get(i).indexOf(0);
+                                for(int k=j+1; k<minigameContainer.get(i).size(); k++){
+                                    System.out.println(blockArrayIndex + " current");
+                                    tempCurrentCell++;
+                                    if(banishCells.contains(tempCurrentCell)){
+                                        if(blockHolders[i][k].isOccupied()){
+                                            blockArrayIndex++;
+                                            System.out.println("array index: " + blockArrayIndex);
+                                            System.out.println(blocksArrayList.get(i).get(blockArrayIndex));
+                                            blocksArrayList.get(i).get(blockArrayIndex).getBody().setTransform(blockHolders[i][k].getBody().getPosition().x+blockSize, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
+                                        }
                                     }
                                 }
 
                                 tempCurrentCell = currentCell;
 
-                                /* right iteration of blocks */
+                                /** right iteration of blocks **/
                                 for(int k=j+1; k<minigameContainer.get(i).size(); k++){
                                     tempCurrentCell++;
                                     if(banishCells.contains(tempCurrentCell)){
@@ -265,16 +276,16 @@ public class MysteryCode extends State {
                             jedisaur.setDropped(false);
                             }
 
-                            /* made a new boolean flag for whenever jedisaur HAS PICKEDUP
+                            /** made a new boolean flag for whenever jedisaur HAS PICKEDUP
                                because if jedisaur ISCARRYING it will always return to true thus will
                                manipulate the x-axis whenever the user carries a block
-                            */
+                            **/
 
                             if(jedisaur.isPickedUp()){
-                                int currentCurrentCell = currentCell;
+                                int tempCurrentCell = currentCell;
                                 for(int k=j-1; k>=0; k--){
-                                    currentCurrentCell--;
-                                    if(banishCells.contains(currentCurrentCell)){
+                                    tempCurrentCell--;
+                                    if(banishCells.contains(tempCurrentCell)){
                                         blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x + blockSize-0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
                                     }
                                     else{
@@ -282,32 +293,53 @@ public class MysteryCode extends State {
                                     }
                                 }
 
-//                            currentCurrentCell = currentCell;
-//                            System.out.println("J: " + j);
-//                            for(int k=j-1; k>=0; k--){
-//                                currentCurrentCell--;
-//
-//                                if(banishCells.contains(currentCurrentCell)){
-////                                    System.out.println("left true");
-////                                    blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
-//                                    if(blockHolders[i][k].isOccupied()){
-//                                        System.out.println("is occupied :D");
-//                                        blockHolders[i][k].getCopyBlock().getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
-//                                        answerBlocks[k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
-//                                    }
-//                                }
-//                            }
 
-                                currentCurrentCell = currentCell;
+                                tempCurrentCell = currentCell;
                                 for(int k=j+1; k<minigameContainer.get(i).size(); k++){
-                                    currentCurrentCell++;
-                                    if(banishCells.contains(currentCurrentCell)){
+                                    tempCurrentCell++;
+                                    if(banishCells.contains(tempCurrentCell)){
                                         blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
                                     }
                                     else{
                                         questionBlocks[i][k].getBody().setTransform(questionBlocks[i][k].getBody().getPosition().x - blockSize+0.5f , questionBlocks[i][k].getBody().getPosition().y, 0);
                                     }
                                 }
+
+                                /** for the blocks occupying the blockholders
+                                 * it iterates from the max value of the arraylist(i), and finds the
+                                 * blockholders from the leftside of the currentCell
+                                 * if it is true and the blockholder is occupied, transform the copyblocks of blockholders stored in the arraylist **/
+                                tempCurrentCell = currentCell;
+                                int blockArrayIndex = blocksArrayList.get(i).size()-1;
+                                for(int k=j-1; k>=0; k--){
+                                    System.out.println(blockArrayIndex + " current");
+                                    tempCurrentCell--;
+                                    if(banishCells.contains(tempCurrentCell)){
+                                        if(blockHolders[i][k].isOccupied()){
+                                            blockArrayIndex--;
+                                            System.out.println("array index: " + blockArrayIndex);
+                                            System.out.println(blocksArrayList.get(i).get(blockArrayIndex));
+                                            blocksArrayList.get(i).get(blockArrayIndex).getBody().setTransform(blockHolders[i][k].getBody().getPosition().x+1.75f, blockHolders[i][k].getBody().getPosition().y, 0);
+                                        }
+                                    }
+                                }
+
+                                /** right blocks in the blockholders **/
+                                tempCurrentCell = currentCell;
+                                blockArrayIndex = blocksArrayList.get(i).indexOf(0);
+                                for(int k=j+1; k<minigameContainer.get(i).size(); k++){
+                                    System.out.println(blockArrayIndex + " current");
+                                    tempCurrentCell++;
+                                    if(banishCells.contains(tempCurrentCell)){
+                                        if(blockHolders[i][k].isOccupied()){
+                                            blockArrayIndex++;
+                                            System.out.println("array index: " + blockArrayIndex);
+                                            System.out.println(blocksArrayList.get(i).get(blockArrayIndex));
+                                            blocksArrayList.get(i).get(blockArrayIndex).getBody().setTransform(blockHolders[i][k].getBody().getPosition().x-1.75f, blockHolders[i][k].getBody().getPosition().y, 0);
+                                        }
+                                    }
+                                }
+
                                 jedisaur.setPickedUp(false);
                             }
 
@@ -316,11 +348,18 @@ public class MysteryCode extends State {
                     }
                     currentCell++;
                 }
+
             }
+
         }
 
 
-
+             // WILL BE USED, DON'T ERASE
+             for (int i = 0; i < answerPoolContainer.size(); i++) {
+                 if (answerBlocks[i] != null) {
+                     answerBlocks[i].update(delta);
+                 }
+             }
 
 
 
@@ -399,29 +438,3 @@ public class MysteryCode extends State {
 
 
 }
-
-
-
-//        // GENERATES THE NUMBER OF THE BLOCKS TO BE REMOVED
-//        for(int i = 0; i < banishPerRow.size(); i++) {
-//            int banishNumberIterator = randomizer.nextInt(2) + 1;
-////            System.out.println(banishNumberIterator);
-//            for(int j = 0; j < banishPerRow.get(i).size(); j++) {
-////                System.out.println((banishPerRow.get(i).size()) + "    " + banishPerRow.get(i).get(0));
-//                int banishNumber = randomizer.nextInt(banishPerRow.get(i).size() - 1) + banishPerRow.get(i).get(0);
-////                System.out.println(banishNumber);
-//                if(banishNumberIterator == 0) {
-////                    System.out.println("berak");
-//                    break;
-//                }
-//                else if(!banishCells.contains(banishNumber)) {
-//                    banishCells.add(banishNumber);
-//                    banishNumberIterator--;
-////                    System.out.println("baka sa iterator " + banishNumberIterator +
-////                            " eh sa last element " + (banishPerRow.get(i).size() - 1) +
-////                            " first? " + banishPerRow.get(i).get(0) +
-////                            " eto ibabanish " + banishNumber);
-//                }
-//            }
-//        }
-////        System.out.println("nagbreak?");
