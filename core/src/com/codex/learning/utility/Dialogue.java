@@ -446,7 +446,7 @@ public class Dialogue {
                             "There are multiple ways to type cast a variable",
                             "Output of the program depends on the variable",
                             "Place the variable as the output if necessary"
-                    )),
+                    ))
             )
     );
 
