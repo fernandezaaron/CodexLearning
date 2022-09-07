@@ -193,26 +193,26 @@ public class Dialogue {
                             // After minigame if passed
                             "Good job", "Wow, that's impressive work.", "You are a fast learner.", "I'm so proud of your effort.", "How did you do this so fast?", "Terrific job!",
                             "Wow, you are so skilled!", "This is insanely good.", "Fantastic!", "Your level of expertise is impressive.", "This proves you are ready for more here.",
-                            "Now this is good work.","Your progress is truly inspiring.","Outstanding work!", "You are a fast learner."
+                            "Now this is good work.","Outstanding work!", "You are a fast learner." // 14
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // After minigame if low score
                             "You should review xD", "Please review", "Try to focus on the topic you got a low score", "Did you really understand the lesson?", "Maybe you just answer the question without understanding it",
-                            "Pls don't shotgun the questions", "Please try again", ""
+                            "Pls don't shotgun the questions", "Please try again", "" // 7
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Stage Complete
                             "Congratulations you've completed the stage in less than 5 minutes","Good job you've completed the stage in less than 10 minutes", "Nice you've completed the stage in less than 15 minutes", "You've completed the stage you're doing this right",
-                            "You've passed the 5 minute mark.","You've passed the 10 minute mark.","You've passed the 15 minute mark.", "Congrats on finishing the stage"
+                            "You've passed the 5 minute mark.","You've passed the 10 minute mark.","You've passed the 15 minute mark.", "Congrats on finishing the stage" // 8
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Stage failed
                             "You should pay attention to JediGrandpa's teaches and try again", "Recall all your mistakes and try again.",
                             "Visit and talk to JediGrandpa to recall the lesson and try again ", "Maybe you didn't understand the topic",
-                            "Try again to learn from your mistakes", "Maybe that's why you failed. You didn't learn from your mistakes"
+                            "Try again to learn from your mistakes", "Maybe that's why you failed. You didn't learn from your mistakes" // 6
                     ))
             )
     );
@@ -223,23 +223,24 @@ public class Dialogue {
                     new ArrayList<>(Arrays.asList(
                             // Player Engaged
                             "Keep doing what you are doing","Keep up the good work",
-                            "Wow you already mastered this topic", "Do you find the question to be Exciting?",
+                            "Wow, you already mastered this topic", "Do you find the question to be Exciting?",
                             "Does the question challenge you?", "You certainly are an expert on this topic", "How come you answer faster than others?",
                             "Wow you're more interested in this topic than others", "You've put in a lot of effort to answer the question",
-                            "I can tell you have been paying attention and answering the questions. Nicely done!" //10
+                            "I can tell you have been paying attention and answering the questions. Nicely done!" // 10
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Player Neutral
                             "Sounds like you've got it under control", "Trust your ability to answer the question", "Keep answering you can do it!","Just take one step at a time in answering",
-                            "You can still do better than the last time", "You've come prepared in this topic", "", "", "", "" // 6
+                            "You can still do better than the last time", "You've come prepared in this topic", "Wow, you're answering the question better than I thought",
+                            "Your progress is truly inspiring.", "", "" // 8
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Player Bored
                             "Does the question not challenge you?",  "Is the question too long for you?", "Is the question too simple for you?",
                             "Do the questions not stimulate your brain?", "Maybe you don't find the topic interesting", "You can listen to your favorite music while playing",
-                            "Maybe try another type of mini-game if it becomes interesting to you", "", "", "" // 7
+                            "Maybe try another type of mini-game if it becomes interesting to you", "Have you found a topic that intrigues you?", "", "" // 8
                             // "Do you find the topic to be somewhat boring?", "Is the question easy for you, and that's why you are bored?",
                     )),
 
