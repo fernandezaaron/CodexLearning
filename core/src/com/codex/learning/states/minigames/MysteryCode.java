@@ -52,7 +52,7 @@ public class MysteryCode extends State {
 
         this.stage = manager.getStageSelector().getStageMap();
 
-        getAMinigame(manager.getStageSelector().map(), "Poor");
+        getAMinigame(manager.getStageSelector().map(), manager.getExpertSystem().getExpertiseLevel());
 
         for(int i = 0; i <= 10; i++) {
             banishCells.add(randomizer.nextInt(minigameContainerLimit - 1) + 1);
@@ -331,7 +331,7 @@ public class MysteryCode extends State {
     }
 
     public void getAMinigame(String stage, String expertiseLevel){
-        manager.getQuestionnaire().minigameDisplay(stage,String.valueOf(manager.getStageSelector().getStageMap()), expertiseLevel);
+        manager.getQuestionnaire().minigameDisplay(stage, String.valueOf(manager.getStageSelector().getStageMap()), expertiseLevel);
         minigameContainer = manager.getQuestionnaire().getMinigameHolder();
         minigameContainerLimit = manager.getQuestionnaire().getMinigameLimit();
         answerPoolContainer = manager.getQuestionnaire().getAnswerPool();
