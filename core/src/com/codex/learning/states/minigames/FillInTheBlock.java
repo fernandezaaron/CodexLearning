@@ -297,7 +297,7 @@ public class FillInTheBlock extends State {
     public void getAMinigame(String stage, String expertiseLevel){
         manager.getQuestionnaire().minigameDisplay(stage,String.valueOf(manager.getStageSelector().getStageNumber()),expertiseLevel);
         minigameContainer = manager.getQuestionnaire().getMinigame();
-        banishPerRow = manager.getQuestionnaire().getBanishPerRow();
+//        banishPerRow = manager.getQuestionnaire().getBanishPerRow();
         dispenserPoolContainer = manager.getQuestionnaire().getDispenserPool();
     }
 

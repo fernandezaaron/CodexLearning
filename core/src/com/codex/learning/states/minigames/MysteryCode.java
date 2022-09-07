@@ -184,6 +184,14 @@ public class MysteryCode extends State {
                 }
             }
         }
+
+        // WILL BE USED, DON'T ERASE
+        for (int i = 0; i < answerPoolContainer.size(); i++) {
+            if (answerBlocks[i] != null) {
+                answerBlocks[i].update(delta);
+            }
+        }
+
         /* below this is used for padding */
         if(jedisaur.isCarrying()){
             blockSize = jedisaur.getCopyBlock().getDupliSize().x;
@@ -209,6 +217,13 @@ public class MysteryCode extends State {
                                     /* checks if the arraylist is a blockholder or if it is inside the arraylist */
                                     if(banishCells.contains(tempCurrentCell)){
                                         blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+                                        System.out.println("element j " + j + " element k " + k);
+                                        if(blockHolders[i][k].isOccupied()) {
+                                            System.out.println("element k generated " + k + " block " + blockHolders[i][k].getCopyBlock());
+                                            blockHolders[i][k].getCopyBlock().getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+                                        }
+                                        else
+                                            continue;
                                     }
                                     else{
                                         questionBlocks[i][k].getBody().setTransform(questionBlocks[i][k].getBody().getPosition().x - blockSize+0.5f, questionBlocks[i][k].getBody().getPosition().y, 0);
@@ -229,7 +244,7 @@ public class MysteryCode extends State {
 ////                                            System.out.println(k + " is occupied :D");
 //                                            System.out.println(k + "" + blockHolders[i][k].getCopyBlock());
 ////                                            blockHolders[i][k].getCopyBlock().getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
-//                                                //                                        answerBlocks[i].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+//                                              answerBlocks[i].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
 //                                        }
 ////                                        }
                                     }
@@ -305,12 +320,7 @@ public class MysteryCode extends State {
         }
 
 
-             // WILL BE USED, DON'T ERASE
-             for (int i = 0; i < answerPoolContainer.size(); i++) {
-                 if (answerBlocks[i] != null) {
-                     answerBlocks[i].update(delta);
-                 }
-             }
+
 
 
 
@@ -389,3 +399,29 @@ public class MysteryCode extends State {
 
 
 }
+
+
+
+//        // GENERATES THE NUMBER OF THE BLOCKS TO BE REMOVED
+//        for(int i = 0; i < banishPerRow.size(); i++) {
+//            int banishNumberIterator = randomizer.nextInt(2) + 1;
+////            System.out.println(banishNumberIterator);
+//            for(int j = 0; j < banishPerRow.get(i).size(); j++) {
+////                System.out.println((banishPerRow.get(i).size()) + "    " + banishPerRow.get(i).get(0));
+//                int banishNumber = randomizer.nextInt(banishPerRow.get(i).size() - 1) + banishPerRow.get(i).get(0);
+////                System.out.println(banishNumber);
+//                if(banishNumberIterator == 0) {
+////                    System.out.println("berak");
+//                    break;
+//                }
+//                else if(!banishCells.contains(banishNumber)) {
+//                    banishCells.add(banishNumber);
+//                    banishNumberIterator--;
+////                    System.out.println("baka sa iterator " + banishNumberIterator +
+////                            " eh sa last element " + (banishPerRow.get(i).size() - 1) +
+////                            " first? " + banishPerRow.get(i).get(0) +
+////                            " eto ibabanish " + banishNumber);
+//                }
+//            }
+//        }
+////        System.out.println("nagbreak?");
