@@ -10,7 +10,8 @@ public class Dialogue {
 
 
     private ArrayList<ArrayList<String>> introductionDialogue = new ArrayList<>(Arrays.asList(
-            new ArrayList<String>(Arrays.asList("Hi I am, JediGrandpa", "I have a task for you to do", "But first lets study first on the topic",
+            new ArrayList<String>(Arrays.asList("Welcome to Jediland, Jedisaur.", "Hi I am, JediGrandpa", "From today, you'll be my Padawan, and I'll teach you the ways of a true Jedi.",
+                    "Instead of teaching you how to use the force, I'll teach you the fundamentals of Java.", "These teachings have been passed down by many generations, and they were developed by: James Gosling in May 1995", "I have a task for you to do young one", "But first lets study first on the topic",
                     //syntax
                     "The first topic is Syntax", "The syntax of Java refers to the set of rules defining how a Java program is written and interpreted.",
                     "The syntax is mostly derived from C and C++. Unlike in C++, in Java there are no global functions or variables" ,
@@ -76,6 +77,7 @@ public class Dialogue {
             )),
             new ArrayList<String>(Arrays.asList(
                     // Conditional Statements
+                    // "Welcome to School, Jedisaur", "Hi I am, JediTeacher", "This teaching is harder than what JediGrandpa teaches you", "I have a task for you to do young one", "But first lets study first on the topic",
                     "Our first topic is Conditional statements", "Java has the following conditional statements:" + "\n\nif, else, else if, and switch",
                     "Use if to specify a block of code to be executed, if a specified condition is true" + "\nfor example: " + "\nint x = 20;\n" + "int y = 18;\n" + "if (x > y) {\n" + "  System.out.println(\"x is greater than y\");\n" + "}",
                     "Use else to specify a block of code to be executed, if the same condition is false" + "\nfor example: " + "\nint time = 20;\n" + "if (time < 18) {\n" + "  System.out.println(\"Good day.\");\n" + "} else {\n" + "  System.out.println(\"Good evening.\");\n" + "}",
@@ -147,14 +149,16 @@ public class Dialogue {
 
             new ArrayList<String>(Arrays.asList(
                     "We have met once again and this will probably be the last I would see you :(",
+                    "You've made JediGrandpa proud by reaching this stage",
                     "Our last meeting will check your mastery on the second stage. ",
                     "There will be a quiz that includes all the topics we have covered from the second stage",
                     "After proving your mastery on the topic and passing the quiz",
-                    "You will be able to proceed to the next stage, which is the School!" // or Company
+                    "You will be able to proceed to the next stage, which is the Company!"
             )),
 
             new ArrayList<String>(Arrays.asList(
                     //classes
+                    // "Welcome to the Company, Jedisaur", "Hi I am, JediManager", "This lesson is harder than the previous one you encountered.", "I have a task for you to do young one", "But first lets study first on the topic",
                     "Our first topic is Classes", "Everything in Java is associated with classes and objects, along with its attributes and methods.", "For example: in real life, a car is an object. The car has attributes, such as weight and color, and methods, such as drive and brake.",
                     "A Class is like an object constructor, or a \"blueprint\" for creating objects.", "To create a class, use the keyword class:" + "\n\nExample" + "\npublic class Main {\n" + "  int x = 5;\n" + "}" + "\n\nRemember that a class should always start with an uppercase first letter, and that the name of the java file should match the class name.",
                     // Objects
@@ -166,12 +170,16 @@ public class Dialogue {
 
             new ArrayList<String>(Arrays.asList(
                     "We have met once again and this will probably be the last I would see you :(",
-                    "Our last meeting will check your mastery on the third stage. ",
+                    "You've made JediGrandpa and JediTeacher proud by reaching this stage",
+                    "Our last meeting will check your mastery on the third stage.",
                     "There will be a quiz that includes all the topics we have covered from the third stage",
                     "After proving your mastery on the topic and passing the quiz",
                     "There will be a exam that will include all the topics we have covered from all the stages",
                     "After proving your mastery on all the topics and passing the exam",
-                    "You will be a full-fledged Jedi"
+                    "You're no longer a Padawan because you've become a full-fledged Jedi Master",
+                    "You've made all of us proud, young one",
+                    "Pass on what you have learned."
+
 
             ))
 
@@ -204,7 +212,7 @@ public class Dialogue {
                             // Stage failed
                             "You should pay attention to JediGrandpa's teaches and try again", "Recall all your mistakes and try again.",
                             "Visit and talk to JediGrandpa to recall the lesson and try again ", "Maybe you didn't understand the topic",
-                            "Try again to learn from your mistakes"
+                            "Try again to learn from your mistakes", "Maybe that's why you failed. You didn't learn from your mistakes"
                     ))
             )
     );
@@ -217,21 +225,21 @@ public class Dialogue {
                             "Keep doing what you are doing","Keep up the good work",
                             "Wow you already mastered this topic", "Do you find the question to be Exciting?",
                             "Does the question challenge you?", "You certainly are an expert on this topic", "How come you answer faster than others?",
-                            "Wow you're more interested in this topic than others", "You've put in a lot of effort to answer the question", "I can tell you have been paying attention and answering the questions. Nicely done!"
-                            //10
+                            "Wow you're more interested in this topic than others", "You've put in a lot of effort to answer the question",
+                            "I can tell you have been paying attention and answering the questions. Nicely done!" //10
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Player Neutral
                             "Sounds like you've got it under control", "Trust your ability to answer the question", "Keep answering you can do it!","Just take one step at a time in answering",
-                            "You can still do better than the last time", "You've come prepared in this topic", "" // 6
+                            "You can still do better than the last time", "You've come prepared in this topic", "", "", "", "" // 6
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Player Bored
                             "Does the question not challenge you?",  "Is the question too long for you?", "Is the question too simple for you?",
                             "Do the questions not stimulate your brain?", "Maybe you don't find the topic interesting", "You can listen to your favorite music while playing",
-                            "Maybe try another type of mini-game if it becomes interesting to you", "" // 7
+                            "Maybe try another type of mini-game if it becomes interesting to you", "", "", "" // 7
                             // "Do you find the topic to be somewhat boring?", "Is the question easy for you, and that's why you are bored?",
                     )),
 
@@ -240,7 +248,8 @@ public class Dialogue {
                             "Take a deep breathe and recall the lesson", "Read the topic carefully until you understand it",
                             "Read the question carefully and try to understand it", "Don't give up", "Is the question too difficult for you?",
                             "Maybe you just need a different perspective to answer it", "Go back to the topic that you're having difficulty with",
-                            "Maybe you need to use a hint to help you overcome this question", "If you can address the problem, you can answer it!", "" // 9
+                            "Maybe you need to use a hint to help you overcome this question", "If you can address the problem, you can answer it!",
+                            "Trust your gut if you don't know the answer" // 10
                     )),
 
                     new ArrayList<>(Arrays.asList(
@@ -248,7 +257,8 @@ public class Dialogue {
                             "Calm down you can solve it", "Clear your mind and look at the question again", "Take a few minutes break",
                             "Relax and review the lesson","Don't be mad and use a hint so that you can move on from this question" ,
                             "Maybe you just need to take a break", "Play calming music when you are having a bad time answering the question",
-                            "Maybe take a break and do some stretches before going back to the question and answering it", "" // 8
+                            "Maybe take a break and do some stretches before going back to the question and answering it",
+                            "Maybe think outside of the box when you are answering this question", "Consider the outcomes of all possible answers to the questions." // 10
                     ))
             )
    );
