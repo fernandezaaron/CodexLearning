@@ -147,7 +147,9 @@ public class MysteryCode extends State {
     public void update(float delta) {
         // WILL BE USED, DON'T ERASE
 //               manager.getWorld().step(1/60f,6,2);
-               currentCell = 0;
+            playroom.update(delta);
+
+            currentCell = 0;
                for (int i = 0; i < minigameContainer.size(); i++) {
                    for (int j = 0; j < minigameContainer.get(i).size(); j++) {
                        if (minigameContainer.get(i).get(j) != null) {
