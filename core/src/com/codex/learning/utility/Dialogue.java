@@ -313,7 +313,72 @@ public class Dialogue {
                             "Remember the Conditional Statement Syntax",
                             "Try to check if the statement makes sense",
                             "Else statement or Default are always at the bottom"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Loops
+                            "Try to remember the output of the program",
+                            "Don't forget to check the closing statement",
+                            "Don't forget the syntax of the loop",
+                            "Double check if there is a declared variable to iterate",
+                            "Declared variables are always within or above the loop"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Arrays
+                            "Try to remember the output of the program",
+                            "Don't forget to check the closing statement",
+                            "Arrays are different to initialized from normal variables",
+                            "Indexes of an array can be access through multiple ways",
+                            "Indexes of an array starts with 0"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Methods
+                            "Try to remember the output of the program",
+                            "Don't forget to check the closing statement",
+                            "Don't be confuse between the PSVM and methods",
+                            "Methods doesn't have main",
+                            "Methods can return a value and can output a value"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Parameters
+                            "Try to remember the output of the program",
+                            "Don't forget to check the closing statement",
+                            "Parameters are inside the parenthesis of a method",
+                            "Parameters are similar to the PSVM's String args",
+                            "Methods can have 2 or more parameters"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Parameters Overloading
+                            "Try to remember the output of the program",
+                            "Don't forget to check the closing statement",
+                            "Methods are can have the same name but different parameter",
+                            "Parameters are similar to the PSVM's String args",
+                            "Methods can have 2 or more parameters"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Objects
+                            "Try to remember the output of the program",
+                            "Don't forget to check the closing statement",
+                            "There are multiple ways to type cast a variable",
+                            "Output of the program depends on the variable",
+                            "Place the variable as the output if necessary"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Classes
+                            "Try to remember the output of the program",
+                            "Don't forget to check the closing statement",
+                            "There are multiple ways to type cast a variable",
+                            "Output of the program depends on the variable",
+                            "Place the variable as the output if necessary"
                     ))
+
+
             )
     );
 
@@ -371,8 +436,8 @@ public class Dialogue {
                             // Operators
                             "Try to remember the output of the program",
                             "Don't forget to check the closing statement",
-                            "There are multiple ways to type cast a variable",
-                            "Output of the program depends on the variable",
+                            "Try to solve it one by one",
+                            "Just do a simple math and you'll make it!",
                             "Place the variable as the output if necessary"
                     )),
 
