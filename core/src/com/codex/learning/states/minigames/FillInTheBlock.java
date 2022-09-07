@@ -1,21 +1,16 @@
 package com.codex.learning.states.minigames;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.codex.learning.entity.blocks.BlockDispenser;
 import com.codex.learning.entity.blocks.BlockHolder;
 import com.codex.learning.entity.blocks.Blocks;
-import com.codex.learning.entity.blocks.Computer;
 import com.codex.learning.entity.characters.Character;
-import com.codex.learning.entity.characters.NPC;
 import com.codex.learning.entity.maps.PlayroomMapS1;
 import com.codex.learning.states.PauseState;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
-import jdk.vm.ci.code.BytecodePosition;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -245,8 +240,8 @@ public class FillInTheBlock extends State {
     }
 
     public void getAMinigame(String stage, String expertiseLevel){
-        manager.getQuestionnaire().minigameDisplay(stage,String.valueOf(manager.getStageSelector().getStageNumber()),expertiseLevel);
-        minigameContainer = manager.getQuestionnaire().getMinigame();
+        manager.getQuestionnaire().minigameDisplay(stage,String.valueOf(manager.getStageSelector().getStageMap()),expertiseLevel);
+        minigameContainer = manager.getQuestionnaire().getMinigameHolder();
         minigameContainerLimit = manager.getQuestionnaire().getMinigameLimit();
         dispenserPoolContainer = manager.getQuestionnaire().getDispenserPool();
     }

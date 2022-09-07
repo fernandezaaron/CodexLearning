@@ -9,9 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.codex.learning.entity.Entity;
@@ -71,7 +69,7 @@ public class NPC extends Entity {
         //animates the text
         db = new DialogueBox(manager.getSkin(), "dialogbox2");
         //dialogue of the NPC
-        manager.getDialogue().setStage(manager.getStageSelector().getStageNumber());
+        manager.getDialogue().setStage(manager.getStageSelector().getStageMap());
 
         talking = false;
 

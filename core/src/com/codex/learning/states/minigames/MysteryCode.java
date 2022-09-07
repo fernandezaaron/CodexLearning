@@ -1,16 +1,10 @@
 package com.codex.learning.states.minigames;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.codex.learning.entity.blocks.BlockHolder;
 import com.codex.learning.entity.blocks.Blocks;
-import com.codex.learning.entity.blocks.Computer;
 import com.codex.learning.entity.characters.Character;
-import com.codex.learning.entity.characters.NPC;
 import com.codex.learning.entity.maps.PlayroomMapS1;
 import com.codex.learning.states.PauseState;
 import com.codex.learning.states.State;
@@ -59,9 +53,9 @@ public class MysteryCode extends State {
         blocksArrayList = new ArrayList<>();
         // WILL BE USED, DON'T ERASE
 
-        this.stage = manager.getStageSelector().getStageNumber();
+        this.stage = manager.getStageSelector().getStageMap();
 
-        getAMinigame(manager.getStageSelector().map(), "Poor");
+        getAMinigame(manager.getStageSelector().map(), manager.getExpertSystem().getExpertiseLevel());
 
         for(int i = 0; i <= 10; i++) {
             banishCells.add(randomizer.nextInt(minigameContainerLimit - 1) + 1);
@@ -430,8 +424,8 @@ public class MysteryCode extends State {
     }
 
     public void getAMinigame(String stage, String expertiseLevel){
-        manager.getQuestionnaire().minigameDisplay(stage,String.valueOf(manager.getStageSelector().getStageNumber()), expertiseLevel);
-        minigameContainer = manager.getQuestionnaire().getMinigame();
+        manager.getQuestionnaire().minigameDisplay(stage, String.valueOf(manager.getStageSelector().getStageMap()), expertiseLevel);
+        minigameContainer = manager.getQuestionnaire().getMinigameHolder();
         minigameContainerLimit = manager.getQuestionnaire().getMinigameLimit();
         answerPoolContainer = manager.getQuestionnaire().getAnswerPool();
     }
