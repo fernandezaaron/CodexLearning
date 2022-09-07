@@ -147,10 +147,10 @@ public class Dialogue {
 
             new ArrayList<String>(Arrays.asList(
                     "We have met once again and this will probably be the last I would see you :(",
-                    "Our last meeting will check your mastery on the first stage. ",
-                    "There will be a quiz that includes all the topics we have covered from the first stage",
+                    "Our last meeting will check your mastery on the second stage. ",
+                    "There will be a quiz that includes all the topics we have covered from the second stage",
                     "After proving your mastery on the topic and passing the quiz",
-                    "You will be able to proceed to the next stage, which is the School!"
+                    "You will be able to proceed to the next stage, which is the School!" // or Company
             )),
 
             new ArrayList<String>(Arrays.asList(
@@ -162,6 +162,17 @@ public class Dialogue {
                             "\npublic class Main {\n" + "  int x = 5;\n" + "\n" + "  public static void main(String[] args) {\n" + "    Main myObj = new Main();\n" + "    System.out.println(myObj.x);\n" + "  }\n" + "}",
 
                     "You can create multiple objects of one class:" + "\nExample" + "\n\npublic static void main(String[] args) {\n" + "    Main myObj1 = new Main();  // Object 1\n" + "    Main myObj2 = new Main();  // Object 2\n" + "    System.out.println(myObj1.x);\n" + "    System.out.println(myObj2.x);\n" + "  }"
+            )),
+
+            new ArrayList<String>(Arrays.asList(
+                    "We have met once again and this will probably be the last I would see you :(",
+                    "Our last meeting will check your mastery on the third stage. ",
+                    "There will be a quiz that includes all the topics we have covered from the third stage",
+                    "After proving your mastery on the topic and passing the quiz",
+                    "There will be a exam that will include all the topics we have covered from all the stages",
+                    "After proving your mastery on all the topics and passing the exam",
+                    "You will be a full-fledged Jedi"
+
             ))
 
 
@@ -179,19 +190,20 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // After minigame if low score
-                            "You should review xD", "Please review", "Try to focus on the topic you got a low score", "Did you really understand the lesson?"
+                            "You should review xD", "Please review", "Try to focus on the topic you got a low score", "Did you really understand the lesson?", "Maybe you just answer the question without understanding it",
+                            "Pls don't shotgun the questions", "Please try again", ""
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Stage Complete
                             "Congratulations you've completed the stage in less than 5 minutes","Good job you've completed the stage in less than 10 minutes", "Nice you've completed the stage in less than 15 minutes", "You've completed the stage you're doing this right",
-                            "You've passed the 5 minute mark.","You've passed the 10 minute mark.","You've passed the 15 minute mark."
+                            "You've passed the 5 minute mark.","You've passed the 10 minute mark.","You've passed the 15 minute mark.", "Congrats on finishing the stage"
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Stage failed
                             "You should pay attention to JediGrandpa's teaches and try again", "Recall all your mistakes and try again.",
-                            "Visit and talk to JediGrandpa to recall the lesson and try again ",
+                            "Visit and talk to JediGrandpa to recall the lesson and try again ", "Maybe you didn't understand the topic",
                             "Try again to learn from your mistakes"
                     ))
             )
@@ -202,34 +214,41 @@ public class Dialogue {
             Arrays.asList(
                     new ArrayList<>(Arrays.asList(
                             // Player Engaged
-                            "Wow you're more engaged than i thought", "Keep doing what you are doing","Keep up the good work",
-                            "How come you are more engaged than other people", "Wow you already mastered this topic", "Do you find the question to be Exciting?",
-                            "Does the question challenge you?"
+                            "Keep doing what you are doing","Keep up the good work",
+                            "Wow you already mastered this topic", "Do you find the question to be Exciting?",
+                            "Does the question challenge you?", "You certainly are an expert on this topic", "How come you answer faster than others?",
+                            "Wow you're more interested in this topic than others", "You've put in a lot of effort to answer the question", "I can tell you have been paying attention and answering the questions. Nicely done!"
+                            //10
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Player Neutral
-                            ""
+                            "Sounds like you've got it under control", "Trust your ability to answer the question", "Keep answering you can do it!","Just take one step at a time in answering",
+                            "You can still do better than the last time", "You've come prepared in this topic", "" // 6
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Player Bored
-                            "Do you find the topic to be somewhat boring?", "Does the question not challenge you?", "Is the question easy for you, and that's why you are bored?",
-                            "How come you are bored in answering the question?"
+                            "Does the question not challenge you?",  "Is the question too long for you?", "Is the question too simple for you?",
+                            "Do the questions not stimulate your brain?", "Maybe you don't find the topic interesting", "You can listen to your favorite music while playing",
+                            "Maybe try another type of mini-game if it becomes interesting to you", "" // 7
+                            // "Do you find the topic to be somewhat boring?", "Is the question easy for you, and that's why you are bored?",
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Player Confused
-                            "Take a deep breathe and recall the lesson", "Go back to to the topic that you are confused", "Read the topic carefully until you understand it",
-                            "Read the question carefully and try to understand it", "You're confused maybe you want to use a hint", "Don't give up",
-                            "Maybe you just need a different perspective to answer it"
+                            "Take a deep breathe and recall the lesson", "Read the topic carefully until you understand it",
+                            "Read the question carefully and try to understand it", "Don't give up", "Is the question too difficult for you?",
+                            "Maybe you just need a different perspective to answer it", "Go back to the topic that you're having difficulty with",
+                            "Maybe you need to use a hint to help you overcome this question", "If you can address the problem, you can answer it!", "" // 9
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Player Frustrated
                             "Calm down you can solve it", "Clear your mind and look at the question again", "Take a few minutes break",
                             "Relax and review the lesson","Don't be mad and use a hint so that you can move on from this question" ,
-                            "Maybe you just need to take a break"
+                            "Maybe you just need to take a break", "Play calming music when you are having a bad time answering the question",
+                            "Maybe take a break and do some stretches before going back to the question and answering it", "" // 8
                     ))
             )
    );
@@ -305,7 +324,7 @@ public class Dialogue {
                     new ArrayList<String>(Arrays.asList(
                             // Objects
                             "Did you specify the class name before the object name", "there should be a new keyword when creating an object", "Did you properly create an object"
-                    )),
+                    ))
 
                 /*    new ArrayList<String>(Arrays.asList(
                             // Minigames
@@ -357,7 +376,7 @@ public class Dialogue {
                             // Minigame_ID - 18
                             "This will print out the factorial of 5"
 
-                    )), */
+                    )),
 
                     new ArrayList<String>(Arrays.asList(
                             // Stage 1 - easy
@@ -648,7 +667,7 @@ public class Dialogue {
                             "Carefully solve the problem and note that it is declared as double so it will automatically have a decimal point at the end"
 
                     ))
-
+*/
 
             )
     );
