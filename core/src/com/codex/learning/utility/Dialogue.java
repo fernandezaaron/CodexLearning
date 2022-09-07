@@ -193,13 +193,13 @@ public class Dialogue {
                             // After minigame if passed
                             "Good job", "Wow, that's impressive work.", "You are a fast learner.", "I'm so proud of your effort.", "How did you do this so fast?", "Terrific job!",
                             "Wow, you are so skilled!", "This is insanely good.", "Fantastic!", "Your level of expertise is impressive.", "This proves you are ready for more here.",
-                            "Now this is good work.","Outstanding work!", "You are a fast learner." // 14
+                            "Now this is good work.","Outstanding work!", "You are a fast learner.", "This proves you are worthy to handle the hard questions" // 15
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // After minigame if low score
                             "You should review xD", "Please review", "Try to focus on the topic you got a low score", "Did you really understand the lesson?", "Maybe you just answer the question without understanding it",
-                            "Pls don't shotgun the questions", "Please try again", "" // 7
+                            "Pls don't shotgun the questions", "Please try again", "I think you didn't answer the question seriously" // 8
                     )),
 
                     new ArrayList<>(Arrays.asList(
@@ -212,7 +212,7 @@ public class Dialogue {
                             // Stage failed
                             "You should pay attention to JediGrandpa's teaches and try again", "Recall all your mistakes and try again.",
                             "Visit and talk to JediGrandpa to recall the lesson and try again ", "Maybe you didn't understand the topic",
-                            "Try again to learn from your mistakes", "Maybe that's why you failed. You didn't learn from your mistakes" // 6
+                            "Try again to learn from your mistakes", "Maybe that's why you failed. You didn't learn from your mistakes", "Try and try until you've succeeded" // 7
                     ))
             )
     );
@@ -240,7 +240,8 @@ public class Dialogue {
                             // Player Bored
                             "Does the question not challenge you?",  "Is the question too long for you?", "Is the question too simple for you?",
                             "Do the questions not stimulate your brain?", "Maybe you don't find the topic interesting", "You can listen to your favorite music while playing",
-                            "Maybe try another type of mini-game if it becomes interesting to you", "Have you found a topic that intrigues you?", "", "" // 8
+                            "Maybe try another type of mini-game if it becomes interesting to you", "Have you found a topic that intrigues you?",
+                            "Maybe you need some motivation to answer this questions", "" // 9
                             // "Do you find the topic to be somewhat boring?", "Is the question easy for you, and that's why you are bored?",
                     )),
 
