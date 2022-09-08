@@ -513,6 +513,170 @@ public class Dialogue {
             )
     );
 
+    private ArrayList<ArrayList<String>> minigameIntroDiaulogue = new ArrayList<>(
+            Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
+                            // Syntax
+                            "Hello there Grandson! Welcome to the playroom! This is where \n" +
+                            "your skills in programming will be tested. For today's topic, \n" +
+                            "it will be syntax. Where you will be tested if you really get \n" +
+                            "Java. This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed! Syntax are needed in order to run the program \n" +
+                            "But first, let me show you how to play all the minigames."
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Comments
+                            "Hello there Grandson! Welcome to the playroom! This is where \n" +
+                            "your skills in programming will be tested. For today's topic, \n" +
+                            "it will be comments. Where you will be tested if you really get \n" +
+                            "Java. This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed! Comments are useful in order not to forget the \n" +
+                            "use of its function. But first, let me show you how to play all the minigames."
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Variables
+                            "Hello there Grandson! Welcome to the playroom! This is where \n" +
+                            "your skills in programming will be tested. For today's topic, \n" +
+                            "it will be variable. Where you will be tested if you really get \n" +
+                            "Java. This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed! variables are useful in order to store data and use\n" +
+                            "it to output. But first, let me show you how to play all the minigames."
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Data Types
+                            "Hello there Grandson! Welcome to the playroom! This is where \n" +
+                            "your skills in programming will be tested. For today's topic, \n" +
+                            "it will be data types. Where you will be tested if you really get \n" +
+                            "Java. This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed! Data types are useful in order to know what type of data\n" +
+                            "the program needs. But first, let me show you how to play all the minigames."
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Type Casting
+                            "Hello there Grandson! Welcome to the playroom! This is where \n" +
+                            "your skills in programming will be tested. For today's topic, \n" +
+                            "it will be type casting. Where you will be tested if you really get \n" +
+                            "Java. This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed! Type casting are useful in order to know what type of data\n" +
+                            "the is needed. There are some data that are needed to be converted in order to \n" +
+                            "solve or edit the data. But first, let me show you how to play all the minigames."
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Type Casting
+                            "Hello there Grandson! Welcome to the playroom! This is where \n" +
+                            "your skills in programming will be tested. For today's topic, \n" +
+                            "it will be type casting. Where you will be tested if you really get \n" +
+                            "Java. This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed! Type casting are useful in order to know what type of data\n" +
+                            "the is needed. There are some data that are needed to be converted in order to \n" +
+                            "solve or edit the data. But first, let me show you how to play all the minigames."
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Operators
+                            "Hello there Grandson! Welcome to the playroom! This is where \n" +
+                            "your skills in programming will be tested. For today's topic, \n" +
+                            "it will be operators. Where you will be tested if you really get \n" +
+                            "Java. This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed! Operators are useful in order to solve the output \n" +
+                            "requirement. But first, let me show you how to play all the minigames."
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Conditional Statement
+                            "Hello there Grandson! Welcome to the playroom! This is where \n" +
+                            "your skills in programming will be tested. For today's topic, \n" +
+                            "it will be conditional statement. Where you will be tested if you really get \n" +
+                            "Java. This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed! Conditional Statement are useful in order to get the \n" +
+                            "output requirement by placing a condition to satisfy the data. \n" +
+                            "But first, let me show you how to play all the minigames."
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Loops
+                            "Hello there Grandson! Welcome to the playroom! This is where \n" +
+                            "your skills in programming will be tested. For today's topic, \n" +
+                            "it will be loops. Where you will be tested if you really get \n" +
+                            "Java. This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed! loops are useful in order to get the \n" +
+                            "output requirement by not repeating the output one by one. \n" +
+                            "But first, let me show you how to play all the minigames."
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Arrays
+                            "Hello there Grandson! Welcome to the playroom! This is where \n" +
+                            "your skills in programming will be tested. For today's topic, \n" +
+                            "it will be arrays. Where you will be tested if you really get \n" +
+                            "Java. This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed! arrays are useful in order to store multiple data \n" +
+                            "instead of creating multiple variables that will consume large memory. \n" +
+                            "But first, let me show you how to play all the minigames."
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Methods
+                            "Hello there Grandson! Welcome to the playroom! This is where \n" +
+                            "your skills in programming will be tested. For today's topic, \n" +
+                            "it will be methods. Where you will be tested if you really get \n" +
+                            "Java. This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed! methods are useful in order to solve \n" +
+                            "or show output requirements in the program.\n" +
+                            "But first, let me show you how to play all the minigames."
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Parameters
+                            "Hello there Grandson! Welcome to the playroom! This is where \n" +
+                            "your skills in programming will be tested. For today's topic, \n" +
+                            "it will be parameters. Where you will be tested if you really get \n" +
+                            "Java. This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed! parameters are useful in order to pass \n" +
+                            "the data to show output requirements in the program.\n" +
+                            "But first, let me show you how to play all the minigames."
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Parameters Overloading
+                            "Hello there Grandson! Welcome to the playroom! This is where \n" +
+                            "your skills in programming will be tested. For today's topic, \n" +
+                            "it will be parameter overloading. Where you will be tested if \n" +
+                            "you really get Java. This is one of the fundamentals that you need  \n" +
+                            "to learn in order to proceed! parameter overloading are useful if there \n" +
+                            "are similar method name to prevent confusion and it is necessary \n" +
+                            "to name it. data to show output requirements in the program. \n" +
+                            "But first, let me show you how to play all the minigames."
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Classes
+                            "Hello there Grandson! Welcome to the playroom! This is where \n" +
+                            "your skills in programming will be tested. For today's topic, \n" +
+                            "it will be classes. Where you will be tested if you really get \n" +
+                            "Java. This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed! classes are useful to prevent confusion on what that \n" +
+                            "code will do. It can be called in the main function to show its output \n" +
+                            "But first, let me show you how to play all the minigames."
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Objects
+                            "Hello there Grandson! Welcome to the playroom! This is where your skills \n" +
+                            "in programming will be tested. For today's topic, it will be objects. \n" +
+                            "Where you will be tested if you really get Java. This is one of the \n" +
+                            "fundamentals that you need to learn in order to proceed! objects are useful \n" +
+                            "to create if you want to have your own customized \"or better object \n" +
+                            "than default. It can be called in the main function to show its output \n" +
+                            "But first, let me show you how to play all the minigames."
+                    ))
+    ));
+
     private ArrayList<ArrayList<String>> objectiveDialogue = new ArrayList<>(
             Arrays.asList(
                     new ArrayList<>(Arrays.asList(
@@ -1328,10 +1492,6 @@ public class Dialogue {
                             "2nd Method output: negative number of num \n" +
                             "Print \"-1\" by using the opposite method"
                     ))
-
-
-
-
     ));
 
     private ArrayList<ArrayList<String>> questionDialogue = new ArrayList<>(
