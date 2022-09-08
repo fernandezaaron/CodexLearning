@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="7d6fe2c7-098b-4435-9d5a-8917e2b9dfa3" name="Changes" comment="implemented sa mysterycode yung banishperrow">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/map/jediofficePlayroom.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/jediofficePlayroom.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/map/jedischoolplayroom.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/jedischoolplayroom.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/map/playmap1.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/playmap1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/MysteryCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/MysteryCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Contact.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Contact.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,19 +59,21 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/Game.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/maps/HouseMap.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Contact.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Constants.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../jediJump/core/src/com/jedijump/states/PlayState.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/MenuState.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/Blocks.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/PauseState.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/Character.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/filereader/Questionnaire.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/FuzzyLogic.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeRiddle.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/Computer.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/filereader/Questionnaire.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/Blocks.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Constants.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/PauseState.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Contact.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/Computer.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeRiddle.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/FuzzyLogic.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/maps/HouseMap.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/Character.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../jediJump/core/src/com/jedijump/states/PauseState.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -80,7 +86,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/character" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/map" />
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -88,14 +94,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\map" />
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\character" />
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\text" />
-      <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\map" />
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\background" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\character" />
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\map" />
+      <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\character" />
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\text" />
     </key>
   </component>
@@ -104,7 +110,7 @@
       <option name="ALTERNATIVE_JRE_PATH" value="15" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.codex.learning.DesktopLauncher" />
-      <module name="CodexLearning2.desktop.main" />
+      <module name="CodexLearning.desktop.main" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.codex.learning.*" />
@@ -157,7 +163,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="ads" />

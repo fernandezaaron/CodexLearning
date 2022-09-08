@@ -34,6 +34,7 @@ public class MysteryCode extends State {
     private Random randomizer;
     private ArrayList<Integer> banishCells;
     private ArrayList<String> answerPoolContainer;
+    private ArrayList<ArrayList<Integer>> banishPerRow;
     private int currentCell, stage;
     private String stageSelect;
 
@@ -57,12 +58,37 @@ public class MysteryCode extends State {
 
         getAMinigame(manager.getStageSelector().map(), manager.getExpertSystem().getExpertiseLevel());
 
-        for(int i = 0; i <= 10; i++) {
-            banishCells.add(randomizer.nextInt(minigameContainerLimit - 1) + 1);
+        for(int i = 0; i < banishPerRow.size(); i++) {
+            int banishNumberIterator = randomizer.nextInt(2) + 1;
+            int numberRepeat = 0;
+            System.out.println("how many? " + banishNumberIterator);
+            for (int j = 0; j < banishPerRow.get(i).size(); j++) {
+//                System.out.println((banishPerRow.get(i).size()) + "    " + banishPerRow.get(i).get(0));
+                int banishNumber = randomizer.nextInt(banishPerRow.get(i).size() - 1) + banishPerRow.get(i).get(0);
+                System.out.println(banishNumber);
+                if (banishNumberIterator == 0 || numberRepeat == 5) {
+//                    System.out.println("berak");
+                    break;
+                } else if (!banishCells.contains(banishNumber)) {
+                    banishCells.add(banishNumber);
+                    banishNumberIterator--;
+//                    System.out.println("baka sa iterator " + banishNumberIterator +
+//                            " eh sa last element " + (banishPerRow.get(i).size() - 1) +
+//                            " first? " + banishPerRow.get(i).get(0) +
+//                            " eto ibabanish " + banishNumber);
+                } else {
+                    System.out.println("number repeated");
+                    numberRepeat++;
+                }
+            }
         }
 
+//        for(int i = 0; i <= 10; i++) {
+//            banishCells.add(randomizer.nextInt(minigameContainerLimit - 1) + 1);
+//        }
+
         // START MINIGAME CREATION
-        int yStartingPoint = 11, currentCell = 0;
+        int yStartingPoint = 10, currentCell = 0;
         for(int i = 0; i < minigameContainer.size(); i++) {
             float xStartingPoint = -18.0f;
             for (int j = 0; j < minigameContainer.get(i).size(); j++) {
@@ -107,7 +133,7 @@ public class MysteryCode extends State {
         Collections.shuffle(answerPoolContainer);
         // END MINIGAME CREATION
 
-        float AnsPoolY = 11;
+        float AnsPoolY = 10;
         int currentAnsCell = 0;
         int ansPoolSize = answerPoolContainer.size();
         for(int i = 0; i < ansPoolSize; i++) {
@@ -116,7 +142,7 @@ public class MysteryCode extends State {
             while (totalLineLength <= 12) {
                 float currentStringLength = (float) String.valueOf(answerPoolContainer.get(currentAnsCell)).length();
                 totalLineLength += currentStringLength + (AnsPoolX - 11);
-                answerBlocks[currentAnsCell] = new Blocks(manager, "\"" + answerPoolContainer.get(currentAnsCell) + "\"", answerPoolContainer.get(currentAnsCell), true);
+                answerBlocks[currentAnsCell] = new Blocks(manager, "\"" + answerPoolContainer.get(currentAnsCell) + "\"", answerPoolContainer.get(currentAnsCell), false);
                 if (answerPoolContainer.get(currentAnsCell) != null) {
                     if (currentStringLength <= 3)
                         answerBlocks[currentAnsCell].create(new Vector2(AnsPoolX, AnsPoolY), new Vector2((currentStringLength * 0.5f), Constants.BLOCKS_HEIGHT), 0);
@@ -429,6 +455,7 @@ public class MysteryCode extends State {
         manager.getQuestionnaire().minigameDisplay(stage, String.valueOf(manager.getStageSelector().getStageMap()), expertiseLevel);
         minigameContainer = manager.getQuestionnaire().getMinigameHolder();
         minigameContainerLimit = manager.getQuestionnaire().getMinigameLimit();
+        banishPerRow = manager.getQuestionnaire().getBanishPerRow();
         answerPoolContainer = manager.getQuestionnaire().getAnswerPool();
     }
 
