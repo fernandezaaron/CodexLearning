@@ -150,6 +150,14 @@ public class BlockHolder extends Entity {
     public void setBlockHolder(boolean blockHolder) {
         isBlockHolder = blockHolder;
     }
+
+    public String getCorrectID() {
+        return correctID;
+    }
+
+    public void setCorrectID(String correctID) {
+        this.correctID = correctID;
+    }
 }
 
 

@@ -154,6 +154,10 @@ public class Blocks extends Entity {
         return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public Vector2 getDupliSize() {
         return dupliSize;
     }
