@@ -589,9 +589,9 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Conditional Statement
-                            "Hello there Grandson! Welcome to the playroom! This is where \n" +
-                            "your skills in programming will be tested. For today's topic, \n" +
-                            "it will be conditional statement. Where you will be tested if you really get \n" +
+                            "Hello Jedisaur! Welcome to the playroom! This is where your skills \n" +
+                            "in programming will be tested. For today's topic, it will be \n" +
+                            "conditional statement. Where you will be tested if you really get \n" +
                             "Java. This is one of the fundamentals that you need to learn in \n" +
                             "order to proceed! Conditional Statement are useful in order to get the \n" +
                             "output requirement by placing a condition to satisfy the data. \n" +
@@ -600,10 +600,10 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Loops
-                            "Hello there Grandson! Welcome to the playroom! This is where \n" +
-                            "your skills in programming will be tested. For today's topic, \n" +
-                            "it will be loops. Where you will be tested if you really get \n" +
-                            "Java. This is one of the fundamentals that you need to learn in \n" +
+                            "Hello Jedisaur! Welcome to the playroom! This is where your \n" +
+                            "skills in programming will be tested. For today's topic, it \n" +
+                            "will be loops. Where you will be tested if you really get Java. \n" +
+                            "This is one of the fundamentals that you need to learn in \n" +
                             "order to proceed! loops are useful in order to get the \n" +
                             "output requirement by not repeating the output one by one. \n" +
                             "But first, let me show you how to play all the minigames."
@@ -611,29 +611,29 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Arrays
-                            "Hello there Grandson! Welcome to the playroom! This is where \n" +
-                            "your skills in programming will be tested. For today's topic, \n" +
-                            "it will be arrays. Where you will be tested if you really get \n" +
-                            "Java. This is one of the fundamentals that you need to learn in \n" +
-                            "order to proceed! arrays are useful in order to store multiple data \n" +
-                            "instead of creating multiple variables that will consume large memory. \n" +
+                            "Hello Jedisaur! Welcome to the playroom! This is where your skills \n" +
+                            "in programming will be tested. For today's topic, it will be arrays. \n" +
+                            "Where you will be tested if you really get Java. This is one of \n" +
+                            "the fundamentals that you need to learn in order to proceed! \n" +
+                            "arrays are useful in order to store multiple data instead of \n" +
+                            "creating multiple variables that will consume large memory. \n" +
                             "But first, let me show you how to play all the minigames."
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Methods
-                            "Hello there Grandson! Welcome to the playroom! This is where \n" +
+                            "Hello Jedisaur! Welcome to the playroom! This is where \n" +
                             "your skills in programming will be tested. For today's topic, \n" +
-                            "it will be methods. Where you will be tested if you really get \n" +
-                            "Java. This is one of the fundamentals that you need to learn in \n" +
-                            "order to proceed! methods are useful in order to solve \n" +
-                            "or show output requirements in the program.\n" +
+                            "it will be methods. Where you will be tested if you really \n" +
+                            "get Java. This is one of the fundamentals that you need to learn \n" +
+                            "in order to proceed! methods are useful in order to solve \n" +
+                            "or show output requirements in the program. \n" +
                             "But first, let me show you how to play all the minigames."
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Parameters
-                            "Hello there Grandson! Welcome to the playroom! This is where \n" +
+                            "Hello Jedisaur! Welcome to the playroom! This is where \n" +
                             "your skills in programming will be tested. For today's topic, \n" +
                             "it will be parameters. Where you will be tested if you really get \n" +
                             "Java. This is one of the fundamentals that you need to learn in \n" +
@@ -644,11 +644,11 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Parameters Overloading
-                            "Hello there Grandson! Welcome to the playroom! This is where \n" +
-                            "your skills in programming will be tested. For today's topic, \n" +
-                            "it will be parameter overloading. Where you will be tested if \n" +
-                            "you really get Java. This is one of the fundamentals that you need  \n" +
-                            "to learn in order to proceed! parameter overloading are useful if there \n" +
+                            "Hello Jedisaur! Welcome to the playroom! This is where your \n" +
+                            "skills in programming will be tested. For today's topic, it \n" +
+                            "will be parameter overloading. Where you will be tested if you \n" +
+                            "really get Java. This is one of the fundamentals that you need to \n" +
+                            "learn in order to proceed! parameter overloading are useful if there \n" +
                             "are similar method name to prevent confusion and it is necessary \n" +
                             "to name it. data to show output requirements in the program. \n" +
                             "But first, let me show you how to play all the minigames."
@@ -656,7 +656,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Classes
-                            "Hello there Grandson! Welcome to the playroom! This is where \n" +
+                            "Hello Mr.Jedisaur! Welcome to the playroom! This is where \n" +
                             "your skills in programming will be tested. For today's topic, \n" +
                             "it will be classes. Where you will be tested if you really get \n" +
                             "Java. This is one of the fundamentals that you need to learn in \n" +
@@ -667,7 +667,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Objects
-                            "Hello there Grandson! Welcome to the playroom! This is where your skills \n" +
+                            "Hello Mr.Jedisaur! Welcome to the playroom! This is where your skills \n" +
                             "in programming will be tested. For today's topic, it will be objects. \n" +
                             "Where you will be tested if you really get Java. This is one of the \n" +
                             "fundamentals that you need to learn in order to proceed! objects are useful \n" +
