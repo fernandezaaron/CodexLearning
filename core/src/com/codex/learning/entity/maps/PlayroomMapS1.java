@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.codex.learning.entity.Collisions;
 import com.codex.learning.entity.characters.Character;
+import com.codex.learning.entity.characters.NPC;
 import com.codex.learning.states.StageSelectState;
 import com.codex.learning.states.State;
 import com.codex.learning.states.minigames.Minigame;
@@ -17,6 +18,7 @@ public class PlayroomMapS1 extends State {
     private TextureRegion door;
     private int stage;
     private boolean inPlayroom;
+    private NPC npc;
     private Minigame minigame;
     private int randomNumber;
     public PlayroomMapS1(Manager manager) {
@@ -32,6 +34,10 @@ public class PlayroomMapS1 extends State {
         atDoor = false;
         inPlayroom = false;
 
+        npc = new NPC(manager, "minigames", 0);
+        npc.create(new Vector2(0, -6), new Vector2(1, 1.4f), 0);
+
+
 
 //        minigame = new Minigame(manager, stage, 2);
         door = new TextureRegion(manager.getReportCardSheet(), 48,195, 263, 119);
@@ -39,6 +45,7 @@ public class PlayroomMapS1 extends State {
 
     @Override
     public void update(float delta) {
+        npc.update(delta);
     }
 
     @Override
@@ -57,13 +64,14 @@ public class PlayroomMapS1 extends State {
             sprite.draw(manager.getPlayroomStage3(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 
         }
-
-
         sprite.end();
+        npc.render(sprite);
+
     }
 
     @Override
     public void dispose() {
+        npc.disposeBody();
         upBorder.disposeBody();
         downBorder.disposeBody();
     }

@@ -9,9 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.codex.learning.entity.Entity;
@@ -33,11 +31,14 @@ public class NPC extends Entity {
     private DialogueBox db;
     private Label.LabelStyle labelStyle;
     private Dialogue dialogue;
+    private String dialogSet;
+    private int index;
     private int nextStatement;
 
-    public NPC(Manager manager) {
+    public NPC(Manager manager, String dialogSet, int index) {
         super(manager);
-
+        this.dialogSet = dialogSet;
+        this.index = index;
     }
 
     @Override
@@ -71,7 +72,7 @@ public class NPC extends Entity {
         //animates the text
         db = new DialogueBox(manager.getSkin(), "dialogbox2");
         //dialogue of the NPC
-        manager.getDialogue().setStage(manager.getStageSelector().getStageNumber());
+        manager.getDialogue().setStage(manager.getStageSelector().getStageMap());
 
         talking = false;
 
@@ -227,7 +228,7 @@ public class NPC extends Entity {
             if(!db.isOpen()){
                 //if the dialogue box is not yet open then animate the text and add it to the table to draw it
                 System.out.println("here");
-                db.textAnimation(manager.getDialogue().reader(nextStatement));
+                db.textAnimation(manager.getDialogue().reader(nextStatement, dialogSet, index));
 
                 table.add(image).align(Align.left).height(250).width(250).padRight(15f);
                 table.add(db).align(Align.left).width(1000);
@@ -240,7 +241,7 @@ public class NPC extends Entity {
             //proceeds to the next statement if it is not the end
             nextStatement++;
             System.out.println(nextStatement + "asd");
-            db.textAnimation((manager.getDialogue().reader(nextStatement)));
+            db.textAnimation((manager.getDialogue().reader(nextStatement, dialogSet, index)));
         }
         if((manager.getDialogue().isStatementEnd() && Gdx.input.justTouched() && db.isOpen())){
             setTalking(false);

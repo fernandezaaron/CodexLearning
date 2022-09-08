@@ -112,7 +112,7 @@ public class CodeRiddle extends State {
         System.out.println(manager.getStageSelector().map() + "map");
         getAQuestion(manager.getStageSelector().map(), manager.getExpertSystem().getExpertiseLevel());
         System.out.println(manager.getExpertSystem().getExpertiseLevel());
-        System.out.println(manager.getStageSelector().getStageNumber() + " this is the stage");
+        System.out.println(manager.getStageSelector().getStageMap() + " this is the stage");
         currentQuestion = 0;
     }
 
@@ -327,7 +327,7 @@ public class CodeRiddle extends State {
     }
 
     public void getAQuestion(String stage, String expertiseLevel){
-        manager.getQuestionnaire().questionDisplay(stage,String.valueOf(manager.getStageSelector().getStageNumber()),expertiseLevel);
+        manager.getQuestionnaire().questionDisplay(stage,String.valueOf(manager.getStageSelector().getStageMap()),expertiseLevel);
 
         questions = manager.getQuestionnaire().getQuestions();
 
