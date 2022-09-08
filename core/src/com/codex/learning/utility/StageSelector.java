@@ -1,7 +1,7 @@
 package com.codex.learning.utility;
 
 public class StageSelector {
-    int stageMap = 0;
+    int stageNumber = 0;
     int[] currentStage;
     int[] numberOfCookies;
     boolean[] allowToPlay;
@@ -20,10 +20,10 @@ public class StageSelector {
     }
 
     public String map(){
-        if (stageMap >= 1 && stageMap < 5){
+        if (stageNumber >= 1 && stageNumber < 5){
             return "1";
         }
-        else if(stageMap >= 5 && stageMap < 11){
+        else if(stageNumber >= 5 && stageNumber < 11){
             return "2";
         }
         else{
@@ -39,16 +39,16 @@ public class StageSelector {
         return currentStage[index];
     }
 
-    public int getStageMap(){
-        return stageMap;
+    public int getStageNumber(){
+        return stageNumber;
     }
 
-    public int setStageMap(int stageMap){
-        return this.stageMap = stageMap;
+    public int setStageNumber(int stageNumber){
+        return this.stageNumber = stageNumber;
     }
 
     public void setCurrentStage(int index) {
-        this.currentStage[index] = getStageMap();
+        this.currentStage[index] = getStageNumber();
     }
 
     public int[] getNumberOfCookies() {
