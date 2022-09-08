@@ -1,10 +1,8 @@
 package com.codex.learning.utility.filereader;
 
-import com.codex.learning.utility.filereader.DatabaseReader;
 import org.apache.poi.ss.usermodel.*;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class Questionnaire extends DatabaseReader {
@@ -52,7 +50,7 @@ public class Questionnaire extends DatabaseReader {
         questionLimit = 0;
 
         excelQuestionLimit = 196;
-        excelMinigameLimit = 53;
+        excelMinigameLimit = 65;
         minigameElementLimit = 0;
         answerPoolLimit = 200;
         answerPoolSelection = 5;
@@ -106,14 +104,14 @@ public class Questionnaire extends DatabaseReader {
             questionID = randomizer.nextInt(excelMinigameLimit - 1) + 1;
             difficulty = levels.get(randomizer.nextInt(levels.size()));
             findCell = findRow(minigameSheet, questionID);
-            getMinigame(findCell, 4, difficulty, topics);
+            getMinigameHolder(findCell, 4, difficulty, topics);
         }
         getAnswerPool(stage, topics);
         getDispenserPool(stage, topics);
     }
 
     // Function to get the problem code in the excel file
-    public void getMinigame(int row1, int col1, String difficulty, String stageTopic) {
+    public void getMinigameHolder(int row1, int col1, String difficulty, String stageTopic) {
         minigameHolder = new ArrayList<ArrayList<String>>();
         banishPerRow = new ArrayList<ArrayList<Integer>>();
         String stageTopicacq = getMinigameInfo(row1, 1);
@@ -412,11 +410,11 @@ public class Questionnaire extends DatabaseReader {
     }
 
 
-    public ArrayList<ArrayList<String>> getMinigame() {
+    public ArrayList<ArrayList<String>> getMinigameHolder() {
         return minigameHolder;
     }
 
-    public void setMinigame(ArrayList<ArrayList<String>> minigameHolder) {
+    public void setMinigameHolder(ArrayList<ArrayList<String>> minigameHolder) {
         this.minigameHolder = minigameHolder;
     }
 

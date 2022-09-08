@@ -146,7 +146,7 @@ public class StageSelectState extends State{
                 if(manager.getStageSelector().getAllowToPlay(i)){
                     if(stages[i].contains(touchpoint.x, touchpoint.y)){
                         manager.getMusic().stop();
-                        manager.getStageSelector().setStageNumber(i+1);
+                        manager.getStageSelector().setStageMap(i+1);
                         manager.getStageSelector().setCurrentStage(i);
                         manager.set(new PlayState(manager));
                         System.out.println("You clicked at stage " + manager.getStageSelector().getCurrentStage(i)  + "!!");
