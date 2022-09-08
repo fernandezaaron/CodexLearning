@@ -213,7 +213,7 @@ public class Dialogue {
                             "You should pay attention to JediGrandpa's teaches and try again", "Recall all your mistakes and try again.",
                             "Visit and talk to JediGrandpa to recall the lesson and try again ", "Maybe you didn't understand the topic",
                             "Try again to learn from your mistakes", "Maybe that's why you failed. You didn't learn from your mistakes",
-                            "Try and try until you've succeeded" // 7
+                            "Try and try until you've succeeded", "The greatest teacher is failure" // 8
                     ))
             )
     );
@@ -234,7 +234,7 @@ public class Dialogue {
                             // Player Neutral
                             "Sounds like you've got it under control", "Trust your ability to answer the question", "Keep answering you can do it!","Just take one step at a time in answering",
                             "You can still do better than the last time", "You've come prepared in this topic", "Wow, you're answering the question better than I thought",
-                            "Your progress is truly inspiring", "", "" // 8
+                            "Your progress is truly inspiring", "Never doubt yourself when answering the question", "So far you've done well in this topic" // 10
                     )),
 
                     new ArrayList<>(Arrays.asList(
@@ -242,8 +242,8 @@ public class Dialogue {
                             "Does the question not challenge you?",  "Is the question too long for you?", "Is the question too simple for you?",
                             "Do the questions not stimulate your brain?", "Maybe you don't find the topic interesting", "You can listen to your favorite music while playing",
                             "Maybe try another type of mini-game if it becomes interesting to you", "Have you found a topic that intrigues you?",
-                            "Maybe you need some motivation to answer this questions", "" // 9
-                            // "Do you find the topic to be somewhat boring?", "Is the question easy for you, and that's why you are bored?",
+                            "Maybe you need some motivation to answer this questions", "Maybe drink some coffee so that you can be energized" // 10
+
                     )),
 
                     new ArrayList<>(Arrays.asList(
