@@ -6,9 +6,6 @@ import java.util.Random;
 
 public class Dialogue {
 
-
-
-
     private ArrayList<ArrayList<String>> introductionDialogue = new ArrayList<>(Arrays.asList(
             new ArrayList<>(Arrays.asList("Hi I am, JediGrandpa", "I have a task for you to do", "But first lets study first on the topic",
                     //syntax
@@ -431,7 +428,6 @@ public class Dialogue {
                             "Place the variable as the output if necessary"
                     )),
 
-                    // HERE start
                     new ArrayList<>(Arrays.asList(
                             // Operators
                             "Try to remember the output of the program",
@@ -445,49 +441,60 @@ public class Dialogue {
                             // Conditional Statement
                             "Try to remember the output of the program",
                             "Don't forget to check the closing statement",
-                            "There are multiple ways to type cast a variable",
-                            "Output of the program depends on the variable",
-                            "Place the variable as the output if necessary"
+                            "Remember the syntax in conditional Statement",
+                            "Don't be confuse between if and use-case statement",
+                            "Don't forget that conditional statement has brackets too"
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Loops
                             "Try to remember the output of the program",
                             "Don't forget to check the closing statement",
-                            "There are multiple ways to type cast a variable",
-                            "Output of the program depends on the variable",
-                            "Place the variable as the output if necessary"
+                            "Remember that each loops have different syntax",
+                            "Loops always initialize an iterator first",
+                            "When the iterator is in the output, it will show its value"
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Arrays
                             "Try to remember the output of the program",
                             "Don't forget to check the closing statement",
-                            "There are multiple ways to type cast a variable",
-                            "Output of the program depends on the variable",
-                            "Place the variable as the output if necessary"
+                            "Pre-determined arrays have brackets",
+                            "Indexes of an array always starts at 0",
+                            "There are multiple ways to output an array"
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Methods
                             "Try to remember the output of the program",
                             "Don't forget to check the closing statement",
-                            "There are multiple ways to type cast a variable",
-                            "Output of the program depends on the variable",
-                            "Place the variable as the output if necessary"
+                            "Methods are similar to PSVM",
+                            "Methods can have return value",
+                            "Methods always have brackets"
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Parameters
                             "Try to remember the output of the program",
                             "Don't forget to check the closing statement",
-                            "There are multiple ways to type cast a variable",
-                            "Output of the program depends on the variable",
-                            "Place the variable as the output if necessary"
+                            "Parameters are inside the parenthesis of the method's name",
+                            "Methods can have 2 or more parameters",
+                            "The variable in the parameters are used inside the methods"
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Parameters Overloading
+                            "Try to remember the output of the program",
+                            "Don't forget to check the closing statement",
+                            "Always check the output needed in the PSVM",
+                            "Methods can have similar name but different parameters",
+                            "As long as it doesn't have the same parameter, it's called overloading"
+
+                    )),
+
+                    // HERE start
+                    new ArrayList<>(Arrays.asList(
+                            // Classes
                             "Try to remember the output of the program",
                             "Don't forget to check the closing statement",
                             "There are multiple ways to type cast a variable",
@@ -502,20 +509,832 @@ public class Dialogue {
                             "There are multiple ways to type cast a variable",
                             "Output of the program depends on the variable",
                             "Place the variable as the output if necessary"
-                    )),
-
-                    new ArrayList<>(Arrays.asList(
-                            // Classes
-                            "Try to remember the output of the program",
-                            "Don't forget to check the closing statement",
-                            "There are multiple ways to type cast a variable",
-                            "Output of the program depends on the variable",
-                            "Place the variable as the output if necessary"
                     ))
             )
     );
 
-    private ArrayList<ArrayList<String>> minigameQuestionDialogue = new ArrayList<>(
+    private ArrayList<ArrayList<String>> objectiveDialogue = new ArrayList<>(
+            Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 1
+                            "Topic: Syntax \n" +
+                            "Print \"Hello World!\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 2
+                            "Topic: Syntax \n" +
+                            "Print \"7\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 3
+                            "Topic: Syntax \n" +
+                            "Print \"Hello World! 123\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 4
+                            "Topic: Syntax \n" +
+                            "Print \"Hello World 7\" \n" +
+                            "Print \"Hello World 9\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 5
+                            "Topic: Syntax \n" +
+                            "Print \"Hello World 123\" \n" +
+                            "Print \"Hello World 321\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 6
+                            "Topic: Syntax \n" +
+                            "Print \"Hello World 2+5\" \n" +
+                            "Print \"Hello World 3+6\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 7
+                            "Topic: Syntax \n" +
+                            "Print \"Hello World\" \n" +
+                            "Print \"JediLand Home\" \n" +
+                            "Print \"JediGrandpa\" \n" +
+                            "Print \"Jedisaur\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 8
+                            "Topic: Syntax \n" +
+                            "Print \"Hello World\" \n" +
+                            "Print \"JediLand\" \n" +
+                            "Print \"JediGrandpa\" \n" +
+                            "Print \"Jedisaur123\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 9
+                            "Topic: Syntax \n" +
+                            "Print \"123Hello World123\" \n" +
+                            "Print \"321Hello World321\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 10
+                            "Topic: Comments \n" +
+                            "Comment \"This is a single-line comment\" \n" +
+                            "Print \"Hello World!\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 11
+                            "Topic: Comments \n" +
+                            "Comment \"This is a single-line comment\" \n" +
+                            "Print \"Hello World!\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 12
+                            "Topic: Comments \n" +
+                            "Two separate single-line comment \n" +
+                            "Comment \"// = single-line comment\" \n" +
+                            "Comment \"/* */ = multi-line comment\" \n" +
+                            "Print \"Hello World!\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 13
+                            "Topic: Comments \n" +
+                            "Multi-line Comment \"// = single-line comment\" \n" +
+                            "Single-line Comment \"/* */ = multi-line comment\" \n" +
+                            "Print \"Hello World!\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 14
+                            "Topic: Comments \n" +
+                            "Multi-line Comment: \n" +
+                            "\"The program outputs Hello World! \n" +
+                            "It is a String output \n" +
+                            "multi-line comment was used.\" \n" +
+                            "Print \"Hello World!\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 15
+                            "Topic: Comments \n" +
+                            "Single-line Comment: \n" +
+                            "\"The program outputs Hello World!\" \n" +
+                            "\"It is a String output\" \n" +
+                            "\"single-line comment was used.\" \n" +
+                            "Print \"Hello World!\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 16
+                            "Topic: Variables \n" +
+                            "Data Type: String \n" +
+                            "Variable name: name \n" +
+                            "Initialized value: Jedisaur \n" +
+                            "Print \"My name is Jedisaur\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 17
+                            "Topic: Variables \n" +
+                            "Data Type: String \n" +
+                            "Variable name: name \n" +
+                            "Initialized value: JediGrandpa \n" +
+                            "Print \"My name is JediGrandpa\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 18
+                            "Topic: Variables \n" +
+                            "Data Type: int \n" +
+                            "Variable name: year \n" +
+                            "Initialized value: 1 \n" +
+                            "Print \"I will now be a 1st year student soon.\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 19
+                            "Topic: Variables \n" +
+                            "Data Type: String, int \n" +
+                            "Variable name: name, age \n" +
+                            "Initialized value: Jedisaur, 8 \n" +
+                            "Print \"My name is Jedisaur\" \n" +
+                            "Print \"I am 8 years old\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 20
+                            "Topic: Variables \n" +
+                            "Data Type: String\n" +
+                            "Variable name: myName, yourName\n" +
+                            "Initialized value: Jedisaur, JediGrandpa\n" +
+                            "Print \"My name is Jedisaur\" \n" +
+                            "Print \"My GrandPa's name is JediGrandpa\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 21
+                            "Topic: Variables \n" +
+                            "Data Type: int \n" +
+                            "Variable name: year, age \n" +
+                            "Initialized value: 1, 8 \n" +
+                            "Print \"I will now be a 1st year soon.\" \n" +
+                            "Print \"I am 8 years old\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 22
+                            "Topic: Variables \n" +
+                            "Data Type: String, int \n" +
+                            "Variable name: name, year, age \n" +
+                            "Initialized value: Jedisaur, 1, 8 \n" +
+                            "Print \"My name is Jedisaur\" \n" +
+                            "Print \"I will now be a 1st year soon.\" \n" +
+                            "Print \"I am 8 years old\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 23
+                            "Topic: Variables \n" +
+                            "Data Type: String \n" +
+                            "Variable name: myName, yourName \n" +
+                            "Initialized value: Jedisaur, JediGrandpa \n" +
+                            "Print \"My name is Jedisaur\" \n" +
+                            "Print \"My GrandPa's name is JediGrandpa\" \n" +
+                            "Print \"I am the only Grandson\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 24
+                            "Topic: Variables \n" +
+                            "Data Type: String, int \n" +
+                            "Variable name: name, year \n" +
+                            "Initialized value: Jedisaur, 1 \n" +
+                            "Print \"My name is Jedisaur\" \n" +
+                            "Print \"I will now be a 1st year soon.\" \n" +
+                            "Print \"I am a dinosaur\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 25
+                            "Topic: Data Types \n" +
+                            "Data Type: String, int, float \n" +
+                            "Variable name: name, age, height \n" +
+                            "Initialized value: Jedisaur, 8, 5.9f \n" +
+                            "Print \"Jedisaur is 8 years\" \n" +
+                            "Print \"A height of 5.9ft\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 26
+                            "Topic: Data Types \n" +
+                            "Data Type: int, char, String \n" +
+                            "Variable name: number, grade, subject \n" +
+                            "Initialized value: 3, A, Math \n" +
+                            "Print \"I got 3 A\" \n" +
+                            "Print \"in Math\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 27
+                            "Topic: Data Types \n" +
+                            "Data Type: boolean, char, String \n" +
+                            "Variable name: bool, grade, subject \n" +
+                            "Initialized value: true, A, Math \n" +
+                            "Print \"true\" \n" +
+                            "Print \"A\" \n" +
+                            "Print \"Math\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 28
+                            "Topic: Data Types \n" +
+                            "Data Type: boolean, int, float \n" +
+                            "Variable name: bool, number, height \n" +
+                            "Initialized value: false, 3, 5.9f \n" +
+                            "Print \"false\" \n" +
+                            "Print \"3\" \n" +
+                            "Print \"5.9\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 29
+                            "Topic: Data Types \n" +
+                            "Data Type: boolean, String, int, float \n" +
+                            "Variable name: bool, name, age, height \n" +
+                            "Initialized value: true, Jedisaur, 8, 5.9f \n" +
+                            "Print \"This is true\" \n" +
+                            "Print \"Jedisaur is 8 years\" \n" +
+                            "Print \"A height of 5.9ft\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 30
+                            "Topic: Data Types \n" +
+                            "Data Type: boolean, String, int, float \n" +
+                            "Variable name: bool, name, age, height \n" +
+                            "Initialized value: false, Jedisaur, 8, 5.9f \n" +
+                            "Print \"This is false\" \n" +
+                            "Print \"Jedisaur is 8 years\" \n" +
+                            "Print \"A height of 5.9ft\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 31
+                            "Topic: Type Casting \n" +
+                            "Data Type: float, int \n" +
+                            "Variable name: num, convert \n" +
+                            "Initialized value: 5.9f, (int) num \n" +
+                            "Print \"5.9\" \n" +
+                            "Print \"5\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 32
+                            "Topic: Type Casting \n" +
+                            "Data Type: int, String \n" +
+                            "Variable name: num, convert \n" +
+                            "Initialized value: 3, String.valueOf(num) \n" +
+                            "Print \"3\" \n" +
+                            "Print \"3\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 33
+                            "Topic: Type Casting \n" +
+                            "Data Type: float, int \n" +
+                            "Variable name: num, convert \n" +
+                            "Initialized value: 5.9f, (int) num \n" +
+                            "Print \"My height is 5.9ft\" \n" +
+                            "Print \"I have 5 subjects\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 34
+                            "Topic: Type Casting \n" +
+                            "Data Type: int, String \n" +
+                            "Variable name: num, num2, convert \n" +
+                            "Initialized value: 3, 3, String.valueOf(num) \n" +
+                            "Print \"3 == 3\" \n" +
+                            "Print \"3 != 3\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 35
+                            "Topic: Type Casting \n" +
+                            "Data Type: float, int \n" +
+                            "Variable name: num, num2, convert, num3 \n" +
+                            "Initialized value: 5.9f, 6.7f, (int) num, 4 \n" +
+                            "Print \"5.9 is similar to 6.7\" \n" +
+                            "Print \"5.9 is different to 5\" \n" +
+                            "Print \"5 is different to 4\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 36
+                            "Topic: Type Casting \n" +
+                            "Data Type: boolean, String \n" +
+                            "Variable name: bool, bool2, convert \n" +
+                            "Initialized value: true, false, String.valueOf(bool) \n" +
+                            "Print \"true is similar to false\" \n" +
+                            "Print \"true != false\" \n" +
+                            "Print \"true is different to true\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 37
+                            "Topic: Operators \n" +
+                            "Print \"2\" \n" +
+                            "Print \"10\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 38
+                            "Topic: Operators \n" +
+                            "Print \"2\" \n" +
+                            "Print \"8\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 39
+                            "Topic: Operators \n" +
+                            "Print \"1\" \n" +
+                            "Print \"2\" \n" +
+                            "Print \"3\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 40
+                            "Topic: Operators \n" +
+                            "Print \"5\" \n" +
+                            "Print \"4\" \n" +
+                            "Print \"3\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 41
+                            "Topic: Operators \n" +
+                            "Print \"2\" \n" +
+                            "Print \"4\" \n" +
+                            "Print \"4\" \n" +
+                            "Print \"3\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 42
+                            "Topic: Operators \n" +
+                            "Print \"7\" \n" +
+                            "Print \"4\" \n" +
+                            "Print \"5\" \n" +
+                            "Print \"4\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 43
+                            "Topic: Conditional Statement \n" +
+                            "Data Type: boolean \n" +
+                            "Variable name: bool \n" +
+                            "Initialized value: true \n" +
+                            "If bool is true: \n" +
+                            "Print \"True\" \n" +
+                            "Else: \n" +
+                            "Print \"False\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 44
+                            "Topic: Conditional Statement \n" +
+                            "Data Type: boolean \n" +
+                            "Variable name: bool \n" +
+                            "Initialized value: false \n" +
+                            "If bool is true: \n" +
+                            "Print \"True\" \n" +
+                            "Else: \n" +
+                            "Print \"False\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 45
+                            "Topic: Conditional Statement \n" +
+                            "Data Type: int \n" +
+                            "Variable name: num1, num2 \n" +
+                            "Initialized value: 5, 3 \n" +
+                            "If num1 is greater than num2: \n" +
+                            "Print \"A is greater\" \n" +
+                            "Else: \n" +
+                            "Print \"B is lower\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 46
+                            "Topic: Conditional Statement \n" +
+                            "Data Type: int \n" +
+                            "Variable name: num1, num2 \n" +
+                            "Initialized value: 5, 3 \n" +
+                            "If num1 is less than num2: \n" +
+                            "Print \"A is greater\" \n" +
+                            "Else: \n" +
+                            "Print \"B is lower\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 47
+                            "Topic: Conditional Statement \n" +
+                            "Data Type: int \n" +
+                            "Variable name: num1, num2, num3 \n" +
+                            "Initialized value: 5, 3, 1 \n" +
+                            "If num3 is greater than num1: \n" +
+                            "Print \"A is greater\" \n" +
+                            "Else if num3 is greater than num2: \n" +
+                            "Print \"B is greater\" \n" +
+                            "Else: \n" +
+                            "Print \"C is lower\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 48
+                            "Topic: Conditional Statement \n" +
+                            "Data Type: int \n" +
+                            "Variable name: num1, num2, num3 \n" +
+                            "Initialized value: 5, 3, 1 \n" +
+                            "If num3 is greater than num1: \n" +
+                            "Print \"A is greater\" \n" +
+                            "Else if num3 is less than num2: \n" +
+                            "Print \"B is greater\" \n" +
+                            "Else: \n" +
+                            "Print \"C is lower\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 49
+                            "Topic: Conditional Statement \n" +
+                            "Data Type: char \n" +
+                            "Variable name: letter \n" +
+                            "Initialized value: A \n" +
+                            "Case A: \n" +
+                            "Print \"A Grade\" \n" +
+                            "Default: \n" +
+                            "Print \"No Grade\" "
+                    )),
+
+                     new ArrayList<>(Arrays.asList(
+                             // Minigame ID 50
+                             "Topic: Conditional Statement \n" +
+                             "Data Type: char \n" +
+                             "Variable name: letter \n" +
+                             "Initialized value: B \n" +
+                             "Case A: \n" +
+                             "Print \"A Grade\" \n" +
+                             "Default: \n" +
+                             "Print \"No Grade\" "
+                     )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 51
+                            "Topic: Conditional Statement \n" +
+                            "Data Type: String \n" +
+                            "Variable name: direction \n" +
+                            "Initialized value: North \n" +
+                            "Case North: \n" +
+                            "Print \"Up\" \n" +
+                            "Case South: \n" +
+                            "Print \"Down\" \n" +
+                            "Default: \n" +
+                            "Print \"No Direction\" "
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 52
+                            "Topic: Conditional Statement \n" +
+                            "Data Type: String \n" +
+                            "Variable name: direction \n" +
+                            "Initialized value: South \n" +
+                            "Case North: \n" +
+                            "Print \"Up\" \n" +
+                            "Case South: \n" +
+                            "Print \"Down\" \n" +
+                            "Default: \n" +
+                            "Print \"No Direction\" "
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 53
+                            "Topic: Conditional Statement \n" +
+                            "Data Type: char \n" +
+                            "Variable name: letter \n" +
+                            "Initialized value: A \n" +
+                            "Case A: \n" +
+                            "Print \"A Grade\" \n" +
+                            "Case B: \n" +
+                            "Print \"B Grade\" \n" +
+                            "Default: \n" +
+                            "Print \"No Grade\" "
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 54
+                            "Topic: Conditional Statement \n" +
+                            "Data Type: char \n" +
+                            "Variable name: letter \n" +
+                            "Initialized value: C \n" +
+                            "Case A: \n" +
+                            "Print \"A Grade\" \n" +
+                            "Case B: \n" +
+                            "Print \"B Grade\" \n" +
+                            "Default: \n" +
+                            "Print \"No Grade\" "
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 55
+                            "Topic: Loops \n" +
+                            "Data Type: int \n" +
+                            "Variable name: i \n" +
+                            "Initialized value: 0 \n" +
+                            "For loop: \n" +
+                            "Print \"Hello World\" "
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 56
+                            "Topic: Loops \n" +
+                            "Data Type: int \n" +
+                            "Variable name: i \n" +
+                            "Initialized value: 0 \n" +
+                            "While loop: \n" +
+                            "Print \"Hello World\" "
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 57
+                            "Topic: Loops \n" +
+                            "Data Type: int \n" +
+                            "Variable name: i \n" +
+                            "Initialized value: 0 \n" +
+                            "Do-While loop: \n" +
+                            "Print \"Hello World\" "
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 58
+                            "Topic: Loops \n" +
+                            "Data Type: int \n" +
+                            "Variable name: i \n" +
+                            "Initialized value: 0 \n" +
+                            "For loop: \n" +
+                            "Print the value of \"i\" \n" +
+                            "Print \"Hello World\" "
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 59
+                            "Topic: Loops \n" +
+                            "Data Type: int \n" +
+                            "Variable name: i \n" +
+                            "Initialized value: 0 \n" +
+                            "While loop: \n" +
+                            "Print the value of \"i\" \n" +
+                            "Print \"Hello World\" "
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 60
+                            "Topic: Loops \n" +
+                            "Data Type: int \n" +
+                            "Variable name: i \n" +
+                            "Initialized value: 0 \n" +
+                            "Do-While loop: \n" +
+                            "Print the value of \"i\" \n" +
+                            "Print \"Hello World\" "
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 61
+                            "Topic: Loops \n" +
+                            "Data Type: int \n" +
+                            "Variable name: i \n" +
+                            "Initialized value: 0 \n" +
+                            "For loop: Break if i is 2\n" +
+                            "Print the value of \"i\" \n" +
+                            "Print \"Hello World\" "
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 62
+                            "Topic: Loops \n" +
+                            "Data Type: int \n" +
+                            "Variable name: i \n" +
+                            "Initialized value: 0 \n" +
+                            "While loop: Break if i is 2\n" +
+                            "Print the value of \"i\" \n" +
+                            "Print \"Hello World\" "
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 63
+                            "Topic: Loops \n" +
+                            "Data Type: int \n" +
+                            "Variable name: i \n" +
+                            "Initialized value: 0 \n" +
+                            "Do-While loop: Break if i is 2\n" +
+                            "Print the value of \"i\" \n" +
+                            "Print \"Hello World\" "
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 64
+                            "Topic: Arrays \n" +
+                            "Data Type: String[] \n" +
+                            "Variable name: array \n" +
+                            "Initialized value of array: Jedisaur, is, going, to, Jedischool \n" +
+                            "Print the value of \"array\" manually"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 65
+                            "Topic: Arrays \n" +
+                            "Data Type: String[] \n" +
+                            "Variable name: array \n" +
+                            "Initialized value of array: Jedisaur, is, in, JediLand \n" +
+                            "Print the value of \"array\" manually"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 66
+                            "Topic: Arrays \n" +
+                            "Data Type: String[] \n" +
+                            "Variable name: array \n" +
+                            "Initialized value of array: Jedisaur, is, in, JediLand \n" +
+                            "For loop: \n" +
+                            "Print the value of \"array\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 67
+                            "Topic: Arrays \n" +
+                            "Data Type: String[] \n" +
+                            "Variable name: array \n" +
+                            "Initialized value of array: Jedisaur, is, going, to, JediSchool \n" +
+                            "For loop: \n" +
+                            "Print the value of \"array\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 68
+                            "Topic: Arrays \n" +
+                            "Data Type: String[], int \n" +
+                            "Variable name: array, counter \n" +
+                            "Initialized value of array: Jedisaur, is, in, JediLand \n" +
+                            "Initialized value of counter: 0 \n" +
+                            "While loop: \n" +
+                            "Print the value of \"array\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 69
+                            "Topic: Arrays \n" +
+                            "Data Type: String[], int \n" +
+                            "Variable name: array, counter \n" +
+                            "Initialized value of array: Jedisaur, is, going, to, JediLand \n" +
+                            "Initialized value of counter: 0 \n" +
+                            "While loop: \n" +
+                            "Print the value of \"array\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 70
+                            "Topic: Methods \n" +
+                            "Method Type: void \n" +
+                            "Method name: greet \n" +
+                            "Method output: Hello! \n" +
+                            "Print \"Hello!\" by using the greet method"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 71
+                            "Topic: Methods \n" +
+                            "Method Type: void \n" +
+                            "Method name: greet \n" +
+                            "Method output: Hi! \n" +
+                            "Print \"Hi!\" by using the greet method"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 72
+                            "Topic: Methods \n" +
+                            "Method Type: String \n" +
+                            "Method name: greet \n" +
+                            "Method output: Hello \n" +
+                            "Print \"Hello Jedisaur\" by using the greet method"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 73
+                            "Topic: Methods \n" +
+                            "Method Type: String \n" +
+                            "Method name: greet \n" +
+                            "Method output: Hi \n" +
+                            "Print \"Hi Jedisaur\" by using the greet method"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 74
+                            "Topic: Methods \n" +
+                            "Method Type: String \n" +
+                            "Method name: greet, name \n" +
+                            "Method output: Hello, Jedisaur \n" +
+                            "Print \"Hello Jedisaur\" by using the greet method"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 75
+                            "Topic: Methods \n" +
+                            "Method Type: String \n" +
+                            "Method name: greet, name \n" +
+                            "Method output: Hi Jedisaur \n" +
+                            "Print \"Hi Jedisaur\" by using the greet method"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 76
+                            "Topic: Parameters \n" +
+                            "Method Type: void \n" +
+                            "Method name: greet \n" +
+                            "Method parameter Data Type: String \n" +
+                            "Method parameter name: name \n" +
+                            "Method output: Hi Jedisaur \n" +
+                            "Print \"Hi Jedisaur\" by using the greet method"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 77
+                            "Topic: Parameter Overloading\n" +
+                            "Method Type: void \n" +
+                            "Method name: greet \n" +
+                            "1st Method parameter: String name \n" +
+                            "1st Method output: Hello + name \n" +
+                            "2nd Method parameter: String greet, String name \n" +
+                            "2nd Method output: greet + name \n" +
+                            "Print \"Hi Jedisaur\" by using the 2nd greet method"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 78
+                            "Topic: Parameters \n" +
+                            "Method Type: int \n" +
+                            "Method name: solve \n" +
+                            "Method parameter Data Type: int \n" +
+                            "Method parameter name: num \n" +
+                            "Method output: num + 5 \n" +
+                            "Print \"10\" by using the solve method"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 79
+                            "Topic: Parameter Overloading\n" +
+                            "Method Type: int \n" +
+                            "Method name: solve \n" +
+                            "1st Method parameter: int num \n" +
+                            "1st Method output: num + 10 \n" +
+                            "2nd Method parameter: int num, int num2 \n" +
+                            "2nd Method output: num + num2 \n" +
+                            "Print \"10\" by using the solve method"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 80
+                            "Topic: Parameters \n" +
+                            "Method Type: boolean \n" +
+                            "Method name: opposite \n" +
+                            "Method parameter Data Type: boolean \n" +
+                            "Method parameter name: bool \n" +
+                            "Method output: opposite of bool \n" +
+                            "Print \"false\" by using the opposite method"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 81
+                            "Topic: Parameter Overloading\n" +
+                            "Method Type: boolean \n" +
+                            "Method name: opposite \n" +
+                            "1st Method parameter: boolean bool \n" +
+                            "1st Method output: opposite of bool \n" +
+                            "2nd Method parameter: int num \n" +
+                            "2nd Method output: negative number of num \n" +
+                            "Print \"-1\" by using the opposite method"
+                    ))
+
+
+
+
+    ));
+
+    private ArrayList<ArrayList<String>> questionDialogue = new ArrayList<>(
             Arrays.asList(
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 1
