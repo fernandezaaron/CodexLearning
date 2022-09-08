@@ -176,11 +176,9 @@ public class Dialogue {
                     "After proving your mastery on the topic and passing the quiz",
                     "There will be a exam that will include all the topics we have covered from all the stages",
                     "After proving your mastery on all the topics and passing the exam",
-                    "You're no longer a Padawan because you've become a full-fledged Jedi Master",
+                    "You're no longer a Padawan because you've become a full-fledged Jedi",
                     "You've made all of us proud, young one",
                     "Pass on what you have learned."
-
-
             ))
 
 
@@ -213,7 +211,7 @@ public class Dialogue {
                             "You should pay attention to JediGrandpa's teaches and try again", "Recall all your mistakes and try again.",
                             "Visit and talk to JediGrandpa to recall the lesson and try again ", "Maybe you didn't understand the topic",
                             "Try again to learn from your mistakes", "Maybe that's why you failed. You didn't learn from your mistakes",
-                            "Try and try until you've succeeded", "The greatest teacher is failure" // 8
+                            "Try and try until you've succeeded", "The greatest teacher is failure", "" // 8
                     ))
             )
     );
