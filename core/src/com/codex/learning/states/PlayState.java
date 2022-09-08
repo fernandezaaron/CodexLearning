@@ -216,7 +216,10 @@ public class PlayState extends State{
 
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
-        checkDoor(sprite, atDoor);
+        if(isInStartArea()){
+            checkDoor(sprite, atDoor);
+
+        }
         sprite.end();
         pause.render(sprite);
     }
@@ -295,7 +298,7 @@ public class PlayState extends State{
     }
 
     private void exitPlayroom(Character character){
-        if(!inStartArea && character.getBody().getPosition().x < -23 && character.getBody().getPosition().y > -4 && character.getBody().getPosition().y < 2.5f){
+        if(!inStartArea && character.getBody().getPosition().x < -23 && character.getBody().getPosition().y > -0.5 && character.getBody().getPosition().y < 4f){
             setInStartArea(true);
             minigame.dispose();
             jedisaur.getBody().setTransform(14, 1, 0);
