@@ -132,9 +132,10 @@ public class Questionnaire extends DatabaseReader {
             questionID = randomizer.nextInt(excelMinigameLimit - 1) + 1;
             difficulty = levels.get(randomizer.nextInt(levels.size()));
             findCell = findRow(minigameSheet, questionID);
+            System.out.println("QUESTION ID = " + questionID);
             getMinigameHolder(findCell, 4, difficulty, topics);
         }
-        getAnswerPool(questionID);
+        getAnswerPool(String.valueOf(questionID), topics);
         getDispenserPool(stage, topics);
     }
 
@@ -189,19 +190,22 @@ public class Questionnaire extends DatabaseReader {
         }
     }
 
-    public void getAnswerPool(int QID) {
+    public void getAnswerPool(String QID, String topics) {
         int getNumber = 0;
         randomPool = new ArrayList<>();
         while(answerPoolSelection != 0) {
             getNumber = randomizer.nextInt(80 - 1) + 1;
             Row excelRow = answerPoolSheet.getRow(getNumber);
 
-            Cell excel3rdColumn = excelRow.getCell(2);
-            String format3rdColumn = formatter.formatCellValue(excel3rdColumn);
+            Cell excelCell = excelRow.getCell(2);
+            Cell excelTopic = excelRow.getCell(1);
+            String getExcelStage = formatter.formatCellValue(excelCell);
+            String getExcelTopic = formatter.formatCellValue(excelTopic);
             if(!randomPool.contains(getNumber)){
                 if ((int) answerPoolSheet.
                         getRow(getNumber).getCell(0).getNumericCellValue() == getNumber &&
-                        (format3rdColumn.equals(QID))) {
+                        (getExcelTopic.equals(topics)) &&
+                        (getExcelStage.equals(QID))) {
                     Row ansRow = answerPoolSheet.getRow(getNumber);
                     Cell ansCell = ansRow.getCell(3);
                     String getAnsCell = formatter.formatCellValue(ansCell);
@@ -218,6 +222,37 @@ public class Questionnaire extends DatabaseReader {
                 continue;
         }
     }
+
+//    public void getAnswerPool(int QID) {
+//        int getNumber = 0;
+//        System.out.println("QUESTION ID = " + QID);
+//        randomPool = new ArrayList<>();
+//        while(answerPoolSelection != 0) {
+//            getNumber = randomizer.nextInt(80 - 1) + 1;
+//            Row excelRow = answerPoolSheet.getRow(getNumber);
+//
+//            Cell excel3rdColumn = excelRow.getCell(2);
+//            String format3rdColumn = formatter.formatCellValue(excel3rdColumn);
+//            if(!randomPool.contains(getNumber)){
+//                if ((int) answerPoolSheet.
+//                        getRow(getNumber).getCell(0).getNumericCellValue() == getNumber &&
+//                        (format3rdColumn.equals(String.valueOf(QID)))) {
+//                    Row ansRow = answerPoolSheet.getRow(getNumber);
+//                    Cell ansCell = ansRow.getCell(3);
+//                    String getAnsCell = formatter.formatCellValue(ansCell);
+//                    if (getAnsCell != "") {
+//                        answerPool.add(getAnsCell);
+//                        randomPool.add(getNumber);
+//                        answerPoolSelection--;
+//                    } else {
+//                        continue;
+//                    }
+//                }
+//            }
+//            else
+//                continue;
+//        }
+//    }
 
     public void getDispenserPool(String stage, String topics) {
         int getNumber = 0;
