@@ -2568,7 +2568,7 @@ public class Dialogue {
         System.out.println(getNpcName());
         switch (dialogueSet){
             case "introduction": return statementMover(nextStatement, introductionDialogue, getStage()-1);
-            case "minigames": return statementMover(nextStatement, minigameQuestionDialogue, 0);
+            case "minigames": return statementMover(nextStatement, questionDialogue, 0);
             case "codeorderhints": return statementMover(nextStatement, codeOrderHints, 0);
             case "hints": return statementMover(nextStatement, twoHintsContainer, getStage()-1);
         }
