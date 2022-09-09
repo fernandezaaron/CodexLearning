@@ -15,10 +15,11 @@ public class DecisionTree {
     }
 
     public void createTree(){
-        Question question = new Question(Behavior.headers, 1, "LOW");
+        Question question = new Question(Behavior.headers, 1, "HIGH");
         ArrayList<ArrayList<ArrayList<String>>> trueFalseList = partition(Behavior.trainingData, question);
         ArrayList<ArrayList<String>> trueList = trueFalseList.get(0);
         ArrayList<ArrayList<String>> falseList = trueFalseList.get(1);
+
         impurity = gini(Behavior.trainingData);
         infoGain = infoGain(trueList, falseList, impurity);
         tree = buildTree(Behavior.trainingData);

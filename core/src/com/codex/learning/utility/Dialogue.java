@@ -6,9 +6,6 @@ import java.util.Random;
 
 public class Dialogue {
 
-
-
-
     private ArrayList<ArrayList<String>> introductionDialogue = new ArrayList<>(Arrays.asList(
             new ArrayList<>(Arrays.asList("Hi I am, JediGrandpa", "I have a task for you to do", "But first lets study first on the topic",
                     //syntax
@@ -313,7 +310,72 @@ public class Dialogue {
                             "Remember the Conditional Statement Syntax",
                             "Try to check if the statement makes sense",
                             "Else statement or Default are always at the bottom"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Loops
+                            "Try to remember the output of the program",
+                            "Don't forget to check the closing statement",
+                            "Don't forget the syntax of the loop",
+                            "Double check if there is a declared variable to iterate",
+                            "Declared variables are always within or above the loop"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Arrays
+                            "Try to remember the output of the program",
+                            "Don't forget to check the closing statement",
+                            "Arrays are different to initialized from normal variables",
+                            "Indexes of an array can be access through multiple ways",
+                            "Indexes of an array starts with 0"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Methods
+                            "Try to remember the output of the program",
+                            "Don't forget to check the closing statement",
+                            "Don't be confuse between the PSVM and methods",
+                            "Methods doesn't have main",
+                            "Methods can return a value and can output a value"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Parameters
+                            "Try to remember the output of the program",
+                            "Don't forget to check the closing statement",
+                            "Parameters are inside the parenthesis of a method",
+                            "Parameters are similar to the PSVM's String args",
+                            "Methods can have 2 or more parameters"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Parameters Overloading
+                            "Try to remember the output of the program",
+                            "Don't forget to check the closing statement",
+                            "Methods are can have the same name but different parameter",
+                            "Parameters are similar to the PSVM's String args",
+                            "Methods can have 2 or more parameters"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Classes
+                            "Try to remember the output of the program",
+                            "Don't forget to check the closing statement",
+                            "Variables, or Methods declared in classes are above PSVM",
+                            "PSVM is always under a class",
+                            "It is necessary to create an object first before calling its function"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Objects
+                            "Try to remember the output of the program",
+                            "Don't forget to check the closing statement",
+                            "Variables, or Methods declared in classes are above PSVM",
+                            "PSVM is always under a class",
+                            "It is necessary to create an object first before calling its function"
                     ))
+
+
             )
     );
 
@@ -366,13 +428,12 @@ public class Dialogue {
                             "Place the variable as the output if necessary"
                     )),
 
-                    // HERE start
                     new ArrayList<>(Arrays.asList(
                             // Operators
                             "Try to remember the output of the program",
                             "Don't forget to check the closing statement",
-                            "There are multiple ways to type cast a variable",
-                            "Output of the program depends on the variable",
+                            "Try to solve it one by one",
+                            "Just do a simple math and you'll make it!",
                             "Place the variable as the output if necessary"
                     )),
 
@@ -380,77 +441,1175 @@ public class Dialogue {
                             // Conditional Statement
                             "Try to remember the output of the program",
                             "Don't forget to check the closing statement",
-                            "There are multiple ways to type cast a variable",
-                            "Output of the program depends on the variable",
-                            "Place the variable as the output if necessary"
+                            "Remember the syntax in conditional Statement",
+                            "Don't be confuse between if and use-case statement",
+                            "Don't forget that conditional statement has brackets too"
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Loops
                             "Try to remember the output of the program",
                             "Don't forget to check the closing statement",
-                            "There are multiple ways to type cast a variable",
-                            "Output of the program depends on the variable",
-                            "Place the variable as the output if necessary"
+                            "Remember that each loops have different syntax",
+                            "Loops always initialize an iterator first",
+                            "When the iterator is in the output, it will show its value"
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Arrays
                             "Try to remember the output of the program",
                             "Don't forget to check the closing statement",
-                            "There are multiple ways to type cast a variable",
-                            "Output of the program depends on the variable",
-                            "Place the variable as the output if necessary"
+                            "Pre-determined arrays have brackets",
+                            "Indexes of an array always starts at 0",
+                            "There are multiple ways to output an array"
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Methods
                             "Try to remember the output of the program",
                             "Don't forget to check the closing statement",
-                            "There are multiple ways to type cast a variable",
-                            "Output of the program depends on the variable",
-                            "Place the variable as the output if necessary"
+                            "Methods are similar to PSVM",
+                            "Methods can have return value",
+                            "Methods always have brackets"
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Parameters
                             "Try to remember the output of the program",
                             "Don't forget to check the closing statement",
-                            "There are multiple ways to type cast a variable",
-                            "Output of the program depends on the variable",
-                            "Place the variable as the output if necessary"
+                            "Parameters are inside the parenthesis of the method's name",
+                            "Methods can have 2 or more parameters",
+                            "The variable in the parameters are used inside the methods"
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Parameters Overloading
                             "Try to remember the output of the program",
                             "Don't forget to check the closing statement",
-                            "There are multiple ways to type cast a variable",
-                            "Output of the program depends on the variable",
-                            "Place the variable as the output if necessary"
-                    )),
+                            "Always check the output needed in the PSVM",
+                            "Methods can have similar name but different parameters",
+                            "As long as it doesn't have the same parameter, it's called overloading"
 
-                    new ArrayList<>(Arrays.asList(
-                            // Objects
-                            "Try to remember the output of the program",
-                            "Don't forget to check the closing statement",
-                            "There are multiple ways to type cast a variable",
-                            "Output of the program depends on the variable",
-                            "Place the variable as the output if necessary"
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Classes
                             "Try to remember the output of the program",
                             "Don't forget to check the closing statement",
-                            "There are multiple ways to type cast a variable",
-                            "Output of the program depends on the variable",
-                            "Place the variable as the output if necessary"
+                            "Variables, or Methods are outside the PSVM",
+                            "It is necessary to create an object to call the class",
+                            "Don't forget the parenthesis when creating the class"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Objects
+                            "Try to remember the output of the program",
+                            "Don't forget to check the closing statement",
+                            "Variables, or Methods are outside the PSVM",
+                            "It is necessary to create an object to call the class",
+                            "Don't forget the parenthesis when creating the class"
                     ))
             )
     );
 
-    private ArrayList<ArrayList<String>> minigameQuestionDialogue = new ArrayList<>(
+    private ArrayList<ArrayList<String>> minigameIntroDiaulogue = new ArrayList<>(
+            Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
+                            // Syntax
+                            "Hello there Grandson! Welcome to the playroom! This is where \n" +
+                            "your skills in programming will be tested. For today's topic, \n" +
+                            "it will be syntax. Where you will be tested if you really get \n" +
+                            "Java. This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed! Syntax are needed in order to run the program \n" +
+                            "But first, let me show you how to play all the minigames."
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Comments
+                            "Hello there Grandson! Welcome to the playroom! This is where \n" +
+                            "your skills in programming will be tested. For today's topic, \n" +
+                            "it will be comments. Where you will be tested if you really get \n" +
+                            "Java. This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed! Comments are useful in order not to forget the \n" +
+                            "use of its function. But first, let me show you how to play all the minigames."
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Variables
+                            "Hello there Grandson! Welcome to the playroom! This is where \n" +
+                            "your skills in programming will be tested. For today's topic, \n" +
+                            "it will be variable. Where you will be tested if you really get \n" +
+                            "Java. This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed! variables are useful in order to store data and use\n" +
+                            "it to output. But first, let me show you how to play all the minigames."
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Data Types
+                            "Hello there Grandson! Welcome to the playroom! This is where \n" +
+                            "your skills in programming will be tested. For today's topic, \n" +
+                            "it will be data types. Where you will be tested if you really get \n" +
+                            "Java. This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed! Data types are useful in order to know what type of data\n" +
+                            "the program needs. But first, let me show you how to play all the minigames."
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Type Casting
+                            "Hello there Grandson! Welcome to the playroom! This is where \n" +
+                            "your skills in programming will be tested. For today's topic, \n" +
+                            "it will be type casting. Where you will be tested if you really get \n" +
+                            "Java. This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed! Type casting are useful in order to know what type of data\n" +
+                            "the is needed. There are some data that are needed to be converted in order to \n" +
+                            "solve or edit the data. But first, let me show you how to play all the minigames."
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Type Casting
+                            "Hello there Grandson! Welcome to the playroom! This is where \n" +
+                            "your skills in programming will be tested. For today's topic, \n" +
+                            "it will be type casting. Where you will be tested if you really get \n" +
+                            "Java. This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed! Type casting are useful in order to know what type of data\n" +
+                            "the is needed. There are some data that are needed to be converted in order to \n" +
+                            "solve or edit the data. But first, let me show you how to play all the minigames."
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Operators
+                            "Hello there Grandson! Welcome to the playroom! This is where \n" +
+                            "your skills in programming will be tested. For today's topic, \n" +
+                            "it will be operators. Where you will be tested if you really get \n" +
+                            "Java. This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed! Operators are useful in order to solve the output \n" +
+                            "requirement. But first, let me show you how to play all the minigames."
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Conditional Statement
+                            "Hello Jedisaur! Welcome to the playroom! This is where your skills \n" +
+                            "in programming will be tested. For today's topic, it will be \n" +
+                            "conditional statement. Where you will be tested if you really get \n" +
+                            "Java. This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed! Conditional Statement are useful in order to get the \n" +
+                            "output requirement by placing a condition to satisfy the data. \n" +
+                            "But first, let me show you how to play all the minigames."
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Loops
+                            "Hello Jedisaur! Welcome to the playroom! This is where your \n" +
+                            "skills in programming will be tested. For today's topic, it \n" +
+                            "will be loops. Where you will be tested if you really get Java. \n" +
+                            "This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed! loops are useful in order to get the \n" +
+                            "output requirement by not repeating the output one by one. \n" +
+                            "But first, let me show you how to play all the minigames."
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Arrays
+                            "Hello Jedisaur! Welcome to the playroom! This is where your skills \n" +
+                            "in programming will be tested. For today's topic, it will be arrays. \n" +
+                            "Where you will be tested if you really get Java. This is one of \n" +
+                            "the fundamentals that you need to learn in order to proceed! \n" +
+                            "arrays are useful in order to store multiple data instead of \n" +
+                            "creating multiple variables that will consume large memory. \n" +
+                            "But first, let me show you how to play all the minigames."
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Methods
+                            "Hello Jedisaur! Welcome to the playroom! This is where \n" +
+                            "your skills in programming will be tested. For today's topic, \n" +
+                            "it will be methods. Where you will be tested if you really \n" +
+                            "get Java. This is one of the fundamentals that you need to learn \n" +
+                            "in order to proceed! methods are useful in order to solve \n" +
+                            "or show output requirements in the program. \n" +
+                            "But first, let me show you how to play all the minigames."
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Parameters
+                            "Hello Jedisaur! Welcome to the playroom! This is where \n" +
+                            "your skills in programming will be tested. For today's topic, \n" +
+                            "it will be parameters. Where you will be tested if you really get \n" +
+                            "Java. This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed! parameters are useful in order to pass \n" +
+                            "the data to show output requirements in the program.\n" +
+                            "But first, let me show you how to play all the minigames."
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Parameters Overloading
+                            "Hello Jedisaur! Welcome to the playroom! This is where your \n" +
+                            "skills in programming will be tested. For today's topic, it \n" +
+                            "will be parameter overloading. Where you will be tested if you \n" +
+                            "really get Java. This is one of the fundamentals that you need to \n" +
+                            "learn in order to proceed! parameter overloading are useful if there \n" +
+                            "are similar method name to prevent confusion and it is necessary \n" +
+                            "to name it. data to show output requirements in the program. \n" +
+                            "But first, let me show you how to play all the minigames."
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Classes
+                            "Hello Mr.Jedisaur! Welcome to the playroom! This is where \n" +
+                            "your skills in programming will be tested. For today's topic, \n" +
+                            "it will be classes. Where you will be tested if you really get \n" +
+                            "Java. This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed! classes are useful to prevent confusion on what that \n" +
+                            "code will do. It can be called in the main function to show its output \n" +
+                            "But first, let me show you how to play all the minigames."
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Objects
+                            "Hello Mr.Jedisaur! Welcome to the playroom! This is where your skills \n" +
+                            "in programming will be tested. For today's topic, it will be objects. \n" +
+                            "Where you will be tested if you really get Java. This is one of the \n" +
+                            "fundamentals that you need to learn in order to proceed! objects are useful \n" +
+                            "to create if you want to have your own customized \"or better object \n" +
+                            "than default. It can be called in the main function to show its output \n" +
+                            "But first, let me show you how to play all the minigames."
+                    ))
+    ));
+
+    private ArrayList<ArrayList<String>> objectiveDialogue = new ArrayList<>(
+            Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 1
+                            "Topic: Syntax \n" +
+                            "Print \"Hello World!\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 2
+                            "Topic: Syntax \n" +
+                            "Print \"7\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 3
+                            "Topic: Syntax \n" +
+                            "Print \"Hello World! 123\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 4
+                            "Topic: Syntax \n" +
+                            "Print \"Hello World 7\" \n" +
+                            "Print \"Hello World 9\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 5
+                            "Topic: Syntax \n" +
+                            "Print \"Hello World 123\" \n" +
+                            "Print \"Hello World 321\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 6
+                            "Topic: Syntax \n" +
+                            "Print \"Hello World 2+5\" \n" +
+                            "Print \"Hello World 3+6\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 7
+                            "Topic: Syntax \n" +
+                            "Print \"Hello World\" \n" +
+                            "Print \"JediLand Home\" \n" +
+                            "Print \"JediGrandpa\" \n" +
+                            "Print \"Jedisaur\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 8
+                            "Topic: Syntax \n" +
+                            "Print \"Hello World\" \n" +
+                            "Print \"JediLand\" \n" +
+                            "Print \"JediGrandpa\" \n" +
+                            "Print \"Jedisaur123\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 9
+                            "Topic: Syntax \n" +
+                            "Print \"123Hello World123\" \n" +
+                            "Print \"321Hello World321\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 10
+                            "Topic: Comments \n" +
+                            "Comment \"This is a single-line comment\" \n" +
+                            "Print \"Hello World!\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 11
+                            "Topic: Comments \n" +
+                            "Comment \"This is a single-line comment\" \n" +
+                            "Print \"Hello World!\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 12
+                            "Topic: Comments \n" +
+                            "Two separate single-line comment \n" +
+                            "Comment \"// = single-line comment\" \n" +
+                            "Comment \"/* */ = multi-line comment\" \n" +
+                            "Print \"Hello World!\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 13
+                            "Topic: Comments \n" +
+                            "Multi-line Comment \"// = single-line comment\" \n" +
+                            "Single-line Comment \"/* */ = multi-line comment\" \n" +
+                            "Print \"Hello World!\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 14
+                            "Topic: Comments \n" +
+                            "Multi-line Comment: \n" +
+                            "\"The program outputs Hello World! \n" +
+                            "It is a String output \n" +
+                            "multi-line comment was used.\" \n" +
+                            "Print \"Hello World!\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 15
+                            "Topic: Comments \n" +
+                            "Single-line Comment: \n" +
+                            "\"The program outputs Hello World!\" \n" +
+                            "\"It is a String output\" \n" +
+                            "\"single-line comment was used.\" \n" +
+                            "Print \"Hello World!\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 16
+                            "Topic: Variables \n" +
+                            "Data Type: String \n" +
+                            "Variable name: name \n" +
+                            "Initialized value: Jedisaur \n" +
+                            "Print \"My name is Jedisaur\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 17
+                            "Topic: Variables \n" +
+                            "Data Type: String \n" +
+                            "Variable name: name \n" +
+                            "Initialized value: JediGrandpa \n" +
+                            "Print \"My name is JediGrandpa\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 18
+                            "Topic: Variables \n" +
+                            "Data Type: int \n" +
+                            "Variable name: year \n" +
+                            "Initialized value: 1 \n" +
+                            "Print \"I will now be a 1st year student soon.\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 19
+                            "Topic: Variables \n" +
+                            "Data Type: String, int \n" +
+                            "Variable name: name, age \n" +
+                            "Initialized value: Jedisaur, 8 \n" +
+                            "Print \"My name is Jedisaur\" \n" +
+                            "Print \"I am 8 years old\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 20
+                            "Topic: Variables \n" +
+                            "Data Type: String\n" +
+                            "Variable name: myName, yourName\n" +
+                            "Initialized value: Jedisaur, JediGrandpa\n" +
+                            "Print \"My name is Jedisaur\" \n" +
+                            "Print \"My GrandPa's name is JediGrandpa\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 21
+                            "Topic: Variables \n" +
+                            "Data Type: int \n" +
+                            "Variable name: year, age \n" +
+                            "Initialized value: 1, 8 \n" +
+                            "Print \"I will now be a 1st year soon.\" \n" +
+                            "Print \"I am 8 years old\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 22
+                            "Topic: Variables \n" +
+                            "Data Type: String, int \n" +
+                            "Variable name: name, year, age \n" +
+                            "Initialized value: Jedisaur, 1, 8 \n" +
+                            "Print \"My name is Jedisaur\" \n" +
+                            "Print \"I will now be a 1st year soon.\" \n" +
+                            "Print \"I am 8 years old\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 23
+                            "Topic: Variables \n" +
+                            "Data Type: String \n" +
+                            "Variable name: myName, yourName \n" +
+                            "Initialized value: Jedisaur, JediGrandpa \n" +
+                            "Print \"My name is Jedisaur\" \n" +
+                            "Print \"My GrandPa's name is JediGrandpa\" \n" +
+                            "Print \"I am the only Grandson\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 24
+                            "Topic: Variables \n" +
+                            "Data Type: String, int \n" +
+                            "Variable name: name, year \n" +
+                            "Initialized value: Jedisaur, 1 \n" +
+                            "Print \"My name is Jedisaur\" \n" +
+                            "Print \"I will now be a 1st year soon.\" \n" +
+                            "Print \"I am a dinosaur\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 25
+                            "Topic: Data Types \n" +
+                            "Data Type: String, int, float \n" +
+                            "Variable name: name, age, height \n" +
+                            "Initialized value: Jedisaur, 8, 5.9f \n" +
+                            "Print \"Jedisaur is 8 years\" \n" +
+                            "Print \"A height of 5.9ft\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 26
+                            "Topic: Data Types \n" +
+                            "Data Type: int, char, String \n" +
+                            "Variable name: number, grade, subject \n" +
+                            "Initialized value: 3, A, Math \n" +
+                            "Print \"I got 3 A\" \n" +
+                            "Print \"in Math\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 27
+                            "Topic: Data Types \n" +
+                            "Data Type: boolean, char, String \n" +
+                            "Variable name: bool, grade, subject \n" +
+                            "Initialized value: true, A, Math \n" +
+                            "Print \"true\" \n" +
+                            "Print \"A\" \n" +
+                            "Print \"Math\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 28
+                            "Topic: Data Types \n" +
+                            "Data Type: boolean, int, float \n" +
+                            "Variable name: bool, number, height \n" +
+                            "Initialized value: false, 3, 5.9f \n" +
+                            "Print \"false\" \n" +
+                            "Print \"3\" \n" +
+                            "Print \"5.9\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 29
+                            "Topic: Data Types \n" +
+                            "Data Type: boolean, String, int, float \n" +
+                            "Variable name: bool, name, age, height \n" +
+                            "Initialized value: true, Jedisaur, 8, 5.9f \n" +
+                            "Print \"This is true\" \n" +
+                            "Print \"Jedisaur is 8 years\" \n" +
+                            "Print \"A height of 5.9ft\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 30
+                            "Topic: Data Types \n" +
+                            "Data Type: boolean, String, int, float \n" +
+                            "Variable name: bool, name, age, height \n" +
+                            "Initialized value: false, Jedisaur, 8, 5.9f \n" +
+                            "Print \"This is false\" \n" +
+                            "Print \"Jedisaur is 8 years\" \n" +
+                            "Print \"A height of 5.9ft\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 31
+                            "Topic: Type Casting \n" +
+                            "Data Type: float, int \n" +
+                            "Variable name: num, convert \n" +
+                            "Initialized value: 5.9f, (int) num \n" +
+                            "Print \"5.9\" \n" +
+                            "Print \"5\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 32
+                            "Topic: Type Casting \n" +
+                            "Data Type: int, String \n" +
+                            "Variable name: num, convert \n" +
+                            "Initialized value: 3, String.valueOf(num) \n" +
+                            "Print \"3\" \n" +
+                            "Print \"3\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 33
+                            "Topic: Type Casting \n" +
+                            "Data Type: float, int \n" +
+                            "Variable name: num, convert \n" +
+                            "Initialized value: 5.9f, (int) num \n" +
+                            "Print \"My height is 5.9ft\" \n" +
+                            "Print \"I have 5 subjects\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 34
+                            "Topic: Type Casting \n" +
+                            "Data Type: int, String \n" +
+                            "Variable name: num, num2, convert \n" +
+                            "Initialized value: 3, 3, String.valueOf(num) \n" +
+                            "Print \"3 == 3\" \n" +
+                            "Print \"3 != 3\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 35
+                            "Topic: Type Casting \n" +
+                            "Data Type: float, int \n" +
+                            "Variable name: num, num2, convert, num3 \n" +
+                            "Initialized value: 5.9f, 6.7f, (int) num, 4 \n" +
+                            "Print \"5.9 is similar to 6.7\" \n" +
+                            "Print \"5.9 is different to 5\" \n" +
+                            "Print \"5 is different to 4\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 36
+                            "Topic: Type Casting \n" +
+                            "Data Type: boolean, String \n" +
+                            "Variable name: bool, bool2, convert \n" +
+                            "Initialized value: true, false, String.valueOf(bool) \n" +
+                            "Print \"true is similar to false\" \n" +
+                            "Print \"true != false\" \n" +
+                            "Print \"true is different to true\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 37
+                            "Topic: Operators \n" +
+                            "Print \"2\" \n" +
+                            "Print \"10\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 38
+                            "Topic: Operators \n" +
+                            "Print \"2\" \n" +
+                            "Print \"8\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 39
+                            "Topic: Operators \n" +
+                            "Print \"1\" \n" +
+                            "Print \"2\" \n" +
+                            "Print \"3\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 40
+                            "Topic: Operators \n" +
+                            "Print \"5\" \n" +
+                            "Print \"4\" \n" +
+                            "Print \"3\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 41
+                            "Topic: Operators \n" +
+                            "Print \"2\" \n" +
+                            "Print \"4\" \n" +
+                            "Print \"4\" \n" +
+                            "Print \"3\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 42
+                            "Topic: Operators \n" +
+                            "Print \"7\" \n" +
+                            "Print \"4\" \n" +
+                            "Print \"5\" \n" +
+                            "Print \"4\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 43
+                            "Topic: Conditional Statement \n" +
+                            "Data Type: boolean \n" +
+                            "Variable name: bool \n" +
+                            "Initialized value: true \n" +
+                            "If bool is true: \n" +
+                            "Print \"True\" \n" +
+                            "Else: \n" +
+                            "Print \"False\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 44
+                            "Topic: Conditional Statement \n" +
+                            "Data Type: boolean \n" +
+                            "Variable name: bool \n" +
+                            "Initialized value: false \n" +
+                            "If bool is true: \n" +
+                            "Print \"True\" \n" +
+                            "Else: \n" +
+                            "Print \"False\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 45
+                            "Topic: Conditional Statement \n" +
+                            "Data Type: int \n" +
+                            "Variable name: num1, num2 \n" +
+                            "Initialized value: 5, 3 \n" +
+                            "If num1 is greater than num2: \n" +
+                            "Print \"A is greater\" \n" +
+                            "Else: \n" +
+                            "Print \"B is lower\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 46
+                            "Topic: Conditional Statement \n" +
+                            "Data Type: int \n" +
+                            "Variable name: num1, num2 \n" +
+                            "Initialized value: 5, 3 \n" +
+                            "If num1 is less than num2: \n" +
+                            "Print \"A is greater\" \n" +
+                            "Else: \n" +
+                            "Print \"B is lower\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 47
+                            "Topic: Conditional Statement \n" +
+                            "Data Type: int \n" +
+                            "Variable name: num1, num2, num3 \n" +
+                            "Initialized value: 5, 3, 1 \n" +
+                            "If num3 is greater than num1: \n" +
+                            "Print \"A is greater\" \n" +
+                            "Else if num3 is greater than num2: \n" +
+                            "Print \"B is greater\" \n" +
+                            "Else: \n" +
+                            "Print \"C is lower\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 48
+                            "Topic: Conditional Statement \n" +
+                            "Data Type: int \n" +
+                            "Variable name: num1, num2, num3 \n" +
+                            "Initialized value: 5, 3, 1 \n" +
+                            "If num3 is greater than num1: \n" +
+                            "Print \"A is greater\" \n" +
+                            "Else if num3 is less than num2: \n" +
+                            "Print \"B is greater\" \n" +
+                            "Else: \n" +
+                            "Print \"C is lower\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 49
+                            "Topic: Conditional Statement \n" +
+                            "Data Type: char \n" +
+                            "Variable name: letter \n" +
+                            "Initialized value: A \n" +
+                            "Case A: \n" +
+                            "Print \"A Grade\" \n" +
+                            "Default: \n" +
+                            "Print \"No Grade\" "
+                    )),
+
+                     new ArrayList<>(Arrays.asList(
+                             // Minigame ID 50
+                             "Topic: Conditional Statement \n" +
+                             "Data Type: char \n" +
+                             "Variable name: letter \n" +
+                             "Initialized value: B \n" +
+                             "Case A: \n" +
+                             "Print \"A Grade\" \n" +
+                             "Default: \n" +
+                             "Print \"No Grade\" "
+                     )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 51
+                            "Topic: Conditional Statement \n" +
+                            "Data Type: String \n" +
+                            "Variable name: direction \n" +
+                            "Initialized value: North \n" +
+                            "Case North: \n" +
+                            "Print \"Up\" \n" +
+                            "Case South: \n" +
+                            "Print \"Down\" \n" +
+                            "Default: \n" +
+                            "Print \"No Direction\" "
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 52
+                            "Topic: Conditional Statement \n" +
+                            "Data Type: String \n" +
+                            "Variable name: direction \n" +
+                            "Initialized value: South \n" +
+                            "Case North: \n" +
+                            "Print \"Up\" \n" +
+                            "Case South: \n" +
+                            "Print \"Down\" \n" +
+                            "Default: \n" +
+                            "Print \"No Direction\" "
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 53
+                            "Topic: Conditional Statement \n" +
+                            "Data Type: char \n" +
+                            "Variable name: letter \n" +
+                            "Initialized value: A \n" +
+                            "Case A: \n" +
+                            "Print \"A Grade\" \n" +
+                            "Case B: \n" +
+                            "Print \"B Grade\" \n" +
+                            "Default: \n" +
+                            "Print \"No Grade\" "
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 54
+                            "Topic: Conditional Statement \n" +
+                            "Data Type: char \n" +
+                            "Variable name: letter \n" +
+                            "Initialized value: C \n" +
+                            "Case A: \n" +
+                            "Print \"A Grade\" \n" +
+                            "Case B: \n" +
+                            "Print \"B Grade\" \n" +
+                            "Default: \n" +
+                            "Print \"No Grade\" "
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 55
+                            "Topic: Loops \n" +
+                            "Data Type: int \n" +
+                            "Variable name: i \n" +
+                            "Initialized value: 0 \n" +
+                            "For loop: \n" +
+                            "Print \"Hello World\" "
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 56
+                            "Topic: Loops \n" +
+                            "Data Type: int \n" +
+                            "Variable name: i \n" +
+                            "Initialized value: 0 \n" +
+                            "While loop: \n" +
+                            "Print \"Hello World\" "
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 57
+                            "Topic: Loops \n" +
+                            "Data Type: int \n" +
+                            "Variable name: i \n" +
+                            "Initialized value: 0 \n" +
+                            "Do-While loop: \n" +
+                            "Print \"Hello World\" "
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 58
+                            "Topic: Loops \n" +
+                            "Data Type: int \n" +
+                            "Variable name: i \n" +
+                            "Initialized value: 0 \n" +
+                            "For loop: \n" +
+                            "Print the value of \"i\" \n" +
+                            "Print \"Hello World\" "
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 59
+                            "Topic: Loops \n" +
+                            "Data Type: int \n" +
+                            "Variable name: i \n" +
+                            "Initialized value: 0 \n" +
+                            "While loop: \n" +
+                            "Print the value of \"i\" \n" +
+                            "Print \"Hello World\" "
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 60
+                            "Topic: Loops \n" +
+                            "Data Type: int \n" +
+                            "Variable name: i \n" +
+                            "Initialized value: 0 \n" +
+                            "Do-While loop: \n" +
+                            "Print the value of \"i\" \n" +
+                            "Print \"Hello World\" "
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 61
+                            "Topic: Loops \n" +
+                            "Data Type: int \n" +
+                            "Variable name: i \n" +
+                            "Initialized value: 0 \n" +
+                            "For loop: Break if i is 2\n" +
+                            "Print the value of \"i\" \n" +
+                            "Print \"Hello World\" "
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 62
+                            "Topic: Loops \n" +
+                            "Data Type: int \n" +
+                            "Variable name: i \n" +
+                            "Initialized value: 0 \n" +
+                            "While loop: Break if i is 2\n" +
+                            "Print the value of \"i\" \n" +
+                            "Print \"Hello World\" "
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 63
+                            "Topic: Loops \n" +
+                            "Data Type: int \n" +
+                            "Variable name: i \n" +
+                            "Initialized value: 0 \n" +
+                            "Do-While loop: Break if i is 2\n" +
+                            "Print the value of \"i\" \n" +
+                            "Print \"Hello World\" "
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 64
+                            "Topic: Arrays \n" +
+                            "Data Type: String[] \n" +
+                            "Variable name: array \n" +
+                            "Initialized value of array: Jedisaur, is, going, to, Jedischool \n" +
+                            "Print the value of \"array\" manually"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 65
+                            "Topic: Arrays \n" +
+                            "Data Type: String[] \n" +
+                            "Variable name: array \n" +
+                            "Initialized value of array: Jedisaur, is, in, JediLand \n" +
+                            "Print the value of \"array\" manually"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 66
+                            "Topic: Arrays \n" +
+                            "Data Type: String[] \n" +
+                            "Variable name: array \n" +
+                            "Initialized value of array: Jedisaur, is, in, JediLand \n" +
+                            "For loop: \n" +
+                            "Print the value of \"array\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 67
+                            "Topic: Arrays \n" +
+                            "Data Type: String[] \n" +
+                            "Variable name: array \n" +
+                            "Initialized value of array: Jedisaur, is, going, to, JediSchool \n" +
+                            "For loop: \n" +
+                            "Print the value of \"array\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 68
+                            "Topic: Arrays \n" +
+                            "Data Type: String[], int \n" +
+                            "Variable name: array, counter \n" +
+                            "Initialized value of array: Jedisaur, is, in, JediLand \n" +
+                            "Initialized value of counter: 0 \n" +
+                            "While loop: \n" +
+                            "Print the value of \"array\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 69
+                            "Topic: Arrays \n" +
+                            "Data Type: String[], int \n" +
+                            "Variable name: array, counter \n" +
+                            "Initialized value of array: Jedisaur, is, going, to, JediLand \n" +
+                            "Initialized value of counter: 0 \n" +
+                            "While loop: \n" +
+                            "Print the value of \"array\""
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 70
+                            "Topic: Methods \n" +
+                            "Method Type: void \n" +
+                            "Method name: greet \n" +
+                            "Method output: Hello! \n" +
+                            "Print \"Hello!\" by using the greet method"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 71
+                            "Topic: Methods \n" +
+                            "Method Type: void \n" +
+                            "Method name: greet \n" +
+                            "Method output: Hi! \n" +
+                            "Print \"Hi!\" by using the greet method"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 72
+                            "Topic: Methods \n" +
+                            "Method Type: String \n" +
+                            "Method name: greet \n" +
+                            "Method output: Hello \n" +
+                            "Print \"Hello Jedisaur\" by using the greet method"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 73
+                            "Topic: Methods \n" +
+                            "Method Type: String \n" +
+                            "Method name: greet \n" +
+                            "Method output: Hi \n" +
+                            "Print \"Hi Jedisaur\" by using the greet method"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 74
+                            "Topic: Methods \n" +
+                            "Method Type: String \n" +
+                            "Method name: greet, name \n" +
+                            "Method output: Hello, Jedisaur \n" +
+                            "Print \"Hello Jedisaur\" by using the greet method"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 75
+                            "Topic: Methods \n" +
+                            "Method Type: String \n" +
+                            "Method name: greet, name \n" +
+                            "Method output: Hi Jedisaur \n" +
+                            "Print \"Hi Jedisaur\" by using the greet method"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 76
+                            "Topic: Parameters \n" +
+                            "Method Type: void \n" +
+                            "Method name: greet \n" +
+                            "Method parameter Data Type: String \n" +
+                            "Method parameter name: name \n" +
+                            "Method output: Hi Jedisaur \n" +
+                            "Print \"Hi Jedisaur\" by using the greet method"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 77
+                            "Topic: Parameter Overloading\n" +
+                            "Method Type: void \n" +
+                            "Method name: greet \n" +
+                            "1st Method parameter: String name \n" +
+                            "1st Method output: Hello + name \n" +
+                            "2nd Method parameter: String greet, String name \n" +
+                            "2nd Method output: greet + name \n" +
+                            "Print \"Hi Jedisaur\" by using the 2nd greet method"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 78
+                            "Topic: Parameters \n" +
+                            "Method Type: int \n" +
+                            "Method name: solve \n" +
+                            "Method parameter Data Type: int \n" +
+                            "Method parameter name: num \n" +
+                            "Method output: num + 5 \n" +
+                            "Print \"10\" by using the solve method"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 79
+                            "Topic: Parameter Overloading\n" +
+                            "Method Type: int \n" +
+                            "Method name: solve \n" +
+                            "1st Method parameter: int num \n" +
+                            "1st Method output: num + 10 \n" +
+                            "2nd Method parameter: int num, int num2 \n" +
+                            "2nd Method output: num + num2 \n" +
+                            "Print \"10\" by using the solve method"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 80
+                            "Topic: Parameters \n" +
+                            "Method Type: boolean \n" +
+                            "Method name: opposite \n" +
+                            "Method parameter Data Type: boolean \n" +
+                            "Method parameter name: bool \n" +
+                            "Method output: opposite of bool \n" +
+                            "Print \"false\" by using the opposite method"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 81
+                            "Topic: Parameter Overloading\n" +
+                            "Method Type: boolean \n" +
+                            "Method name: opposite \n" +
+                            "1st Method parameter: boolean bool \n" +
+                            "1st Method output: opposite of bool \n" +
+                            "2nd Method parameter: int num \n" +
+                            "2nd Method output: negative number of num \n" +
+                            "Print \"-1\" by using the opposite method"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 82
+                            "Topic: Classes \n" +
+                            "Class name: number \n" +
+                            "Class variable's data type: Integer \n" +
+                            "Class variable's name: num \n" +
+                            "Class variable's value: 8 \n" +
+                            "Print \"8\" by using the class"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 83
+                            "Topic: Classes \n" +
+                            "Class name: name \n" +
+                            "Class variable's data type: String \n" +
+                            "Class variable's name: name \n" +
+                            "Class variable's value: Jedisaur \n" +
+                            "Print \"Jedisaur\" by using the class"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 84
+                            "Topic: Classes \n" +
+                            "Class name: number \n" +
+                            "Class variable's data type: Integer \n" +
+                            "Class variable's name: num \n" +
+                            "Class variable's value: 8 \n" +
+                            "Print \"I am now 8 years old\" by using the class"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 85
+                            "Topic: Classes \n" +
+                            "Class name: name \n" +
+                            "Class variable's data type: String \n" +
+                            "Class variable's name: name \n" +
+                            "Class variable's value: Jedisaur \n" +
+                            "Print \"My name is Jedisaur\" by using the class"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 86
+                            "Topic: Classes \n" +
+                            "Class name: number \n" +
+                            "Class method's name: show \n" +
+                            "Class method's parameter: int val \n" +
+                            "Print \"I am now 8 years old\" by using the class"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 87
+                            "Topic: Classes \n" +
+                            "Class name: name \n" +
+                            "Class method's name: greet \n" +
+                            "Class method's parameter: String val \n" +
+                            "Print \"My name is Jedisaur\" by using the class"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 88
+                            "Topic: Objects \n" +
+                            "Class name: number \n" +
+                            "Class variable's data type: Integer \n" +
+                            "Class variable's name: num \n" +
+                            "Class variable's value: 8 \n" +
+                            "Print \"8\" by using the class"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 89
+                            "Topic: Objects \n" +
+                            "Class name: name \n" +
+                            "Class variable's data type: String \n" +
+                            "Class variable's name: name \n" +
+                            "Class variable's value: Jedisaur \n" +
+                            "Print \"Jedisaur\" by using the class"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 90
+                            "Topic: Objects \n" +
+                            "Class name: number \n" +
+                            "Class variable's data type: Integer \n" +
+                            "Class variable's name: num \n" +
+                            "Class variable's value: 8 \n" +
+                            "Print \"I am now 8 years old\" by using the class"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 91
+                            "Topic: Objects \n" +
+                            "Class name: name \n" +
+                            "Class variable's data type: String \n" +
+                            "Class variable's name: name \n" +
+                            "Class variable's value: Jedisaur \n" +
+                            "Print \"My name is Jedisaur\" by using the class"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 92
+                            "Topic: Objects \n" +
+                            "Class name: number \n" +
+                            "Class method's name: show \n" +
+                            "Class method's parameter: int val \n" +
+                            "Print \"I am now 8 years old\" by using the class"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 93
+                            "Topic: Objects \n" +
+                            "Class name: name \n" +
+                            "Class method's name: greet \n" +
+                            "Class method's parameter: String val \n" +
+                            "Print \"My name is Jedisaur\" by using the class"
+                    ))
+    ));
+
+    private ArrayList<ArrayList<String>> questionDialogue = new ArrayList<>(
             Arrays.asList(
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 1
@@ -1268,6 +2427,126 @@ public class Dialogue {
                             "The opposite method will return the opposite value of num. \n" +
                             "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
                             "Take note that the topic that I'm teaching you is about Parameters! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 82
+                            "Hey there Grandson! I want you to output \"8\" by using the \n" +
+                            "variable in a class called num with a value of 8. Call the \n" +
+                            "class called number inside the main method. Think of a way on how \n" +
+                            "to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Classes! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 83
+                            "Hey there Grandson! I want you to output \"Jedisaur\" \n" +
+                            "by using the variable in a class called name1 with a value of Jedisaur. \n" +
+                            "Call the class called name inside the main method. Think of a way \n" +
+                            "on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Classes! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 84
+                            "Hey there Grandson! I want you to output \"I am now 8 years old\" \n" +
+                            "by using the variable in a class called num1 with a value of \n" +
+                            "8. Call the class called number inside the main method. Think of a way \n" +
+                            "on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Classes! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 85
+                            "Hey there Grandson! I want you to output \"My name is Jedisaur\" \n" +
+                            "by using the variable in a class called name1 with a value of Jedisaur. \n" +
+                            "Call the class called name inside the main method. Think of a way \n" +
+                            "on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Classes! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 86
+                            "Hey there Grandson! I want you to output \"I am now 8 years old\" \n" +
+                            "by using the method in a class called show with a parameter of val.\n" +
+                            "Call the class called number inside the main method. Think of a way \n" +
+                            "on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Classes! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 87
+                            "Hey there Grandson! I want you to output \"My name is Jedisaur\" \n" +
+                            "by using the method in a class called greet with a parameter of val. \n" +
+                            "Call the class called name inside the main method. Think of a way \n" +
+                            "on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Classes! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 88
+                            "Hey there Grandson! I want you to output \"8\" \n" +
+                            "by using the object in a class called number with a value of num.\n" +
+                            "Call the class called number inside the main method. Think of a way \n" +
+                            "on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Objects! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 89
+                            "Hey there Grandson! I want you to output \"Jedisaur\" \n" +
+                            "by using the object in a class called name with a value of name. \n" +
+                            "Call the class called name inside the main method. Think of a way \n" +
+                            "on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Objects! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 90
+                            "Hey there Grandson! I want you to output \"I am now 8 years old\" \n" +
+                            "by using the object in a class called number with a value of num.\n" +
+                            "Call the class called number inside the main method. Think of a way \n" +
+                            "on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Objects! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 91
+                            "Hey there Grandson! I want you to output \"My name is Jedisaur\" \n" +
+                            "by using the object in a class called name with a value of name. \n" +
+                            "Call the class called name inside the main method. Think of a way \n" +
+                            "on how to solve this problem. Fix the structure of the given code. \n" +
+                            "Take note that the topic that I'm teaching you is about Objects! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 92
+                            "Hey there Grandson! I want you to output \"I am now 8 years old\" \n" +
+                            "by using the object in a class called number with a method named show \n" +
+                            "with a parameter of int val. Call the class called number inside the main \n" +
+                            "method. Think of a way on how to solve this problem. Fix the structure of \n" +
+                            "the given code. Take note that the topic that I'm teaching you is about Objects! \n" +
+                            "Make sure to not mess this up. Good luck!"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Minigame ID 93
+                            "Hey there Grandson! I want you to output \"My name is Jedisaur\" \n" +
+                            "by using the object in a class called name with a method named greet \n" +
+                            "with a parameter of String name. Call the class called name inside the main \n" +
+                            "method. Think of a way on how to solve this problem. Fix the structure of \n" +
+                            "the given code. Take note that the topic that I'm teaching you is about Objects! \n" +
                             "Make sure to not mess this up. Good luck!"
                     ))
             )
