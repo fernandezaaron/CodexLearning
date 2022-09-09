@@ -2563,16 +2563,26 @@ public class Dialogue {
         statementEnd = false;
     }
 
-    public String reader(int nextStatement){
 
+    public String reader(int nextStatement, String dialogueSet, int index){
         System.out.println(getNpcName());
-        if(nextStatement == introductionDialogue.get(getStage() - 1).size()){
+        switch (dialogueSet){
+            case "introduction": return statementMover(nextStatement, introductionDialogue, getStage()-1);
+            case "minigames": return statementMover(nextStatement, questionDialogue, 0);
+            case "codeorderhints": return statementMover(nextStatement, codeOrderHints, 0);
+            case "hints": return statementMover(nextStatement, twoHintsContainer, getStage()-1);
+        }
+        return "";
+    }
+
+    public String statementMover(int nextStatement, ArrayList<ArrayList<String>> arrayLists, int index){
+        if(nextStatement == arrayLists.get(index).size()){
             System.out.println("true");
             setStatementEnd(true);
         }else{
             setStatementEnd(false);
             System.out.println("dumaan ako dito");
-            return introductionDialogue.get(getStage() - 1).get(nextStatement);
+            return arrayLists.get(index).get(nextStatement);
         }
 
         return "";

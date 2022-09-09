@@ -21,6 +21,7 @@ public class Blocks extends Entity {
     protected boolean inContact;
     private boolean preDefinedContact;
     private boolean isPredefined;
+    private boolean isBlock;
     private Vector2 dupliSize;
     public Blocks(Manager manager, String id, String name, boolean isPredefined) {
         super(manager);
@@ -42,31 +43,29 @@ public class Blocks extends Entity {
         PolygonShape shape = new PolygonShape();
 
         shape.setAsBox(this.size.x, this.size.y,
-                new Vector2(0, -(this.size.y - this.size.y / 3)), 0);
+                new Vector2( 0, -(this.size.y - this.size.y / 3)), 0);
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.density = density;
         fixtureDef.shape = shape;
         fixtureDef.friction = 5;
+        fixtureDef.isSensor = true;
 
 
-        PolygonShape endposShape = new PolygonShape();
+//
+//        PolygonShape endposShape = new PolygonShape();
+//
+//        endposShape.setAsBox(this.size.x/4, this.size.y,
+//                new Vector2(0.70f, -(this.size.y - this.size.y / 3)), 0);
+//
+//        FixtureDef endpos=  new FixtureDef();
+//        endpos.density = density;
+//        endpos.isSensor = true;
+//        endpos.shape = endposShape;
 
-        endposShape.setAsBox(this.size.x/4, this.size.y,
-                new Vector2(0.70f, -(this.size.y - this.size.y / 3)), 0);
-
-        FixtureDef endpos=  new FixtureDef();
-        endpos.density = density;
-        endpos.isSensor = true;
-        endpos.shape = endposShape;
-
-        if(isPredefined){
-            fixtureDef.isSensor = true;
-        }
 
         body = manager.getWorld().createBody(def);
         body.createFixture(fixtureDef).setUserData(this);
-        body.createFixture(endpos).setUserData("edge");
         body.setLinearVelocity(0, 0);
         shape.dispose();
 
@@ -78,6 +77,7 @@ public class Blocks extends Entity {
 
         inContact = false;
         preDefinedContact = false;
+        isBlock = true;
     }
 
         @Override
@@ -111,6 +111,12 @@ public class Blocks extends Entity {
         manager.getFont().draw(sprite, this.name,
                 (this.size.x - (this.size.x * (Constants.PPM * 1.1f)) + (Constants.PPM * body.getPosition().x)),
                 (this.size.y - (this.size.y * (Constants.PPM * 0.5f)) + (Constants.PPM * body.getPosition().y)));
+
+        if(isUppercase(this.name)){
+            manager.getFont().draw(sprite, this.name,
+                    (this.size.x - (this.size.x * (Constants.PPM * 1.1f)) + (Constants.PPM * body.getPosition().x)),
+                    (this.size.y - (this.size.y * (Constants.PPM * 0.5f)) + (Constants.PPM * body.getPosition().y)), this.name.length(), 1, true);
+        }
         sprite.end();
     }
 
@@ -158,6 +164,13 @@ public class Blocks extends Entity {
         body.setActive(active);
     }
 
+    public boolean isBlock() {
+        return isBlock;
+    }
+
+    public void setBlock(boolean block) {
+        isBlock = block;
+    }
 }
 //public class Blocks extends Entity {
 //    private String id, name;

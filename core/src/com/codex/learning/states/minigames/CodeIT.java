@@ -34,25 +34,25 @@ public class CodeIT extends State {
     private int minigameContainerLimit;
     private Random randomizer;
     private ArrayList<String> getAnswerPool;
+    private ArrayList<Integer> duplicatePool;
     private int currentCell;
 
-    public CodeIT(Manager manager, int stage, Character character) {
+    public CodeIT(Manager manager, Character character) {
         super(manager);
         pause = new PauseState(manager);
 
         playroom = new PlayroomMapS1(manager);
 
+        duplicatePool = new ArrayList<Integer>();
+        getAnswerPool = new ArrayList<String>();
         randomizer = new Random();
 
-        getAMinigame("Stage 1", "Poor");
+        getAMinigame(manager.getStageSelector().map(), "Poor");
 
         // WILL BE USED, DON'T ERASE
         questionBlocks = new Blocks[20][20];
         blockHolders = new BlockHolder[20][20];
         // WILL BE USED, DON'T ERASE
-
-        blockDispensers = new BlockDispenser[2];
-
 
         // START MINIGAME CREATION
         int yStartingPoint = 8, currentCell = 0;
@@ -71,18 +71,37 @@ public class CodeIT extends State {
             }
             yStartingPoint -= 2;
         }
-        Collections.shuffle(getAnswerPool);
+//        Collections.shuffle(getAnswerPool);
         // END MINIGAME CREATION
 
-        int currentAnsCell = 0;
+        for(int i = 0; i < getAnswerPool.size(); i++) {
+            String banished = getAnswerPool.get(i);
+            int dupes = 1;
+            System.out.println("eto tunay " + getAnswerPool.get(i));
+            for(int j = 0; j < getAnswerPool.size(); j++) {
+                System.out.println(getAnswerPool.get(i) + " dupe " + getAnswerPool.get(j));
+                if(getAnswerPool.get(j).equals(banished) && i != j) {
+                    dupes += 1;
+                    System.out.println("pumasok dupe");
+                    getAnswerPool.remove(j);
+                }
+            }
+            System.out.println("luh tapos na dupe");
+            duplicatePool.add(dupes);
+        }
+        System.out.println("pool " + getAnswerPool);
+        System.out.println("pool " + duplicatePool);
+
+        blockDispensers = new BlockDispenser[getAnswerPool.size()];
+
         int ansPoolSize = getAnswerPool.size();
-        int xposition = -22, yposition = -6;
+        System.out.println(ansPoolSize);
+        int xposition = -22, yposition = -9;
         for(int i = 0; i < ansPoolSize; i++) {
-            blockDispensers[i] = new BlockDispenser(manager, "Down", getAnswerPool.get(currentAnsCell), getAnswerPool.get(currentAnsCell),
-                    1, new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
-            System.out.println(getAnswerPool.get(currentAnsCell));
-            currentAnsCell++;
+            blockDispensers[i] = new BlockDispenser(manager, "Down", getAnswerPool.get(i), getAnswerPool.get(i),
+                    duplicatePool.get(i), new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
             blockDispensers[i].create(new Vector2(xposition, yposition), new Vector2(0.3f, 1.3f), 0);
+            System.out.println(getAnswerPool.get(i) + " many " + duplicatePool.get(i));
             xposition += 5;
             if(xposition == 23) {
                 yposition -= 6;
@@ -95,64 +114,46 @@ public class CodeIT extends State {
 
     @Override
     public void update(float delta) {
-        manager.getWorld().step(1 / 60f, 6, 2);
-        if (pause.isRunning()) {
-            // WILL BE USED, DON'T ERASE
-            currentCell = 0;
-            for (int i = 0; i < minigameContainer.size(); i++) {
-                for (int j = 0; j < minigameContainer.get(i).size(); j++) {
-                    if (minigameContainer.get(i).get(j) != null) {
-                        blockHolders[i][j].update(delta);
-                    }
+        // WILL BE USED, DON'T ERASE
+        currentCell = 0;
+        for (int i = 0; i < minigameContainer.size(); i++) {
+            for (int j = 0; j < minigameContainer.get(i).size(); j++) {
+                if (minigameContainer.get(i).get(j) != null) {
+                    blockHolders[i][j].update(delta);
                 }
             }
-            // WILL BE USED, DON'T ERASE
-
-            for (int i = 0; i < getAnswerPoolContainer().size(); i++) {
-                blockDispensers[i].createBlock(new Vector2(jedisaur.getBody().getPosition().x, jedisaur.getBody().getPosition().y));
-            }
-
-            for (int i = 0; i < getAnswerPoolContainer().size(); i++) {
-                if (blockDispensers[i].isCloned()) {
-                    for (Blocks b : blockDispensers[i].getBlocks()) {
-                        if (b != null) {
-                            b.update(delta);
-                            if (b.isInContact()) {
-                                jedisaur.carryBlock(b);
-                            }
-                        } else {
-                            continue;
-                        }
-                    }
-                }
-            }
-
-            // WILL BE USED, DON'T ERASE
-            currentCell = 0;
-            for (int i = 0; i < minigameContainer.size(); i++) {
-                for (int j = 0; j < minigameContainer.get(i).size(); j++) {
-                    if (minigameContainer.get(i).get(j) != null) {
-                        if (blockHolders[i][j].isInContact()) {
-                            jedisaur.dropBlock(blockHolders[i][j]);
-                        }
-                    }
-                }
-            }
-            // WILL BE USED, DON'T ERASE
-
-
-            jedisaur.update(delta);
-
-//            pause.update(delta);
-        } else {
-            if (jedisaur.isMoving()) {
-                jedisaur.setMoving(false);
-                jedisaur.update(delta);
-                jedisaur.getBody().setLinearVelocity(0, 0);
-            }
-
         }
         // WILL BE USED, DON'T ERASE
+        for (int i = 0; i < getAnswerPool.size(); i++) {
+            blockDispensers[i].createBlock(new Vector2(jedisaur.getBody().getPosition().x, jedisaur.getBody().getPosition().y));
+        }
+        for (int i = 0; i < getAnswerPool.size(); i++) {
+            if (blockDispensers[i].isCloned()) {
+                for (Blocks b : blockDispensers[i].getBlocks()) {
+                    if (b != null) {
+                        b.update(delta);
+                        if (b.isInContact()) {
+                            jedisaur.carryBlock(b);
+                        }
+                    } else {
+                        continue;
+                    }
+                }
+            }
+        }
+        // WILL BE USED, DON'T ERASE
+        currentCell = 0;
+        for (int i = 0; i < minigameContainer.size(); i++) {
+            for (int j = 0; j < minigameContainer.get(i).size(); j++) {
+                if (minigameContainer.get(i).get(j) != null) {
+                    if (blockHolders[i][j].isInContact()) {
+                        jedisaur.dropBlock(blockHolders[i][j]);
+                    }
+                }
+            }
+        }
+        // WILL BE USED, DON'T ERASE
+
     }
 
 
@@ -160,13 +161,10 @@ public class CodeIT extends State {
     @Override
     public void render(SpriteBatch sprite) {
         sprite.enableBlending();
-        sprite.setProjectionMatrix(manager.getCamera().combined);
-
         manager.getCamera().update();
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.end();
-
         playroom.render(sprite);
 
         currentCell = 0;
@@ -178,7 +176,7 @@ public class CodeIT extends State {
             }
         }
 
-        for(int i = 0; i < getAnswerPoolContainer().size(); i++){
+        for(int i = 0; i < getAnswerPool.size(); i++){
             blockDispensers[i].render(sprite);
             if(blockDispensers[i].isCloned()){
                 for (Blocks b : blockDispensers[i].getBlocks()) {
@@ -191,15 +189,10 @@ public class CodeIT extends State {
                 }
             }
         }
-
-        jedisaur.render(sprite);
-
-        pause.render(sprite);
     }
 
     @Override
     public void dispose() {
-        jedisaur.disposeBody();
 
         // WILL BE USED, DON'T ERASE
         for(int i = 0; i < minigameContainer.size(); i++) {
@@ -212,7 +205,7 @@ public class CodeIT extends State {
 
         // WILL BE USED, DON'T ERASE
 
-        for(int i = 0; i < getAnswerPoolContainer().size(); i++){
+        for(int i = 0; i < getAnswerPool.size(); i++){
             blockDispensers[i].disposeBody();
             if(blockDispensers[i].isCloned()){
                 for (Blocks b : blockDispensers[i].getBlocks()) {
@@ -233,7 +226,6 @@ public class CodeIT extends State {
         manager.getQuestionnaire().minigameDisplay(stage,String.valueOf(manager.getStageSelector().getStageMap()),expertiseLevel);
         minigameContainer = manager.getQuestionnaire().getMinigameHolder();
         minigameContainerLimit = manager.getQuestionnaire().getMinigameLimit();
-        getAnswerPool = manager.getQuestionnaire().getAnswerPool();
     }
 
     public ArrayList<String> getAnswerPoolContainer() {

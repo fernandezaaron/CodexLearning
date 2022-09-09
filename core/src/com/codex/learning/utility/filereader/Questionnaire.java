@@ -32,6 +32,8 @@ public class Questionnaire extends DatabaseReader {
     private ArrayList<String> topic;
     private ArrayList<Integer> randomPool;
     private ArrayList<String> dispenserPool;
+    private ArrayList<ArrayList<Integer>> banishPerRow;
+    private ArrayList<Integer> banishThisNumber;
 
     public Questionnaire() {
         questions = new ArrayList<>();
@@ -48,7 +50,7 @@ public class Questionnaire extends DatabaseReader {
         questionLimit = 0;
 
         excelQuestionLimit = 196;
-        excelMinigameLimit = 65;
+        excelMinigameLimit = 93;
         minigameElementLimit = 0;
         answerPoolLimit = 200;
         answerPoolSelection = 5;
@@ -58,6 +60,7 @@ public class Questionnaire extends DatabaseReader {
         levels = new ArrayList<String>();
         answerPool = new ArrayList<String>();
         dispenserPool = new ArrayList<String>();
+        banishThisNumber = new ArrayList<Integer>();
 
         formatter = new DataFormatter();
 
@@ -65,38 +68,6 @@ public class Questionnaire extends DatabaseReader {
         questionSheet = getQuestionSheet();
         answerPoolSheet = getAnswerPoolSheet();
     }
-    
-//    public Questionnaire() {
-//        questions = new ArrayList<>();
-//        options = new ArrayList<>();
-//        answers = new ArrayList<>();
-//        topic = new ArrayList<>();
-//
-//        question = null;
-//        difficulty = null;
-//        stageTopic = null;
-//        stageValue = null;
-//
-//        numberOfQuestions = 0;
-//        questionLimit = 0;
-//        hints = 0;
-//
-//        excelQuestionLimit = 196;
-//        excelMinigameLimit = 53;
-//        minigameElementLimit = 0;
-//        answerPoolLimit = 200;
-//        answerPoolSelection = 10;
-//        randomizer = new Random();
-//
-//        levels = new ArrayList<String>();
-//        answerPool = new ArrayList<String>();
-//
-//        formatter = new DataFormatter();
-//
-//        minigameSheet = getMinigameSheet();
-//        questionSheet = getQuestionSheet();
-//        answerPoolSheet = getAnswerPoolSheet();
-//    }
 
     // for minigames
     private int findRow(Sheet sheet, int cellToFind) {
@@ -136,12 +107,13 @@ public class Questionnaire extends DatabaseReader {
             getMinigameHolder(findCell, 4, difficulty, topics);
         }
         getAnswerPool(stage, topics);
-        getDispenserPool(stage, topics);
+//        getDispenserPool(stage, topics);
     }
 
     // Function to get the problem code in the excel file
     public void getMinigameHolder(int row1, int col1, String difficulty, String stageTopic) {
         minigameHolder = new ArrayList<ArrayList<String>>();
+        banishPerRow = new ArrayList<ArrayList<Integer>>();
         String stageTopicacq = getMinigameInfo(row1, 1);
         String difficultyacq = getMinigameInfo(row1, 2);
 
@@ -150,6 +122,7 @@ public class Questionnaire extends DatabaseReader {
         if((difficultyacq != null && difficultyacq.equals(difficulty)) && (stageTopicacq != null && stageTopicacq.equals(stageTopic))) {
             for(int x = row1; x > 0; x++) {
                 minigameGetter = new ArrayList<String>();
+                banishThisNumber = new ArrayList<Integer>();
                 for(int y = col1; y > 0; y++) {
                     Row qRow = minigameSheet.getRow(x + 1);
                     Cell qCell = qRow.getCell(y);
@@ -159,10 +132,12 @@ public class Questionnaire extends DatabaseReader {
                     }
                     else {
                         minigameGetter.add(cell);
+                        banishThisNumber.add(minigameElementLimit);
                         minigameElementLimit++;
                     }
                 }
                 minigameHolder.add(minigameGetter);
+                banishPerRow.add(banishThisNumber);
                 Row qRow = minigameSheet.getRow(x + 2);
                 Cell qCell = qRow.getCell(4);
                 String cell = formatter.formatCellValue(qCell);
@@ -194,7 +169,7 @@ public class Questionnaire extends DatabaseReader {
         int getNumber = 0;
         randomPool = new ArrayList<>();
         while(answerPoolSelection != 0) {
-            getNumber = randomizer.nextInt(80 - 1) + 1;
+            getNumber = randomizer.nextInt(210 - 1) + 1;
             Row excelRow = answerPoolSheet.getRow(getNumber);
 
             Cell excelCell = excelRow.getCell(2);
@@ -285,100 +260,6 @@ public class Questionnaire extends DatabaseReader {
                 continue;
         }
     }
-
-//    public void minigameDisplay(String stage, String expertiseLevel) {
-//        adjustDifficulty(expertiseLevel);
-////        minigameHolder = new String[50][50];
-//        while(minigameGetter == null) {
-//            questionID = randomizer.nextInt(excelMinigameLimit - 1) + 1;
-////            questionID = 6;
-//            difficulty = "Easy";
-//            findCell = findRow(minigameSheet, questionID);
-//            getMinigame(findCell, 4, difficulty, stage);
-//        }
-//        getAnswerPool(stage);
-//    }
-//
-//    public void getMinigame(int row1, int col1, String diff, String stg) {
-////        minigameGetter = new String[50][50];
-//        minigameHolder = new ArrayList<ArrayList<String>>();
-//        String difficultyacq = getMinigameInfo(row1, 2);
-//        String stageacq = getMinigameInfo(row1, 3);
-//
-//        if((difficultyacq != null && difficultyacq.equals(diff)) && (stageacq != null && stageacq.equals(stg))) {
-////            int i = 0, j;
-//            for(int x = row1; x > 0; x++) {
-//                minigameGetter = new ArrayList<String>();
-////                j = 0;
-//                for(int y = col1; y > 0; y++) {
-//                    Row qRow = minigameSheet.getRow(x + 1);
-//                    Cell qCell = qRow.getCell(y);
-//                    String cell = formatter.formatCellValue(qCell);
-//                    if(cell.equals("\\"+"n")) {
-//                        break;
-//                    }
-//                    else {
-//                        minigameGetter.add(cell);
-//                        minigameElementLimit++;
-//                    }
-//                }
-//                minigameHolder.add(minigameGetter);
-//                Row qRow = minigameSheet.getRow(x + 2);
-//                Cell qCell = qRow.getCell(4);
-//                String cell = formatter.formatCellValue(qCell);
-//                if(cell.equals("End")) {
-//                    break;
-//                }
-//            }
-////            for(int row = 0; row < 50; row++) {
-////                for (int col = 0; col < 50; col++) {
-////                    if (minigameGetter[row][col] != null) {
-////                        minigameHolder[row][col] = minigameGetter[row][col];
-////                    }
-////                }
-////            }
-//        }
-//        else
-////            minigameGetter = null;
-//              minigameHolder = null;
-//    }
-//
-//    public String getMinigameInfo(int row1, int col1) {
-//        String stageValue = null;
-//
-//        Row row = minigameSheet.getRow(row1);
-//        Cell cell = row.getCell(col1);
-//        if (cell == null) {
-//            return null;
-//        }
-//        else {
-//            String cellValue = formatter.formatCellValue(cell);
-//            stageValue = cellValue;
-//            return stageValue;
-//        }
-//    }
-//
-//    public void getAnswerPool(String stage) {
-//        int getNumber = 0;
-//        while(answerPoolSelection != 0) {
-//            getNumber = randomizer.nextInt(80 - 1) + 1;
-//            Row excelRow = answerPoolSheet.getRow(getNumber);
-//            Cell excelCell = excelRow.getCell(2);
-//            String getExcelStage = formatter.formatCellValue(excelCell);
-//            if((int) answerPoolSheet.getRow(getNumber).getCell(0).getNumericCellValue() == getNumber
-//                    && (getExcelStage.equals(stage))) {
-//                Row ansRow = answerPoolSheet.getRow(getNumber);
-//                Cell ansCell = ansRow.getCell(3);
-//                String getAnsCell = formatter.formatCellValue(ansCell);
-//                if (getAnsCell != "") {
-//                    answerPool.add(getAnsCell);
-//                    answerPoolSelection--;
-//                } else {
-//                    continue;
-//                }
-//            }
-//        }
-//    }
 
     public void questionDisplay(String stage, String topics, String expertiseLevel) {
         adjustDifficulty(expertiseLevel);
@@ -536,6 +417,13 @@ public class Questionnaire extends DatabaseReader {
 
     }
 
+    public ArrayList<ArrayList<Integer>> getBanishPerRow() {
+        return banishPerRow;
+    }
+
+    public void setBanishPerRow(ArrayList<ArrayList<Integer>> banishPerRow) {
+        this.banishPerRow = banishPerRow;
+    }
 
     public ArrayList<String> getTopic() {
         return topic;

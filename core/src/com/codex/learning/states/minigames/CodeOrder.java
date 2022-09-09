@@ -31,6 +31,7 @@ public class CodeOrder extends State {
     private int minigameContainerLimit;
     private Random randomizer;
     private ArrayList<Integer> banishCells;
+    private ArrayList<String> originalAnswerPoolContainer;
     private ArrayList<String> answerPoolContainer;
     private int currentCell;
     private String mergeResult;
@@ -66,6 +67,7 @@ public class CodeOrder extends State {
                 }
                 System.out.println(answerPoolContainer);
                 answerPoolContainer.add(mergeResult);
+                originalAnswerPoolContainer.add(mergeResult);
             }
             float currentStringLength = (float) String.valueOf(answerPoolContainer.get(i)).length();
             blockHolders[i] = new BlockHolder(manager, "\"" + answerPoolContainer.get(i) + "\"");
@@ -201,4 +203,12 @@ public class CodeOrder extends State {
         minigameContainer = manager.getQuestionnaire().getMinigameHolder();
         minigameContainerLimit = manager.getQuestionnaire().getMinigameLimit();
     }
+
+//    public void checker(){
+//        for(int i = 0; i < answerPoolContainer.size(); i++) {
+//            if(blockHolders[i].getCopyBlock().equals(originalAnswerPoolContainer.get(i))) {
+//                score++;
+//            }
+//        }
+//    }
 }
