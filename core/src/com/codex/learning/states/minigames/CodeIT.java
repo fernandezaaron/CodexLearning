@@ -96,7 +96,7 @@ public class CodeIT extends State {
 
         int ansPoolSize = getAnswerPool.size();
         System.out.println(ansPoolSize);
-        int xposition = -22, yposition = -9;
+        int xposition = -17, yposition = -3;
         for(int i = 0; i < ansPoolSize; i++) {
             blockDispensers[i] = new BlockDispenser(manager, "Down", getAnswerPool.get(i), getAnswerPool.get(i),
                     duplicatePool.get(i), new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
@@ -105,7 +105,7 @@ public class CodeIT extends State {
             xposition += 5;
             if(xposition == 23) {
                 yposition -= 6;
-                xposition = -22;
+                xposition = -17;
             }
         }
 

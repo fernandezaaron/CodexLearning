@@ -22,6 +22,8 @@ public class BlockHolder extends Entity {
     private Blocks copyBlock;
     private TextureRegion normalBlock, highlightBlock;
     private String correctID;
+    private int numberOfErrors;
+    private boolean correctOutput;
 
 
     public BlockHolder(Manager manager, String correctID) {
@@ -113,6 +115,31 @@ public class BlockHolder extends Entity {
         fixtureDef.friction = 5;
 
         body.createFixture(fixtureDef).setUserData(this);
+    }
+
+    public void checkErrors(){
+        if(getCopyBlock().getId() != getCorrectID()) {
+            numberOfErrors++;
+        }
+    }
+    public void checkCorrectOutput(){
+        if(numberOfErrors == 0) {
+            correctOutput = true;
+        }
+    }
+
+    public boolean isCorrectOutput() {
+        return correctOutput;
+    }
+    public void setCorrectOutput(boolean correctOutput) {
+        this.correctOutput = correctOutput;
+    }
+    public int getNumberOfErrors() {
+        return numberOfErrors;
+    }
+
+    public void setNumberOfErrors(int numberOfErrors) {
+        this.numberOfErrors = numberOfErrors;
     }
 
     public boolean isInContact() {

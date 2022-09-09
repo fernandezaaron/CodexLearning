@@ -34,11 +34,13 @@ public class NPC extends Entity {
     private String dialogSet;
     private int index;
     private int nextStatement;
+    private boolean inPlayroom;
 
-    public NPC(Manager manager, String dialogSet, int index) {
+    public NPC(Manager manager, String dialogSet, int index, boolean inPlayroom) {
         super(manager);
         this.dialogSet = dialogSet;
         this.index = index;
+        this.inPlayroom = inPlayroom;
     }
 
     @Override
@@ -224,11 +226,28 @@ public class NPC extends Entity {
     public void npcInteraction(float delta){
         if(isInContact() && Gdx.input.isKeyJustPressed(Input.Keys.E)){
             setTalking(true);
-            System.out.println("Jedigrandpa");;
+            System.out.println("Jedigrandpa");
             if(!db.isOpen()){
                 //if the dialogue box is not yet open then animate the text and add it to the table to draw it
                 System.out.println("here");
                 db.textAnimation(manager.getDialogue().reader(nextStatement, dialogSet, index));
+
+                table.add(image).align(Align.left).height(250).width(250).padRight(15f);
+                table.add(db).align(Align.left).width(1000);
+                table.setHeight(250);
+                table.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/Constants.PPM/2, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/Constants.PPM/2 - 400);
+            }
+        }
+
+        if(isInContact() && isInPlayroom() && Gdx.input.isKeyJustPressed(Input.Keys.E)) {
+            setTalking(true);
+            System.out.println("Jedigrandpa in playroom");
+
+            db.textAnimation(manager.getDialogue().reader(nextStatement, "finishCheck", index));
+            if(!db.isOpen()){
+                //if the dialogue box is not yet open then animate the text and add it to the table to draw it
+                System.out.println("here");
+
 
                 table.add(image).align(Align.left).height(250).width(250).padRight(15f);
                 table.add(db).align(Align.left).width(1000);
@@ -253,6 +272,14 @@ public class NPC extends Entity {
 
 
         manager.getStage().addActor(table);
+    }
+
+    public boolean isInPlayroom() {
+        return inPlayroom;
+    }
+
+    public void setInPlayroom(boolean inPlayroom) {
+        this.inPlayroom = inPlayroom;
     }
 
     public boolean isInContact() {
