@@ -50,7 +50,7 @@ public class Questionnaire extends DatabaseReader {
         questionLimit = 0;
 
         excelQuestionLimit = 196;
-        excelMinigameLimit = 65;
+        excelMinigameLimit = 93;
         minigameElementLimit = 0;
         answerPoolLimit = 200;
         answerPoolSelection = 5;
@@ -106,8 +106,8 @@ public class Questionnaire extends DatabaseReader {
             System.out.println("QUESTION ID = " + questionID);
             getMinigameHolder(findCell, 4, difficulty, topics);
         }
-        getAnswerPool(String.valueOf(questionID), topics);
-        getDispenserPool(stage, topics);
+        getAnswerPool(stage, topics);
+//        getDispenserPool(stage, topics);
     }
 
     // Function to get the problem code in the excel file
@@ -169,7 +169,7 @@ public class Questionnaire extends DatabaseReader {
         int getNumber = 0;
         randomPool = new ArrayList<>();
         while(answerPoolSelection != 0) {
-            getNumber = randomizer.nextInt(80 - 1) + 1;
+            getNumber = randomizer.nextInt(210 - 1) + 1;
             Row excelRow = answerPoolSheet.getRow(getNumber);
 
             Cell excelCell = excelRow.getCell(2);

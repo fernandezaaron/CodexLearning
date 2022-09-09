@@ -109,7 +109,7 @@ public class PlayState extends State{
 
         }else {
             activeBody(true);
-
+            exitDoor(jedisaur);
         }
 
         if(pause.isRunning()){
@@ -133,7 +133,6 @@ public class PlayState extends State{
 //                manager.checkBehavior((int) timer, jedisaur.getNumberOfBlockInteraction(), computer.isDone(), fuzzyLogic);
                     
 //              }
-                    exitDoor(jedisaur);
                     jediGrandpa.update(delta);
                     jedisaur.update(delta);
                     computer.update(delta);
@@ -218,7 +217,6 @@ public class PlayState extends State{
         sprite.setProjectionMatrix(manager.getCamera().combined);
         if(isInStartArea()){
             checkDoor(sprite, atDoor);
-
         }
         sprite.end();
         pause.render(sprite);
@@ -235,6 +233,9 @@ public class PlayState extends State{
         }
         else if(manager.getStageSelector().map().equals("2")){
             schoolMap.dispose();
+        }
+        else{
+            officeMap.dispose();
         }
     }
 
@@ -255,6 +256,9 @@ public class PlayState extends State{
          }
          else if(manager.getStageSelector().map().equals("2")){
              schoolMap.setActive(active);
+         }
+         else {
+             officeMap.setActive(active);
          }
 
          jediGrandpa.getBody().setAwake(active);
@@ -285,6 +289,9 @@ public class PlayState extends State{
                 }
                 else if(manager.getStageSelector().map().equals("2")){
                     schoolMap.setPlayroomActive(false);
+                }
+                else{
+                    officeMap.setPlayroomActive(false);
                 }
 
                 minigame.setMiniGame();
