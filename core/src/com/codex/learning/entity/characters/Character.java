@@ -387,7 +387,7 @@ public class Character extends Entity {
             carry = 1;
             numberOfBlockInteraction++;
             setCopyBlock(block);
-            System.out.println(copyBlock);
+            System.out.println(copyBlock + " carrying");
         }
         if(getCopyBlock() != null){
             getCopyBlock().getBody().setType(BodyDef.BodyType.DynamicBody);

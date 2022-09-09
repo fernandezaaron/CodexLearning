@@ -109,7 +109,7 @@ public class PlayState extends State{
 
         }else {
             activeBody(true);
-
+            exitDoor(jedisaur);
         }
 
         if(pause.isRunning()){
@@ -133,7 +133,6 @@ public class PlayState extends State{
 //                manager.checkBehavior((int) timer, jedisaur.getNumberOfBlockInteraction(), computer.isDone(), fuzzyLogic);
                     
 //              }
-                    exitDoor(jedisaur);
                     jediGrandpa.update(delta);
                     jedisaur.update(delta);
                     computer.update(delta);
@@ -216,7 +215,9 @@ public class PlayState extends State{
 
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
-        checkDoor(sprite, atDoor);
+        if(isInStartArea()){
+            checkDoor(sprite, atDoor);
+        }
         sprite.end();
         pause.render(sprite);
     }
@@ -232,6 +233,9 @@ public class PlayState extends State{
         }
         else if(manager.getStageSelector().map().equals("2")){
             schoolMap.dispose();
+        }
+        else{
+            officeMap.dispose();
         }
     }
 
@@ -252,6 +256,9 @@ public class PlayState extends State{
          }
          else if(manager.getStageSelector().map().equals("2")){
              schoolMap.setActive(active);
+         }
+         else {
+             officeMap.setActive(active);
          }
 
          jediGrandpa.getBody().setAwake(active);
@@ -283,6 +290,9 @@ public class PlayState extends State{
                 else if(manager.getStageSelector().map().equals("2")){
                     schoolMap.setPlayroomActive(false);
                 }
+                else{
+                    officeMap.setPlayroomActive(false);
+                }
 
                 minigame.setMiniGame();
                 jedisaur.getBody().setTransform(-20, 1, 0);
@@ -295,7 +305,7 @@ public class PlayState extends State{
     }
 
     private void exitPlayroom(Character character){
-        if(!inStartArea && character.getBody().getPosition().x < -23 && character.getBody().getPosition().y > -4 && character.getBody().getPosition().y < 2.5f){
+        if(!inStartArea && character.getBody().getPosition().x < -23 && character.getBody().getPosition().y > -0.5 && character.getBody().getPosition().y < 4f){
             setInStartArea(true);
             minigame.dispose();
             jedisaur.getBody().setTransform(14, 1, 0);
