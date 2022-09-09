@@ -171,32 +171,32 @@ public class MysteryCode extends State {
 
     @Override
     public void update(float delta) {
-        // WILL BE USED, DON'T ERASE
 //               manager.getWorld().step(1/60f,6,2);
-            playroom.update(delta);
+        playroom.update(delta);
 
-            currentCell = 0;
-               for (int i = 0; i < minigameContainer.size(); i++) {
-                   for (int j = 0; j < minigameContainer.get(i).size(); j++) {
-                       if (minigameContainer.get(i).get(j) != null) {
-                           if (banishCells.contains(currentCell)){
-                               blockHolders[i][j].update(delta);
-                           }
-                           else
-                               questionBlocks[i][j].update(delta);
-                           currentCell++;
-                       }
-                   }
-               }
-            //kung gagamitin mo to remove the blocks[i][j].update muna sa taas pero i havent tried pag magkasabay sila naka on for sure dodoble HAHA
-            for (int i = 0; i < answerBlocks.length; i++) {
-                if (answerBlocks[i] != null) {
-                    if (answerBlocks[i].isInContact()) {
-                        jedisaur.carryBlock(answerBlocks[i]);
+        currentCell = 0;
+        for (int i = 0; i < minigameContainer.size(); i++) {
+            for (int j = 0; j < minigameContainer.get(i).size(); j++) {
+                if (minigameContainer.get(i).get(j) != null) {
+                    if (banishCells.contains(currentCell)){
+                        blockHolders[i][j].update(delta);
                     }
+                    else
+                        questionBlocks[i][j].update(delta);
+                    currentCell++;
                 }
             }
-            // WILL BE USED, DON'T ERASE
+        }
+
+        for (int i = 0; i < answerBlocks.length; i++) {
+            if (answerBlocks[i] != null) {
+                if (answerBlocks[i].isInContact()) {
+                    jedisaur.carryBlock(answerBlocks[i]);
+                }
+            }
+        }
+
+        // WILL BE USED, DON'T ERASE
         currentCell = 0;
         for (int i = 0; i < minigameContainer.size(); i++) {
             for (int j = 0; j < minigameContainer.get(i).size(); j++) {
@@ -207,10 +207,10 @@ public class MysteryCode extends State {
                             if(jedisaur.isDropped() && !blocksArrayList.get(i).contains(blockHolders[i][j].getCopyBlock())){
                                     blocksArrayList.get(i).add(blockHolders[i][j].getCopyBlock());
 
-                                }
                             }
                         }
-                        currentCell++;
+                    }
+                    currentCell++;
                 }
             }
         }
@@ -275,13 +275,17 @@ public class MysteryCode extends State {
                                     System.out.println(blockArrayIndex + " current right add");
                                     tempCurrentCell++;
                                     if(banishCells.contains(tempCurrentCell)){
-                                            if(blockHolders[i][k].isOccupied()){
-                                                blockArrayIndex++;
-                                                System.out.println("array index: " + blockArrayIndex);
-                                                System.out.println(blocksArrayList.get(i).get(blockArrayIndex));
-                                                blocksArrayList.get(i).get(blockArrayIndex).getBody().setTransform(blocksArrayList.get(i).get(blockArrayIndex).getBody().getPosition().x + blockSize - 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
+                                        if(blockHolders[i][k].isOccupied()){
+                                            blockArrayIndex++;
+                                            System.out.println("array index: " + blockArrayIndex);
+                                            System.out.println(blocksArrayList.get(i).get(blockArrayIndex));
+                                            blocksArrayList.get(i).get(blockArrayIndex).getBody().setTransform(blocksArrayList.get(i).get(blockArrayIndex).getBody().getPosition().x + blockSize - 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
                                         }
-
+                                        if(!blockHolders[i][k].isOccupied()){
+                                            blockArrayIndex++;
+                                            System.out.println("array index: " + blockArrayIndex);
+                                            System.out.println(blocksArrayList.get(i).get(blockArrayIndex));
+                                        }
                                     }
                                 }
 
@@ -376,17 +380,13 @@ public class MysteryCode extends State {
         }
 
 
-             // WILL BE USED, DON'T ERASE
-             for (int i = 0; i < answerPoolContainer.size(); i++) {
-                 if (answerBlocks[i] != null) {
-                     answerBlocks[i].update(delta);
-                 }
-             }
-
-
-
-
+        // WILL BE USED, DON'T ERASE
+        for (int i = 0; i < answerPoolContainer.size(); i++) {
+            if (answerBlocks[i] != null) {
+                answerBlocks[i].update(delta);
+            }
         }
+    }
 
 
     @Override

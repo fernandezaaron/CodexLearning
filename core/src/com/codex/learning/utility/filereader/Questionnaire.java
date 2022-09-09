@@ -50,7 +50,7 @@ public class Questionnaire extends DatabaseReader {
         questionLimit = 0;
 
         excelQuestionLimit = 196;
-        excelMinigameLimit = 65;
+        excelMinigameLimit = 81;
         minigameElementLimit = 0;
         answerPoolLimit = 200;
         answerPoolSelection = 5;
@@ -100,9 +100,9 @@ public class Questionnaire extends DatabaseReader {
 
         while(minigameGetter == null) {
             topics = topic.get(randomizer.nextInt(topic.size()));
-            System.out.println("TOPIC = " + topics);
             questionID = randomizer.nextInt(excelMinigameLimit - 1) + 1;
             difficulty = levels.get(randomizer.nextInt(levels.size()));
+            System.out.println("TOPIC = " + topics + " STAGE = " + stage + " DIFFICULTY = " + difficulty);
             findCell = findRow(minigameSheet, questionID);
             getMinigameHolder(findCell, 4, difficulty, topics);
         }
@@ -120,6 +120,7 @@ public class Questionnaire extends DatabaseReader {
 
         // Check the difficulty and the stage topic
         if((difficultyacq != null && difficultyacq.equals(difficulty)) && (stageTopicacq != null && stageTopicacq.equals(stageTopic))) {
+            System.out.println("hello");
             for(int x = row1; x > 0; x++) {
                 minigameGetter = new ArrayList<String>();
                 banishThisNumber = new ArrayList<Integer>();
@@ -148,6 +149,7 @@ public class Questionnaire extends DatabaseReader {
         }
         else
             minigameHolder = null;
+        System.out.println("its me");
     }
 
     public String getMinigameInfo(int row1, int col1) {
@@ -169,7 +171,7 @@ public class Questionnaire extends DatabaseReader {
         int getNumber = 0;
         randomPool = new ArrayList<>();
         while(answerPoolSelection != 0) {
-            getNumber = randomizer.nextInt(80 - 1) + 1;
+            getNumber = randomizer.nextInt(210 - 1) + 1;
             Row excelRow = answerPoolSheet.getRow(getNumber);
             Cell excelCell = excelRow.getCell(2);
             Cell excelTopic = excelRow.getCell(1);
@@ -184,6 +186,7 @@ public class Questionnaire extends DatabaseReader {
                     Cell ansCell = ansRow.getCell(3);
                     String getAnsCell = formatter.formatCellValue(ansCell);
                     if (getAnsCell != "") {
+                        System.out.println("iwaswandering");
                         answerPool.add(getAnsCell);
                         randomPool.add(getNumber);
                         answerPoolSelection--;
@@ -201,7 +204,7 @@ public class Questionnaire extends DatabaseReader {
         int getNumber = 0;
         randomPool = new ArrayList<>();
         while(dispenserPoolSelection != 0) {
-            getNumber = randomizer.nextInt(80 - 1) + 1;
+            getNumber = randomizer.nextInt(100 - 1) + 1;
             Row excelRow = answerPoolSheet.getRow(getNumber);
             Cell excelCell = excelRow.getCell(2);
             Cell excelTopic = excelRow.getCell(1);

@@ -242,18 +242,7 @@ public class NPC extends Entity {
         if(isInContact() && isInPlayroom() && Gdx.input.isKeyJustPressed(Input.Keys.E)) {
             setTalking(true);
             System.out.println("Jedigrandpa in playroom");
-
             db.textAnimation(manager.getDialogue().reader(nextStatement, "finishCheck", index));
-            if(!db.isOpen()){
-                //if the dialogue box is not yet open then animate the text and add it to the table to draw it
-                System.out.println("here");
-
-
-                table.add(image).align(Align.left).height(250).width(250).padRight(15f);
-                table.add(db).align(Align.left).width(1000);
-                table.setHeight(250);
-                table.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/Constants.PPM/2, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/Constants.PPM/2 - 400);
-            }
         }
 
         if(!manager.getDialogue().isStatementEnd() && Gdx.input.justTouched() && db.isOpen()){
