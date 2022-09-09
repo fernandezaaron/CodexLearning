@@ -135,7 +135,7 @@ public class Questionnaire extends DatabaseReader {
             System.out.println("QUESTION ID = " + questionID);
             getMinigameHolder(findCell, 4, difficulty, topics);
         }
-        getAnswerPool(String.valueOf(questionID), topics);
+        getAnswerPool(stage, topics);
         getDispenserPool(stage, topics);
     }
 
