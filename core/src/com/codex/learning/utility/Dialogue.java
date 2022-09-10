@@ -221,45 +221,73 @@ public class Dialogue {
             Arrays.asList(
                     new ArrayList<>(Arrays.asList(
                             // Player Engaged
-                            "Keep doing what you are doing","Keep up the good work",
-                            "Wow, you already mastered this topic", "Do you find the question to be Exciting?",
-                            "Does the question challenge you?", "You certainly are an expert on this topic", "How come you answer faster than others?",
-                            "Wow you're more interested in this topic than others", "You've put in a lot of effort to answer the question",
+                            "Keep doing what you are doing",
+                            "Keep up the good work",
+                            "Wow, you seem to already mastered this topic",
+                            "Do you find the question Exciting?",
+                            "Do these question even challenge you?",
+                            "You certainly are an expert on this topic",
+                            "How come you answer this question faster than others?",
+                            "Wow you're more interested in this topic than others",
+                            "You've put in a lot of effort to answer the question",
                             "I can tell you have been paying attention and answering the questions. Nicely done!" // 10
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Player Neutral
-                            "Sounds like you've got it under control", "Trust your ability to answer the question", "Keep answering you can do it!","Just take one step at a time in answering",
-                            "You can still do better than the last time", "You've come prepared in this topic", "Wow, you're answering the question better than I thought",
-                            "Your progress is truly inspiring", "Never doubt yourself when answering the question", "So far you've done well in this topic" // 10
+                            "Sounds like you've got it under control",
+                            "Trust your ability to answer the question",
+                            "Keep answering, you can do it!",
+                            "Just take one step at a time in answering",
+                            "You can still do better than the last time",
+                            "You've come prepared in this topic",
+                            "Wow, you're answering the question better than I thought",
+                            "Your progress is truly inspiring",
+                            "Never doubt yourself when answering the question",
+                            "So far you've done well in this topic" // 10
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Player Bored
-                            "Does the question not challenge you?",  "Is the question too long for you?", "Is the question too simple for you?",
-                            "Do the questions not stimulate your brain?", "Maybe you don't find the topic interesting", "You can listen to your favorite music while playing",
-                            "Maybe try another type of mini-game if it becomes interesting to you", "Have you found a topic that intrigues you?",
-                            "Maybe you need some motivation to answer this questions", "Maybe drink some coffee so that you can be energized" // 10
+                            "Do these question not challenge you?",
+                            "Is the question too long for you?",
+                            "Is the question too simple for you?",
+                            "Do the questions not stimulate your brain?",
+                            "Maybe you don't find the topic interesting",
+                            "You can listen to your favorite music while playing",
+                            "Maybe try another type of mini-game if it becomes interesting to you",
+                            "Have you found a topic that intrigues you?",
+                            "Maybe you need some motivation to answer these questions",
+                            "Maybe drink some coffee so that you can be energized" // 10
 
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Player Confused
-                            "Take a deep breathe and recall the lesson", "Read the topic carefully until you understand it",
-                            "Read the question carefully and try to understand it", "Don't give up", "Is the question too difficult for you?",
-                            "Maybe you just need a different perspective to answer it", "Go back to the topic that you're having difficulty with",
-                            "Maybe you need to use a hint to help you overcome this question", "If you can address the problem, you can answer it!",
+                            "Take a deep breathe and recall the lesson",
+                            "Read the topic carefully until you understand it",
+                            "Read the question carefully and try to understand it",
+                            "Don't give up!",
+                            "Is the question too difficult for you?",
+                            "Maybe you just need a different perspective to answer it",
+                            "Go back to the topic that you're having difficulty with",
+                            "Maybe you need to use a hint to help you overcome this question",
+                            "If you can address the problem, you can answer it!",
                             "Trust your gut if you don't know the answer" // 10
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Player Frustrated
-                            "Calm down you can solve it", "Clear your mind and look at the question again", "Take a few minutes break",
-                            "Relax and review the lesson","Don't be mad and use a hint so that you can move on from this question" ,
-                            "Maybe you just need to take a break", "Play calming music when you are having a bad time answering the question",
+                            "Take it easy, you can figure it out",
+                            "Clear your mind and look at the question again",
+                            "Take a few minutes break",
+                            "Relax and review the lesson",
+                            "Don't be mad and use a hint so that you can move on from this question" ,
+                            "Maybe you just need to take a break",
+                            "When you are having trouble answering the question try to listen on light music",
                             "Maybe take a break and do some stretches before going back to the question and answering it",
-                            "Maybe think outside of the box when you are answering this question", "Consider the outcomes of all possible answers to the questions." // 10
+                            "Maybe think outside of the box when you are answering this question",
+                            "Consider the outcomes of all possible answers to the questions." // 10
                     ))
             )
    );
