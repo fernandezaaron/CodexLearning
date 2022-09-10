@@ -47,7 +47,7 @@ public class CodeIT extends State {
         getAnswerPool = new ArrayList<String>();
         randomizer = new Random();
 
-        getAMinigame(manager.getStageSelector().map(), "Poor");
+        getAMinigame(manager.getStageSelector().map(), manager.getExpertSystem().getExpertiseLevel());
 
         // WILL BE USED, DON'T ERASE
         questionBlocks = new Blocks[20][20];
