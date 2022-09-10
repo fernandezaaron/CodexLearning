@@ -106,7 +106,7 @@ public class Questionnaire extends DatabaseReader {
             System.out.println("QUESTION ID = " + questionID);
             getMinigameHolder(findCell, 4, difficulty, topics);
         }
-        getAnswerPool(stage, topics);
+        getAnswerPool(String.valueOf(questionID), topics);
 //        getDispenserPool(stage, topics);
     }
 
@@ -169,17 +169,14 @@ public class Questionnaire extends DatabaseReader {
         int getNumber = 0;
         randomPool = new ArrayList<>();
         while(answerPoolSelection != 0) {
-            getNumber = randomizer.nextInt(210 - 1) + 1;
+            getNumber = randomizer.nextInt(82 - 1) + 1;
             Row excelRow = answerPoolSheet.getRow(getNumber);
 
             Cell excelCell = excelRow.getCell(2);
-            Cell excelTopic = excelRow.getCell(1);
             String getExcelStage = formatter.formatCellValue(excelCell);
-            String getExcelTopic = formatter.formatCellValue(excelTopic);
             if(!randomPool.contains(getNumber)){
                 if ((int) answerPoolSheet.
                         getRow(getNumber).getCell(0).getNumericCellValue() == getNumber &&
-                        (getExcelTopic.equals(topics)) &&
                         (getExcelStage.equals(QID))) {
                     Row ansRow = answerPoolSheet.getRow(getNumber);
                     Cell ansCell = ansRow.getCell(3);

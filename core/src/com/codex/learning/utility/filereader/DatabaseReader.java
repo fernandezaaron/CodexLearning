@@ -29,7 +29,7 @@ public abstract class DatabaseReader {
         }
         minigameSheet = workbook.getSheet("Minigame");
         questionSheet = workbook.getSheet("CodeRiddle");
-        answerPoolSheet = workbook.getSheet("AnswerPool");
+        answerPoolSheet = workbook.getSheet("AnswerPool2");
         responseSheet = workbook.getSheet("Response");
     }
 
