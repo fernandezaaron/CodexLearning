@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.codex.learning.entity.Collisions;
+import com.codex.learning.entity.blocks.Objective;
 import com.codex.learning.entity.blocks.PlayMat;
 import com.codex.learning.entity.characters.Character;
 import com.codex.learning.entity.characters.NPC;
@@ -21,6 +22,7 @@ public class PlayroomMapS1 extends State {
     private boolean inPlayroom;
     private NPC npc;
     private PlayMat playMat;
+    private Objective objective;
     private Minigame minigame;
     private int randomNumber;
     public PlayroomMapS1(Manager manager) {
@@ -42,7 +44,8 @@ public class PlayroomMapS1 extends State {
         playMat = new PlayMat(manager);
         playMat.create(new Vector2(17.5f, 0), new Vector2(6f, 10), 0);
 
-
+        objective = new Objective(manager);
+        objective.create(new Vector2(6f, 13f), new Vector2(1.5f, 2f), 0);
 
 //        minigame = new Minigame(manager, stage, 2);
         door = new TextureRegion(manager.getReportCardSheet(), 48,195, 263, 119);
@@ -70,6 +73,7 @@ public class PlayroomMapS1 extends State {
 
         }
         sprite.end();
+        objective.render(sprite);
         npc.render(sprite);
 
     }
@@ -79,6 +83,7 @@ public class PlayroomMapS1 extends State {
         npc.disposeBody();
         upBorder.disposeBody();
         downBorder.disposeBody();
+        objective.disposeBody();
     }
 
 
