@@ -1,5 +1,7 @@
 package com.codex.learning.entity.blocks;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -11,9 +13,11 @@ import com.codex.learning.states.minigames.CodeRiddle;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
+import java.awt.image.Kernel;
+
 public class PlayMat extends Entity {
 
-
+    private boolean inContact;
 
     public PlayMat(Manager manager){
         super(manager);
@@ -44,6 +48,8 @@ public class PlayMat extends Entity {
         body.setLinearVelocity(0, 0);
         shape.dispose();
 
+        inContact = false;
+
     }
 
     @Override
@@ -54,5 +60,13 @@ public class PlayMat extends Entity {
     @Override
     public void render(SpriteBatch sprite) {
 
+    }
+
+    public boolean isInContact() {
+        return inContact;
+    }
+
+    public void setInContact(boolean inContact) {
+        this.inContact = inContact;
     }
 }

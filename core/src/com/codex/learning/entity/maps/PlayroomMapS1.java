@@ -87,7 +87,13 @@ public class PlayroomMapS1 extends State {
         objective.disposeBody();
     }
 
+    public PlayMat getPlayMat() {
+        return playMat;
+    }
 
+    public void setPlayMat(PlayMat playMat) {
+        this.playMat = playMat;
+    }
 
     public int getStage() {
         return stage;

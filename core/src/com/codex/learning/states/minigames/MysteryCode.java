@@ -179,6 +179,9 @@ public class MysteryCode extends State {
     public void update(float delta) {
         // WILL BE USED, DON'T ERASE
             playroom.update(delta);
+            if(playroom.getPlayMat().isInContact()){
+                jedisaur.dropBlock(playroom.getPlayMat());
+            }
 
             currentCell = 0;
                for (int i = 0; i < minigameContainer.size(); i++) {
@@ -386,7 +389,7 @@ public class MysteryCode extends State {
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.end();
 
-        playroom.render(sprite);
+//        playroom.render(sprite);
 
         currentCell = 0;
         for(int i = 0; i < minigameContainer.size(); i++) {

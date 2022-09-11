@@ -174,6 +174,20 @@ public class Contact implements ContactListener {
 
         if(isPlayMatContact(fa,fb)){
             System.out.println("playmat contact");
+            PlayMat playMat;
+            Character jedisaur;
+
+            if(fa.getUserData() instanceof PlayMat){
+                playMat = (PlayMat) fa.getUserData();
+                jedisaur = (Character) fb.getUserData();
+            }
+            else{
+                jedisaur = (Character) fa.getUserData();
+                playMat = (PlayMat) fb.getUserData();
+            }
+
+            playMat.setInContact(true);
+
         }
 
         if(isObjectiveContact(fa, fb)){
@@ -288,6 +302,19 @@ public class Contact implements ContactListener {
 
         if(isPlayMatContact(fa,fb)){
             System.out.println("playmat end contact");
+            PlayMat playMat;
+            Character jedisaur;
+
+            if(fa.getUserData() instanceof PlayMat){
+                playMat = (PlayMat) fa.getUserData();
+                jedisaur = (Character) fb.getUserData();
+            }
+            else{
+                jedisaur = (Character) fa.getUserData();
+                playMat = (PlayMat) fb.getUserData();
+            }
+
+            playMat.setInContact(false);
         }
 
         if(isObjectiveContact(fa, fb)){
