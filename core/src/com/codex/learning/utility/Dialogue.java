@@ -2623,4 +2623,9 @@ public class Dialogue {
     public String getNpcName() {
         return npcName;
     }
+
+    public String getObjectiveDialogue(int QID) {
+
+        return objectiveDialogue.get(0).get(QID);
+    }
 }

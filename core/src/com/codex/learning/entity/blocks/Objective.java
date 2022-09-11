@@ -2,17 +2,23 @@ package com.codex.learning.entity.blocks;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.codex.learning.entity.Entity;
+import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
 public class Objective extends Entity {
 
     private boolean inContact;
+    private boolean inObjective;
+    private TextureRegion textureRegion;
+
 
     public Objective(Manager manager) {
         super(manager);
@@ -43,6 +49,9 @@ public class Objective extends Entity {
         shape.dispose();
 
         inContact = false;
+        inObjective = false;
+
+        textureRegion = new TextureRegion(new Texture(Constants.OBJECTIVE_SHEET_PATH), 0, 0, 800, 720);
     }
 
     @Override
@@ -52,12 +61,30 @@ public class Objective extends Entity {
 
     @Override
     public void render(SpriteBatch sprite) {
+        manager.getCamera().update();
+        sprite.begin();
+        sprite.setProjectionMatrix(manager.getCamera().combined);
+        sprite.enableBlending();
 
+        if(isInObjective()){
+//            sprite.draw(textureRegion,
+//                    manager.getCamera().position.x - Constants.SCREEN_WIDTH / 2f,
+//                    manager.getCamera().position.y - Constants.SCREEN_HEIGHT / 2f,
+//                    Constants.SCREEN_WIDTH,
+//                    Constants.SCREEN_HEIGHT);
+            sprite.draw(textureRegion,
+                    (body.getPosition().x * Constants.PPM - textureRegion.getRegionWidth() / 1.35f),
+                    (body.getPosition().y * Constants.PPM - textureRegion.getRegionHeight() / 0.9f) + 50);
+        }
+        sprite.end();
     }
 
     private void checkIfClicked(){
         if(isInContact() && Gdx.input.isKeyJustPressed(Input.Keys.E)){
-            System.out.println("Hello");
+            setInObjective(true);
+        }
+        if(isInContact() && Gdx.input.isKeyJustPressed(Input.Keys.F)){
+            setInObjective(false);
         }
     }
 
@@ -67,5 +94,13 @@ public class Objective extends Entity {
 
     public void setInContact(boolean inContact) {
         this.inContact = inContact;
+    }
+
+    public boolean isInObjective() {
+        return inObjective;
+    }
+
+    public void setInObjective(boolean inObjective) {
+        this.inObjective = inObjective;
     }
 }

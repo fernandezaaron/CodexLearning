@@ -54,6 +54,7 @@ public class PlayroomMapS1 extends State {
     @Override
     public void update(float delta) {
         npc.update(delta);
+        objective.update(delta);
     }
 
     @Override

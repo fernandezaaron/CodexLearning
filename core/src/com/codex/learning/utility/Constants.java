@@ -9,8 +9,7 @@ public class Constants {
     public static final int SCREEN_WIDTH = 1600;
     public static final int SCREEN_HEIGHT = 900;
 
-    // BACKGROUND ASSET PATH
-    public static final String CLOUD_PATH = "background/clouds.png";
+    // MAP ASSET PATH
     public static final String HOUSE_PATH = "map/housemap.png";
     public static final String SCHOOL_PATH = "map/jedischool.png";
     public static final String OFFICE_PATH = "map/jedioffice.png";
@@ -19,10 +18,13 @@ public class Constants {
     public static final String STAGE2_PATH = "map/jedischoolplayroom.png";
     public static final String STAGE3_PATH = "map/jediofficePlayroom.png";
 
+    // BACKGROUND ASSET PATH
+    public static final String CLOUD_PATH = "background/clouds.png";
     public static final String BACKGROUND_PATH = "background/mainmenu2.png";
     public static final String REPORT_CARD_SHEET_PATH = "background/reportcardspritesheet.png";
     public static final String SKY_BACKGROUND_PATH = "background/skyBG.png";
     public static final String PC_SHEET_PATH = "background/pcstatesheet1.png";
+    public static final String OBJECTIVE_SHEET_PATH = "background/objectives.png";
 
     // BLOCK ASSET PATH
     public static final String BLOCK_SHEET_PATH = "block/blocksheet.png";
