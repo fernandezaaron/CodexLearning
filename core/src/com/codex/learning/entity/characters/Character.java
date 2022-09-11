@@ -385,12 +385,14 @@ public class Character extends Entity {
 
     public void carryBlock(Blocks block){
         if(isCarrying() && carry == 0){
+            setPickUpAble(true);
             carry = 1;
             numberOfBlockInteraction++;
             setCopyBlock(block);
             System.out.println(copyBlock + " carrying");
         }
         if(getCopyBlock() != null){
+            setPickUpAble(false);
             getCopyBlock().getBody().setType(BodyDef.BodyType.DynamicBody);
             getCopyBlock().getBody().setTransform(body.getPosition().x - (block.getDupliSize().x), body.getPosition().y + 3f, 0);
 //            System.out.println(this.size.x + " sa character");
@@ -459,8 +461,6 @@ public class Character extends Entity {
                 }
                 blockHolder.createDefaultFixture();
             }
-
-
 
             if(isCarrying()){
                 blockHolder.setOccupied(true);

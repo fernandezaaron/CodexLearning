@@ -67,11 +67,6 @@ public class Objective extends Entity {
         sprite.enableBlending();
 
         if(isInObjective()){
-//            sprite.draw(textureRegion,
-//                    manager.getCamera().position.x - Constants.SCREEN_WIDTH / 2f,
-//                    manager.getCamera().position.y - Constants.SCREEN_HEIGHT / 2f,
-//                    Constants.SCREEN_WIDTH,
-//                    Constants.SCREEN_HEIGHT);
             sprite.draw(textureRegion,
                     (body.getPosition().x * Constants.PPM - textureRegion.getRegionWidth() / 1.35f),
                     (body.getPosition().y * Constants.PPM - textureRegion.getRegionHeight() / 0.9f) + 50);

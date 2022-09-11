@@ -389,7 +389,7 @@ public class MysteryCode extends State {
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.end();
 
-//        playroom.render(sprite);
+        playroom.render(sprite);
 
         currentCell = 0;
         for(int i = 0; i < minigameContainer.size(); i++) {
@@ -404,15 +404,11 @@ public class MysteryCode extends State {
                 }
             }
         }
-
             for(int i = 0; i < answerPoolContainer.size(); i++) {
                 if(answerBlocks[i] != null) {
                     answerBlocks[i].render(sprite);
                 }
             }
-
-
-
     }
 
     @Override
