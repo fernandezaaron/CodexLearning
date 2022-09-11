@@ -95,7 +95,7 @@ public class Questionnaire extends DatabaseReader {
     // end for minigames
 
 
-    public void minigameDisplay(String stage,String topics,String expertiseLevel) {
+    public void minigameDisplay(String stage, String topics,String expertiseLevel) {
         adjustDifficulty(expertiseLevel);
         addTopic(topics);
 
@@ -108,7 +108,7 @@ public class Questionnaire extends DatabaseReader {
             getMinigameHolder(findCell, 4, difficulty, topics);
         }
         getAnswerPool(String.valueOf(questionID));
-//        getDispenserPool(String.valueOf(questionID));
+        getDispenserPool(String.valueOf(questionID));
     }
 
     // Function to get the problem code in the excel file
@@ -167,14 +167,13 @@ public class Questionnaire extends DatabaseReader {
         if(!answerPool.isEmpty()){
             answerPool.clear();
         }
+
         while(true){
             excelRow = answerPoolSheet.getRow(start);
             excelCell = excelRow.getCell(2);
             if(String.valueOf(formatter.formatCellValue(excelCell)).equals(QID)){
                 ansCell = excelRow.getCell(3);
-
                 answerPool.add(formatter.formatCellValue(ansCell));
-                System.out.println(answerPool);
                 start++;
                 if(!String.valueOf(formatter.formatCellValue(answerPoolSheet.getRow(start).getCell(2))).equals(QID))
                     break;
@@ -184,37 +183,59 @@ public class Questionnaire extends DatabaseReader {
         }
     }
 
-    public void getDispenserPool(String QID, String topics) {
-        int getNumber = 0;
-        randomPool = new ArrayList<>();
-        while(dispenserPoolSelection != 0) {
-            getNumber = randomizer.nextInt(80 - 1) + 1;
-            Row excelRow = answerPoolSheet.getRow(getNumber);
-            Cell excelCell = excelRow.getCell(2);
-            Cell excelTopic = excelRow.getCell(1);
-            String getExcelStage = formatter.formatCellValue(excelCell);
-            String getExcelTopic = formatter.formatCellValue(excelTopic);
-            if(!randomPool.contains(getNumber)){
-                if ((int) answerPoolSheet.
-                        getRow(getNumber).getCell(0).getNumericCellValue() == getNumber &&
-                        (getExcelStage.equals(topics)) &&
-                        (getExcelStage.equals(QID))) {
-                    Row ansRow = answerPoolSheet.getRow(getNumber);
-                    Cell ansCell = ansRow.getCell(3);
-                    String getAnsCell = formatter.formatCellValue(ansCell);
-                    if (getAnsCell != "") {
-                        dispenserPool.add(getAnsCell);
-                        randomPool.add(getNumber);
-                        dispenserPoolSelection--;
-                    } else {
-                        continue;
-                    }
-                }
+    public void getDispenserPool(String QID) {
+        Row excelRow;
+        Cell excelCell, ansCell;
+        int start = 1;
+        if(!dispenserPool.isEmpty()){
+            dispenserPool.clear();
+        }
+        while(true){
+            excelRow = answerPoolSheet.getRow(start);
+            excelCell = excelRow.getCell(2);
+            if(String.valueOf(formatter.formatCellValue(excelCell)).equals(QID)){
+                ansCell = excelRow.getCell(3);
+                dispenserPool.add(formatter.formatCellValue(ansCell));
+                start++;
+                if(!String.valueOf(formatter.formatCellValue(answerPoolSheet.getRow(start).getCell(2))).equals(QID))
+                    break;
             }
             else
-                continue;
+                start++;
         }
     }
+
+//    public void getDispenserPool(String QID, String topics) {
+//        int getNumber = 0;
+//        randomPool = new ArrayList<>();
+//        while(dispenserPoolSelection != 0) {
+//            getNumber = randomizer.nextInt(80 - 1) + 1;
+//            Row excelRow = answerPoolSheet.getRow(getNumber);
+//            Cell excelCell = excelRow.getCell(2);
+//            Cell excelTopic = excelRow.getCell(1);
+//            String getExcelStage = formatter.formatCellValue(excelCell);
+//            String getExcelTopic = formatter.formatCellValue(excelTopic);
+//            if(!randomPool.contains(getNumber)){
+//                if ((int) answerPoolSheet.
+//                        getRow(getNumber).getCell(0).getNumericCellValue() == getNumber &&
+//                        (getExcelStage.equals(topics)) &&
+//                        (getExcelStage.equals(QID))) {
+//                    Row ansRow = answerPoolSheet.getRow(getNumber);
+//                    Cell ansCell = ansRow.getCell(3);
+//                    String getAnsCell = formatter.formatCellValue(ansCell);
+//                    if (getAnsCell != "") {
+//                        dispenserPool.add(getAnsCell);
+//                        randomPool.add(getNumber);
+//                        dispenserPoolSelection--;
+//                    } else {
+//                        continue;
+//                    }
+//                }
+//            }
+//            else
+//                continue;
+//        }
+//    }
 
     public void questionDisplay(String stage, String topics, String expertiseLevel) {
         adjustDifficulty(expertiseLevel);
@@ -241,7 +262,6 @@ public class Questionnaire extends DatabaseReader {
                     continue;
                 }
                 else{
-                    System.out.println("QUESTION: " + question);
                     questions.add(question);
 
                     options.add(new ArrayList<String>());
@@ -366,6 +386,23 @@ public class Questionnaire extends DatabaseReader {
                 topic.add("Classes");
                 topic.add("Objects");
                 break;
+            default:
+                topic.add("Syntax");
+                topic.add("Comments");
+                topic.add("Variables");
+                topic.add("Data Types");
+                topic.add("Type Casting");
+                topic.add("Operators");
+                topic.add("Conditional");
+                topic.add("Loops");
+                topic.add("Arrays");
+                topic.add("Methods");
+                topic.add("Parameters");
+                topic.add("Parameter Overloading");
+                topic.add("Classes");
+                topic.add("Objects");
+                break;
+
         }
 
     }
