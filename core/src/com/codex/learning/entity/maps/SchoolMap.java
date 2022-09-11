@@ -30,10 +30,10 @@ public class SchoolMap extends State {
         leftBorder.create(new Vector2(-12f, 12.3f), new Vector2(0.4f, 30), 0);
 
         table = new Collisions(manager);
-        table.create(new Vector2(-4f, 6.5f), new Vector2(6f, 0.5f), 0);
+        table.create(new Vector2(-4f, 6.5f), new Vector2(5.2f, 0.4f), 0);
 
         locker = new Collisions(manager);
-        locker.create(new Vector2(-10f, -5f), new Vector2(1f, 3.7f), 0);
+        locker.create(new Vector2(-10f, -5f), new Vector2(0.2f, 3.5f), 0);
 
     }
 
