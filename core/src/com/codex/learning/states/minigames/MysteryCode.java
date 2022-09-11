@@ -383,11 +383,7 @@ public class MysteryCode extends State {
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.end();
 
-<<<<<<< HEAD
-        playroom.render(sprite);
 
-=======
->>>>>>> AaronTest
         currentCell = 0;
         for(int i = 0; i < minigameContainer.size(); i++) {
             for (int j = 0; j < minigameContainer.get(i).size(); j++) {
@@ -406,11 +402,7 @@ public class MysteryCode extends State {
                     answerBlocks[i].render(sprite);
                 }
             }
-<<<<<<< HEAD
-=======
 
-
->>>>>>> AaronTest
     }
 
     @Override
