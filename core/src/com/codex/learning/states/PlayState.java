@@ -49,7 +49,6 @@ public class PlayState extends State{
     public PlayState(Manager manager) {
         super(manager);
         this.stage = manager.getStageSelector().getStageMap();
-        playroomMap = new PlayroomMapS1(manager);
         timer = 0;
         pause = new PauseState(manager);
         rand = new Random();
@@ -105,9 +104,9 @@ public class PlayState extends State{
         manager.getWorld().step(1/60f,6,2);
         if(!isInStartArea()){
             activeBody(false);
+            playroomMap.setActive(true);
             playroomMap.update(delta);
             minigame.update(delta);
-            playroomMap.setActive(true);
 
             if(playroomMap.getPlayMat().isInContact()){
                 jedisaur.dropBlock(playroomMap.getPlayMat());
