@@ -2625,7 +2625,6 @@ public class Dialogue {
     }
 
     public String getObjectiveDialogue(int QID) {
-
-        return objectiveDialogue.get(0).get(QID);
+        return objectiveDialogue.get(QID).get(0);
     }
 }
