@@ -161,16 +161,20 @@ public class Questionnaire extends DatabaseReader {
     }
 
     public void getAnswerPool(String QID) {
-        randomPool = new ArrayList<>();
         Row excelRow;
         Cell excelCell, ansCell;
         int start = 1;
+        if(!answerPool.isEmpty()){
+            answerPool.clear();
+        }
         while(true){
             excelRow = answerPoolSheet.getRow(start);
             excelCell = excelRow.getCell(2);
             if(String.valueOf(formatter.formatCellValue(excelCell)).equals(QID)){
                 ansCell = excelRow.getCell(3);
+
                 answerPool.add(formatter.formatCellValue(ansCell));
+                System.out.println(answerPool);
                 start++;
                 if(!String.valueOf(formatter.formatCellValue(answerPoolSheet.getRow(start).getCell(2))).equals(QID))
                     break;
@@ -193,6 +197,7 @@ public class Questionnaire extends DatabaseReader {
             if(!randomPool.contains(getNumber)){
                 if ((int) answerPoolSheet.
                         getRow(getNumber).getCell(0).getNumericCellValue() == getNumber &&
+                        (getExcelStage.equals(topics)) &&
                         (getExcelStage.equals(QID))) {
                     Row ansRow = answerPoolSheet.getRow(getNumber);
                     Cell ansCell = ansRow.getCell(3);
