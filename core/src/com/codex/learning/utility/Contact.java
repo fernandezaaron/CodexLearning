@@ -68,7 +68,6 @@ public class Contact implements ContactListener {
                 }
                 else{
                     jedisaur.setPickUpAble(true);
-
                 }
             }
 
@@ -187,7 +186,6 @@ public class Contact implements ContactListener {
             }
 
             playMat.setInContact(true);
-
         }
 
         if(isObjectiveContact(fa, fb)){
@@ -301,7 +299,6 @@ public class Contact implements ContactListener {
         }
 
         if(isPlayMatContact(fa,fb)){
-            System.out.println("playmat end contact");
             PlayMat playMat;
             Character jedisaur;
 
