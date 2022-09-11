@@ -5,10 +5,7 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import com.codex.learning.entity.blocks.BlockDispenser;
-import com.codex.learning.entity.blocks.BlockHolder;
-import com.codex.learning.entity.blocks.Blocks;
-import com.codex.learning.entity.blocks.Computer;
+import com.codex.learning.entity.blocks.*;
 import com.codex.learning.entity.characters.Character;
 import com.codex.learning.entity.characters.NPC;
 
@@ -174,6 +171,11 @@ public class Contact implements ContactListener {
             }
             System.out.println("NPC CONTACT");
         }
+
+        if(isPlayMatContact(fa,fb)){
+            System.out.println("playmat contact");
+        }
+
         Gdx.app.log("BEGIN CONTACT", "");
     }
 
@@ -268,6 +270,10 @@ public class Contact implements ContactListener {
             npc.setInContact(false);
         }
 
+        if(isPlayMatContact(fa,fb)){
+            System.out.println("playmat end contact");
+        }
+
         Gdx.app.log("END CONTACT", "");
     }
 
@@ -320,6 +326,16 @@ public class Contact implements ContactListener {
     private boolean isNPCContact(Fixture a, Fixture b){
         if(a.getUserData() instanceof Character || b.getUserData() instanceof Character){
             if(a.getUserData() instanceof NPC || b.getUserData() instanceof NPC){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    private boolean isPlayMatContact(Fixture a, Fixture b){
+        if(a.getUserData() instanceof Character || b.getUserData() instanceof Character){
+            if(a.getUserData() instanceof PlayMat || b.getUserData() instanceof PlayMat){
                 return true;
             }
         }
