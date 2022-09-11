@@ -1,5 +1,6 @@
 package com.codex.learning.utility.filereader;
 
+import com.badlogic.gdx.math.Interpolation;
 import org.apache.poi.ss.usermodel.*;
 
 import java.util.ArrayList;
@@ -160,31 +161,22 @@ public class Questionnaire extends DatabaseReader {
     }
 
     public void getAnswerPool(String QID) {
-        int getNumber = 0;
         randomPool = new ArrayList<>();
-        Row excelRow, ansRow;
+        Row excelRow;
         Cell excelCell, ansCell;
-
-        while(answerPoolSelection != 0) {
-            getNumber = randomizer.nextInt(511 - 1) + 1;
-            excelRow = answerPoolSheet.getRow(getNumber);
-
+        int start = 1;
+        while(true){
+            excelRow = answerPoolSheet.getRow(start);
             excelCell = excelRow.getCell(2);
-            if(!randomPool.contains(getNumber)){
-                if ((formatter.formatCellValue(excelCell).equals(QID))) {
-                    ansRow = answerPoolSheet.getRow(getNumber);
-                    ansCell = ansRow.getCell(3);
-                    if (formatter.formatCellValue(ansCell) != "") {
-                        answerPool.add(formatter.formatCellValue(ansCell));
-                        randomPool.add(getNumber);
-                        answerPoolSelection--;
-                    } else {
-                        continue;
-                    }
-                }
+            if(String.valueOf(formatter.formatCellValue(excelCell)).equals(QID)){
+                ansCell = excelRow.getCell(3);
+                answerPool.add(formatter.formatCellValue(ansCell));
+                start++;
+                if(!String.valueOf(formatter.formatCellValue(answerPoolSheet.getRow(start).getCell(2))).equals(QID))
+                    break;
             }
             else
-                continue;
+                start++;
         }
     }
 
