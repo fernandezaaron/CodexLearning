@@ -97,7 +97,6 @@ public class PlayState extends State{
         atDoor = false;
         inFillInTheBlock = false;
         inMysteryCode = false;
-
     }
 
     @Override
@@ -105,12 +104,21 @@ public class PlayState extends State{
         manager.getWorld().step(1/60f,6,2);
         if(!isInStartArea()){
             activeBody(false);
+            playroomMap.setActive(true);
+            playroomMap.update(delta);
             minigame.update(delta);
+
+            if(playroomMap.getPlayMat().isInContact()){
+                jedisaur.dropBlock(playroomMap.getPlayMat());
+            }
 
         }else {
             activeBody(true);
             exitDoor(jedisaur);
+            playroomMap.setActive(false);
+
         }
+
 
         if(pause.isRunning()){
             if(jediGrandpa.isTalking()){
@@ -191,7 +199,7 @@ public class PlayState extends State{
 
         if(isInStartArea()){
             if(manager.getStageSelector().map().equals("1")){
-                house.render(sprite);
+//                house.render(sprite);
             }
             else if(manager.getStageSelector().map().equals("2")){
                 schoolMap.render(sprite);
@@ -209,8 +217,10 @@ public class PlayState extends State{
                 jedisaur.render(sprite);
             }
         }else {
+            playroomMap.render(sprite);
             minigame.render(sprite);
             jedisaur.render(sprite);
+            playroomMap.getObjective().render(sprite);
         }
 
         sprite.begin();
