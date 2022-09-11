@@ -398,11 +398,13 @@ public class Character extends Entity {
 //            System.out.println(this.size.x + " sa character");
         }
         block.getBody().setType(BodyDef.BodyType.StaticBody);
+
     }
 
     public void dropBlock(BlockHolder blockHolder){
 
 //        System.out.println("Occupied - " + blockHolder.isOccupied());
+        System.out.println("dropping at blockholder");
 
         // To prevent pickup in an empty block holder
         if(blockHolder.isOccupied() && !isCarrying()){
@@ -478,6 +480,7 @@ public class Character extends Entity {
 
     public void dropBlock(PlayMat playmat){
         if(playmat.isInContact() && Gdx.input.isKeyJustPressed(Input.Keys.E) && getCopyBlock() != null && isCarrying()){
+            System.out.println("dropping at playmat");
 
             switch (direction){
                 case "north":
