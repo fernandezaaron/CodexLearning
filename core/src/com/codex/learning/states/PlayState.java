@@ -110,6 +110,14 @@ public class PlayState extends State{
 
             if(playroomMap.getPlayMat().isInContact()){
                 jedisaur.dropBlock(playroomMap.getPlayMat());
+
+//                if(jedisaur.isDropped()){
+//                    playroomMap.getPlayMat().setDropped(true);
+////                    jedisaur.setDropped(false);
+//                }
+//                else {
+//                    playroomMap.getPlayMat().setDropped(false);
+//                }
             }
 
         }else {
@@ -199,7 +207,7 @@ public class PlayState extends State{
 
         if(isInStartArea()){
             if(manager.getStageSelector().map().equals("1")){
-//                house.render(sprite);
+                house.render(sprite);
             }
             else if(manager.getStageSelector().map().equals("2")){
                 schoolMap.render(sprite);

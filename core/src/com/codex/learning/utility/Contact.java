@@ -36,16 +36,13 @@ public class Contact implements ContactListener {
                 blocks = (Blocks) fb.getUserData();
             }
 
-            System.out.println(blocks.getBody().getUserData());
-
-            numberOfCollision++;
-            System.out.println(numberOfCollision);
-
-
             blocks.setInContact(true);
+
             if (jedisaur.isCarrying()) {
                 System.out.println("Block yes");
-                if (blocks.isPreDefinedContact() || numberOfCollision > 1) {
+                numberOfCollision = 1;
+                System.out.println(numberOfCollision + " if --");
+                if (blocks.isPreDefinedContact() ) {
                     blocks.setInContact(false);
                     jedisaur.setPickUpAble(false);
                 }
@@ -67,10 +64,20 @@ public class Contact implements ContactListener {
                     jedisaur.setPickUpAble(false);
                 }
                 else{
+                    if(jedisaur.isDropped()){
+                        numberOfCollision = 0;
+                        jedisaur.setDropped(false);
+                    }
+                    numberOfCollision++;
+                    System.out.println(numberOfCollision + " else ++");
                     jedisaur.setPickUpAble(true);
-
+                }
+                if(numberOfCollision>1){
+                    blocks.setInContact(false);
+                    jedisaur.setPickUpAble(false);
                 }
             }
+
 
 
         }
@@ -120,6 +127,10 @@ public class Contact implements ContactListener {
             }
             else{
                 jedisaur.setPickUpAble(true);
+            }
+            if(blockHolder.isOccupied()){
+                numberOfCollision = 0;
+                System.out.println("occupied");
             }
         }
 
@@ -186,8 +197,8 @@ public class Contact implements ContactListener {
                 playMat = (PlayMat) fb.getUserData();
             }
 
-            playMat.setInContact(true);
 
+            playMat.setInContact(true);
         }
 
         if(isObjectiveContact(fa, fb)){
@@ -230,14 +241,25 @@ public class Contact implements ContactListener {
                 jedisaur = (Character) fa.getUserData();
                 blocks = (Blocks) fb.getUserData();
             }
-            numberOfCollision--;
-            System.out.println(numberOfCollision);
+
             blocks.setInContact(false);
             jedisaur.setPickUpAble(false);
+            if(!jedisaur.isCarrying()){
+                if(!blocks.isPreDefinedContact()){
+                    numberOfCollision--;
+                    System.out.println(numberOfCollision + " collision");
+                }
+
+            }
+            if(numberOfCollision < 0){
+                numberOfCollision = 0;
+            }
+
             if(numberOfCollision == 1){
                 blocks.setInContact(true);
                 jedisaur.setPickUpAble(true);
             }
+
         }
 
         if(isDispenserContact(fa, fb)){

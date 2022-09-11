@@ -17,7 +17,7 @@ import java.awt.image.Kernel;
 
 public class PlayMat extends Entity {
 
-    private boolean inContact;
+    private boolean inContact, isDropped;
 
     public PlayMat(Manager manager){
         super(manager);
@@ -49,6 +49,7 @@ public class PlayMat extends Entity {
         shape.dispose();
 
         inContact = false;
+        isDropped = false;
 
     }
 
@@ -68,5 +69,13 @@ public class PlayMat extends Entity {
 
     public void setInContact(boolean inContact) {
         this.inContact = inContact;
+    }
+
+    public boolean isDropped() {
+        return isDropped;
+    }
+
+    public void setDropped(boolean dropped) {
+        isDropped = dropped;
     }
 }

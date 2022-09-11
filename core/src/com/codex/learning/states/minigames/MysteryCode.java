@@ -60,30 +60,30 @@ public class MysteryCode extends State {
 
         getAMinigame(manager.getStageSelector().map(), manager.getExpertSystem().getExpertiseLevel());
 
-//        for(int i = 0; i < banishPerRow.size(); i++) {
-//            int banishNumberIterator = randomizer.nextInt(2) + 1;
-//            int numberRepeat = 0;
-//            System.out.println("how many? " + banishNumberIterator);
-//            for (int j = 0; j < banishPerRow.get(i).size(); j++) {
-////                System.out.println((banishPerRow.get(i).size()) + "    " + banishPerRow.get(i).get(0));
-//                int banishNumber = randomizer.nextInt(banishPerRow.get(i).size() - 1) + banishPerRow.get(i).get(0);
-//                System.out.println(banishNumber);
-//                if (banishNumberIterator == 0 || numberRepeat == 5) {
-////                    System.out.println("berak");
-//                    break;
-//                } else if (!banishCells.contains(banishNumber)) {
-//                    banishCells.add(banishNumber);
-//                    banishNumberIterator--;
-////                    System.out.println("baka sa iterator " + banishNumberIterator +
-////                            " eh sa last element " + (banishPerRow.get(i).size() - 1) +
-////                            " first? " + banishPerRow.get(i).get(0) +
-////                            " eto ibabanish " + banishNumber);
-//                } else {
-//                    System.out.println("number repeated");
-//                    numberRepeat++;
-//                }
-//            }
-//        }
+        for(int i = 0; i < banishPerRow.size(); i++) {
+            int banishNumberIterator = randomizer.nextInt(2) + 1;
+            int numberRepeat = 0;
+            System.out.println("how many? " + banishNumberIterator);
+            for (int j = 0; j < banishPerRow.get(i).size(); j++) {
+//                System.out.println((banishPerRow.get(i).size()) + "    " + banishPerRow.get(i).get(0));
+                int banishNumber = randomizer.nextInt(banishPerRow.get(i).size() - 1) + banishPerRow.get(i).get(0);
+                System.out.println(banishNumber);
+                if (banishNumberIterator == 0 || numberRepeat == 5) {
+//                    System.out.println("berak");
+                    break;
+                } else if (!banishCells.contains(banishNumber)) {
+                    banishCells.add(banishNumber);
+                    banishNumberIterator--;
+//                    System.out.println("baka sa iterator " + banishNumberIterator +
+//                            " eh sa last element " + (banishPerRow.get(i).size() - 1) +
+//                            " first? " + banishPerRow.get(i).get(0) +
+//                            " eto ibabanish " + banishNumber);
+                } else {
+                    System.out.println("number repeated");
+                    numberRepeat++;
+                }
+            }
+        }
 
 
         // START MINIGAME CREATION

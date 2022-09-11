@@ -48,7 +48,6 @@ public class PlayroomMapS1 extends State {
         objective.create(new Vector2(6f, 13f), new Vector2(1.5f, 2f), 0);
 
 
-
 //        minigame = new Minigame(manager, stage, 2);
         door = new TextureRegion(manager.getReportCardSheet(), 48,195, 263, 119);
     }
@@ -121,13 +120,13 @@ public class PlayroomMapS1 extends State {
         this.inPlayroom = inPlayroom;
     }
 
+
     public void setActive(boolean active){
-        System.out.println("ANDITO AKO PUTA");
         playMat.getBody().setActive(active);
         npc.getBody().setActive(active);
         objective.getBody().setActive(active);
-        System.out.println(npc.getBody().isActive());
     }
+
 
 
 }
