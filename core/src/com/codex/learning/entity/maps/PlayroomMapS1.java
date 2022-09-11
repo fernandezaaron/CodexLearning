@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.codex.learning.entity.Collisions;
+import com.codex.learning.entity.blocks.PlayMat;
 import com.codex.learning.entity.characters.Character;
 import com.codex.learning.entity.characters.NPC;
 import com.codex.learning.states.StageSelectState;
@@ -19,6 +20,7 @@ public class PlayroomMapS1 extends State {
     private int stage;
     private boolean inPlayroom;
     private NPC npc;
+    private PlayMat playMat;
     private Minigame minigame;
     private int randomNumber;
     public PlayroomMapS1(Manager manager) {
@@ -36,6 +38,9 @@ public class PlayroomMapS1 extends State {
 
         npc = new NPC(manager, "minigames", 0, true);
         npc.create(new Vector2(0, -6), new Vector2(1, 1.4f), 0);
+
+        playMat = new PlayMat(manager);
+        playMat.create(new Vector2(17.5f, 0), new Vector2(6f, 10), 0);
 
 
 
