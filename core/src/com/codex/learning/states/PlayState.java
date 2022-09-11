@@ -110,14 +110,7 @@ public class PlayState extends State{
 
             if(playroomMap.getPlayMat().isInContact()){
                 jedisaur.dropBlock(playroomMap.getPlayMat());
-
-//                if(jedisaur.isDropped()){
-//                    playroomMap.getPlayMat().setDropped(true);
-////                    jedisaur.setDropped(false);
-//                }
-//                else {
-//                    playroomMap.getPlayMat().setDropped(false);
-//                }
+                
             }
 
         }else {
