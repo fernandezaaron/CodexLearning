@@ -213,87 +213,56 @@ public class CodeIT extends State {
             for (int j = 0; j < minigameContainer.get(i).size(); j++) {
                 if (minigameContainer.get(i).get(j) != null) {
                     if (blockHolders[i][j].isInContact()) {
-//                        blockHolders[i][j].update(delta);
                         if(jedisaur.isDropped()){
-
-                                /** tempCurrentCell is used for a local iteration of currentcell
-                                 since currentcell iterates the whole indeces from 1-N **/
-                                /** left iteration of blocks **/
-                                for(int k=j-1; k>=0; k--){
-                                    /** checks if the index is a blockholder or if it is inside the arraylist **/
-                                        blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+                            /** left iteration of blocks **/
+                            for(int k=j-1; k>=0; k--){
+                                blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+                            }
+                            for(int k=j-1; k>=0; k--){
+                                if(blockHolders[i][k].isOccupied()){
+                                    blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x - blockSize + 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
                                 }
-
-                                /** right blocks in the blockholders **/
-                                for(int k=j+1; k<minigameContainer.get(i).size(); k++){
-                                    if(blockHolders[i][k].isOccupied()){
-                                        blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
-                                    }
-                                }
-
-                                /** right iteration of blocks **/
-                                for(int k=j+1; k<minigameContainer.get(i).size(); k++){
-                                    blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x + blockSize-0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
-                                }
-                                jedisaur.setDropped(false);
                             }
 
-                            /** made a new boolean flag for whenever jedisaur HAS PICKEDUP
-                             because if jedisaur ISCARRYING it will always return to true thus will
-                             manipulate the x-axis whenever the user carries a block
-                             **/
-
-                            if(jedisaur.isPickedUp()){
-                                for(int k=j-1; k>=0; k--){
-                                    blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x + blockSize-0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+                            /** right blocks in the blockholders **/
+                            for(int k=j+1; k<minigameContainer.get(i).size(); k++){
+                                if(blockHolders[i][k].isOccupied()){
+                                    blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x + blockSize - 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
                                 }
-
-                                for(int k=j+1; k<minigameContainer.get(i).size(); k++){
-                                        blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
-                                }
-
-                                /** for the blocks occupying the blockholders
-                                 * it iterates from the max value of the arraylist(i), and finds the
-                                 * blockholders from the leftside of the currentCell
-                                 * if it is true and the blockholder is occupied, transform the copyblocks of blockholders stored in the arraylist **/
-//                                tempCurrentCell = currentCell;
-//                                int blockArrayIndex = blocksArrayList.get(i).size()-1;
-//                                for(int k=j-1; k>=0; k--){
-//                                    System.out.println(blockArrayIndex + " current left minus");
-//                                    tempCurrentCell--;
-//                                    if(banishCells.contains(tempCurrentCell)){
-//                                        if(blockHolders[i][k].isOccupied()){
-//                                            blockArrayIndex--;
-//                                            System.out.println("array index: " + blockArrayIndex + " left minus");
-//                                            System.out.println(blocksArrayList.get(i).get(blockArrayIndex));
-//                                            blocksArrayList.get(i).get(blockArrayIndex).getBody().setTransform(blocksArrayList.get(i).get(blockArrayIndex).getBody().getPosition().x - blockSize + 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
-//                                        }
-//                                    }
-//                                }
-//
-//                                /** right blocks in the blockholders **/
-//                                tempCurrentCell = currentCell;
-//                                blockArrayIndex = blocksArrayList.get(i).indexOf(0);
-//                                for(int k=j+1; k<minigameContainer.get(i).size(); k++){
-//                                    System.out.println(blockArrayIndex + " current right minus");
-//                                    tempCurrentCell++;
-//                                    if(banishCells.contains(tempCurrentCell)){
-//                                        if(blockHolders[i][k].isOccupied()){
-//                                            blockArrayIndex++;
-//                                            System.out.println("array index: " + blockArrayIndex);
-//                                            System.out.println(blocksArrayList.get(i).get(blockArrayIndex));
-//                                            blocksArrayList.get(i).get(blockArrayIndex).getBody().setTransform(blocksArrayList.get(i).get(blockArrayIndex).getBody().getPosition().x - blockSize + 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
-//                                        }
-//                                    }
-//                                }
-
-                                jedisaur.setPickedUp(false);
                             }
+
+                            /** right iteration of blocks **/
+                            for(int k=j+1; k<minigameContainer.get(i).size(); k++){
+                                blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x + blockSize-0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+                            }
+                            jedisaur.setDropped(false);
                         }
+
+                        if(jedisaur.isPickedUp()){
+                            for(int k=j-1; k>=0; k--){
+                                blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x + blockSize-0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+                            }
+
+                            for(int k=j+1; k<minigameContainer.get(i).size(); k++){
+                                blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+                            }
+
+                            for(int k=j-1; k>=0; k--){
+                                if(blockHolders[i][k].isOccupied()){
+                                    blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x + blockSize - 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
+                                }
+                            }
+                            /** right blocks in the blockholders **/
+                            for(int k=j+1; k<minigameContainer.get(i).size(); k++){
+                                if(blockHolders[i][k].isOccupied()){
+                                    blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x - blockSize + 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
+                                }
+                            }
+                            jedisaur.setPickedUp(false);
+                        }
+                    }
                 }
-
             }
-
         }
         // WILL BE USED, DON'T ERASE
 
