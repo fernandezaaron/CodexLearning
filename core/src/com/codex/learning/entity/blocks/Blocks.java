@@ -80,7 +80,7 @@ public class Blocks extends Entity {
         isBlock = true;
     }
 
-        @Override
+    @Override
     public void update(float delta) {
 
     }

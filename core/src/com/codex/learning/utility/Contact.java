@@ -176,6 +176,22 @@ public class Contact implements ContactListener {
             System.out.println("playmat contact");
         }
 
+        if(isObjectiveContact(fa, fb)){
+            Objective objective;
+            Character jedisaur;
+
+            if(fa.getUserData() instanceof Objective){
+                objective = (Objective) fa.getUserData();
+                jedisaur = (Character) fb.getUserData();
+            }
+            else{
+                jedisaur = (Character) fa.getUserData();
+                objective = (Objective) fb.getUserData();
+            }
+            System.out.println("ASDWDQDWQDQWDQDW");
+            objective.setInContact(true);
+        }
+
         Gdx.app.log("BEGIN CONTACT", "");
     }
 
@@ -274,6 +290,21 @@ public class Contact implements ContactListener {
             System.out.println("playmat end contact");
         }
 
+        if(isObjectiveContact(fa, fb)){
+            Objective objective;
+            Character jedisaur;
+
+            if(fa.getUserData() instanceof Objective){
+                objective = (Objective) fa.getUserData();
+                jedisaur = (Character) fb.getUserData();
+            }
+            else{
+                jedisaur = (Character) fa.getUserData();
+                objective = (Objective) fb.getUserData();
+            }
+            objective.setInContact(false);
+        }
+
         Gdx.app.log("END CONTACT", "");
     }
 
@@ -332,10 +363,18 @@ public class Contact implements ContactListener {
         return false;
     }
 
-
     private boolean isPlayMatContact(Fixture a, Fixture b){
         if(a.getUserData() instanceof Character || b.getUserData() instanceof Character){
             if(a.getUserData() instanceof PlayMat || b.getUserData() instanceof PlayMat){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isObjectiveContact(Fixture a, Fixture b){
+        if(a.getUserData() instanceof Character || b.getUserData() instanceof Character){
+            if(a.getUserData() instanceof Objective || b.getUserData() instanceof Objective){
                 return true;
             }
         }

@@ -2,6 +2,7 @@ package com.codex.learning.entity.blocks;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -9,22 +10,18 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.codex.learning.entity.Entity;
-import com.codex.learning.states.minigames.CodeRiddle;
 import com.codex.learning.utility.Constants;
-import com.codex.learning.utility.FuzzyLogic;
 import com.codex.learning.utility.Manager;
 
-public class Computer extends Entity {
-    private TextureRegion pc;
-    private boolean inContact, isDone;
-    private CodeRiddle codeRiddle;
-    private FuzzyLogic fuzzyLogic;
+public class Objective extends Entity {
+
+    private boolean inContact;
+    private boolean inObjective;
+    private TextureRegion textureRegion;
 
 
-
-    public Computer(Manager manager, FuzzyLogic fuzzyLogic) {
+    public Objective(Manager manager) {
         super(manager);
-        this.fuzzyLogic = fuzzyLogic;
     }
 
     @Override
@@ -52,43 +49,42 @@ public class Computer extends Entity {
         shape.dispose();
 
         inContact = false;
-        isDone = false;
+        inObjective = false;
 
-        pc = new TextureRegion(manager.getPcStateSheet(), Constants.PC_X, Constants.PC_Y, Constants.PC_WIDTH, Constants.PC_HEIGHT);
-        codeRiddle = new CodeRiddle(manager);
+        textureRegion = new TextureRegion(new Texture(Constants.OBJECTIVE_SHEET_PATH), 0, 0, 800, 720);
     }
 
     @Override
     public void update(float delta) {
         checkIfClicked();
-        checkIfDone();
-        codeRiddle.update(delta);
     }
 
     @Override
     public void render(SpriteBatch sprite) {
-        sprite.enableBlending();
-        sprite.setProjectionMatrix(manager.getCamera().combined);
+        manager.getCamera().update();
         sprite.begin();
-            sprite.draw(pc,
-                    body.getPosition().x * Constants.PPM - pc.getRegionWidth() / 2,
-                    body.getPosition().y * Constants.PPM - pc.getRegionHeight() / 2);
+        sprite.setProjectionMatrix(manager.getCamera().combined);
+        sprite.enableBlending();
+
+        if(isInObjective()){
+//            sprite.draw(textureRegion,
+//                    manager.getCamera().position.x - Constants.SCREEN_WIDTH / 2f,
+//                    manager.getCamera().position.y - Constants.SCREEN_HEIGHT / 2f,
+//                    Constants.SCREEN_WIDTH,
+//                    Constants.SCREEN_HEIGHT);
+            sprite.draw(textureRegion,
+                    (body.getPosition().x * Constants.PPM - textureRegion.getRegionWidth() / 1.35f),
+                    (body.getPosition().y * Constants.PPM - textureRegion.getRegionHeight() / 0.9f) + 50);
+        }
         sprite.end();
-        codeRiddle.render(sprite);
     }
 
     private void checkIfClicked(){
         if(isInContact() && Gdx.input.isKeyJustPressed(Input.Keys.E)){
-            codeRiddle.setInComputer(true);
+            setInObjective(true);
         }
-    }
-
-    private void checkIfDone(){
-        if(codeRiddle.isDone()){
-            setDone(true);
-        }
-        else {
-            setDone(false);
+        if(isInContact() && Gdx.input.isKeyJustPressed(Input.Keys.F)){
+            setInObjective(false);
         }
     }
 
@@ -100,19 +96,11 @@ public class Computer extends Entity {
         this.inContact = inContact;
     }
 
-    public CodeRiddle getCodeRiddle() {
-        return codeRiddle;
+    public boolean isInObjective() {
+        return inObjective;
     }
 
-    public void setCodeRiddle(CodeRiddle codeRiddle) {
-        this.codeRiddle = codeRiddle;
-    }
-
-    public boolean isDone() {
-        return isDone;
-    }
-
-    public void setDone(boolean done) {
-        isDone = done;
+    public void setInObjective(boolean inObjective) {
+        this.inObjective = inObjective;
     }
 }
