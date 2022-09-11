@@ -45,7 +45,7 @@ public class MysteryCode extends State {
     public MysteryCode(Manager manager, Character jedisaur) {
         super(manager);
         pause = new PauseState(manager);
-        playroom = new PlayroomMapS1(manager);
+//        playroom = new PlayroomMapS1(manager);
 
         randomizer = new Random();
         banishCells = new ArrayList<Integer>();
@@ -178,10 +178,10 @@ public class MysteryCode extends State {
     @Override
     public void update(float delta) {
         // WILL BE USED, DON'T ERASE
-            playroom.update(delta);
-            if(playroom.getPlayMat().isInContact()){
-                jedisaur.dropBlock(playroom.getPlayMat());
-            }
+//            playroom.update(delta);
+//            if(playroom.getPlayMat().isInContact()){
+//                jedisaur.dropBlock(playroom.getPlayMat());
+//            }
 
             currentCell = 0;
                for (int i = 0; i < minigameContainer.size(); i++) {
@@ -411,6 +411,7 @@ public class MysteryCode extends State {
                 }
             }
 
+//            playroom.getObjective().render(sprite);
 
 
     }
@@ -440,7 +441,7 @@ public class MysteryCode extends State {
             }
         }
         // WILL BE USED, DON'T ERASE
-        playroom.dispose();
+//        playroom.dispose();
     }
 
     public void getAMinigame(String stage, String expertiseLevel){

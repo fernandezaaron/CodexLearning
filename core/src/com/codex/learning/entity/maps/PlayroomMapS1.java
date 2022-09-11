@@ -64,7 +64,7 @@ public class PlayroomMapS1 extends State {
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.enableBlending();
         if(manager.getStageSelector().map().equals("1")){
-            sprite.draw(manager.getPlayroomStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+//            sprite.draw(manager.getPlayroomStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         }
         else if(manager.getStageSelector().map().equals("2")){
             sprite.draw(manager.getPlayroomStage2(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
@@ -76,7 +76,6 @@ public class PlayroomMapS1 extends State {
 
 
         npc.render(sprite);
-        objective.render(sprite);
 
     }
 
@@ -96,6 +95,14 @@ public class PlayroomMapS1 extends State {
         this.playMat = playMat;
     }
 
+    public Objective getObjective() {
+        return objective;
+    }
+
+    public void setObjective(Objective objective) {
+        this.objective = objective;
+    }
+
     public int getStage() {
         return stage;
     }
@@ -110,5 +117,12 @@ public class PlayroomMapS1 extends State {
 
     public void setInPlayroom(boolean inPlayroom) {
         this.inPlayroom = inPlayroom;
+    }
+
+    public void setActive(boolean active){
+        playMat.getBody().setActive(active);
+        npc.getBody().setActive(active);
+        objective.getBody().setActive(active);
+        System.out.println(npc.getBody().isActive());
     }
 }
