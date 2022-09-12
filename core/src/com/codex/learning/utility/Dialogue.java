@@ -2630,4 +2630,8 @@ public class Dialogue {
     public String getNpcName() {
         return npcName;
     }
+
+    public String getObjectiveDialogue(int QID) {
+        return objectiveDialogue.get(QID).get(0);
+    }
 }

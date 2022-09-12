@@ -18,7 +18,6 @@ import java.util.Stack;
 
 public class MysteryCode extends State {
     private Character jedisaur;
-    private PlayroomMapS1 playroom;
     private Blocks[] answerBlocks;
     private Blocks[][] questionBlocks, answerBlocksArray;
     private BlockHolder[][] blockHolders;
@@ -40,7 +39,6 @@ public class MysteryCode extends State {
     public MysteryCode(Manager manager, Character jedisaur) {
         super(manager);
         pause = new PauseState(manager);
-        playroom = new PlayroomMapS1(manager);
         randomizer = new Random();
         banishCells = new ArrayList<Integer>();
         questionBlocks = new Blocks[20][20];
@@ -167,8 +165,6 @@ public class MysteryCode extends State {
 
     @Override
     public void update(float delta) {
-        playroom.update(delta);
-
         currentCell = 0;
         for (int i = 0; i < minigameContainer.size(); i++) {
             for (int j = 0; j < minigameContainer.get(i).size(); j++) {
@@ -358,7 +354,6 @@ public class MysteryCode extends State {
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.end();
 
-        playroom.render(sprite);
 
         currentCell = 0;
         for(int i = 0; i < minigameContainer.size(); i++) {
@@ -402,8 +397,6 @@ public class MysteryCode extends State {
                 answerBlocks[i].disposeBody();
             }
         }
-
-        playroom.dispose();
     }
 
     public void getAMinigame(String stage, String expertiseLevel){

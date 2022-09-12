@@ -98,7 +98,7 @@ public class Manager {
         pcStateSheet = new TextureRegion(new Texture(Constants.PC_SHEET_PATH));
 
         font = new BitmapFont(Gdx.files.internal(Constants.FONT_STYLE));
-        font.getData().scale(0.7f);
+        font.getData().setScale(1f);
 
         decisionTree = new DecisionTree();
         decisionTree.createTree();

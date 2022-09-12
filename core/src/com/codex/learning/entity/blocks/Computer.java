@@ -81,7 +81,6 @@ public class Computer extends Entity {
         if(isInContact() && Gdx.input.isKeyJustPressed(Input.Keys.E)){
             codeRiddle.setInComputer(true);
         }
-
     }
 
     private void checkIfDone(){

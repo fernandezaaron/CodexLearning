@@ -36,16 +36,13 @@ public class Contact implements ContactListener {
                 blocks = (Blocks) fb.getUserData();
             }
 
-            System.out.println(blocks.getBody().getUserData());
-
-            numberOfCollision++;
-            System.out.println(numberOfCollision);
-
-
             blocks.setInContact(true);
+
             if (jedisaur.isCarrying()) {
                 System.out.println("Block yes");
-                if (blocks.isPreDefinedContact() || numberOfCollision > 1) {
+                numberOfCollision = 1;
+                System.out.println(numberOfCollision + " if --");
+                if (blocks.isPreDefinedContact() ) {
                     blocks.setInContact(false);
                     jedisaur.setPickUpAble(false);
                 }
@@ -67,10 +64,20 @@ public class Contact implements ContactListener {
                     jedisaur.setPickUpAble(false);
                 }
                 else{
+                    if(jedisaur.isDropped()){
+                        numberOfCollision = 0;
+                        jedisaur.setDropped(false);
+                    }
+                    numberOfCollision++;
+                    System.out.println(numberOfCollision + " else ++");
                     jedisaur.setPickUpAble(true);
-
+                }
+                if(numberOfCollision>1){
+                    blocks.setInContact(false);
+                    jedisaur.setPickUpAble(false);
                 }
             }
+
 
 
         }
@@ -120,6 +127,10 @@ public class Contact implements ContactListener {
             }
             else{
                 jedisaur.setPickUpAble(true);
+            }
+            if(blockHolder.isOccupied()){
+                numberOfCollision = 0;
+                System.out.println("occupied");
             }
         }
 
@@ -174,6 +185,36 @@ public class Contact implements ContactListener {
 
         if(isPlayMatContact(fa,fb)){
             System.out.println("playmat contact");
+            PlayMat playMat;
+            Character jedisaur;
+
+            if(fa.getUserData() instanceof PlayMat){
+                playMat = (PlayMat) fa.getUserData();
+                jedisaur = (Character) fb.getUserData();
+            }
+            else{
+                jedisaur = (Character) fa.getUserData();
+                playMat = (PlayMat) fb.getUserData();
+            }
+
+
+            playMat.setInContact(true);
+        }
+
+        if(isObjectiveContact(fa, fb)){
+            Objective objective;
+            Character jedisaur;
+
+            if(fa.getUserData() instanceof Objective){
+                objective = (Objective) fa.getUserData();
+                jedisaur = (Character) fb.getUserData();
+            }
+            else{
+                jedisaur = (Character) fa.getUserData();
+                objective = (Objective) fb.getUserData();
+            }
+            System.out.println("ASDWDQDWQDQWDQDW");
+            objective.setInContact(true);
         }
 
         Gdx.app.log("BEGIN CONTACT", "");
@@ -200,14 +241,25 @@ public class Contact implements ContactListener {
                 jedisaur = (Character) fa.getUserData();
                 blocks = (Blocks) fb.getUserData();
             }
-            numberOfCollision--;
-            System.out.println(numberOfCollision);
+
             blocks.setInContact(false);
             jedisaur.setPickUpAble(false);
+            if(!jedisaur.isCarrying()){
+                if(!blocks.isPreDefinedContact()){
+                    numberOfCollision--;
+                    System.out.println(numberOfCollision + " collision");
+                }
+
+            }
+            if(numberOfCollision < 0){
+                numberOfCollision = 0;
+            }
+
             if(numberOfCollision == 1){
                 blocks.setInContact(true);
                 jedisaur.setPickUpAble(true);
             }
+
         }
 
         if(isDispenserContact(fa, fb)){
@@ -272,6 +324,34 @@ public class Contact implements ContactListener {
 
         if(isPlayMatContact(fa,fb)){
             System.out.println("playmat end contact");
+            PlayMat playMat;
+            Character jedisaur;
+
+            if(fa.getUserData() instanceof PlayMat){
+                playMat = (PlayMat) fa.getUserData();
+                jedisaur = (Character) fb.getUserData();
+            }
+            else{
+                jedisaur = (Character) fa.getUserData();
+                playMat = (PlayMat) fb.getUserData();
+            }
+
+            playMat.setInContact(false);
+        }
+
+        if(isObjectiveContact(fa, fb)){
+            Objective objective;
+            Character jedisaur;
+
+            if(fa.getUserData() instanceof Objective){
+                objective = (Objective) fa.getUserData();
+                jedisaur = (Character) fb.getUserData();
+            }
+            else{
+                jedisaur = (Character) fa.getUserData();
+                objective = (Objective) fb.getUserData();
+            }
+            objective.setInContact(false);
         }
 
         Gdx.app.log("END CONTACT", "");
@@ -332,10 +412,18 @@ public class Contact implements ContactListener {
         return false;
     }
 
-
     private boolean isPlayMatContact(Fixture a, Fixture b){
         if(a.getUserData() instanceof Character || b.getUserData() instanceof Character){
             if(a.getUserData() instanceof PlayMat || b.getUserData() instanceof PlayMat){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isObjectiveContact(Fixture a, Fixture b){
+        if(a.getUserData() instanceof Character || b.getUserData() instanceof Character){
+            if(a.getUserData() instanceof Objective || b.getUserData() instanceof Objective){
                 return true;
             }
         }

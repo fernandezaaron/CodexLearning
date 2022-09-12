@@ -67,6 +67,8 @@ public class CodeRiddle extends State {
 
         dialogueBox = new DialogueBox(manager.getSkin(), "dialogbox2");
 
+        manager.getFont().getData().setScale(1f);
+
         if(manager.getStageSelector().map().equals("1")){
             avatarImage.setBackground("jediGrandpaAvatar");
         }else if(manager.getStageSelector().map().equals("2")){

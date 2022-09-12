@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.codex.learning.entity.Collisions;
+import com.codex.learning.entity.blocks.Objective;
 import com.codex.learning.entity.blocks.PlayMat;
 import com.codex.learning.entity.characters.Character;
 import com.codex.learning.entity.characters.NPC;
@@ -21,6 +22,7 @@ public class PlayroomMapS1 extends State {
     private boolean inPlayroom;
     private NPC npc;
     private PlayMat playMat;
+    private Objective objective;
     private Minigame minigame;
     private int randomNumber;
     public PlayroomMapS1(Manager manager) {
@@ -42,6 +44,8 @@ public class PlayroomMapS1 extends State {
         playMat = new PlayMat(manager);
         playMat.create(new Vector2(17.5f, 0), new Vector2(6f, 10), 0);
 
+        objective = new Objective(manager);
+        objective.create(new Vector2(6f, 13f), new Vector2(1.5f, 2f), 0);
 
 
 //        minigame = new Minigame(manager, stage, 2);
@@ -51,6 +55,7 @@ public class PlayroomMapS1 extends State {
     @Override
     public void update(float delta) {
         npc.update(delta);
+        objective.update(delta);
     }
 
     @Override
@@ -60,16 +65,17 @@ public class PlayroomMapS1 extends State {
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.enableBlending();
         if(manager.getStageSelector().map().equals("1")){
-            sprite.draw(manager.getPlayroomStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+//            sprite.draw(manager.getPlayroomStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         }
         else if(manager.getStageSelector().map().equals("2")){
             sprite.draw(manager.getPlayroomStage2(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         }
         else if(manager.getStageSelector().map().equals("3")){
             sprite.draw(manager.getPlayroomStage3(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-
         }
         sprite.end();
+
+
         npc.render(sprite);
 
     }
@@ -79,9 +85,24 @@ public class PlayroomMapS1 extends State {
         npc.disposeBody();
         upBorder.disposeBody();
         downBorder.disposeBody();
+        objective.disposeBody();
     }
 
+    public PlayMat getPlayMat() {
+        return playMat;
+    }
 
+    public void setPlayMat(PlayMat playMat) {
+        this.playMat = playMat;
+    }
+
+    public Objective getObjective() {
+        return objective;
+    }
+
+    public void setObjective(Objective objective) {
+        this.objective = objective;
+    }
 
     public int getStage() {
         return stage;
@@ -98,4 +119,14 @@ public class PlayroomMapS1 extends State {
     public void setInPlayroom(boolean inPlayroom) {
         this.inPlayroom = inPlayroom;
     }
+
+
+    public void setActive(boolean active){
+        playMat.getBody().setActive(active);
+        npc.getBody().setActive(active);
+        objective.getBody().setActive(active);
+    }
+
+
+
 }
