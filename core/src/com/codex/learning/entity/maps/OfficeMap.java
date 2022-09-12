@@ -10,7 +10,7 @@ import com.codex.learning.utility.Manager;
 public class OfficeMap extends State {
 
     private Collisions leftBorder, upBorder, downBorder, playroomBorder, lTableLeft, lTableMiddle, lTableRight, ltableLeftHorizontal, lTableRightHorizontal, lTableMiddleHorizontal;
-    private Collisions tableLeft, tableRight, couches;
+    private Collisions tableLeft, tableRight, couches, locker;
     public OfficeMap(Manager manager){
         super(manager);
 
@@ -47,7 +47,8 @@ public class OfficeMap extends State {
         tableLeft.create(new Vector2(8, -6), new Vector2(5,1f),0);
 
 
-
+        locker = new Collisions(manager);
+        locker.create(new Vector2(-10f, -5f), new Vector2(0.2f, 5.4f), 0);
 
     }
     @Override
@@ -77,6 +78,7 @@ public class OfficeMap extends State {
         upBorder.getBody().setActive(active);
         downBorder.getBody().setActive(active);
         leftBorder.getBody().setActive(active);
+        locker.getBody().setActive(active);
     }
 
     public void setPlayroomActive(boolean active){
