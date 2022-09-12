@@ -13,10 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.codex.learning.entity.Entity;
-import com.codex.learning.utility.Constants;
-import com.codex.learning.utility.Dialogue;
-import com.codex.learning.utility.DialogueBox;
-import com.codex.learning.utility.Manager;
+import com.codex.learning.utility.*;
 
 public class NPC extends Entity {
 
@@ -34,7 +31,7 @@ public class NPC extends Entity {
     private String dialogSet;
     private int index;
     private int nextStatement;
-    private boolean inPlayroom;
+    private boolean inPlayroom, readiness;
 
     public NPC(Manager manager, String dialogSet, int index, boolean inPlayroom) {
         super(manager);
@@ -77,6 +74,7 @@ public class NPC extends Entity {
         manager.getDialogue().setStage(manager.getStageSelector().getStageMap());
 
         talking = false;
+        readiness = false;
 
         BodyDef def = new BodyDef();
         def.type = BodyDef.BodyType.StaticBody;
@@ -241,8 +239,23 @@ public class NPC extends Entity {
 
         if(isInContact() && isInPlayroom() && Gdx.input.isKeyJustPressed(Input.Keys.E)) {
             setTalking(true);
-            System.out.println("Jedigrandpa in playroom");
-            db.textAnimation(manager.getDialogue().reader(nextStatement, "finishCheck", index));
+//            System.out.println("Jedigrandpa in playroom");
+            db.textAnimation(manager.getDialogue().reader(nextStatement, "finishCheck", 0));
+            setReadiness(true);
+        }
+
+        /** CHECKS EACH BLOCKHOLDER THEN CHECK IF CORRECT OUTPUT **/
+        if(isInContact() && isInPlayroom() && isReady() && Gdx.input.isKeyJustPressed(Input.Keys.E)) {
+            setTalking(true);
+            manager.getMinigameChecker().minigameCheck();
+            if(manager.getMinigameChecker().correctOutputCheck()) {
+                System.out.println("tama to");
+                db.textAnimation(manager.getDialogue().reader(nextStatement, "finishCheck", 1));
+            }
+            else {
+                System.out.println("mali to");
+                db.textAnimation(manager.getDialogue().reader(nextStatement, "finishCheck", 2));
+            }
         }
 
         if(!manager.getDialogue().isStatementEnd() && Gdx.input.justTouched() && db.isOpen()){
@@ -261,6 +274,14 @@ public class NPC extends Entity {
 
 
         manager.getStage().addActor(table);
+    }
+
+    public boolean isReady() {
+        return readiness;
+    }
+
+    public void setReadiness(boolean readiness) {
+        this.readiness = readiness;
     }
 
     public boolean isInPlayroom() {

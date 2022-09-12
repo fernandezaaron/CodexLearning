@@ -7,9 +7,11 @@ import com.codex.learning.entity.blocks.Blocks;
 import com.codex.learning.entity.characters.Character;
 import com.codex.learning.entity.maps.PlayroomMapS1;
 import com.codex.learning.states.PauseState;
+import com.codex.learning.states.PlayState;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
+import com.codex.learning.utility.MinigameChecker;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -159,6 +161,8 @@ public class MysteryCode extends State {
         }
         /** END OF ANSWER POOL CREATION **/
 
+        setToCheck(blockHolders);
+
         this.jedisaur = jedisaur;
     }
 
@@ -195,7 +199,12 @@ public class MysteryCode extends State {
                         if (blockHolders[i][j].isInContact()) {
                             jedisaur.dropBlock(blockHolders[i][j]);
                             if(jedisaur.isDropped() && !blocksArrayList.get(i).contains(blockHolders[i][j].getCopyBlock())){
-                                    blocksArrayList.get(i).set(j, blockHolders[i][j].getCopyBlock());
+                                blocksArrayList.get(i).set(j, blockHolders[i][j].getCopyBlock());
+                            }
+                            if(jedisaur.isDropped()) {
+//                                blockHolders[i][j].checkErrors();
+//                                System.out.println(blockHolders[i][j].getNumberOfErrors() + " Number of errors");
+                                System.out.println(blockHolders[i][j]);
                             }
                         }
                     }
@@ -405,5 +414,17 @@ public class MysteryCode extends State {
 //        minigameContainerLimit = manager.getQuestionnaire().getMinigameLimit();
         banishPerRow = manager.getQuestionnaire().getBanishPerRow();
         answerPoolContainer = manager.getQuestionnaire().getAnswerPool();
+    }
+
+    public void setToCheck(BlockHolder[][] blockHolders) {
+        for(int i = 0; i < blockHolders.length; i++) {
+            for (int j = 0; j < blockHolders[i].length; j++) {
+                if(blockHolders[i][j] != null) {
+                    System.out.println(blockHolders[i][j] + " tangina netong blockholder sa minigame");
+                }
+            }
+        }
+        manager.getMinigameChecker().setBlockHolders(blockHolders);
+        System.out.println(blockHolders + " tangina ayaw mapasa ");
     }
 }
