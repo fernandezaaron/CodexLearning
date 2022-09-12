@@ -101,7 +101,7 @@ public class MysteryCode extends State {
                         answerPoolContainer.add(minigameContainer.get(i).get(j));
                         xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 1.75f;
                         if(currentStringLength >7){
-                            xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 2.5f;
+                            xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 2.75f;
 
                         }
                     } else {
