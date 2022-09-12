@@ -10,6 +10,7 @@ import com.codex.learning.entity.blocks.BlockDispenser;
 import com.codex.learning.entity.blocks.BlockHolder;
 import com.codex.learning.entity.blocks.Blocks;
 import com.codex.learning.entity.Entity;
+import com.codex.learning.entity.blocks.PlayMat;
 import com.codex.learning.utility.Animation;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
@@ -384,23 +385,22 @@ public class Character extends Entity {
 
     public void carryBlock(Blocks block){
         if(isCarrying() && carry == 0){
+            setPickUpAble(true);
             carry = 1;
             numberOfBlockInteraction++;
             setCopyBlock(block);
-            System.out.println(copyBlock + " carrying");
         }
         if(getCopyBlock() != null){
+            setPickUpAble(false);
             getCopyBlock().getBody().setType(BodyDef.BodyType.DynamicBody);
             getCopyBlock().getBody().setTransform(body.getPosition().x - (block.getDupliSize().x), body.getPosition().y + 3f, 0);
 //            System.out.println(this.size.x + " sa character");
         }
         block.getBody().setType(BodyDef.BodyType.StaticBody);
+
     }
 
     public void dropBlock(BlockHolder blockHolder){
-
-//        System.out.println("Occupied - " + blockHolder.isOccupied());
-
         // To prevent pickup in an empty block holder
         if(blockHolder.isOccupied() && !isCarrying()){
             setPickUpAble(true);
@@ -447,7 +447,6 @@ public class Character extends Entity {
             setPickedUp(false);
         }
         else if(Gdx.input.isKeyJustPressed(Input.Keys.E) && isFixture() && blockHolder.isOccupied()){
-
             blockHolder.setCopyBlock(null);
             if(!isCarrying()){
                 blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().first());
@@ -456,8 +455,6 @@ public class Character extends Entity {
                 }
                 blockHolder.createDefaultFixture();
             }
-
-
 
             if(isCarrying()){
                 blockHolder.setOccupied(true);
@@ -471,6 +468,51 @@ public class Character extends Entity {
             setPickedUp(true);
 
         }
+    }
+
+    public void dropBlock(PlayMat playmat){
+        if(playmat.isInContact() && Gdx.input.isKeyJustPressed(Input.Keys.E) && getCopyBlock() != null && isCarrying()){
+            System.out.println("dropping at playmat");
+
+            switch (direction){
+                case "north":
+                    getCopyBlock().getBody().setTransform(
+                            getBody().getPosition().x ,
+                            getBody().getPosition().y + 0.5f,
+                            0);
+                    break;
+                case "south":
+                    getCopyBlock().getBody().setTransform(
+                            getBody().getPosition().x,
+                            getBody().getPosition().y - 1.5f,
+                            0);
+                    break;
+                case "east":
+                    getCopyBlock().getBody().setTransform(
+                            getBody().getPosition().x + 1,
+                            getBody().getPosition().y,
+                            0);
+                    break;
+                case "west":
+                    getCopyBlock().getBody().setTransform(
+                            getBody().getPosition().x - 1,
+                            getBody().getPosition().y,
+                            0);
+                    break;
+
+            }
+
+            getCopyBlock().setInContact(false);
+            getCopyBlock().getBody().setType(BodyDef.BodyType.StaticBody);
+
+            setDropped(true);
+            setCopyBlock(null);
+            carry = 0;
+            setPickUpAble(false);
+            setCarrying(false);
+            setPickedUp(false);
+        }
+
     }
 
     public String getDirection() {

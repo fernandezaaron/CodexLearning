@@ -50,7 +50,7 @@ public class Objective extends Entity {
 
         inContact = false;
         inObjective = false;
-
+        manager.getFont().getData().setScale(1.5f);
         textureRegion = new TextureRegion(new Texture(Constants.OBJECTIVE_SHEET_PATH), 0, 0, 800, 720);
     }
 
@@ -67,14 +67,10 @@ public class Objective extends Entity {
         sprite.enableBlending();
 
         if(isInObjective()){
-//            sprite.draw(textureRegion,
-//                    manager.getCamera().position.x - Constants.SCREEN_WIDTH / 2f,
-//                    manager.getCamera().position.y - Constants.SCREEN_HEIGHT / 2f,
-//                    Constants.SCREEN_WIDTH,
-//                    Constants.SCREEN_HEIGHT);
             sprite.draw(textureRegion,
                     (body.getPosition().x * Constants.PPM - textureRegion.getRegionWidth() / 1.35f),
                     (body.getPosition().y * Constants.PPM - textureRegion.getRegionHeight() / 0.9f) + 50);
+            manager.getFont().draw(sprite, manager.getDialogue().getObjectiveDialogue(2-1),-280, 200);
         }
         sprite.end();
     }
@@ -83,7 +79,7 @@ public class Objective extends Entity {
         if(isInContact() && Gdx.input.isKeyJustPressed(Input.Keys.E)){
             setInObjective(true);
         }
-        if(isInContact() && Gdx.input.isKeyJustPressed(Input.Keys.F)){
+        if(isInObjective() && Gdx.input.isKeyJustPressed(Input.Keys.F)){
             setInObjective(false);
         }
     }

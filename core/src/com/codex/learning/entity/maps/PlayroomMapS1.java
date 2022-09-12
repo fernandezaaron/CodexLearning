@@ -47,6 +47,7 @@ public class PlayroomMapS1 extends State {
         objective = new Objective(manager);
         objective.create(new Vector2(6f, 13f), new Vector2(1.5f, 2f), 0);
 
+
 //        minigame = new Minigame(manager, stage, 2);
         door = new TextureRegion(manager.getReportCardSheet(), 48,195, 263, 119);
     }
@@ -64,17 +65,17 @@ public class PlayroomMapS1 extends State {
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.enableBlending();
         if(manager.getStageSelector().map().equals("1")){
-            sprite.draw(manager.getPlayroomStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+//            sprite.draw(manager.getPlayroomStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         }
         else if(manager.getStageSelector().map().equals("2")){
             sprite.draw(manager.getPlayroomStage2(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         }
         else if(manager.getStageSelector().map().equals("3")){
             sprite.draw(manager.getPlayroomStage3(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-
         }
         sprite.end();
-        objective.render(sprite);
+
+
         npc.render(sprite);
 
     }
@@ -87,7 +88,21 @@ public class PlayroomMapS1 extends State {
         objective.disposeBody();
     }
 
+    public PlayMat getPlayMat() {
+        return playMat;
+    }
 
+    public void setPlayMat(PlayMat playMat) {
+        this.playMat = playMat;
+    }
+
+    public Objective getObjective() {
+        return objective;
+    }
+
+    public void setObjective(Objective objective) {
+        this.objective = objective;
+    }
 
     public int getStage() {
         return stage;
@@ -104,4 +119,14 @@ public class PlayroomMapS1 extends State {
     public void setInPlayroom(boolean inPlayroom) {
         this.inPlayroom = inPlayroom;
     }
+
+
+    public void setActive(boolean active){
+        playMat.getBody().setActive(active);
+        npc.getBody().setActive(active);
+        objective.getBody().setActive(active);
+    }
+
+
+
 }
