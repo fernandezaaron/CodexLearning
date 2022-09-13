@@ -77,6 +77,13 @@ public class OfficeMap extends State {
         upBorder.getBody().setActive(active);
         downBorder.getBody().setActive(active);
         leftBorder.getBody().setActive(active);
+        lTableLeft.getBody().setActive(active);
+        ltableLeftHorizontal.getBody().setActive(active);
+        lTableMiddle.getBody().setActive(active);
+        lTableMiddleHorizontal.getBody().setActive(active);
+        lTableRight.getBody().setActive(active);
+        lTableRightHorizontal.getBody().setActive(active);
+        tableLeft.getBody().setActive(active);
     }
 
     public void setPlayroomActive(boolean active){
