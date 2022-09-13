@@ -2552,6 +2552,21 @@ public class Dialogue {
             )
     );
 
+    private ArrayList<ArrayList<String>> askIfFinished = new ArrayList<>(
+            Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
+                            "Are you finished son?"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            "Uy tama!!!"
+                    )),
+                    new ArrayList<>(Arrays.asList(
+                            "BOBO KA MALE!!!"
+                    ))
+            )
+    );
+
 
     private boolean statementEnd;
     float myFloatNum = 5.99f;
@@ -2571,6 +2586,7 @@ public class Dialogue {
             case "minigames": return statementMover(nextStatement, questionDialogue, 0);
             case "codeorderhints": return statementMover(nextStatement, codeOrderHints, 0);
             case "hints": return statementMover(nextStatement, twoHintsContainer, getStage()-1);
+            case "finishCheck": return statementMover(nextStatement, askIfFinished, index);
         }
         return "";
     }

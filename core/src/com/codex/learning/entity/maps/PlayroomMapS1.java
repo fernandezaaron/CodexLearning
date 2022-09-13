@@ -38,7 +38,7 @@ public class PlayroomMapS1 extends State {
         atDoor = false;
         inPlayroom = false;
 
-        npc = new NPC(manager, "minigames", 0);
+        npc = new NPC(manager, "minigames", 0, true);
         npc.create(new Vector2(0, -6), new Vector2(1, 1.4f), 0);
 
         playMat = new PlayMat(manager);

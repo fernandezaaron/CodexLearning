@@ -46,8 +46,6 @@ public class Minigame extends State {
         }
     }
 
-
-
     @Override
     public void update(float delta) {
         if(fib){

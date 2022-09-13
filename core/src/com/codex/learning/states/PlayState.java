@@ -76,7 +76,7 @@ public class PlayState extends State{
         jedisaur = new Character(manager);
         jedisaur.create(new Vector2(0, -5), new Vector2(1.2f, 1.75f), 1.6f);
 
-        jediGrandpa = new NPC(manager, "introduction", manager.getStageSelector().getStageMap()-1);
+        jediGrandpa = new NPC(manager, "introduction", manager.getStageSelector().getStageMap()-1, false);
         jediGrandpa.create(new Vector2(0, 0), new Vector2(1, 1.4f), 0);
 
         minigame = new Minigame(manager, randomMinigame, jedisaur);

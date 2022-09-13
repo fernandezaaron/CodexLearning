@@ -13,10 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.codex.learning.entity.Entity;
-import com.codex.learning.utility.Constants;
-import com.codex.learning.utility.Dialogue;
-import com.codex.learning.utility.DialogueBox;
-import com.codex.learning.utility.Manager;
+import com.codex.learning.utility.*;
 
 public class NPC extends Entity {
 
@@ -34,11 +31,13 @@ public class NPC extends Entity {
     private String dialogSet;
     private int index;
     private int nextStatement;
+    private boolean inPlayroom, readiness;
 
-    public NPC(Manager manager, String dialogSet, int index) {
+    public NPC(Manager manager, String dialogSet, int index, boolean inPlayroom) {
         super(manager);
         this.dialogSet = dialogSet;
         this.index = index;
+        this.inPlayroom = inPlayroom;
     }
 
     @Override
@@ -75,6 +74,7 @@ public class NPC extends Entity {
         manager.getDialogue().setStage(manager.getStageSelector().getStageMap());
 
         talking = false;
+        readiness = false;
 
         BodyDef def = new BodyDef();
         def.type = BodyDef.BodyType.StaticBody;
@@ -224,7 +224,7 @@ public class NPC extends Entity {
     public void npcInteraction(float delta){
         if(isInContact() && Gdx.input.isKeyJustPressed(Input.Keys.E)){
             setTalking(true);
-            System.out.println("Jedigrandpa");;
+            System.out.println("Jedigrandpa");
             if(!db.isOpen()){
                 //if the dialogue box is not yet open then animate the text and add it to the table to draw it
                 System.out.println("here");
@@ -234,6 +234,27 @@ public class NPC extends Entity {
                 table.add(db).align(Align.left).width(1000);
                 table.setHeight(250);
                 table.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/Constants.PPM/2, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/Constants.PPM/2 - 400);
+            }
+        }
+
+        if(isInContact() && isInPlayroom() && Gdx.input.isKeyJustPressed(Input.Keys.E)) {
+            setTalking(true);
+//            System.out.println("Jedigrandpa in playroom");
+            db.textAnimation(manager.getDialogue().reader(nextStatement, "finishCheck", 0));
+            setReadiness(true);
+        }
+
+        /** CHECKS EACH BLOCKHOLDER THEN CHECK IF CORRECT OUTPUT **/
+        if(isInContact() && isInPlayroom() && isReady() && Gdx.input.isKeyJustPressed(Input.Keys.E)) {
+            setTalking(true);
+            manager.getMinigameChecker().minigameCheck();
+            if(manager.getMinigameChecker().correctOutputCheck()) {
+                System.out.println("tama to");
+                db.textAnimation(manager.getDialogue().reader(nextStatement, "finishCheck", 1));
+            }
+            else {
+                System.out.println("mali to");
+                db.textAnimation(manager.getDialogue().reader(nextStatement, "finishCheck", 2));
             }
         }
 
@@ -253,6 +274,22 @@ public class NPC extends Entity {
 
 
         manager.getStage().addActor(table);
+    }
+
+    public boolean isReady() {
+        return readiness;
+    }
+
+    public void setReadiness(boolean readiness) {
+        this.readiness = readiness;
+    }
+
+    public boolean isInPlayroom() {
+        return inPlayroom;
+    }
+
+    public void setInPlayroom(boolean inPlayroom) {
+        this.inPlayroom = inPlayroom;
     }
 
     public boolean isInContact() {
