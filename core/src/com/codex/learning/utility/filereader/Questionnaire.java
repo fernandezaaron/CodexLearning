@@ -116,12 +116,14 @@ public class Questionnaire extends DatabaseReader {
     public void getMinigameHolder(int row1, int col1, String difficulty, String stageTopic) {
         minigameHolder = new ArrayList<>();
         banishPerRow = new ArrayList<>();
+        System.out.println(stageTopic + " stage topic, " + difficulty + " difficulty");
         String stageTopicacq = getMinigameInfo(row1, 1);
         String difficultyacq = getMinigameInfo(row1, 2);
         Row qRow;
         Cell qCell;
         // Check the difficulty and the stage topic
         if((difficultyacq != null && difficultyacq.equals(difficulty)) && (stageTopicacq != null && stageTopicacq.equals(stageTopic))) {
+            System.out.println(" im here ");
             for(int x = row1; x > 0; x++) {
                 minigameGetter = new ArrayList<>();
                 banishThisNumber = new ArrayList<>();
@@ -241,6 +243,7 @@ public class Questionnaire extends DatabaseReader {
     public void questionDisplay(String stage, String topics) {
         addTopic(topics);
 
+        System.out.println(levels.size() + "levels size");
         difficulty = levels.get(randomizer.nextInt(levels.size()));
 
 
@@ -486,12 +489,19 @@ public class Questionnaire extends DatabaseReader {
 
     public void dispose(){
         questions.clear();
-        levels.clear();
+//        levels.clear();
         options.clear();
         answers.clear();
         topic.clear();
         question = null;
         numberOfQuestions = 0;
+    }
+
+    public void clearMinigames(){
+        minigameHolder.clear();
+        answerPool.clear();
+        dispenserPool.clear();
+        banishPerRow.clear();
     }
 
     public int getQuestionID() {

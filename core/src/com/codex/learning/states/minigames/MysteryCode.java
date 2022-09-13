@@ -403,6 +403,7 @@ public class MysteryCode extends State {
 
     public void getAMinigame(String stage){
         manager.getQuestionnaire().minigameDisplay(stage, String.valueOf(manager.getStageSelector().getStageMap()));
+        System.out.println(stage + " stage, " + manager.getStageSelector().getStageMap() + " topics");
         minigameContainer = manager.getQuestionnaire().getMinigameHolder();
 //        minigameContainerLimit = manager.getQuestionnaire().getMinigameLimit();
         banishPerRow = manager.getQuestionnaire().getBanishPerRow();
