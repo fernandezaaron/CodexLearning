@@ -38,7 +38,7 @@ public class PlayroomMapS1 extends State {
         atDoor = false;
         inPlayroom = false;
 
-        npc = new NPC(manager, "minigames", 0);
+        npc = new NPC(manager, "minigames", 0, true);
         npc.create(new Vector2(0, -6), new Vector2(1, 1.4f), 0);
 
         playMat = new PlayMat(manager);
@@ -46,7 +46,6 @@ public class PlayroomMapS1 extends State {
 
         objective = new Objective(manager);
         objective.create(new Vector2(6f, 13f), new Vector2(1.5f, 2f), 0);
-
 
 
 //        minigame = new Minigame(manager, stage, 2);
@@ -66,7 +65,7 @@ public class PlayroomMapS1 extends State {
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.enableBlending();
         if(manager.getStageSelector().map().equals("1")){
-//            sprite.draw(manager.getPlayroomStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+            sprite.draw(manager.getPlayroomStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         }
         else if(manager.getStageSelector().map().equals("2")){
             sprite.draw(manager.getPlayroomStage2(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
@@ -121,13 +120,13 @@ public class PlayroomMapS1 extends State {
         this.inPlayroom = inPlayroom;
     }
 
+
     public void setActive(boolean active){
-        System.out.println("ANDITO AKO PUTA");
         playMat.getBody().setActive(active);
         npc.getBody().setActive(active);
         objective.getBody().setActive(active);
-        System.out.println(npc.getBody().isActive());
     }
+
 
 
 }

@@ -23,7 +23,7 @@ public class Constants {
     public static final String BACKGROUND_PATH = "background/mainmenu2.png";
     public static final String REPORT_CARD_SHEET_PATH = "background/reportcardspritesheet.png";
     public static final String SKY_BACKGROUND_PATH = "background/skyBG.png";
-    public static final String PC_SHEET_PATH = "background/pcstatesheet1.png";
+    public static final String PC_SHEET_PATH = "background/pcstatesheet.png";
     public static final String OBJECTIVE_SHEET_PATH = "background/objectives.png";
 
     // BLOCK ASSET PATH
@@ -245,10 +245,10 @@ public class Constants {
     //END OF SETTINGS SPRITE SHEET
 
     //PC ASSETS
-    public static final int PC_X = 89;
-    public static final int PC_Y = 28;
-    public static final int PC_WIDTH = 54;
-    public static final int PC_HEIGHT = 43;
+    public static final int PC_X = 115;
+    public static final int PC_Y = 27;
+    public static final int PC_WIDTH = 68;
+    public static final int PC_HEIGHT = 48;
 
     public static final int PC_SCREEN_X = 69;
     public static final int PC_SCREEN_Y = 141;

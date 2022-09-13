@@ -56,6 +56,8 @@ public class Manager {
     private Viewport viewport;
     private StageSelector stageSelector;
 
+    private MinigameChecker minigameChecker;
+
     private DecisionTree decisionTree;
 
     private boolean moving;
@@ -74,6 +76,7 @@ public class Manager {
 
         questionnaire = new Questionnaire();
         stageSelector = new StageSelector();
+        minigameChecker = new MinigameChecker();
 
         background = new TextureRegion(new Texture(Constants.BACKGROUND_PATH));
         mainMenu = new TextureRegion(new Texture(Constants.MENU_TEXT_PATH));
@@ -254,6 +257,14 @@ public class Manager {
 
     public void setMusicPaused(boolean musicPaused) {
         this.musicPaused = musicPaused;
+    }
+
+    public MinigameChecker getMinigameChecker() {
+        return minigameChecker;
+    }
+
+    public void setMinigameChecker(MinigameChecker minigameChecker) {
+        this.minigameChecker = minigameChecker;
     }
 
     public Questionnaire getQuestionnaire() {
