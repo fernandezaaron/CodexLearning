@@ -74,8 +74,6 @@ public class MysteryCode extends State {
                 }
             }
         }
-
-
         /** START OF MINIGAME CREATION **/
         yStartingPoint = 10;
         currentCell = 0;
