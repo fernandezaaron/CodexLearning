@@ -44,7 +44,7 @@ public class OfficeMap extends State {
         lTableRightHorizontal.create(new Vector2(8.5f, 10.6f), new Vector2(2,1), 0);
 
         tableLeft = new Collisions(manager);
-        tableLeft.create(new Vector2(8, -6), new Vector2(5,1f),0);
+        tableLeft.create(new Vector2(8, -6), new Vector2(4.9f,0.5f),0);
 
 
         locker = new Collisions(manager);
