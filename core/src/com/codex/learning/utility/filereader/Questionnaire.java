@@ -330,7 +330,7 @@ public class Questionnaire extends DatabaseReader {
     }
 
     public void addTopic(String stageNumber){
-        System.out.println(stageNumber);
+        System.out.println(stageNumber + " stage number addtopic");
         switch (stageNumber){
             case "1":
                 topic.add("Syntax");

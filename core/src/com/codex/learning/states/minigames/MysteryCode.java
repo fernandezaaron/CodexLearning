@@ -59,10 +59,8 @@ public class MysteryCode extends State {
         /** BANISH 1 OR 2 CELLS PER ROW **/
         for(int i = 0; i < banishPerRow.size(); i++) {
             banishNumberIterator = (banishPerRow.get(i).size() == 1)? 1:randomizer.nextInt(2) + 1;
-
             for (int j = 0; j < banishPerRow.get(i).size(); j++) {
                 banishNumber = randomizer.nextInt(banishPerRow.get(i).size() - 1) + banishPerRow.get(i).get(0);
-                System.out.println(banishNumber);
                 if (banishNumberIterator == 0) {
                     break;
                 }
@@ -127,12 +125,16 @@ public class MysteryCode extends State {
             AnsPoolX = 13;
             totalLineLength = 0;
             while (totalLineLength <= 12) {
+                if (currentAnsCell == ansPoolSize) {
+                    break;
+                }
                 currentStringLength = (float) String.valueOf(answerPoolContainer.get(currentAnsCell)).length();
                 totalLineLength += currentStringLength + (AnsPoolX - 11);
                 answerBlocks[currentAnsCell] = new Blocks(manager, "\"" + answerPoolContainer.get(currentAnsCell) + "\"", answerPoolContainer.get(currentAnsCell), false);
                 if (answerPoolContainer.get(currentAnsCell) != null) {
-                    if (currentStringLength <= 3)
+                    if (currentStringLength <= 3) {
                         answerBlocks[currentAnsCell].create(new Vector2(AnsPoolX, AnsPoolY), new Vector2((currentStringLength * 0.5f), Constants.BLOCKS_HEIGHT), 0);
+                    }
                     else{
                         if(currentStringLength>7){
                             AnsPoolX += 2;
@@ -140,15 +142,8 @@ public class MysteryCode extends State {
                         answerBlocks[currentAnsCell].create(new Vector2(AnsPoolX, AnsPoolY), new Vector2((currentStringLength * 0.23f), Constants.BLOCKS_HEIGHT), 0);
                     }
                     AnsPoolX = answerBlocks[currentAnsCell].getDupliSize().x + answerBlocks[currentAnsCell].getBody().getPosition().x + 2.25f;
-                    if (currentAnsCell == ansPoolSize - 1) {
-                        break;
-                    } else {
-                        currentAnsCell++;
-                    }
+                    currentAnsCell++;
                 }
-            }
-            if(currentAnsCell == ansPoolSize - 1) {
-                break;
             }
             AnsPoolY -= 2.5;
         }
@@ -195,7 +190,7 @@ public class MysteryCode extends State {
                                 blocksArrayList.get(i).set(j, blockHolders[i][j].getCopyBlock());
                             }
                             if(jedisaur.isDropped()) {
-                                setBlockToCheck(blockHolders[i][j].getCopyBlock());
+                                setBlockToCheck(blockHolders[i][j].getCopyBlock(), i, j);
 //                                setToCheck(blockHolders);
                             }
                         }
@@ -336,6 +331,7 @@ public class MysteryCode extends State {
                                         }
                                     }
                                 }
+                                setBlockToCheck(null, i, j);
                                 setToCheck(blockHolders);
                                 jedisaur.setPickedUp(false);
                             }
@@ -428,12 +424,12 @@ public class MysteryCode extends State {
         }
     }
 
-    public void setBlockToCheck(Blocks block) {
+    public void setBlockToCheck(Blocks block, int i, int j) {
         if(jedisaur.isPickedUp()) {
-//            manager.get
+            manager.getMinigameChecker().pickUpCopyBlock(block, i, j);
         }
         if(jedisaur.isDropped()) {
-            manager.getMinigameChecker().dropCopyBlock(block);
+            manager.getMinigameChecker().dropCopyBlock(block, i, j);
         }
     }
 }
