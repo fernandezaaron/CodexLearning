@@ -58,34 +58,22 @@ public class MysteryCode extends State {
 
         /** BANISH 1 OR 2 CELLS PER ROW **/
         for(int i = 0; i < banishPerRow.size(); i++) {
-            if(banishPerRow.get(i).size() == 1)
-                banishNumberIterator = 1;
-            else
-                banishNumberIterator = randomizer.nextInt(2) + 1;
-            numberRepeat = 0;
-            System.out.println("how many? " + banishNumberIterator);
+            banishNumberIterator = (banishPerRow.get(i).size() == 1)? 1:randomizer.nextInt(2) + 1;
+
             for (int j = 0; j < banishPerRow.get(i).size(); j++) {
-//                System.out.println((banishPerRow.get(i).size()) + "    " + banishPerRow.get(i).get(0));
                 banishNumber = randomizer.nextInt(banishPerRow.get(i).size() - 1) + banishPerRow.get(i).get(0);
                 System.out.println(banishNumber);
-                if (banishNumberIterator == 0 || numberRepeat == 5) {
-//                    System.out.println("berak");
+                if (banishNumberIterator == 0) {
                     break;
-                } else if (!banishCells.contains(banishNumber)) {
-                    banishCells.add(banishNumber);
-                    banishNumberIterator--;
-//                    System.out.println("baka sa iterator " + banishNumberIterator +
-//                            " eh sa last element " + (banishPerRow.get(i).size() - 1) +
-//                            " first? " + banishPerRow.get(i).get(0) +
-//                            " eto ibabanish " + banishNumber);
-                } else {
-                    System.out.println("number repeated");
-                    numberRepeat++;
+                }
+                else {
+                    if (!banishCells.contains(banishNumber)) {
+                        banishCells.add(banishNumber);
+                        banishNumberIterator--;
+                    }
                 }
             }
         }
-
-
         /** START OF MINIGAME CREATION **/
         yStartingPoint = 10;
         currentCell = 0;

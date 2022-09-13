@@ -70,7 +70,7 @@ public class Objective extends Entity {
             sprite.draw(textureRegion,
                     (body.getPosition().x * Constants.PPM - textureRegion.getRegionWidth() / 1.35f),
                     (body.getPosition().y * Constants.PPM - textureRegion.getRegionHeight() / 0.9f) + 50);
-            manager.getFont().draw(sprite, manager.getDialogue().getObjectiveDialogue(2-1),-280, 200);
+            manager.getFont().draw(sprite, manager.getDialogue().getObjectiveDialogue(manager.getQuestionnaire().getQuestionID() - 1),-280, 200);
         }
         sprite.end();
     }
