@@ -1,21 +1,25 @@
 package com.codex.learning.utility;
 
 import com.codex.learning.entity.blocks.BlockHolder;
+import com.codex.learning.entity.blocks.Blocks;
 import com.codex.learning.entity.characters.NPC;
 import com.codex.learning.states.PlayState;
 import com.codex.learning.states.minigames.Minigame;
 import com.codex.learning.states.minigames.MysteryCode;
 import org.graalvm.compiler.nodes.cfg.Block;
 
+import java.util.ArrayList;
+
 public class MinigameChecker {
     private BlockHolder[][] blockHolders;
+    private Blocks[][] updateBlocks;
     private int numberOfErrors;
     private boolean correctOutput;
 
     public MinigameChecker() {
-        blockHolders = new BlockHolder[20][20];
         numberOfErrors = 0;
         correctOutput = false;
+        updateBlocks = new Blocks[20][20];
     }
 
     /** CHECKS EACH BLOCK HOLDER IF CORRECT ID **/
@@ -23,8 +27,10 @@ public class MinigameChecker {
         for(int i = 0; i < blockHolders.length; i++) {
             for(int j = 0; j < blockHolders[i].length; j++) {
                 if(blockHolders[i][j] != null) {
-                    numberOfErrors += blockHolders[i][j].getBody().checkErrors();
-                    System.out.println(numberOfErrors);
+                    blockHolders[i][j].setCopyBlock(updateBlocks[i][j]);
+                    System.out.println(blockHolders[i][j].getCorrectID());
+                    numberOfErrors += blockHolders[i][j].checkErrors();
+                    System.out.println(numberOfErrors + " errors ");
                 }
             }
         }
@@ -41,7 +47,29 @@ public class MinigameChecker {
         return correctOutput;
     }
 
+    public void dropCopyBlock(Blocks blocks) {
+        for(int i = 0; i < blockHolders.length; i++) {
+            for (int j = 0; j < blockHolders[i].length; j++) {
+                if(blockHolders[i][j] != null) {
+                    if(blockHolders[i][j].getCopyBlock() != null) {
+                        updateBlocks[i][j] = blocks;
+                    }
+                    System.out.println(updateBlocks[i][j] + " tangina ule ");
+                }
+            }
+        }
+    }
+
     public void setBlockHolders(BlockHolder[][] blockHolders) {
+        for(int i = 0; i < blockHolders.length; i++) {
+            for (int j = 0; j < blockHolders[i].length; j++) {
+                if(blockHolders[i][j] != null) {
+                    if(blockHolders[i][j].getCopyBlock() != null) {
+                        blockHolders[i][j].setCopyBlock(blockHolders[i][j].getCopyBlock());
+                    }
+                }
+            }
+        }
         this.blockHolders = blockHolders;
     }
 

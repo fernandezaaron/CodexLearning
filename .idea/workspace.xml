@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0141c56b-2e35-4ee0-8a66-847df732214b" name="Changes" comment="">
+    <list default="true" id="0141c56b-2e35-4ee0-8a66-847df732214b" name="Changes" comment="putanginang blockholder">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/BlockHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/BlockHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/NPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/NPC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/Minigame.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/Minigame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/MysteryCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/MysteryCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Dialogue.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Dialogue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/MinigameChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/MinigameChecker.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662538456116</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="putanginang blockholder">
+      <created>1662998685166</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1662998685166</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -167,7 +171,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="ads" />
     <MESSAGE value="implemented sa mysterycode yung banishperrow" />
-    <option name="LAST_COMMIT_MESSAGE" value="implemented sa mysterycode yung banishperrow" />
+    <MESSAGE value="putanginang blockholder" />
+    <option name="LAST_COMMIT_MESSAGE" value="putanginang blockholder" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

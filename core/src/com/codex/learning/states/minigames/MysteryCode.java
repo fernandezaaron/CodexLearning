@@ -202,9 +202,8 @@ public class MysteryCode extends State {
                                 blocksArrayList.get(i).set(j, blockHolders[i][j].getCopyBlock());
                             }
                             if(jedisaur.isDropped()) {
-//                                blockHolders[i][j].checkErrors();
-//                                System.out.println(blockHolders[i][j].getNumberOfErrors() + " Number of errors");
-                                System.out.println(blockHolders[i][j]);
+                                setBlockToCheck(blockHolders[i][j].getCopyBlock());
+//                                setToCheck(blockHolders);
                             }
                         }
                     }
@@ -344,6 +343,7 @@ public class MysteryCode extends State {
                                         }
                                     }
                                 }
+                                setToCheck(blockHolders);
                                 jedisaur.setPickedUp(false);
                             }
                         }
@@ -417,14 +417,15 @@ public class MysteryCode extends State {
     }
 
     public void setToCheck(BlockHolder[][] blockHolders) {
-        for(int i = 0; i < blockHolders.length; i++) {
-            for (int j = 0; j < blockHolders[i].length; j++) {
-                if(blockHolders[i][j] != null) {
-                    System.out.println(blockHolders[i][j] + " tangina netong blockholder sa minigame");
-                }
-            }
-        }
         manager.getMinigameChecker().setBlockHolders(blockHolders);
-        System.out.println(blockHolders + " tangina ayaw mapasa ");
+    }
+
+    public void setBlockToCheck(Blocks block) {
+        if(jedisaur.isPickedUp()) {
+//            manager.get
+        }
+        if(jedisaur.isDropped()) {
+            manager.getMinigameChecker().dropCopyBlock(block);
+        }
     }
 }
