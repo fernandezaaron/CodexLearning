@@ -39,7 +39,7 @@ public class FillInTheBlock extends State {
         duplicatePool = new ArrayList<>();
         banishPoolContainer = new ArrayList<>();
 
-        getAMinigame(manager.getStageSelector().map(), "Poor");
+        getAMinigame(manager.getStageSelector().map());
 
         questionBlocks = new Blocks[20][20];
         blockHolders = new BlockHolder[20][20];
@@ -415,8 +415,8 @@ public class FillInTheBlock extends State {
         playroom.dispose();
     }
 
-    public void getAMinigame(String stage, String expertiseLevel){
-        manager.getQuestionnaire().minigameDisplay(stage,String.valueOf(manager.getStageSelector().getStageMap()),expertiseLevel);
+    public void getAMinigame(String stage){
+        manager.getQuestionnaire().minigameDisplay(stage,String.valueOf(manager.getStageSelector().getStageMap()));
         minigameContainer = manager.getQuestionnaire().getMinigameHolder();
         minigameContainerLimit = manager.getQuestionnaire().getMinigameLimit();
         dispenserPoolContainer = manager.getQuestionnaire().getDispenserPool();

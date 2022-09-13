@@ -251,6 +251,7 @@ public class NPC extends Entity {
             if(manager.getMinigameChecker().correctOutputCheck()) {
                 System.out.println("tama to");
                 db.textAnimation(manager.getDialogue().reader(nextStatement, "finishCheck", 1));
+                manager.getMinigameChecker().setDone(true);
             }
             else {
                 System.out.println("mali to");

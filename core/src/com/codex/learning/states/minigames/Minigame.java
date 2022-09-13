@@ -16,10 +16,10 @@ public class Minigame extends State {
     private boolean fib, mc, samplebool;
     private Character jedisaur;
 
-    public Minigame(Manager manager, int currentMinigame, Character jedisaur){
+    public Minigame(Manager manager, int currentMinigame, Character jedisaur, FuzzyLogic fuzzyLogic){
         super(manager);
         this.currentMinigame = currentMinigame;
-        fuzzyLogic = new FuzzyLogic();
+        this.fuzzyLogic = fuzzyLogic;
         fib = false;
         mc = false;
         this.jedisaur = jedisaur;
@@ -34,8 +34,7 @@ public class Minigame extends State {
                 break;
             case 2:
                 mc = true;
-                h = new MysteryCode(manager, jedisaur);
-
+                h = new MysteryCode(manager, jedisaur, fuzzyLogic);
                 break;
             case 3:
                 samplebool = true;

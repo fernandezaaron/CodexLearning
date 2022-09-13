@@ -54,6 +54,11 @@ public class PlayState extends State{
         rand = new Random();
 //        randomMinigame = rand.nextInt(3-1)+1;
         randomMinigame = 2;
+
+
+        playroomMap = new PlayroomMapS1(manager);
+        fuzzyLogic = new FuzzyLogic();
+
         if(manager.getStageSelector().map().equals("1")){
             house = new HouseMap(manager);
             computer = new Computer(manager, fuzzyLogic);
@@ -70,16 +75,13 @@ public class PlayState extends State{
             computer.create(new Vector2(-6.5f, 10.2f), new Vector2(0.6f, 0.6f), 0);
         }
 
-        playroomMap = new PlayroomMapS1(manager);
-        fuzzyLogic = new FuzzyLogic();
-
         jedisaur = new Character(manager);
         jedisaur.create(new Vector2(0, -5), new Vector2(1.2f, 1.75f), 1.6f);
 
         jediGrandpa = new NPC(manager, "introduction", manager.getStageSelector().getStageMap()-1, false);
         jediGrandpa.create(new Vector2(0, 0), new Vector2(1, 1.4f), 0);
 
-        minigame = new Minigame(manager, randomMinigame, jedisaur);
+        minigame = new Minigame(manager, randomMinigame, jedisaur, fuzzyLogic);
 
         if(!manager.isMusicPaused()){
             manager.setMusic(Constants.HOUSE_MUSIC);

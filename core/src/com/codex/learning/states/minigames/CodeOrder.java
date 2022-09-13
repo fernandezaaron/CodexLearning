@@ -161,7 +161,7 @@ public class CodeOrder extends State {
     }
 
     public void getAMinigame(String stage, String expertiseLevel){
-        manager.getQuestionnaire().minigameDisplay(stage,String.valueOf(manager.getStageSelector().getStageMap()),expertiseLevel);
+        manager.getQuestionnaire().minigameDisplay(stage,String.valueOf(manager.getStageSelector().getStageMap()));
         minigameContainer = manager.getQuestionnaire().getMinigameHolder();
 //        minigameContainerLimit = manager.getQuestionnaire().getMinigameLimit();
     }

@@ -145,7 +145,9 @@ public class FuzzyLogic {
                 break;
             default:
                 setCorrectOutputRules("");
+                break;
         }
+
     }
 
     public void fuzzyNumberOfAttempt(){
@@ -153,8 +155,8 @@ public class FuzzyLogic {
         int b = 3;
         int c = 5;
 
-        setFuzzyNumberOfAttempts(Math.max(Math.min((getFuzzyNumberOfAttempts() - a)/(b - a),
-                (c - getFuzzyNumberOfAttempts())/(c - b)), 0));
+//        setFuzzyNumberOfAttempts(Math.max(Math.min((getFuzzyNumberOfAttempts() - a)/(b - a),
+//                (c - getFuzzyNumberOfAttempts())/(c - b)), 0));
 
         if(getNumberOfAttempts() <= a){
             setNumberOfAttemptsRules("LOW");
@@ -175,6 +177,7 @@ public class FuzzyLogic {
         else{
             setNumberOfAttemptsRules("");
         }
+
     }
 
     public void calculateNumberOfCookies(){

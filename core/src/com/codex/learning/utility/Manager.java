@@ -67,6 +67,10 @@ public class Manager {
 
     private Dialogue dialogue;
     public Manager(){
+        expertSystem = new ExpertSystem();
+        expertSystem.readFile();
+
+        questionnaire = new Questionnaire(expertSystem.getExpertiseLevel());
 
         b2dr = new Box2DDebugRenderer();
 
@@ -74,7 +78,7 @@ public class Manager {
         world = new World(new Vector2(0,0),false);
         world.setContactListener(cl);
 
-        questionnaire = new Questionnaire();
+
         stageSelector = new StageSelector();
         minigameChecker = new MinigameChecker();
 
@@ -109,14 +113,10 @@ public class Manager {
         camera = new OrthographicCamera(Constants.SCREEN_WIDTH, Constants.SCREEN_WIDTH);
         camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 
-
-
         stage = new Stage();
         atlas = new TextureAtlas(Gdx.files.internal(Constants.ATLAS_UTILITY_PATH));
         skin = new Skin(Gdx.files.internal(Constants.JSON_DIALOG_BOX_SKIN_PATH));
         skin.addRegions(atlas);
-
-        expertSystem = new ExpertSystem();
 
         states = new Stack<State>();
 

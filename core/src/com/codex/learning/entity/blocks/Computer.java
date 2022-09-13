@@ -55,7 +55,7 @@ public class Computer extends Entity {
         isDone = false;
 
         pc = new TextureRegion(manager.getPcStateSheet(), Constants.PC_X, Constants.PC_Y, Constants.PC_WIDTH, Constants.PC_HEIGHT);
-        codeRiddle = new CodeRiddle(manager);
+        codeRiddle = new CodeRiddle(manager, fuzzyLogic);
     }
 
     @Override

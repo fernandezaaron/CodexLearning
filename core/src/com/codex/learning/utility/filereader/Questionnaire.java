@@ -36,7 +36,8 @@ public class Questionnaire extends DatabaseReader {
     private ArrayList<ArrayList<Integer>> banishPerRow;
     private ArrayList<Integer> banishThisNumber;
 
-    public Questionnaire() {
+    public Questionnaire(String expertiseLevel) {
+
         questions = new ArrayList<>();
         options = new ArrayList<>();
         answers = new ArrayList<>();
@@ -68,6 +69,8 @@ public class Questionnaire extends DatabaseReader {
         minigameSheet = getMinigameSheet();
         questionSheet = getQuestionSheet();
         answerPoolSheet = getAnswerPoolSheet();
+
+        adjustDifficulty(expertiseLevel);
     }
 
     // for minigames
@@ -95,8 +98,7 @@ public class Questionnaire extends DatabaseReader {
     // end for minigames
 
 
-    public void minigameDisplay(String stage, String topics,String expertiseLevel) {
-        adjustDifficulty(expertiseLevel);
+    public void minigameDisplay(String stage, String topics) {
         addTopic(topics);
 
         while(minigameGetter == null) {
@@ -236,8 +238,7 @@ public class Questionnaire extends DatabaseReader {
 //        }
 //    }
 
-    public void questionDisplay(String stage, String topics, String expertiseLevel) {
-        adjustDifficulty(expertiseLevel);
+    public void questionDisplay(String stage, String topics) {
         addTopic(topics);
 
         difficulty = levels.get(randomizer.nextInt(levels.size()));

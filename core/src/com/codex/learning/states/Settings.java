@@ -36,8 +36,6 @@ public class Settings extends State{
         closeBounds = new Rectangle(x - 310, y + 280, Constants.CLOSE_NORMAL_WIDTH, Constants.CLOSE_NORMAL_HEIGHT);
         System.out.println(manager.getCamera().position.x + " a " + manager.getCamera().position.y);
 
-
-
     }
     @Override
     public void update(float delta) {
@@ -55,7 +53,6 @@ public class Settings extends State{
             manager.getCamera().unproject(coords.set(Gdx.input.getX(), Gdx.input.getY(), 0));
             sprite.draw(settingsMenu, manager.getCamera().position.x - settingsMenu.getRegionWidth()/2,
                     manager.getCamera().position.y - settingsMenu.getRegionHeight()/2) ;
-
 
             if(onBounds.contains(coords.x, coords.y)){
                 sprite.draw(onHLButton, manager.getCamera().position.x - 200, manager.getCamera().position.y - 20);

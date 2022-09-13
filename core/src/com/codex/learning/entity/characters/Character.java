@@ -385,6 +385,7 @@ public class Character extends Entity {
 
     public void carryBlock(Blocks block){
         if(isCarrying() && carry == 0){
+            System.out.println("CARRY   - " + carry);
             setPickUpAble(true);
             carry = 1;
             numberOfBlockInteraction++;

@@ -10,6 +10,7 @@ import com.codex.learning.states.PauseState;
 import com.codex.learning.states.PlayState;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.Constants;
+import com.codex.learning.utility.FuzzyLogic;
 import com.codex.learning.utility.Manager;
 import com.codex.learning.utility.MinigameChecker;
 
@@ -20,6 +21,7 @@ import java.util.Stack;
 
 public class MysteryCode extends State {
     private Character jedisaur;
+    private FuzzyLogic fuzzyLogic;
     private Blocks[] answerBlocks;
     private Blocks[][] questionBlocks, answerBlocksArray;
     private BlockHolder[][] blockHolders;
@@ -33,12 +35,13 @@ public class MysteryCode extends State {
     private ArrayList<Integer> banishCells;
     private ArrayList<String> answerPoolContainer;
     private ArrayList<ArrayList<Integer>> banishPerRow;
+
 //    private String stageSelect;
 //    private Stack<Stack<Blocks>> blocksArrayList;
 //    private int blockArrayIndex;
 
 
-    public MysteryCode(Manager manager, Character jedisaur) {
+    public MysteryCode(Manager manager, Character jedisaur, FuzzyLogic fuzzyLogic) {
         super(manager);
         pause = new PauseState(manager);
         randomizer = new Random();
@@ -48,10 +51,10 @@ public class MysteryCode extends State {
         blockHolders = new BlockHolder[20][20];
         blocksArrayList = new ArrayList<>();
 //        blockArrayIndex = 0;
-
+        this.fuzzyLogic = fuzzyLogic;
         this.stage = manager.getStageSelector().getStageMap();
 
-        getAMinigame(manager.getStageSelector().map(), manager.getExpertSystem().getExpertiseLevel());
+        getAMinigame(manager.getStageSelector().map());
 
         /** BANISH 1 OR 2 CELLS PER ROW **/
         for(int i = 0; i < banishPerRow.size(); i++) {
@@ -352,6 +355,8 @@ public class MysteryCode extends State {
                 }
             }
         }
+
+        itIsCorrect();
     }
 
 
@@ -408,8 +413,8 @@ public class MysteryCode extends State {
         }
     }
 
-    public void getAMinigame(String stage, String expertiseLevel){
-        manager.getQuestionnaire().minigameDisplay(stage, String.valueOf(manager.getStageSelector().getStageMap()), expertiseLevel);
+    public void getAMinigame(String stage){
+        manager.getQuestionnaire().minigameDisplay(stage, String.valueOf(manager.getStageSelector().getStageMap()));
         minigameContainer = manager.getQuestionnaire().getMinigameHolder();
 //        minigameContainerLimit = manager.getQuestionnaire().getMinigameLimit();
         banishPerRow = manager.getQuestionnaire().getBanishPerRow();
@@ -418,6 +423,19 @@ public class MysteryCode extends State {
 
     public void setToCheck(BlockHolder[][] blockHolders) {
         manager.getMinigameChecker().setBlockHolders(blockHolders);
+    }
+
+    public void itIsCorrect(){
+        if(manager.getMinigameChecker().isDone()){
+            fuzzyLogic.setNumberOfAttempts(manager.getMinigameChecker().getNumberOfAttempts());
+            fuzzyLogic.setCorrectOutput(1);
+
+            fuzzyLogic.fuzzyNumberOfAttempt();
+            fuzzyLogic.fuzzyCorrectOutput();
+
+            fuzzyLogic.calculateNumberOfCookies();
+            System.out.println("NUMBER OF COOKIES = " + fuzzyLogic.getCookies());
+        }
     }
 
     public void setBlockToCheck(Blocks block) {

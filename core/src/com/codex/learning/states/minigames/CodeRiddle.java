@@ -44,10 +44,10 @@ public class CodeRiddle extends State {
 
     private float timer;
 
-    public CodeRiddle(Manager manager) {
+    public CodeRiddle(Manager manager, FuzzyLogic fuzzyLogic) {
         super(manager);
 
-        fuzzyLogic = new FuzzyLogic();
+        this.fuzzyLogic = fuzzyLogic;
         behavior = new ArrayList<>();
         timer = 0;
         error = 0;
@@ -112,7 +112,7 @@ public class CodeRiddle extends State {
         isGivingHints = true;
 
         System.out.println(manager.getStageSelector().map() + "map");
-        getAQuestion(manager.getStageSelector().map(), manager.getExpertSystem().getExpertiseLevel());
+        getAQuestion(manager.getStageSelector().map());
         System.out.println(manager.getExpertSystem().getExpertiseLevel());
         System.out.println(manager.getStageSelector().getStageMap() + " this is the stage");
         currentQuestion = 0;
@@ -328,12 +328,9 @@ public class CodeRiddle extends State {
         manager.getQuestionnaire().dispose();
     }
 
-    public void getAQuestion(String stage, String expertiseLevel){
-        manager.getQuestionnaire().questionDisplay(stage,String.valueOf(manager.getStageSelector().getStageMap()),expertiseLevel);
-
+    public void getAQuestion(String stage){
+        manager.getQuestionnaire().questionDisplay(stage,String.valueOf(manager.getStageSelector().getStageMap()));
         questions = manager.getQuestionnaire().getQuestions();
-
-
         options = manager.getQuestionnaire().getOptions();
 
         fuzzyLogic.setTotalQuestions(manager.getQuestionnaire().getQuestionLimit());

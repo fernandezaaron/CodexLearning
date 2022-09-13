@@ -13,12 +13,15 @@ import java.util.ArrayList;
 public class MinigameChecker {
     private BlockHolder[][] blockHolders;
     private Blocks[][] updateBlocks;
+    private boolean done;
     private int numberOfErrors;
     private boolean correctOutput;
+    private int numberOfAttempts;
 
     public MinigameChecker() {
         numberOfErrors = 0;
         correctOutput = false;
+        done = false;
         updateBlocks = new Blocks[20][20];
     }
 
@@ -40,9 +43,11 @@ public class MinigameChecker {
     public boolean correctOutputCheck() {
         if(numberOfErrors == 0) {
             correctOutput = true;
+            numberOfAttempts++;
         }
         else {
             correctOutput = false;
+            numberOfAttempts++;
         }
         return correctOutput;
     }
@@ -54,7 +59,6 @@ public class MinigameChecker {
                     if(blockHolders[i][j].getCopyBlock() != null) {
                         updateBlocks[i][j] = blocks;
                     }
-                    System.out.println(updateBlocks[i][j] + " tangina ule ");
                 }
             }
         }
@@ -75,5 +79,29 @@ public class MinigameChecker {
 
     public BlockHolder[][] getBlockHolders() {
         return blockHolders;
+    }
+
+    public int getNumberOfAttempts() {
+        return numberOfAttempts;
+    }
+
+    public void setNumberOfAttempts(int numberOfAttempts) {
+        this.numberOfAttempts = numberOfAttempts;
+    }
+
+    public boolean isCorrectOutput() {
+        return correctOutput;
+    }
+
+    public void setCorrectOutput(boolean correctOutput) {
+        this.correctOutput = correctOutput;
+    }
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
     }
 }
