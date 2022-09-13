@@ -54,35 +54,43 @@ public class FillInTheBlock extends State {
         }
 
         // START MINIGAME CREATION
-        int yStartingPoint = 11, currentCell = 0;
+        int yStartingPoint = 10, currentCell = 0;
         for(int i = 0; i < minigameContainer.size(); i++) {
-            float xStartingPoint = -23.0f;
+            float xStartingPoint = -18.0f;
             for(int j = 0; j < minigameContainer.get(i).size(); j++) {
                 if(minigameContainer.get(i).get(j) != null) {
                     float currentStringLength = (float) String.valueOf(minigameContainer.get(i).get(j)).length();
                     if (banishCells.contains(currentCell)) {
                         blockHolders[i][j] = new BlockHolder(manager, "\"" + minigameContainer.get(i).get(j) + "\"");
-                        blockHolders[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2(Constants.BLOCK_HOLDER_WIDTH * 3, Constants.BLOCK_HOLDER_HEIGHT), 0);
+                        blockHolders[i][j].create(new Vector2(xStartingPoint, yStartingPoint - 0.5f), new Vector2(Constants.BLOCK_HOLDER_WIDTH , Constants.BLOCK_HOLDER_HEIGHT), 0);
                         dispenserPoolContainer.add(minigameContainer.get(i).get(j));
-                        xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 13;
+                        xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 1.75f;
+                        if(currentStringLength >7){
+                            xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 2.75f;
+
+                        }
                     } else {
                         questionBlocks[i][j] = new Blocks(manager, "\"" + minigameContainer.get(i).get(j) + "\"", minigameContainer.get(i).get(j), true);
                         if (currentStringLength <= 3){
-                            questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.5f), Constants.BLOCKS_HEIGHT), 0);
+                            questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.4f), Constants.BLOCKS_HEIGHT), 0);
                             questionBlocks[i][j].setPreDefinedContact(true);
-                            xStartingPoint += currentStringLength + 2f;
+                           // xStartingPoint += currentStringLength + 1f;
                         }
 
                         else{
-                            questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.23f), Constants.BLOCKS_HEIGHT), 0);
+                            if(currentStringLength>7){
+                                xStartingPoint += 2.75f;
+                            }
+                            questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.27f), Constants.BLOCKS_HEIGHT), 0);
                             questionBlocks[i][j].setPreDefinedContact(true);
-                            xStartingPoint += currentStringLength / 1.8f;
+
                         }
+                        xStartingPoint = questionBlocks[i][j].getDupliSize().x + (questionBlocks[i][j].getBody().getPosition().x) + 1.5f;
                     }
                     currentCell++;
                 }
             }
-            yStartingPoint -= 2;
+            yStartingPoint -= 2.5;
         }
         Collections.shuffle(dispenserPoolContainer);
         // END MINIGAME CREATION
