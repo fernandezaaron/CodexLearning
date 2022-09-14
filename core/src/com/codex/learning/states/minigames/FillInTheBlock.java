@@ -56,7 +56,7 @@ public class FillInTheBlock extends State {
         // START MINIGAME CREATION
         int yStartingPoint = 10, currentCell = 0;
         for(int i = 0; i < minigameContainer.size(); i++) {
-            float xStartingPoint = -17.5f;
+            float xStartingPoint = -17f;
             for(int j = 0; j < minigameContainer.get(i).size(); j++) {
                 if(minigameContainer.get(i).get(j) != null) {
                     float currentStringLength = (float) String.valueOf(minigameContainer.get(i).get(j)).length();
@@ -81,7 +81,7 @@ public class FillInTheBlock extends State {
                             if(currentStringLength>7){
                                 xStartingPoint += 3.85f;
                             }
-                            questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.26f), Constants.BLOCKS_HEIGHT), 0);
+                            questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.23f), Constants.BLOCKS_HEIGHT), 0);
                             questionBlocks[i][j].setPreDefinedContact(true);
 
                         }
@@ -90,7 +90,7 @@ public class FillInTheBlock extends State {
                     currentCell++;
                 }
             }
-            yStartingPoint -= 2;
+            yStartingPoint -= 2f;
         }
         Collections.shuffle(dispenserPoolContainer);
         // END MINIGAME CREATION
