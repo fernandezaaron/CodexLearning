@@ -84,6 +84,8 @@ public class CodeOrder extends State {
         }
         /** END OF ANSWER POOL CREATION **/
 
+        setToCheck(blockHolders);
+
         this.jedisaur = jedisaur;
     }
 
@@ -100,6 +102,10 @@ public class CodeOrder extends State {
                 answerBlocks[i].update(delta);
                 if (answerBlocks[i].isInContact()) {
                     jedisaur.carryBlock(answerBlocks[i]);
+                    if(jedisaur.isPickedUp()) {
+                        setBlockToCheck(null, i);
+                        setToCheck(blockHolders);
+                    }
                 }
             }
         }
@@ -107,6 +113,9 @@ public class CodeOrder extends State {
         for (int i = 0; i < minigameContainer.size(); i++) {
             if (blockHolders[i].isInContact()) {
                 jedisaur.dropBlock(blockHolders[i]);
+                if(jedisaur.isDropped()) {
+                    setBlockToCheck(blockHolders[i].getCopyBlock(), i);
+                }
             }
         }
 
@@ -173,4 +182,17 @@ public class CodeOrder extends State {
 //            }
 //        }
 //    }
+    public void setToCheck(BlockHolder[] blockHolders) {
+        manager.getMinigameChecker().setBlockOrder(blockHolders);
+    }
+
+    public void setBlockToCheck(Blocks block, int i) {
+        if(jedisaur.isPickedUp()) {
+            manager.getMinigameChecker().pickUpOrderBlock(block, i);
+        }
+        if(jedisaur.isDropped()) {
+            manager.getMinigameChecker().dropOrderBlock(block, i);
+        }
+    }
+
 }

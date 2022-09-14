@@ -109,6 +109,8 @@ public class CodeIT extends State {
         }
         /** END OF ANSWER POOL CREATION **/
 
+        setToCheck(blockHolders);
+
         this.jedisaur = character;
     }
 
@@ -137,7 +139,9 @@ public class CodeIT extends State {
                         jedisaur.dropBlock(blockHolders[i][j]);
                         if(jedisaur.isDropped() && !blocksArrayList.get(i).contains(blockHolders[i][j].getCopyBlock())){
                             blocksArrayList.get(i).add(blockHolders[i][j].getCopyBlock());
-
+                        }
+                        if(jedisaur.isDropped()) {
+                            setBlockToCheck(blockHolders[i][j].getCopyBlock(), i, j);
                         }
                     }
                 }
@@ -201,6 +205,8 @@ public class CodeIT extends State {
                                     blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x - blockSize + 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
                                 }
                             }
+                            setBlockToCheck(null, i, j);
+                            setToCheck(blockHolders);
                             jedisaur.setPickedUp(false);
                         }
                     }
@@ -262,5 +268,18 @@ public class CodeIT extends State {
     public void getAMinigame(String stage, String expertiseLevel){
         manager.getQuestionnaire().minigameDisplay(stage,String.valueOf(manager.getStageSelector().getStageMap()));
         minigameContainer = manager.getQuestionnaire().getMinigameHolder();
+    }
+
+    public void setToCheck(BlockHolder[][] blockHolders) {
+        manager.getMinigameChecker().setBlockHolders(blockHolders);
+    }
+
+    public void setBlockToCheck(Blocks block, int i, int j) {
+        if(jedisaur.isPickedUp()) {
+            manager.getMinigameChecker().pickUpCopyBlock(block, i, j);
+        }
+        if(jedisaur.isDropped()) {
+            manager.getMinigameChecker().dropCopyBlock(block, i, j);
+        }
     }
 }

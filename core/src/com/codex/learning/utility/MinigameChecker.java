@@ -2,17 +2,12 @@ package com.codex.learning.utility;
 
 import com.codex.learning.entity.blocks.BlockHolder;
 import com.codex.learning.entity.blocks.Blocks;
-import com.codex.learning.entity.characters.NPC;
-import com.codex.learning.states.PlayState;
-import com.codex.learning.states.minigames.Minigame;
-import com.codex.learning.states.minigames.MysteryCode;
-import org.graalvm.compiler.nodes.cfg.Block;
-
-import java.util.ArrayList;
 
 public class MinigameChecker {
     private BlockHolder[][] blockHolders;
+    private BlockHolder[] blockOrder;
     private Blocks[][] updateBlocks;
+    private Blocks[] updateOrder;
     private boolean done;
     private int numberOfErrors;
     private boolean correctOutput;
@@ -23,10 +18,21 @@ public class MinigameChecker {
         correctOutput = false;
         done = false;
         updateBlocks = new Blocks[20][20];
+        updateOrder = new Blocks[20];
     }
 
     /** CHECKS EACH BLOCK HOLDER IF CORRECT ID **/
     public void minigameCheck() {
+        if(blockHolders == null) {
+            for(int i = 0; i < blockOrder.length; i++) {
+                if(blockOrder[i] != null) {
+                    blockOrder[i].setCopyBlock(updateOrder[i]);
+                    System.out.println(blockOrder[i].getCorrectID());
+                    numberOfErrors += blockOrder[i].checkErrors();
+                    System.out.println(numberOfErrors + " errors ");
+                }
+            }
+        }
         for(int i = 0; i < blockHolders.length; i++) {
             for(int j = 0; j < blockHolders[i].length; j++) {
                 if(blockHolders[i][j] != null) {
@@ -86,6 +92,27 @@ public class MinigameChecker {
             }
         }
         this.blockHolders = blockHolders;
+    }
+
+    public void setBlockOrder(BlockHolder[] blockOrder) {
+        for(int i = 0; i < blockOrder.length; i++) {
+            if(blockOrder[i] != null) {
+                if(blockOrder[i].getCopyBlock() != null) {
+                    blockOrder[i].setCopyBlock(blockOrder[i].getCopyBlock());
+                }
+            }
+        }
+        this.blockOrder = blockOrder;
+    }
+
+    public void pickUpOrderBlock(Blocks blocks, int i) {
+        updateOrder[i] = blocks;
+        System.out.println(" picked ID");
+    }
+
+    public void dropOrderBlock(Blocks blocks, int i) {
+        updateOrder[i] = blocks;
+        System.out.println(updateOrder[i].getId() + " dropped ID");
     }
 
     public BlockHolder[][] getBlockHolders() {

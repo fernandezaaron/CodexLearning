@@ -158,6 +158,8 @@ public class FillInTheBlock extends State {
         }
         /** END OF DISPENSER POOL CREATION **/
 
+        setToCheck(blockHolders);
+
         this.jedisaur = character;
     }
 
@@ -202,6 +204,9 @@ public class FillInTheBlock extends State {
                             jedisaur.dropBlock(blockHolders[i][j]);
                             if(jedisaur.isDropped() && !blocksArrayList.get(i).contains(blockHolders[i][j].getCopyBlock())){
                                 blocksArrayList.get(i).set(j, blockHolders[i][j].getCopyBlock());
+                            }
+                            if(jedisaur.isDropped()) {
+                                setBlockToCheck(blockHolders[i][j].getCopyBlock(), i, j);
                             }
                         }
                     }
@@ -334,6 +339,8 @@ public class FillInTheBlock extends State {
                                         }
                                     }
                                 }
+                                setBlockToCheck(null, i, j);
+                                setToCheck(blockHolders);
                                 jedisaur.setPickedUp(false);
                             }
                         }
@@ -456,6 +463,19 @@ public class FillInTheBlock extends State {
                     }
                 }
             }
+        }
+    }
+
+    public void setToCheck(BlockHolder[][] blockHolders) {
+        manager.getMinigameChecker().setBlockHolders(blockHolders);
+    }
+
+    public void setBlockToCheck(Blocks block, int i, int j) {
+        if(jedisaur.isPickedUp()) {
+            manager.getMinigameChecker().pickUpCopyBlock(block, i, j);
+        }
+        if(jedisaur.isDropped()) {
+            manager.getMinigameChecker().dropCopyBlock(block, i, j);
         }
     }
 }
