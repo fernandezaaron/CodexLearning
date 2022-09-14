@@ -138,9 +138,9 @@ public class PauseState extends State {
                 if(stageBounds.contains(coords.x, coords.y)){
                     manager.getMusic().stop();
                     manager.getQuestionnaire().dispose();
-                    if (manager.getQuestionnaire().getMinigameHolder() != null){
-                        manager.getQuestionnaire().clearMinigames();
-                    }
+//                    if (manager.getQuestionnaire().getMinigameHolder() != null){
+//                        manager.getQuestionnaire().clearMinigames();
+//                    }
 
                     manager.set(new StageSelectState(manager));
 
