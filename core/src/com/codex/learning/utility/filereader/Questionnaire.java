@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Questionnaire extends DatabaseReader {
-    private String question, difficulty, stageTopic;
+    private String question, difficulty, stageTopic, minigameTopic;
 
     private ArrayList<String> questions;
     private ArrayList<ArrayList<String>> options;
@@ -108,6 +108,7 @@ public class Questionnaire extends DatabaseReader {
             findCell = findRow(minigameSheet, questionID);
             getMinigameHolder(findCell, 4, difficulty, topics);
         }
+        minigameTopic = topics;
         getAnswerPool(String.valueOf(questionID));
         getDispenserPool(String.valueOf(questionID));
     }
@@ -510,5 +511,13 @@ public class Questionnaire extends DatabaseReader {
 
     public void setQuestionID(int questionID) {
         this.questionID = questionID;
+    }
+
+    public String getMinigameTopic() {
+        return minigameTopic;
+    }
+
+    public void setMinigameTopic(String minigameTopic) {
+        this.minigameTopic = minigameTopic;
     }
 }
