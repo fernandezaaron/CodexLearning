@@ -56,7 +56,7 @@ public class FillInTheBlock extends State {
         // START MINIGAME CREATION
         int yStartingPoint = 10, currentCell = 0;
         for(int i = 0; i < minigameContainer.size(); i++) {
-            float xStartingPoint = -18.0f;
+            float xStartingPoint = -17.5f;
             for(int j = 0; j < minigameContainer.get(i).size(); j++) {
                 if(minigameContainer.get(i).get(j) != null) {
                     float currentStringLength = (float) String.valueOf(minigameContainer.get(i).get(j)).length();
@@ -66,22 +66,22 @@ public class FillInTheBlock extends State {
                         dispenserPoolContainer.add(minigameContainer.get(i).get(j));
                         xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 1.75f;
                         if(currentStringLength >7){
-                            xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 2.75f;
+                            xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 3.85f;
 
                         }
                     } else {
                         questionBlocks[i][j] = new Blocks(manager, "\"" + minigameContainer.get(i).get(j) + "\"", minigameContainer.get(i).get(j), true);
                         if (currentStringLength <= 3){
-                            questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.4f), Constants.BLOCKS_HEIGHT), 0);
+                            questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.3f), Constants.BLOCKS_HEIGHT), 0);
                             questionBlocks[i][j].setPreDefinedContact(true);
-                           // xStartingPoint += currentStringLength + 1f;
+
                         }
 
                         else{
                             if(currentStringLength>7){
-                                xStartingPoint += 2.75f;
+                                xStartingPoint += 3.85f;
                             }
-                            questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.27f), Constants.BLOCKS_HEIGHT), 0);
+                            questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.26f), Constants.BLOCKS_HEIGHT), 0);
                             questionBlocks[i][j].setPreDefinedContact(true);
 
                         }
@@ -90,7 +90,7 @@ public class FillInTheBlock extends State {
                     currentCell++;
                 }
             }
-            yStartingPoint -= 2.5;
+            yStartingPoint -= 2;
         }
         Collections.shuffle(dispenserPoolContainer);
         // END MINIGAME CREATION
