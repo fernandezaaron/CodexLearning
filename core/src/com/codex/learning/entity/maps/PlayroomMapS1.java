@@ -23,7 +23,7 @@ public class PlayroomMapS1 extends State {
     private NPC npc;
     private PlayMat playMat;
     private Objective objective;
-    private Minigame minigame;
+    private String npcDialog;
     private int randomNumber;
     public PlayroomMapS1(Manager manager) {
         super(manager);
@@ -38,7 +38,8 @@ public class PlayroomMapS1 extends State {
         atDoor = false;
         inPlayroom = false;
 
-        npc = new NPC(manager, "minigames", 0, true);
+        npcDialog = "minigameintrodialogue";
+        npc = new NPC(manager, npcDialog, 0, true);
         npc.create(new Vector2(0, -6), new Vector2(1, 1.4f), 0);
 
         playMat = new PlayMat(manager);
@@ -64,15 +65,15 @@ public class PlayroomMapS1 extends State {
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.enableBlending();
-//        if(manager.getStageSelector().map().equals("1")){
-//            sprite.draw(manager.getPlayroomStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-//        }
-//        else if(manager.getStageSelector().map().equals("2")){
-//            sprite.draw(manager.getPlayroomStage2(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-//        }
-//        else if(manager.getStageSelector().map().equals("3")){
-//            sprite.draw(manager.getPlayroomStage3(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-//        }
+        if(manager.getStageSelector().map().equals("1")){
+            sprite.draw(manager.getPlayroomStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        }
+        else if(manager.getStageSelector().map().equals("2")){
+            sprite.draw(manager.getPlayroomStage2(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        }
+        else if(manager.getStageSelector().map().equals("3")){
+            sprite.draw(manager.getPlayroomStage3(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        }
         sprite.end();
 
 

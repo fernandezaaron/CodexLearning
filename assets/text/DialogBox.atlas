@@ -1,5 +1,5 @@
 DialogBox.png
-size: 1841, 2400
+size: 3697, 1493
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -12,21 +12,21 @@ choices
   index: -1
 dialogbox1
   rotate: false
-  xy: 0, 698
+  xy: 1662, 203
   size: 1115, 351
   orig: 1115, 351
   offset: 0, 0
   index: -1
 dialogbox2
   rotate: false
-  xy: 0, 372
+  xy: 0, 203
   size: 1000, 231
   orig: 1000, 231
   offset: 0, 0
   index: -1
 exit
   rotate: false
-  xy: 1000, 372
+  xy: 1000, 203
   size: 662, 326
   orig: 662, 326
   offset: 0, 0
@@ -47,56 +47,63 @@ horizontalScrollKnob
   index: -1
 jediGrandpaAvatar
   rotate: false
-  xy: 0, 169
+  xy: 1743, 0
   size: 180, 180
   orig: 180, 180
   offset: 0, 0
   index: -1
 jediOfficeAvatar
   rotate: false
-  xy: 180, 169
+  xy: 1923, 0
   size: 180, 180
   orig: 180, 180
   offset: 0, 0
   index: -1
 jediProfAvatar
   rotate: false
-  xy: 360, 169
+  xy: 2103, 0
   size: 180, 180
   orig: 180, 180
   offset: 0, 0
   index: -1
 jedisaurAvatar
   rotate: false
-  xy: 540, 169
+  xy: 2283, 0
   size: 180, 180
   orig: 180, 180
   offset: 0, 0
   index: -1
+objectives
+  rotate: false
+  xy: 921, 593
+  size: 800, 888
+  orig: 800, 888
+  offset: 0, 0
+  index: -1
 optionScreen
   rotate: false
-  xy: 0, 1049
+  xy: 2777, 203
   size: 920, 390
   orig: 920, 390
   offset: 0, 0
   index: -1
 PCSCREEN
   rotate: false
-  xy: 0, 1500
+  xy: 1721, 593
   size: 1600, 900
   orig: 1600, 900
   offset: 0, 0
   index: -1
 questions
   rotate: false
-  xy: 720, 169
+  xy: 2463, 0
   size: 1111, 203
   orig: 1111, 203
   offset: 0, 0
   index: -1
 questionsScreen
   rotate: false
-  xy: 920, 1049
+  xy: 0, 593
   size: 921, 451
   orig: 921, 451
   offset: 0, 0

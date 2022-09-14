@@ -17,7 +17,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import com.codex.learning.entity.characters.Character;
+import com.codex.learning.entity.maps.PlayroomMapS1;
 import com.codex.learning.states.State;
+import com.codex.learning.states.minigames.Minigame;
 import com.codex.learning.utility.decisiontree.Behavior;
 import com.codex.learning.utility.decisiontree.DecisionTree;
 import com.codex.learning.utility.filereader.Questionnaire;
@@ -57,6 +59,8 @@ public class Manager {
     private StageSelector stageSelector;
 
     private MinigameChecker minigameChecker;
+    private Minigame minigame;
+    private PlayroomMapS1 playroomMap;
 
     private DecisionTree decisionTree;
 
@@ -81,6 +85,8 @@ public class Manager {
 
         stageSelector = new StageSelector();
         minigameChecker = new MinigameChecker();
+        minigame = new Minigame(this);
+
 
         background = new TextureRegion(new Texture(Constants.BACKGROUND_PATH));
         mainMenu = new TextureRegion(new Texture(Constants.MENU_TEXT_PATH));
@@ -261,6 +267,22 @@ public class Manager {
 
     public MinigameChecker getMinigameChecker() {
         return minigameChecker;
+    }
+
+    public Minigame getMinigame() {
+        return minigame;
+    }
+
+    public void setMinigame(Minigame minigame) {
+        this.minigame = minigame;
+    }
+
+    public PlayroomMapS1 getPlayroomMap() {
+        return playroomMap;
+    }
+
+    public void setPlayroomMap(PlayroomMapS1 playroomMap) {
+        this.playroomMap = playroomMap;
     }
 
     public void setMinigameChecker(MinigameChecker minigameChecker) {

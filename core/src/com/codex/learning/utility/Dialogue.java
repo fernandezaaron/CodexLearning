@@ -517,9 +517,9 @@ public class Dialogue {
                     new ArrayList<>(Arrays.asList(
                             // Syntax
                             "Hello there Grandson! Welcome to the playroom! This is where \n" +
-                            "your skills in programming will be tested. For today's topic, \n" +
+                            "your skills in programming will be tested.", " or today's topic, \n" +
                             "it will be syntax. Where you will be tested if you really get \n" +
-                            "Java. This is one of the fundamentals that you need to learn in \n" +
+                            "Java.", "This is one of the fundamentals that you need to learn in \n" +
                             "order to proceed! Syntax are needed in order to run the program \n" +
                             "But first, let me show you how to play all the minigames."
                     )),
@@ -2583,7 +2583,7 @@ public class Dialogue {
         System.out.println(getNpcName());
         switch (dialogueSet){
             case "introduction": return statementMover(nextStatement, introductionDialogue, getStage()-1);
-            case "minigames": return statementMover(nextStatement, questionDialogue, 0);
+            case "question": return statementMover(nextStatement, questionDialogue, 0);
             case "codeorderhints": return statementMover(nextStatement, codeOrderHints, getStage()-1);
             case "hints": return statementMover(nextStatement, twoHintsContainer, getStage()-1);
             case "finishCheck": return statementMover(nextStatement, askIfFinished, index);

@@ -16,14 +16,25 @@ public class Minigame extends State {
     private boolean fib, mc, samplebool;
     private Character jedisaur;
 
-    public Minigame(Manager manager, int currentMinigame, Character jedisaur, FuzzyLogic fuzzyLogic){
+//    public Minigame(Manager manager, int currentMinigame, Character jedisaur, FuzzyLogic fuzzyLogic){
+//        super(manager);
+//
+//    }
+
+    public Minigame(Manager manager){
         super(manager);
+
+    }
+
+    public void create(int currentMinigame, Character jedisaur, FuzzyLogic fuzzyLogic){
+        System.out.println("create new minigame");
         this.currentMinigame = currentMinigame;
         this.fuzzyLogic = fuzzyLogic;
         fib = false;
         mc = false;
         this.jedisaur = jedisaur;
     }
+
 
     public void setMiniGame(){
         switch (currentMinigame){
@@ -73,10 +84,12 @@ public class Minigame extends State {
 
     @Override
     public void dispose() {
+
         if(fib){
             s.dispose();
         }
         else if(mc){
+            System.out.println("disposing mc");
             h.dispose();
         }else if(samplebool){
             sample.dispose();

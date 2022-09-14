@@ -9,15 +9,21 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Align;
 import com.codex.learning.entity.Entity;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
+import sun.tools.jconsole.Tab;
 
 public class Objective extends Entity {
 
     private boolean inContact;
     private boolean inObjective;
     private TextureRegion textureRegion;
+    private Table objectiveTable, containerTable;
+    private Label label;
 
 
     public Objective(Manager manager) {
@@ -26,6 +32,14 @@ public class Objective extends Entity {
 
     @Override
     public void create(Vector2 position, Vector2 size, float density) {
+        objectiveTable = new Table(manager.getSkin());
+        objectiveTable.setBackground("objectives");
+
+
+        label = new Label("", manager.getSkin());
+        label.setWrap(true);
+
+
         this.position = position;
         this.size = size;
 
@@ -56,6 +70,7 @@ public class Objective extends Entity {
 
     @Override
     public void update(float delta) {
+        createTable();
         checkIfClicked();
     }
 
@@ -67,12 +82,25 @@ public class Objective extends Entity {
         sprite.enableBlending();
 
         if(isInObjective()){
-            sprite.draw(textureRegion,
-                    (body.getPosition().x * Constants.PPM - textureRegion.getRegionWidth() / 1.35f),
-                    (body.getPosition().y * Constants.PPM - textureRegion.getRegionHeight() / 0.9f) + 50);
-            manager.getFont().draw(sprite, manager.getDialogue().getObjectiveDialogue(manager.getQuestionnaire().getQuestionID() - 1),-280, 200);
+            objectiveTable.draw(sprite, 1);
+//            manager.getStage().act();
+//            manager.getStage().draw();
+//            objectiveTable.draw(sprite, 1);
+//            sprite.draw(textureRegion,
+//                    (body.getPosition().x * Constants.PPM - textureRegion.getRegionWidth() / 1.35f),
+//                    (body.getPosition().y * Constants.PPM - textureRegion.getRegionHeight() / 0.9f) + 50);
+//            manager.getFont().draw(sprite, manager.getDialogue().getObjectiveDialogue(manager.getQuestionnaire().getQuestionID() - 1),-280, 200);
         }
         sprite.end();
+    }
+
+    private void createTable(){
+        label.setText(manager.getDialogue().getObjectiveDialogue(manager.getQuestionnaire().getQuestionID()-1));
+        objectiveTable.defaults().size(500,550);
+        objectiveTable.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/Constants.PPM/2 - 370, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/Constants.PPM/2 - 435);
+        objectiveTable.add(label).align(Align.left);
+        objectiveTable.pack();
+
     }
 
     private void checkIfClicked(){

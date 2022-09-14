@@ -50,6 +50,7 @@ public class Questionnaire extends DatabaseReader {
 
         numberOfQuestions = 0;
         questionLimit = 0;
+        questionID = 0;
 
         excelQuestionLimit = 196;
         excelMinigameLimit = 93;
@@ -104,11 +105,14 @@ public class Questionnaire extends DatabaseReader {
         while(minigameGetter == null) {
             topics = topic.get(randomizer.nextInt(topic.size()));
             questionID = randomizer.nextInt(excelMinigameLimit - 1) + 1;
+            System.out.println(questionID + " RNG BABY");
             difficulty = levels.get(randomizer.nextInt(levels.size()));
             findCell = findRow(minigameSheet, questionID);
             getMinigameHolder(findCell, 4, difficulty, topics);
         }
         minigameTopic = topics;
+        System.out.println(topics + " TOPICS IN MINIGAME DISPLAY");
+        System.out.println(questionID + " question ID");
         getAnswerPool(String.valueOf(questionID));
         getDispenserPool(String.valueOf(questionID));
     }
@@ -169,18 +173,24 @@ public class Questionnaire extends DatabaseReader {
         Cell excelCell, ansCell;
         int start = 1;
         if(!answerPool.isEmpty()){
+            System.out.println("i am here answerpool empty");
             answerPool.clear();
         }
 
         while(true){
             excelRow = answerPoolSheet.getRow(start);
+//            System.out.println(excelRow + " excel row");
             excelCell = excelRow.getCell(2);
+            System.out.println(String.valueOf(formatter.formatCellValue(excelCell)) + " Current Excel Cell");
             if(String.valueOf(formatter.formatCellValue(excelCell)).equals(QID)){
                 ansCell = excelRow.getCell(3);
                 answerPool.add(formatter.formatCellValue(ansCell));
                 start++;
-                if(!String.valueOf(formatter.formatCellValue(answerPoolSheet.getRow(start).getCell(2))).equals(QID))
+                if(!String.valueOf(formatter.formatCellValue(answerPoolSheet.getRow(start).getCell(2))).equals(QID)){
+                    System.out.println("break");
                     break;
+
+                }
             }
             else
                 start++;
@@ -499,10 +509,12 @@ public class Questionnaire extends DatabaseReader {
     }
 
     public void clearMinigames(){
-        minigameHolder.clear();
-        answerPool.clear();
-        dispenserPool.clear();
-        banishPerRow.clear();
+        minigameGetter.clear();
+//        answerPool.clear();
+//        dispenserPool.clear();
+        banishThisNumber.clear();
+        questionID = 0;
+
     }
 
     public int getQuestionID() {

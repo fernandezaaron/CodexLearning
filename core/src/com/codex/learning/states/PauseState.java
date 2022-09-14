@@ -21,12 +21,13 @@ public class PauseState extends State {
     private int stage;
     private Rectangle continueBounds, retryBounds, stageBounds, quitBounds, settingsBounds;
     private Vector3 coords;
-    private boolean isRunning;
+    private boolean isRunning, stageSelectClicked;
     private Settings settings;
 
     public PauseState(Manager manager){
         super(manager);
         isRunning = true;
+        stageSelectClicked = false;
         settings = new Settings(manager,0,0);
 
         pauseMenu = new TextureRegion(manager.getPauseStateSheet(), Constants.PAUSE_BOARD_X, Constants.PAUSE_BOARD_Y, Constants.PAUSE_BOARD_WIDTH, Constants.PAUSE_BOARD_HEIGHT);
@@ -133,15 +134,27 @@ public class PauseState extends State {
                 if(retryBounds.contains(coords.x, coords.y)){
                     manager.getMusic().stop();
                     Behavior.currentDataSet.clear();
+                    manager.getQuestionnaire().dispose();
+                    if (manager.getQuestionnaire().getMinigameHolder() != null){
+                        System.out.println("clearing minigames");
+                        manager.getQuestionnaire().clearMinigames();
+                        System.out.println(manager.getMinigame() + " current minigame disposing");
+                        manager.getMinigame().dispose();
+                    }
+                    manager.getPlayroomMap().dispose();
                     manager.set(new PlayState(manager));
                 }
                 if(stageBounds.contains(coords.x, coords.y)){
+                    setStageSelectClicked(true);
                     manager.getMusic().stop();
                     manager.getQuestionnaire().dispose();
-//                    if (manager.getQuestionnaire().getMinigameHolder() != null){
-//                        manager.getQuestionnaire().clearMinigames();
-//                    }
-
+                    if (manager.getQuestionnaire().getMinigameHolder() != null){
+                        System.out.println("clearing minigames");
+                        manager.getQuestionnaire().clearMinigames();
+                        System.out.println(manager.getMinigame() + " current minigame disposing");
+                        manager.getMinigame().dispose();
+                    }
+                    manager.getPlayroomMap().dispose();
                     manager.set(new StageSelectState(manager));
 
                 }
@@ -153,7 +166,9 @@ public class PauseState extends State {
                     manager.getQuestionnaire().dispose();
                     if (manager.getQuestionnaire().getMinigameHolder() != null){
                         manager.getQuestionnaire().clearMinigames();
+                        manager.getMinigame().dispose();
                     }
+                    manager.getPlayroomMap().dispose();
                     manager.set(new MenuState(manager));
                 }
             }
@@ -166,5 +181,13 @@ public class PauseState extends State {
 
     public void setRunning(boolean running) {
         isRunning = running;
+    }
+
+    public boolean isStageSelectClicked() {
+        return stageSelectClicked;
+    }
+
+    public void setStageSelectClicked(boolean stageSelectClicked) {
+        this.stageSelectClicked = stageSelectClicked;
     }
 }

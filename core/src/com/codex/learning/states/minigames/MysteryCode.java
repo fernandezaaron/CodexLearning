@@ -26,7 +26,6 @@ public class MysteryCode extends State {
     private Blocks[][] questionBlocks, answerBlocksArray;
     private BlockHolder[][] blockHolders;
     private ArrayList<ArrayList<Blocks>> blocksArrayList;
-    private PauseState pause;
     private float blockSize, xStartingPoint, AnsPoolY, currentStringLength, AnsPoolX;
     private ArrayList<ArrayList<String>> minigameContainer;
 //    private int minigameContainerLimit;
@@ -43,7 +42,6 @@ public class MysteryCode extends State {
 
     public MysteryCode(Manager manager, Character jedisaur, FuzzyLogic fuzzyLogic) {
         super(manager);
-        pause = new PauseState(manager);
         randomizer = new Random();
         banishCells = new ArrayList<Integer>();
         questionBlocks = new Blocks[20][20];
@@ -344,6 +342,8 @@ public class MysteryCode extends State {
     }
 
 
+
+
     @Override
     public void render(SpriteBatch sprite) {
         sprite.enableBlending();
@@ -376,32 +376,48 @@ public class MysteryCode extends State {
 
     @Override
     public void dispose() {
-        currentCell = 0;
-        for(int i = 0; i < minigameContainer.size(); i++) {
-            for (int j = 0; j < minigameContainer.get(i).size(); j++) {
-                if (minigameContainer.get(i).get(j) != null) {
-                    if(banishCells.contains(currentCell)) {
-                        blockHolders[i][j].disposeBody();
-                    }
-                    else
-                        questionBlocks[i][j].disposeBody();
-                    currentCell++;
+        System.out.println("disposing");
+//        currentCell = 0;
+//        for(int i = 0; i < minigameContainer.size(); i++) {
+//            for (int j = 0; j < minigameContainer.get(i).size(); j++) {
+//                if (minigameContainer.get(i).get(j) != null) {
+//                    if(banishCells.contains(currentCell)) {
+//                        blockHolders[i][j].disposeBody();
+//                    }
+//                    currentCell++;
+//                }
+//            }
+//        }
+
+        for(BlockHolder[] b: blockHolders){
+            for(BlockHolder i: b){
+                if(i != null){
+                    i.disposeBody();
                 }
             }
         }
+        for (Blocks[] q: questionBlocks) {
+            for (Blocks i : q) {
+                if(i != null){
+                    i.disposeBody();
+                }
+            }
+        }
+
+
 
         for(int i = 0; i < answerPoolContainer.size(); i++) {
             if(answerBlocks[i] != null) {
                 answerBlocks[i].disposeBody();
             }
         }
+
     }
 
     public void getAMinigame(String stage){
         manager.getQuestionnaire().minigameDisplay(stage, String.valueOf(manager.getStageSelector().getStageMap()));
         System.out.println(stage + " stage, " + manager.getStageSelector().getStageMap() + " topics");
         minigameContainer = manager.getQuestionnaire().getMinigameHolder();
-//        minigameContainerLimit = manager.getQuestionnaire().getMinigameLimit();
         banishPerRow = manager.getQuestionnaire().getBanishPerRow();
         answerPoolContainer = manager.getQuestionnaire().getAnswerPool();
     }

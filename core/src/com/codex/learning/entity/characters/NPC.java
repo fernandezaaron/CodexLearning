@@ -234,15 +234,10 @@ public class NPC extends Entity {
                 table.add(db).align(Align.left).width(1000);
                 table.setHeight(250);
                 table.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/Constants.PPM/2, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/Constants.PPM/2 - 400);
+
             }
         }
 
-        if(isInContact() && isInPlayroom() && Gdx.input.isKeyJustPressed(Input.Keys.E)) {
-            setTalking(true);
-//            System.out.println("Jedigrandpa in playroom");
-            db.textAnimation(manager.getDialogue().reader(nextStatement, "finishCheck", 0));
-            setReadiness(true);
-        }
 
         /** CHECKS EACH BLOCKHOLDER THEN CHECK IF CORRECT OUTPUT **/
         if(isInContact() && isInPlayroom() && isReady() && Gdx.input.isKeyJustPressed(Input.Keys.E)) {
@@ -252,10 +247,12 @@ public class NPC extends Entity {
                 System.out.println("tama to");
                 db.textAnimation(manager.getDialogue().reader(nextStatement, "finishCheck", 1));
                 manager.getMinigameChecker().setDone(true);
+                manager.getDialogue().setStatementEnd(true);
             }
             else {
                 System.out.println("mali to");
                 db.textAnimation(manager.getDialogue().reader(nextStatement, "finishCheck", 2));
+                manager.getDialogue().setStatementEnd(true);
             }
         }
 
@@ -264,16 +261,23 @@ public class NPC extends Entity {
             nextStatement++;
             db.textAnimation((manager.getDialogue().reader(nextStatement, dialogSet, index)));
         }
+
         if((manager.getDialogue().isStatementEnd() && Gdx.input.justTouched() && db.isOpen())){
             setTalking(false);
             //if at the end resets the table and the statement to the first index
             table.reset();
             db.setOpen(false);
-           nextStatement = 0;
+            nextStatement = 0;
         }
-
-
         manager.getStage().addActor(table);
+    }
+
+    public String getDialogSet() {
+        return dialogSet;
+    }
+
+    public void setDialogSet(String dialogSet) {
+        this.dialogSet = dialogSet;
     }
 
     public boolean isReady() {
