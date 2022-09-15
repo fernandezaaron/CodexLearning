@@ -155,22 +155,10 @@ public class BlockDispenser extends Entity {
     }
 
     public void createIDDispenser(SpriteBatch sprite){
-        switch (direction){
-            case "Down":
-                manager.getFont().draw(sprite, this.id,
-                        adjustFontPosition(this.id.length()),
-                       (this.size.y + (this.size.y * (Constants.PPM * 1.5f))) + (Constants.PPM * body.getPosition().y));
-                       // this.position.y + (this.position.y / this.size.y * (Constants.PPM + this.size.y)));
-//                        this.size.y - body.getPosition().y);
-
-            break;
-            case "Left":
-            case "Right":
-                manager.getFont().draw(sprite, this.id,
-                        adjustFontPosition(this.id.length()),
-                        (this.size.y + (this.size.y * (Constants.PPM * 1.9f))) + (Constants.PPM * body.getPosition().y));
-//                        (this.size.y / (Constants.PPM / body.getPosition().y * this.size.y)));
-            break;
+        if(isInContact()){
+            manager.getFont().draw(sprite, this.id,
+                    adjustFontPosition(this.id.length()),
+                    (this.size.y + (this.size.y * (Constants.PPM * 1.5f))) + (Constants.PPM * body.getPosition().y));
         }
     }
 

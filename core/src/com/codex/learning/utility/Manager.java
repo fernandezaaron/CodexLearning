@@ -74,6 +74,7 @@ public class Manager {
         expertSystem = new ExpertSystem();
         expertSystem.readFile();
 
+        System.out.println("L:EVEL - " + expertSystem.getExpertiseLevel());
         questionnaire = new Questionnaire(expertSystem.getExpertiseLevel());
 
         b2dr = new Box2DDebugRenderer();
