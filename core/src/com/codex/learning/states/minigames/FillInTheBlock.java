@@ -176,7 +176,9 @@ public class FillInTheBlock extends State {
 
          for(int i = 0; i < banishPoolContainer.size() + dispenserPoolContainer.size(); i++) {
              blockDispensers[i].createBlock(new Vector2(jedisaur.getBody().getPosition().x, jedisaur.getBody().getPosition().y));
+             blockDispensers[i].update(delta);
          }
+
 
          for(int i = 0; i < banishPoolContainer.size() + dispenserPoolContainer.size(); i++) {
              if(blockDispensers[i].isCloned()){

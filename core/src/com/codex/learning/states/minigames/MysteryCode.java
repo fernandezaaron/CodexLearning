@@ -170,6 +170,7 @@ public class MysteryCode extends State {
         for (int i = 0; i < answerBlocks.length; i++) {
             if (answerBlocks[i] != null) {
                 if (answerBlocks[i].isInContact()) {
+//                    System.out.println("in contact with: " + answerBlocks[i]);
                     jedisaur.carryBlock(answerBlocks[i]);
                 }
             }
@@ -278,8 +279,13 @@ public class MysteryCode extends State {
                                because if jedisaur ISCARRYING it will always return to true thus will
                                manipulate the x-axis whenever the user carries a block
                             **/
+                            if(blockHolders[i][j].isOccupied()){
+                                jedisaur.setPickedUp(false);
+                            }
+
 
                             if(jedisaur.isPickedUp()){
+
                                 int tempCurrentCell = currentCell;
                                 for(int k=j-1; k>=0; k--){
                                     tempCurrentCell--;

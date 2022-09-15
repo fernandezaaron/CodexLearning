@@ -52,7 +52,7 @@ public class PlayState extends State{
         timer = 0;
         pause = new PauseState(manager);
         rand = new Random();
-        randomMinigame = 2;
+        randomMinigame = 1;
 
         playroomMap = new PlayroomMapS1(manager);
         manager.setPlayroomMap(playroomMap);
@@ -77,8 +77,10 @@ public class PlayState extends State{
         jedisaur = new Character(manager);
         jedisaur.create(new Vector2(0, -5), new Vector2(1.2f, 1.75f), 1.6f);
 
+
         jediGrandpa = new NPC(manager, "introduction", manager.getStageSelector().getStageMap()-1, false);
         jediGrandpa.create(new Vector2(0, 0), new Vector2(1, 1.4f), 0);
+        jediGrandpa.setInPlayroom(false);
 
         manager.getMinigame().create(randomMinigame, jedisaur, fuzzyLogic);
 

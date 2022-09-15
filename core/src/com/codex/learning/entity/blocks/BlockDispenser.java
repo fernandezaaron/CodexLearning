@@ -10,13 +10,17 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Align;
 import com.codex.learning.entity.Entity;
 import com.codex.learning.utility.Constants;
+import com.codex.learning.utility.DialogueBox;
 import com.codex.learning.utility.Manager;
 
 public class BlockDispenser extends Entity {
     private TextureRegion blockDispenser;
-    private boolean inContact;
+    private boolean inContact, interacting;
     private boolean spawned;
     private boolean cloned;
     private String direction;
@@ -26,6 +30,9 @@ public class BlockDispenser extends Entity {
     private ShapeRenderer blockID;
     private Blocks[] blocks;
     private Vector2 blockSize;
+    private Label label;
+    private Table table, containerTable;
+
 
 
     public BlockDispenser(Manager manager, String direction, String id, String name, int limit, Vector2 blockSize) {
@@ -35,7 +42,6 @@ public class BlockDispenser extends Entity {
         this.name = name;
         this.limit = limit;
         this.blockSize = blockSize;
-
         blocks = new Blocks[this.limit + 1];
     }
 
@@ -43,6 +49,14 @@ public class BlockDispenser extends Entity {
     public void create(Vector2 position, Vector2 size, float density) {
         this.position = position;
         this.size = size;
+        label = new Label("", manager.getSkin());
+        label.setWrap(true);
+
+        table = new Table(manager.getSkin());
+        table.setBackground("dialogbox2");
+
+        containerTable = new Table();
+
 
         BodyDef def = new BodyDef();
         def.type = BodyDef.BodyType.StaticBody;
@@ -76,6 +90,8 @@ public class BlockDispenser extends Entity {
 
     @Override
     public void update(float delta) {
+        showBlockID();
+
     }
 
     @Override
@@ -87,6 +103,7 @@ public class BlockDispenser extends Entity {
         sprite.draw(blockDispenser,
                 body.getPosition().x * Constants.PPM - blockDispenser.getRegionWidth() / 2,
                 body.getPosition().y * Constants.PPM - blockDispenser.getRegionHeight() / 2);
+
         sprite.end();
 
         blockID.setProjectionMatrix(manager.getCamera().combined);
@@ -99,7 +116,11 @@ public class BlockDispenser extends Entity {
         blockID.end();
 
         sprite.begin();
-        createIDDispenser(sprite);
+
+        if(isInContact()){
+            containerTable.draw(sprite, 1);
+        }
+
         sprite.end();
 
         if(spawned){
@@ -154,47 +175,39 @@ public class BlockDispenser extends Entity {
         }
     }
 
-    public void createIDDispenser(SpriteBatch sprite){
-        switch (direction){
-            case "Down":
-                manager.getFont().draw(sprite, this.id,
-                        adjustFontPosition(this.id.length()),
-                       (this.size.y + (this.size.y * (Constants.PPM * 1.5f))) + (Constants.PPM * body.getPosition().y));
-                       // this.position.y + (this.position.y / this.size.y * (Constants.PPM + this.size.y)));
-//                        this.size.y - body.getPosition().y);
+    public void showBlockID(){
 
-            break;
-            case "Left":
-            case "Right":
-                manager.getFont().draw(sprite, this.id,
-                        adjustFontPosition(this.id.length()),
-                        (this.size.y + (this.size.y * (Constants.PPM * 1.9f))) + (Constants.PPM * body.getPosition().y));
-//                        (this.size.y / (Constants.PPM / body.getPosition().y * this.size.y)));
-            break;
+        if(!isInContact()){
+            containerTable.reset();
         }
+
+        int length = this.id.length();
+        containerTable.defaults().size(length*5 + 500,75);
+        containerTable.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM - 400,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM -50);
+
+
+        if(isInContact() && isInteracting()){
+
+            label.setText(this.id);
+            table.add(label).align(Align.left);
+            table.row();
+
+            containerTable.add(table).left();
+            containerTable.pack();
+            containerTable.setDebug(true);
+
+            setInteracting(false);
+        }
+
+
     }
 
-    public float adjustFontPosition(int num){
-        float x = 0f;
-        switch(num){
-            case 1:
-                x = this.size.x - (this.size.x * (Constants.PPM * 0.3f)) + (Constants.PPM * body.getPosition().x);
-            break;
-            case 2:
-                x = this.size.x - (this.size.x * Constants.PPM * 1.5f) + (Constants.PPM * body.getPosition().x);
-            break;
-            case 3:
-                x = this.size.x - (this.size.x * Constants.PPM * 2.4f) + (Constants.PPM * body.getPosition().x);
-            break;
-            case 4:
-                x = this.size.x - (this.size.x * Constants.PPM * 3.2f) + (Constants.PPM * body.getPosition().x);
-            break;
-            default:
-                x = this.size.x - (this.size.x * Constants.PPM * 4.2f) + (Constants.PPM * body.getPosition().x);
-                break;
+    public boolean isInteracting() {
+        return interacting;
+    }
 
-        }
-        return x;
+    public void setInteracting(boolean interacting) {
+        this.interacting = interacting;
     }
 
     public boolean isInContact() {

@@ -38,9 +38,11 @@ public class PlayroomMapS1 extends State {
         atDoor = false;
         inPlayroom = false;
 
-        npcDialog = "minigameintrodialogue";
+        npcDialog = "hints";
         npc = new NPC(manager, npcDialog, 0, true);
         npc.create(new Vector2(0, -6), new Vector2(1, 1.4f), 0);
+        npc.setInPlayroom(true);
+        npc.setIntroDialogFlag(true);
 
         playMat = new PlayMat(manager);
         playMat.create(new Vector2(17.5f, 0), new Vector2(6f, 10), 0);
@@ -55,6 +57,7 @@ public class PlayroomMapS1 extends State {
 
     @Override
     public void update(float delta) {
+        //make a condition on NPC hints dialog if wala pa and if meron na
         npc.update(delta);
         objective.update(delta);
     }
@@ -66,7 +69,7 @@ public class PlayroomMapS1 extends State {
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.enableBlending();
         if(manager.getStageSelector().map().equals("1")){
-            sprite.draw(manager.getPlayroomStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+//            sprite.draw(manager.getPlayroomStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         }
         else if(manager.getStageSelector().map().equals("2")){
             sprite.draw(manager.getPlayroomStage2(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
