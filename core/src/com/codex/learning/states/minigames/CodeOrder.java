@@ -43,11 +43,12 @@ public class CodeOrder extends State {
         questionBlocks = new Blocks[20][20];
         blockHolders = new BlockHolder[minigameContainer.size()];
         answerPoolContainer = new ArrayList<>();
+        originalAnswerPoolContainer = new ArrayList<>();
 
         /** START OF MINIGAME CREATION **/
         yStartingPoint = 10;
         currentCell = 0;
-        xStartingPoint = -18.0f;
+        xStartingPoint = -10.0f;
         for(int i = 0; i < minigameContainer.size(); i++) {
             if(minigameContainer.get(i) != null) {
                 mergeResult = "";
@@ -72,7 +73,7 @@ public class CodeOrder extends State {
 
         /** START OF ANSWER POOL CREATION **/
         AnsPoolY = 8;
-        AnsPoolX = -2;
+        AnsPoolX = 12;
         int ansPoolSize = answerPoolContainer.size();
         for(int i = 0; i < ansPoolSize; i++) {
             currentStringLength = (float) String.valueOf(answerPoolContainer.get(i)).length();

@@ -33,13 +33,15 @@ public class MinigameChecker {
                 }
             }
         }
-        for(int i = 0; i < blockHolders.length; i++) {
-            for(int j = 0; j < blockHolders[i].length; j++) {
-                if(blockHolders[i][j] != null) {
-                    blockHolders[i][j].setCopyBlock(updateBlocks[i][j]);
-                    System.out.println(blockHolders[i][j].getCorrectID());
-                    numberOfErrors += blockHolders[i][j].checkErrors();
-                    System.out.println(numberOfErrors + " errors ");
+        else {
+            for (int i = 0; i < blockHolders.length; i++) {
+                for (int j = 0; j < blockHolders[i].length; j++) {
+                    if (blockHolders[i][j] != null) {
+                        blockHolders[i][j].setCopyBlock(updateBlocks[i][j]);
+                        System.out.println(blockHolders[i][j].getCorrectID());
+                        numberOfErrors += blockHolders[i][j].checkErrors();
+                        System.out.println(numberOfErrors + " errors ");
+                    }
                 }
             }
         }
