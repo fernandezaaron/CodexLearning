@@ -99,7 +99,7 @@ public class FillInTheBlock extends State {
 
         int currentAnsCell = 0;
         int ansPoolSize = dispenserPoolContainer.size();
-        int xposition = -22, yposition = -6;
+        int xposition = -22, yposition = -5;
         for(int i = 0; i < ansPoolSize; i++) {
             blockDispensers[i] = new BlockDispenser(manager, "Down", dispenserPoolContainer.get(currentAnsCell), dispenserPoolContainer.get(currentAnsCell),
                     1, new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
