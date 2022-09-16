@@ -131,8 +131,15 @@ public class FillInTheBlock extends State {
         xposition = 18;
         yposition = 10;
         for(int i = 0; i < ansPoolSize; i++) {
-            blockDispensers[i] = new BlockDispenser(manager, "Down", "\"" + banishPoolContainer.get(i) + "\"", banishPoolContainer.get(i),
-                    duplicatePool.get(i), new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
+            currentStringLength = (float) String.valueOf(banishPoolContainer.get(i)).length();
+            if (currentStringLength <= 3){
+                blockDispensers[i] = new BlockDispenser(manager, "Down", "\"" + banishPoolContainer.get(i) + "\"", banishPoolContainer.get(i),
+                        duplicatePool.get(i), new Vector2(currentStringLength * 0.5f, Constants.BLOCKS_HEIGHT));
+            }
+            else {
+                blockDispensers[i] = new BlockDispenser(manager, "Down", "\"" + banishPoolContainer.get(i) + "\"", banishPoolContainer.get(i),
+                        duplicatePool.get(i), new Vector2(currentStringLength * 0.23f, Constants.BLOCKS_HEIGHT));
+            }
             blockDispensers[i].create(new Vector2(xposition, yposition), new Vector2(0.3f, 1.3f), 0);
             System.out.println(banishPoolContainer.get(i) + " many " + duplicatePool.get(i));
 //            xposition += 5;
@@ -151,9 +158,10 @@ public class FillInTheBlock extends State {
         System.out.println(dispenserPoolContainer + " huh ");
         ansPoolIterator = 0;
         for(int i = ansPoolSize; i < dispenserPoolContainer.size() + ansPoolSize; i++) {
+            currentStringLength = (float) String.valueOf(dispenserPoolContainer.get(ansPoolIterator)).length();
             System.out.println(dispenserPoolContainer.get(ansPoolIterator) + " di to many ah ");
             blockDispensers[i] = new BlockDispenser(manager, "Down", "\"" + dispenserPoolContainer.get(ansPoolIterator) + "\"", dispenserPoolContainer.get(ansPoolIterator),
-                    1, new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
+                    1, new Vector2(currentStringLength, Constants.BLOCKS_HEIGHT));
             blockDispensers[i].create(new Vector2(xposition, yposition), new Vector2(0.3f, 1.3f), 0);
 //            xposition += 5;
             yposition -= 6;

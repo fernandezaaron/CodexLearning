@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d6fe2c7-098b-4435-9d5a-8917e2b9dfa3" name="Changes" comment="Fill in the bugfix">
+    <list default="true" id="7d6fe2c7-098b-4435-9d5a-8917e2b9dfa3" name="Changes" comment="Code Order rework, better better dispenser">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeOrder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/FillInTheBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/FillInTheBlock.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -174,7 +173,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663330030931</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Code Order rework, better better dispenser">
+      <created>1663333795152</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1663333795152</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -195,7 +201,8 @@
     <MESSAGE value="CodeIT bugfix&#10;FillInTheBlock dispenser reposition" />
     <MESSAGE value="CodeIT reposition" />
     <MESSAGE value="Fill in the bugfix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fill in the bugfix" />
+    <MESSAGE value="Code Order rework, better better dispenser" />
+    <option name="LAST_COMMIT_MESSAGE" value="Code Order rework, better better dispenser" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
