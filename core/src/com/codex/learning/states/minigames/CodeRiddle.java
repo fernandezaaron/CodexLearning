@@ -2,6 +2,7 @@ package com.codex.learning.states.minigames;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
@@ -18,6 +19,7 @@ import com.codex.learning.utility.FuzzyLogic;
 import com.codex.learning.utility.Manager;
 
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class CodeRiddle extends State {
@@ -67,7 +69,7 @@ public class CodeRiddle extends State {
 
         dialogueBox = new DialogueBox(manager.getSkin(), "dialogbox2");
 
-        manager.getFont().getData().setScale(1f);
+//        manager.getFont().getData().setScale(1f);
 
         if(manager.getStageSelector().map().equals("1")){
             avatarImage.setBackground("jediGrandpaAvatar");
@@ -87,6 +89,7 @@ public class CodeRiddle extends State {
         table.setBackground("PCSCREEN");
 
         text = new Label("\n", manager.getSkin());
+        text.setFontScale(0.7f);
 
         Drawable dr = manager.getSkin().getDrawable("dialogbox1");
         listStyle = new List.ListStyle();
@@ -100,21 +103,17 @@ public class CodeRiddle extends State {
 
         labelStyle = new com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle();
         labelStyle.font = manager.getFont();
+
         labelStyle.font.setColor(com.badlogic.gdx.graphics.Color.BLACK);
         manager.getSkin().add("default", labelStyle);
-
         manager.getFont().setColor(Color.BLACK);
-        manager.getSkin().add("pokemon", manager.getFont());
 
 
         inComputer = false;
         isDone = false;
         isGivingHints = true;
 
-        System.out.println(manager.getStageSelector().map() + "map");
         getAQuestion(manager.getStageSelector().map());
-        System.out.println(manager.getExpertSystem().getExpertiseLevel());
-        System.out.println(manager.getStageSelector().getStageMap() + " this is the stage");
         currentQuestion = 0;
     }
 
@@ -352,15 +351,12 @@ public class CodeRiddle extends State {
         currentBehavior = manager.removeBracket(currentBehavior);
         if(currentBehavior.equals("ENGAGED") || currentBehavior.equals("NEUTRAL") || currentBehavior.equals("BORED")){
             //GIVE FEEDBACK
-            System.out.println(behavior + " = " + currentBehavior);
 
-//            System.out.println(currentBehavior);
-//            System.out.println("Congrats");
+
         }
         else{
             //GIVE HINTS
-//            System.out.println(currentBehavior);
-//            System.out.println("MAG-ARAL KA PA");
+
         }
         behavior.clear();
     }

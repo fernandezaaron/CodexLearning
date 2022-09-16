@@ -225,10 +225,8 @@ public class NPC extends Entity {
     public void npcInteraction(float delta){
         if(isInContact() && Gdx.input.isKeyJustPressed(Input.Keys.E)){
             setTalking(true);
-            System.out.println("Jedigrandpa");
             if(!db.isOpen()){
                 //if the dialogue box is not yet open then animate the text and add it to the table to draw it
-                System.out.println("here");
                 db.textAnimation(manager.getDialogue().reader(nextStatement, dialogSet, index));
 
                 table.add(image).align(Align.left).height(250).width(250).padRight(15f);
@@ -244,13 +242,11 @@ public class NPC extends Entity {
             setTalking(true);
             manager.getMinigameChecker().minigameCheck();
             if(manager.getMinigameChecker().correctOutputCheck()) {
-                System.out.println("tama to");
                 db.textAnimation(manager.getDialogue().reader(nextStatement, "finishCheck", 1));
                 manager.getMinigameChecker().setDone(true);
                 manager.getDialogue().setStatementEnd(true);
             }
             else {
-                System.out.println("mali to");
                 db.textAnimation(manager.getDialogue().reader(nextStatement, "finishCheck", 2));
                 manager.getDialogue().setStatementEnd(true);
             }

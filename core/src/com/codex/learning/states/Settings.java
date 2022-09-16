@@ -34,7 +34,6 @@ public class Settings extends State{
         onBounds = new Rectangle(x - 200, y - 20, Constants.ON_NORMAL_WIDTH, Constants.ON_NORMAL_HEIGHT);
         offBounds = new Rectangle(x+ 100, y - 20, Constants.OFF_NORMAL_WIDTH, Constants.OFF_NORMAL_HEIGHT);
         closeBounds = new Rectangle(x - 310, y + 280, Constants.CLOSE_NORMAL_WIDTH, Constants.CLOSE_NORMAL_HEIGHT);
-        System.out.println(manager.getCamera().position.x + " a " + manager.getCamera().position.y);
 
     }
     @Override

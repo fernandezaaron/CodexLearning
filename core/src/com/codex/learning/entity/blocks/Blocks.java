@@ -79,7 +79,7 @@ public class Blocks extends Entity {
         preDefinedContact = false;
         isBlock = true;
 
-        manager.getFont().getData().setScale(1.8f);
+//        manager.getFont().getData().setScale(1.8f);
     }
 
     @Override

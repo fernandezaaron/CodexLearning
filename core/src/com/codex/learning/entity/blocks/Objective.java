@@ -38,6 +38,8 @@ public class Objective extends Entity {
 
         label = new Label("", manager.getSkin());
         label.setWrap(true);
+        label.setFontScale(1.8f);
+        label.getStyle().font.getData().setLineHeight(40);
 
 
         this.position = position;
@@ -64,7 +66,7 @@ public class Objective extends Entity {
 
         inContact = false;
         inObjective = false;
-        manager.getFont().getData().setScale(1.5f);
+//        manager.getFont().getData().setScale(1.5f);
         textureRegion = new TextureRegion(new Texture(Constants.OBJECTIVE_SHEET_PATH), 0, 0, 800, 720);
     }
 
@@ -96,7 +98,7 @@ public class Objective extends Entity {
 
     private void createTable(){
         label.setText(manager.getDialogue().getObjectiveDialogue(manager.getQuestionnaire().getQuestionID()-1));
-        objectiveTable.defaults().size(500,550);
+        objectiveTable.defaults().size(600,550);
         objectiveTable.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/Constants.PPM/2 - 370, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/Constants.PPM/2 - 435);
         objectiveTable.add(label).align(Align.left);
         objectiveTable.pack();

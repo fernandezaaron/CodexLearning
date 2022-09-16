@@ -34,7 +34,6 @@ public class DialogueBox extends Table {
     }
 
     public void textAnimation(String t){
-//        System.out.println("yes");
         text = t;
         animationTotalTime = t.length()*TEXT_SPEED;
         setAnimating(true);
@@ -63,7 +62,6 @@ public class DialogueBox extends Table {
             }
 
             String displayedText = "";
-//            System.out.println(delta);
             int stringSize = (int) ((animationTimer/animationTotalTime)*text.length());
             for(int i=0; i<stringSize; i++){
                 displayedText += text.charAt(i);
@@ -72,7 +70,6 @@ public class DialogueBox extends Table {
             if(!displayedText.equals(textLabel.getText().toString())){
                 textLabel.setText(displayedText);
 
-//                System.out.println(displayedText);
             }
         }
     }

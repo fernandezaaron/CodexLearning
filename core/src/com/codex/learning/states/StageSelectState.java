@@ -80,7 +80,6 @@ public class StageSelectState extends State{
         stages[15] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 +Constants.STAGE_1_17_X,
                 manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2 + Constants.STAGE_1_17_Y, Constants.STAGE_RADIUS);
 
-        System.out.println(manager.isMusicPaused());
 
         if(!manager.isMusicPaused()){
             manager.setMusic(Constants.STAGE_SELECT_MUSIC);
@@ -149,7 +148,6 @@ public class StageSelectState extends State{
                         manager.getStageSelector().setStageMap(i+1);
                         manager.getStageSelector().setCurrentStage(i);
                         manager.set(new PlayState(manager));
-                        System.out.println("You clicked at stage " + manager.getStageSelector().getCurrentStage(i)  + "!!");
 
 
                         // ITO COMMENT OUT TO COMPARE

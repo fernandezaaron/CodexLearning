@@ -170,7 +170,6 @@ public class MysteryCode extends State {
         for (int i = 0; i < answerBlocks.length; i++) {
             if (answerBlocks[i] != null) {
                 if (answerBlocks[i].isInContact()) {
-//                    System.out.println("in contact with: " + answerBlocks[i]);
                     jedisaur.carryBlock(answerBlocks[i]);
                 }
             }
@@ -382,7 +381,6 @@ public class MysteryCode extends State {
 
     @Override
     public void dispose() {
-        System.out.println("disposing");
 //        currentCell = 0;
 //        for(int i = 0; i < minigameContainer.size(); i++) {
 //            for (int j = 0; j < minigameContainer.get(i).size(); j++) {
@@ -394,6 +392,11 @@ public class MysteryCode extends State {
 //                }
 //            }
 //        }
+
+        banishCells.clear();
+        banishPerRow.clear();
+
+
 
         for(BlockHolder[] b: blockHolders){
             for(BlockHolder i: b){
@@ -422,7 +425,6 @@ public class MysteryCode extends State {
 
     public void getAMinigame(String stage){
         manager.getQuestionnaire().minigameDisplay(stage, String.valueOf(manager.getStageSelector().getStageMap()));
-        System.out.println(stage + " stage, " + manager.getStageSelector().getStageMap() + " topics");
         minigameContainer = manager.getQuestionnaire().getMinigameHolder();
         banishPerRow = manager.getQuestionnaire().getBanishPerRow();
         answerPoolContainer = manager.getQuestionnaire().getAnswerPool();
@@ -441,7 +443,6 @@ public class MysteryCode extends State {
             fuzzyLogic.fuzzyCorrectOutput();
 
             fuzzyLogic.calculateNumberOfCookies();
-            System.out.println("NUMBER OF COOKIES = " + fuzzyLogic.getCookies());
         }
     }
 

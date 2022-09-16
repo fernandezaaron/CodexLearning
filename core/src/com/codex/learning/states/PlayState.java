@@ -52,7 +52,7 @@ public class PlayState extends State{
         timer = 0;
         pause = new PauseState(manager);
         rand = new Random();
-        randomMinigame = 1;
+        randomMinigame = 2;
 
         playroomMap = new PlayroomMapS1(manager);
         manager.setPlayroomMap(playroomMap);
@@ -151,7 +151,6 @@ public class PlayState extends State{
                 }
 //                else if(playroom.isDone && npc.hasSubmitted){
 //                    //Use to calculate number of cookies
-//                    //System.out.println(fuzzyLogic.getCookies());
 //
 ////                manager.getExpertSystem().setCurrentCookie(fuzzyLogic.calculateFuzzy(
 ////                  computer.getCodeRiddle().getFuzzyLogic().getNumberOfErrors(),
@@ -172,9 +171,7 @@ public class PlayState extends State{
                         computer.getCodeRiddle().setInComputer(false);
 //not working pa
 //                    for (int i =0 ; i<manager.getStage().getActors().size; i++){
-//                        System.out.println(manager.getStage().getActors().get(i));
 //                        if(manager.getStage().getActors().get(i).toString().equals("Table")){
-//                            System.out.println("true");
 //                            manager.getStage().getActors().get(i).remove();
 ////                            manager.getStage().clear();
 //                        }
@@ -318,7 +315,6 @@ public class PlayState extends State{
                 jedisaur.getBody().getPosition().set(-20, 1);
 //            }
 //            else {
-//                System.out.println("bawal kapa pumasok jan xD");
 //            }
         }
     }

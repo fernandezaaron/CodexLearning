@@ -378,14 +378,12 @@ public class Character extends Entity {
 
     private void checkIfStuck(){
         if(Gdx.input.isKeyJustPressed(Input.Keys.R)){
-            System.out.println("HERE");
             body.getPosition().set(10, 10);
         }
     }
 
     public void carryBlock(Blocks block){
         if(isCarrying() && carry == 0){
-            System.out.println("CARRY   - " + carry);
             setPickUpAble(true);
             carry = 1;
             numberOfBlockInteraction++;
@@ -395,7 +393,6 @@ public class Character extends Entity {
             setPickUpAble(false);
             getCopyBlock().getBody().setType(BodyDef.BodyType.DynamicBody);
             getCopyBlock().getBody().setTransform(body.getPosition().x - (block.getDupliSize().x), body.getPosition().y + 3f, 0);
-//            System.out.println(this.size.x + " sa character");
         }
         block.getBody().setType(BodyDef.BodyType.StaticBody);
 
@@ -413,7 +410,6 @@ public class Character extends Entity {
         if(blockHolder.isOccupied()){
             blockHolder.setCopyBlock(getCopyBlock());
             setFixture(true);
-//            System.out.println(numberOfBlockInteraction);
         }
         else{
             blockHolder.setCopyBlock(null);
@@ -422,7 +418,6 @@ public class Character extends Entity {
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.E) &&
                 getCopyBlock() != null && blockHolder.getCopyBlock() == null){
-            System.out.println(blockHolder.getBody().getPosition());
             // Blocks Adjustment
             getCopyBlock().getBody().setTransform(
                     blockHolder.getBody().getPosition().x,
@@ -438,7 +433,6 @@ public class Character extends Entity {
             }
 
             blockHolder.setCopyBlock(getCopyBlock());
-            System.out.println(blockHolder.getCopyBlock() + "character");
             // Character Adjustment
             setDropped(true);
             setCopyBlock(null);
@@ -473,7 +467,6 @@ public class Character extends Entity {
 
     public void dropBlock(PlayMat playmat){
         if(playmat.isInContact() && Gdx.input.isKeyJustPressed(Input.Keys.E) && getCopyBlock() != null && isCarrying()){
-            System.out.println("dropping at playmat");
 
             switch (direction){
                 case "north":

@@ -123,12 +123,9 @@ public class BlockHolder extends Entity {
         }
         if(isOccupied()) {
             if(!getCopyBlock().getId().equals(getCorrectID())) {
-                System.out.println(getCopyBlock().getId() + " vs " + getCorrectID());
                 numberOfErrors = 1;
-                System.out.println(numberOfErrors + " errors of blockholder");
             }
             else if(getCopyBlock().getId().equals(getCorrectID())) {
-                System.out.println(" vsvsvwsvsvs ");
             }
         }
         return numberOfErrors;
