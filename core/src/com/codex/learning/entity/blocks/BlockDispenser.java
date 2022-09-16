@@ -50,12 +50,13 @@ public class BlockDispenser extends Entity {
         this.position = position;
         this.size = size;
         label = new Label("", manager.getSkin());
-        label.setWrap(true);
+//        label.setWrap(true);
 
         table = new Table(manager.getSkin());
         table.setBackground("dialogbox2");
 
-        containerTable = new Table();
+        containerTable = new Table(manager.getSkin());
+//        containerTable.setBackground("dialogbox1");
 
 
         BodyDef def = new BodyDef();
@@ -91,6 +92,7 @@ public class BlockDispenser extends Entity {
     @Override
     public void update(float delta) {
         showBlockID();
+//        manager.getStage().act();
 
     }
 
@@ -119,6 +121,7 @@ public class BlockDispenser extends Entity {
 
         if(isInContact()){
             containerTable.draw(sprite, 1);
+//            manager.getStage().draw();
         }
 
         sprite.end();
@@ -177,28 +180,34 @@ public class BlockDispenser extends Entity {
 
     public void showBlockID(){
 
-        if(!isInContact()){
-            containerTable.reset();
-        }
+//        if(!isInContact()){
+//            containerTable.reset();
+//        }
 
         int length = this.id.length();
-        containerTable.defaults().size(length*5 + 500,75);
-        containerTable.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM - 400,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM -50);
+        containerTable.defaults().size(length*3.5f + 500,150);
+        containerTable.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM - 250,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM - 350);
 
 
         if(isInContact() && isInteracting()){
 
             label.setText(this.id);
-            table.add(label).align(Align.left);
-            table.row();
+//            label.setWrap(true);
 
-            containerTable.add(table).left();
-            containerTable.pack();
-            containerTable.setDebug(true);
+
 
             setInteracting(false);
         }
 
+        if(!containerTable.hasChildren()){
+            label.setAlignment(Align.left);
+            table.setFillParent(true);
+            table.add(label).align(Align.left);
+            containerTable.add(table).colspan(3);
+            containerTable.pack();
+            containerTable.setDebug(true);
+        }
+//        manager.getStage().addActor(containerTable);
 
     }
 
