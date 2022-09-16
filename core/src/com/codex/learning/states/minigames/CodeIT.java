@@ -55,9 +55,8 @@ public class CodeIT extends State {
         currentCell = 0;
         for(int i = 0; i < minigameContainer.size(); i++) {
             blocksArrayList.add(new ArrayList<Blocks>());
-            xStartingPoint = -18.0f;
+            xStartingPoint = -15.0f;
             for(int j = 0; j < minigameContainer.get(i).size(); j++) {
-                blocksArrayList.add(new ArrayList<Blocks>());
                 if(minigameContainer.get(i).get(j) != null) {
                     blockHolders[i][j] = new BlockHolder(manager, "\"" + minigameContainer.get(i).get(j) + "\"");
                     blockHolders[i][j].create(new Vector2(xStartingPoint, yStartingPoint - 0.5f), new Vector2(Constants.BLOCK_HOLDER_WIDTH, Constants.BLOCK_HOLDER_HEIGHT), 0);
@@ -138,7 +137,7 @@ public class CodeIT extends State {
                     if (blockHolders[i][j].isInContact()) {
                         jedisaur.dropBlock(blockHolders[i][j]);
                         if(jedisaur.isDropped() && !blocksArrayList.get(i).contains(blockHolders[i][j].getCopyBlock())){
-                            blocksArrayList.get(i).add(blockHolders[i][j].getCopyBlock());
+                            blocksArrayList.get(i).set(j, blockHolders[i][j].getCopyBlock());
                         }
                         if(jedisaur.isDropped()) {
                             setBlockToCheck(blockHolders[i][j].getCopyBlock(), i, j);
@@ -167,13 +166,14 @@ public class CodeIT extends State {
 
                             for(int k=j-1; k>=0; k--){
                                 if(blockHolders[i][k].isOccupied()){
-                                    blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x - blockSize + 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
+                                    blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x - blockSize + 0.5f, blockHolders[i][k].getBody().getPosition().y + 0.5f, 0);
                                 }
                             }
 
                             /** right blocks in the blockholders **/
                             for(int k=j+1; k<minigameContainer.get(i).size(); k++){
                                 if(blockHolders[i][k].isOccupied()){
+                                    System.out.println(" wtf ");
                                     blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x + blockSize - 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
                                 }
                             }

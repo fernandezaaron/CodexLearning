@@ -15,7 +15,7 @@ public class Questionnaire extends DatabaseReader {
 
     private ArrayList<String> levels;
 
-    private int questionID, excelQuestionLimit, questionLimit, excelMinigameLimit, minigameElementLimit, answerPoolLimit, answerPoolSelection, findCell, dispenserPoolSelection;
+    private int questionID, excelQuestionLimit, questionLimit, excelMinigameLimit, minigameElementLimit, answerPoolLimit, answerPoolSelection, findCell;
 
     private String stageValue;
     private Random randomizer;
@@ -57,7 +57,6 @@ public class Questionnaire extends DatabaseReader {
         minigameElementLimit = 0;
         answerPoolLimit = 200;
         answerPoolSelection = 5;
-        dispenserPoolSelection = 3;
         randomizer = new Random();
 
         levels = new ArrayList<String>();
@@ -201,6 +200,7 @@ public class Questionnaire extends DatabaseReader {
         Row excelRow;
         Cell excelCell, ansCell;
         int start = 1;
+        int limit = 3;
         if(!dispenserPool.isEmpty()){
             dispenserPool.clear();
         }
@@ -211,7 +211,10 @@ public class Questionnaire extends DatabaseReader {
                 ansCell = excelRow.getCell(3);
                 dispenserPool.add(formatter.formatCellValue(ansCell));
                 start++;
+                limit--;
                 if(!String.valueOf(formatter.formatCellValue(answerPoolSheet.getRow(start).getCell(2))).equals(QID))
+                    break;
+                if(limit == 0)
                     break;
             }
             else
