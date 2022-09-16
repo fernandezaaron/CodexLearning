@@ -287,6 +287,14 @@ public class NPC extends Entity {
             }
         }
 
+//        if(dialogSet.equals("hints")  && !db.isOpen()){
+//            db.textAnimation(manager.getDialogue().reader(manager.getHintsIndex(), dialogSet, index));
+//            manager.getDialogue().setStatementEnd(true);
+//        }
+//        if(manager.getDialogue().isStatementEnd() && dialogSet.equals("hints") && db.isOpen()){
+//            table.reset();
+//        }
+
         if(!manager.getDialogue().isStatementEnd() && Gdx.input.justTouched() && db.isOpen() && isIntroDialogFlag()){
             //proceeds to the next statement if it is not the end
             nextStatement++;

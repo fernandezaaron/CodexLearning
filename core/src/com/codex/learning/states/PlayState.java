@@ -52,7 +52,7 @@ public class PlayState extends State{
         timer = 0;
         pause = new PauseState(manager);
         rand = new Random();
-        randomMinigame = 1;
+        randomMinigame = 3;
 
         playroomMap = new PlayroomMapS1(manager);
         manager.setPlayroomMap(playroomMap);
@@ -109,7 +109,6 @@ public class PlayState extends State{
             activeBody(false);
             playroomMap.setActive(true);
             playroomMap.update(delta);
-//            minigame.update(delta);
             manager.getMinigame().update(delta);
             if(playroomMap.getPlayMat().isInContact()){
                 jedisaur.dropBlock(playroomMap.getPlayMat());
@@ -224,7 +223,6 @@ public class PlayState extends State{
             jediGrandpa.tableRender(sprite);
         }else {
             playroomMap.render(sprite);
-//            minigame.render(sprite);
             manager.getMinigame().render(sprite);
             jedisaur.render(sprite);
             playroomMap.getObjective().render(sprite);
@@ -256,8 +254,6 @@ public class PlayState extends State{
         else{
             officeMap.dispose();
         }
-
-//        minigame.dispose();
         manager.getMinigame().dispose();
     }
 
@@ -316,7 +312,6 @@ public class PlayState extends State{
                     officeMap.setPlayroomActive(false);
                 }
 
-//                minigame.setMiniGame();
                 manager.getMinigame().setMiniGame();
                 jedisaur.getBody().setTransform(-20, 1, 0);
                 jedisaur.getBody().getPosition().set(-20, 1);
@@ -329,9 +324,7 @@ public class PlayState extends State{
     private void exitPlayroom(Character character){
         if(!inStartArea && character.getBody().getPosition().x < -23 && character.getBody().getPosition().y > -0.5 && character.getBody().getPosition().y < 4f){
             setInStartArea(true);
-//            minigame.dispose();
             manager.getMinigame().dispose();
-
             jedisaur.getBody().setTransform(14, 1, 0);
             jedisaur.getBody().getPosition().set(14, 1);
         }

@@ -86,6 +86,7 @@ public class CodeRiddle extends State {
         optionsTable.setSkin(manager.getSkin());
         optionsTable.setBackground("optionScreen");
 
+
         table.setSkin(manager.getSkin());
         table.setBackground("PCSCREEN");
 
@@ -179,10 +180,25 @@ public class CodeRiddle extends State {
                if(!(text.getText().contains(questions.get(currentQuestion)))){
                    text.setText(questions.get(currentQuestion));
                    text.setAlignment(Align.left);
+                   String tempstring = "";
 
 
                    for(int i=0; i<4; i++){
+//                       for(int j=0; j<options.get(currentQuestion).get(i).length(); j++){
+//
+//                           if(options.get(currentQuestion).get(i).charAt(j) > 10){
+//                               System.out.println("asfasgasga");
+//                               tempstring += options.get(currentQuestion).get(i).charAt(j);
+//
+//                               System.out.println(tempstring);
+//                           }
+//                           else{
+//                               System.out.println(options.get(currentQuestion).get(i) + "asfasfasasfas");
+//                               tempstring = options.get(currentQuestion).get(i);
+//                           }
+//                       }
                        textButtons[i] = new TextButton(options.get(currentQuestion).get(i), manager.getSkin());
+
                        optionsTable.add(textButtons[i]).grow().padLeft(10f).center();
                        optionsTable.row();
                    }
@@ -246,9 +262,10 @@ public class CodeRiddle extends State {
                scrollPane.setScrollbarsOnTop(true);
                scrollPane.setForceScroll(false,true);
                scrollPane.setSmoothScrolling(true);
+               optionsTable.layout();
                table.add(scrollPane).height(150).padTop(25f);
                table.row();
-               table.add(optionsTable).height(200).padBottom(15f);
+               table.add(optionsTable).height(200).width(780).padBottom(15f);
                table.pack();
            }
 

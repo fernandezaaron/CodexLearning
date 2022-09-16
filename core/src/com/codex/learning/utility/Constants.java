@@ -64,6 +64,12 @@ public class Constants {
     public static final String STAGE_SELECT_MUSIC = "music/stageselect.wav";
     public static final String HOUSE_MUSIC = "music/house.wav";
 
+    //HOW TO PLAY ASSET PATH
+    public static final String CODE_IT = "map/codeIT.png";
+    public static final String CODE_ORDER = "map/codeOrder.png";
+    public static final String MYSTERY_CODE = "map/mysteryCode.png";
+
+
 
 //    MENU STATE
 

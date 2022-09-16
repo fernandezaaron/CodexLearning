@@ -50,7 +50,6 @@ public class PlayroomMapS1 extends State {
         objective.create(new Vector2(6f, 13f), new Vector2(1.5f, 2f), 0);
 
 
-//        minigame = new Minigame(manager, stage, 2);
         door = new TextureRegion(manager.getReportCardSheet(), 48,195, 263, 119);
     }
 
@@ -80,8 +79,6 @@ public class PlayroomMapS1 extends State {
         sprite.end();
 
         npc.render(sprite);
-
-
     }
 
     public void npcRender(SpriteBatch sprite){

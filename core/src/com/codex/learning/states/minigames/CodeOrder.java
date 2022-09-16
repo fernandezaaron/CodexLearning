@@ -17,7 +17,6 @@ import java.util.Random;
 
 public class CodeOrder extends State {
     private Character jedisaur;
-    private PlayroomMapS1 playroom;
     private Blocks[] answerBlocks;
     private Blocks[][] questionBlocks;
     private BlockHolder[] blockHolders;
@@ -34,7 +33,6 @@ public class CodeOrder extends State {
     public CodeOrder(Manager manager, Character jedisaur) {
         super(manager);
         pause = new PauseState(manager);
-        playroom = new PlayroomMapS1(manager);
         randomizer = new Random();
         banishCells = new ArrayList<Integer>();
 
@@ -137,8 +135,6 @@ public class CodeOrder extends State {
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.end();
 
-        playroom.render(sprite);
-
         currentCell = 0;
         for(int i = 0; i < minigameContainer.size(); i++) {
             for (int j = 0; j < minigameContainer.get(i).size(); j++) {
@@ -167,7 +163,6 @@ public class CodeOrder extends State {
             answerBlocks[i].disposeBody();
         }
 
-        playroom.dispose();
     }
 
     public void getAMinigame(String stage, String expertiseLevel){
