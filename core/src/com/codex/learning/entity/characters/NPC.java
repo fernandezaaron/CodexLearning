@@ -218,6 +218,11 @@ public class NPC extends Entity {
             }
         }
 
+        sprite.end();
+    }
+
+    public void tableRender(SpriteBatch sprite){
+        sprite.begin();
         table.draw(sprite, 1);
         sprite.end();
     }
@@ -226,6 +231,7 @@ public class NPC extends Entity {
         if(isInContact() && Gdx.input.isKeyJustPressed(Input.Keys.E)){
             setTalking(true);
             if(!db.isOpen()){
+                System.out.println("asdasfafa");
                 //if the dialogue box is not yet open then animate the text and add it to the table to draw it
                 db.textAnimation(manager.getDialogue().reader(nextStatement, dialogSet, index));
 

@@ -66,6 +66,7 @@ public class Manager {
 
     private boolean moving;
     private int numberOfBlockInteraction;
+    private int hintsIndex;
 
     private ExpertSystem expertSystem;
 
@@ -128,6 +129,8 @@ public class Manager {
         states = new Stack<State>();
 
         dialogue = new Dialogue();
+
+        hintsIndex = 0;
     }
 
 
@@ -425,6 +428,7 @@ public class Manager {
                 System.out.println(behavior);
                 System.out.println(currentBehavior);
                 System.out.println("NOT ENGAGED");
+                hintsIndex++;
             }
         }
         behavior.clear();
@@ -501,6 +505,7 @@ public class Manager {
         }
     }
 
+
     public ExpertSystem getExpertSystem() {
         return expertSystem;
     }
@@ -515,5 +520,13 @@ public class Manager {
 
     public void setDialogue(Dialogue dialogue) {
         this.dialogue = dialogue;
+    }
+
+    public int getHintsIndex() {
+        return hintsIndex;
+    }
+
+    public void setHintsIndex(int hintsIndex) {
+        this.hintsIndex = hintsIndex;
     }
 }

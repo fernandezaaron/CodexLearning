@@ -18,12 +18,10 @@ import java.util.Random;
 
 public class FillInTheBlock extends State {
     private Character jedisaur;
-    private PlayroomMapS1 playroom;
     private Blocks[][] questionBlocks;
     private BlockHolder[][] blockHolders;
     private BlockDispenser[] blockDispensers;
     private ArrayList<ArrayList<Blocks>> blocksArrayList;
-    private PauseState pause;
     private ArrayList<ArrayList<String>> minigameContainer;
     private Random randomizer;
     private float blockSize, xStartingPoint, currentStringLength;
@@ -33,7 +31,6 @@ public class FillInTheBlock extends State {
 
     public FillInTheBlock(Manager manager, Character character) {
         super(manager);
-        playroom = new PlayroomMapS1(manager);
         randomizer = new Random();
         banishCells = new ArrayList<>();
         duplicatePool = new ArrayList<>();
@@ -365,7 +362,6 @@ public class FillInTheBlock extends State {
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.end();
-        playroom.render(sprite);
 
         currentCell = 0;
         for(int i = 0; i < minigameContainer.size(); i++) {
@@ -425,7 +421,7 @@ public class FillInTheBlock extends State {
             }
         }
 
-        playroom.dispose();
+
     }
 
     public void getAMinigame(String stage){

@@ -52,7 +52,7 @@ public class PlayState extends State{
         timer = 0;
         pause = new PauseState(manager);
         rand = new Random();
-        randomMinigame = 2;
+        randomMinigame = 1;
 
         playroomMap = new PlayroomMapS1(manager);
         manager.setPlayroomMap(playroomMap);
@@ -115,6 +115,7 @@ public class PlayState extends State{
                 jedisaur.dropBlock(playroomMap.getPlayMat());
                 
             }
+
 
         }else {
             activeBody(true);
@@ -180,6 +181,10 @@ public class PlayState extends State{
                     }
                 }
             }
+            if(playroomMap.getNpc().isTalking()){
+                jedisaurStop(delta);
+                playroomMap.getNpc().update(delta);
+            }
 
         }else{
             jedisaurStop(delta);
@@ -196,7 +201,6 @@ public class PlayState extends State{
 
         enterPlayRoom(jedisaur);
         exitPlayroom(jedisaur);
-
 
         if(isInStartArea()){
             if(manager.getStageSelector().map().equals("1")){
@@ -217,12 +221,15 @@ public class PlayState extends State{
                 computer.render(sprite);
                 jedisaur.render(sprite);
             }
+            jediGrandpa.tableRender(sprite);
         }else {
             playroomMap.render(sprite);
 //            minigame.render(sprite);
             manager.getMinigame().render(sprite);
             jedisaur.render(sprite);
             playroomMap.getObjective().render(sprite);
+            playroomMap.npcRender(sprite);
+
         }
 
         sprite.begin();
@@ -254,7 +261,7 @@ public class PlayState extends State{
         manager.getMinigame().dispose();
     }
 
-    public void jedisaurStop(float delta){
+    private void jedisaurStop(float delta){
         if(jedisaur.isMoving()){
             jedisaur.setMoving(false);
             jedisaur.update(delta);
@@ -262,7 +269,7 @@ public class PlayState extends State{
         }
     }
 
-    public void activeBody(boolean active){
+    private void activeBody(boolean active){
          jediGrandpa.getBody().setActive(active);
          computer.getBody().setActive(active);
 

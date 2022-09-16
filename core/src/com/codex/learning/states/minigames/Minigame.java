@@ -10,11 +10,13 @@ import com.codex.learning.utility.Manager;
 public class Minigame extends State {
     private FuzzyLogic fuzzyLogic;
     private int currentMinigame;
-    private FillInTheBlock s;
+    private FillInTheBlock fillInTheBlock;
     private sample sample;
-    private CodeOrder h;
-    private boolean fib, mc, samplebool;
+    private CodeOrder codeOrder;
+    private boolean fillInTheBlockFlag, mysteryCodeFlag, codeOrderFlag, codeITFlag;
     private Character jedisaur;
+    private MysteryCode mysteryCode;
+    private CodeIT codeIT;
 
 //    public Minigame(Manager manager, int currentMinigame, Character jedisaur, FuzzyLogic fuzzyLogic){
 //        super(manager);
@@ -29,8 +31,10 @@ public class Minigame extends State {
     public void create(int currentMinigame, Character jedisaur, FuzzyLogic fuzzyLogic){
         this.currentMinigame = currentMinigame;
         this.fuzzyLogic = fuzzyLogic;
-        fib = false;
-        mc = false;
+        fillInTheBlockFlag = false;
+        mysteryCodeFlag = false;
+        codeOrderFlag = false;
+        codeITFlag = false;
         this.jedisaur = jedisaur;
     }
 
@@ -38,67 +42,77 @@ public class Minigame extends State {
     public void setMiniGame(){
         switch (currentMinigame){
             case 1:
-                fib = true;
-                s = new FillInTheBlock(manager, jedisaur);
-                System.out.println("1");
+                fillInTheBlockFlag = true;
+                fillInTheBlock = new FillInTheBlock(manager, jedisaur);
                 break;
             case 2:
-                mc = true;
-                h = new CodeOrder(manager, jedisaur);
+                mysteryCodeFlag = true;
+                mysteryCode = new MysteryCode(manager, jedisaur, fuzzyLogic);
                 break;
             case 3:
-                samplebool = true;
-                sample = new sample(manager, jedisaur);
-                System.out.println("3");
+                codeOrderFlag = true;
+                codeOrder = new CodeOrder(manager, jedisaur);
                 break;
-
+            case 4:
+                codeITFlag = true;
+                codeIT = new CodeIT(manager,jedisaur);
+                break;
         }
     }
 
     @Override
     public void update(float delta) {
-        if(fib){
-            s.update(delta);
+        if(fillInTheBlockFlag){
+            fillInTheBlock.update(delta);
         }
-        else if(mc){
-            h.update(delta);
-        }else if(samplebool){
-            sample.update(delta);
+        else if(mysteryCodeFlag){
+            mysteryCode.update(delta);
+        }else if(codeOrderFlag){
+            codeOrder.update(delta);
+        }
+        else if(codeITFlag){
+            codeIT.update(delta);
         }
 
     }
 
     @Override
     public void render(SpriteBatch sprite) {
-        if(fib){
-            s.render(sprite);
+        if(fillInTheBlockFlag){
+            fillInTheBlock.render(sprite);
         }
-        else if(mc){
-            h.render(sprite);
-        }else if(samplebool){
-            sample.render(sprite);
+        else if(mysteryCodeFlag){
+            mysteryCode.render(sprite);
+        }else if(codeOrderFlag){
+            codeOrder.render(sprite);
         }
+        else if(codeITFlag){
+            codeIT.render(sprite);
+        }
+
     }
 
 
     @Override
     public void dispose() {
 
-        if(fib){
-            s.dispose();
+        if(fillInTheBlockFlag){
+            fillInTheBlock.dispose();
         }
-        else if(mc){
-            System.out.println("disposing mc");
-            h.dispose();
-        }else if(samplebool){
-            sample.dispose();
+        else if(mysteryCodeFlag){
+            mysteryCode.dispose();
+        }else if(codeOrderFlag){
+            codeOrder.dispose();
+        }
+        else if(codeITFlag){
+            codeIT.dispose();
         }
     }
 
-    public void setActive(boolean active){
-        if(fib){
-            s.setActive(active);
-        }
-    }
+//    public void setActive(boolean active){
+//        if(fib){
+//            s.setActive(active);
+//        }
+//    }
 
 }

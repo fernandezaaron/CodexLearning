@@ -41,7 +41,6 @@ public class PlayroomMapS1 extends State {
         npcDialog = "hints";
         npc = new NPC(manager, npcDialog, 0, true);
         npc.create(new Vector2(0, -6), new Vector2(1, 1.4f), 0);
-        npc.setInPlayroom(true);
         npc.setIntroDialogFlag(true);
 
         playMat = new PlayMat(manager);
@@ -58,6 +57,7 @@ public class PlayroomMapS1 extends State {
     @Override
     public void update(float delta) {
         //make a condition on NPC hints dialog if wala pa and if meron na
+//        manager.updateBehavior(60);
         npc.update(delta);
         objective.update(delta);
     }
@@ -79,10 +79,15 @@ public class PlayroomMapS1 extends State {
         }
         sprite.end();
 
-
         npc.render(sprite);
 
+
     }
+
+    public void npcRender(SpriteBatch sprite){
+        npc.tableRender(sprite);
+    }
+
 
     @Override
     public void dispose() {
@@ -132,5 +137,11 @@ public class PlayroomMapS1 extends State {
     }
 
 
+    public NPC getNpc() {
+        return npc;
+    }
 
+    public void setNpc(NPC npc) {
+        this.npc = npc;
+    }
 }

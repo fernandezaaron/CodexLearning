@@ -106,6 +106,10 @@ public class BlockDispenser extends Entity {
                 body.getPosition().x * Constants.PPM - blockDispenser.getRegionWidth() / 2,
                 body.getPosition().y * Constants.PPM - blockDispenser.getRegionHeight() / 2);
 
+        if(isInContact()){
+            containerTable.draw(sprite, 1);
+        }
+
         sprite.end();
 
         blockID.setProjectionMatrix(manager.getCamera().combined);
@@ -116,15 +120,6 @@ public class BlockDispenser extends Entity {
                 ((this.size.x * Constants.PPM)) * 6.3f,
                 -(this.size.y * Constants.PPM / 2));
         blockID.end();
-
-        sprite.begin();
-
-        if(isInContact()){
-            containerTable.draw(sprite, 1);
-//            manager.getStage().draw();
-        }
-
-        sprite.end();
 
         if(spawned){
             limit--;
