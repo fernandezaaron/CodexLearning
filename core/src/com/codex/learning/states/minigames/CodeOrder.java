@@ -43,11 +43,12 @@ public class CodeOrder extends State {
         questionBlocks = new Blocks[20][20];
         blockHolders = new BlockHolder[minigameContainer.size()];
         answerPoolContainer = new ArrayList<>();
+        originalAnswerPoolContainer = new ArrayList<>();
 
         /** START OF MINIGAME CREATION **/
         yStartingPoint = 10;
         currentCell = 0;
-        xStartingPoint = -18.0f;
+        xStartingPoint = -10.0f;
         for(int i = 0; i < minigameContainer.size(); i++) {
             if(minigameContainer.get(i) != null) {
                 mergeResult = "";
@@ -72,7 +73,7 @@ public class CodeOrder extends State {
 
         /** START OF ANSWER POOL CREATION **/
         AnsPoolY = 8;
-        AnsPoolX = -2;
+        AnsPoolX = 12;
         int ansPoolSize = answerPoolContainer.size();
         for(int i = 0; i < ansPoolSize; i++) {
             currentStringLength = (float) String.valueOf(answerPoolContainer.get(i)).length();
@@ -83,6 +84,8 @@ public class CodeOrder extends State {
             AnsPoolY -= 2.5f;
         }
         /** END OF ANSWER POOL CREATION **/
+
+        setToCheck(blockHolders);
 
         this.jedisaur = jedisaur;
     }
@@ -100,6 +103,10 @@ public class CodeOrder extends State {
                 answerBlocks[i].update(delta);
                 if (answerBlocks[i].isInContact()) {
                     jedisaur.carryBlock(answerBlocks[i]);
+                    if(jedisaur.isPickedUp()) {
+                        setBlockToCheck(null, i);
+                        setToCheck(blockHolders);
+                    }
                 }
             }
         }
@@ -107,6 +114,9 @@ public class CodeOrder extends State {
         for (int i = 0; i < minigameContainer.size(); i++) {
             if (blockHolders[i].isInContact()) {
                 jedisaur.dropBlock(blockHolders[i]);
+                if(jedisaur.isDropped()) {
+                    setBlockToCheck(blockHolders[i].getCopyBlock(), i);
+                }
             }
         }
 
@@ -173,4 +183,17 @@ public class CodeOrder extends State {
 //            }
 //        }
 //    }
+    public void setToCheck(BlockHolder[] blockHolders) {
+        manager.getMinigameChecker().setBlockOrder(blockHolders);
+    }
+
+    public void setBlockToCheck(Blocks block, int i) {
+        if(jedisaur.isPickedUp()) {
+            manager.getMinigameChecker().pickUpOrderBlock(block, i);
+        }
+        if(jedisaur.isDropped()) {
+            manager.getMinigameChecker().dropOrderBlock(block, i);
+        }
+    }
+
 }
