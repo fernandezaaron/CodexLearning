@@ -136,7 +136,6 @@ public class Contact implements ContactListener {
             }
             if(blockHolder.isOccupied()){
                 numberOfCollision = 0;
-                System.out.println("occupied");
             }
         }
 
@@ -219,7 +218,7 @@ public class Contact implements ContactListener {
                 jedisaur = (Character) fa.getUserData();
                 objective = (Objective) fb.getUserData();
             }
-            System.out.println("ASDWDQDWQDQWDQDW");
+            System.out.println("OBJECTIVE CONTACT");
             objective.setInContact(true);
         }
 

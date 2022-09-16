@@ -136,9 +136,7 @@ public class PauseState extends State {
                     Behavior.currentDataSet.clear();
                     manager.getQuestionnaire().dispose();
                     if (manager.getQuestionnaire().getMinigameHolder() != null){
-                        System.out.println("clearing minigames");
                         manager.getQuestionnaire().clearMinigames();
-                        System.out.println(manager.getMinigame() + " current minigame disposing");
                         manager.getMinigame().dispose();
                     }
                     manager.getPlayroomMap().dispose();
@@ -149,9 +147,7 @@ public class PauseState extends State {
                     manager.getMusic().stop();
                     manager.getQuestionnaire().dispose();
                     if (manager.getQuestionnaire().getMinigameHolder() != null){
-                        System.out.println("clearing minigames");
                         manager.getQuestionnaire().clearMinigames();
-                        System.out.println(manager.getMinigame() + " current minigame disposing");
                         manager.getMinigame().dispose();
                     }
                     manager.getPlayroomMap().dispose();

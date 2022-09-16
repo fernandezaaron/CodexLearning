@@ -27,7 +27,6 @@ public class MinigameChecker {
             for(int i = 0; i < blockOrder.length; i++) {
                 if(blockOrder[i] != null) {
                     blockOrder[i].setCopyBlock(updateOrder[i]);
-                    System.out.println(blockOrder[i].getCorrectID());
                     numberOfErrors += blockOrder[i].checkErrors();
                     System.out.println(numberOfErrors + " errors ");
                 }
@@ -38,7 +37,6 @@ public class MinigameChecker {
                 for (int j = 0; j < blockHolders[i].length; j++) {
                     if (blockHolders[i][j] != null) {
                         blockHolders[i][j].setCopyBlock(updateBlocks[i][j]);
-                        System.out.println(blockHolders[i][j].getCorrectID());
                         numberOfErrors += blockHolders[i][j].checkErrors();
                         System.out.println(numberOfErrors + " errors ");
                     }
@@ -75,12 +73,10 @@ public class MinigameChecker {
 
     public void pickUpCopyBlock(Blocks blocks, int i, int j) {
         updateBlocks[i][j] = blocks;
-        System.out.println(" picked ID");
     }
 
     public void dropCopyBlock(Blocks blocks, int i, int j) {
         updateBlocks[i][j] = blocks;
-        System.out.println(updateBlocks[i][j].getId() + " dropped ID");
     }
 
     public void setBlockHolders(BlockHolder[][] blockHolders) {
@@ -109,12 +105,10 @@ public class MinigameChecker {
 
     public void pickUpOrderBlock(Blocks blocks, int i) {
         updateOrder[i] = blocks;
-        System.out.println(" picked ID");
     }
 
     public void dropOrderBlock(Blocks blocks, int i) {
         updateOrder[i] = blocks;
-        System.out.println(updateOrder[i].getId() + " dropped ID");
     }
 
     public BlockHolder[][] getBlockHolders() {

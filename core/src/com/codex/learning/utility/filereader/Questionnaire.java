@@ -100,18 +100,14 @@ public class Questionnaire extends DatabaseReader {
 
     public void minigameDisplay(String stage, String topics) {
         addTopic(topics);
-
         while(minigameGetter == null) {
             topics = topic.get(randomizer.nextInt(topic.size()));
             questionID = randomizer.nextInt(excelMinigameLimit - 1) + 1;
-            System.out.println(questionID + " RNG BABY");
             difficulty = levels.get(randomizer.nextInt(levels.size()));
             findCell = findRow(minigameSheet, questionID);
             getMinigameHolder(findCell, 4, difficulty, topics);
         }
         minigameTopic = topics;
-        System.out.println(topics + " TOPICS IN MINIGAME DISPLAY");
-        System.out.println(questionID + " question ID");
         getAnswerPool(String.valueOf(questionID));
         getDispenserPool(String.valueOf(questionID));
     }
@@ -120,14 +116,12 @@ public class Questionnaire extends DatabaseReader {
     public void getMinigameHolder(int row1, int col1, String difficulty, String stageTopic) {
         minigameHolder = new ArrayList<>();
         banishPerRow = new ArrayList<>();
-        System.out.println(stageTopic + " stage topic, " + difficulty + " difficulty");
         String stageTopicacq = getMinigameInfo(row1, 1);
         String difficultyacq = getMinigameInfo(row1, 2);
         Row qRow;
         Cell qCell;
         // Check the difficulty and the stage topic
         if((difficultyacq != null && difficultyacq.equals(difficulty)) && (stageTopicacq != null && stageTopicacq.equals(stageTopic))) {
-            System.out.println(" im here ");
             for(int x = row1; x > 0; x++) {
                 minigameGetter = new ArrayList<>();
                 banishThisNumber = new ArrayList<>();
@@ -172,21 +166,17 @@ public class Questionnaire extends DatabaseReader {
         Cell excelCell, ansCell;
         int start = 1;
         if(!answerPool.isEmpty()){
-            System.out.println("i am here answerpool empty");
             answerPool.clear();
         }
 
         while(true){
             excelRow = answerPoolSheet.getRow(start);
-//            System.out.println(excelRow + " excel row");
             excelCell = excelRow.getCell(2);
-            System.out.println(String.valueOf(formatter.formatCellValue(excelCell)) + " Current Excel Cell");
             if(String.valueOf(formatter.formatCellValue(excelCell)).equals(QID)){
                 ansCell = excelRow.getCell(3);
                 answerPool.add(formatter.formatCellValue(ansCell));
                 start++;
                 if(!String.valueOf(formatter.formatCellValue(answerPoolSheet.getRow(start).getCell(2))).equals(QID)){
-                    System.out.println("break");
                     break;
 
                 }
@@ -257,16 +247,12 @@ public class Questionnaire extends DatabaseReader {
     public void questionDisplay(String stage, String topics) {
         addTopic(topics);
 
-        System.out.println(levels.size() + "levels size");
         difficulty = levels.get(randomizer.nextInt(levels.size()));
 
 
         while(question == null) {
             difficulty = levels.get(randomizer.nextInt(levels.size()));
             topics = topic.get(randomizer.nextInt(topic.size()));
-//            System.out.println(stageTopic);
-//            System.out.println("am i here");
-//            System.out.println(numberOfQuestions);
             if(numberOfQuestions == questionLimit){
                 break;
             }
@@ -347,7 +333,6 @@ public class Questionnaire extends DatabaseReader {
     }
 
     public void addTopic(String stageNumber){
-        System.out.println(stageNumber + " stage number addtopic");
         switch (stageNumber){
             case "1":
                 topic.add("Syntax");
@@ -512,10 +497,13 @@ public class Questionnaire extends DatabaseReader {
     }
 
     public void clearMinigames(){
-        minigameGetter.clear();
+        minigameHolder = null;
+        minigameGetter = null;
+        banishThisNumber = null;
+        topic.clear();
 //        answerPool.clear();
 //        dispenserPool.clear();
-        banishThisNumber.clear();
+        banishPerRow = null;
         questionID = 0;
 
     }

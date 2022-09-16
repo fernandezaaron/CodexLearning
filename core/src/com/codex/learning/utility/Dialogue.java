@@ -2580,7 +2580,6 @@ public class Dialogue {
 
 
     public String reader(int nextStatement, String dialogueSet, int index){
-        System.out.println(getNpcName());
         switch (dialogueSet){
             case "introduction": return statementMover(nextStatement, introductionDialogue, getStage()-1);
             case "question": return statementMover(nextStatement, questionDialogue, 0);
@@ -2596,11 +2595,9 @@ public class Dialogue {
 
     public String statementMover(int nextStatement, ArrayList<ArrayList<String>> arrayLists, int index){
         if(nextStatement == arrayLists.get(index).size()){
-            System.out.println("true");
             setStatementEnd(true);
         }else{
             setStatementEnd(false);
-            System.out.println("dumaan ako dito");
             return arrayLists.get(index).get(nextStatement);
         }
 
