@@ -65,7 +65,7 @@ public class CodeOrder extends State {
             }
             blockHolders[i] = new BlockHolder(manager, "\"" + answerPoolContainer.get(i) + "\"");
             blockHolders[i].create(new Vector2(xStartingPoint, yStartingPoint - 0.5f), new Vector2(Constants.BLOCK_HOLDER_WIDTH, Constants.BLOCK_HOLDER_HEIGHT), 0);
-            yStartingPoint -= 2.5f;
+            yStartingPoint -= 3f;
         }
         answerBlocks = new Blocks[answerPoolContainer.size()];
         Collections.shuffle(answerPoolContainer);
@@ -173,6 +173,9 @@ public class CodeOrder extends State {
     public void getAMinigame(String stage, String expertiseLevel){
         manager.getQuestionnaire().minigameDisplay(stage,String.valueOf(manager.getStageSelector().getStageMap()));
         minigameContainer = manager.getQuestionnaire().getMinigameHolder();
+        while(minigameContainer.get(0).size() > 6){
+            minigameContainer = manager.getQuestionnaire().getMinigameHolder();
+        }
 //        minigameContainerLimit = manager.getQuestionnaire().getMinigameLimit();
     }
 
