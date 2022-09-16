@@ -52,7 +52,7 @@ public class Questionnaire extends DatabaseReader {
         questionLimit = 0;
         questionID = 0;
 
-        excelQuestionLimit = 196;
+        excelQuestionLimit = 263;
         excelMinigameLimit = 93;
         minigameElementLimit = 0;
         answerPoolLimit = 200;
@@ -201,6 +201,7 @@ public class Questionnaire extends DatabaseReader {
         Row excelRow;
         Cell excelCell, ansCell;
         int start = 1;
+        int limit = 3;
         if(!dispenserPool.isEmpty()){
             dispenserPool.clear();
         }
@@ -211,7 +212,10 @@ public class Questionnaire extends DatabaseReader {
                 ansCell = excelRow.getCell(3);
                 dispenserPool.add(formatter.formatCellValue(ansCell));
                 start++;
+                limit--;
                 if(!String.valueOf(formatter.formatCellValue(answerPoolSheet.getRow(start).getCell(2))).equals(QID))
+                    break;
+                if(limit == 0)
                     break;
             }
             else
