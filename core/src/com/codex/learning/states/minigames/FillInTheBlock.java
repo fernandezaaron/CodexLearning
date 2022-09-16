@@ -126,17 +126,24 @@ public class FillInTheBlock extends State {
         blockDispensers = new BlockDispenser[banishPoolContainer.size() + dispenserPoolContainer.size()];
         ansPoolSize = banishPoolContainer.size();
         System.out.println(ansPoolSize);
-        xposition = -22;
-        yposition = -6;
+//        xposition = -22;
+//        yposition = -6;
+        xposition = 18;
+        yposition = 10;
         for(int i = 0; i < ansPoolSize; i++) {
             blockDispensers[i] = new BlockDispenser(manager, "Down", "\"" + banishPoolContainer.get(i) + "\"", banishPoolContainer.get(i),
                     duplicatePool.get(i), new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
             blockDispensers[i].create(new Vector2(xposition, yposition), new Vector2(0.3f, 1.3f), 0);
             System.out.println(banishPoolContainer.get(i) + " many " + duplicatePool.get(i));
-            xposition += 5;
-            if(xposition == -2) {
-                yposition -= 6;
-                xposition = -22;
+//            xposition += 5;
+            yposition -= 6;
+//            if(xposition == -2) {
+//                yposition -= 6;
+//                xposition = -22;
+//            }
+            if(yposition == -14) {
+                yposition = 10;
+                xposition += 4;
             }
         }
 
@@ -148,10 +155,15 @@ public class FillInTheBlock extends State {
             blockDispensers[i] = new BlockDispenser(manager, "Down", "\"" + dispenserPoolContainer.get(ansPoolIterator) + "\"", dispenserPoolContainer.get(ansPoolIterator),
                     1, new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
             blockDispensers[i].create(new Vector2(xposition, yposition), new Vector2(0.3f, 1.3f), 0);
-            xposition += 5;
-            if(xposition == -2) {
-                yposition -= 6;
-                xposition = -22;
+//            xposition += 5;
+            yposition -= 6;
+//            if(xposition == -2) {
+//                yposition -= 6;
+//                xposition = -22;
+//            }
+            if(yposition == -14) {
+                yposition = 10;
+                xposition += 4;
             }
             ansPoolIterator++;
         }

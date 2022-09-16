@@ -73,7 +73,7 @@ public class CodeOrder extends State {
 
         /** START OF ANSWER POOL CREATION **/
         AnsPoolY = 8;
-        AnsPoolX = 12;
+        AnsPoolX = 8;
         int ansPoolSize = answerPoolContainer.size();
         for(int i = 0; i < ansPoolSize; i++) {
             currentStringLength = (float) String.valueOf(answerPoolContainer.get(i)).length();
