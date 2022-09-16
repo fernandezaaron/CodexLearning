@@ -246,6 +246,7 @@ public class NPC extends Entity {
         /** CHECKS EACH BLOCKHOLDER THEN CHECK IF CORRECT OUTPUT **/
         if(isInContact() && isInPlayroom() && isReady() && Gdx.input.isKeyJustPressed(Input.Keys.E)) {
             setTalking(true);
+            setTalking(true);
             manager.getMinigameChecker().minigameCheck();
             if(manager.getMinigameChecker().correctOutputCheck()) {
                 db.textAnimation(manager.getDialogue().reader(nextStatement, "finishCheck", 1));
