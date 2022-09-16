@@ -69,7 +69,7 @@ public class NPC extends Entity {
         manager.getSkin().add("pokemon", manager.getFont());
 
         //animates the text
-        db = new DialogueBox(manager.getSkin(), "dialogbox2");
+        db = new DialogueBox(manager.getSkin(), "dialogbox2", 1.2f);
         //dialogue of the NPC
         manager.getDialogue().setStage(manager.getStageSelector().getStageMap());
 

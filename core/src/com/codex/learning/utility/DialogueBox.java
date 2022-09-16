@@ -18,12 +18,13 @@ public class DialogueBox extends Table {
     private Label textLabel;
 
 
-    public DialogueBox(Skin skin, String name){
+    public DialogueBox(Skin skin, String name, float scale){
         //this.pack();
         this.setSkin(skin);
         this.setBackground(skin.getDrawable(name));
         textLabel = new Label(" ", skin);
         textLabel.setWrap(true);
+        textLabel.setFontScale(scale);
         this.add(textLabel).align(Align.left).pad(50f).grow();
 
        // this.setPosition(this.getX(), this.getY());

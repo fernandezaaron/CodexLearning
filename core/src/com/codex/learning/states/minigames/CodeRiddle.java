@@ -67,7 +67,8 @@ public class CodeRiddle extends State {
 
 
 
-        dialogueBox = new DialogueBox(manager.getSkin(), "dialogbox2");
+        dialogueBox = new DialogueBox(manager.getSkin(), "dialogbox2", 0.5f);
+
 
 //        manager.getFont().getData().setScale(1f);
 
