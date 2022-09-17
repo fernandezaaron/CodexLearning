@@ -84,7 +84,6 @@ public class FillInTheBlock extends State {
 
         /** START OF MINIGAME CREATION **/
         yStartingPoint = 10;
-        currentCell = 0;
         for(int i = 0; i < minigameContainer.size(); i++) {
             blocksArrayList.add(new ArrayList<Blocks>());
             xStartingPoint = -18.0f;
@@ -114,7 +113,6 @@ public class FillInTheBlock extends State {
                         blocksArrayList.get(i).add(questionBlocks[i][j]);
                         xStartingPoint =  questionBlocks[i][j].getDupliSize().x + (questionBlocks[i][j].getBody().getPosition().x) + 1.5f;
                     }
-                    currentCell++;
                 }
             }
             yStartingPoint -= 2.5f;
@@ -125,17 +123,31 @@ public class FillInTheBlock extends State {
         blockDispensers = new BlockDispenser[banishPoolContainer.size() + dispenserPoolContainer.size()];
         ansPoolSize = banishPoolContainer.size();
         System.out.println(ansPoolSize);
-        xposition = -22;
-        yposition = -6;
+//        xposition = -22;
+//        yposition = -6;
+        xposition = 18;
+        yposition = 10;
         for(int i = 0; i < ansPoolSize; i++) {
-            blockDispensers[i] = new BlockDispenser(manager, "Down", "\"" + banishPoolContainer.get(i) + "\"", banishPoolContainer.get(i),
-                    duplicatePool.get(i), new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
+            currentStringLength = (float) String.valueOf(banishPoolContainer.get(i)).length();
+            if (currentStringLength <= 3){
+                blockDispensers[i] = new BlockDispenser(manager, "Down", "\"" + banishPoolContainer.get(i) + "\"", banishPoolContainer.get(i),
+                        duplicatePool.get(i), new Vector2(currentStringLength * 0.5f, Constants.BLOCKS_HEIGHT));
+            }
+            else {
+                blockDispensers[i] = new BlockDispenser(manager, "Down", "\"" + banishPoolContainer.get(i) + "\"", banishPoolContainer.get(i),
+                        duplicatePool.get(i), new Vector2(currentStringLength * 0.23f, Constants.BLOCKS_HEIGHT));
+            }
             blockDispensers[i].create(new Vector2(xposition, yposition), new Vector2(0.3f, 1.3f), 0);
             System.out.println(banishPoolContainer.get(i) + " many " + duplicatePool.get(i));
-            xposition += 5;
-            if(xposition == -2) {
-                yposition -= 6;
-                xposition = -22;
+//            xposition += 5;
+            yposition -= 6;
+//            if(xposition == -2) {
+//                yposition -= 6;
+//                xposition = -22;
+//            }
+            if(yposition == -14) {
+                yposition = 10;
+                xposition += 4;
             }
         }
 
@@ -143,17 +155,24 @@ public class FillInTheBlock extends State {
         System.out.println(dispenserPoolContainer + " huh ");
         ansPoolIterator = 0;
         for(int i = ansPoolSize; i < dispenserPoolContainer.size() + ansPoolSize; i++) {
+            currentStringLength = (float) String.valueOf(dispenserPoolContainer.get(ansPoolIterator)).length();
             System.out.println(dispenserPoolContainer.get(ansPoolIterator) + " di to many ah ");
             blockDispensers[i] = new BlockDispenser(manager, "Down", "\"" + dispenserPoolContainer.get(ansPoolIterator) + "\"", dispenserPoolContainer.get(ansPoolIterator),
-                    1, new Vector2(Constants.BLOCKS_BRACE_WIDTH, Constants.BLOCKS_HEIGHT));
+                    1, new Vector2(currentStringLength, Constants.BLOCKS_HEIGHT));
             blockDispensers[i].create(new Vector2(xposition, yposition), new Vector2(0.3f, 1.3f), 0);
-            xposition += 5;
-            if(xposition == -2) {
-                yposition -= 6;
-                xposition = -22;
+//            xposition += 5;
+            yposition -= 6;
+//            if(xposition == -2) {
+//                yposition -= 6;
+//                xposition = -22;
+//            }
+            if(yposition == -14) {
+                yposition = 10;
+                xposition += 4;
             }
             ansPoolIterator++;
         }
+        System.out.println(dispenserPoolContainer);
         /** END OF DISPENSER POOL CREATION **/
 
         setToCheck(blockHolders);
@@ -219,53 +238,37 @@ public class FillInTheBlock extends State {
             blockSize = jedisaur.getCopyBlock().getDupliSize().x;
         }
 
-        currentCell = 0;
         for (int i = 0; i < minigameContainer.size(); i++) {
             for (int j = 0; j < minigameContainer.get(i).size(); j++) {
                 if (minigameContainer.get(i).get(j) != null) {
-                    if (banishCells.contains(currentCell)) {
+                    if(dispenserPoolContainer.contains(minigameContainer.get(i).get(j)) || banishPoolContainer.contains(minigameContainer.get(i).get(j))) {
                         if (blockHolders[i][j].isInContact()) {
-                            if(jedisaur.isDropped()){
-
-                                /** tempCurrentCell is used for a local iteration of currentcell
-                                 since currentcell iterates the whole indeces from 1-N **/
-
-                                int tempCurrentCell = currentCell;
+                            if (jedisaur.isDropped()) {
 
                                 /** left iteration of blocks **/
-                                for(int k=j-1; k>=0; k--){
-                                    tempCurrentCell--;
+                                for (int k = j - 1; k >= 0; k--) {
                                     /** checks if the index is a blockholder or if it is inside the arraylist **/
-                                    if(banishCells.contains(tempCurrentCell)){
-                                        blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
-                                    }
-                                    else{
-                                        questionBlocks[i][k].getBody().setTransform(questionBlocks[i][k].getBody().getPosition().x - blockSize+0.5f, questionBlocks[i][k].getBody().getPosition().y, 0);
+                                    if (dispenserPoolContainer.contains(minigameContainer.get(i).get(k)) || banishPoolContainer.contains(minigameContainer.get(i).get(k))) {
+                                        blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize + 0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+                                    } else {
+                                        questionBlocks[i][k].getBody().setTransform(questionBlocks[i][k].getBody().getPosition().x - blockSize + 0.5f, questionBlocks[i][k].getBody().getPosition().y, 0);
                                     }
                                 }
 
-                                /** for the blocks occupying the blockholders
-                                 * it iterates from the max value of the arraylist(i), and finds the
-                                 * blockholders from the leftside of the currentCell
-                                 * if it is true and the blockholder is occupied, transform the copyblocks of blockholders stored in the arraylist **/
-                                tempCurrentCell = currentCell;
-                                for(int k=j-1; k>=0; k--){
-                                    tempCurrentCell--;
-                                    if(banishCells.contains(tempCurrentCell)){
-                                        if(blockHolders[i][k].isOccupied()){
-                                            blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x - blockSize + 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
+                                for (int k = j - 1; k >= 0; k--) {
+                                    if (dispenserPoolContainer.contains(minigameContainer.get(i).get(k)) || banishPoolContainer.contains(minigameContainer.get(i).get(k))) {
+                                        if (blockHolders[i][k].isOccupied()) {
+                                            blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x - blockSize + 0.5f, blockHolders[i][k].getBody().getPosition().y + 0.5f, 0);
 
                                         }
                                     }
                                 }
 
                                 /** right blocks in the blockholders **/
-                                tempCurrentCell = currentCell;
-                                for(int k=j+1; k<minigameContainer.get(i).size(); k++){
-                                    tempCurrentCell++;
-                                    if(banishCells.contains(tempCurrentCell)){
-                                        if(blockHolders[i][k].isOccupied()){
-                                            blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x + blockSize - 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
+                                for (int k = j + 1; k < minigameContainer.get(i).size(); k++) {
+                                    if (dispenserPoolContainer.contains(minigameContainer.get(i).get(k)) || banishPoolContainer.contains(minigameContainer.get(i).get(k))) {
+                                        if (blockHolders[i][k].isOccupied()) {
+                                            blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x + blockSize - 0.5f, blockHolders[i][k].getBody().getPosition().y + 0.5f, 0);
 
                                         }
 
@@ -273,14 +276,11 @@ public class FillInTheBlock extends State {
                                 }
 
                                 /** right iteration of blocks **/
-                                tempCurrentCell = currentCell;
-                                for(int k=j+1; k<minigameContainer.get(i).size(); k++){
-                                    tempCurrentCell++;
-                                    if(banishCells.contains(tempCurrentCell)){
-                                        blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x + blockSize-0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
-                                    }
-                                    else{
-                                        questionBlocks[i][k].getBody().setTransform(questionBlocks[i][k].getBody().getPosition().x + blockSize-0.5f , questionBlocks[i][k].getBody().getPosition().y, 0);
+                                for (int k = j + 1; k < minigameContainer.get(i).size(); k++) {
+                                    if (dispenserPoolContainer.contains(minigameContainer.get(i).get(k)) || banishPoolContainer.contains(minigameContainer.get(i).get(k))) {
+                                        blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x + blockSize - 0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+                                    } else {
+                                        questionBlocks[i][k].getBody().setTransform(questionBlocks[i][k].getBody().getPosition().x + blockSize - 0.5f, questionBlocks[i][k].getBody().getPosition().y, 0);
                                     }
                                 }
                                 jedisaur.setDropped(false);
@@ -290,55 +290,40 @@ public class FillInTheBlock extends State {
                              because if jedisaur ISCARRYING it will always return to true thus will
                              manipulate the x-axis whenever the user carries a block
                              **/
-                            if(blockHolders[i][j].isOccupied()){
+                            if (blockHolders[i][j].isOccupied()) {
                                 jedisaur.setPickedUp(false);
                             }
 
-                            if(jedisaur.isPickedUp()){
-                                int tempCurrentCell = currentCell;
-                                for(int k=j-1; k>=0; k--){
-                                    tempCurrentCell--;
-                                    if(banishCells.contains(tempCurrentCell)){
-                                        blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x + blockSize-0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
-                                    }
-                                    else{
-                                        questionBlocks[i][k].getBody().setTransform(questionBlocks[i][k].getBody().getPosition().x + blockSize-0.5f, questionBlocks[i][k].getBody().getPosition().y, 0);
+                            if (jedisaur.isPickedUp()) {
+                                for (int k = j - 1; k >= 0; k--) {
+                                    if (dispenserPoolContainer.contains(minigameContainer.get(i).get(k)) || banishPoolContainer.contains(minigameContainer.get(i).get(k))) {
+                                        blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x + blockSize - 0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+                                    } else {
+                                        questionBlocks[i][k].getBody().setTransform(questionBlocks[i][k].getBody().getPosition().x + blockSize - 0.5f, questionBlocks[i][k].getBody().getPosition().y, 0);
                                     }
                                 }
 
-
-                                tempCurrentCell = currentCell;
-                                for(int k=j+1; k<minigameContainer.get(i).size(); k++){
-                                    tempCurrentCell++;
-                                    if(banishCells.contains(tempCurrentCell)){
-                                        blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
-                                    }
-                                    else{
-                                        questionBlocks[i][k].getBody().setTransform(questionBlocks[i][k].getBody().getPosition().x - blockSize+0.5f , questionBlocks[i][k].getBody().getPosition().y, 0);
+                                for (int k = j + 1; k < minigameContainer.get(i).size(); k++) {
+                                    if (dispenserPoolContainer.contains(minigameContainer.get(i).get(k)) || banishPoolContainer.contains(minigameContainer.get(i).get(k))) {
+                                        blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize + 0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+                                    } else {
+                                        questionBlocks[i][k].getBody().setTransform(questionBlocks[i][k].getBody().getPosition().x - blockSize + 0.5f, questionBlocks[i][k].getBody().getPosition().y, 0);
                                     }
                                 }
 
-                                /** for the blocks occupying the blockholders
-                                 * it iterates from the max value of the arraylist(i), and finds the
-                                 * blockholders from the leftside of the currentCell
-                                 * if it is true and the blockholder is occupied, transform the copyblocks of blockholders stored in the arraylist **/
-                                tempCurrentCell = currentCell;
-                                for(int k=j-1; k>=0; k--){
-                                    tempCurrentCell--;
-                                    if(banishCells.contains(tempCurrentCell)){
-                                        if(blockHolders[i][k].isOccupied()){
-                                            blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x + blockSize - 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
+                                for (int k = j - 1; k >= 0; k--) {
+                                    if (dispenserPoolContainer.contains(minigameContainer.get(i).get(k)) || banishPoolContainer.contains(minigameContainer.get(i).get(k))) {
+                                        if (blockHolders[i][k].isOccupied()) {
+                                            blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x + blockSize - 0.5f, blockHolders[i][k].getBody().getPosition().y + 0.5f, 0);
                                         }
                                     }
                                 }
 
                                 /** right blocks in the blockholders **/
-                                tempCurrentCell = currentCell;
-                                for(int k=j+1; k<minigameContainer.get(i).size(); k++){
-                                    tempCurrentCell++;
-                                    if(banishCells.contains(tempCurrentCell)){
-                                        if(blockHolders[i][k].isOccupied()){
-                                            blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x - blockSize + 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
+                                for (int k = j + 1; k < minigameContainer.get(i).size(); k++) {
+                                    if (dispenserPoolContainer.contains(minigameContainer.get(i).get(k)) || banishPoolContainer.contains(minigameContainer.get(i).get(k))) {
+                                        if (blockHolders[i][k].isOccupied()) {
+                                            blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x - blockSize + 0.5f, blockHolders[i][k].getBody().getPosition().y + 0.5f, 0);
                                         }
                                     }
                                 }
@@ -348,7 +333,6 @@ public class FillInTheBlock extends State {
                             }
                         }
                     }
-                    currentCell++;
                 }
             }
         }
