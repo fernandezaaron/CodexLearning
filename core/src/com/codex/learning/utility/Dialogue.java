@@ -114,7 +114,7 @@ public class Dialogue {
                     "A multidimensional array is an array of arrays." + "\nTo create a two-dimensional array, add each array within its own set of curly braces:" + "\n\nFor example:" + "\nint[][] myNumbers = { {1, 2, 3, 4}, {5, 6, 7} };",
                     "To access the elements of the myNumbers array, specify two indexes: one for the array, and one for the element inside that array. This example accesses the third element (2) in the second array (1) of myNumbers:", "For example" + "\n\nint[][] myNumbers = { {1, 2, 3, 4}, {5, 6, 7} };\n" + "int x = myNumbers[1][2];",
                     "We can also use a for loop inside another for loop to get the elements of a two-dimensional array", "For example" + "\n\n  public static void main(String[] args) {\n" + "    int[][] myNumbers = { {1, 2, 3, 4}, {5, 6, 7} };\n" + "    for (int i = 0; i < myNumbers.length; ++i) {\n" + "      for(int j = 0; j < myNumbers[i].length; ++j) {\n" +
-                            "        System.out.println(myNumbers[i][j]);\n" + "      }\n" + "    }\n" + "  }"
+                    "        System.out.println(myNumbers[i][j]);\n" + "      }\n" + "    }\n" + "  }"
             )),
 
             new ArrayList<>(Arrays.asList(
@@ -123,7 +123,7 @@ public class Dialogue {
                     "A method must be declared within a class. It is defined with the name of the method, followed by parentheses (). Java provides some pre-defined methods, such as System.out.println(), but you can also create your own methods to perform certain actions:",
                     "Create a method inside Main:" + "\n\n Example:" + "\npublic class Main {\n" + "  static void myMethod() {\n" + "    // code to be executed\n" + "  }\n" + "}",
                     "To call a method in Java, write the method's name followed by two parentheses () and a semicolon;", "For example" + "\n\npublic class Main {\n" + "  static void myMethod() {\n" + "    System.out.println(\"I just got executed!\");\n" + "  }\n" + "\n" + "  public static void main(String[] args) {\n" +
-                            "    myMethod();\n" + "  }\n" + "}"
+                    "    myMethod();\n" + "  }\n" + "}"
             )),
 
             new ArrayList<>(Arrays.asList(
@@ -164,6 +164,25 @@ public class Dialogue {
 
     )
     );
+    private ArrayList<ArrayList<String>> noToPlayRoomDialogue = new ArrayList<>(
+            Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
+                        //For JediGrandpa
+                        "Grandson! You can't go there yet. Make me proud first by finishing \n" +
+                        "the questions in the computer. That way, I can let you go in."
+                    )),
+                    new ArrayList<>(Arrays.asList(
+                        //For JediProf
+                        "Jedisaur! You can't go there yet. Finish the tasks in the \n" +
+                        "computer first. That way, I can let you go in and give another task."
+                    )),
+                    new ArrayList<>(Arrays.asList(
+                        //For JediManager
+                        "Mr.Jedisaur! You can't go there yet. Finish the questions in the \n" +
+                        "computer. That way, I can let you go in and give another work."
+                    ))
+            ));
+
 
     // This variable will show in code riddle minigame everytime the user got a correct or wrong answer
     private ArrayList<ArrayList<String>> codeRiddleFeedback = new ArrayList<>(

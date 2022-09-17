@@ -52,7 +52,7 @@ public class Questionnaire extends DatabaseReader {
         questionLimit = 0;
         questionID = 0;
 
-        excelQuestionLimit = 263;
+        excelQuestionLimit = 335;
         excelMinigameLimit = 93;
         minigameElementLimit = 0;
         answerPoolLimit = 200;
