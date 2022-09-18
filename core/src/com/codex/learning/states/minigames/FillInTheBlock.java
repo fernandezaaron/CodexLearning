@@ -148,7 +148,7 @@ public class FillInTheBlock extends State {
             currentStringLength = (float) String.valueOf(dispenserPoolContainer.get(ansPoolIterator)).length();
             if (currentStringLength <= 3){
                 blockDispensers[i] = new BlockDispenser(manager, randomDispenser, "\"" + dispenserPoolContainer.get(ansPoolIterator) + "\"", dispenserPoolContainer.get(ansPoolIterator),
-                        1, new Vector2(currentStringLength * currentStringLength * 0.5f, Constants.BLOCKS_HEIGHT));
+                        1, new Vector2(currentStringLength * 0.5f, Constants.BLOCKS_HEIGHT));
             }
             else {
                 blockDispensers[i] = new BlockDispenser(manager, randomDispenser, "\"" + dispenserPoolContainer.get(ansPoolIterator) + "\"", dispenserPoolContainer.get(ansPoolIterator),
