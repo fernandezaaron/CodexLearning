@@ -2,6 +2,7 @@ package com.codex.learning.states.minigames;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.codex.learning.entity.blocks.BlockDispenser;
 import com.codex.learning.entity.blocks.BlockHolder;
 import com.codex.learning.entity.blocks.Blocks;
 import com.codex.learning.entity.characters.Character;
@@ -19,8 +20,8 @@ import java.util.Random;
 public class CodeOrder extends State {
     private Character jedisaur;
     private Blocks[] answerBlocks;
-    private Blocks[][] questionBlocks;
     private BlockHolder[] blockHolders;
+//    private BlockDispenser blockDispensers;
     private PauseState pause;
     private ArrayList<ArrayList<String>> minigameContainer;
 //    private int minigameContainerLimit;
@@ -37,13 +38,12 @@ public class CodeOrder extends State {
         super(manager);
         pause = new PauseState(manager);
         randomizer = new Random();
-        banishCells = new ArrayList<Integer>();
+        banishCells = new ArrayList<>();
 
 
         this.fuzzyLogic = fuzzyLogic;
         getAMinigame(manager.getStageSelector().map(), "Poor");
 
-        questionBlocks = new Blocks[20][20];
         blockHolders = new BlockHolder[minigameContainer.size()];
         answerPoolContainer = new ArrayList<>();
         originalAnswerPoolContainer = new ArrayList<>();
@@ -86,6 +86,13 @@ public class CodeOrder extends State {
             }
             AnsPoolY -= 2.5f;
         }
+//        for(int i = 0; i < ansPoolSize; i++) {
+//            currentStringLength = (float) String.valueOf(answerPoolContainer.get(i)).length();
+//            blockDispensers = new BlockDispenser(manager, "Down", "\"" + banishPoolContainer.get(i) + "\"", banishPoolContainer.get(i),
+//                        duplicatePool.get(i), new Vector2(currentStringLength * 0.5f, Constants.BLOCKS_HEIGHT));
+//            blockDispensers.create(new Vector2(AnsPoolX, AnsPoolY), new Vector2(0.3f, 1.3f), 0);
+//            System.out.println("this dispenser");
+//        }
         /** END OF ANSWER POOL CREATION **/
 
         setToCheck(blockHolders);
@@ -113,6 +120,23 @@ public class CodeOrder extends State {
                 }
             }
         }
+//
+//        blockDispensers.createBlock(new Vector2(jedisaur.getBody().getPosition().x, jedisaur.getBody().getPosition().y));
+//        blockDispensers.update(delta);
+
+
+//        for (Blocks b : blockDispensers.getBlocks()) {
+//            if (b != null) {
+//                b.update(delta);
+//                if(b.isInContact()){
+//                    jedisaur.carryBlock(b);
+//                }
+//            }
+//            else{
+//                continue;
+//            }
+//        }
+
 
         for (int i = 0; i < minigameContainer.size(); i++) {
             if (blockHolders[i].isInContact()) {
@@ -156,6 +180,19 @@ public class CodeOrder extends State {
                 answerBlocks[i].render(sprite);
             }
         }
+
+//        blockDispensers.render(sprite);
+//        if(blockDispensers.isCloned()){
+//            for (Blocks b : blockDispensers.getBlocks()) {
+//                if (b != null) {
+//                    b.render(sprite);
+//                }
+//                else{
+//                    continue;
+//                }
+//            }
+//        }
+
     }
 
     @Override
@@ -170,6 +207,16 @@ public class CodeOrder extends State {
             answerBlocks[i].disposeBody();
         }
 
+//        blockDispensers.disposeBody();
+
+    }
+
+    public void setActive(boolean active){
+        for(int i = 0; i < minigameContainer.size(); i++) {
+            blockHolders[i].setActive(false);
+        }
+
+//        blockDispensers.disposeBody();
     }
 
     public void getAMinigame(String stage, String expertiseLevel){

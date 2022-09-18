@@ -13,6 +13,7 @@ import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 
@@ -26,8 +27,9 @@ public class FillInTheBlock extends State {
     private Random randomizer;
     private float blockSize, xStartingPoint, currentStringLength;
     private ArrayList<Integer> banishCells, duplicatePool;
-    private ArrayList<String> banishPoolContainer, dispenserPoolContainer;
+    private ArrayList<String> banishPoolContainer, dispenserPoolContainer, dispenserGraphics;
     private int currentCell, minigameContainerLimit, ansPoolSize, xposition, yposition, ansPoolIterator, yStartingPoint;
+    private String randomDispenser;
 
     public FillInTheBlock(Manager manager, Character character) {
         super(manager);
@@ -41,6 +43,8 @@ public class FillInTheBlock extends State {
         questionBlocks = new Blocks[20][20];
         blockHolders = new BlockHolder[20][20];
         blocksArrayList = new ArrayList<>();
+
+        dispenserGraphics = new ArrayList<>(Arrays.asList("Down"/*, "Right", "Left"*/));
 
         /** ASSIGN NUMBERS TO BANISH **/
         for(int i = 0; i < 5; i++) {
@@ -57,7 +61,6 @@ public class FillInTheBlock extends State {
                     if (banishCells.contains(currentCell) || banishPoolContainer.contains(minigameContainer.get(i).get(j))) {
                         banishPoolContainer.add(minigameContainer.get(i).get(j));
                     }
-                    System.out.println("pool " + banishPoolContainer);
                 }
                 currentCell++;
             }
@@ -67,19 +70,14 @@ public class FillInTheBlock extends State {
         for(int i = 0; i < banishPoolContainer.size(); i++) {
             String banished = banishPoolContainer.get(i);
             int dupes = 1;
-            System.out.println("eto tunay " + banishPoolContainer.get(i));
             for(int j = 0; j < banishPoolContainer.size(); j++) {
                 if(banishPoolContainer.get(j).equals(banished) && i != j) {
                     dupes += 1;
-                    System.out.println("pumasok dupe");
                     banishPoolContainer.remove(j);
                 }
             }
-            System.out.println("luh tapos na dupe");
             duplicatePool.add(dupes);
         }
-        System.out.println("pool " + banishPoolContainer);
-        System.out.println("pool " + duplicatePool);
 
 
         /** START OF MINIGAME CREATION **/
@@ -122,57 +120,48 @@ public class FillInTheBlock extends State {
         /** START OF DISPENSER POOL CREATION **/
         blockDispensers = new BlockDispenser[banishPoolContainer.size() + dispenserPoolContainer.size()];
         ansPoolSize = banishPoolContainer.size();
-        System.out.println(ansPoolSize);
-//        xposition = -22;
-//        yposition = -6;
         xposition = 18;
         yposition = 10;
         for(int i = 0; i < ansPoolSize; i++) {
+            randomDispenser = dispenserGraphics.get(randomizer.nextInt(dispenserGraphics.size()));
             currentStringLength = (float) String.valueOf(banishPoolContainer.get(i)).length();
             if (currentStringLength <= 3){
-                blockDispensers[i] = new BlockDispenser(manager, "Down", "\"" + banishPoolContainer.get(i) + "\"", banishPoolContainer.get(i),
+                blockDispensers[i] = new BlockDispenser(manager, randomDispenser, "\"" + banishPoolContainer.get(i) + "\"", banishPoolContainer.get(i),
                         duplicatePool.get(i), new Vector2(currentStringLength * 0.5f, Constants.BLOCKS_HEIGHT));
             }
             else {
-                blockDispensers[i] = new BlockDispenser(manager, "Down", "\"" + banishPoolContainer.get(i) + "\"", banishPoolContainer.get(i),
+                blockDispensers[i] = new BlockDispenser(manager, randomDispenser, "\"" + banishPoolContainer.get(i) + "\"", banishPoolContainer.get(i),
                         duplicatePool.get(i), new Vector2(currentStringLength * 0.23f, Constants.BLOCKS_HEIGHT));
             }
             blockDispensers[i].create(new Vector2(xposition, yposition), new Vector2(0.3f, 1.3f), 0);
             System.out.println(banishPoolContainer.get(i) + " many " + duplicatePool.get(i));
-//            xposition += 5;
             yposition -= 6;
-//            if(xposition == -2) {
-//                yposition -= 6;
-//                xposition = -22;
-//            }
             if(yposition == -14) {
                 yposition = 10;
                 xposition += 4;
             }
         }
 
-        System.out.println(banishPoolContainer + " wtf ");
-        System.out.println(dispenserPoolContainer + " huh ");
         ansPoolIterator = 0;
         for(int i = ansPoolSize; i < dispenserPoolContainer.size() + ansPoolSize; i++) {
+            randomDispenser = dispenserGraphics.get(randomizer.nextInt(dispenserGraphics.size()));
             currentStringLength = (float) String.valueOf(dispenserPoolContainer.get(ansPoolIterator)).length();
-            System.out.println(dispenserPoolContainer.get(ansPoolIterator) + " di to many ah ");
-            blockDispensers[i] = new BlockDispenser(manager, "Down", "\"" + dispenserPoolContainer.get(ansPoolIterator) + "\"", dispenserPoolContainer.get(ansPoolIterator),
-                    1, new Vector2(currentStringLength, Constants.BLOCKS_HEIGHT));
+            if (currentStringLength <= 3){
+                blockDispensers[i] = new BlockDispenser(manager, randomDispenser, "\"" + dispenserPoolContainer.get(ansPoolIterator) + "\"", dispenserPoolContainer.get(ansPoolIterator),
+                        1, new Vector2(currentStringLength * 0.5f, Constants.BLOCKS_HEIGHT));
+            }
+            else {
+                blockDispensers[i] = new BlockDispenser(manager, randomDispenser, "\"" + dispenserPoolContainer.get(ansPoolIterator) + "\"", dispenserPoolContainer.get(ansPoolIterator),
+                        1, new Vector2(currentStringLength * 0.23f, Constants.BLOCKS_HEIGHT));
+            }
             blockDispensers[i].create(new Vector2(xposition, yposition), new Vector2(0.3f, 1.3f), 0);
-//            xposition += 5;
             yposition -= 6;
-//            if(xposition == -2) {
-//                yposition -= 6;
-//                xposition = -22;
-//            }
             if(yposition == -14) {
                 yposition = 10;
                 xposition += 4;
             }
             ansPoolIterator++;
         }
-        System.out.println(dispenserPoolContainer);
         /** END OF DISPENSER POOL CREATION **/
 
         setToCheck(blockHolders);
@@ -451,7 +440,6 @@ public class FillInTheBlock extends State {
             }
         }
     }
-
     public void setToCheck(BlockHolder[][] blockHolders) {
         manager.getMinigameChecker().setBlockHolders(blockHolders);
     }
