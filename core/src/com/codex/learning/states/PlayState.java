@@ -5,9 +5,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import com.codex.learning.entity.blocks.BlockDispenser;
-import com.codex.learning.entity.blocks.BlockDispenserV2;
-import com.codex.learning.entity.blocks.Blocks;
 import com.codex.learning.entity.blocks.Computer;
 import com.codex.learning.entity.characters.Character;
 import com.codex.learning.entity.characters.NPC;
@@ -28,17 +25,10 @@ public class PlayState extends State{
     private OfficeMap officeMap;
     private Computer computer;
     private PlayroomMapS1 playroomMap;
-    private Minigame minigame;
     private Random rand;
     private int randomMinigame;
 
-
-    private boolean inMysteryCode, inFillInTheBlock;
-
-    private float timer;
-
     private PauseState pause;
-
     private FuzzyLogic fuzzyLogic;
 
     private boolean inStartArea, atDoor;
@@ -49,7 +39,6 @@ public class PlayState extends State{
 
 
     private int count;
-
 
 
     public PlayState(Manager manager) {
@@ -102,13 +91,9 @@ public class PlayState extends State{
 
         computerOnce = true;
 
-
         door = new TextureRegion(manager.getReportCardSheet(), 48,195, 263, 119);
         inStartArea = true;
         atDoor = false;
-        inFillInTheBlock = false;
-        inMysteryCode = false;
-
     }
 
     @Override
@@ -134,7 +119,7 @@ public class PlayState extends State{
 
 
         if(pause.isRunning()){
-            if(jediGrandpa.isTalking() || playroomMap.getNpc().isTalking()){
+            if(jediGrandpa.isTalking() || playroomMap.getNpc().isTalking() || playroomMap.inHowToPlay() || playroomMap.inObjective()){
                 jedisaurStop(delta);
                 if(isInStartArea()){
                     jediGrandpa.update(delta);
@@ -178,20 +163,10 @@ public class PlayState extends State{
                     jedisaurStop(delta);
                     if(computer.getCodeRiddle().isInComputer() && Gdx.input.isKeyJustPressed(Input.Keys.F)){
                         computer.getCodeRiddle().setInComputer(false);
-//not working pa
-//                    for (int i =0 ; i<manager.getStage().getActors().size; i++){
-//                        if(manager.getStage().getActors().get(i).toString().equals("Table")){
-//                            manager.getStage().getActors().get(i).remove();
-////                            manager.getStage().clear();
-//                        }
-//                    }
                         manager.getStage().clear();
                     }
                 }
             }
-//            if(playroomMap.getNpc().isTalking()){
-//                jedisaurStop(delta);
-//            }
 
         }else{
             jedisaurStop(delta);
@@ -307,7 +282,8 @@ public class PlayState extends State{
 
     public void enterPlayRoom(Character character){
         if(character.getBody().getPosition().x > 14f && character.getBody().getPosition().y >-4 && character.getBody().getPosition().y < 2.5f && isInStartArea()){
-//            if(computer.isDone()){
+            jediGrandpa.setInPlayroomCarpet(true);
+            if(computer.isDone()){
                 setInStartArea(false);
                 if(manager.getStageSelector().map().equals("1")){
                     house.setPlayroomActive(false);
@@ -322,10 +298,15 @@ public class PlayState extends State{
                 manager.getMinigame().setMiniGame();
                 jedisaur.getBody().setTransform(-20, 1, 0);
                 jedisaur.getBody().getPosition().set(-20, 1);
-//            }
-//            else {
-//
-//            }
+            }
+            else {
+                jediGrandpa.noToPlayroom(jedisaur);
+
+            }
+        }
+        else {
+            jediGrandpa.setInPlayroomCarpet(false);
+
         }
     }
 

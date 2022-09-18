@@ -35,7 +35,7 @@ public class NPC extends Entity {
     private String dialogSet;
     private int index, hintIndex;
     private int nextStatement;
-    private boolean inPlayroom, readiness, introDialogFlag, doneChecker, tableTouched, hintFlag;
+    private boolean inPlayroom, readiness, introDialogFlag, doneChecker, tableTouched, hintFlag, autoDialogDone, inPlayroomCarpet;
 
     public NPC(Manager manager, String dialogSet, int index, boolean inPlayroom) {
         super(manager);
@@ -92,6 +92,8 @@ public class NPC extends Entity {
         doneChecker = false;
         tableTouched =false;
         hintFlag = false;
+        autoDialogDone = false;
+        inPlayroomCarpet = false;
 
         BodyDef def = new BodyDef();
         def.type = BodyDef.BodyType.StaticBody;
@@ -250,7 +252,6 @@ public class NPC extends Entity {
 
         if(isInContact() && Gdx.input.isKeyJustPressed(Input.Keys.E)){
             dialogBoxContainer.setVisible(true);
-
             setTalking(true);
             if(!db.isOpen()){
                 //if the dialogue box is not yet open then animate the text and add it to the table to draw it
@@ -293,7 +294,6 @@ public class NPC extends Entity {
                     choiceTableContainer.add(choiceTable).size(80,80);
                 }
 
-
                 manager.getStage().addActor(choiceTableContainer);
                 }
                 db.textAnimation(manager.getDialogue().reader(nextStatement, dialogSet, index));
@@ -313,7 +313,6 @@ public class NPC extends Entity {
                 setTableTouched(true);
                 return true;
             }
-
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
 
@@ -349,9 +348,9 @@ public class NPC extends Entity {
         if((!isReady() || !isHintFlag()) && isTableTouched()){
             doneChecker = false;
         }
-        
 
-        if(!manager.getDialogue().isStatementEnd() && isTableTouched() && db.isOpen() && !isIntroDialogFlag() && !doneChecker){
+
+        if(!manager.getDialogue().isStatementEnd() && isTableTouched() && db.isOpen() && !isIntroDialogFlag() && !doneChecker && !isInPlayroomCarpet()){
             //proceeds to the next statement if it is not the end
             nextStatement++;
             db.textAnimation((manager.getDialogue().reader(nextStatement, dialogSet, index)));
@@ -359,7 +358,7 @@ public class NPC extends Entity {
         }
 
 
-        if((manager.getDialogue().isStatementEnd() && db.isOpen() && !isIntroDialogFlag() && !doneChecker)){
+        if((manager.getDialogue().isStatementEnd() && db.isOpen() && !isIntroDialogFlag() && !doneChecker) && !isInPlayroomCarpet()){
             setTalking(false);
             //if at the end resets the table and the statement to the first index
             dialogBoxContainer.setVisible(false);
@@ -377,7 +376,7 @@ public class NPC extends Entity {
         if(isInPlayroom() && isIntroDialogFlag()){
             setTalking(true);
             dialogBoxContainer.setVisible(true);
-            if(!db.isOpen() && isIntroDialogFlag()) {
+            if(!db.isOpen()) {
                 db.textAnimation(manager.getDialogue().reader(nextStatement, "minigameintrodialogue", index));
                 if(!dialogBoxContainer.hasChildren()){
                     dialogBoxContainer.defaults().size(700,100);
@@ -388,7 +387,6 @@ public class NPC extends Entity {
                 }
             }
         }
-
 //        if(dialogSet.equals("hints")  && !db.isOpen()){
 //            db.textAnimation(manager.getDialogue().reader(manager.getHintsIndex(), dialogSet, index));
 //            manager.getDialogue().setStatementEnd(true);
@@ -412,16 +410,47 @@ public class NPC extends Entity {
             setTableTouched(false);
             dialogBoxContainer.setVisible(false);
             nextStatement = 0;
+            setAutoDialogDone(true);
+        }
+    }
+
+    public void noToPlayroom(Character character){
+
+        if(!isInPlayroom() && isInPlayroomCarpet()){
+            setTalking(true);
+            dialogBoxContainer.setVisible(true);
+            if(!db.isOpen()) {
+                db.textAnimation(manager.getDialogue().reader(nextStatement, "noplayroom", manager.getStageSelector().getStageMap()));
+                if(!dialogBoxContainer.hasChildren()){
+                    dialogBoxContainer.defaults().size(700,100);
+                    table.add(image).align(Align.left).height(100).padRight(15f);
+                    table.add(db).align(Align.left).grow();
+                    dialogBoxContainer.add(table);
+                    dialogBoxContainer.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/Constants.PPM/2 + 400, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/Constants.PPM/2  + 75);
+                }
+            }
+
+            if(!manager.getDialogue().isStatementEnd() && isTableTouched() && db.isOpen() && isInPlayroomCarpet()){
+                //proceeds to the next statement if it is not the end
+                nextStatement++;
+                db.textAnimation((manager.getDialogue().reader(nextStatement, "noplayroom", index)));
+                setTableTouched(false);
+            }
+
+
+            if((manager.getDialogue().isStatementEnd() && db.isOpen() && isInPlayroomCarpet())){
+                //if at the end resets the table and the statement to the first index
+                dialogBoxContainer.setVisible(false);
+                setTalking(false);
+                db.setOpen(false);
+                nextStatement = 0;
+                setTableTouched(false);
+                character.getBody().setTransform(10, character.getBody().getPosition().y, 0);
+                character.getBody().getPosition().set(10, character.getBody().getPosition().y);
+
+            }
         }
 
-    }
-
-    public String getDialogSet() {
-        return dialogSet;
-    }
-
-    public void setDialogSet(String dialogSet) {
-        this.dialogSet = dialogSet;
     }
 
     public boolean isReady() {
@@ -472,14 +501,6 @@ public class NPC extends Entity {
         this.introDialogFlag = introDialogFlag;
     }
 
-    public boolean isDoneChecker() {
-        return doneChecker;
-    }
-
-    public void setDoneChecker(boolean doneChecker) {
-        this.doneChecker = doneChecker;
-    }
-
     public boolean isTableTouched() {
         return tableTouched;
     }
@@ -494,5 +515,21 @@ public class NPC extends Entity {
 
     public void setHintFlag(boolean hintFlag) {
         this.hintFlag = hintFlag;
+    }
+
+    public boolean isAutoDialogDone() {
+        return autoDialogDone;
+    }
+
+    public void setAutoDialogDone(boolean autoDialogDone) {
+        this.autoDialogDone = autoDialogDone;
+    }
+
+    public boolean isInPlayroomCarpet() {
+        return inPlayroomCarpet;
+    }
+
+    public void setInPlayroomCarpet(boolean inPlayroomCarpet) {
+        this.inPlayroomCarpet = inPlayroomCarpet;
     }
 }

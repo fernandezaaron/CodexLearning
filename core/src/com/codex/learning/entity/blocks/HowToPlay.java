@@ -18,6 +18,7 @@ public class HowToPlay extends Entity {
     private int currentImage;
     private boolean inContact;
     private boolean inHowToPlay;
+    private boolean introDialogue;
 
     public HowToPlay(Manager manager) {
         super(manager);
@@ -51,8 +52,8 @@ public class HowToPlay extends Entity {
 
         inContact = false;
         images[0] = new TextureRegion(new Texture(Constants.CODE_IT), 0, 0, 1600, 900);
-        images[1] = new TextureRegion(new Texture(Constants.CODE_ORDER), 0, 0, 1600, 900);
-        images[2] = new TextureRegion(new Texture(Constants.MYSTERY_CODE), 0, 0, 1600, 900);
+        images[1] = new TextureRegion(new Texture(Constants.MYSTERY_CODE), 0, 0, 1600, 900);
+        images[2] = new TextureRegion(new Texture(Constants.CODE_ORDER), 0, 0, 1600, 900);
     }
 
     @Override
@@ -72,7 +73,17 @@ public class HowToPlay extends Entity {
                     (manager.getCamera().position.x / Constants.PPM - images[currentImage].getRegionWidth() / 2) + 25,
                     (manager.getCamera().position.y / Constants.PPM - images[currentImage].getRegionHeight() / 2) + 15);
         }
+
         sprite.end();
+    }
+
+    public void setCurrentImage(int index, SpriteBatch spriteBatch){
+        spriteBatch.begin();
+        spriteBatch.draw(images[index-1],(manager.getCamera().position.x / Constants.PPM - images[currentImage].getRegionWidth() / 2) + 25,
+                (manager.getCamera().position.y / Constants.PPM - images[currentImage].getRegionHeight() / 2) + 15);
+        spriteBatch.end();
+        setInHowToPlay(true);
+        setIntroDialogue(true);
     }
 
     private void checkCurrentPage(){
@@ -90,6 +101,7 @@ public class HowToPlay extends Entity {
         }
         if(isInHowToPlay() && Gdx.input.isKeyJustPressed(Input.Keys.F)){
             setInHowToPlay(false);
+            setIntroDialogue(false);
             currentImage = 0;
         }
     }
@@ -108,5 +120,13 @@ public class HowToPlay extends Entity {
 
     public void setInHowToPlay(boolean inHowToPlay) {
         this.inHowToPlay = inHowToPlay;
+    }
+
+    public boolean isIntroDialogue() {
+        return introDialogue;
+    }
+
+    public void setIntroDialogue(boolean introDialogue) {
+        this.introDialogue = introDialogue;
     }
 }

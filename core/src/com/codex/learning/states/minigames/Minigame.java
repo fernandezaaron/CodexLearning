@@ -109,7 +109,15 @@ public class Minigame extends State {
         }
     }
 
-//    public void setActive(boolean active){
+    public int getCurrentMinigame() {
+        return currentMinigame;
+    }
+
+    public void setCurrentMinigame(int currentMinigame) {
+        this.currentMinigame = currentMinigame;
+    }
+
+    //    public void setActive(boolean active){
 //        if(fib){
 //            s.setActive(active);
 //        }

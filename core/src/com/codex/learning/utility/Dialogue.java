@@ -2596,6 +2596,7 @@ public class Dialogue {
             case "finishCheck": return statementMover(nextStatement, askIfFinished, index);
             case "minigameintrodialogue": return statementMover(nextStatement, minigameIntroDiaulogue, getStage()-1);
             case "done" : return statementMover(nextStatement, askIfFinished, 0);
+            case "noplayroom": return statementMover(nextStatement, noToPlayRoomDialogue, index);
 
 
         }

@@ -1,5 +1,7 @@
 package com.codex.learning.entity.maps;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -89,16 +91,20 @@ public class PlayroomMapS1 extends State {
             sprite.draw(manager.getPlayroomStage3(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         }
         sprite.end();
-
         npc.render(sprite);
-        howToPlay.render(sprite);
-
     }
 
     public void npcRender(SpriteBatch sprite){
         npc.tableRender(sprite);
         manager.getStage().draw();
-
+        howToPlay.render(sprite);
+        if(npc.isAutoDialogDone()){
+            howToPlay.setIntroDialogue(true);
+            npc.setAutoDialogDone(false);
+        }
+        if(howToPlay.isIntroDialogue()){
+            howToPlay.setCurrentImage(manager.getMinigame().getCurrentMinigame(), sprite);
+        }
     }
 
 
@@ -151,7 +157,6 @@ public class PlayroomMapS1 extends State {
         this.inPlayroom = inPlayroom;
     }
 
-
     public void setActive(boolean active){
         playMat.getBody().setActive(active);
         npc.getBody().setActive(active);
@@ -159,12 +164,29 @@ public class PlayroomMapS1 extends State {
         howToPlay.getBody().setActive(active);
     }
 
-
     public NPC getNpc() {
         return npc;
     }
 
     public void setNpc(NPC npc) {
         this.npc = npc;
+    }
+
+    public boolean inHowToPlay(){
+        if(howToPlay.isInHowToPlay()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public boolean inObjective(){
+        if(objective.isInObjective()){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
