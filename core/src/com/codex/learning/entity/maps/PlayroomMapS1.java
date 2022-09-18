@@ -56,7 +56,7 @@ public class PlayroomMapS1 extends State {
     @Override
     public void update(float delta) {
         //make a condition on NPC hints dialog if wala pa and if meron na
-//        manager.updateBehavior(60);
+
         npc.update(delta);
         objective.update(delta);
     }

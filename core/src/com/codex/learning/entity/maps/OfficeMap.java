@@ -46,7 +46,8 @@ public class OfficeMap extends State {
         tableLeft = new Collisions(manager);
         tableLeft.create(new Vector2(8, -6), new Vector2(5,1f),0);
 
-
+        couches = new Collisions(manager);
+        couches.create(new Vector2(-10f, -5f), new Vector2(0.2f, 5.4f), 0);
 
 
     }
@@ -64,7 +65,7 @@ public class OfficeMap extends State {
 
         sprite.draw(manager.getStartOffice(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 
-//        checkDoor(sprite, atDoor);
+
         sprite.end();
     }
 
@@ -84,6 +85,7 @@ public class OfficeMap extends State {
         lTableRight.getBody().setActive(active);
         lTableRightHorizontal.getBody().setActive(active);
         tableLeft.getBody().setActive(active);
+        couches.getBody().setActive(active);
     }
 
     public void setPlayroomActive(boolean active){

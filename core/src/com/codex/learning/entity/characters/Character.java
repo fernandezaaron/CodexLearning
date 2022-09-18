@@ -278,14 +278,7 @@ public class Character extends Entity {
                 setCarrying(true);
             }
         }
-//        if(Gdx.input.isKeyJustPressed(Input.Keys.E) && isInteractingDispenser()){
-//            if (isCarrying()) {
-//                setCarrying(false);
-//            }
-//            else {
-//                setCarrying(true);
-//            }
-//        }
+
     }
     public void input(float delta){
         float horizontalForce = 0;
@@ -342,7 +335,7 @@ public class Character extends Entity {
         }
 
         if(verticalForce != 0.0f && horizontalForce != 0.0f){
-            // sqrt(1/2)
+
             verticalForce *= Constants.DIAGONAL_SPEED;
             horizontalForce *= Constants.DIAGONAL_SPEED;
         }

@@ -71,7 +71,7 @@ public class HouseMap extends State {
         table.disposeBody();
         upBorder.disposeBody();
         downBorder.disposeBody();
-//        playroomBorder.disposeBody();
+
         cabinet.disposeBody();
     }
 
@@ -92,7 +92,7 @@ public class HouseMap extends State {
 
     public void enterPlayRoom(Character character){
         if(character.getBody().getPosition().x > -5.3f && character.getBody().getPosition().y >-4 && character.getBody().getPosition().y < 2.5f){
-//            setInStartArea(false);
+
 
         }
     }

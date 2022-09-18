@@ -61,7 +61,6 @@ public class MenuState extends State {
             manager.getMusic().setLooping(true);
         }else {
             manager.setMusic(Constants.MENU_MUSIC);
-         //   manager.getMusic() = Gdx.audio.newMusic(Gdx.files.internal(Constants.MENU_MUSIC));
         }
 
 

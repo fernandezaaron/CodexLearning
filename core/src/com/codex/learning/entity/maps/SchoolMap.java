@@ -1,11 +1,8 @@
 package com.codex.learning.entity.maps;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.codex.learning.entity.Collisions;
-import com.codex.learning.entity.characters.Character;
-import com.codex.learning.states.StageSelectState;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;

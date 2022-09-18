@@ -53,7 +53,7 @@ public class PlayState extends State{
         pause = new PauseState(manager);
         rand = new Random();
 
-        randomMinigame = 3;
+        randomMinigame = 1;
 
 
         playroomMap = new PlayroomMapS1(manager);

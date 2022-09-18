@@ -50,13 +50,13 @@ public class BlockDispenser extends Entity {
         this.position = position;
         this.size = size;
         label = new Label("", manager.getSkin());
-//        label.setWrap(true);
+
 
         table = new Table(manager.getSkin());
         table.setBackground("dialogbox2");
 
         containerTable = new Table(manager.getSkin());
-//        containerTable.setBackground("dialogbox1");
+
 
 
         BodyDef def = new BodyDef();
@@ -68,8 +68,7 @@ public class BlockDispenser extends Entity {
         shape.setAsBox(this.size.x, (float) (this.size.y / 1.5),
                 new Vector2(0, -(this.size.y - this.size.y / 2)), 0);
 
-//        shape.setAsBox(this.size.x , this.size.y,
-//                new Vector2(0, -(this.size.y - this.size.y / 3)), 0);
+
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.density = density;
@@ -92,7 +91,7 @@ public class BlockDispenser extends Entity {
     @Override
     public void update(float delta) {
         showBlockID();
-//        manager.getStage().act();
+
 
     }
 
@@ -175,9 +174,7 @@ public class BlockDispenser extends Entity {
 
     public void showBlockID(){
 
-//        if(!isInContact()){
-//            containerTable.reset();
-//        }
+
 
         int length = this.id.length();
         containerTable.defaults().size(length*3.5f + 500,150);
@@ -187,7 +184,7 @@ public class BlockDispenser extends Entity {
         if(isInContact() && isInteracting()){
 
             label.setText(this.id);
-//            label.setWrap(true);
+
 
 
 
@@ -202,7 +199,7 @@ public class BlockDispenser extends Entity {
             containerTable.pack();
             containerTable.setDebug(true);
         }
-//        manager.getStage().addActor(containerTable);
+
 
     }
 
