@@ -51,19 +51,6 @@ public class Blocks extends Entity {
         fixtureDef.friction = 5;
         fixtureDef.isSensor = true;
 
-
-//
-//        PolygonShape endposShape = new PolygonShape();
-//
-//        endposShape.setAsBox(this.size.x/4, this.size.y,
-//                new Vector2(0.70f, -(this.size.y - this.size.y / 3)), 0);
-//
-//        FixtureDef endpos=  new FixtureDef();
-//        endpos.density = density;
-//        endpos.isSensor = true;
-//        endpos.shape = endposShape;
-
-
         body = manager.getWorld().createBody(def);
         body.createFixture(fixtureDef).setUserData(this);
         body.setLinearVelocity(0, 0);
@@ -91,6 +78,7 @@ public class Blocks extends Entity {
     public void render(SpriteBatch sprite) {
         sprite.enableBlending();
         sprite.setProjectionMatrix(manager.getCamera().combined);
+
         shadowColor.setProjectionMatrix(manager.getCamera().combined);
         shadowColor.setColor(201 / 255f, 186 / 255f, 176 / 255f, 0.0f);
         shadowColor.begin(ShapeRenderer.ShapeType.Filled);
