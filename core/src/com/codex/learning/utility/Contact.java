@@ -111,7 +111,6 @@ public class Contact implements ContactListener {
                     blockDispenser.setInContact(true);
                     blockDispenser.setInteracting(true);
                 }
-
             }
 
         }
@@ -201,8 +200,6 @@ public class Contact implements ContactListener {
                 jedisaur = (Character) fa.getUserData();
                 playMat = (PlayMat) fb.getUserData();
             }
-
-
             playMat.setInContact(true);
         }
 
@@ -218,8 +215,49 @@ public class Contact implements ContactListener {
                 jedisaur = (Character) fa.getUserData();
                 objective = (Objective) fb.getUserData();
             }
-            System.out.println("OBJECTIVE CONTACT");
             objective.setInContact(true);
+        }
+
+        if(isBlockDispenserV2Contact(fa, fb)){
+            BlockDispenserV2 blockDispenserV2;
+            Character jedisaur;
+
+            if(fa.getUserData() instanceof BlockDispenserV2){
+                blockDispenserV2 = (BlockDispenserV2) fa.getUserData();
+                jedisaur = (Character) fb.getUserData();
+            }
+            else{
+                jedisaur = (Character) fa.getUserData();
+                blockDispenserV2 = (BlockDispenserV2) fb.getUserData();
+            }
+            if(jedisaur.isCarrying()){
+                jedisaur.setPickUpAble(false);
+                blockDispenserV2.setInContact(false);
+            }
+            else{
+                if(blockDispenserV2.getCurrentBlock() == 0){
+                    jedisaur.setPickUpAble(false);
+                    blockDispenserV2.setInContact(false);
+                }else {
+                    jedisaur.setPickUpAble(true);
+                    blockDispenserV2.setInContact(true);
+                }
+            }
+        }
+
+        if(isHowToPlayContact(fa, fb)){
+            HowToPlay howToPlay;
+            Character jedisaur;
+
+            if(fa.getUserData() instanceof HowToPlay){
+                howToPlay = (HowToPlay) fa.getUserData();
+                jedisaur = (Character) fb.getUserData();
+            }
+            else{
+                jedisaur = (Character) fa.getUserData();
+                howToPlay = (HowToPlay) fb.getUserData();
+            }
+            howToPlay.setInContact(true);
         }
 
         Gdx.app.log("BEGIN CONTACT", "");
@@ -283,7 +321,6 @@ public class Contact implements ContactListener {
             }
             blockDispenser.setInContact(false);
             jedisaur.setPickUpAble(false);
-
         }
 
         if(isBlockHolderContact(fa, fb)){
@@ -362,6 +399,36 @@ public class Contact implements ContactListener {
             objective.setInContact(false);
         }
 
+        if(isBlockDispenserV2Contact(fa, fb)){
+            BlockDispenserV2 blockDispenserV2;
+            Character jedisaur;
+
+            if(fa.getUserData() instanceof BlockDispenserV2){
+                blockDispenserV2 = (BlockDispenserV2) fa.getUserData();
+                jedisaur = (Character) fb.getUserData();
+            }
+            else{
+                jedisaur = (Character) fa.getUserData();
+                blockDispenserV2 = (BlockDispenserV2) fb.getUserData();
+            }
+            blockDispenserV2.setInContact(false);
+        }
+
+        if(isHowToPlayContact(fa, fb)){
+            HowToPlay howToPlay;
+            Character jedisaur;
+
+            if(fa.getUserData() instanceof HowToPlay){
+                howToPlay = (HowToPlay) fa.getUserData();
+                jedisaur = (Character) fb.getUserData();
+            }
+            else{
+                jedisaur = (Character) fa.getUserData();
+                howToPlay = (HowToPlay) fb.getUserData();
+            }
+            howToPlay.setInContact(false);
+        }
+
         Gdx.app.log("END CONTACT", "");
     }
 
@@ -432,6 +499,24 @@ public class Contact implements ContactListener {
     private boolean isObjectiveContact(Fixture a, Fixture b){
         if(a.getUserData() instanceof Character || b.getUserData() instanceof Character){
             if(a.getUserData() instanceof Objective || b.getUserData() instanceof Objective){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isBlockDispenserV2Contact(Fixture a, Fixture b){
+        if(a.getUserData() instanceof Character || b.getUserData() instanceof Character){
+            if(a.getUserData() instanceof BlockDispenserV2 || b.getUserData() instanceof BlockDispenserV2){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isHowToPlayContact(Fixture a, Fixture b){
+        if(a.getUserData() instanceof Character || b.getUserData() instanceof Character){
+            if(a.getUserData() instanceof HowToPlay || b.getUserData() instanceof HowToPlay){
                 return true;
             }
         }
