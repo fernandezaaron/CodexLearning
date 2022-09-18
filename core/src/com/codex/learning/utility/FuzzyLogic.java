@@ -198,6 +198,11 @@ public class FuzzyLogic {
         else{
             setCookies(0);
         }
+        System.out.println("TIME CONSUMPTION - " + getTimeConsumptions());
+        System.out.println("NUMBER OF Attempts- " + getNumberOfAttempts());
+        System.out.println("NUMBER OF ERROR - " + getNumberOfErrors());
+        System.out.println("Correct ouutput - " + getCorrectOutput());
+        System.out.println("NUMBER OF COOKIES - " + getCookies());
     }
 
     public static float min(double a, double b, double c) {

@@ -236,7 +236,6 @@ public class CodeRiddle extends State {
                                }else{
                                    fuzzyLogic.setNumberOfErrors(error);
                                    fuzzyLogic.setTimeConsumptions(fuzzyLogic.getTimeConsumptions() + timer);
-
                                    text.setAlignment(Align.center);
                                    text.setText("Your score is: " + (manager.getQuestionnaire().getQuestionLimit() - error) + "/" + manager.getQuestionnaire().getQuestionLimit() + "\n PRESS F TO CLOSE");
                                    setDone(true);

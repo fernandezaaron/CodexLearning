@@ -2589,12 +2589,12 @@ public class Dialogue {
 
     public String reader(int nextStatement, String dialogueSet, int index){
         switch (dialogueSet){
-            case "introduction": return statementMover(nextStatement, introductionDialogue, getStage()-1);
+            case "introduction": return statementMover(nextStatement, introductionDialogue, getStage() - 1);
             case "question": return statementMover(nextStatement, questionDialogue, 0);
-            case "codeorderhints": return statementMover(nextStatement, codeOrderHints, getStage()-1);
-            case "hints": return statementMover(nextStatement, twoHintsContainer, getStage()-1);
+            case "codeorderhints": return statementMover(nextStatement, codeOrderHints, getStage() - 1);
+            case "hints": return statementMover(nextStatement, twoHintsContainer, getStage() - 1);
             case "finishCheck": return statementMover(nextStatement, askIfFinished, index);
-            case "minigameintrodialogue": return statementMover(nextStatement, minigameIntroDiaulogue, getStage()-1);
+            case "minigameintrodialogue": return statementMover(nextStatement, minigameIntroDiaulogue, getStage());
             case "done" : return statementMover(nextStatement, askIfFinished, 0);
             case "noplayroom": return statementMover(nextStatement, noToPlayRoomDialogue, index);
 
