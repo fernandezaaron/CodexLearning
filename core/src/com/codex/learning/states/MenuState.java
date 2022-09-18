@@ -35,7 +35,7 @@ public class MenuState extends State {
 //        Touch point will allow the user to have a touch response.
         touchpoint = new Vector3();
 //        Used to create an invisible rectangle for touch point.
-  //      soundBounds = new Rectangle(Constants.SOUND_ON_SCREEN_X, Constants.SOUND_ON_SCREEN_Y, Constants.MUSIC_LOGO_WIDTH, Constants.MUSIC_LOGO_HEIGHT);
+
         javaDeluxeBounds = new Rectangle((int) (manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.DELUXE_ON_SCREEN_X),
                 (int) (manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2 + Constants.DELUXE_ON_SCREEN_Y), Constants.TEXT_HIGHLIGHT_WIDTH , Constants.TEXT_HIGHLIGHT_HEIGHT);
         recipeBounds = new Rectangle((int) (manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.RECIPE_ON_SCREEN_X),
@@ -99,9 +99,9 @@ public class MenuState extends State {
     public void input(){
         if(Gdx.input.justTouched()){
             manager.getCamera().unproject(touchpoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
-//            if(soundBounds.contains(touchpoint.x, touchpoint.y)){
-//                System.out.println("You clicked at Sounds!");
-//            }
+
+
+
             if(javaDeluxeBounds.contains(touchpoint.x, touchpoint.y)){
                 manager.getMusic().stop();
                 manager.set(new StageSelectState(manager));
@@ -118,7 +118,7 @@ public class MenuState extends State {
             if(settingsBounds.contains(touchpoint.x, touchpoint.y)){
                 System.out.println("clicked at settings");
                 settings.setSettings(true);
-//                manager.set(new Settings(manager));
+
             }
             if(quitGameBounds.contains(touchpoint.x, touchpoint.y)){
                 System.out.println("You clicked at Quit Game!");
@@ -129,10 +129,10 @@ public class MenuState extends State {
     public void drawObject(SpriteBatch sprite){
         manager.getCamera().unproject(touchpoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
-//        if(soundBounds.contains(touchpoint.x, touchpoint.y)){
-//            sprite.draw(musicLogo, manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f + Constants.SOUND_ON_SCREEN_X,
-//                    manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f + Constants.SOUND_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH , Constants.TEXT_HIGHLIGHT_HEIGHT);
-//        }
+
+
+
+
         if(javaDeluxeBounds.contains(touchpoint.x, touchpoint.y)){
             sprite.draw(textHighlight, manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f + Constants.DELUXE_ON_SCREEN_X,
                     manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f + Constants.DELUXE_ON_SCREEN_Y, Constants.TEXT_HIGHLIGHT_WIDTH , Constants.TEXT_HIGHLIGHT_HEIGHT);

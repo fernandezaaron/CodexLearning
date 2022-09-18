@@ -65,8 +65,8 @@ public class StageSelectState extends State{
                 manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2 + Constants.STAGE_1_9_Y, Constants.STAGE_RADIUS);
         stages[9] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_10_X,
                 manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2 + Constants.STAGE_1_10_Y, Constants.STAGE_RADIUS);
-//        stages[10] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_11_X,
-//                manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2 + Constants.STAGE_1_11_Y, Constants.STAGE_RADIUS);
+
+
         stages[10] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_12_X,
                 manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2 + Constants.STAGE_1_12_Y, Constants.STAGE_RADIUS);
         stages[11] = new Circle(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2 + Constants.STAGE_1_13_X,
@@ -150,9 +150,9 @@ public class StageSelectState extends State{
                         manager.set(new PlayState(manager));
 
 
-                        // ITO COMMENT OUT TO COMPARE
-//                    manager.getReader().getQuestions("Easy","Stage 1","");
-                        // ITO COMMENT OUT TO COMPARE
+
+
+
                     }
                 }
             }
@@ -164,8 +164,8 @@ public class StageSelectState extends State{
         for(int i = 0; i < stages.length; i++){
             sprite.draw(orangeCircle,  stages[i].x - Constants.ORANGE_CIRCLE_R / 2,
                       stages[i].y - Constants.ORANGE_CIRCLE_R / 2, Constants.ORANGE_CIRCLE_R, Constants.ORANGE_CIRCLE_R);
-//            sprite.draw(orangeCircle, (manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f) + stages[i].x - Constants.ORANGE_CIRCLE_R / 2,
-//                    (manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f) +  stages[i].y - Constants.ORANGE_CIRCLE_R / 2, Constants.ORANGE_CIRCLE_R, Constants.ORANGE_CIRCLE_R);
+
+
             if(manager.getStageSelector().getAllowToPlay(i)) {
                 if (stages[i].contains(touchpoint.x, touchpoint.y)) {
                     sprite.draw(grayCircle, stages[i].x - Constants.GRAY_CIRCLE_R / 2,

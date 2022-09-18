@@ -25,7 +25,7 @@ public class Game extends ApplicationAdapter {
 		manager.push(new MenuState(manager));
 		Gdx.input.setInputProcessor(manager.getStage());
 
-//		img = new Texture(Constants.BACKGROUND_PATH);
+
 	}
 
 	@Override
@@ -38,21 +38,20 @@ public class Game extends ApplicationAdapter {
 
 
 
-//		batch.begin();
-//		batch.draw(img, 0, 0);
-//		batch.end();
+
+
 	}
 
 	@Override
 	public void resize(int width, int height){
-//		manager.getCamera().setToOrtho(false, width, height);
+
 		manager.getStage().getViewport().update(width, height, true);
 	}
 	
 	@Override
 	public void dispose () {
 		batch.dispose();
-//		img.dispose();
+
 		manager.disposeAll();
 	}
 }

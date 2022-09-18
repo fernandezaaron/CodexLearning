@@ -59,17 +59,7 @@ public class MinigameChecker {
         return correctOutput;
     }
 
-//    public void dropCopyBlock(Blocks blocks) {
-//        for(int i = 0; i < blockHolders.length; i++) {
-//            for (int j = 0; j < blockHolders[i].length; j++) {
-//                if(blockHolders[i][j] != null) {
-//                    if(blockHolders[i][j].getCopyBlock() != null) {
-//                        updateBlocks[i][j] = blocks;
-//                    }
-//                }
-//            }
-//        }
-//    }
+
 
     public void pickUpCopyBlock(Blocks blocks, int i, int j) {
         updateBlocks[i][j] = blocks;

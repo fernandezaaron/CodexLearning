@@ -19,7 +19,7 @@ public class DialogueBox extends Table {
 
 
     public DialogueBox(Skin skin, String name, float scale){
-        //this.pack();
+
         this.setSkin(skin);
         this.setBackground(skin.getDrawable(name));
         textLabel = new Label(" ", skin);
@@ -27,7 +27,7 @@ public class DialogueBox extends Table {
         textLabel.setFontScale(scale);
         this.add(textLabel).align(Align.left).pad(50f).grow();
 
-       // this.setPosition(this.getX(), this.getY());
+
         isAnimating = false;
         isOpen = false;
 
@@ -92,9 +92,8 @@ public class DialogueBox extends Table {
         isOpen = open;
     }
 
-//    @Override
-//    public float getPrefWidth(){
-//        return 200f;
-//    }
+
+
+
 
 }
