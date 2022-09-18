@@ -64,6 +64,15 @@
     }
   }
 
+  "com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle": {
+    "default": {
+      "imageDown": "saveandquit",
+      "imageUp": "saveandquit",
+      "pressedOffsetX": 3,
+      "pressedOffsetY": -1
+    }
+  }
+
 
 
 

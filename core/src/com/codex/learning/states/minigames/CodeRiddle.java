@@ -37,14 +37,14 @@ public class CodeRiddle extends State {
     private ArrayList<String> questions;
     private ArrayList<ArrayList<String>> options;
 
-    private boolean inComputer, isDone, isGivingHints;
+    private boolean inComputer, isDone, isGivingHints, resultFeedBackOpen;
     private int currentQuestion;
     private int error;
 
     private FuzzyLogic fuzzyLogic;
     private ArrayList<String> behavior;
 
-    private float timer;
+    private float timer, dialogTimer;
 
     public CodeRiddle(Manager manager, FuzzyLogic fuzzyLogic) {
         super(manager);
@@ -52,6 +52,7 @@ public class CodeRiddle extends State {
         this.fuzzyLogic = fuzzyLogic;
         behavior = new ArrayList<>();
         timer = 0;
+        dialogTimer = 0;
         error = 0;
 
 //        skin = new Skin(Gdx.files.internal("text/DialogBox.json"));
@@ -277,6 +278,7 @@ public class CodeRiddle extends State {
 
         if(isGivingHints){
             if(!dialogueBox.isOpen()){
+                setResultFeedBackOpen(true);
                 if(fuzzyLogic.getPercentNumberOfErrors() < 70){
                     dialogueBox.textAnimation(manager.getDialogue().resultFeedback(1) + " Your score is " + (manager.getQuestionnaire().getQuestionLimit() - fuzzyLogic.getNumberOfErrors()));
                 }
@@ -304,6 +306,19 @@ public class CodeRiddle extends State {
 
 
         manager.getStage().addActor(resultFeedbackTable);
+    }
+
+    public void closeDialogBox(){
+        dialogTimer += Gdx.graphics.getDeltaTime();
+        System.out.println(dialogTimer);
+
+        if(dialogTimer >= 5){
+            resultFeedbackTable.setVisible(false);
+            dialogueBox.setOpen(false);
+            setResultFeedBackOpen(false);
+            resultFeedbackTable.reset();
+            dialogTimer = 0;
+        }
     }
 
     public void createFeedBackTable(String text){
@@ -422,5 +437,13 @@ public class CodeRiddle extends State {
 
     public void setFuzzyLogic(FuzzyLogic fuzzyLogic) {
         this.fuzzyLogic = fuzzyLogic;
+    }
+
+    public boolean isResultFeedBackOpen() {
+        return resultFeedBackOpen;
+    }
+
+    public void setResultFeedBackOpen(boolean resultFeedBackOpen) {
+        this.resultFeedBackOpen = resultFeedBackOpen;
     }
 }

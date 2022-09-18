@@ -39,10 +39,12 @@ public class PlayState extends State{
 
 
     private int count;
+    private float hintTimer;
 
 
     public PlayState(Manager manager) {
         super(manager);
+        hintTimer = 0;
         count = 5;
 
         this.stage = manager.getStageSelector().getStageMap();
@@ -94,12 +96,12 @@ public class PlayState extends State{
         door = new TextureRegion(manager.getReportCardSheet(), 48,195, 263, 119);
         inStartArea = true;
         atDoor = false;
+
     }
 
     @Override
     public void update(float delta) {
         manager.getWorld().step(1/60f,6,2);
-
         if(!isInStartArea()){
             activeBody(false);
             playroomMap.setActive(true);
@@ -133,6 +135,10 @@ public class PlayState extends State{
                         computerOnce = false;
                     }
 
+                    if(computer.isDone() && computer.getCodeRiddle().isResultFeedBackOpen()){
+                        computer.getCodeRiddle().closeDialogBox();
+                    }
+
                     // CHECK THE BEHAVIOR IN STATE
 //                    manager.checkIfMoving(jedisaur);
 //                    manager.updateBehavior((int) timer);
@@ -141,7 +147,12 @@ public class PlayState extends State{
 //              }
                     jediGrandpa.update(delta);
                     jedisaur.update(delta);
-                    computer.update(delta);
+                    if(jediGrandpa.isComputerReady()){
+                        computer.update(delta);
+                    }
+                    else {
+                        computer.setInContact(false);
+                    }
                 }
 //                else if(playroom.isDone && npc.hasSubmitted){
 //                    //Use to calculate number of cookies
@@ -179,7 +190,6 @@ public class PlayState extends State{
     @Override
     public void render(SpriteBatch sprite) {
         manager.getCamera().update();
-
         enterPlayRoom(jedisaur);
 //        exitPlayroom(jedisaur);
 
@@ -216,9 +226,13 @@ public class PlayState extends State{
         sprite.setProjectionMatrix(manager.getCamera().combined);
         if(isInStartArea()){
             checkDoor(sprite, atDoor);
+
         }
         sprite.end();
         pause.render(sprite);
+
+
+
     }
 
     @Override
@@ -276,7 +290,7 @@ public class PlayState extends State{
 
     private void checkDoor(SpriteBatch sprite, boolean atDoor){
         if(atDoor){
-            sprite.draw(door, -350, -450);
+            sprite.draw(door, -330, -450);
         }
     }
 

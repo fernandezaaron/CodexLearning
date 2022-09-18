@@ -11,6 +11,7 @@ import com.codex.learning.entity.blocks.Objective;
 import com.codex.learning.entity.blocks.PlayMat;
 import com.codex.learning.entity.characters.Character;
 import com.codex.learning.entity.characters.NPC;
+import com.codex.learning.states.ReportCard;
 import com.codex.learning.states.StageSelectState;
 import com.codex.learning.states.State;
 import com.codex.learning.states.minigames.Minigame;
@@ -27,6 +28,8 @@ public class PlayroomMapS1 extends State {
     private PlayMat playMat;
     private Objective objective;
     private HowToPlay howToPlay;
+    private ReportCard reportCard;
+
     private String npcDialog;
     private int randomNumber;
     public PlayroomMapS1(Manager manager) {
@@ -56,6 +59,9 @@ public class PlayroomMapS1 extends State {
         howToPlay = new HowToPlay(manager);
         howToPlay.create(new Vector2(8f, -10.25f), new Vector2(1f, 2f), 0);
 
+        reportCard = new ReportCard(manager);
+
+
         door = new TextureRegion(manager.getReportCardSheet(), 48,195, 263, 119);
     }
 
@@ -68,11 +74,18 @@ public class PlayroomMapS1 extends State {
         else{
             npcDialog = "hints";
         }
+
+        if(manager.getMinigameChecker().isDone()){
+            reportCard.update(delta);
+
+        }
 //        manager.updateBehavior(60);
         npc.update(delta);
         objective.update(delta);
         howToPlay.update(delta);
+
         manager.getStage().act();
+
     }
 
     @Override
@@ -92,6 +105,7 @@ public class PlayroomMapS1 extends State {
         }
         sprite.end();
         npc.render(sprite);
+
     }
 
     public void npcRender(SpriteBatch sprite){
@@ -104,6 +118,9 @@ public class PlayroomMapS1 extends State {
         }
         if(howToPlay.isIntroDialogue()){
             howToPlay.setCurrentImage(manager.getMinigame().getCurrentMinigame(), sprite);
+        }
+        if(reportCard.isInReportCard() && manager.getMinigameChecker().isDone()){
+            reportCard.render(sprite);
         }
     }
 

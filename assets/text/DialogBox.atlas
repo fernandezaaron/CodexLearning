@@ -10,6 +10,13 @@ choices
   orig: 1115, 76
   offset: 0, 0
   index: -1
+cookie
+  rotate: false
+  xy: 1997, 0
+  size: 73, 100
+  orig: 73, 100
+  offset: 0, 0
+  index: -1
 dialogbox1
   rotate: false
   xy: 1662, 203
@@ -47,28 +54,28 @@ horizontalScrollKnob
   index: -1
 jediGrandpaAvatar
   rotate: false
-  xy: 1743, 0
+  xy: 2083, 0
   size: 180, 180
   orig: 180, 180
   offset: 0, 0
   index: -1
 jediOfficeAvatar
   rotate: false
-  xy: 1923, 0
+  xy: 2263, 0
   size: 180, 180
   orig: 180, 180
   offset: 0, 0
   index: -1
 jediProfAvatar
   rotate: false
-  xy: 2103, 0
+  xy: 2443, 0
   size: 180, 180
   orig: 180, 180
   offset: 0, 0
   index: -1
 jedisaurAvatar
   rotate: false
-  xy: 2283, 0
+  xy: 2623, 0
   size: 180, 180
   orig: 180, 180
   offset: 0, 0
@@ -96,7 +103,7 @@ PCSCREEN
   index: -1
 questions
   rotate: false
-  xy: 2463, 0
+  xy: 2803, 0
   size: 1111, 203
   orig: 1111, 203
   offset: 0, 0
@@ -115,9 +122,16 @@ REPORTCARD
   orig: 656, 836
   offset: 0, 0
   index: -1
-verticalScroll
+saveandquit
   rotate: false
   xy: 1730, 0
+  size: 267, 96
+  orig: 267, 96
+  offset: 0, 0
+  index: -1
+verticalScroll
+  rotate: false
+  xy: 2070, 0
   size: 13, 169
   orig: 13, 169
   offset: 0, 0

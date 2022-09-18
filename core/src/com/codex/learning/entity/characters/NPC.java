@@ -35,7 +35,7 @@ public class NPC extends Entity {
     private String dialogSet;
     private int index, hintIndex;
     private int nextStatement;
-    private boolean inPlayroom, readiness, introDialogFlag, doneChecker, tableTouched, hintFlag, autoDialogDone, inPlayroomCarpet;
+    private boolean inPlayroom, readiness, introDialogFlag, doneChecker, tableTouched, hintFlag, autoDialogDone, inPlayroomCarpet, computerReady;
 
     public NPC(Manager manager, String dialogSet, int index, boolean inPlayroom) {
         super(manager);
@@ -94,6 +94,7 @@ public class NPC extends Entity {
         hintFlag = false;
         autoDialogDone = false;
         inPlayroomCarpet = false;
+        computerReady = false;
 
         BodyDef def = new BodyDef();
         def.type = BodyDef.BodyType.StaticBody;
@@ -268,6 +269,7 @@ public class NPC extends Entity {
                                 if(finalTempindex == 0){
                                     choiceTableContainer.setVisible(false);
                                     setReadiness(true);
+
                                 }
                                 else{
                                     setHintFlag(true);
@@ -304,6 +306,7 @@ public class NPC extends Entity {
                     dialogBoxContainer.add(table);
                     dialogBoxContainer.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/Constants.PPM/2 + 400, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/Constants.PPM/2  + 75);
                 }
+                setComputerReady(true);
             }
         }
 
@@ -358,7 +361,7 @@ public class NPC extends Entity {
         }
 
 
-        if((manager.getDialogue().isStatementEnd() && db.isOpen() && !isIntroDialogFlag() && !doneChecker) && !isInPlayroomCarpet()){
+        if((manager.getDialogue().isStatementEnd() && db.isOpen() && !isIntroDialogFlag() && !doneChecker && !isInPlayroomCarpet())){
             setTalking(false);
             //if at the end resets the table and the statement to the first index
             dialogBoxContainer.setVisible(false);
@@ -531,5 +534,13 @@ public class NPC extends Entity {
 
     public void setInPlayroomCarpet(boolean inPlayroomCarpet) {
         this.inPlayroomCarpet = inPlayroomCarpet;
+    }
+
+    public boolean isComputerReady() {
+        return computerReady;
+    }
+
+    public void setComputerReady(boolean computerReady) {
+        this.computerReady = computerReady;
     }
 }
