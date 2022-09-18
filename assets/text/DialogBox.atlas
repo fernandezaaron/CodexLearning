@@ -1,5 +1,5 @@
 DialogBox.png
-size: 3697, 1493
+size: 3977, 1493
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -75,7 +75,7 @@ jedisaurAvatar
   index: -1
 objectives
   rotate: false
-  xy: 921, 593
+  xy: 1577, 593
   size: 800, 888
   orig: 800, 888
   offset: 0, 0
@@ -89,7 +89,7 @@ optionScreen
   index: -1
 PCSCREEN
   rotate: false
-  xy: 1721, 593
+  xy: 2377, 593
   size: 1600, 900
   orig: 1600, 900
   offset: 0, 0
@@ -106,6 +106,13 @@ questionsScreen
   xy: 0, 593
   size: 921, 451
   orig: 921, 451
+  offset: 0, 0
+  index: -1
+REPORTCARD
+  rotate: false
+  xy: 921, 593
+  size: 656, 836
+  orig: 656, 836
   offset: 0, 0
   index: -1
 verticalScroll

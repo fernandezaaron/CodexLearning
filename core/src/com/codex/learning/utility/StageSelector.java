@@ -30,14 +30,7 @@ public class StageSelector {
             return "3";
         }
     }
-
-    public int[] getCurrentStage() {
-        return currentStage;
-    }
-
-    public int getCurrentStage(int index){
-        return currentStage[index];
-    }
+    
 
     public int getStageMap(){
         return stageMap;

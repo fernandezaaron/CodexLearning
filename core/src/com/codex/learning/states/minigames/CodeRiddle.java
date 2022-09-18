@@ -178,7 +178,7 @@ public class CodeRiddle extends State {
                text.setWrap(true);
                if(!(text.getText().contains(questions.get(currentQuestion)))){
                    text.setText(questions.get(currentQuestion));
-                   text.setAlignment(Align.left);
+                   text.setAlignment(Align.center);
                    String tempstring = "";
 
 
@@ -263,10 +263,12 @@ public class CodeRiddle extends State {
                table.row();
                table.add(optionsTable).height(200).width(780).padBottom(15f);
                table.pack();
+
            }
 
 //           table.setDebug(true);
             manager.getStage().addActor(table);
+           manager.getStage().setDebugAll(true);
         }
     }
 
