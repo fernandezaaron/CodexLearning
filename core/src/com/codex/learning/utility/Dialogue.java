@@ -2595,6 +2595,7 @@ public class Dialogue {
             case "hints": return statementMover(nextStatement, twoHintsContainer, getStage()-1);
             case "finishCheck": return statementMover(nextStatement, askIfFinished, index);
             case "minigameintrodialogue": return statementMover(nextStatement, minigameIntroDiaulogue, getStage()-1);
+            case "done" : return statementMover(nextStatement, askIfFinished, 0);
 
 
         }
@@ -2603,6 +2604,7 @@ public class Dialogue {
 
     public String statementMover(int nextStatement, ArrayList<ArrayList<String>> arrayLists, int index){
         if(nextStatement == arrayLists.get(index).size()){
+            System.out.println(nextStatement + " + " + arrayLists.get(index).size());
             setStatementEnd(true);
         }else{
             setStatementEnd(false);

@@ -134,9 +134,11 @@ public class PlayState extends State{
 
 
         if(pause.isRunning()){
-            if(jediGrandpa.isTalking()){
+            if(jediGrandpa.isTalking() || playroomMap.getNpc().isTalking()){
                 jedisaurStop(delta);
-                jediGrandpa.update(delta);
+                if(isInStartArea()){
+                    jediGrandpa.update(delta);
+                }
             }
             else{
                 if(!computer.getCodeRiddle().isInComputer()){
@@ -187,10 +189,9 @@ public class PlayState extends State{
                     }
                 }
             }
-            if(playroomMap.getNpc().isTalking()){
-                jedisaurStop(delta);
-                playroomMap.getNpc().update(delta);
-            }
+//            if(playroomMap.getNpc().isTalking()){
+//                jedisaurStop(delta);
+//            }
 
         }else{
             jedisaurStop(delta);
@@ -205,7 +206,7 @@ public class PlayState extends State{
         manager.getCamera().update();
 
         enterPlayRoom(jedisaur);
-        exitPlayroom(jedisaur);
+//        exitPlayroom(jedisaur);
 
         if(isInStartArea()){
             if(manager.getStageSelector().map().equals("1")){
@@ -290,17 +291,17 @@ public class PlayState extends State{
     }
 
     public void exitDoor(Character character){
-        if(character.getBody().getPosition().x > -19.8f && character.getBody().getPosition().x < -15.5f && character.getBody().getPosition().y < -11){
+        if(character.getBody().getPosition().x > -9.0f && character.getBody().getPosition().x < -3.0f && character.getBody().getPosition().y < -11){
             manager.getMusic().stop();
             manager.set(new StageSelectState(manager));
         }
 
-        atDoor = character.getBody().getPosition().x > -19.8f && character.getBody().getPosition().x < -15.5f && character.getBody().getPosition().y < -10;
+        atDoor = character.getBody().getPosition().x > -9.5f && character.getBody().getPosition().x < -3.0f && character.getBody().getPosition().y < -10;
     }
 
     private void checkDoor(SpriteBatch sprite, boolean atDoor){
         if(atDoor){
-            sprite.draw(door, -693, -450);
+            sprite.draw(door, -350, -450);
         }
     }
 
@@ -323,6 +324,7 @@ public class PlayState extends State{
                 jedisaur.getBody().getPosition().set(-20, 1);
 //            }
 //            else {
+//
 //            }
         }
     }

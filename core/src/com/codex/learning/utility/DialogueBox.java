@@ -25,7 +25,7 @@ public class DialogueBox extends Table {
         textLabel = new Label(" ", skin);
         textLabel.setWrap(true);
         textLabel.setFontScale(scale);
-        this.add(textLabel).align(Align.left).pad(50f).grow();
+        this.add(textLabel).align(Align.left).pad(10f).grow();
 
        // this.setPosition(this.getX(), this.getY());
         isAnimating = false;

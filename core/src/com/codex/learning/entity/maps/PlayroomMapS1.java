@@ -40,7 +40,7 @@ public class PlayroomMapS1 extends State {
         atDoor = false;
         inPlayroom = false;
 
-        npcDialog = "hints";
+        npcDialog = "done";
         npc = new NPC(manager, npcDialog, 0, true);
         npc.create(new Vector2(0, -6), new Vector2(1, 1.4f), 0);
         npc.setIntroDialogFlag(true);
@@ -60,10 +60,17 @@ public class PlayroomMapS1 extends State {
     @Override
     public void update(float delta) {
         //make a condition on NPC hints dialog if wala pa and if meron na
+        if(npc.isReady()){
+            npcDialog = "finishCheck";
+        }
+        else{
+            npcDialog = "hints";
+        }
 //        manager.updateBehavior(60);
         npc.update(delta);
         objective.update(delta);
         howToPlay.update(delta);
+        manager.getStage().act();
     }
 
     @Override
@@ -85,10 +92,13 @@ public class PlayroomMapS1 extends State {
 
         npc.render(sprite);
         howToPlay.render(sprite);
+
     }
 
     public void npcRender(SpriteBatch sprite){
         npc.tableRender(sprite);
+        manager.getStage().draw();
+
     }
 
 
