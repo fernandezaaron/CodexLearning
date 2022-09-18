@@ -96,6 +96,9 @@ public class PlayState extends State{
         door = new TextureRegion(manager.getReportCardSheet(), 48,195, 263, 119);
         inStartArea = true;
         atDoor = false;
+        if(manager.getStageSelector().getStageMap() == 1){
+            manager.setNewPlayer(true);
+        }
 
     }
 

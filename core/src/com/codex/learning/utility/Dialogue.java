@@ -7,7 +7,7 @@ import java.util.Random;
 public class Dialogue {
 
     private ArrayList<ArrayList<String>> introductionDialogue = new ArrayList<>(Arrays.asList(
-            new ArrayList<>(Arrays.asList("Hi I am, JediGrandpa", "I have a task for you to do", "But first lets study first on the topic",
+            new ArrayList<>(Arrays.asList("Hi Jedisaur, I suppose you must be ready now!", "I have a task for you to do", "But first lets study first on the topic",
                     //syntax
                     "The first topic is Syntax", "The syntax of Java refers to the set of rules defining how a Java program is written and interpreted.",
                     "The syntax is mostly derived from C and C++. Unlike in C++, in Java there are no global functions or variables" ,
@@ -25,7 +25,7 @@ public class Dialogue {
                     "The PLAYROOM however contains a random MINI-GAME that will test your CODING CAPABILITIES")),
             new ArrayList<>(Arrays.asList(
                     //variables
-                    "Once again I am JediGrandpa,", "I have a task for you to do", "But first lets study on the topic",
+                    "Welcome on your 2nd day,", "I have a task for you to do", "But first lets study on the topic",
                     "Our topic for this stage will be Variables", "Variables are containers for storing data values.", "In Java, there are different types of variables",
                     "String - stores text, such as \"Hello\". String values are surrounded by double quotes", "For example: " + "\n\nString name =\"Hello\";",
                     "int - stores integers (whole numbers), without decimals, such as 123 or -123", "For example:" + "\n\nint num = 123;",
@@ -2560,6 +2560,26 @@ public class Dialogue {
             )
     );
 
+    private ArrayList<ArrayList<String>> newPlayerIntro = new ArrayList<>(
+            Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
+                       "Hello Jedisaur! Welcome on your first day of coding!",
+                       "Before getting started, I will first introduce myself",
+                       "I am JediGrandpa, obviously your grandfather",
+                            "I am here to guide you all the way to success and learn coding in a more efficient and fun way!",
+                            "First, I will show you how to play this game", "For the first step, you will need to talk to me again after this tutorial.",
+                            "To do that, PRESS E when you are in contact with me.\n Then I will teach you the topic of the day!",
+                            "After I discuss the topic for today, You are required to go to the computer.\nThat computer will serve as the ticket to the next area!",
+                            "The computer is a Question and Answer portion, You must choose the correct answers from the bottom table in order to proceed!",
+                            "To access the computer you must PRESS E and after answering all the questions, You may PRESS F to close the window",
+                            "Rest assured after answering all the questions you will be able to proceed to the next area.",
+                            "The next area called PLAYROOM is on the right side of this house, Inside the playroom there will be a RANDOM MINIGAME that will solely focus on your practical skills.",
+                            "I will teach you how to play inside the PLAYROOM when you get there, don't worry.", "Now, its about time and I suppose you should know how to play now.",
+                            "I will let you be and goodluck on your journey Jedisaur!"
+                    ))
+            )
+    );
+
     private ArrayList<ArrayList<String>> askIfFinished = new ArrayList<>(
             Arrays.asList(
                     new ArrayList<>(Arrays.asList(
@@ -2587,6 +2607,7 @@ public class Dialogue {
     }
 
 
+
     public String reader(int nextStatement, String dialogueSet, int index){
         switch (dialogueSet){
             case "introduction": return statementMover(nextStatement, introductionDialogue, getStage() - 1);
@@ -2594,9 +2615,10 @@ public class Dialogue {
             case "codeorderhints": return statementMover(nextStatement, codeOrderHints, getStage() - 1);
             case "hints": return statementMover(nextStatement, twoHintsContainer, getStage() - 1);
             case "finishCheck": return statementMover(nextStatement, askIfFinished, index);
-            case "minigameintrodialogue": return statementMover(nextStatement, minigameIntroDiaulogue, getStage());
+            case "minigameintrodialogue": return statementMover(nextStatement, minigameIntroDiaulogue, index - 1);
             case "done" : return statementMover(nextStatement, askIfFinished, 0);
             case "noplayroom": return statementMover(nextStatement, noToPlayRoomDialogue, index);
+            case "newPlayer": return statementMover(nextStatement, newPlayerIntro, index);
 
 
         }
@@ -2629,6 +2651,26 @@ public class Dialogue {
         int number = random.nextInt(limit);
 
         return codeRiddleFeedback.get(index).get(number);
+    }
+
+    public int getTopic(String topic){
+        switch (topic){
+            case "Syntax": return 1;
+            case "Comments": return 2;
+            case "Variables": return 3;
+            case "Data Types": return 4;
+            case "Type Casting": return 5;
+            case "Oprators": return 6;
+            case "Conditional": return 7;
+            case "Loops": return 8;
+            case "Arrays": return 9;
+            case "Methods": return 10;
+            case "Parameters": return 11;
+            case "Parameter Overloading": return 12;
+            case "Classes": return 13;
+            case "Objects": return 14;
+        }
+        return 0;
     }
 
     public int getStage() {

@@ -47,6 +47,7 @@ public class Manager {
     private TextureRegion pcStateSheet;
     private TextureRegion settingsStateSheet;
 
+
     private TextureRegion pauseStateSheet;
     private Skin skin;
     private TextureAtlas atlas;
@@ -65,6 +66,7 @@ public class Manager {
     private DecisionTree decisionTree;
 
     private boolean moving;
+    private boolean newPlayer;
     private int numberOfBlockInteraction;
     private int hintsIndex;
 
@@ -113,7 +115,7 @@ public class Manager {
         pcStateSheet = new TextureRegion(new Texture(Constants.PC_SHEET_PATH));
 
         font = new BitmapFont(Gdx.files.internal(Constants.FONT_STYLE));
-        font.getData().setScale(1.2f);
+        font.getData().setScale(1.3f);
 
 
         decisionTree = new DecisionTree();
@@ -460,5 +462,13 @@ public class Manager {
 
     public void setHintsIndex(int hintsIndex) {
         this.hintsIndex = hintsIndex;
+    }
+
+    public boolean isNewPlayer() {
+        return newPlayer;
+    }
+
+    public void setNewPlayer(boolean newPlayer) {
+        this.newPlayer = newPlayer;
     }
 }

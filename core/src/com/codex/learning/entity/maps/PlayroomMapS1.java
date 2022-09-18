@@ -79,7 +79,7 @@ public class PlayroomMapS1 extends State {
             reportCard.update(delta);
 
         }
-//        manager.updateBehavior(60);
+
         npc.update(delta);
         objective.update(delta);
         howToPlay.update(delta);
@@ -119,7 +119,8 @@ public class PlayroomMapS1 extends State {
         if(howToPlay.isIntroDialogue()){
             howToPlay.setCurrentImage(manager.getMinigame().getCurrentMinigame(), sprite);
         }
-        if(reportCard.isInReportCard() && manager.getMinigameChecker().isDone()){
+        if(manager.getMinigameChecker().isDone()){
+            System.out.println("asfasfa");
             reportCard.render(sprite);
         }
     }
@@ -132,6 +133,7 @@ public class PlayroomMapS1 extends State {
         downBorder.disposeBody();
         objective.disposeBody();
         howToPlay.disposeBody();
+        reportCard.dispose();
     }
 
     public PlayMat getPlayMat() {
@@ -179,6 +181,7 @@ public class PlayroomMapS1 extends State {
         npc.getBody().setActive(active);
         objective.getBody().setActive(active);
         howToPlay.getBody().setActive(active);
+
     }
 
     public NPC getNpc() {

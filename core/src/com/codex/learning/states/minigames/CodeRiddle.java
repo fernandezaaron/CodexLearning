@@ -164,7 +164,7 @@ public class CodeRiddle extends State {
             table.setFillParent(true);
             table.defaults().size(500, 180);
             table.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM - 10);
-//            text.setDebug(true);
+
 
            if(currentQuestion == manager.getQuestionnaire().getQuestionLimit()){
                text.setWrap(true);
@@ -265,10 +265,8 @@ public class CodeRiddle extends State {
                table.pack();
 
            }
-
-//           table.setDebug(true);
             manager.getStage().addActor(table);
-           manager.getStage().setDebugAll(true);
+
         }
     }
 

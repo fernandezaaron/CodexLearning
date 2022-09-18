@@ -463,7 +463,6 @@ public class MysteryCode extends State {
             manager.getExpertSystem().readFile();
 
             fuzzyDone = true;
-            manager.set(new StageSelectState(manager));
         }
     }
 

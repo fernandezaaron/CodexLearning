@@ -85,8 +85,12 @@ public class ReportCard extends State{
         /**
          * replace the length to the number of cookies length lang
          */
-        for(int i=0; i<cookies.size(); i++){
-            cookies.add(new Image(manager.getSkin(),"cookie"));
+        for(int i=0; i<3; i++){
+            cookies.add(new Image(manager.getSkin(),"nocookie"));
+        }
+        int numberofcookies = 2;
+        for(int i=0; i<numberofcookies; i++){
+            cookies.set(i, new Image(manager.getSkin(), "cookie"));
         }
 
         if(!reportCardContainerTable.hasChildren()){
@@ -112,7 +116,7 @@ public class ReportCard extends State{
 
 
             reportCardContainerTable.add(reportCardTable).height(400).width(350);
-            reportCardContainerTable.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/Constants.PPM/2 - 370, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/Constants.PPM/2 -220);
+            reportCardContainerTable.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/Constants.PPM/2 + 400, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/Constants.PPM/2 + 220);
 
         }
 
@@ -136,8 +140,6 @@ public class ReportCard extends State{
         });
 
         manager.getStage().addActor(reportCardContainerTable);
-
-//        manager.getStage().setDebugAll(true);
     }
 
     @Override

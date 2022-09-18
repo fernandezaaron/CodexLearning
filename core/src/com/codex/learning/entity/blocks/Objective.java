@@ -38,8 +38,8 @@ public class Objective extends Entity {
 
         label = new Label("", manager.getSkin());
         label.setWrap(true);
-        label.setFontScale(1.8f);
-        label.getStyle().font.getData().setLineHeight(40);
+        label.setFontScale(1.4f);
+        label.getStyle().font.getData().setLineHeight(35);
 
 
         this.position = position;

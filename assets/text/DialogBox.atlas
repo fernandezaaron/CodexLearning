@@ -1,5 +1,5 @@
 DialogBox.png
-size: 3977, 1493
+size: 3987, 1493
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -54,30 +54,37 @@ horizontalScrollKnob
   index: -1
 jediGrandpaAvatar
   rotate: false
-  xy: 2083, 0
+  xy: 2156, 0
   size: 180, 180
   orig: 180, 180
   offset: 0, 0
   index: -1
 jediOfficeAvatar
   rotate: false
-  xy: 2263, 0
+  xy: 2336, 0
   size: 180, 180
   orig: 180, 180
   offset: 0, 0
   index: -1
 jediProfAvatar
   rotate: false
-  xy: 2443, 0
+  xy: 2516, 0
   size: 180, 180
   orig: 180, 180
   offset: 0, 0
   index: -1
 jedisaurAvatar
   rotate: false
-  xy: 2623, 0
+  xy: 2696, 0
   size: 180, 180
   orig: 180, 180
+  offset: 0, 0
+  index: -1
+nocookie
+  rotate: false
+  xy: 2070, 0
+  size: 73, 100
+  orig: 73, 100
   offset: 0, 0
   index: -1
 objectives
@@ -103,7 +110,7 @@ PCSCREEN
   index: -1
 questions
   rotate: false
-  xy: 2803, 0
+  xy: 2876, 0
   size: 1111, 203
   orig: 1111, 203
   offset: 0, 0
@@ -131,7 +138,7 @@ saveandquit
   index: -1
 verticalScroll
   rotate: false
-  xy: 2070, 0
+  xy: 2143, 0
   size: 13, 169
   orig: 13, 169
   offset: 0, 0
