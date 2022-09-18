@@ -57,7 +57,6 @@ public class PlayState extends State{
         count = 5;
 
         this.stage = manager.getStageSelector().getStageMap();
-        timer = 0;
         pause = new PauseState(manager);
         rand = new Random();
 
@@ -141,8 +140,6 @@ public class PlayState extends State{
             }
             else{
                 if(!computer.getCodeRiddle().isInComputer()){
-                    timer += Gdx.graphics.getDeltaTime();
-
 
                     if(computer.isDone() && computerOnce){
                         computer.getCodeRiddle().resultFeedback();

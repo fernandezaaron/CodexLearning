@@ -54,7 +54,6 @@ public class PlayroomMapS1 extends State {
         howToPlay = new HowToPlay(manager);
         howToPlay.create(new Vector2(8f, -10.25f), new Vector2(1f, 2f), 0);
 
-
         door = new TextureRegion(manager.getReportCardSheet(), 48,195, 263, 119);
     }
 
