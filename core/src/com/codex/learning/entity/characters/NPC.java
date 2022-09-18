@@ -368,7 +368,7 @@ public class NPC extends Entity {
 
         }
 
-        manager.getStage().setDebugAll(true);
+//        manager.getStage().setDebugAll(true);
 
     }
 

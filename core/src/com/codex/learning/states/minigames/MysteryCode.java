@@ -9,6 +9,7 @@ import com.codex.learning.entity.characters.Character;
 import com.codex.learning.entity.maps.PlayroomMapS1;
 import com.codex.learning.states.PauseState;
 import com.codex.learning.states.PlayState;
+import com.codex.learning.states.StageSelectState;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.FuzzyLogic;
@@ -37,6 +38,7 @@ public class MysteryCode extends State {
     private ArrayList<ArrayList<Integer>> banishPerRow;
 
     private float timer;
+    private boolean fuzzyDone;
 
 //    private String stageSelect;
 //    private Stack<Stack<Blocks>> blocksArrayList;
@@ -54,6 +56,7 @@ public class MysteryCode extends State {
         blocksArrayList = new ArrayList<>();
 //        blockArrayIndex = 0;
         this.fuzzyLogic = fuzzyLogic;
+        fuzzyDone = false;
         this.stage = manager.getStageSelector().getStageMap();
 
         getAMinigame(manager.getStageSelector().map());
@@ -442,7 +445,7 @@ public class MysteryCode extends State {
     }
 
     public void itIsCorrect(){
-        if(manager.getMinigameChecker().isDone()){
+        if(manager.getMinigameChecker().isDone() && !fuzzyDone){
             fuzzyLogic.setNumberOfAttempts(manager.getMinigameChecker().getNumberOfAttempts());
             fuzzyLogic.setCorrectOutput(1);
             fuzzyLogic.setTimeConsumptions(fuzzyLogic.getTimeConsumptions() + timer);
@@ -453,6 +456,14 @@ public class MysteryCode extends State {
             fuzzyLogic.fuzzyCorrectOutput();
 
             fuzzyLogic.calculateNumberOfCookies();
+
+            manager.getExpertSystem().setCurrentCookie(fuzzyLogic.getCookies());
+            manager.getExpertSystem().editCookie(manager.getStageSelector().getStageMap() - 1);
+            manager.getExpertSystem().writeFile(manager.getExpertSystem().getCookies());
+            manager.getExpertSystem().readFile();
+
+            fuzzyDone = true;
+            manager.set(new StageSelectState(manager));
         }
     }
 
