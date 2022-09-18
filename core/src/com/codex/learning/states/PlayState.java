@@ -5,6 +5,9 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.codex.learning.entity.blocks.BlockDispenser;
+import com.codex.learning.entity.blocks.BlockDispenserV2;
+import com.codex.learning.entity.blocks.Blocks;
 import com.codex.learning.entity.blocks.Computer;
 import com.codex.learning.entity.characters.Character;
 import com.codex.learning.entity.characters.NPC;
@@ -45,16 +48,19 @@ public class PlayState extends State{
     private boolean computerOnce;
 
 
+    private int count;
+
+
 
     public PlayState(Manager manager) {
         super(manager);
+        count = 5;
+
         this.stage = manager.getStageSelector().getStageMap();
-        timer = 0;
         pause = new PauseState(manager);
         rand = new Random();
 
-        randomMinigame = 1;
-
+        randomMinigame = 2;
 
         playroomMap = new PlayroomMapS1(manager);
         manager.setPlayroomMap(playroomMap);
@@ -102,11 +108,13 @@ public class PlayState extends State{
         atDoor = false;
         inFillInTheBlock = false;
         inMysteryCode = false;
+
     }
 
     @Override
     public void update(float delta) {
         manager.getWorld().step(1/60f,6,2);
+
         if(!isInStartArea()){
             activeBody(false);
             playroomMap.setActive(true);
@@ -114,7 +122,6 @@ public class PlayState extends State{
             manager.getMinigame().update(delta);
             if(playroomMap.getPlayMat().isInContact()){
                 jedisaur.dropBlock(playroomMap.getPlayMat());
-                
             }
 
 
@@ -133,8 +140,6 @@ public class PlayState extends State{
             }
             else{
                 if(!computer.getCodeRiddle().isInComputer()){
-                    timer += Gdx.graphics.getDeltaTime();
-
 
                     if(computer.isDone() && computerOnce){
                         computer.getCodeRiddle().resultFeedback();
@@ -192,7 +197,6 @@ public class PlayState extends State{
             computer.getCodeRiddle().setInComputer(false);
             manager.getStage().clear();
         }
-
 
     }
 

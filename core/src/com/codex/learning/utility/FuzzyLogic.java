@@ -69,7 +69,7 @@ public class FuzzyLogic {
         int c = (int) (getTotalQuestions() * .60);
         int d = (int) (getTotalQuestions() * .90);
 
-//        if(getNumberOfErrors() != 0) {
+//        if(getTotalQuestions() > 5) {
 //            setFuzzyNumberOfErrors(Math.max(min((getNumberOfErrors() - a) / (b - a), 1,
 //                    (d - getNumberOfErrors()) / (d - c)), 0));
 //        }
@@ -155,8 +155,8 @@ public class FuzzyLogic {
         int b = 3;
         int c = 5;
 
-//        setFuzzyNumberOfAttempts(Math.max(Math.min((getFuzzyNumberOfAttempts() - a)/(b - a),
-//                (c - getFuzzyNumberOfAttempts())/(c - b)), 0));
+        setFuzzyNumberOfAttempts(Math.max(Math.min((getFuzzyNumberOfAttempts() - a)/(b - a),
+                (c - getFuzzyNumberOfAttempts())/(c - b)), 0));
 
         if(getNumberOfAttempts() <= a){
             setNumberOfAttemptsRules("LOW");

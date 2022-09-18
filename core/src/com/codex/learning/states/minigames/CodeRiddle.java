@@ -86,7 +86,6 @@ public class CodeRiddle extends State {
         optionsTable.setSkin(manager.getSkin());
         optionsTable.setBackground("optionScreen");
 
-
         table.setSkin(manager.getSkin());
         table.setBackground("PCSCREEN");
 
@@ -237,9 +236,6 @@ public class CodeRiddle extends State {
                                }else{
                                    fuzzyLogic.setNumberOfErrors(error);
                                    fuzzyLogic.setTimeConsumptions(fuzzyLogic.getTimeConsumptions() + timer);
-
-                                   fuzzyLogic.fuzzyNumberOfError();
-                                   fuzzyLogic.fuzzyTimeConsumption();
 
                                    text.setAlignment(Align.center);
                                    text.setText("Your score is: " + (manager.getQuestionnaire().getQuestionLimit() - error) + "/" + manager.getQuestionnaire().getQuestionLimit() + "\n PRESS F TO CLOSE");

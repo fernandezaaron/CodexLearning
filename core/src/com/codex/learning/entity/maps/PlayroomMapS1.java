@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.codex.learning.entity.Collisions;
+import com.codex.learning.entity.blocks.HowToPlay;
 import com.codex.learning.entity.blocks.Objective;
 import com.codex.learning.entity.blocks.PlayMat;
 import com.codex.learning.entity.characters.Character;
@@ -23,6 +24,7 @@ public class PlayroomMapS1 extends State {
     private NPC npc;
     private PlayMat playMat;
     private Objective objective;
+    private HowToPlay howToPlay;
     private String npcDialog;
     private int randomNumber;
     public PlayroomMapS1(Manager manager) {
@@ -49,6 +51,8 @@ public class PlayroomMapS1 extends State {
         objective = new Objective(manager);
         objective.create(new Vector2(6f, 13f), new Vector2(1.5f, 2f), 0);
 
+        howToPlay = new HowToPlay(manager);
+        howToPlay.create(new Vector2(8f, -10.25f), new Vector2(1f, 2f), 0);
 
         door = new TextureRegion(manager.getReportCardSheet(), 48,195, 263, 119);
     }
@@ -59,6 +63,7 @@ public class PlayroomMapS1 extends State {
 
         npc.update(delta);
         objective.update(delta);
+        howToPlay.update(delta);
     }
 
     @Override
@@ -79,6 +84,7 @@ public class PlayroomMapS1 extends State {
         sprite.end();
 
         npc.render(sprite);
+        howToPlay.render(sprite);
     }
 
     public void npcRender(SpriteBatch sprite){
@@ -92,6 +98,7 @@ public class PlayroomMapS1 extends State {
         upBorder.disposeBody();
         downBorder.disposeBody();
         objective.disposeBody();
+        howToPlay.disposeBody();
     }
 
     public PlayMat getPlayMat() {
@@ -108,6 +115,14 @@ public class PlayroomMapS1 extends State {
 
     public void setObjective(Objective objective) {
         this.objective = objective;
+    }
+
+    public HowToPlay getHowToPlay() {
+        return howToPlay;
+    }
+
+    public void setHowToPlay(HowToPlay howToPlay) {
+        this.howToPlay = howToPlay;
     }
 
     public int getStage() {
@@ -131,6 +146,7 @@ public class PlayroomMapS1 extends State {
         playMat.getBody().setActive(active);
         npc.getBody().setActive(active);
         objective.getBody().setActive(active);
+        howToPlay.getBody().setActive(active);
     }
 
 

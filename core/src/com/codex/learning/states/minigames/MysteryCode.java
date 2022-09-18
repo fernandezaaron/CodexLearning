@@ -1,5 +1,6 @@
 package com.codex.learning.states.minigames;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.codex.learning.entity.blocks.BlockHolder;
@@ -35,6 +36,8 @@ public class MysteryCode extends State {
     private ArrayList<String> answerPoolContainer;
     private ArrayList<ArrayList<Integer>> banishPerRow;
 
+    private float timer;
+
 //    private String stageSelect;
 //    private Stack<Stack<Blocks>> blocksArrayList;
 //    private int blockArrayIndex;
@@ -42,6 +45,7 @@ public class MysteryCode extends State {
 
     public MysteryCode(Manager manager, Character jedisaur, FuzzyLogic fuzzyLogic) {
         super(manager);
+        timer = 0;
         randomizer = new Random();
         banishCells = new ArrayList<Integer>();
         questionBlocks = new Blocks[20][20];
@@ -153,6 +157,9 @@ public class MysteryCode extends State {
 
     @Override
     public void update(float delta) {
+        if(!manager.getMinigameChecker().isDone()){
+            timer += Gdx.graphics.getDeltaTime();
+        }
         currentCell = 0;
         for (int i = 0; i < minigameContainer.size(); i++) {
             for (int j = 0; j < minigameContainer.get(i).size(); j++) {
@@ -438,11 +445,29 @@ public class MysteryCode extends State {
         if(manager.getMinigameChecker().isDone()){
             fuzzyLogic.setNumberOfAttempts(manager.getMinigameChecker().getNumberOfAttempts());
             fuzzyLogic.setCorrectOutput(1);
+            fuzzyLogic.setTimeConsumptions(fuzzyLogic.getTimeConsumptions() + timer);
 
+            fuzzyLogic.fuzzyNumberOfError();
+            fuzzyLogic.fuzzyTimeConsumption();
             fuzzyLogic.fuzzyNumberOfAttempt();
             fuzzyLogic.fuzzyCorrectOutput();
 
             fuzzyLogic.calculateNumberOfCookies();
+        }
+    }
+
+    public String checkTimeConsumption(int timer){
+        if(timer <= 120){
+            return "LOW";
+        }
+        else if(timer <= 240){
+            return "MEDIUM";
+        }
+        else if(timer <= 360){
+            return "HIGH";
+        }
+        else{
+            return "";
         }
     }
 

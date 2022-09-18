@@ -385,7 +385,7 @@ public class Character extends Entity {
         if(getCopyBlock() != null){
             setPickUpAble(false);
             getCopyBlock().getBody().setType(BodyDef.BodyType.DynamicBody);
-            getCopyBlock().getBody().setTransform(body.getPosition().x - (block.getDupliSize().x), body.getPosition().y + 3f, 0);
+            getCopyBlock().getBody().setTransform(body.getPosition().x - (block.getDupliSize().x * 0.2f), body.getPosition().y + 3f, 0);
         }
         block.getBody().setType(BodyDef.BodyType.StaticBody);
 
