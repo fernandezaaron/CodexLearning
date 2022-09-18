@@ -51,7 +51,7 @@ public class Minigame extends State {
                 break;
             case 3:
                 codeOrderFlag = true;
-                codeOrder = new CodeOrder(manager, jedisaur);
+                codeOrder = new CodeOrder(manager, jedisaur, fuzzyLogic);
                 break;
             case 4:
                 codeITFlag = true;

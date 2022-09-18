@@ -760,7 +760,7 @@ public class Dialogue {
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 11
                             "Topic: Comments \n" +
-                            "Comment \"This is a single-line comment\" \n" +
+                            "Comment \"This is a multi-line comment\" \n" +
                             "Print \"Hello World!\""
                     )),
 

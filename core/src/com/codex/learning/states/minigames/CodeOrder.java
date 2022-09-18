@@ -9,6 +9,7 @@ import com.codex.learning.entity.maps.PlayroomMapS1;
 import com.codex.learning.states.PauseState;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.Constants;
+import com.codex.learning.utility.FuzzyLogic;
 import com.codex.learning.utility.Manager;
 
 import java.util.ArrayList;
@@ -30,12 +31,16 @@ public class CodeOrder extends State {
     private ArrayList<String> originalAnswerPoolContainer, answerPoolContainer;
     private String mergeResult;
 
-    public CodeOrder(Manager manager, Character jedisaur) {
+    private FuzzyLogic fuzzyLogic;
+
+    public CodeOrder(Manager manager, Character jedisaur, FuzzyLogic fuzzyLogic) {
         super(manager);
         pause = new PauseState(manager);
         randomizer = new Random();
         banishCells = new ArrayList<Integer>();
 
+
+        this.fuzzyLogic = fuzzyLogic;
         getAMinigame(manager.getStageSelector().map(), "Poor");
 
         questionBlocks = new Blocks[20][20];
@@ -123,6 +128,8 @@ public class CodeOrder extends State {
                 answerBlocks[i].update(delta);
             }
         }
+
+        itIsCorrect();
     }
 
     @Override
@@ -183,6 +190,18 @@ public class CodeOrder extends State {
 //    }
     public void setToCheck(BlockHolder[] blockHolders) {
         manager.getMinigameChecker().setBlockOrder(blockHolders);
+    }
+
+    public void itIsCorrect(){
+        if(manager.getMinigameChecker().isDone()){
+            fuzzyLogic.setNumberOfAttempts(manager.getMinigameChecker().getNumberOfAttempts());
+            fuzzyLogic.setCorrectOutput(1);
+
+            fuzzyLogic.fuzzyNumberOfAttempt();
+            fuzzyLogic.fuzzyCorrectOutput();
+
+            fuzzyLogic.calculateNumberOfCookies();
+        }
     }
 
     public void setBlockToCheck(Blocks block, int i) {

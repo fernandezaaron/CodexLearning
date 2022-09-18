@@ -61,7 +61,7 @@ public class PlayState extends State{
         pause = new PauseState(manager);
         rand = new Random();
 
-        randomMinigame = 1;
+        randomMinigame = 2;
 
         playroomMap = new PlayroomMapS1(manager);
         manager.setPlayroomMap(playroomMap);

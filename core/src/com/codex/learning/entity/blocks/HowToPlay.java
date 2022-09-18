@@ -50,9 +50,9 @@ public class HowToPlay extends Entity {
         shape.dispose();
 
         inContact = false;
-        images[0] = new TextureRegion(new Texture(Constants.CODE_IT), 0, 0, 800, 720);
-        images[1] = new TextureRegion(new Texture(Constants.CODE_ORDER), 0, 0, 800, 720);
-        images[2] = new TextureRegion(new Texture(Constants.MYSTERY_CODE), 0, 0, 800, 720);
+        images[0] = new TextureRegion(new Texture(Constants.CODE_IT), 0, 0, 1600, 900);
+        images[1] = new TextureRegion(new Texture(Constants.CODE_ORDER), 0, 0, 1600, 900);
+        images[2] = new TextureRegion(new Texture(Constants.MYSTERY_CODE), 0, 0, 1600, 900);
     }
 
     @Override
@@ -69,8 +69,8 @@ public class HowToPlay extends Entity {
         sprite.enableBlending();
         if(isInHowToPlay()){
             sprite.draw(images[currentImage],
-                    (body.getPosition().x * Constants.PPM - images[currentImage].getRegionWidth() / 1.2f),
-                    (body.getPosition().y * Constants.PPM - images[currentImage].getRegionHeight() / 4f));
+                    (manager.getCamera().position.x / Constants.PPM - images[currentImage].getRegionWidth() / 2) + 25,
+                    (manager.getCamera().position.y / Constants.PPM - images[currentImage].getRegionHeight() / 2) + 15);
         }
         sprite.end();
     }
