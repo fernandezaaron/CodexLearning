@@ -34,7 +34,7 @@ public class Constants {
     public static final String CHARACTER_SHEET_PATH = "character/jedisaurspritesheet.png";
 
     // FONT ASSET PATH
-    public static final String FONT_STYLE = "font/PokemonClassic.fnt";
+    public static final String FONT_STYLE = "font/TheFont.fnt";
 
     // JSON ASSET PATH
     public static final String JSON_DIALOG_BOX_SKIN_PATH = "text/DialogBox.json";
@@ -63,6 +63,12 @@ public class Constants {
     public static final String MENU_MUSIC = "music/vibecheck1.wav";
     public static final String STAGE_SELECT_MUSIC = "music/stageselect.wav";
     public static final String HOUSE_MUSIC = "music/house.wav";
+
+    //HOW TO PLAY ASSET PATH
+    public static final String CODE_IT = "map/codeIT.png";
+    public static final String CODE_ORDER = "map/codeOrder.png";
+    public static final String MYSTERY_CODE = "map/mysteryCode.png";
+
 
 
 //    MENU STATE

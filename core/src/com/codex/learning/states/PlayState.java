@@ -52,8 +52,14 @@ public class PlayState extends State{
         timer = 0;
         pause = new PauseState(manager);
         rand = new Random();
-//        randomMinigame = rand.nextInt(3-1)+1;
-        randomMinigame = 1;
+
+        randomMinigame = 3;
+
+
+        playroomMap = new PlayroomMapS1(manager);
+        manager.setPlayroomMap(playroomMap);
+        fuzzyLogic = new FuzzyLogic();
+
         if(manager.getStageSelector().map().equals("1")){
             house = new HouseMap(manager);
             computer = new Computer(manager, fuzzyLogic);
@@ -70,16 +76,15 @@ public class PlayState extends State{
             computer.create(new Vector2(-6.5f, 10.2f), new Vector2(0.6f, 0.6f), 0);
         }
 
-        playroomMap = new PlayroomMapS1(manager);
-        fuzzyLogic = new FuzzyLogic();
-
         jedisaur = new Character(manager);
         jedisaur.create(new Vector2(0, -5), new Vector2(1.2f, 1.75f), 1.6f);
 
-        jediGrandpa = new NPC(manager, "introduction", manager.getStageSelector().getStageMap()-1);
-        jediGrandpa.create(new Vector2(0, 0), new Vector2(1, 1.4f), 0);
 
-        minigame = new Minigame(manager, randomMinigame, jedisaur);
+        jediGrandpa = new NPC(manager, "introduction", manager.getStageSelector().getStageMap()-1, false);
+        jediGrandpa.create(new Vector2(0, 0), new Vector2(1, 1.4f), 0);
+        jediGrandpa.setInPlayroom(false);
+
+        manager.getMinigame().create(randomMinigame, jedisaur, fuzzyLogic);
 
         if(!manager.isMusicPaused()){
             manager.setMusic(Constants.HOUSE_MUSIC);
@@ -106,12 +111,12 @@ public class PlayState extends State{
             activeBody(false);
             playroomMap.setActive(true);
             playroomMap.update(delta);
-            minigame.update(delta);
-
+            manager.getMinigame().update(delta);
             if(playroomMap.getPlayMat().isInContact()){
                 jedisaur.dropBlock(playroomMap.getPlayMat());
                 
             }
+
 
         }else {
             activeBody(true);
@@ -148,7 +153,6 @@ public class PlayState extends State{
                 }
 //                else if(playroom.isDone && npc.hasSubmitted){
 //                    //Use to calculate number of cookies
-//                    //System.out.println(fuzzyLogic.getCookies());
 //
 ////                manager.getExpertSystem().setCurrentCookie(fuzzyLogic.calculateFuzzy(
 ////                  computer.getCodeRiddle().getFuzzyLogic().getNumberOfErrors(),
@@ -169,9 +173,7 @@ public class PlayState extends State{
                         computer.getCodeRiddle().setInComputer(false);
 //not working pa
 //                    for (int i =0 ; i<manager.getStage().getActors().size; i++){
-//                        System.out.println(manager.getStage().getActors().get(i));
 //                        if(manager.getStage().getActors().get(i).toString().equals("Table")){
-//                            System.out.println("true");
 //                            manager.getStage().getActors().get(i).remove();
 ////                            manager.getStage().clear();
 //                        }
@@ -179,6 +181,10 @@ public class PlayState extends State{
                         manager.getStage().clear();
                     }
                 }
+            }
+            if(playroomMap.getNpc().isTalking()){
+                jedisaurStop(delta);
+                playroomMap.getNpc().update(delta);
             }
 
         }else{
@@ -196,7 +202,6 @@ public class PlayState extends State{
 
         enterPlayRoom(jedisaur);
         exitPlayroom(jedisaur);
-
 
         if(isInStartArea()){
             if(manager.getStageSelector().map().equals("1")){
@@ -217,11 +222,14 @@ public class PlayState extends State{
                 computer.render(sprite);
                 jedisaur.render(sprite);
             }
+            jediGrandpa.tableRender(sprite);
         }else {
             playroomMap.render(sprite);
-            minigame.render(sprite);
+            manager.getMinigame().render(sprite);
             jedisaur.render(sprite);
             playroomMap.getObjective().render(sprite);
+            playroomMap.npcRender(sprite);
+
         }
 
         sprite.begin();
@@ -248,9 +256,10 @@ public class PlayState extends State{
         else{
             officeMap.dispose();
         }
+        manager.getMinigame().dispose();
     }
 
-    public void jedisaurStop(float delta){
+    private void jedisaurStop(float delta){
         if(jedisaur.isMoving()){
             jedisaur.setMoving(false);
             jedisaur.update(delta);
@@ -258,7 +267,7 @@ public class PlayState extends State{
         }
     }
 
-    public void activeBody(boolean active){
+    private void activeBody(boolean active){
          jediGrandpa.getBody().setActive(active);
          computer.getBody().setActive(active);
 
@@ -305,12 +314,11 @@ public class PlayState extends State{
                     officeMap.setPlayroomActive(false);
                 }
 
-                minigame.setMiniGame();
+                manager.getMinigame().setMiniGame();
                 jedisaur.getBody().setTransform(-20, 1, 0);
                 jedisaur.getBody().getPosition().set(-20, 1);
 //            }
 //            else {
-//                System.out.println("bawal kapa pumasok jan xD");
 //            }
         }
     }
@@ -318,7 +326,7 @@ public class PlayState extends State{
     private void exitPlayroom(Character character){
         if(!inStartArea && character.getBody().getPosition().x < -23 && character.getBody().getPosition().y > -0.5 && character.getBody().getPosition().y < 4f){
             setInStartArea(true);
-            minigame.dispose();
+            manager.getMinigame().dispose();
             jedisaur.getBody().setTransform(14, 1, 0);
             jedisaur.getBody().getPosition().set(14, 1);
         }

@@ -76,6 +76,7 @@ public class Contact implements ContactListener {
                     blocks.setInContact(false);
                     jedisaur.setPickUpAble(false);
                 }
+
             }
 
 
@@ -96,14 +97,19 @@ public class Contact implements ContactListener {
             if(jedisaur.isCarrying()){
                 jedisaur.setPickUpAble(false);
                 blockDispenser.setInContact(false);
+                blockDispenser.setInteracting(false);
+
             }
             else{
                 if(blockDispenser.getLimit() == 0){
                     jedisaur.setPickUpAble(false);
                     blockDispenser.setInContact(false);
+                    blockDispenser.setInteracting(false);
+
                 }else {
                     jedisaur.setPickUpAble(true);
                     blockDispenser.setInContact(true);
+                    blockDispenser.setInteracting(true);
                 }
 
             }
@@ -130,7 +136,6 @@ public class Contact implements ContactListener {
             }
             if(blockHolder.isOccupied()){
                 numberOfCollision = 0;
-                System.out.println("occupied");
             }
         }
 
@@ -213,7 +218,7 @@ public class Contact implements ContactListener {
                 jedisaur = (Character) fa.getUserData();
                 objective = (Objective) fb.getUserData();
             }
-            System.out.println("ASDWDQDWQDQWDQDW");
+            System.out.println("OBJECTIVE CONTACT");
             objective.setInContact(true);
         }
 
@@ -241,8 +246,8 @@ public class Contact implements ContactListener {
                 jedisaur = (Character) fa.getUserData();
                 blocks = (Blocks) fb.getUserData();
             }
-
             blocks.setInContact(false);
+
             jedisaur.setPickUpAble(false);
             if(!jedisaur.isCarrying()){
                 if(!blocks.isPreDefinedContact()){
@@ -255,10 +260,13 @@ public class Contact implements ContactListener {
                 numberOfCollision = 0;
             }
 
-            if(numberOfCollision == 1){
-                blocks.setInContact(true);
-                jedisaur.setPickUpAble(true);
-            }
+//            if(numberOfCollision == 1){
+//                blocks.setInContact(true);
+//                jedisaur.setPickUpAble(true);
+//            }
+
+
+
 
         }
 

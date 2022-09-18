@@ -17,7 +17,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import com.codex.learning.entity.characters.Character;
+import com.codex.learning.entity.maps.PlayroomMapS1;
 import com.codex.learning.states.State;
+import com.codex.learning.states.minigames.Minigame;
 import com.codex.learning.utility.decisiontree.Behavior;
 import com.codex.learning.utility.decisiontree.DecisionTree;
 import com.codex.learning.utility.filereader.Questionnaire;
@@ -56,15 +58,25 @@ public class Manager {
     private Viewport viewport;
     private StageSelector stageSelector;
 
+    private MinigameChecker minigameChecker;
+    private Minigame minigame;
+    private PlayroomMapS1 playroomMap;
+
     private DecisionTree decisionTree;
 
     private boolean moving;
     private int numberOfBlockInteraction;
+    private int hintsIndex;
 
     private ExpertSystem expertSystem;
 
     private Dialogue dialogue;
     public Manager(){
+        expertSystem = new ExpertSystem();
+        expertSystem.readFile();
+
+        System.out.println("L:EVEL - " + expertSystem.getExpertiseLevel());
+        questionnaire = new Questionnaire(expertSystem.getExpertiseLevel());
 
         b2dr = new Box2DDebugRenderer();
 
@@ -72,8 +84,11 @@ public class Manager {
         world = new World(new Vector2(0,0),false);
         world.setContactListener(cl);
 
-        questionnaire = new Questionnaire();
+
         stageSelector = new StageSelector();
+        minigameChecker = new MinigameChecker();
+        minigame = new Minigame(this);
+
 
         background = new TextureRegion(new Texture(Constants.BACKGROUND_PATH));
         mainMenu = new TextureRegion(new Texture(Constants.MENU_TEXT_PATH));
@@ -98,7 +113,8 @@ public class Manager {
         pcStateSheet = new TextureRegion(new Texture(Constants.PC_SHEET_PATH));
 
         font = new BitmapFont(Gdx.files.internal(Constants.FONT_STYLE));
-        font.getData().setScale(1f);
+        font.getData().setScale(1.2f);
+
 
         decisionTree = new DecisionTree();
         decisionTree.createTree();
@@ -106,18 +122,16 @@ public class Manager {
         camera = new OrthographicCamera(Constants.SCREEN_WIDTH, Constants.SCREEN_WIDTH);
         camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 
-
-
         stage = new Stage();
         atlas = new TextureAtlas(Gdx.files.internal(Constants.ATLAS_UTILITY_PATH));
         skin = new Skin(Gdx.files.internal(Constants.JSON_DIALOG_BOX_SKIN_PATH));
         skin.addRegions(atlas);
 
-        expertSystem = new ExpertSystem();
-
         states = new Stack<State>();
 
         dialogue = new Dialogue();
+
+        hintsIndex = 0;
     }
 
 
@@ -256,6 +270,30 @@ public class Manager {
         this.musicPaused = musicPaused;
     }
 
+    public MinigameChecker getMinigameChecker() {
+        return minigameChecker;
+    }
+
+    public Minigame getMinigame() {
+        return minigame;
+    }
+
+    public void setMinigame(Minigame minigame) {
+        this.minigame = minigame;
+    }
+
+    public PlayroomMapS1 getPlayroomMap() {
+        return playroomMap;
+    }
+
+    public void setPlayroomMap(PlayroomMapS1 playroomMap) {
+        this.playroomMap = playroomMap;
+    }
+
+    public void setMinigameChecker(MinigameChecker minigameChecker) {
+        this.minigameChecker = minigameChecker;
+    }
+
     public Questionnaire getQuestionnaire() {
         return questionnaire;
     }
@@ -391,6 +429,7 @@ public class Manager {
                 System.out.println(behavior);
                 System.out.println(currentBehavior);
                 System.out.println("NOT ENGAGED");
+                hintsIndex++;
             }
         }
         behavior.clear();
@@ -467,6 +506,7 @@ public class Manager {
         }
     }
 
+
     public ExpertSystem getExpertSystem() {
         return expertSystem;
     }
@@ -481,5 +521,13 @@ public class Manager {
 
     public void setDialogue(Dialogue dialogue) {
         this.dialogue = dialogue;
+    }
+
+    public int getHintsIndex() {
+        return hintsIndex;
+    }
+
+    public void setHintsIndex(int hintsIndex) {
+        this.hintsIndex = hintsIndex;
     }
 }

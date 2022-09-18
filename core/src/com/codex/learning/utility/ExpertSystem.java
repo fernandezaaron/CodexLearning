@@ -9,6 +9,7 @@ public class ExpertSystem {
     private int[] cookies;
     private int totalUserCookies;
     private int overAllCookies;
+    private boolean start;
 
 
     private String expertiseLevel;
@@ -20,32 +21,50 @@ public class ExpertSystem {
         currentCookie = 0;
         totalUserCookies = 0;
         overAllCookies = 0;
+        start = false;
     }
 
     // To determine the expert level of the user
     public String updateExpertiseLevel(){
+
         for(int i: cookies){
+            if(cookies[0] == 0){
+                start = true;
+                break;
+            }
+            else{
+                start = false;
+            }
             totalUserCookies = totalUserCookies + i;
             if(i != 0){
+
                 overAllCookies = overAllCookies + 3;
             }
         }
-        int a = (int) (overAllCookies * .69);
-        int b = (int) (overAllCookies * .80);
-        int c = (int) (overAllCookies * .90);
 
-        if(totalUserCookies < a){
-            return "Poor";
-        }
-        else if(totalUserCookies < b){
+        System.out.println("START = " + start);
+        System.out.println("USER COOKIES - " + totalUserCookies);
+        System.out.println("OVERALL COOKIES - " + overAllCookies);
+        if(start){
             return "Novice";
         }
-        else if(totalUserCookies < c){
-            return "Average";
-        }
         else{
-            return "Expert";
+            float result = (float) totalUserCookies / overAllCookies;
+
+            if(result == 1){
+                return "Expert";
+            }
+            else if(result >= .9){
+                return "Average";
+            }
+            else if(result >= .8){
+                return "Novice";
+            }
+            else{
+                return "Poor";
+            }
         }
+
     }
 
     // Write the save file of the user

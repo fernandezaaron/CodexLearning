@@ -23,7 +23,7 @@ public class PlayroomMapS1 extends State {
     private NPC npc;
     private PlayMat playMat;
     private Objective objective;
-    private Minigame minigame;
+    private String npcDialog;
     private int randomNumber;
     public PlayroomMapS1(Manager manager) {
         super(manager);
@@ -38,8 +38,10 @@ public class PlayroomMapS1 extends State {
         atDoor = false;
         inPlayroom = false;
 
-        npc = new NPC(manager, "minigames", 0);
+        npcDialog = "hints";
+        npc = new NPC(manager, npcDialog, 0, true);
         npc.create(new Vector2(0, -6), new Vector2(1, 1.4f), 0);
+        npc.setIntroDialogFlag(true);
 
         playMat = new PlayMat(manager);
         playMat.create(new Vector2(17.5f, 0), new Vector2(6f, 10), 0);
@@ -48,12 +50,13 @@ public class PlayroomMapS1 extends State {
         objective.create(new Vector2(6f, 13f), new Vector2(1.5f, 2f), 0);
 
 
-//        minigame = new Minigame(manager, stage, 2);
         door = new TextureRegion(manager.getReportCardSheet(), 48,195, 263, 119);
     }
 
     @Override
     public void update(float delta) {
+        //make a condition on NPC hints dialog if wala pa and if meron na
+//        manager.updateBehavior(60);
         npc.update(delta);
         objective.update(delta);
     }
@@ -75,10 +78,13 @@ public class PlayroomMapS1 extends State {
         }
         sprite.end();
 
-
         npc.render(sprite);
-
     }
+
+    public void npcRender(SpriteBatch sprite){
+        npc.tableRender(sprite);
+    }
+
 
     @Override
     public void dispose() {
@@ -128,5 +134,11 @@ public class PlayroomMapS1 extends State {
     }
 
 
+    public NPC getNpc() {
+        return npc;
+    }
 
+    public void setNpc(NPC npc) {
+        this.npc = npc;
+    }
 }

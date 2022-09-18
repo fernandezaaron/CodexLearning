@@ -44,11 +44,10 @@ public class OfficeMap extends State {
         lTableRightHorizontal.create(new Vector2(8.5f, 10.6f), new Vector2(2,1), 0);
 
         tableLeft = new Collisions(manager);
-        tableLeft.create(new Vector2(8, -6), new Vector2(4.9f,0.5f),0);
+        tableLeft.create(new Vector2(8, -6), new Vector2(5,1f),0);
 
 
-        couches = new Collisions(manager);
-        couches.create(new Vector2(-10f, -5f), new Vector2(0.2f, 5.4f), 0);
+
 
     }
     @Override
@@ -78,7 +77,13 @@ public class OfficeMap extends State {
         upBorder.getBody().setActive(active);
         downBorder.getBody().setActive(active);
         leftBorder.getBody().setActive(active);
-        couches.getBody().setActive(active);
+        lTableLeft.getBody().setActive(active);
+        ltableLeftHorizontal.getBody().setActive(active);
+        lTableMiddle.getBody().setActive(active);
+        lTableMiddleHorizontal.getBody().setActive(active);
+        lTableRight.getBody().setActive(active);
+        lTableRightHorizontal.getBody().setActive(active);
+        tableLeft.getBody().setActive(active);
     }
 
     public void setPlayroomActive(boolean active){

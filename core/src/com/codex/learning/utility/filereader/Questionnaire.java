@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Questionnaire extends DatabaseReader {
-    private String question, difficulty, stageTopic;
+    private String question, difficulty, stageTopic, minigameTopic;
 
     private ArrayList<String> questions;
     private ArrayList<ArrayList<String>> options;
@@ -15,7 +15,7 @@ public class Questionnaire extends DatabaseReader {
 
     private ArrayList<String> levels;
 
-    private int questionID, excelQuestionLimit, questionLimit, excelMinigameLimit, minigameElementLimit, answerPoolLimit, answerPoolSelection, findCell, dispenserPoolSelection;
+    private int questionID, excelQuestionLimit, questionLimit, excelMinigameLimit, minigameElementLimit, answerPoolLimit, answerPoolSelection, findCell;
 
     private String stageValue;
     private Random randomizer;
@@ -36,7 +36,8 @@ public class Questionnaire extends DatabaseReader {
     private ArrayList<ArrayList<Integer>> banishPerRow;
     private ArrayList<Integer> banishThisNumber;
 
-    public Questionnaire() {
+    public Questionnaire(String expertiseLevel) {
+
         questions = new ArrayList<>();
         options = new ArrayList<>();
         answers = new ArrayList<>();
@@ -49,13 +50,13 @@ public class Questionnaire extends DatabaseReader {
 
         numberOfQuestions = 0;
         questionLimit = 0;
+        questionID = 0;
 
-        excelQuestionLimit = 196;
+        excelQuestionLimit = 335;
         excelMinigameLimit = 93;
         minigameElementLimit = 0;
         answerPoolLimit = 200;
         answerPoolSelection = 5;
-        dispenserPoolSelection = 3;
         randomizer = new Random();
 
         levels = new ArrayList<String>();
@@ -68,6 +69,8 @@ public class Questionnaire extends DatabaseReader {
         minigameSheet = getMinigameSheet();
         questionSheet = getQuestionSheet();
         answerPoolSheet = getAnswerPoolSheet();
+
+        adjustDifficulty(expertiseLevel);
     }
 
     // for minigames
@@ -95,10 +98,8 @@ public class Questionnaire extends DatabaseReader {
     // end for minigames
 
 
-    public void minigameDisplay(String stage, String topics,String expertiseLevel) {
-        adjustDifficulty(expertiseLevel);
+    public void minigameDisplay(String stage, String topics) {
         addTopic(topics);
-
         while(minigameGetter == null) {
             topics = topic.get(randomizer.nextInt(topic.size()));
             questionID = randomizer.nextInt(excelMinigameLimit - 1) + 1;
@@ -106,6 +107,7 @@ public class Questionnaire extends DatabaseReader {
             findCell = findRow(minigameSheet, questionID);
             getMinigameHolder(findCell, 4, difficulty, topics);
         }
+        minigameTopic = topics;
         getAnswerPool(String.valueOf(questionID));
         getDispenserPool(String.valueOf(questionID));
     }
@@ -174,8 +176,10 @@ public class Questionnaire extends DatabaseReader {
                 ansCell = excelRow.getCell(3);
                 answerPool.add(formatter.formatCellValue(ansCell));
                 start++;
-                if(!String.valueOf(formatter.formatCellValue(answerPoolSheet.getRow(start).getCell(2))).equals(QID))
+                if(!String.valueOf(formatter.formatCellValue(answerPoolSheet.getRow(start).getCell(2))).equals(QID)){
                     break;
+
+                }
             }
             else
                 start++;
@@ -186,6 +190,7 @@ public class Questionnaire extends DatabaseReader {
         Row excelRow;
         Cell excelCell, ansCell;
         int start = 1;
+        int limit = 3;
         if(!dispenserPool.isEmpty()){
             dispenserPool.clear();
         }
@@ -196,7 +201,10 @@ public class Questionnaire extends DatabaseReader {
                 ansCell = excelRow.getCell(3);
                 dispenserPool.add(formatter.formatCellValue(ansCell));
                 start++;
+                limit--;
                 if(!String.valueOf(formatter.formatCellValue(answerPoolSheet.getRow(start).getCell(2))).equals(QID))
+                    break;
+                if(limit == 0)
                     break;
             }
             else
@@ -236,8 +244,7 @@ public class Questionnaire extends DatabaseReader {
 //        }
 //    }
 
-    public void questionDisplay(String stage, String topics, String expertiseLevel) {
-        adjustDifficulty(expertiseLevel);
+    public void questionDisplay(String stage, String topics) {
         addTopic(topics);
 
         difficulty = levels.get(randomizer.nextInt(levels.size()));
@@ -246,9 +253,6 @@ public class Questionnaire extends DatabaseReader {
         while(question == null) {
             difficulty = levels.get(randomizer.nextInt(levels.size()));
             topics = topic.get(randomizer.nextInt(topic.size()));
-//            System.out.println(stageTopic);
-//            System.out.println("am i here");
-//            System.out.println(numberOfQuestions);
             if(numberOfQuestions == questionLimit){
                 break;
             }
@@ -329,7 +333,6 @@ public class Questionnaire extends DatabaseReader {
     }
 
     public void addTopic(String stageNumber){
-        System.out.println(stageNumber);
         switch (stageNumber){
             case "1":
                 topic.add("Syntax");
@@ -485,11 +488,39 @@ public class Questionnaire extends DatabaseReader {
 
     public void dispose(){
         questions.clear();
-        levels.clear();
+//        levels.clear();
         options.clear();
         answers.clear();
         topic.clear();
         question = null;
         numberOfQuestions = 0;
+    }
+
+    public void clearMinigames(){
+        minigameHolder = null;
+        minigameGetter = null;
+        banishThisNumber = null;
+        topic.clear();
+//        answerPool.clear();
+//        dispenserPool.clear();
+        banishPerRow = null;
+        questionID = 0;
+
+    }
+
+    public int getQuestionID() {
+        return questionID;
+    }
+
+    public void setQuestionID(int questionID) {
+        this.questionID = questionID;
+    }
+
+    public String getMinigameTopic() {
+        return minigameTopic;
+    }
+
+    public void setMinigameTopic(String minigameTopic) {
+        this.minigameTopic = minigameTopic;
     }
 }

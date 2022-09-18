@@ -7,9 +7,12 @@ import com.codex.learning.entity.blocks.Blocks;
 import com.codex.learning.entity.characters.Character;
 import com.codex.learning.entity.maps.PlayroomMapS1;
 import com.codex.learning.states.PauseState;
+import com.codex.learning.states.PlayState;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.Constants;
+import com.codex.learning.utility.FuzzyLogic;
 import com.codex.learning.utility.Manager;
+import com.codex.learning.utility.MinigameChecker;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,83 +20,65 @@ import java.util.Random;
 import java.util.Stack;
 
 public class MysteryCode extends State {
-
     private Character jedisaur;
-
+    private FuzzyLogic fuzzyLogic;
     private Blocks[] answerBlocks;
-
     private Blocks[][] questionBlocks, answerBlocksArray;
     private BlockHolder[][] blockHolders;
     private ArrayList<ArrayList<Blocks>> blocksArrayList;
-
-    private PauseState pause;
-    float blockSize;
-
+    private float blockSize, xStartingPoint, AnsPoolY, currentStringLength, AnsPoolX;
     private ArrayList<ArrayList<String>> minigameContainer;
-    private int minigameContainerLimit;
+//    private int minigameContainerLimit;
+    private int currentCell, stage, banishNumberIterator, numberRepeat, banishNumber, yStartingPoint, currentAnsCell, ansPoolSize, totalLineLength;
     private Random randomizer;
     private ArrayList<Integer> banishCells;
     private ArrayList<String> answerPoolContainer;
     private ArrayList<ArrayList<Integer>> banishPerRow;
+
+//    private String stageSelect;
 //    private Stack<Stack<Blocks>> blocksArrayList;
-    private int currentCell, stage;
-    private String stageSelect;
 //    private int blockArrayIndex;
 
 
-    public MysteryCode(Manager manager, Character jedisaur) {
+    public MysteryCode(Manager manager, Character jedisaur, FuzzyLogic fuzzyLogic) {
         super(manager);
-        pause = new PauseState(manager);
-
         randomizer = new Random();
         banishCells = new ArrayList<Integer>();
-//        blockArrayIndex = 0;
-
-        // WILL BE USED, DON'T ERASE
         questionBlocks = new Blocks[20][20];
         answerBlocksArray = new Blocks[20][20];
         blockHolders = new BlockHolder[20][20];
         blocksArrayList = new ArrayList<>();
-        // WILL BE USED, DON'T ERASE
-
+//        blockArrayIndex = 0;
+        this.fuzzyLogic = fuzzyLogic;
         this.stage = manager.getStageSelector().getStageMap();
 
-        getAMinigame(manager.getStageSelector().map(), manager.getExpertSystem().getExpertiseLevel());
+        getAMinigame(manager.getStageSelector().map());
 
+        /** BANISH 1 OR 2 CELLS PER ROW **/
         for(int i = 0; i < banishPerRow.size(); i++) {
-            int banishNumberIterator = randomizer.nextInt(2) + 1;
-            int numberRepeat = 0;
-            System.out.println("how many? " + banishNumberIterator);
+            banishNumberIterator = (banishPerRow.get(i).size() == 1)? 1:randomizer.nextInt(2) + 1;
             for (int j = 0; j < banishPerRow.get(i).size(); j++) {
-//                System.out.println((banishPerRow.get(i).size()) + "    " + banishPerRow.get(i).get(0));
-                int banishNumber = randomizer.nextInt(banishPerRow.get(i).size() - 1) + banishPerRow.get(i).get(0);
-                System.out.println(banishNumber);
-                if (banishNumberIterator == 0 || numberRepeat == 5) {
-//                    System.out.println("berak");
+                banishNumber = randomizer.nextInt(banishPerRow.get(i).size() - 1) + banishPerRow.get(i).get(0);
+                if (banishNumberIterator == 0) {
                     break;
-                } else if (!banishCells.contains(banishNumber)) {
-                    banishCells.add(banishNumber);
-                    banishNumberIterator--;
-//                    System.out.println("baka sa iterator " + banishNumberIterator +
-//                            " eh sa last element " + (banishPerRow.get(i).size() - 1) +
-//                            " first? " + banishPerRow.get(i).get(0) +
-//                            " eto ibabanish " + banishNumber);
-                } else {
-                    System.out.println("number repeated");
-                    numberRepeat++;
+                }
+                else {
+                    if (!banishCells.contains(banishNumber)) {
+                        banishCells.add(banishNumber);
+                        banishNumberIterator--;
+                    }
                 }
             }
         }
-
-
-        // START MINIGAME CREATION
-        int yStartingPoint = 10, currentCell = 0;
+        /** START OF MINIGAME CREATION **/
+        yStartingPoint = 10;
+        currentCell = 0;
         for(int i = 0; i < minigameContainer.size(); i++) {
             blocksArrayList.add(new ArrayList<Blocks>());
-            float xStartingPoint = -18.0f;
+            xStartingPoint = -18.0f;
             for (int j = 0; j < minigameContainer.get(i).size(); j++) {
                 if(minigameContainer.get(i).get(j) != null) {
-                    float currentStringLength = (float) String.valueOf(minigameContainer.get(i).get(j)).length();
+                    currentStringLength = (float) String.valueOf(minigameContainer.get(i).get(j)).length();
                     if (banishCells.contains(currentCell)) {
                         blockHolders[i][j] = new BlockHolder(manager, "\"" + minigameContainer.get(i).get(j) + "\"");
                         blockHolders[i][j].create(new Vector2(xStartingPoint, yStartingPoint - 0.5f), new Vector2(Constants.BLOCK_HOLDER_WIDTH, Constants.BLOCK_HOLDER_HEIGHT), 0);
@@ -102,25 +87,21 @@ public class MysteryCode extends State {
                         xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 1.75f;
                         if(currentStringLength >7){
                             xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 2.75f;
-
                         }
-                    } else {
+                    }
+                    else {
                         questionBlocks[i][j] = new Blocks(manager, "\"" + minigameContainer.get(i).get(j) + "\"", minigameContainer.get(i).get(j), true);
                         if (currentStringLength <= 3){
                             questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.4f), Constants.BLOCKS_HEIGHT), 0);
-                            questionBlocks[i][j].setPreDefinedContact(true);
-                            blocksArrayList.get(i).add(questionBlocks[i][j]);
-
                         }
-
                         else{
                             if(currentStringLength>7){
                                 xStartingPoint += 2.75f;
                             }
-                            questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.27f), Constants.BLOCKS_HEIGHT), 0);
-                            questionBlocks[i][j].setPreDefinedContact(true);
-                            blocksArrayList.get(i).add(questionBlocks[i][j]);
+                            questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.23f), Constants.BLOCKS_HEIGHT), 0);
                         }
+                        questionBlocks[i][j].setPreDefinedContact(true);
+                        blocksArrayList.get(i).add(questionBlocks[i][j]);
                         xStartingPoint =  questionBlocks[i][j].getDupliSize().x + (questionBlocks[i][j].getBody().getPosition().x) + 1.5f;
                     }
                     currentCell++;
@@ -128,25 +109,28 @@ public class MysteryCode extends State {
             }
             yStartingPoint -= 2.5f;
         }
-        // WILL BE USED, DON'T ERASE
-
         answerBlocks = new Blocks[answerPoolContainer.size()];
         Collections.shuffle(answerPoolContainer);
-        // END MINIGAME CREATION
+        /** END OF MINIGAME CREATION **/
 
-        float AnsPoolY = 10;
-        int currentAnsCell = 0;
-        int ansPoolSize = answerPoolContainer.size();
+        /** START OF ANSWER POOL CREATION **/
+        AnsPoolY = 10;
+        currentAnsCell = 0;
+        ansPoolSize = answerPoolContainer.size();
         for(int i = 0; i < ansPoolSize; i++) {
-            float AnsPoolX = 13;
-            int totalLineLength = 0;
+            AnsPoolX = 13;
+            totalLineLength = 0;
             while (totalLineLength <= 12) {
-                float currentStringLength = (float) String.valueOf(answerPoolContainer.get(currentAnsCell)).length();
+                if (currentAnsCell == ansPoolSize) {
+                    break;
+                }
+                currentStringLength = (float) String.valueOf(answerPoolContainer.get(currentAnsCell)).length();
                 totalLineLength += currentStringLength + (AnsPoolX - 11);
                 answerBlocks[currentAnsCell] = new Blocks(manager, "\"" + answerPoolContainer.get(currentAnsCell) + "\"", answerPoolContainer.get(currentAnsCell), false);
                 if (answerPoolContainer.get(currentAnsCell) != null) {
-                    if (currentStringLength <= 3)
+                    if (currentStringLength <= 3) {
                         answerBlocks[currentAnsCell].create(new Vector2(AnsPoolX, AnsPoolY), new Vector2((currentStringLength * 0.5f), Constants.BLOCKS_HEIGHT), 0);
+                    }
                     else{
                         if(currentStringLength>7){
                             AnsPoolX += 2;
@@ -154,51 +138,43 @@ public class MysteryCode extends State {
                         answerBlocks[currentAnsCell].create(new Vector2(AnsPoolX, AnsPoolY), new Vector2((currentStringLength * 0.23f), Constants.BLOCKS_HEIGHT), 0);
                     }
                     AnsPoolX = answerBlocks[currentAnsCell].getDupliSize().x + answerBlocks[currentAnsCell].getBody().getPosition().x + 2.25f;
-                    if (currentAnsCell == ansPoolSize - 1) {
-                        break;
-                    } else {
-                        currentAnsCell++;
-                    }
+                    currentAnsCell++;
                 }
-            }
-            if(currentAnsCell == ansPoolSize - 1) {
-                break;
             }
             AnsPoolY -= 2.5;
         }
+        /** END OF ANSWER POOL CREATION **/
+
+        setToCheck(blockHolders);
 
         this.jedisaur = jedisaur;
-
-
     }
 
 
     @Override
     public void update(float delta) {
-        // WILL BE USED, DON'T ERASE
-
-            currentCell = 0;
-               for (int i = 0; i < minigameContainer.size(); i++) {
-                   for (int j = 0; j < minigameContainer.get(i).size(); j++) {
-                       if (minigameContainer.get(i).get(j) != null) {
-                           if (banishCells.contains(currentCell)){
-                               blockHolders[i][j].update(delta);
-                           }
-                           else
-                               questionBlocks[i][j].update(delta);
-                           currentCell++;
-                       }
-                   }
-               }
-            //kung gagamitin mo to remove the blocks[i][j].update muna sa taas pero i havent tried pag magkasabay sila naka on for sure dodoble HAHA
-            for (int i = 0; i < answerBlocks.length; i++) {
-                if (answerBlocks[i] != null) {
-                    if (answerBlocks[i].isInContact()) {
-                        jedisaur.carryBlock(answerBlocks[i]);
+        currentCell = 0;
+        for (int i = 0; i < minigameContainer.size(); i++) {
+            for (int j = 0; j < minigameContainer.get(i).size(); j++) {
+                if (minigameContainer.get(i).get(j) != null) {
+                    if (banishCells.contains(currentCell)){
+                        blockHolders[i][j].update(delta);
                     }
+                    else
+                        questionBlocks[i][j].update(delta);
+                    currentCell++;
                 }
             }
-            // WILL BE USED, DON'T ERASE
+        }
+
+        for (int i = 0; i < answerBlocks.length; i++) {
+            if (answerBlocks[i] != null) {
+                if (answerBlocks[i].isInContact()) {
+                    jedisaur.carryBlock(answerBlocks[i]);
+                }
+            }
+        }
+
         currentCell = 0;
         for (int i = 0; i < minigameContainer.size(); i++) {
             for (int j = 0; j < minigameContainer.get(i).size(); j++) {
@@ -207,7 +183,11 @@ public class MysteryCode extends State {
                         if (blockHolders[i][j].isInContact()) {
                             jedisaur.dropBlock(blockHolders[i][j]);
                             if(jedisaur.isDropped() && !blocksArrayList.get(i).contains(blockHolders[i][j].getCopyBlock())){
-                                    blocksArrayList.get(i).set(j, blockHolders[i][j].getCopyBlock());
+                                blocksArrayList.get(i).set(j, blockHolders[i][j].getCopyBlock());
+                            }
+                            if(jedisaur.isDropped()) {
+                                setBlockToCheck(blockHolders[i][j].getCopyBlock(), i, j);
+//                                setToCheck(blockHolders);
                             }
                         }
                     }
@@ -221,14 +201,11 @@ public class MysteryCode extends State {
             blockSize = jedisaur.getCopyBlock().getDupliSize().x;
         }
 
-        // WILL BE USED, DON'T ERASE
         for (int i = 0; i < answerPoolContainer.size(); i++) {
             if (answerBlocks[i] != null) {
                 answerBlocks[i].update(delta);
             }
         }
-
-
 
         currentCell = 0;
         for (int i = 0; i < minigameContainer.size(); i++) {
@@ -301,8 +278,13 @@ public class MysteryCode extends State {
                                because if jedisaur ISCARRYING it will always return to true thus will
                                manipulate the x-axis whenever the user carries a block
                             **/
+                            if(blockHolders[i][j].isOccupied()){
+                                jedisaur.setPickedUp(false);
+                            }
+
 
                             if(jedisaur.isPickedUp()){
+
                                 int tempCurrentCell = currentCell;
                                 for(int k=j-1; k>=0; k--){
                                     tempCurrentCell--;
@@ -330,8 +312,6 @@ public class MysteryCode extends State {
                                  * it iterates from the max value of the arraylist(i), and finds the
                                  * blockholders from the leftside of the currentCell
                                  * if it is true and the blockholder is occupied, transform the copyblocks of blockholders stored in the arraylist **/
-
-
                                 tempCurrentCell = currentCell;
                                 for(int k=j-1; k>=0; k--){
                                     tempCurrentCell--;
@@ -343,7 +323,6 @@ public class MysteryCode extends State {
                                 }
 
                                 /** right blocks in the blockholders **/
-
                                 tempCurrentCell = currentCell;
                                 for(int k=j+1; k<minigameContainer.get(i).size(); k++){
                                     tempCurrentCell++;
@@ -353,26 +332,21 @@ public class MysteryCode extends State {
                                         }
                                     }
                                 }
+                                setBlockToCheck(null, i, j);
+                                setToCheck(blockHolders);
                                 jedisaur.setPickedUp(false);
                             }
-
-
                         }
-
                     }
                     currentCell++;
                 }
-
             }
-
         }
 
+        itIsCorrect();
+    }
 
 
-
-
-
-        }
 
 
     @Override
@@ -397,48 +371,87 @@ public class MysteryCode extends State {
                 }
             }
         }
-            for(int i = 0; i < answerPoolContainer.size(); i++) {
-                if(answerBlocks[i] != null) {
-                    answerBlocks[i].render(sprite);
-                }
-            }
 
+        for(int i = 0; i < answerPoolContainer.size(); i++) {
+            if(answerBlocks[i] != null) {
+                answerBlocks[i].render(sprite);
+            }
+        }
     }
 
     @Override
     public void dispose() {
+//        currentCell = 0;
+//        for(int i = 0; i < minigameContainer.size(); i++) {
+//            for (int j = 0; j < minigameContainer.get(i).size(); j++) {
+//                if (minigameContainer.get(i).get(j) != null) {
+//                    if(banishCells.contains(currentCell)) {
+//                        blockHolders[i][j].disposeBody();
+//                    }
+//                    currentCell++;
+//                }
+//            }
+//        }
 
-        // WILL BE USED, DON'T ERASE
+        banishCells.clear();
+        banishPerRow.clear();
 
-        currentCell = 0;
-        for(int i = 0; i < minigameContainer.size(); i++) {
-            for (int j = 0; j < minigameContainer.get(i).size(); j++) {
-                if (minigameContainer.get(i).get(j) != null) {
-                    if(banishCells.contains(currentCell)) {
-                        blockHolders[i][j].disposeBody();
-                    }
-                    else
-                        questionBlocks[i][j].disposeBody();
-                    currentCell++;
+
+
+        for(BlockHolder[] b: blockHolders){
+            for(BlockHolder i: b){
+                if(i != null){
+                    i.disposeBody();
                 }
             }
         }
+        for (Blocks[] q: questionBlocks) {
+            for (Blocks i : q) {
+                if(i != null){
+                    i.disposeBody();
+                }
+            }
+        }
+
+
 
         for(int i = 0; i < answerPoolContainer.size(); i++) {
             if(answerBlocks[i] != null) {
                 answerBlocks[i].disposeBody();
             }
         }
-        // WILL BE USED, DON'T ERASE
+
     }
 
-    public void getAMinigame(String stage, String expertiseLevel){
-        manager.getQuestionnaire().minigameDisplay(stage, String.valueOf(manager.getStageSelector().getStageMap()), expertiseLevel);
+    public void getAMinigame(String stage){
+        manager.getQuestionnaire().minigameDisplay(stage, String.valueOf(manager.getStageSelector().getStageMap()));
         minigameContainer = manager.getQuestionnaire().getMinigameHolder();
-        minigameContainerLimit = manager.getQuestionnaire().getMinigameLimit();
         banishPerRow = manager.getQuestionnaire().getBanishPerRow();
         answerPoolContainer = manager.getQuestionnaire().getAnswerPool();
     }
 
+    public void setToCheck(BlockHolder[][] blockHolders) {
+        manager.getMinigameChecker().setBlockHolders(blockHolders);
+    }
 
+    public void itIsCorrect(){
+        if(manager.getMinigameChecker().isDone()){
+            fuzzyLogic.setNumberOfAttempts(manager.getMinigameChecker().getNumberOfAttempts());
+            fuzzyLogic.setCorrectOutput(1);
+
+            fuzzyLogic.fuzzyNumberOfAttempt();
+            fuzzyLogic.fuzzyCorrectOutput();
+
+            fuzzyLogic.calculateNumberOfCookies();
+        }
+    }
+
+    public void setBlockToCheck(Blocks block, int i, int j) {
+        if(jedisaur.isPickedUp()) {
+            manager.getMinigameChecker().pickUpCopyBlock(block, i, j);
+        }
+        if(jedisaur.isDropped()) {
+            manager.getMinigameChecker().dropCopyBlock(block, i, j);
+        }
+    }
 }

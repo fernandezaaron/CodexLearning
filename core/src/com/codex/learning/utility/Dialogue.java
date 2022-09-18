@@ -114,7 +114,7 @@ public class Dialogue {
                     "A multidimensional array is an array of arrays." + "\nTo create a two-dimensional array, add each array within its own set of curly braces:" + "\n\nFor example:" + "\nint[][] myNumbers = { {1, 2, 3, 4}, {5, 6, 7} };",
                     "To access the elements of the myNumbers array, specify two indexes: one for the array, and one for the element inside that array. This example accesses the third element (2) in the second array (1) of myNumbers:", "For example" + "\n\nint[][] myNumbers = { {1, 2, 3, 4}, {5, 6, 7} };\n" + "int x = myNumbers[1][2];",
                     "We can also use a for loop inside another for loop to get the elements of a two-dimensional array", "For example" + "\n\n  public static void main(String[] args) {\n" + "    int[][] myNumbers = { {1, 2, 3, 4}, {5, 6, 7} };\n" + "    for (int i = 0; i < myNumbers.length; ++i) {\n" + "      for(int j = 0; j < myNumbers[i].length; ++j) {\n" +
-                            "        System.out.println(myNumbers[i][j]);\n" + "      }\n" + "    }\n" + "  }"
+                    "        System.out.println(myNumbers[i][j]);\n" + "      }\n" + "    }\n" + "  }"
             )),
 
             new ArrayList<>(Arrays.asList(
@@ -123,7 +123,7 @@ public class Dialogue {
                     "A method must be declared within a class. It is defined with the name of the method, followed by parentheses (). Java provides some pre-defined methods, such as System.out.println(), but you can also create your own methods to perform certain actions:",
                     "Create a method inside Main:" + "\n\n Example:" + "\npublic class Main {\n" + "  static void myMethod() {\n" + "    // code to be executed\n" + "  }\n" + "}",
                     "To call a method in Java, write the method's name followed by two parentheses () and a semicolon;", "For example" + "\n\npublic class Main {\n" + "  static void myMethod() {\n" + "    System.out.println(\"I just got executed!\");\n" + "  }\n" + "\n" + "  public static void main(String[] args) {\n" +
-                            "    myMethod();\n" + "  }\n" + "}"
+                    "    myMethod();\n" + "  }\n" + "}"
             )),
 
             new ArrayList<>(Arrays.asList(
@@ -164,6 +164,25 @@ public class Dialogue {
 
     )
     );
+    private ArrayList<ArrayList<String>> noToPlayRoomDialogue = new ArrayList<>(
+            Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
+                        //For JediGrandpa
+                        "Grandson! You can't go there yet. Make me proud first by finishing \n" +
+                        "the questions in the computer. That way, I can let you go in."
+                    )),
+                    new ArrayList<>(Arrays.asList(
+                        //For JediProf
+                        "Jedisaur! You can't go there yet. Finish the tasks in the \n" +
+                        "computer first. That way, I can let you go in and give another task."
+                    )),
+                    new ArrayList<>(Arrays.asList(
+                        //For JediManager
+                        "Mr.Jedisaur! You can't go there yet. Finish the questions in the \n" +
+                        "computer. That way, I can let you go in and give another work."
+                    ))
+            ));
+
 
     // This variable will show in code riddle minigame everytime the user got a correct or wrong answer
     private ArrayList<ArrayList<String>> codeRiddleFeedback = new ArrayList<>(
@@ -517,61 +536,50 @@ public class Dialogue {
                     new ArrayList<>(Arrays.asList(
                             // Syntax
                             "Hello there Grandson! Welcome to the playroom! This is where \n" +
-                            "your skills in programming will be tested. For today's topic, \n" +
+                            "your skills in programming will be tested.", "For today's topic, \n" +
                             "it will be syntax. Where you will be tested if you really get \n" +
-                            "Java. This is one of the fundamentals that you need to learn in \n" +
-                            "order to proceed! Syntax are needed in order to run the program \n" +
+                            "Java.", "This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed!", "Syntax are needed in order to run the program \n" +
                             "But first, let me show you how to play all the minigames."
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Comments
                             "Hello there Grandson! Welcome to the playroom! This is where \n" +
-                            "your skills in programming will be tested. For today's topic, \n" +
+                            "your skills in programming will be tested.", "For today's topic, \n" +
                             "it will be comments. Where you will be tested if you really get \n" +
-                            "Java. This is one of the fundamentals that you need to learn in \n" +
-                            "order to proceed! Comments are useful in order not to forget the \n" +
+                            "Java.", "This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed!", "Comments are useful in order not to forget the \n" +
                             "use of its function. But first, let me show you how to play all the minigames."
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Variables
                             "Hello there Grandson! Welcome to the playroom! This is where \n" +
-                            "your skills in programming will be tested. For today's topic, \n" +
+                            "your skills in programming will be tested.", "For today's topic, \n" +
                             "it will be variable. Where you will be tested if you really get \n" +
-                            "Java. This is one of the fundamentals that you need to learn in \n" +
-                            "order to proceed! variables are useful in order to store data and use\n" +
+                            "Java.", "This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed!", "Variables are useful in order to store data and use\n" +
                             "it to output. But first, let me show you how to play all the minigames."
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Data Types
                             "Hello there Grandson! Welcome to the playroom! This is where \n" +
-                            "your skills in programming will be tested. For today's topic, \n" +
+                            "your skills in programming will be tested.", "For today's topic, \n" +
                             "it will be data types. Where you will be tested if you really get \n" +
-                            "Java. This is one of the fundamentals that you need to learn in \n" +
-                            "order to proceed! Data types are useful in order to know what type of data\n" +
+                            "Java.", "This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed!", "Data types are useful in order to know what type of data\n" +
                             "the program needs. But first, let me show you how to play all the minigames."
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Type Casting
                             "Hello there Grandson! Welcome to the playroom! This is where \n" +
-                            "your skills in programming will be tested. For today's topic, \n" +
+                            "your skills in programming will be tested.", "For today's topic, \n" +
                             "it will be type casting. Where you will be tested if you really get \n" +
-                            "Java. This is one of the fundamentals that you need to learn in \n" +
-                            "order to proceed! Type casting are useful in order to know what type of data\n" +
-                            "the is needed. There are some data that are needed to be converted in order to \n" +
-                            "solve or edit the data. But first, let me show you how to play all the minigames."
-                    )),
-
-                    new ArrayList<>(Arrays.asList(
-                            // Type Casting
-                            "Hello there Grandson! Welcome to the playroom! This is where \n" +
-                            "your skills in programming will be tested. For today's topic, \n" +
-                            "it will be type casting. Where you will be tested if you really get \n" +
-                            "Java. This is one of the fundamentals that you need to learn in \n" +
-                            "order to proceed! Type casting are useful in order to know what type of data\n" +
+                            "Java.", "This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed!", "Type casting are useful in order to know what type of data\n" +
                             "the is needed. There are some data that are needed to be converted in order to \n" +
                             "solve or edit the data. But first, let me show you how to play all the minigames."
                     )),
@@ -579,20 +587,20 @@ public class Dialogue {
                     new ArrayList<>(Arrays.asList(
                             // Operators
                             "Hello there Grandson! Welcome to the playroom! This is where \n" +
-                            "your skills in programming will be tested. For today's topic, \n" +
+                            "your skills in programming will be tested.", "For today's topic, \n" +
                             "it will be operators. Where you will be tested if you really get \n" +
-                            "Java. This is one of the fundamentals that you need to learn in \n" +
-                            "order to proceed! Operators are useful in order to solve the output \n" +
+                            "Java.", "This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed!", "Operators are useful in order to solve the output \n" +
                             "requirement. But first, let me show you how to play all the minigames."
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Conditional Statement
                             "Hello Jedisaur! Welcome to the playroom! This is where your skills \n" +
-                            "in programming will be tested. For today's topic, it will be \n" +
+                            "in programming will be tested.", "For today's topic, it will be \n" +
                             "conditional statement. Where you will be tested if you really get \n" +
-                            "Java. This is one of the fundamentals that you need to learn in \n" +
-                            "order to proceed! Conditional Statement are useful in order to get the \n" +
+                            "Java.", "This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed!", "Conditional Statement are useful in order to get the \n" +
                             "output requirement by placing a condition to satisfy the data. \n" +
                             "But first, let me show you how to play all the minigames."
                     )),
@@ -600,10 +608,10 @@ public class Dialogue {
                     new ArrayList<>(Arrays.asList(
                             // Loops
                             "Hello Jedisaur! Welcome to the playroom! This is where your \n" +
-                            "skills in programming will be tested. For today's topic, it \n" +
-                            "will be loops. Where you will be tested if you really get Java. \n" +
+                            "skills in programming will be tested.", "For today's topic, it \n" +
+                            "will be loops. Where you will be tested if you really get Java.", "\n" +
                             "This is one of the fundamentals that you need to learn in \n" +
-                            "order to proceed! loops are useful in order to get the \n" +
+                            "order to proceed!", "loops are useful in order to get the \n" +
                             "output requirement by not repeating the output one by one. \n" +
                             "But first, let me show you how to play all the minigames."
                     )),
@@ -611,21 +619,21 @@ public class Dialogue {
                     new ArrayList<>(Arrays.asList(
                             // Arrays
                             "Hello Jedisaur! Welcome to the playroom! This is where your skills \n" +
-                            "in programming will be tested. For today's topic, it will be arrays. \n" +
-                            "Where you will be tested if you really get Java. This is one of \n" +
+                            "in programming will be tested.", "For today's topic, it will be arrays. \n" +
+                            "Where you will be tested if you really get Java.", "This is one of \n" +
                             "the fundamentals that you need to learn in order to proceed! \n" +
                             "arrays are useful in order to store multiple data instead of \n" +
-                            "creating multiple variables that will consume large memory. \n" +
+                            "creating multiple variables that will consume large memory.", "\n" +
                             "But first, let me show you how to play all the minigames."
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Methods
                             "Hello Jedisaur! Welcome to the playroom! This is where \n" +
-                            "your skills in programming will be tested. For today's topic, \n" +
+                            "your skills in programming will be tested.", "For today's topic, \n" +
                             "it will be methods. Where you will be tested if you really \n" +
-                            "get Java. This is one of the fundamentals that you need to learn \n" +
-                            "in order to proceed! methods are useful in order to solve \n" +
+                            "get Java.", "This is one of the fundamentals that you need to learn \n" +
+                            "in order to proceed!", "methods are useful in order to solve \n" +
                             "or show output requirements in the program. \n" +
                             "But first, let me show you how to play all the minigames."
                     )),
@@ -633,10 +641,10 @@ public class Dialogue {
                     new ArrayList<>(Arrays.asList(
                             // Parameters
                             "Hello Jedisaur! Welcome to the playroom! This is where \n" +
-                            "your skills in programming will be tested. For today's topic, \n" +
+                            "your skills in programming will be tested.", "For today's topic, \n" +
                             "it will be parameters. Where you will be tested if you really get \n" +
-                            "Java. This is one of the fundamentals that you need to learn in \n" +
-                            "order to proceed! parameters are useful in order to pass \n" +
+                            "Java.", "This is one of the fundamentals that you need to learn in \n" +
+                            "order to proceed!", "parameters are useful in order to pass \n" +
                             "the data to show output requirements in the program.\n" +
                             "But first, let me show you how to play all the minigames."
                     )),
@@ -644,34 +652,34 @@ public class Dialogue {
                     new ArrayList<>(Arrays.asList(
                             // Parameters Overloading
                             "Hello Jedisaur! Welcome to the playroom! This is where your \n" +
-                            "skills in programming will be tested. For today's topic, it \n" +
+                            "skills in programming will be tested.", "For today's topic, it \n" +
                             "will be parameter overloading. Where you will be tested if you \n" +
-                            "really get Java. This is one of the fundamentals that you need to \n" +
-                            "learn in order to proceed! parameter overloading are useful if there \n" +
+                            "really get Java.", "This is one of the fundamentals that you need to \n" +
+                            "learn in order to proceed!", "parameter overloading are useful if there \n" +
                             "are similar method name to prevent confusion and it is necessary \n" +
-                            "to name it. data to show output requirements in the program. \n" +
-                            "But first, let me show you how to play all the minigames."
+                            "to name it. data to show output requirements in the program. \n"
+                            ,"But first, let me show you how to play all the minigames."
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Classes
                             "Hello Mr.Jedisaur! Welcome to the playroom! This is where \n" +
-                            "your skills in programming will be tested. For today's topic, \n" +
+                            "your skills in programming will be tested.", "For today's topic, \n" +
                             "it will be classes. Where you will be tested if you really get \n" +
-                            "Java. This is one of the fundamentals that you need to learn in \n" +
+                            "Java.", "This is one of the fundamentals that you need to learn in \n" +
                             "order to proceed! classes are useful to prevent confusion on what that \n" +
-                            "code will do. It can be called in the main function to show its output \n" +
+                            "code will do. It can be called in the main function to show its output \n",
                             "But first, let me show you how to play all the minigames."
                     )),
 
                     new ArrayList<>(Arrays.asList(
                             // Objects
                             "Hello Mr.Jedisaur! Welcome to the playroom! This is where your skills \n" +
-                            "in programming will be tested. For today's topic, it will be objects. \n" +
-                            "Where you will be tested if you really get Java. This is one of the \n" +
-                            "fundamentals that you need to learn in order to proceed! objects are useful \n" +
+                            "in programming will be tested.", " For today's topic, it will be objects. \n" +
+                            "Where you will be tested if you really get Java.", "This is one of the \n" +
+                            "fundamentals that you need to learn in order to proceed!", "objects are useful \n" +
                             "to create if you want to have your own customized \"or better object \n" +
-                            "than default. It can be called in the main function to show its output \n" +
+                            "than default. It can be called in the main function to show its output \n",
                             "But first, let me show you how to play all the minigames."
                     ))
     ));
@@ -1553,7 +1561,7 @@ public class Dialogue {
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 88
                             "Topic: Objects \n" +
-                            "Class name: number \n" +
+                            "Class name: number, main \n" +
                             "Class variable's data type: Integer \n" +
                             "Class variable's name: num \n" +
                             "Class variable's value: 8 \n" +
@@ -1563,7 +1571,7 @@ public class Dialogue {
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 89
                             "Topic: Objects \n" +
-                            "Class name: name \n" +
+                            "Class name: name, main \n" +
                             "Class variable's data type: String \n" +
                             "Class variable's name: name \n" +
                             "Class variable's value: Jedisaur \n" +
@@ -1573,7 +1581,7 @@ public class Dialogue {
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 90
                             "Topic: Objects \n" +
-                            "Class name: number \n" +
+                            "Class name: number, main \n" +
                             "Class variable's data type: Integer \n" +
                             "Class variable's name: num \n" +
                             "Class variable's value: 8 \n" +
@@ -1583,7 +1591,7 @@ public class Dialogue {
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 91
                             "Topic: Objects \n" +
-                            "Class name: name \n" +
+                            "Class name: name, main \n" +
                             "Class variable's data type: String \n" +
                             "Class variable's name: name \n" +
                             "Class variable's value: Jedisaur \n" +
@@ -1593,7 +1601,7 @@ public class Dialogue {
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 92
                             "Topic: Objects \n" +
-                            "Class name: number \n" +
+                            "Class name: number, main \n" +
                             "Class method's name: show \n" +
                             "Class method's parameter: int val \n" +
                             "Print \"I am now 8 years old\" by using the class"
@@ -1602,7 +1610,7 @@ public class Dialogue {
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 93
                             "Topic: Objects \n" +
-                            "Class name: name \n" +
+                            "Class name: name, main \n" +
                             "Class method's name: greet \n" +
                             "Class method's parameter: String val \n" +
                             "Print \"My name is Jedisaur\" by using the class"
@@ -1613,7 +1621,7 @@ public class Dialogue {
             Arrays.asList(
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 1
-                            "Hey there Grandson! I want you to output a \"Hello World!\" \n " +
+                            "Now, let's proceed... I want you to output a \"Hello World!\" \n " +
                             "in the program by fixing the structure of the given code. \n " +
                             "Take note that the topic that I'm teaching you is syntax! \n" +
                             "Make sure to not mess this up. Good luck!"
@@ -1621,7 +1629,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 2
-                            "Hey there Grandson! I want you to output \"7\" \n " +
+                            "Now, let's proceed... I want you to output \"7\" \n " +
                             "in the program by fixing the structure of the given code. \n " +
                             "Take note that the topic that I'm teaching you is syntax! \n" +
                             "Make sure to not mess this up. Good luck!"
@@ -1629,7 +1637,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 3
-                            "Hey there Grandson! I want you to output \"Hello World! 123\" \n " +
+                            "Now, let's proceed... I want you to output \"Hello World! 123\" \n " +
                             "in the program by fixing the structure of the given code. \n " +
                             "Take note that the topic that I'm teaching you is syntax! \n" +
                             "Make sure to not mess this up. Good luck!"
@@ -1637,7 +1645,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 4
-                            "Hey there Grandson! I want you to output \"Hello World 7\" and \"Hello World 9\"\n " +
+                            "Now, let's proceed... I want you to output \"Hello World 7\" and \"Hello World 9\"\n " +
                             "in the program by fixing the structure of the given code. \n " +
                             "Take note that the topic that I'm teaching you is syntax! \n" +
                             "Make sure to not mess this up. Good luck!"
@@ -1645,7 +1653,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 5
-                            "Hey there Grandson! I want you to output \"Hello World 123\" and \"Hello World 321\"\n " +
+                            "Now, let's proceed... I want you to output \"Hello World 123\" and \"Hello World 321\"\n " +
                             "in the program by fixing the structure of the given code. \n " +
                             "Take note that the topic that I'm teaching you is syntax! \n" +
                             "Make sure to not mess this up. Good luck!"
@@ -1653,7 +1661,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 6
-                            "Hey there Grandson! I want you to output \"Hello World 2+5\" and \"Hello World 3+6\"\n " +
+                            "Now, let's proceed... I want you to output \"Hello World 2+5\" and \"Hello World 3+6\"\n " +
                             "in the program by fixing the structure of the given code. \n " +
                             "Take note that the topic that I'm teaching you is syntax! \n" +
                             "Make sure to not mess this up. Good luck!"
@@ -1661,7 +1669,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 7
-                            "Hey there Grandson! I want you to output \"Hello World\", \n" +
+                            "Now, let's proceed... I want you to output \"Hello World\", \n" +
                             "\"JediLand Home\", \"JediGrandpa\", and \"Jedisaur\" \n" +
                             "Take note that the topic that I'm teaching you is syntax! \n" +
                             "Make sure to not mess this up. Good luck!"
@@ -1669,7 +1677,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 8
-                            "Hey there Grandson! I want you to output \"Hello World\", \n" +
+                            "Now, let's proceed... I want you to output \"Hello World\", \n" +
                             "\"JediLand\", \"JediGrandpa\", and \"Jedisaur123\" \n" +
                             "in the program by fixing the structure of the given code. \n " +
                             "Take note that the topic that I'm teaching you is syntax! \n" +
@@ -1678,7 +1686,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 9
-                            "Hey there Grandson! I want you to output \"123Hello World123\" and \"321Hello World321\"\n " +
+                            "Now, let's proceed... I want you to output \"123Hello World123\" and \"321Hello World321\"\n " +
                             "in the program by fixing the structure of the given code. \n " +
                             "Take note that the topic that I'm teaching you is syntax! \n" +
                             "Make sure to not mess this up. Good luck!"
@@ -1686,7 +1694,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 10
-                            "Hey there Grandson! I want you to put a comment \"This is a single-line comment\" \n " +
+                            "Now, let's proceed... I want you to put a comment \"This is a single-line comment\" \n " +
                             "above that outputs \"Hello World!\" by fixing the structure of the given code. \n " +
                             "Take note that the topic that I'm teaching you is about comments! \n" +
                             "Make sure to not mess this up. Good luck!"
@@ -1694,7 +1702,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 11
-                            "Hey there Grandson! I want you to put a comment \"This is a multi-line comment\" \n " +
+                            "Now, let's proceed... I want you to put a comment \"This is a multi-line comment\" \n " +
                             "above that outputs \"Hello World!\" by fixing the structure of the given code. \n " +
                             "Take note that the topic that I'm teaching you is about comments! \n" +
                             "Make sure to not mess this up. Good luck!"
@@ -1702,7 +1710,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 12
-                            "Hey there Grandson! I want you to put a comment \"// = single-line comment\"\n " +
+                            "Now, let's proceed... I want you to put a comment \"// = single-line comment\"\n " +
                             "and \"/* */ = multi-line comment\" in a two separate single-line comment \n" +
                             "above that outputs \"Hello World!\" by fixing the structure of the given code. \n " +
                             "Take note that the topic that I'm teaching you is about comments! \n" +
@@ -1711,7 +1719,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 13
-                            "Hey there Grandson! I want you to put a comment \"// = single-line comment\" \n" +
+                            "Now, let's proceed... I want you to put a comment \"// = single-line comment\" \n" +
                             "in a multi-line comment, and \"/* */ = multi-line comment\" in a single-line comment \n" +
                             "above that outputs \"Hello World!\" by fixing the structure of the given code. \n " +
                             "Take note that the topic that I'm teaching you is about comments! \n" +
@@ -1720,7 +1728,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 14
-                            "Hey there Grandson! I want you to put a multi-line comment saying \n" +
+                            "Now, let's proceed... I want you to put a multi-line comment saying \n" +
                             "\"The program outputs Hello World! \n" +
                             "It is a String output \n" +
                             "multi-line comment was used.\" \n" +
@@ -1731,7 +1739,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 15
-                            "Hey there Grandson! I want you to put a single-line comment saying \n" +
+                            "Now, let's proceed... I want you to put a single-line comment saying \n" +
                             "\"The program outputs Hello World! \n" +
                             "It is a String output \n" +
                             "single-line comment was used.\" \n" +
@@ -1742,7 +1750,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 16
-                            "Hey there Grandson! I want you to output \"My name is Jedisaur.\" \n" +
+                            "Now, let's proceed... I want you to output \"My name is Jedisaur.\" \n" +
                             "and the Jedisaur will be a String variable named name. \n" +
                             "Fix the structure of the given code. \n " +
                             "Take note that the topic that I'm teaching you is about variables! \n" +
@@ -1751,7 +1759,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 17
-                            "Hey there Grandson! I want you to output \"My Grandpa's name is JediGrandpa\" \n" +
+                            "Now, let's proceed... I want you to output \"My Grandpa's name is JediGrandpa\" \n" +
                             "and the JediGrandpa will be a String variable named name. \n" +
                             "Fix the structure of the given code. \n " +
                             "Take note that the topic that I'm teaching you is about variables! \n" +
@@ -1760,7 +1768,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 18
-                            "Hey there Grandson! I want you to output \"I will now be a 1st year student soon.\" \n" +
+                            "Now, let's proceed... I want you to output \"I will now be a 1st year student soon.\" \n" +
                             "and the 1 will be an Integer variable named year. \n" +
                             "Fix the structure of the given code. \n " +
                             "Take note that the topic that I'm teaching you is about variables! \n" +
@@ -1769,7 +1777,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 19
-                            "Hey there Grandson! I want you to output \"My name is Jedisaur.\" and \"I am 8 years old\" \n" +
+                            "Now, let's proceed... I want you to output \"My name is Jedisaur.\" and \"I am 8 years old\" \n" +
                             "The Jedisaur will be a String variable named name, and the 8 will be an \n" +
                             "Integer variable named age. Fix the structure of the given code. \n " +
                             "Take note that the topic that I'm teaching you is about variables! \n" +
@@ -1778,7 +1786,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 20
-                            "Hey there Grandson! I want you to output \"My name is Jedisaur.\" \n" +
+                            "Now, let's proceed... I want you to output \"My name is Jedisaur.\" \n" +
                             "and \"My GrandPa's name is JediGrandpa\" \n" +
                             "The Jedisaur will be a String variable named myName, and the JediGrandpa will be a \n" +
                             "String variable named yourName. Fix the structure of the given code. \n " +
@@ -1788,7 +1796,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 21
-                            "Hey there Grandson! I want you to output \"I will now be a 1st year student soon.\" \n" +
+                            "Now, let's proceed... I want you to output \"I will now be a 1st year student soon.\" \n" +
                             "and \"I am 8 years old\" The 1 will be an Integer variable named year, \n" +
                             "and the 8 will be an Integer variable named age. \n" +
                             "Fix the structure of the given code. \n " +
@@ -1798,7 +1806,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 22
-                            "Hey there Grandson! I want you to output \"My name is Jedisaur.\", \n" +
+                            "Now, let's proceed... I want you to output \"My name is Jedisaur.\", \n" +
                             "\"I will now be a 1st year student soon.\", and \"I am 8 years old\" \n" +
                             "The Jedisaur will be a String variable named name, 1 will be an Integer variable named year. \n" +
                             "And the 8 will be an Integer variable named age. Fix the structure of the given code. \n" +
@@ -1808,7 +1816,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 23
-                            "Hey there Grandson! I want you to output \"My name is Jedisaur.\", \n" +
+                            "Now, let's proceed... I want you to output \"My name is Jedisaur.\", \n" +
                             "\"My GrandPa's name is JediGrandpa.\", and \"I am the only Grandson.\". \n" +
                             "The Jedisaur will be a String variable named myName, and the JediGrandpa will be a \n" +
                             "String variable named yourName. Fix the structure of the given code. \n " +
@@ -1818,7 +1826,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 24
-                            "Hey there Grandson! I want you to output \"My name is Jedisaur.\" \n" +
+                            "Now, let's proceed... I want you to output \"My name is Jedisaur.\" \n" +
                             "\"I will now be a 1st year student soon.\", and \"I am a dinosaur.\". \n" +
                             "The Jedisaur will be a String variable named name, and 1 will be an \n" +
                             "Integer variable named year. Fix the structure of the given code. \n " +
@@ -1828,7 +1836,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 25
-                            "Hey there Grandson! I want you to output \"Jedisaur is 8 years old\", and \n" +
+                            "Now, let's proceed... I want you to output \"Jedisaur is 8 years old\", and \n" +
                             "\"A height of 5.9ft.\". The Jedisaur will be a String variable named name, \n" +
                             "and 8 will be an Integer variable named age, and 5.9 will be a Float variable \n" +
                             "named height. Fix the structure of the given code. \n " +
@@ -1838,7 +1846,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 26
-                            "Hey there Grandson! I want you to output \"I got 3A\", and \n" +
+                            "Now, let's proceed... I want you to output \"I got 3A\", and \n" +
                             "\"in Math.\". The 3 will be an Integer variable named number, \n" +
                             "A will be a Character variable named grade, and Math will be a String variable \n" +
                             "named subject. Fix the structure of the given code. \n " +
@@ -1848,7 +1856,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 27
-                            "Hey there Grandson! I want you to output \"true\", \n" +
+                            "Now, let's proceed... I want you to output \"true\", \n" +
                             "\"A\", and \"Math\". The true will be a boolean variable named bool, \n" +
                             "A will be a Character variable named grade, and Math will be a String variable \n" +
                             "named subject. Fix the structure of the given code. \n " +
@@ -1858,7 +1866,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 28
-                            "Hey there Grandson! I want you to output \"false\", \n" +
+                            "Now, let's proceed... I want you to output \"false\", \n" +
                             "\"3\", and \"5.9\". The false will be a boolean variable named bool, \n" +
                             "A will be a Character variable named grade, and 5.9 will be a Float variable \n" +
                             "named height. Fix the structure of the given code. \n " +
@@ -1868,7 +1876,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 29
-                            "Hey there Grandson! I want you to output \"This is true\", \n" +
+                            "Now, let's proceed... I want you to output \"This is true\", \n" +
                             "\"Jedisaur is 8 years old\", and \"A height of 5.9ft.\". \n" +
                             "The Jedisaur will be a String variable named name, \n" +
                             "and 8 will be an Integer variable named age, and 5.9 will be a Float variable \n" +
@@ -1879,7 +1887,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 30
-                            "Hey there Grandson! I want you to output \"This is false\", \n" +
+                            "Now, let's proceed... I want you to output \"This is false\", \n" +
                             "\"Jedisaur is 8 years old\", and \"A height of 5.9ft.\". \n" +
                             "The Jedisaur will be a String variable named name, \n" +
                             "and 8 will be an Integer variable named age, and 5.9 will be a Float variable \n" +
@@ -1890,7 +1898,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 31
-                            "Hey there Grandson! I want you to output \"5.9\", \n" +
+                            "Now, let's proceed... I want you to output \"5.9\", \n" +
                             "and \"5.\". The 5.9 will be a float variable named num, \n" +
                             "and 5 will be a converted value from a Float variable, it will be named convert \n" +
                             "as an Integer variable. Fix the structure of the given code. \n " +
@@ -1900,7 +1908,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 32
-                            "Hey there Grandson! I want you to output \"3\", \n" +
+                            "Now, let's proceed... I want you to output \"3\", \n" +
                             "and \"3.\". The 3 will be an Integer variable named num, \n" +
                             "and 3 will be a converted value from an Integer variable, it will be named convert \n" +
                             "as a String variable. Fix the structure of the given code. \n " +
@@ -1910,7 +1918,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 33
-                            "Hey there Grandson! I want you to output \"My height is 5.9ft\", \n" +
+                            "Now, let's proceed... I want you to output \"My height is 5.9ft\", \n" +
                             "and \"I have 5 subjects\". The 5.9 will be a float variable named num, \n" +
                             "and 5 will be a converted value from a Float variable, it will be named convert \n" +
                             "as an Integer variable. Fix the structure of the given code. \n " +
@@ -1920,7 +1928,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 34
-                            "Hey there Grandson! I want you to output \"3 = 3\", \n" +
+                            "Now, let's proceed... I want you to output \"3 = 3\", \n" +
                             "and \"3 != 3\". The 3 will be an Integer variable named num, \n" +
                             "the other 3 will be an Integer variable named num2, \n" +
                             "and 3 will be a converted value from an Integer variable, it will be named convert \n" +
@@ -1931,7 +1939,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 35
-                            "Hey there Grandson! I want you to output \"5.9 is similar to 6.7\", \n" +
+                            "Now, let's proceed... I want you to output \"5.9 is similar to 6.7\", \n" +
                             "\"5.9 is different to 5\", and \"5 is similar to 4\". \n" +
                             "The 5.9 will be a Float variable named num, \n" +
                             "the 6.7 will be a Float variable named num2, \n" +
@@ -1944,7 +1952,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 36
-                            "Hey there Grandson! I want you to output \"true is similar to false\", \n" +
+                            "Now, let's proceed... I want you to output \"true is similar to false\", \n" +
                             "\"true != false\", and \"true is different to true\". \n" +
                             "The true will be a Boolean variable named bool, \n" +
                             "the false will be a Boolean variable named bool2, \n" +
@@ -1957,7 +1965,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 37
-                            "Hey there Grandson! I want you to output \"2\", \n" +
+                            "Now, let's proceed... I want you to output \"2\", \n" +
                             "and \"10\". There will be no variable this time and \n" +
                             "think of a way on how to solve this problem. \n " +
                             "Fix the structure of the given code. \n " +
@@ -1967,7 +1975,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 38
-                            "Hey there Grandson! I want you to output \"2\", \n" +
+                            "Now, let's proceed... I want you to output \"2\", \n" +
                             "and \"8\". There will be no variable this time and \n" +
                             "think of a way on how to solve this problem. \n " +
                             "Fix the structure of the given code. \n " +
@@ -1977,7 +1985,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 39
-                            "Hey there Grandson! I want you to output \"1\", \"2\", \n" +
+                            "Now, let's proceed... I want you to output \"1\", \"2\", \n" +
                             "and \"3\". There will be a variable called num with a value of 5 \n" +
                             "and think of a way on how to solve this problem. \n " +
                             "Fix the structure of the given code. \n " +
@@ -1987,7 +1995,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 40
-                            "Hey there Grandson! I want you to output \"5\", \"4\", \n" +
+                            "Now, let's proceed... I want you to output \"5\", \"4\", \n" +
                             "and \"3\". There will be a variable called num with a value of 5 \n" +
                             "and think of a way on how to solve this problem. \n " +
                             "Fix the structure of the given code. \n " +
@@ -1997,7 +2005,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 41
-                            "Hey there Grandson! I want you to output \"2\", \"4\", \"4\", \n" +
+                            "Now, let's proceed... I want you to output \"2\", \"4\", \"4\", \n" +
                             "and \"3\". There will be a variable called num with a value of 3 \n" +
                             "and think of a way on how to solve this problem. \n " +
                             "Fix the structure of the given code. \n " +
@@ -2007,7 +2015,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 42
-                            "Hey there Grandson! I want you to output \"7\", \"4\", \"5\", \n" +
+                            "Now, let's proceed... I want you to output \"7\", \"4\", \"5\", \n" +
                             "and \"4\". There will be a variable called num with a value of 3 \n" +
                             "and think of a way on how to solve this problem. \n " +
                             "Fix the structure of the given code. \n " +
@@ -2017,7 +2025,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 43
-                            "Hey there Grandson! I want you to output \"True\". \n" +
+                            "Now, let's proceed... I want you to output \"True\". \n" +
                             "There will be a variable called bool with a value of true. \n" +
                             "The else condition will be a \"False\". \n" +
                             "Think of a way on how to solve this problem. \n " +
@@ -2028,7 +2036,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 44
-                            "Hey there Grandson! I want you to output \"False\". \n" +
+                            "Now, let's proceed... I want you to output \"False\". \n" +
                             "There will be a variable called bool with a value of false. \n" +
                             "The else condition will be a \"False\". \n" +
                             "Think of a way on how to solve this problem. \n " +
@@ -2039,7 +2047,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 45
-                            "Hey there Grandson! I want you to output \"A is greater\". \n" +
+                            "Now, let's proceed... I want you to output \"A is greater\". \n" +
                             "There will be a variable called num1 with a value of 5, \n" +
                             "and 3 will be called num2. The else condition will be \"B is lower\". \n" +
                             "Think of a way on how to solve this problem. \n " +
@@ -2050,7 +2058,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 46
-                            "Hey there Grandson! I want you to output \"B is lower\". \n" +
+                            "Now, let's proceed... I want you to output \"B is lower\". \n" +
                             "There will be a variable called num1 with a value of 5, \n" +
                             "and 3 will be called num2. The else condition will be \"B is lower\". \n" +
                             "Think of a way on how to solve this problem. \n " +
@@ -2061,7 +2069,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 47
-                            "Hey there Grandson! I want you to output \"C is lower\". \n" +
+                            "Now, let's proceed... I want you to output \"C is lower\". \n" +
                             "There will be a variable called num1 with a value of 5, \n" +
                             "num2 with a value of 3, and num3 with a value of 1. \n" +
                             "The if condition will be \"A is greater\", \n" +
@@ -2074,7 +2082,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 48
-                            "Hey there Grandson! I want you to output \"B is greater\". \n" +
+                            "Now, let's proceed... I want you to output \"B is greater\". \n" +
                             "There will be a variable called num1 with a value of 5, \n" +
                             "num2 with a value of 3, and num3 with a value of 1. \n" +
                             "The if condition will be \"A is greater\", \n" +
@@ -2087,7 +2095,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 49
-                            "Hey there Grandson! I want you to output \"A Grade\". \n" +
+                            "Now, let's proceed... I want you to output \"A Grade\". \n" +
                             "There will be a variable called letter with a value of A, \n" +
                             "it will be a switch-case condition. \n" +
                             "The default is \"No Grade\". \n" +
@@ -2099,7 +2107,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 50
-                            "Hey there Grandson! I want you to output \"No Grade\". \n" +
+                            "Now, let's proceed... I want you to output \"No Grade\". \n" +
                             "There will be a variable called letter with a value of B, \n" +
                             "it will be a switch-case condition. \n" +
                             "The only case statement is \"A Grade\". \n" +
@@ -2111,7 +2119,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 51
-                            "Hey there Grandson! I want you to output \"Up\". \n" +
+                            "Now, let's proceed... I want you to output \"Up\". \n" +
                             "There will be a variable called direction with a value of North, \n" +
                             "it will be a switch-case condition. \n" +
                             "The case statements are \"Up\", and \"Down\". \n" +
@@ -2124,7 +2132,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 52
-                            "Hey there Grandson! I want you to output \"South\". \n" +
+                            "Now, let's proceed... I want you to output \"South\". \n" +
                             "There will be a variable called direction with a value of A, \n" +
                             "it will be a switch-case condition. \n" +
                             "The case statements are \"Up\", and \"Down\". \n" +
@@ -2137,7 +2145,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 53
-                            "Hey there Grandson! I want you to output \"A Grade\". \n" +
+                            "Now, let's proceed... I want you to output \"A Grade\". \n" +
                             "There will be a variable called letter with a value of A, \n" +
                             "it will be a switch-case condition. \n" +
                             "The case statements are \"A Grade\", and \"B Grade\". \n" +
@@ -2150,7 +2158,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 54
-                            "Hey there Grandson! I want you to output \"No Grade\". \n" +
+                            "Now, let's proceed... I want you to output \"No Grade\". \n" +
                             "There will be a variable called letter with a value of C, \n" +
                             "it will be a switch-case condition. \n" +
                             "The only case statements are \"A Grade\", and \"B Grade\". \n" +
@@ -2163,7 +2171,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 55
-                            "Hey there Grandson! I want you to output \"Hello World\" 5 times. \n" +
+                            "Now, let's proceed... I want you to output \"Hello World\" 5 times. \n" +
                             "There will be no initialized variable since it will be a For Loop. \n" +
                             "Think of a way on how to solve this problem. \n " +
                             "Fix the structure of the given code. \n " +
@@ -2173,7 +2181,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 56
-                            "Hey there Grandson! I want you to output \"Hello World\" 5 times. \n" +
+                            "Now, let's proceed... I want you to output \"Hello World\" 5 times. \n" +
                             "There will be a variable called i and its value is 0. It will be a While Loop. \n" +
                             "Think of a way on how to solve this problem. \n " +
                             "Fix the structure of the given code. \n " +
@@ -2183,7 +2191,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 57
-                            "Hey there Grandson! I want you to output \"Hello World\" 5 times. \n" +
+                            "Now, let's proceed... I want you to output \"Hello World\" 5 times. \n" +
                             "There will be a variable called i and its value is 0. It will be a Do-While Loop. \n" +
                             "Think of a way on how to solve this problem. \n " +
                             "Fix the structure of the given code. \n " +
@@ -2193,7 +2201,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 58
-                            "Hey there Grandson! I want you to output the value of \"i\", and \n" +
+                            "Now, let's proceed... I want you to output the value of \"i\", and \n" +
                             "\" Hello World\" 5 times. There will be no initialized variable since \n" +
                             "it will be a For Loop. Think of a way on how to solve this problem. \n" +
                             "Fix the structure of the given code. \n" +
@@ -2203,7 +2211,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 59
-                            "Hey there Grandson! I want you to output the value of \"i\" \n"+
+                            "Now, let's proceed... I want you to output the value of \"i\" \n"+
                             "\"Hello World\" 5 times. There will be a variable called i and its value is 0.\n" +
                             "It will be a While Loop. Think of a way on how to solve this problem. \n" +
                             "Fix the structure of the given code. \n" +
@@ -2213,7 +2221,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 60
-                            "Hey there Grandson! I want you to output the value of \"i\" \n" +
+                            "Now, let's proceed... I want you to output the value of \"i\" \n" +
                             "\"Hello World\" 5 times. There will be a variable called i and its value is 0. \n" +
                             "It will be a Do-While Loop. Think of a way on how to solve this problem. \n" +
                             "Fix the structure of the given code. \n" +
@@ -2223,7 +2231,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 61
-                            "Hey there Grandson! I want you to output the value of \"i\", and \n" +
+                            "Now, let's proceed... I want you to output the value of \"i\", and \n" +
                             "\" Hello World\" 3 times. There will be no initialized variable since \n" +
                             "it will be a For Loop. There will be a conditional statement for the loop to stop. \n" +
                             "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
@@ -2233,7 +2241,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 62
-                            "Hey there Grandson! I want you to output the value of \"i\" \n"+
+                            "Now, let's proceed... I want you to output the value of \"i\" \n"+
                             "\"Hello World\" 3 times. There will be a variable called i and its value is 0.\n" +
                             "It will be a While Loop. There will be a conditional statement for the loop to stop. \n" +
                             "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
@@ -2243,7 +2251,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 63
-                            "Hey there Grandson! I want you to output the value of \"i\" \n" +
+                            "Now, let's proceed... I want you to output the value of \"i\" \n" +
                             "\"Hello World\" 3 times. There will be a variable called i and its value is 0. \n" +
                             "It will be a Do-While Loop. There will be a conditional statement for the loop to stop. \n" +
                             "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
@@ -2253,7 +2261,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 64
-                            "Hey there Grandson! I want you to output the elements in the array by \n" +
+                            "Now, let's proceed... I want you to output the elements in the array by \n" +
                             "using a for loop. There will be a variable called array and its value is. \n" +
                             "\"Jedisaur\", \"is\", \"in\", and \"Jediland\". \n" +
                             "The only way to output is to print it. \n" +
@@ -2264,7 +2272,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 65
-                            "Hey there Grandson! I want you to output the elements in the array by \n" +
+                            "Now, let's proceed... I want you to output the elements in the array by \n" +
                             "using a for loop. There will be a variable called array and its value is. \n" +
                             "\"Jedisaur\", \"is\", \"going\", \"to\", and \"Jediland\". \n" +
                             "The only way to output is to print it. \n" +
@@ -2275,7 +2283,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 66
-                            "Hey there Grandson! I want you to output the elements in the array by \n" +
+                            "Now, let's proceed... I want you to output the elements in the array by \n" +
                             "using a for loop. There will be a variable called array and its value is. \n" +
                             "\"Jedisaur\", \"is\", \"in\", and \"Jediland\". \n" +
                             "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
@@ -2285,7 +2293,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 67
-                            "Hey there Grandson! I want you to output the elements in the array by \n" +
+                            "Now, let's proceed... I want you to output the elements in the array by \n" +
                             "using a for loop. There will be a variable called array and its value is. \n" +
                             "\"Jedisaur\", \"is\", \"going\", \"to\", and \"Jediland\". \n" +
                             "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
@@ -2295,7 +2303,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 68
-                            "Hey there Grandson! I want you to output the elements in the array by \n" +
+                            "Now, let's proceed... I want you to output the elements in the array by \n" +
                             "using a while loop. There will be a variable called array and its value is. \n" +
                             "\"Jedisaur\", \"is\", \"in\", and \"Jediland\". A counter variable will be set to 0. \n" +
                             "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
@@ -2305,7 +2313,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 69
-                            "Hey there Grandson! I want you to output the elements in the array by \n" +
+                            "Now, let's proceed... I want you to output the elements in the array by \n" +
                             "using a for loop. There will be a variable called array and its value is. \n" +
                             "\"Jedisaur\", \"is\", \"going\", \"to\", and \"Jediland\". \n" +
                             "A counter variable will be set to 0. \n" +
@@ -2316,7 +2324,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 70
-                            "Hey there Grandson! I want you to output \"Hello!\" by using a method called greet.\n" +
+                            "Now, let's proceed... I want you to output \"Hello!\" by using a method called greet.\n" +
                             "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
                             "Take note that the topic that I'm teaching you is about Methods! \n" +
                             "Make sure to not mess this up. Good luck!"
@@ -2324,7 +2332,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 71
-                            "Hey there Grandson! I want you to output \"Hi!\" by using a method called greet.\n" +
+                            "Now, let's proceed... I want you to output \"Hi!\" by using a method called greet.\n" +
                             "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
                             "Take note that the topic that I'm teaching you is about Methods! \n" +
                             "Make sure to not mess this up. Good luck!"
@@ -2332,7 +2340,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 72
-                            "Hey there Grandson! I want you to output \"Hello Jedisaur\" \n" +
+                            "Now, let's proceed... I want you to output \"Hello Jedisaur\" \n" +
                             "by using a method called greet.The greet method will only return the word \"Hello\". \n" +
                             "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
                             "Take note that the topic that I'm teaching you is about Methods! \n" +
@@ -2341,7 +2349,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 73
-                            "Hey there Grandson! I want you to output \"Hi Jedisaur\" \n" +
+                            "Now, let's proceed... I want you to output \"Hi Jedisaur\" \n" +
                             "by using a method called greet.The greet method will only return the word \"Hi\". \n" +
                             "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
                             "Take note that the topic that I'm teaching you is about Methods! \n" +
@@ -2350,7 +2358,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 74
-                            "Hey there Grandson! I want you to output \"Hello Jedisaur\" \n" +
+                            "Now, let's proceed... I want you to output \"Hello Jedisaur\" \n" +
                             "by using a method called greet, and name. \n" +
                             "The greet method will only return the word \"Hello\". \n" +
                             "While the name method will only return the word \"Jedisaur\". \n" +
@@ -2361,7 +2369,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 75
-                            "Hey there Grandson! I want you to output \"Hi Jedisaur\" \n" +
+                            "Now, let's proceed... I want you to output \"Hi Jedisaur\" \n" +
                             "by using a method called greet, and name. \n" +
                             "The greet method will only return the word \"Hi\".\n" +
                             "While the name method will only return the word \"Jedisaur\". \n" +
@@ -2372,7 +2380,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 76
-                            "Hey there Grandson! I want you to output \"Hi Jedisaur\" \n" +
+                            "Now, let's proceed... I want you to output \"Hi Jedisaur\" \n" +
                             "by using a method called greet with a parameter of name. \n" +
                             "The greet method will show the word \"Hi\" and the name Jedisaur.\n" +
                             "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
@@ -2382,7 +2390,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 77
-                            "Hey there Grandson! I want you to output \"Hi Jedisaur\" \n" +
+                            "Now, let's proceed... I want you to output \"Hi Jedisaur\" \n" +
                             "by using a method called greet with a parameter of greet, and name. \n" +
                             "The greet method will show the greet \"Hi\" and the name \"Jedisaur\".\n" +
                             "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
@@ -2392,7 +2400,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 78
-                            "Hey there Grandson! I want you to output \"10\" \n" +
+                            "Now, let's proceed... I want you to output \"10\" \n" +
                             "by using a method called solve with a parameter of num. \n" +
                             "The solve method will return the value of num plus 5. \n" +
                             "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
@@ -2402,7 +2410,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 79
-                            "Hey there Grandson! I want you to output \"10\" \n" +
+                            "Now, let's proceed... I want you to output \"10\" \n" +
                             "by using a method called solve with a parameter of num and num2. \n" +
                             "The solve method will return the value of num plus num2. \n" +
                             "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
@@ -2412,7 +2420,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 80
-                            "Hey there Grandson! I want you to output \"false\" \n" +
+                            "Now, let's proceed... I want you to output \"false\" \n" +
                             "by using a method called opposite with a parameter of bool. \n" +
                             "The opposite method will return the opposite value of bool. \n" +
                             "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
@@ -2422,7 +2430,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 81
-                            "Hey there Grandson! I want you to output \"-1\" \n" +
+                            "Now, let's proceed... I want you to output \"-1\" \n" +
                             "by using a method called opposite with a parameter of num. \n" +
                             "The opposite method will return the opposite value of num. \n" +
                             "Think of a way on how to solve this problem. Fix the structure of the given code. \n" +
@@ -2432,7 +2440,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 82
-                            "Hey there Grandson! I want you to output \"8\" by using the \n" +
+                            "Now, let's proceed... I want you to output \"8\" by using the \n" +
                             "variable in a class called num with a value of 8. Call the \n" +
                             "class called number inside the main method. Think of a way on how \n" +
                             "to solve this problem. Fix the structure of the given code. \n" +
@@ -2442,7 +2450,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 83
-                            "Hey there Grandson! I want you to output \"Jedisaur\" \n" +
+                            "Now, let's proceed... I want you to output \"Jedisaur\" \n" +
                             "by using the variable in a class called name1 with a value of Jedisaur. \n" +
                             "Call the class called name inside the main method. Think of a way \n" +
                             "on how to solve this problem. Fix the structure of the given code. \n" +
@@ -2452,7 +2460,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 84
-                            "Hey there Grandson! I want you to output \"I am now 8 years old\" \n" +
+                            "Now, let's proceed... I want you to output \"I am now 8 years old\" \n" +
                             "by using the variable in a class called num1 with a value of \n" +
                             "8. Call the class called number inside the main method. Think of a way \n" +
                             "on how to solve this problem. Fix the structure of the given code. \n" +
@@ -2462,7 +2470,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 85
-                            "Hey there Grandson! I want you to output \"My name is Jedisaur\" \n" +
+                            "Now, let's proceed... I want you to output \"My name is Jedisaur\" \n" +
                             "by using the variable in a class called name1 with a value of Jedisaur. \n" +
                             "Call the class called name inside the main method. Think of a way \n" +
                             "on how to solve this problem. Fix the structure of the given code. \n" +
@@ -2472,7 +2480,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 86
-                            "Hey there Grandson! I want you to output \"I am now 8 years old\" \n" +
+                            "Now, let's proceed... I want you to output \"I am now 8 years old\" \n" +
                             "by using the method in a class called show with a parameter of val.\n" +
                             "Call the class called number inside the main method. Think of a way \n" +
                             "on how to solve this problem. Fix the structure of the given code. \n" +
@@ -2482,7 +2490,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 87
-                            "Hey there Grandson! I want you to output \"My name is Jedisaur\" \n" +
+                            "Now, let's proceed... I want you to output \"My name is Jedisaur\" \n" +
                             "by using the method in a class called greet with a parameter of val. \n" +
                             "Call the class called name inside the main method. Think of a way \n" +
                             "on how to solve this problem. Fix the structure of the given code. \n" +
@@ -2492,7 +2500,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 88
-                            "Hey there Grandson! I want you to output \"8\" \n" +
+                            "Now, let's proceed... I want you to output \"8\" \n" +
                             "by using the object in a class called number with a value of num.\n" +
                             "Call the class called number inside the main method. Think of a way \n" +
                             "on how to solve this problem. Fix the structure of the given code. \n" +
@@ -2502,7 +2510,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 89
-                            "Hey there Grandson! I want you to output \"Jedisaur\" \n" +
+                            "Now, let's proceed... I want you to output \"Jedisaur\" \n" +
                             "by using the object in a class called name with a value of name. \n" +
                             "Call the class called name inside the main method. Think of a way \n" +
                             "on how to solve this problem. Fix the structure of the given code. \n" +
@@ -2512,7 +2520,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 90
-                            "Hey there Grandson! I want you to output \"I am now 8 years old\" \n" +
+                            "Now, let's proceed... I want you to output \"I am now 8 years old\" \n" +
                             "by using the object in a class called number with a value of num.\n" +
                             "Call the class called number inside the main method. Think of a way \n" +
                             "on how to solve this problem. Fix the structure of the given code. \n" +
@@ -2522,7 +2530,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 91
-                            "Hey there Grandson! I want you to output \"My name is Jedisaur\" \n" +
+                            "Now, let's proceed... I want you to output \"My name is Jedisaur\" \n" +
                             "by using the object in a class called name with a value of name. \n" +
                             "Call the class called name inside the main method. Think of a way \n" +
                             "on how to solve this problem. Fix the structure of the given code. \n" +
@@ -2532,7 +2540,7 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 92
-                            "Hey there Grandson! I want you to output \"I am now 8 years old\" \n" +
+                            "Now, let's proceed... I want you to output \"I am now 8 years old\" \n" +
                             "by using the object in a class called number with a method named show \n" +
                             "with a parameter of int val. Call the class called number inside the main \n" +
                             "method. Think of a way on how to solve this problem. Fix the structure of \n" +
@@ -2542,12 +2550,27 @@ public class Dialogue {
 
                     new ArrayList<>(Arrays.asList(
                             // Minigame ID 93
-                            "Hey there Grandson! I want you to output \"My name is Jedisaur\" \n" +
+                            "Now, let's proceed... I want you to output \"My name is Jedisaur\" \n" +
                             "by using the object in a class called name with a method named greet \n" +
                             "with a parameter of String name. Call the class called name inside the main \n" +
                             "method. Think of a way on how to solve this problem. Fix the structure of \n" +
                             "the given code. Take note that the topic that I'm teaching you is about Objects! \n" +
                             "Make sure to not mess this up. Good luck!"
+                    ))
+            )
+    );
+
+    private ArrayList<ArrayList<String>> askIfFinished = new ArrayList<>(
+            Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
+                            "Are you finished son?"
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            "Uy tama!!!"
+                    )),
+                    new ArrayList<>(Arrays.asList(
+                            "BOBO KA MALE!!!"
                     ))
             )
     );
@@ -2565,23 +2588,24 @@ public class Dialogue {
 
 
     public String reader(int nextStatement, String dialogueSet, int index){
-        System.out.println(getNpcName());
         switch (dialogueSet){
             case "introduction": return statementMover(nextStatement, introductionDialogue, getStage()-1);
-            case "minigames": return statementMover(nextStatement, questionDialogue, 0);
-            case "codeorderhints": return statementMover(nextStatement, codeOrderHints, 0);
+            case "question": return statementMover(nextStatement, questionDialogue, 0);
+            case "codeorderhints": return statementMover(nextStatement, codeOrderHints, getStage()-1);
             case "hints": return statementMover(nextStatement, twoHintsContainer, getStage()-1);
+            case "finishCheck": return statementMover(nextStatement, askIfFinished, index);
+            case "minigameintrodialogue": return statementMover(nextStatement, minigameIntroDiaulogue, getStage()-1);
+
+
         }
         return "";
     }
 
     public String statementMover(int nextStatement, ArrayList<ArrayList<String>> arrayLists, int index){
         if(nextStatement == arrayLists.get(index).size()){
-            System.out.println("true");
             setStatementEnd(true);
         }else{
             setStatementEnd(false);
-            System.out.println("dumaan ako dito");
             return arrayLists.get(index).get(nextStatement);
         }
 

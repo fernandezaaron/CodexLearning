@@ -18,12 +18,13 @@ public class DialogueBox extends Table {
     private Label textLabel;
 
 
-    public DialogueBox(Skin skin, String name){
+    public DialogueBox(Skin skin, String name, float scale){
         //this.pack();
         this.setSkin(skin);
         this.setBackground(skin.getDrawable(name));
         textLabel = new Label(" ", skin);
         textLabel.setWrap(true);
+        textLabel.setFontScale(scale);
         this.add(textLabel).align(Align.left).pad(50f).grow();
 
        // this.setPosition(this.getX(), this.getY());
@@ -34,7 +35,6 @@ public class DialogueBox extends Table {
     }
 
     public void textAnimation(String t){
-//        System.out.println("yes");
         text = t;
         animationTotalTime = t.length()*TEXT_SPEED;
         setAnimating(true);
@@ -63,7 +63,6 @@ public class DialogueBox extends Table {
             }
 
             String displayedText = "";
-//            System.out.println(delta);
             int stringSize = (int) ((animationTimer/animationTotalTime)*text.length());
             for(int i=0; i<stringSize; i++){
                 displayedText += text.charAt(i);
@@ -72,7 +71,6 @@ public class DialogueBox extends Table {
             if(!displayedText.equals(textLabel.getText().toString())){
                 textLabel.setText(displayedText);
 
-//                System.out.println(displayedText);
             }
         }
     }

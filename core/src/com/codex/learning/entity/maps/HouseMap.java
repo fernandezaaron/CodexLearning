@@ -92,7 +92,6 @@ public class HouseMap extends State {
 
     public void enterPlayRoom(Character character){
         if(character.getBody().getPosition().x > -5.3f && character.getBody().getPosition().y >-4 && character.getBody().getPosition().y < 2.5f){
-//            System.out.println("playroom kana lods");
 //            setInStartArea(false);
 
         }
@@ -100,7 +99,6 @@ public class HouseMap extends State {
 
     private void checkPlayRoom(boolean atPlayroom){
         if(atPlayroom){
-            System.out.println("u are here");
         }
     }
 

@@ -25,8 +25,6 @@ public class MenuState extends State {
     public MenuState(Manager manager) {
         super(manager);
 
-        manager.getExpertSystem().readFile();
-
         settings = new Settings(manager, manager.getCamera().position.x, manager.getCamera().position.y);
 
 //        This is used to crop each sprite in a sprite sheet.
