@@ -5,7 +5,7 @@ import java.util.*;
 public class Test {
 //    private final Model model = Model.fromFile
 //            (Test.class.getClassLoader().getResource("assets/model/minigameML.pmml").getFile());
-    private final Model model2 = Model.fromFile("assets/model/minigameML.pmml");
+    private final Model model = Model.fromFile("assets/model/minigameML.pmml");
 
 
     public ArrayList<ArrayList<Integer>> data = new ArrayList<>(
@@ -28,15 +28,8 @@ public class Test {
                                     {1, 1, 1, 1},
                                     {1, 1, 2, 3}};
 
-        Map<String, Integer> values = new HashMap<String, Integer>(){{
-            put("MD",0);
-            put("TC", 3);
-            put("NA", 1);
-            put("NBI", 1);
-        }};
-
         String[][] arr = new String[][]{{"NO", "LOW", "MEDIUM", "LOW"}};
-        System.out.println("BEHAVIOR - " + test.model2.predict(values));
+        System.out.println("BEHAVIOR - " + test.model.predict(new int[]{0, 3, 1, 1}));
     }
 
 }
