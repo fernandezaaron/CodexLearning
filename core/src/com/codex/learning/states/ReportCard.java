@@ -40,15 +40,22 @@ public class ReportCard extends State{
 
         timeConsumed = new Label("", manager.getSkin());
         timeConsumed.setAlignment(Align.right);
+        timeConsumed.setFontScale(0.8f);
 
         numberOfErrors = new Label("", manager.getSkin());
         numberOfErrors.setAlignment(Align.right);
+        numberOfErrors.setFontScale(0.8f);
+
 
         numberOfAttempts = new Label("", manager.getSkin());
         numberOfAttempts.setAlignment(Align.right);
+        numberOfAttempts.setFontScale(0.8f);
+
 
         correctOutput = new Label("", manager.getSkin());
         correctOutput.setAlignment(Align.right);
+        correctOutput.setFontScale(0.8f);
+
 
         inReportCard = true;
 
@@ -77,10 +84,10 @@ public class ReportCard extends State{
         /**
          * use the text builders here to output the following scores ^^
          */
-        timeConsumed.setText("1");
-        numberOfErrors.setText("2");
-        numberOfAttempts.setText("3");
-        correctOutput.setText("4");
+        timeConsumed.setText(String.valueOf(manager.getMinigame().getTimeConsumption()));
+        numberOfErrors.setText(String.valueOf(manager.getMinigame().getNumberofError()));
+        numberOfAttempts.setText(String.valueOf(manager.getMinigame().getNumberOfAttempts()));
+        correctOutput.setText(String.valueOf(manager.getMinigame().getCorrectOutput()));
 
         /**
          * replace the length to the number of cookies length lang
@@ -89,7 +96,7 @@ public class ReportCard extends State{
             cookies.add(new Image(manager.getSkin(),"nocookie"));
         }
         int numberofcookies = 2;
-        for(int i=0; i<numberofcookies; i++){
+        for(int i=0; i<manager.getMinigame().getCookies(); i++){
             cookies.set(i, new Image(manager.getSkin(), "cookie"));
         }
 
@@ -130,6 +137,15 @@ public class ReportCard extends State{
                     manager.getMinigame().dispose();
                 }
                 manager.getPlayroomMap().dispose();
+                if(manager.getStageSelector().map().equals("1")){
+                    manager.getHouseMap().dispose();
+                }
+                else if(manager.getStageSelector().map().equals("2")){
+                    manager.getSchoolMap().dispose();
+                }
+                else {
+                    manager.getOfficeMap().dispose();
+                }
                 manager.set(new StageSelectState(manager));
                 return true;
             }

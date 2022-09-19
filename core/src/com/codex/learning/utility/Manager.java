@@ -18,7 +18,9 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import com.codex.learning.entity.characters.Character;
 import com.codex.learning.entity.maps.HouseMap;
+import com.codex.learning.entity.maps.OfficeMap;
 import com.codex.learning.entity.maps.PlayroomMapS1;
+import com.codex.learning.entity.maps.SchoolMap;
 import com.codex.learning.states.State;
 import com.codex.learning.states.minigames.Minigame;
 import com.codex.learning.utility.decisiontree.Behavior;
@@ -64,6 +66,8 @@ public class Manager {
     private Minigame minigame;
     private PlayroomMapS1 playroomMap;
     private HouseMap houseMap;
+    private SchoolMap schoolMap;
+    private OfficeMap officeMap;
 
     private DecisionTree decisionTree;
 
@@ -302,6 +306,22 @@ public class Manager {
 
     public void setHouseMap(HouseMap houseMap) {
         this.houseMap = houseMap;
+    }
+
+    public SchoolMap getSchoolMap() {
+        return schoolMap;
+    }
+
+    public void setSchoolMap(SchoolMap schoolMap) {
+        this.schoolMap = schoolMap;
+    }
+
+    public OfficeMap getOfficeMap() {
+        return officeMap;
+    }
+
+    public void setOfficeMap(OfficeMap officeMap) {
+        this.officeMap = officeMap;
     }
 
     public void setMinigameChecker(MinigameChecker minigameChecker) {

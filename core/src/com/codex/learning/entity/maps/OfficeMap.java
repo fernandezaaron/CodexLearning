@@ -70,7 +70,16 @@ public class OfficeMap extends State {
 
     @Override
     public void dispose() {
-
+        upBorder.disposeBody();
+        downBorder.disposeBody();
+        leftBorder.disposeBody();
+        lTableLeft.disposeBody();
+        lTableMiddle.disposeBody();
+        lTableRight.disposeBody();
+        ltableLeftHorizontal.disposeBody();
+        lTableMiddleHorizontal.disposeBody();
+        lTableRightHorizontal.disposeBody();
+        tableLeft.disposeBody();
     }
 
     public void setActive(boolean active){

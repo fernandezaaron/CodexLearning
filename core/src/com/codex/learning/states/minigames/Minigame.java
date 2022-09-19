@@ -109,12 +109,34 @@ public class Minigame extends State {
         }
     }
 
+
+
     public int getCurrentMinigame() {
         return currentMinigame;
     }
 
     public void setCurrentMinigame(int currentMinigame) {
         this.currentMinigame = currentMinigame;
+    }
+
+    public int getNumberOfAttempts(){
+        return fuzzyLogic.getNumberOfAttempts();
+    }
+
+    public int getNumberofError(){
+        return fuzzyLogic.getNumberOfErrors();
+    }
+
+    public float getTimeConsumption(){
+        return  fuzzyLogic.getTimeConsumptions();
+    }
+
+    public int getCorrectOutput(){
+        return fuzzyLogic.getCorrectOutput();
+    }
+
+    public int getCookies(){
+        return fuzzyLogic.getCookies();
     }
 
     //    public void setActive(boolean active){

@@ -50,13 +50,11 @@ public class BlockDispenser extends Entity {
         this.position = position;
         this.size = size;
         label = new Label("", manager.getSkin());
-//        label.setWrap(true);
 
         table = new Table(manager.getSkin());
-        table.setBackground("dialogbox2");
+        table.setBackground("dialogbox3");
 
         containerTable = new Table(manager.getSkin());
-//        containerTable.setBackground("dialogbox1");
 
 
         BodyDef def = new BodyDef();
@@ -92,8 +90,6 @@ public class BlockDispenser extends Entity {
     @Override
     public void update(float delta) {
         showBlockID();
-//        manager.getStage().act();
-
     }
 
     @Override
@@ -174,23 +170,13 @@ public class BlockDispenser extends Entity {
     }
 
     public void showBlockID(){
-
-//        if(!isInContact()){
-//            containerTable.reset();
-//        }
-
         int length = this.id.length();
         containerTable.defaults().size(length*3.5f + 500,150);
         containerTable.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM - 250,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM - 350);
 
 
         if(isInContact() && isInteracting()){
-
             label.setText(this.id);
-//            label.setWrap(true);
-
-
-
             setInteracting(false);
         }
 
@@ -202,8 +188,6 @@ public class BlockDispenser extends Entity {
             containerTable.pack();
             containerTable.setDebug(true);
         }
-//        manager.getStage().addActor(containerTable);
-
     }
 
     public boolean isInteracting() {

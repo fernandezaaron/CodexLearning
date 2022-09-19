@@ -1,5 +1,5 @@
 DialogBox.png
-size: 3987, 1493
+size: 2006, 3123
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -12,28 +12,35 @@ choices
   index: -1
 cookie
   rotate: false
-  xy: 1997, 0
+  xy: 0, 96
   size: 73, 100
   orig: 73, 100
   offset: 0, 0
   index: -1
 dialogbox1
   rotate: false
-  xy: 1662, 203
+  xy: 662, 533
   size: 1115, 351
   orig: 1115, 351
   offset: 0, 0
   index: -1
 dialogbox2
   rotate: false
-  xy: 0, 203
+  xy: 0, 299
   size: 1000, 231
   orig: 1000, 231
   offset: 0, 0
   index: -1
+dialogbox3
+  rotate: false
+  xy: 1000, 299
+  size: 919, 234
+  orig: 919, 234
+  offset: 0, 0
+  index: -1
 exit
   rotate: false
-  xy: 1000, 203
+  xy: 0, 533
   size: 662, 326
   orig: 662, 326
   offset: 0, 0
@@ -54,77 +61,77 @@ horizontalScrollKnob
   index: -1
 jediGrandpaAvatar
   rotate: false
-  xy: 2156, 0
-  size: 180, 180
-  orig: 180, 180
+  xy: 159, 96
+  size: 184, 184
+  orig: 184, 184
   offset: 0, 0
   index: -1
 jediOfficeAvatar
   rotate: false
-  xy: 2336, 0
-  size: 180, 180
-  orig: 180, 180
+  xy: 343, 96
+  size: 184, 184
+  orig: 184, 184
   offset: 0, 0
   index: -1
 jediProfAvatar
   rotate: false
-  xy: 2516, 0
-  size: 180, 180
-  orig: 180, 180
+  xy: 527, 96
+  size: 184, 184
+  orig: 184, 184
   offset: 0, 0
   index: -1
 jedisaurAvatar
   rotate: false
-  xy: 2696, 0
-  size: 180, 180
-  orig: 180, 180
+  xy: 711, 96
+  size: 184, 184
+  orig: 184, 184
   offset: 0, 0
   index: -1
 nocookie
   rotate: false
-  xy: 2070, 0
+  xy: 73, 96
   size: 73, 100
   orig: 73, 100
   offset: 0, 0
   index: -1
 objectives
   rotate: false
-  xy: 1577, 593
+  xy: 656, 1335
   size: 800, 888
   orig: 800, 888
   offset: 0, 0
   index: -1
 optionScreen
   rotate: false
-  xy: 2777, 203
+  xy: 0, 884
   size: 920, 390
   orig: 920, 390
   offset: 0, 0
   index: -1
 PCSCREEN
   rotate: false
-  xy: 2377, 593
+  xy: 0, 2223
   size: 1600, 900
   orig: 1600, 900
   offset: 0, 0
   index: -1
 questions
   rotate: false
-  xy: 2876, 0
+  xy: 895, 96
   size: 1111, 203
   orig: 1111, 203
   offset: 0, 0
   index: -1
 questionsScreen
   rotate: false
-  xy: 0, 593
+  xy: 920, 884
   size: 921, 451
   orig: 921, 451
   offset: 0, 0
   index: -1
 REPORTCARD
   rotate: false
-  xy: 921, 593
+  xy: 0, 1335
   size: 656, 836
   orig: 656, 836
   offset: 0, 0
@@ -138,7 +145,7 @@ saveandquit
   index: -1
 verticalScroll
   rotate: false
-  xy: 2143, 0
+  xy: 146, 96
   size: 13, 169
   orig: 13, 169
   offset: 0, 0

@@ -56,7 +56,12 @@ public class SchoolMap extends State {
 
     @Override
     public void dispose() {
-
+        upBorder.disposeBody();
+        downBorder.disposeBody();
+        playroomBorder.disposeBody();
+        leftBorder.disposeBody();
+        table.disposeBody();
+        locker.disposeBody();
     }
 
     public void setActive(boolean active){

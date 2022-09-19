@@ -133,13 +133,21 @@ public class PauseState extends State {
                 }
                 if(retryBounds.contains(coords.x, coords.y)){
                     manager.getMusic().stop();
-                    Behavior.currentDataSet.clear();
                     manager.getQuestionnaire().dispose();
                     if (manager.getQuestionnaire().getMinigameHolder() != null){
                         manager.getQuestionnaire().clearMinigames();
                         manager.getMinigame().dispose();
                     }
                     manager.getPlayroomMap().dispose();
+                    if(manager.getStageSelector().map().equals("1")){
+                        manager.getHouseMap().dispose();
+                    }
+                    else if(manager.getStageSelector().map().equals("2")){
+                        manager.getSchoolMap().dispose();
+                    }
+                    else {
+                        manager.getOfficeMap().dispose();
+                    }
                     manager.set(new PlayState(manager));
                 }
                 if(stageBounds.contains(coords.x, coords.y)){
@@ -151,8 +159,15 @@ public class PauseState extends State {
                         manager.getMinigame().dispose();
                     }
                     manager.getPlayroomMap().dispose();
-                    manager.getHouseMap().dispose();
-//                    manager.getDialogue().disposeArray();
+                    if(manager.getStageSelector().map().equals("1")){
+                        manager.getHouseMap().dispose();
+                    }
+                    else if(manager.getStageSelector().map().equals("2")){
+                        manager.getSchoolMap().dispose();
+                    }
+                    else {
+                        manager.getOfficeMap().dispose();
+                    }
                     manager.set(new StageSelectState(manager));
 
                 }

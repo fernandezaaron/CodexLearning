@@ -52,7 +52,7 @@ public class PlayState extends State{
 
 
 //        randomMinigame = rand.nextInt(4-1)+1;
-        randomMinigame = 1;
+        randomMinigame = 2;
 
         playroomMap = new PlayroomMapS1(manager);
         manager.setPlayroomMap(playroomMap);
@@ -61,7 +61,6 @@ public class PlayState extends State{
 
         if(manager.getStageSelector().map().equals("1")){
             house = new HouseMap(manager);
-            System.out.println("house");
 
             manager.setHouseMap(house);
             computer = new Computer(manager, fuzzyLogic);
@@ -69,14 +68,13 @@ public class PlayState extends State{
         }
         else if(manager.getStageSelector().map().equals("2")){
             schoolMap = new SchoolMap(manager);
-            System.out.println("asdsaf");
+            manager.setSchoolMap(schoolMap);
             computer = new Computer(manager, fuzzyLogic);
             computer.create(new Vector2(-4, 6.5f), new Vector2(0.6f, 0.6f), 0);
         }
         else if(manager.getStageSelector().map().equals("3")){
             officeMap = new OfficeMap(manager);
-            System.out.println("office");
-
+            manager.setOfficeMap(officeMap);
             computer = new Computer(manager, fuzzyLogic);
             computer.create(new Vector2(-6.5f, 10.2f), new Vector2(0.6f, 0.6f), 0);
         }

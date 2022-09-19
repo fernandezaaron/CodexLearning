@@ -465,6 +465,25 @@ public class MysteryCode extends State {
             fuzzyDone = true;
         }
     }
+    public int getNumberOfAttempts(){
+        return fuzzyLogic.getNumberOfAttempts();
+    }
+
+    public int getNumberofError(){
+        return fuzzyLogic.getNumberOfErrors();
+    }
+
+    public float getTimeConsumption(){
+        return  fuzzyLogic.getTimeConsumptions();
+    }
+
+    public int getCorrectOutput(){
+        return fuzzyLogic.getCorrectOutput();
+    }
+
+    public int getCookies(){
+        return fuzzyLogic.getCookies();
+    }
 
     public String checkTimeConsumption(int timer){
         if(timer <= 120){

@@ -76,7 +76,6 @@ public class PlayroomMapS1 extends State {
 
         if(manager.getMinigameChecker().isDone()){
             reportCard.update(delta);
-
         }
 
         npc.update(delta);
@@ -119,7 +118,6 @@ public class PlayroomMapS1 extends State {
             howToPlay.setCurrentImage(manager.getMinigame().getCurrentMinigame(), sprite);
         }
         if(manager.getMinigameChecker().isDone()){
-            System.out.println("asfasfa");
             reportCard.render(sprite);
         }
     }

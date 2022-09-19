@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class CodeRiddle extends State {
     private ScrollPane scrollPane;
     private Label text;
-    private Table table, optionsTable, codeRiddleFeedbackTable, resultFeedbackTable, avatarImage;
+    private Table table, optionsTable, codeRiddleFeedbackTable, resultFeedbackTable, avatarImage, textTable;
     private DialogueBox dialogueBox;;
     private Group group;
     private List.ListStyle listStyle;
@@ -55,12 +55,9 @@ public class CodeRiddle extends State {
         dialogTimer = 0;
         error = 0;
 
-//        skin = new Skin(Gdx.files.internal("text/DialogBox.json"));
-//        atlas = new TextureAtlas(Gdx.files.internal("./text/DialogBox.atlas"));
-//        skin.addRegions(atlas);
-//        manager.getSkin().load(Constants.JSON_DIALOG_BOX_SKIN_PATH);
         table = new Table();
         optionsTable = new Table();
+        textTable = new Table();
         codeRiddleFeedbackTable = new Table(manager.getSkin());
         resultFeedbackTable = new Table(manager.getSkin());
         avatarImage = new Table(manager.getSkin());
@@ -68,10 +65,8 @@ public class CodeRiddle extends State {
 
 
 
-        dialogueBox = new DialogueBox(manager.getSkin(), "dialogbox2", 0.5f);
+        dialogueBox = new DialogueBox(manager.getSkin(), "dialogbox3", 0.5f);
 
-
-//        manager.getFont().getData().setScale(1f);
 
         if(manager.getStageSelector().map().equals("1")){
             avatarImage.setBackground("jediGrandpaAvatar");
@@ -180,25 +175,9 @@ public class CodeRiddle extends State {
                if(!(text.getText().contains(questions.get(currentQuestion)))){
                    text.setText(questions.get(currentQuestion));
                    text.setAlignment(Align.center);
-                   String tempstring = "";
-
 
                    for(int i=0; i<4; i++){
-//                       for(int j=0; j<options.get(currentQuestion).get(i).length(); j++){
-//
-//                           if(options.get(currentQuestion).get(i).charAt(j) > 10){
-//                               System.out.println("asfasgasga");
-//                               tempstring += options.get(currentQuestion).get(i).charAt(j);
-//
-//                               System.out.println(tempstring);
-//                           }
-//                           else{
-//                               System.out.println(options.get(currentQuestion).get(i) + "asfasfasasfas");
-//                               tempstring = options.get(currentQuestion).get(i);
-//                           }
-//                       }
                        textButtons[i] = new TextButton(options.get(currentQuestion).get(i), manager.getSkin());
-
                        optionsTable.add(textButtons[i]).grow().padLeft(10f).center();
                        optionsTable.row();
                    }
@@ -253,13 +232,14 @@ public class CodeRiddle extends State {
            }
 
            if(!table.hasChildren()){
-               scrollPane = new ScrollPane(text, manager.getSkin());
+               textTable.add(text).width(420).pad(25f);
+               scrollPane = new ScrollPane(textTable, manager.getSkin());
                scrollPane.layout();
                scrollPane.setScrollbarsOnTop(true);
                scrollPane.setForceScroll(false,true);
                scrollPane.setSmoothScrolling(true);
                optionsTable.layout();
-               table.add(scrollPane).height(150).padTop(25f);
+               table.add(scrollPane).height(200);
                table.row();
                table.add(optionsTable).height(200).width(780).padBottom(15f);
                table.pack();
@@ -288,7 +268,6 @@ public class CodeRiddle extends State {
                     resultFeedbackTable.defaults().width(600).height(50);
                     resultFeedbackTable.add(avatarImage).width(50).height(50).padRight(15f);
                     resultFeedbackTable.add(dialogueBox).align(Align.left).width(300);
-//                    manager.getDialogue().setStatementEnd(true);
                 }
             }
         }
@@ -331,7 +310,6 @@ public class CodeRiddle extends State {
                     codeRiddleFeedbackTable.defaults().width(600).height(50);
                     codeRiddleFeedbackTable.add(avatarImage).width(50).height(50).padRight(15f);
                     codeRiddleFeedbackTable.add(dialogueBox).align(Align.right).width(300);
-//                    manager.getDialogue().setStatementEnd(true);
                 }
             }
         }
