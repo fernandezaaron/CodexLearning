@@ -71,6 +71,7 @@ public class MysteryCode extends State {
                 }
                 else {
                     if (!banishCells.contains(banishNumber)) {
+                        System.out.println("adds banish");
                         banishCells.add(banishNumber);
                         banishNumberIterator--;
                     }
@@ -401,9 +402,10 @@ public class MysteryCode extends State {
 //                }
 //            }
 //        }
-
-        banishCells.clear();
-        banishPerRow.clear();
+        currentCell = 0;
+        banishCells = null;
+        banishPerRow = null;
+        minigameContainer = null;
 
         for(BlockHolder[] b: blockHolders){
             for(BlockHolder i: b){
