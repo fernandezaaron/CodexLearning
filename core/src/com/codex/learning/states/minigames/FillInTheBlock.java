@@ -58,8 +58,26 @@ public class FillInTheBlock extends State {
         for(int i = 0; i < minigameContainer.size(); i++) {
             for(int j = 0; j < minigameContainer.get(i).size(); j++) {
                 if(minigameContainer.get(i).get(j) != null) {
-                    if (banishCells.contains(currentCell) || banishPoolContainer.contains(minigameContainer.get(i).get(j))) {
+                    if (banishCells.contains(currentCell)) {
+                        if (banishPoolContainer.contains(minigameContainer.get(i).get(j))) {
+                            banishCells.add(currentCell);
+                        }
                         banishPoolContainer.add(minigameContainer.get(i).get(j));
+                    }
+                }
+                currentCell++;
+            }
+        }
+
+        /** SET UP DUPES **/
+        currentCell = 0;
+        for(int i = 0; i < minigameContainer.size(); i++) {
+            for(int j = 0; j < minigameContainer.get(i).size(); j++) {
+                if(minigameContainer.get(i).get(j) != null) {
+                    if (banishPoolContainer.contains(minigameContainer.get(i).get(j))) {
+                        if (!banishCells.contains(currentCell)) {
+                            banishPoolContainer.add(minigameContainer.get(i).get(j));
+                        }
                     }
                 }
                 currentCell++;
@@ -74,6 +92,7 @@ public class FillInTheBlock extends State {
                 if(banishPoolContainer.get(j).equals(banished) && i != j) {
                     dupes += 1;
                     banishPoolContainer.remove(j);
+                    j = 0;
                 }
             }
             duplicatePool.add(dupes);
