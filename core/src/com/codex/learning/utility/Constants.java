@@ -68,6 +68,7 @@ public class Constants {
     public static final String CODE_IT = "map/codeIT.png";
     public static final String CODE_ORDER = "map/codeOrder.png";
     public static final String MYSTERY_CODE = "map/mysteryCode.png";
+    public static final String FILL_IN_THE_BLOCKS = "map/fillInTheBlocks.png";
 
 
 
