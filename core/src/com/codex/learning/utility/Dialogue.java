@@ -2595,9 +2595,6 @@ public class Dialogue {
             )
     );
 
-
-
-
     private boolean statementEnd;
     float myFloatNum = 5.99f;
     private String npcName;
@@ -2608,8 +2605,6 @@ public class Dialogue {
     public Dialogue(){
         statementEnd = false;
     }
-
-
 
     public String reader(int nextStatement, String dialogueSet, int index){
 
@@ -2638,7 +2633,6 @@ public class Dialogue {
             setStatementEnd(false);
             return arrayLists.get(index).get(nextStatement);
         }
-
         return "";
     }
 
@@ -2656,10 +2650,6 @@ public class Dialogue {
         int number = random.nextInt(limit);
 
         return codeRiddleFeedback.get(index).get(number);
-    }
-
-    public void disposeArray(){
-        getArrayLists().clear();
     }
 
     public int getTopic(String topic){

@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.codex.learning.entity.Entity;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
+import org.pmml4s.model.Con;
 
 public class HowToPlay extends Entity {
     private TextureRegion[] images;
@@ -51,9 +52,11 @@ public class HowToPlay extends Entity {
         shape.dispose();
 
         inContact = false;
-        images[0] = new TextureRegion(new Texture(Constants.CODE_IT), 0, 0, 1600, 900);
+        images[0] = new TextureRegion(new Texture(Constants.FILL_IN_THE_BLOCKS), 0,0, 1600, 900);
         images[1] = new TextureRegion(new Texture(Constants.MYSTERY_CODE), 0, 0, 1600, 900);
         images[2] = new TextureRegion(new Texture(Constants.CODE_ORDER), 0, 0, 1600, 900);
+        images[3] = new TextureRegion(new Texture(Constants.CODE_IT), 0, 0, 1600, 900);
+
     }
 
     @Override
