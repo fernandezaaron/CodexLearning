@@ -1,5 +1,8 @@
 package com.codex.learning.utility.decisiontree;
+import org.pmml4s.common.Evaluator;
 import org.pmml4s.model.Model;
+import org.pmml4s.*;
+
 import java.util.*;
 
 public class Test {
@@ -36,7 +39,7 @@ public class Test {
         }};
 
         String[][] arr = new String[][]{{"NO", "LOW", "MEDIUM", "LOW"}};
-        System.out.println("BEHAVIOR - " + test.model2.predict(values));
+        System.out.println("BEHAVIOR - " + test.model2.predict(array));
     }
 
 }

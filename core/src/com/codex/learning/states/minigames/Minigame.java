@@ -100,6 +100,7 @@ public class Minigame extends State {
             fillInTheBlock.dispose();
         }
         else if(mysteryCodeFlag){
+            System.out.println("disposing mc");
             mysteryCode.dispose();
         }else if(codeOrderFlag){
             codeOrder.dispose();

@@ -207,7 +207,8 @@ public class MysteryCode extends State {
         }
 
         /** below this is used for padding **/
-        if(jedisaur.isCarrying()){
+        if(jedisaur.isCarrying() && jedisaur.getCopyBlock() != null){
+            System.out.println(jedisaur.getCopyBlock() + " " + jedisaur.getCopyBlock().getDupliSize().x);
             blockSize = jedisaur.getCopyBlock().getDupliSize().x;
         }
 
@@ -252,7 +253,6 @@ public class MysteryCode extends State {
                                         if(banishCells.contains(tempCurrentCell)){
                                             if(blockHolders[i][k].isOccupied()){
                                                 blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x - blockSize + 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
-
                                             }
                                         }
                                     }
@@ -264,7 +264,6 @@ public class MysteryCode extends State {
                                     if(banishCells.contains(tempCurrentCell)){
                                             if(blockHolders[i][k].isOccupied()){
                                                 blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x + blockSize - 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
-
                                             }
 
                                     }
@@ -294,7 +293,7 @@ public class MysteryCode extends State {
 
 
                             if(jedisaur.isPickedUp()){
-
+                                blocksArrayList.get(i).set(j, null);
                                 int tempCurrentCell = currentCell;
                                 for(int k=j-1; k>=0; k--){
                                     tempCurrentCell--;
@@ -406,8 +405,6 @@ public class MysteryCode extends State {
         banishCells.clear();
         banishPerRow.clear();
 
-
-
         for(BlockHolder[] b: blockHolders){
             for(BlockHolder i: b){
                 if(i != null){
@@ -422,8 +419,6 @@ public class MysteryCode extends State {
                 }
             }
         }
-
-
 
         for(int i = 0; i < answerPoolContainer.size(); i++) {
             if(answerBlocks[i] != null) {
@@ -464,25 +459,6 @@ public class MysteryCode extends State {
 
             fuzzyDone = true;
         }
-    }
-    public int getNumberOfAttempts(){
-        return fuzzyLogic.getNumberOfAttempts();
-    }
-
-    public int getNumberofError(){
-        return fuzzyLogic.getNumberOfErrors();
-    }
-
-    public float getTimeConsumption(){
-        return  fuzzyLogic.getTimeConsumptions();
-    }
-
-    public int getCorrectOutput(){
-        return fuzzyLogic.getCorrectOutput();
-    }
-
-    public int getCookies(){
-        return fuzzyLogic.getCookies();
     }
 
     public String checkTimeConsumption(int timer){

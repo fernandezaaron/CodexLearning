@@ -317,6 +317,7 @@ public class NPC extends Entity {
                                     choiceTableContainer.setVisible(false);
                                     setReadiness(true);
 
+
                                 }
                                 else{
                                     setHintFlag(true);
@@ -373,6 +374,10 @@ public class NPC extends Entity {
         if(isInPlayroom() && isReady()) {
             manager.getMinigameChecker().minigameCheck();
             if(manager.getMinigameChecker().correctOutputCheck()) {
+                setTalking(false);
+                dialogBoxContainer.setVisible(false);
+                db.setOpen(false);
+                nextStatement = 0;
                 manager.getMinigameChecker().setDone(true);
             }
             else {
