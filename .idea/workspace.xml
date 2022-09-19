@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d6fe2c7-098b-4435-9d5a-8917e2b9dfa3" name="Changes" comment="visual bug fix">
+    <list default="true" id="7d6fe2c7-098b-4435-9d5a-8917e2b9dfa3" name="Changes" comment="fill in the block bug fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/excel/Minigames.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/excel/Minigames.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/text/SaveFile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/text/SaveFile.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/core/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/Character.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/FillInTheBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/FillInTheBlock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/filereader/Questionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/filereader/Questionnaire.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,7 +159,21 @@
       <option name="project" value="LOCAL" />
       <updated>1663315733703</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="fill in the block bug fix">
+      <created>1663577341309</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1663577341309</updated>
+    </task>
+    <task id="LOCAL-00006" summary="fill in the block bug fix">
+      <created>1663577387746</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1663577387746</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -184,7 +192,8 @@
     <MESSAGE value="ads" />
     <MESSAGE value="implemented sa mysterycode yung banishperrow" />
     <MESSAGE value="CodeIT bugfix&#10;FillInTheBlock dispenser reposition" />
-    <option name="LAST_COMMIT_MESSAGE" value="CodeIT bugfix&#10;FillInTheBlock dispenser reposition" />
+    <MESSAGE value="fill in the block bug fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="fill in the block bug fix" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
