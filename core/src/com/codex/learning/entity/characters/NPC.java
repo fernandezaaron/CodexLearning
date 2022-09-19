@@ -88,6 +88,7 @@ public class NPC extends Entity {
         //dialogue of the NPC
         manager.getDialogue().setStage(manager.getStageSelector().getStageMap());
 
+        db.setOpen(false);
         talking = false;
         readiness = false;
         doneChecker = false;
@@ -97,6 +98,8 @@ public class NPC extends Entity {
         inPlayroomCarpet = false;
         computerReady = false;
         newPlayerDialogueDone = false;
+        inContact = false;
+
 
         BodyDef def = new BodyDef();
         def.type = BodyDef.BodyType.StaticBody;
@@ -117,8 +120,8 @@ public class NPC extends Entity {
         body.createFixture(fixtureDef).setUserData(this);
         shape.dispose();
 
-        inContact = false;
         nextStatement = 0;
+        index = 0;
         hintIndex = 0;
 
         this.size.x /= Constants.PPM;
@@ -257,6 +260,7 @@ public class NPC extends Entity {
             dialogBoxContainer.setVisible(true);
             setTalking(true);
             if(!db.isOpen()) {
+                System.out.println(nextStatement + " " + index);
                 db.textAnimation(manager.getDialogue().reader(nextStatement, "newPlayer", index));
                 if(!dialogBoxContainer.hasChildren()){
                     dialogBoxContainer.defaults().size(700,100);

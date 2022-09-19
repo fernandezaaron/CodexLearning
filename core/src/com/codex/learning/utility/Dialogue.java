@@ -2596,11 +2596,14 @@ public class Dialogue {
     );
 
 
+
+
     private boolean statementEnd;
     float myFloatNum = 5.99f;
     private String npcName;
     private int stage;
     private String topic;
+    private ArrayList<ArrayList<String>> arrayLists;
 
     public Dialogue(){
         statementEnd = false;
@@ -2609,6 +2612,7 @@ public class Dialogue {
 
 
     public String reader(int nextStatement, String dialogueSet, int index){
+
         switch (dialogueSet){
             case "introduction": return statementMover(nextStatement, introductionDialogue, getStage() - 1);
             case "question": return statementMover(nextStatement, questionDialogue, 0);
@@ -2626,6 +2630,7 @@ public class Dialogue {
     }
 
     public String statementMover(int nextStatement, ArrayList<ArrayList<String>> arrayLists, int index){
+        setArrayLists(arrayLists);
         if(nextStatement == arrayLists.get(index).size()){
             System.out.println(nextStatement + " + " + arrayLists.get(index).size());
             setStatementEnd(true);
@@ -2651,6 +2656,10 @@ public class Dialogue {
         int number = random.nextInt(limit);
 
         return codeRiddleFeedback.get(index).get(number);
+    }
+
+    public void disposeArray(){
+        getArrayLists().clear();
     }
 
     public int getTopic(String topic){
@@ -2695,5 +2704,13 @@ public class Dialogue {
 
     public String getObjectiveDialogue(int QID) {
         return objectiveDialogue.get(QID).get(0);
+    }
+
+    public ArrayList<ArrayList<String>> getArrayLists() {
+        return arrayLists;
+    }
+
+    public void setArrayLists(ArrayList<ArrayList<String>> arrayLists) {
+        this.arrayLists = arrayLists;
     }
 }

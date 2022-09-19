@@ -151,6 +151,7 @@ public class PauseState extends State {
                         manager.getMinigame().dispose();
                     }
                     manager.getPlayroomMap().dispose();
+//                    manager.getDialogue().disposeArray();
                     manager.set(new StageSelectState(manager));
 
                 }
