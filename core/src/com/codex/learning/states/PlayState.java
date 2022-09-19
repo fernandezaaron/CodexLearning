@@ -12,7 +12,6 @@ import com.codex.learning.entity.maps.HouseMap;
 import com.codex.learning.entity.maps.OfficeMap;
 import com.codex.learning.entity.maps.PlayroomMapS1;
 import com.codex.learning.entity.maps.SchoolMap;
-import com.codex.learning.states.minigames.Minigame;
 import com.codex.learning.utility.*;
 
 import java.util.Random;
@@ -53,24 +52,31 @@ public class PlayState extends State{
 
 
 //        randomMinigame = rand.nextInt(4-1)+1;
-        randomMinigame = 1;
+        randomMinigame = 2;
 
         playroomMap = new PlayroomMapS1(manager);
         manager.setPlayroomMap(playroomMap);
+
         fuzzyLogic = new FuzzyLogic();
 
         if(manager.getStageSelector().map().equals("1")){
             house = new HouseMap(manager);
+            System.out.println("house");
+
+            manager.setHouseMap(house);
             computer = new Computer(manager, fuzzyLogic);
             computer.create(new Vector2(-6, 2.8f), new Vector2(0.6f, 0.6f), 0);
         }
         else if(manager.getStageSelector().map().equals("2")){
             schoolMap = new SchoolMap(manager);
+            System.out.println("asdsaf");
             computer = new Computer(manager, fuzzyLogic);
             computer.create(new Vector2(-4, 6.5f), new Vector2(0.6f, 0.6f), 0);
         }
         else if(manager.getStageSelector().map().equals("3")){
             officeMap = new OfficeMap(manager);
+            System.out.println("office");
+
             computer = new Computer(manager, fuzzyLogic);
             computer.create(new Vector2(-6.5f, 10.2f), new Vector2(0.6f, 0.6f), 0);
         }
@@ -101,7 +107,9 @@ public class PlayState extends State{
         if(manager.getStageSelector().getStageMap() == 1){
             manager.setNewPlayer(true);
         }
-
+        else{
+            manager.setNewPlayer(false);
+        }
     }
 
     @Override
@@ -256,6 +264,7 @@ public class PlayState extends State{
             officeMap.dispose();
         }
         manager.getMinigame().dispose();
+        playroomMap.dispose();
     }
 
     private void jedisaurStop(float delta){
