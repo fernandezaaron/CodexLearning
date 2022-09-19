@@ -104,7 +104,6 @@ public class Questionnaire extends DatabaseReader {
             topics = topic.get(randomizer.nextInt(topic.size()));
             questionID = randomizer.nextInt(excelMinigameLimit - 1) + 1;
             difficulty = levels.get(randomizer.nextInt(levels.size()));
-            System.out.println(questionID);
             findCell = findRow(minigameSheet, questionID);
             getMinigameHolder(findCell, 4, difficulty, topics);
         }
