@@ -23,7 +23,7 @@ public class HowToPlay extends Entity {
 
     public HowToPlay(Manager manager) {
         super(manager);
-        images = new TextureRegion[3];
+        images = new TextureRegion[4];
         currentImage = 0;
     }
 
@@ -93,7 +93,7 @@ public class HowToPlay extends Entity {
         if(isInHowToPlay() && Gdx.input.isKeyJustPressed(Input.Keys.A) && currentImage > 0) {
             currentImage--;
         }
-        else if(isInHowToPlay() && Gdx.input.isKeyJustPressed(Input.Keys.D) && currentImage < 2){
+        else if(isInHowToPlay() && Gdx.input.isKeyJustPressed(Input.Keys.D) && currentImage < 3){
             currentImage++;
         }
     }
