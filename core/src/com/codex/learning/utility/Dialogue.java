@@ -2621,8 +2621,8 @@ public class Dialogue {
             case "finishCheck": return statementMover(nextStatement, askIfFinished, index);
             case "minigameintrodialogue": return statementMover(nextStatement, minigameIntroDiaulogue, index - 1);
             case "done" : return statementMover(nextStatement, askIfFinished, 0);
-            case "noplayroom": return statementMover(nextStatement, noToPlayRoomDialogue, index);
-            case "newPlayer": return statementMover(nextStatement, newPlayerIntro, index);
+            case "noplayroom": return statementMover(nextStatement, noToPlayRoomDialogue, index - 1);
+            case "newPlayer": return statementMover(nextStatement, newPlayerIntro, 0);
 
 
         }
@@ -2669,7 +2669,7 @@ public class Dialogue {
             case "Variables": return 3;
             case "Data Types": return 4;
             case "Type Casting": return 5;
-            case "Oprators": return 6;
+            case "Operators": return 6;
             case "Conditional": return 7;
             case "Loops": return 8;
             case "Arrays": return 9;

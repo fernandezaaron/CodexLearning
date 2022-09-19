@@ -17,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import com.codex.learning.entity.characters.Character;
+import com.codex.learning.entity.maps.HouseMap;
 import com.codex.learning.entity.maps.PlayroomMapS1;
 import com.codex.learning.states.State;
 import com.codex.learning.states.minigames.Minigame;
@@ -62,6 +63,7 @@ public class Manager {
     private MinigameChecker minigameChecker;
     private Minigame minigame;
     private PlayroomMapS1 playroomMap;
+    private HouseMap houseMap;
 
     private DecisionTree decisionTree;
 
@@ -134,6 +136,8 @@ public class Manager {
         dialogue = new Dialogue();
 
         hintsIndex = 0;
+
+
     }
 
 
@@ -290,6 +294,14 @@ public class Manager {
 
     public void setPlayroomMap(PlayroomMapS1 playroomMap) {
         this.playroomMap = playroomMap;
+    }
+
+    public HouseMap getHouseMap() {
+        return houseMap;
+    }
+
+    public void setHouseMap(HouseMap houseMap) {
+        this.houseMap = houseMap;
     }
 
     public void setMinigameChecker(MinigameChecker minigameChecker) {
