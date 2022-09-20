@@ -25,6 +25,7 @@ import com.codex.learning.states.State;
 import com.codex.learning.states.minigames.Minigame;
 import com.codex.learning.utility.decisiontree.Behavior;
 import com.codex.learning.utility.decisiontree.DecisionTree;
+import com.codex.learning.utility.decisiontree.Dtree;
 import com.codex.learning.utility.filereader.Questionnaire;
 
 import java.io.*;
@@ -77,14 +78,17 @@ public class Manager {
     private int hintsIndex;
 
     private ExpertSystem expertSystem;
+    private Dtree dtree;
 
     private Dialogue dialogue;
     public Manager(){
         expertSystem = new ExpertSystem();
         expertSystem.readFile();
 
-        System.out.println("L:EVEL - " + expertSystem.getExpertiseLevel());
+        System.out.println("LEVEL - " + expertSystem.getExpertiseLevel());
         questionnaire = new Questionnaire(expertSystem.getExpertiseLevel());
+
+        dtree = new Dtree();
 
         b2dr = new Box2DDebugRenderer();
 
@@ -360,15 +364,6 @@ public class Manager {
         this.moving = moving;
     }
 
-    public String removeBracket(String string){
-        StringBuilder stringBuilder = new StringBuilder(string);
-
-        stringBuilder.deleteCharAt(string.length() - 1);
-        stringBuilder.deleteCharAt(0);
-
-        return stringBuilder.toString();
-    }
-
     public void updateBehavior(int timer){
         String currentBehavior = "";
         String movement = (isMoving()) ? "YES":"NO";
@@ -382,7 +377,7 @@ public class Manager {
             behavior.add("");
             behavior.add("");
             currentBehavior = String.valueOf(getDecisionTree().classify(behavior, getDecisionTree().getTree()));
-            currentBehavior = removeBracket(currentBehavior);
+            currentBehavior = currentBehavior;
 
             if(currentBehavior.equals("ENGAGED")){
                 //GIVE FEEDBACK REGARDING ENGAGED

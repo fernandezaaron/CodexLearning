@@ -53,7 +53,7 @@ public class ExpertSystem {
         else{
             float result = (float) totalUserCookies / overAllCookies;
 
-            if(result == 1){
+            if(result >= .95){
                 return "Expert";
             }
             else if(result >= .9){
