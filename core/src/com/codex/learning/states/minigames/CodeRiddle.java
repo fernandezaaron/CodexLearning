@@ -349,6 +349,8 @@ public class CodeRiddle extends State {
     public void checkBehavior(int timer){
         String currentBehavior = "";
         if(timer > 0 && timer % 15 == 0){
+            System.out.println(manager.getDtree().codeRiddleML(checkTimeConsumption(timer),
+                    convertNumberOfError(error)));
             manager.getDtree().codeRiddleML(checkTimeConsumption(timer),
                     convertNumberOfError(error));
         }

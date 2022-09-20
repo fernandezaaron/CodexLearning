@@ -22,7 +22,7 @@ public class Dtree {
         String s = null;
         try {
             ProcessBuilder processBuilder = new ProcessBuilder("python",
-                    System.getProperty("user.dir") + "\\resources\\minigameScript.py",
+                    System.getProperty("user.dir") + "\\model\\minigameScript.py",
                     movementDetected, timeConsumption, numberOfAttempt, numberOfBlockInteraction);
 
             Process process = processBuilder.start();
@@ -38,24 +38,24 @@ public class Dtree {
         return "www";
     }
 
-    public void codeRiddleML(String timeConsumption, String numberOfError){
+    public String codeRiddleML(String timeConsumption, String numberOfError){
         try {
-
             ProcessBuilder processBuilder = new ProcessBuilder("python",
-                    System.getProperty("user.dir") + "\\resources\\codeRiddleScript.py",
+                    System.getProperty("user.dir") + "\\model\\codeRiddleScript.py",
                     timeConsumption, numberOfError);
             Process process = processBuilder.start();
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String s = null;
             while ((s = reader.readLine()) != null) {
-                System.out.println("WDWDWDWDWDWDWDWDW");
                 currentBehavior = removeBracket(s);
                 System.out.println(removeBracket(s));
                 System.out.println("ASDA - " + currentBehavior);
+                return removeBracket(s);
             }
         }catch(IOException e){
             e.printStackTrace();
         }
+        return "ss";
     }
 
     public String getCurrentBehavior() {
