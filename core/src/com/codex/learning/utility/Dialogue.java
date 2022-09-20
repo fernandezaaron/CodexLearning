@@ -467,7 +467,7 @@ public class Dialogue {
                     new ArrayList<>(Arrays.asList(
                             // Loops
                             "Try to remember the output of the program",
-                            "Don't forget to check the closing statement",
+                            "Iterations must be always at the end of the loop",
                             "Remember that each loops have different syntax",
                             "Loops always initialize an iterator first",
                             "When the iterator is in the output, it will show its value"
@@ -1226,6 +1226,7 @@ public class Dialogue {
                             "Data Type: int \n" +
                             "Variable name: i \n" +
                             "Initialized value: 0 \n" +
+                            "Final iteration: 5 \n" +
                             "For loop: \n" +
                             "Print \"Hello World\" "
                     )),
@@ -1236,6 +1237,7 @@ public class Dialogue {
                             "Data Type: int \n" +
                             "Variable name: i \n" +
                             "Initialized value: 0 \n" +
+                            "Final iteration: 5 \n" +
                             "While loop: \n" +
                             "Print \"Hello World\" "
                     )),
@@ -1246,6 +1248,7 @@ public class Dialogue {
                             "Data Type: int \n" +
                             "Variable name: i \n" +
                             "Initialized value: 0 \n" +
+                            "Final iteration: 5 \n" +
                             "Do-While loop: \n" +
                             "Print \"Hello World\" "
                     )),
@@ -1256,6 +1259,7 @@ public class Dialogue {
                             "Data Type: int \n" +
                             "Variable name: i \n" +
                             "Initialized value: 0 \n" +
+                            "Final iteration: 5 \n" +
                             "For loop: \n" +
                             "Print the value of \"i\" \n" +
                             "Print \"Hello World\" "
@@ -1267,6 +1271,7 @@ public class Dialogue {
                             "Data Type: int \n" +
                             "Variable name: i \n" +
                             "Initialized value: 0 \n" +
+                            "Final iteration: 5 \n" +
                             "While loop: \n" +
                             "Print the value of \"i\" \n" +
                             "Print \"Hello World\" "
@@ -1278,6 +1283,7 @@ public class Dialogue {
                             "Data Type: int \n" +
                             "Variable name: i \n" +
                             "Initialized value: 0 \n" +
+                            "Final iteration: 5 \n" +
                             "Do-While loop: \n" +
                             "Print the value of \"i\" \n" +
                             "Print \"Hello World\" "
@@ -1289,6 +1295,7 @@ public class Dialogue {
                             "Data Type: int \n" +
                             "Variable name: i \n" +
                             "Initialized value: 0 \n" +
+                            "Final iteration: 5 \n" +
                             "For loop: Break if i is 2\n" +
                             "Print the value of \"i\" \n" +
                             "Print \"Hello World\" "
@@ -1300,6 +1307,7 @@ public class Dialogue {
                             "Data Type: int \n" +
                             "Variable name: i \n" +
                             "Initialized value: 0 \n" +
+                            "Final iteration: 5 \n" +
                             "While loop: Break if i is 2\n" +
                             "Print the value of \"i\" \n" +
                             "Print \"Hello World\" "
@@ -1311,6 +1319,7 @@ public class Dialogue {
                             "Data Type: int \n" +
                             "Variable name: i \n" +
                             "Initialized value: 0 \n" +
+                            "Final iteration: 5 \n" +
                             "Do-While loop: Break if i is 2\n" +
                             "Print the value of \"i\" \n" +
                             "Print \"Hello World\" "
