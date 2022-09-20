@@ -325,6 +325,7 @@ public class PlayState extends State{
                 jedisaur.getBody().getPosition().set(-20, 1);
             }
             else {
+                jediGrandpa.setDirection("east");
                 jediGrandpa.noToPlayroom(jedisaur);
 
             }
