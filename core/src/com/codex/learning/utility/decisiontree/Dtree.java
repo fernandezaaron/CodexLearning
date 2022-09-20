@@ -19,7 +19,6 @@ public class Dtree {
     }
 
     public String minigameRiddle(String movementDetected, String timeConsumption, String numberOfAttempt, String numberOfBlockInteraction){
-        String s = null;
         try {
             ProcessBuilder processBuilder = new ProcessBuilder("python",
                     System.getProperty("user.dir") + "\\assets\\model\\minigameScript.py",
@@ -27,9 +26,8 @@ public class Dtree {
 
             Process process = processBuilder.start();
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-
+            String s = null;
             while ((s = reader.readLine()) != null) {
-                System.out.println(s);
                 return removeBracket(s);
             }
         }catch(IOException e){
