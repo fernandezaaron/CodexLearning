@@ -2,7 +2,6 @@ package com.codex.learning.utility.decisiontree;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import org.pmml4s.model.Model;
 
 public class Behavior {
     public static ArrayList<String> currentDataSet = new ArrayList<>();

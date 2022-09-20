@@ -353,7 +353,6 @@ public class CodeRiddle extends State {
         behavior.add("");
         currentBehavior = String.valueOf(manager.getDecisionTree().classify(behavior, manager.getDecisionTree().getTree()));
 
-        currentBehavior = manager.removeBracket(currentBehavior);
         if(currentBehavior.equals("ENGAGED") || currentBehavior.equals("NEUTRAL") || currentBehavior.equals("BORED")){
             //GIVE FEEDBACK
 
