@@ -115,6 +115,7 @@ public class PlayState extends State{
         manager.getWorld().step(1/60f,6,2);
         if(!isInStartArea()){
             activeBody(false);
+            manager.checkIfMoving(jedisaur);
             playroomMap.setActive(true);
             playroomMap.update(delta);
             manager.getMinigame().update(delta);
@@ -151,7 +152,6 @@ public class PlayState extends State{
                     }
 
                     // CHECK THE BEHAVIOR IN STATE
-//                    manager.checkIfMoving(jedisaur);
 //                    manager.updateBehavior((int) timer);
 //                manager.checkBehavior((int) timer, jedisaur.getNumberOfBlockInteraction(), computer.isDone(), fuzzyLogic);
                     
