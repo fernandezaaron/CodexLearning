@@ -121,16 +121,20 @@ public class Minigame extends State {
     }
 
     public String convertNumberOfAttempt(int numberOfAttempt){
-        if(numberOfAttempt <= 1){
+        if(numberOfAttempt <= 1)
             return "1";
-        }
-        else if(numberOfAttempt <= 3){
+        else if(numberOfAttempt <= 3)
             return "2";
-        }
-        else if(numberOfAttempt <= 5){
+        else
             return "3";
-        }
-        return "1";
+    }
+
+    public String checkTimeConsumption(int timeConsumption){
+        if(timeConsumption <= 180)
+            return "1";
+        else if(timeConsumption <= 180)
+            return "2";
+        return "3";
     }
 
     public void fuzzyReset(){

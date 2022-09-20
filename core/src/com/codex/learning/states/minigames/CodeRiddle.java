@@ -351,7 +351,7 @@ public class CodeRiddle extends State {
         if(timer > 0 && timer % 15 == 0){
             System.out.println(manager.getDtree().codeRiddleML(checkTimeConsumption(timer),
                     convertNumberOfError(error)));
-            manager.getDtree().codeRiddleML(checkTimeConsumption(timer),
+            currentBehavior = manager.getDtree().codeRiddleML(checkTimeConsumption(timer),
                     convertNumberOfError(error));
         }
     }
@@ -363,29 +363,6 @@ public class CodeRiddle extends State {
         else if(result <= .8)
             return "2";
         return "1";
-    }
-
-    // Time Consumption, Number of Error
-    public void updateBehavior(){
-        String currentBehavior = "";
-        String time = checkTimeConsumption((int) timer);
-        behavior.add("");
-        behavior.add(time);
-        behavior.add("");
-        behavior.add(fuzzyLogic.getNumberOfErrorsRules());
-        behavior.add("");
-        currentBehavior = String.valueOf(manager.getDecisionTree().classify(behavior, manager.getDecisionTree().getTree()));
-
-        if(currentBehavior.equals("ENGAGED") || currentBehavior.equals("NEUTRAL") || currentBehavior.equals("BORED")){
-            //GIVE FEEDBACK
-
-
-        }
-        else{
-            //GIVE HINTS
-
-        }
-        behavior.clear();
     }
 
     public String checkTimeConsumption(int timer){
