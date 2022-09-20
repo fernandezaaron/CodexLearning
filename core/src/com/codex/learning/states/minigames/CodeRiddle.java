@@ -287,7 +287,6 @@ public class CodeRiddle extends State {
 
     public void closeDialogBox(){
         dialogTimer += Gdx.graphics.getDeltaTime();
-        System.out.println(dialogTimer);
 
         if(dialogTimer >= 2){
             resultFeedbackTable.setVisible(false);

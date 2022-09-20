@@ -165,6 +165,8 @@ public class MysteryCode extends State {
     public void update(float delta) {
         if(!manager.getMinigameChecker().isDone()){
             timer += Gdx.graphics.getDeltaTime();
+            System.out.println(timer);
+
         }
         currentCell = 0;
         for (int i = 0; i < minigameContainer.size(); i++) {
