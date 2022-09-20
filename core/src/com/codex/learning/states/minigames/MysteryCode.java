@@ -65,13 +65,14 @@ public class MysteryCode extends State {
         for(int i = 0; i < banishPerRow.size(); i++) {
             banishNumberIterator = (banishPerRow.get(i).size() == 1)? 1:randomizer.nextInt(2) + 1;
             for (int j = 0; j < banishPerRow.get(i).size(); j++) {
+                System.out.println(banishPerRow.size());
                 banishNumber = randomizer.nextInt(banishPerRow.get(i).size() - 1) + banishPerRow.get(i).get(0);
                 if (banishNumberIterator == 0) {
                     break;
                 }
                 else {
                     if (!banishCells.contains(banishNumber)) {
-                        System.out.println("adds banish");
+                        System.out.println("adds banish " + banishNumber);
                         banishCells.add(banishNumber);
                         banishNumberIterator--;
                     }
@@ -88,14 +89,15 @@ public class MysteryCode extends State {
                 if(minigameContainer.get(i).get(j) != null) {
                     currentStringLength = (float) String.valueOf(minigameContainer.get(i).get(j)).length();
                     if (banishCells.contains(currentCell)) {
+                        System.out.println(currentCell + " asd");
                         blockHolders[i][j] = new BlockHolder(manager, "\"" + minigameContainer.get(i).get(j) + "\"");
                         blockHolders[i][j].create(new Vector2(xStartingPoint, yStartingPoint - 0.5f), new Vector2(Constants.BLOCK_HOLDER_WIDTH, Constants.BLOCK_HOLDER_HEIGHT), 0);
                         blocksArrayList.get(i).add(blockHolders[i][j].getCopyBlock());
                         answerPoolContainer.add(minigameContainer.get(i).get(j));
-                        xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 1.75f;
-                        if(currentStringLength >7){
-                            xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 2.75f;
-                        }
+                        xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 2f;
+//                        if(currentStringLength >7){
+//                            xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 2.75f;
+//                        }
                     }
                     else {
                         questionBlocks[i][j] = new Blocks(manager, "\"" + minigameContainer.get(i).get(j) + "\"", minigameContainer.get(i).get(j), true);
@@ -391,18 +393,6 @@ public class MysteryCode extends State {
 
     @Override
     public void dispose() {
-//        currentCell = 0;
-//        for(int i = 0; i < minigameContainer.size(); i++) {
-//            for (int j = 0; j < minigameContainer.get(i).size(); j++) {
-//                if (minigameContainer.get(i).get(j) != null) {
-//                    if(banishCells.contains(currentCell)) {
-//                        blockHolders[i][j].disposeBody();
-//                    }
-//                    currentCell++;
-//                }
-//            }
-//        }
-        currentCell = 0;
         banishCells = null;
         banishPerRow = null;
         minigameContainer = null;

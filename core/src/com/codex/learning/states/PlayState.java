@@ -202,7 +202,6 @@ public class PlayState extends State{
     public void render(SpriteBatch sprite) {
         manager.getCamera().update();
         enterPlayRoom(jedisaur);
-//        exitPlayroom(jedisaur);
 
         if(isInStartArea()){
             if(manager.getStageSelector().map().equals("1")){

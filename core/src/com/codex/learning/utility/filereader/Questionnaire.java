@@ -499,11 +499,10 @@ public class Questionnaire extends DatabaseReader {
     public void clearMinigames(){
         System.out.println("clearing");
         minigameHolder = null;
+        minigameElementLimit = 0;
         minigameGetter = null;
         banishThisNumber = null;
         topic.clear();
-//        answerPool.clear();
-//        dispenserPool.clear();
         banishPerRow = null;
         questionID = 0;
 
