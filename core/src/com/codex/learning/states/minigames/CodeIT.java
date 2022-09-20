@@ -1,5 +1,6 @@
 package com.codex.learning.states.minigames;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.codex.learning.entity.blocks.BlockDispenser;
@@ -10,6 +11,7 @@ import com.codex.learning.entity.maps.PlayroomMapS1;
 import com.codex.learning.states.PauseState;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.Constants;
+import com.codex.learning.utility.FuzzyLogic;
 import com.codex.learning.utility.Manager;
 
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ import java.util.Random;
 
 public class CodeIT extends State {
     private Character jedisaur;
+    private FuzzyLogic fuzzyLogic;
     private PlayroomMapS1 playroom;
     private Blocks[][] questionBlocks;
     private BlockHolder[][] blockHolders;
@@ -29,6 +32,7 @@ public class CodeIT extends State {
     private ArrayList<ArrayList<Blocks>> blocksArrayList;
     private float AnsPoolY, AnsPoolX, currentStringLength, xStartingPoint;
     private int currentAnsCell, ansPoolSize, totalLineLength, yStartingPoint, currentCell, stage;
+    private int timer;
 //    private int blockCount;
 //    private boolean blockSpawn;
 //    private BlockDispenser[] blockDispensers;
@@ -37,8 +41,9 @@ public class CodeIT extends State {
 //    private int minigameContainerLimit;
 //    private Random randomizer;
 
-    public CodeIT(Manager manager, Character character) {
+    public CodeIT(Manager manager, Character character, FuzzyLogic fuzzyLogic) {
         super(manager);
+        timer = 0;
         pause = new PauseState(manager);
         playroom = new PlayroomMapS1(manager);
         getAnswerPool = new ArrayList<>();
@@ -111,10 +116,15 @@ public class CodeIT extends State {
         setToCheck(blockHolders);
 
         this.jedisaur = character;
+        this.fuzzyLogic = fuzzyLogic;
     }
 
     @Override
     public void update(float delta) {
+        if(!manager.getMinigameChecker().isDone()){
+            timer += Gdx.graphics.getDeltaTime();
+        }
+
         for (int i = 0; i < minigameContainer.size(); i++) {
             for (int j = 0; j < minigameContainer.get(i).size(); j++) {
                 if (minigameContainer.get(i).get(j) != null) {
@@ -272,6 +282,28 @@ public class CodeIT extends State {
 
     public void setToCheck(BlockHolder[][] blockHolders) {
         manager.getMinigameChecker().setBlockHolders(blockHolders);
+    }
+
+    public void itIsCorrect(){
+        if(manager.getMinigameChecker().isDone() && !fuzzyLogic.isFuzzyDone()){
+            fuzzyLogic.setNumberOfAttempts(manager.getMinigameChecker().getNumberOfAttempts());
+            fuzzyLogic.setCorrectOutput(1);
+            fuzzyLogic.setTimeConsumptions(fuzzyLogic.getTimeConsumptions() + timer);
+
+            fuzzyLogic.fuzzyNumberOfError();
+            fuzzyLogic.fuzzyTimeConsumption();
+            fuzzyLogic.fuzzyNumberOfAttempt();
+            fuzzyLogic.fuzzyCorrectOutput();
+
+            fuzzyLogic.calculateNumberOfCookies();
+
+            manager.getExpertSystem().setCurrentCookie(fuzzyLogic.getCookies());
+            manager.getExpertSystem().editCookie(manager.getStageSelector().getStageMap() - 1);
+            manager.getExpertSystem().writeFile(manager.getExpertSystem().getCookies());
+            manager.getExpertSystem().readFile();
+
+            fuzzyLogic.setFuzzyDone(true);
+        }
     }
 
     public void setBlockToCheck(Blocks block, int i, int j) {
