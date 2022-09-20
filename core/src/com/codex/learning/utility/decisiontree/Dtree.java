@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Dtree {
-
     public String removeBracket(String string){
         StringBuilder stringBuilder = new StringBuilder(string);
 

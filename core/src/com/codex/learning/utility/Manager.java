@@ -23,6 +23,7 @@ import com.codex.learning.states.State;
 import com.codex.learning.states.minigames.Minigame;
 import com.codex.learning.utility.decisiontree.Behavior;
 import com.codex.learning.utility.decisiontree.DecisionTree;
+import com.codex.learning.utility.decisiontree.Dtree;
 import com.codex.learning.utility.filereader.Questionnaire;
 
 import java.io.*;
@@ -73,14 +74,17 @@ public class Manager {
     private int hintsIndex;
 
     private ExpertSystem expertSystem;
+    private Dtree dtree;
 
     private Dialogue dialogue;
     public Manager(){
         expertSystem = new ExpertSystem();
         expertSystem.readFile();
 
-        System.out.println("L:EVEL - " + expertSystem.getExpertiseLevel());
+        System.out.println("LEVEL - " + expertSystem.getExpertiseLevel());
         questionnaire = new Questionnaire(expertSystem.getExpertiseLevel());
+
+        dtree = new Dtree();
 
         b2dr = new Box2DDebugRenderer();
 
