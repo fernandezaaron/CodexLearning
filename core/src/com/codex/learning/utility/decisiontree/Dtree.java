@@ -3,10 +3,10 @@ package com.codex.learning.utility.decisiontree;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.ProcessBuilder;
 
 public class Dtree {
-    private String currentBehavior;
-    public String removeBracket(String string){
+    public static String removeBracket(String string){
         StringBuilder stringBuilder = new StringBuilder(string);
 
         stringBuilder.deleteCharAt(string.length() - 1);
@@ -38,7 +38,7 @@ public class Dtree {
         return "www";
     }
 
-    public String codeRiddleML(String timeConsumption, String numberOfError){
+    public static String codeRiddleML(String timeConsumption, String numberOfError){
         try {
             ProcessBuilder processBuilder = new ProcessBuilder("python",
                     System.getProperty("user.dir") + "\\model\\codeRiddleScript.py",
@@ -47,9 +47,9 @@ public class Dtree {
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String s = null;
             while ((s = reader.readLine()) != null) {
-                currentBehavior = removeBracket(s);
-                System.out.println(removeBracket(s));
-                System.out.println("ASDA - " + currentBehavior);
+//                currentBehavior = removeBracket(s);
+//                System.out.println(removeBracket(s));
+//                System.out.println("ASDA - " + currentBehavior);
                 return removeBracket(s);
             }
         }catch(IOException e){
@@ -58,11 +58,7 @@ public class Dtree {
         return "ss";
     }
 
-    public String getCurrentBehavior() {
-        return currentBehavior;
-    }
-
-    public void setCurrentBehavior(String currentBehavior) {
-        this.currentBehavior = currentBehavior;
+    public static void main(String[] args) {
+        System.out.println(codeRiddleML("0", "5"));
     }
 }
