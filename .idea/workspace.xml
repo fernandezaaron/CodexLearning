@@ -118,6 +118,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Dtree" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.codex.learning.utility.decisiontree.Dtree" />
+      <module name="CodexLearning.core.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.codex.learning.utility.decisiontree.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.codex.learning.utility.decisiontree.Test" />
       <module name="CodexLearning.core.main" />
@@ -134,9 +147,11 @@
     <list>
       <item itemvalue="Application.DesktopLauncher" />
       <item itemvalue="Application.Test" />
+      <item itemvalue="Application.Dtree" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Dtree" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Application.DesktopLauncher" />
       </list>
