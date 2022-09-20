@@ -24,6 +24,7 @@ public class Dtree {
                     System.getProperty("user.dir") + "\\assets\\model\\minigameScript.py",
                     movementDetected, timeConsumption, numberOfAttempt, numberOfBlockInteraction);
 
+
             Process process = processBuilder.start();
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String s = null;
