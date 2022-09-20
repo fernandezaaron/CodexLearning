@@ -340,15 +340,6 @@ public class Manager {
         this.moving = moving;
     }
 
-    public String removeBracket(String string){
-        StringBuilder stringBuilder = new StringBuilder(string);
-
-        stringBuilder.deleteCharAt(string.length() - 1);
-        stringBuilder.deleteCharAt(0);
-
-        return stringBuilder.toString();
-    }
-
     public void updateBehavior(int timer){
         String currentBehavior = "";
         String movement = (isMoving()) ? "YES":"NO";
@@ -362,7 +353,7 @@ public class Manager {
             behavior.add("");
             behavior.add("");
             currentBehavior = String.valueOf(getDecisionTree().classify(behavior, getDecisionTree().getTree()));
-            currentBehavior = removeBracket(currentBehavior);
+            currentBehavior = currentBehavior;
 
             if(currentBehavior.equals("ENGAGED")){
                 //GIVE FEEDBACK REGARDING ENGAGED
