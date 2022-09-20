@@ -46,6 +46,7 @@ public class Dtree {
             Process process = processBuilder.start();
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String s = null;
+
             while ((s = reader.readLine()) != null) {
 //                currentBehavior = removeBracket(s);
 //                System.out.println(removeBracket(s));
