@@ -43,7 +43,7 @@ public class Minigame extends State {
         switch (currentMinigame){
             case 1:
                 fillInTheBlockFlag = true;
-                fillInTheBlock = new FillInTheBlock(manager, jedisaur);
+                fillInTheBlock = new FillInTheBlock(manager, jedisaur, fuzzyLogic);
                 break;
             case 2:
                 mysteryCodeFlag = true;
@@ -55,7 +55,7 @@ public class Minigame extends State {
                 break;
             case 4:
                 codeITFlag = true;
-                codeIT = new CodeIT(manager,jedisaur);
+                codeIT = new CodeIT(manager,jedisaur, fuzzyLogic);
                 break;
         }
     }
@@ -111,6 +111,11 @@ public class Minigame extends State {
     }
 
 
+
+
+    public void fuzzyReset(){
+        fuzzyLogic.fuzzyReset();
+    }
 
     public int getCurrentMinigame() {
         return currentMinigame;
