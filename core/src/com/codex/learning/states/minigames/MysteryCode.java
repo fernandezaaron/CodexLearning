@@ -106,7 +106,7 @@ public class MysteryCode extends State {
                         }
                         else{
                             if(currentStringLength>7){
-                                xStartingPoint += 2.75f;
+                                xStartingPoint += 2.95f;
                             }
                             questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.23f), Constants.BLOCKS_HEIGHT), 0);
                         }

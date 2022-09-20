@@ -81,19 +81,22 @@ public class Blocks extends Entity {
 
         shadowColor.setProjectionMatrix(manager.getCamera().combined);
         shadowColor.setColor(201 / 255f, 186 / 255f, 176 / 255f, 0.0f);
+//        shadowColor.setColor(128 / 255f, 114 / 255f, 104 / 255f, 0.0f);
+
         shadowColor.begin(ShapeRenderer.ShapeType.Filled);
         shadowColor.rect((this.size.x * 2 + (Constants.PPM * body.getPosition().x)),
                 (this.size.y * 2 + (Constants.PPM * body.getPosition().y)),
-                (this.name.length() + (this.size.x * Constants.PPM)) * 2.25f,
+                (this.name.length() + (this.size.x * Constants.PPM)) * 2.1f,
                 -(this.size.y * Constants.PPM * 2.1f));
         shadowColor.end();
 
         mainColor.setProjectionMatrix(manager.getCamera().combined);
         mainColor.setColor(246 / 255f, 228 / 255f, 216 / 255f, 0.0f);
+//        mainColor.setColor(213 / 255f, 245 / 255f, 209 / 255f, 0.0f);
         mainColor.begin(ShapeRenderer.ShapeType.Filled);
         mainColor.rect((this.size.x * 2 + (Constants.PPM * body.getPosition().x)),
                 (this.size.y * 2 + (Constants.PPM * body.getPosition().y)),
-                (this.name.length() + (this.size.x * Constants.PPM)) * 2.1f,
+                (this.name.length() + (this.size.x * Constants.PPM)) * 2.0f,
                 -(this.size.y * Constants.PPM * 1.7f));
         mainColor.end();
 
