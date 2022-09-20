@@ -148,6 +148,9 @@ public class PauseState extends State {
                     else {
                         manager.getOfficeMap().dispose();
                     }
+                    manager.getMinigameChecker().setNumberOfAttempts(0);
+                    manager.getMinigameChecker().setDone(false);
+                    manager.getMinigame().fuzzyReset();
                     manager.set(new PlayState(manager));
                 }
                 if(stageBounds.contains(coords.x, coords.y)){
@@ -168,6 +171,9 @@ public class PauseState extends State {
                     else {
                         manager.getOfficeMap().dispose();
                     }
+                    manager.getMinigameChecker().setNumberOfAttempts(0);
+                    manager.getMinigameChecker().setDone(false);
+                    manager.getMinigame().fuzzyReset();
                     manager.set(new StageSelectState(manager));
 
                 }

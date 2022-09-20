@@ -146,6 +146,7 @@ public class ReportCard extends State{
                 else {
                     manager.getOfficeMap().dispose();
                 }
+                manager.getMinigameChecker().setNumberOfAttempts(0);
                 manager.getMinigameChecker().setDone(false);
                 manager.getMinigame().fuzzyReset();
                 manager.set(new StageSelectState(manager));

@@ -208,12 +208,14 @@ public class FuzzyLogic {
     }
 
     public void fuzzyReset(){
+        System.out.println("fuzzy reset");
         fuzzyDone = false;
         numberOfErrors = 0;
         timeConsumptions = 0;
         correctOutput = 0;
         numberOfAttempts = 0;
         totalQuestions = 0;
+
 
         percentNumberOfErrors = 0;
         percentTimeConsumptions = 0;
