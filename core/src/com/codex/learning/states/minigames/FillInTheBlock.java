@@ -1,5 +1,6 @@
 package com.codex.learning.states.minigames;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.codex.learning.entity.blocks.BlockDispenser;
@@ -10,6 +11,7 @@ import com.codex.learning.entity.maps.PlayroomMapS1;
 import com.codex.learning.states.PauseState;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.Constants;
+import com.codex.learning.utility.FuzzyLogic;
 import com.codex.learning.utility.Manager;
 
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ import java.util.Random;
 
 public class FillInTheBlock extends State {
     private Character jedisaur;
+    private FuzzyLogic fuzzyLogic;
     private Blocks[][] questionBlocks;
     private BlockHolder[][] blockHolders;
     private BlockDispenser[] blockDispensers;
@@ -30,9 +33,11 @@ public class FillInTheBlock extends State {
     private ArrayList<String> banishPoolContainer, dispenserPoolContainer, dispenserGraphics;
     private int currentCell, minigameContainerLimit, ansPoolSize, xposition, yposition, ansPoolIterator, yStartingPoint;
     private String randomDispenser;
+    private int timer;
 
-    public FillInTheBlock(Manager manager, Character character) {
+    public FillInTheBlock(Manager manager, Character character, FuzzyLogic fuzzyLogic) {
         super(manager);
+        timer = 0;
         randomizer = new Random();
         banishCells = new ArrayList<>();
         duplicatePool = new ArrayList<>();
@@ -186,10 +191,14 @@ public class FillInTheBlock extends State {
         setToCheck(blockHolders);
 
         this.jedisaur = character;
+        this.fuzzyLogic = fuzzyLogic;
     }
 
     @Override
     public void update(float delta) {
+        if(!manager.getMinigameChecker().isDone()){
+            timer += Gdx.graphics.getDeltaTime();
+        }
          for(int i = 0; i < minigameContainer.size(); i++) {
              for (int j = 0; j < minigameContainer.get(i).size(); j++) {
                  if (minigameContainer.get(i).get(j) != null) {
@@ -344,7 +353,7 @@ public class FillInTheBlock extends State {
                 }
             }
         }
-
+        itIsCorrect();
     }
 
     @Override
@@ -461,6 +470,28 @@ public class FillInTheBlock extends State {
     }
     public void setToCheck(BlockHolder[][] blockHolders) {
         manager.getMinigameChecker().setBlockHolders(blockHolders);
+    }
+
+    public void itIsCorrect(){
+        if(manager.getMinigameChecker().isDone() && !fuzzyLogic.isFuzzyDone()){
+            fuzzyLogic.setNumberOfAttempts(manager.getMinigameChecker().getNumberOfAttempts());
+            fuzzyLogic.setCorrectOutput(1);
+            fuzzyLogic.setTimeConsumptions(fuzzyLogic.getTimeConsumptions() + timer);
+
+            fuzzyLogic.fuzzyNumberOfError();
+            fuzzyLogic.fuzzyTimeConsumption();
+            fuzzyLogic.fuzzyNumberOfAttempt();
+            fuzzyLogic.fuzzyCorrectOutput();
+
+            fuzzyLogic.calculateNumberOfCookies();
+
+            manager.getExpertSystem().setCurrentCookie(fuzzyLogic.getCookies());
+            manager.getExpertSystem().editCookie(manager.getStageSelector().getStageMap() - 1);
+            manager.getExpertSystem().writeFile(manager.getExpertSystem().getCookies());
+            manager.getExpertSystem().readFile();
+
+            fuzzyLogic.setFuzzyDone(true);
+        }
     }
 
     public void setBlockToCheck(Blocks block, int i, int j) {

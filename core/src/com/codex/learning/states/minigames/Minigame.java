@@ -43,7 +43,7 @@ public class Minigame extends State {
         switch (currentMinigame){
             case 1:
                 fillInTheBlockFlag = true;
-                fillInTheBlock = new FillInTheBlock(manager, jedisaur);
+                fillInTheBlock = new FillInTheBlock(manager, jedisaur, fuzzyLogic);
                 break;
             case 2:
                 mysteryCodeFlag = true;
@@ -55,7 +55,7 @@ public class Minigame extends State {
                 break;
             case 4:
                 codeITFlag = true;
-                codeIT = new CodeIT(manager,jedisaur);
+                codeIT = new CodeIT(manager,jedisaur, fuzzyLogic);
                 break;
         }
     }
@@ -110,7 +110,32 @@ public class Minigame extends State {
         }
     }
 
+    public void checkBehavior(int timer, Character jedisaur){
+        String currentBehavior = "";
+        String movement = (manager.isMoving()) ? "0":"1";
+        String numberOfBlockInteraction = (manager.checkNumberOfBlockInteractionRule(jedisaur.getNumberOfBlockInteraction()));
+        if(timer > 0 && timer % 15 == 0){
+            System.out.println(manager.getDtree().minigameRiddle(movement, String.valueOf(timer),
+                    convertNumberOfAttempt(fuzzyLogic.getNumberOfAttempts()),numberOfBlockInteraction));
+        }
+    }
 
+    public String convertNumberOfAttempt(int numberOfAttempt){
+        if(numberOfAttempt <= 1){
+            return "1";
+        }
+        else if(numberOfAttempt <= 3){
+            return "2";
+        }
+        else if(numberOfAttempt <= 5){
+            return "3";
+        }
+        return "1";
+    }
+
+    public void fuzzyReset(){
+        fuzzyLogic.fuzzyReset();
+    }
 
     public int getCurrentMinigame() {
         return currentMinigame;

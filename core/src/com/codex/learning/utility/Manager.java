@@ -25,6 +25,7 @@ import com.codex.learning.states.State;
 import com.codex.learning.states.minigames.Minigame;
 import com.codex.learning.utility.decisiontree.Behavior;
 import com.codex.learning.utility.decisiontree.DecisionTree;
+import com.codex.learning.utility.decisiontree.Dtree;
 import com.codex.learning.utility.filereader.Questionnaire;
 
 import java.io.*;
@@ -77,14 +78,17 @@ public class Manager {
     private int hintsIndex;
 
     private ExpertSystem expertSystem;
+    private Dtree dtree;
 
     private Dialogue dialogue;
     public Manager(){
         expertSystem = new ExpertSystem();
         expertSystem.readFile();
 
-        System.out.println("L:EVEL - " + expertSystem.getExpertiseLevel());
+        System.out.println("LEVEL - " + expertSystem.getExpertiseLevel());
         questionnaire = new Questionnaire(expertSystem.getExpertiseLevel());
+
+        dtree = new Dtree();
 
         b2dr = new Box2DDebugRenderer();
 
@@ -360,106 +364,50 @@ public class Manager {
         this.moving = moving;
     }
 
-    public String removeBracket(String string){
-        StringBuilder stringBuilder = new StringBuilder(string);
-
-        stringBuilder.deleteCharAt(string.length() - 1);
-        stringBuilder.deleteCharAt(0);
-
-        return stringBuilder.toString();
-    }
-
-    public void updateBehavior(int timer){
-        String currentBehavior = "";
-        String movement = (isMoving()) ? "YES":"NO";
-        String time = checkTimeConsumption(timer);
-        ArrayList<String> behavior = new ArrayList<>();
-
-        if(timer > 0 && timer % 10 == 0){
-            behavior.add(movement);
-            behavior.add(time);
-            behavior.add("");
-            behavior.add("");
-            behavior.add("");
-            currentBehavior = String.valueOf(getDecisionTree().classify(behavior, getDecisionTree().getTree()));
-            currentBehavior = removeBracket(currentBehavior);
-
-            if(currentBehavior.equals("ENGAGED")){
-                //GIVE FEEDBACK REGARDING ENGAGED
-                System.out.println(currentBehavior);
-                System.out.println("ENGAGED");
-            }
-            else{
-                //GIVE FEEDBACK REGARING NOT ENGAGED
-                System.out.println(behavior);
-                System.out.println(currentBehavior);
-                System.out.println("NOT ENGAGED");
-                hintsIndex++;
-            }
-        }
-        behavior.clear();
-    }
-
-//    public void checkBehavior(int timer, int numberOfBlockInteract, boolean computerDone, FuzzyLogic fuzzyLogic){
-//        String behavior = "";
+//    public void updateBehavior(int timer){
+//        String currentBehavior = "";
 //        String movement = (isMoving()) ? "YES":"NO";
-//        String interact = checkNumberOfBlockInteractionRule(numberOfBlockInteract, computerDone);
+//        String time = checkTimeConsumption(timer);
+//        ArrayList<String> behavior = new ArrayList<>();
 //
-//        ArrayList<String> dataset = new ArrayList<String>(Arrays.asList(new String[]{"YES", "HIGH", "LOW", "", ""}));
-//        if(timer % 4333 == 0 && timer > 0){
-//            Behavior.currentDataSet.add(movement);
-//            Behavior.currentDataSet.add(fuzzyLogic.getTimeConsumptionRules());
-//            Behavior.currentDataSet.add(fuzzyLogic.getNumberOfErrorsRules());
-//            Behavior.currentDataSet.add(fuzzyLogic.getNumberOfAttemptsRules());
-//            Behavior.currentDataSet.add(interact);
-//            behavior = String.valueOf(getDecisionTree().classify(Behavior.currentDataSet, getDecisionTree().getTree()));
-////            System.out.println(getDecisionTree().classify(Behavior.currentDataSet, getDecisionTree().getTree()));
-//            if(behavior.equals("ENGAGED")){
-//                System.out.println(Behavior.currentDataSet);
-//                System.out.println("BEHAVIOR = " + behavior);
-//                //file write
+//        if(timer > 0 && timer % 10 == 0){
+//            behavior.add(movement);
+//            behavior.add(time);
+//            behavior.add("");
+//            behavior.add("");
+//            behavior.add("");
+//            currentBehavior = String.valueOf(getDecisionTree().classify(behavior, getDecisionTree().getTree()));
+//            currentBehavior = currentBehavior;
+//
+//            if(currentBehavior.equals("ENGAGED")){
+//                //GIVE FEEDBACK REGARDING ENGAGED
+//                System.out.println(currentBehavior);
+//                System.out.println("ENGAGED");
 //            }
 //            else{
-//                System.out.println(Behavior.currentDataSet);
-//                System.out.println("BEHAVIOR = " + behavior);
-//                //file write
+//                //GIVE FEEDBACK REGARING NOT ENGAGED
+//                System.out.println(behavior);
+//                System.out.println(currentBehavior);
+//                System.out.println("NOT ENGAGED");
+//                hintsIndex++;
 //            }
-//            Behavior.currentDataSet.clear();
 //        }
-////        System.out.println(getDecisionTree().classify(dataset, getDecisionTree().getTree()));
+//        behavior.clear();
 //    }
 
-    public String checkTimeConsumption(int timer){
-        if (timer <= 180){
-            return "LOW";
-        }
-        else if(timer <= 300){
-            return "MEDIUM";
-        }
-        else if(timer >= 300){
-            return "HIGH";
-        }
-        else{
+    public String checkNumberOfBlockInteractionRule(int numberOfBlockInteraction){
+        if(numberOfBlockInteraction == 0){
             return "";
         }
-    }
-
-    public String checkNumberOfBlockInteractionRule(int numberOfBlockInteraction, boolean computerDone){
-        if(computerDone){
-            if(numberOfBlockInteraction == 0){
-                return "";
-            }
-            else if(numberOfBlockInteraction <= 10){
-                return "LOW";
-            }
-            else if(numberOfBlockInteraction <= 20){
-                return "MEDIUM";
-            }
-            else{
-                return "HIGH";
-            }
+        else if(numberOfBlockInteraction <= 10){
+            return "1";
         }
-        return "";
+        else if(numberOfBlockInteraction <= 20){
+            return "2";
+        }
+        else{
+            return "3";
+        }
     }
 
     public void checkIfMoving(Character character){
@@ -502,5 +450,13 @@ public class Manager {
 
     public void setNewPlayer(boolean newPlayer) {
         this.newPlayer = newPlayer;
+    }
+
+    public Dtree getDtree() {
+        return dtree;
+    }
+
+    public void setDtree(Dtree dtree) {
+        this.dtree = dtree;
     }
 }

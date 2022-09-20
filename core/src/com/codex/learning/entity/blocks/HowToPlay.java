@@ -12,7 +12,6 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.codex.learning.entity.Entity;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
-import org.pmml4s.model.Con;
 
 public class HowToPlay extends Entity {
     private TextureRegion[] images;

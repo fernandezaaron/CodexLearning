@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
+import com.codex.learning.entity.characters.Character;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.DialogueBox;
@@ -118,6 +119,7 @@ public class CodeRiddle extends State {
     public void update(float delta) {
         castToTable();
         manager.getStage().act(delta);
+
     }
 
 
@@ -125,11 +127,14 @@ public class CodeRiddle extends State {
     public void render(SpriteBatch sprite) {
         sprite.enableBlending();
 
-        sprite.setProjectionMatrix(manager.getCamera().combined);
-        sprite.begin();
         if(isInComputer()){
             timer += Gdx.graphics.getDeltaTime();
+            checkBehavior((int) timer);
         }
+
+        sprite.setProjectionMatrix(manager.getCamera().combined);
+        sprite.begin();
+
         manager.getStage().act();
         manager.getStage().draw();
 
@@ -287,7 +292,6 @@ public class CodeRiddle extends State {
 
     public void closeDialogBox(){
         dialogTimer += Gdx.graphics.getDeltaTime();
-        System.out.println(dialogTimer);
 
         if(dialogTimer >= 2){
             resultFeedbackTable.setVisible(false);
@@ -342,6 +346,22 @@ public class CodeRiddle extends State {
     }
 
 
+    public void checkBehavior(int timer){
+        String currentBehavior = "";
+        if(timer > 0 && timer % 15 == 0){
+            manager.getDtree().codeRiddleML(checkTimeConsumption(timer),
+                    convertNumberOfError(error));
+        }
+    }
+
+    public String convertNumberOfError(int numberOfError){
+        float result = (float) (fuzzyLogic.getTotalQuestions() - numberOfError) / fuzzyLogic.getTotalQuestions();
+        if(result <= .7)
+            return "3";
+        else if(result <= .8)
+            return "2";
+        return "1";
+    }
 
     // Time Consumption, Number of Error
     public void updateBehavior(){
@@ -354,7 +374,6 @@ public class CodeRiddle extends State {
         behavior.add("");
         currentBehavior = String.valueOf(manager.getDecisionTree().classify(behavior, manager.getDecisionTree().getTree()));
 
-        currentBehavior = manager.removeBracket(currentBehavior);
         if(currentBehavior.equals("ENGAGED") || currentBehavior.equals("NEUTRAL") || currentBehavior.equals("BORED")){
             //GIVE FEEDBACK
 
@@ -368,18 +387,11 @@ public class CodeRiddle extends State {
     }
 
     public String checkTimeConsumption(int timer){
-        if(timer <= 90){
-            return "LOW";
-        }
-        else if(timer <= 180){
-            return "MEDIUM";
-        }
-        else if(timer <= 270){
-            return "HIGH";
-        }
-        else{
-            return "";
-        }
+        if(timer <= 90)
+            return "1";
+        else if(timer <= 180)
+            return "2";
+        return "3";
     }
 
 

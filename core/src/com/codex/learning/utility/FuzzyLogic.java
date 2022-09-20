@@ -23,9 +23,11 @@ public class FuzzyLogic {
     private int cookies;
 
     private int totalQuestions;
+    private boolean fuzzyDone;
 
 
     public FuzzyLogic(){
+        fuzzyDone = false;
         numberOfErrors = 0;
         timeConsumptions = 0;
         correctOutput = 0;
@@ -205,6 +207,25 @@ public class FuzzyLogic {
         System.out.println("NUMBER OF COOKIES - " + getCookies());
     }
 
+    public void fuzzyReset(){
+        fuzzyDone = false;
+        numberOfErrors = 0;
+        timeConsumptions = 0;
+        correctOutput = 0;
+        numberOfAttempts = 0;
+        totalQuestions = 0;
+
+        percentNumberOfErrors = 0;
+        percentTimeConsumptions = 0;
+        percentCorrectOutput = 0;
+        percentNumberOfAttempts = 0;
+
+        numberOfErrorsRules = "";
+        timeConsumptionRules = "";
+        correctOutputRules = "";
+        numberOfAttemptsRules = "";
+    }
+
     public static float min(double a, double b, double c) {
         return (float) Math.min(Math.min(a, b), c);
     }
@@ -343,5 +364,13 @@ public class FuzzyLogic {
 
     public void setCookies(int cookies) {
         this.cookies = cookies;
+    }
+
+    public boolean isFuzzyDone() {
+        return fuzzyDone;
+    }
+
+    public void setFuzzyDone(boolean fuzzyDone) {
+        this.fuzzyDone = fuzzyDone;
     }
 }

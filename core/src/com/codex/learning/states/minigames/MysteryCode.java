@@ -38,7 +38,6 @@ public class MysteryCode extends State {
     private ArrayList<ArrayList<Integer>> banishPerRow;
 
     private float timer;
-    private boolean fuzzyDone;
 
 //    private String stageSelect;
 //    private Stack<Stack<Blocks>> blocksArrayList;
@@ -55,8 +54,7 @@ public class MysteryCode extends State {
         blockHolders = new BlockHolder[20][20];
         blocksArrayList = new ArrayList<>();
 //        blockArrayIndex = 0;
-        this.fuzzyLogic = fuzzyLogic;
-        fuzzyDone = false;
+
         this.stage = manager.getStageSelector().getStageMap();
 
         getAMinigame(manager.getStageSelector().map());
@@ -106,7 +104,7 @@ public class MysteryCode extends State {
                         }
                         else{
                             if(currentStringLength>7){
-                                xStartingPoint += 2.75f;
+                                xStartingPoint += 2.95f;
                             }
                             questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.23f), Constants.BLOCKS_HEIGHT), 0);
                         }
@@ -158,6 +156,8 @@ public class MysteryCode extends State {
         setToCheck(blockHolders);
 
         this.jedisaur = jedisaur;
+        this.fuzzyLogic = fuzzyLogic;
+
     }
 
 
@@ -166,6 +166,7 @@ public class MysteryCode extends State {
         if(!manager.getMinigameChecker().isDone()){
             timer += Gdx.graphics.getDeltaTime();
         }
+
         currentCell = 0;
         for (int i = 0; i < minigameContainer.size(); i++) {
             for (int j = 0; j < minigameContainer.get(i).size(); j++) {
@@ -393,9 +394,7 @@ public class MysteryCode extends State {
 
     @Override
     public void dispose() {
-        banishCells = null;
-        banishPerRow = null;
-        minigameContainer = null;
+
 
         for(BlockHolder[] b: blockHolders){
             for(BlockHolder i: b){
@@ -432,7 +431,7 @@ public class MysteryCode extends State {
     }
 
     public void itIsCorrect(){
-        if(manager.getMinigameChecker().isDone() && !fuzzyDone){
+        if(manager.getMinigameChecker().isDone() && !fuzzyLogic.isFuzzyDone()){
             fuzzyLogic.setNumberOfAttempts(manager.getMinigameChecker().getNumberOfAttempts());
             fuzzyLogic.setCorrectOutput(1);
             fuzzyLogic.setTimeConsumptions(fuzzyLogic.getTimeConsumptions() + timer);
@@ -449,7 +448,7 @@ public class MysteryCode extends State {
             manager.getExpertSystem().writeFile(manager.getExpertSystem().getCookies());
             manager.getExpertSystem().readFile();
 
-            fuzzyDone = true;
+            fuzzyLogic.setFuzzyDone(true);
         }
     }
 

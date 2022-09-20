@@ -1,5 +1,6 @@
 package com.codex.learning.states.minigames;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.codex.learning.entity.blocks.BlockDispenser;
@@ -19,6 +20,7 @@ import java.util.Random;
 
 public class CodeOrder extends State {
     private Character jedisaur;
+    private FuzzyLogic fuzzyLogic;
     private Blocks[] answerBlocks;
     private BlockHolder[] blockHolders;
 //    private BlockDispenser blockDispensers;
@@ -31,17 +33,17 @@ public class CodeOrder extends State {
     private ArrayList<Integer> banishCells;
     private ArrayList<String> originalAnswerPoolContainer, answerPoolContainer;
     private String mergeResult;
-
-    private FuzzyLogic fuzzyLogic;
+    private int timer;
 
     public CodeOrder(Manager manager, Character jedisaur, FuzzyLogic fuzzyLogic) {
         super(manager);
+        timer = 0;
         pause = new PauseState(manager);
         randomizer = new Random();
         banishCells = new ArrayList<>();
 
 
-        this.fuzzyLogic = fuzzyLogic;
+
         getAMinigame(manager.getStageSelector().map(), "Poor");
 
         blockHolders = new BlockHolder[minigameContainer.size()];
@@ -98,10 +100,15 @@ public class CodeOrder extends State {
         setToCheck(blockHolders);
 
         this.jedisaur = jedisaur;
+        this.fuzzyLogic = fuzzyLogic;
     }
 
     @Override
     public void update(float delta) {
+        if(!manager.getMinigameChecker().isDone()){
+            timer += Gdx.graphics.getDeltaTime();
+        }
+
         for (int i = 0; i < minigameContainer.size(); i++) {
             if (minigameContainer.get(i) != null) {
                 blockHolders[i].update(delta);
@@ -240,14 +247,24 @@ public class CodeOrder extends State {
     }
 
     public void itIsCorrect(){
-        if(manager.getMinigameChecker().isDone()){
+        if(manager.getMinigameChecker().isDone() && !fuzzyLogic.isFuzzyDone()){
             fuzzyLogic.setNumberOfAttempts(manager.getMinigameChecker().getNumberOfAttempts());
             fuzzyLogic.setCorrectOutput(1);
+            fuzzyLogic.setTimeConsumptions(fuzzyLogic.getTimeConsumptions() + timer);
 
+            fuzzyLogic.fuzzyNumberOfError();
+            fuzzyLogic.fuzzyTimeConsumption();
             fuzzyLogic.fuzzyNumberOfAttempt();
             fuzzyLogic.fuzzyCorrectOutput();
 
             fuzzyLogic.calculateNumberOfCookies();
+
+            manager.getExpertSystem().setCurrentCookie(fuzzyLogic.getCookies());
+            manager.getExpertSystem().editCookie(manager.getStageSelector().getStageMap() - 1);
+            manager.getExpertSystem().writeFile(manager.getExpertSystem().getCookies());
+            manager.getExpertSystem().readFile();
+
+            fuzzyLogic.setFuzzyDone(true);
         }
     }
 
