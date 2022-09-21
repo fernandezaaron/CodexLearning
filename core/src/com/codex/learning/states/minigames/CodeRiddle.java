@@ -47,6 +47,9 @@ public class CodeRiddle extends State {
 
     private float timer, dialogTimer;
 
+    private ArrayList<ArrayList<String>> codeRiddleData;
+    private int dataCounter;
+
     public CodeRiddle(Manager manager, FuzzyLogic fuzzyLogic) {
         super(manager);
 
@@ -113,6 +116,9 @@ public class CodeRiddle extends State {
 
         getAQuestion(manager.getStageSelector().map());
         currentQuestion = 0;
+
+        codeRiddleData = new ArrayList<>();
+        dataCounter = 0;
     }
 
     @Override
@@ -353,9 +359,20 @@ public class CodeRiddle extends State {
                     convertNumberOfError(error)));
             currentBehavior = manager.getDtree().codeRiddleML(checkTimeConsumption(timer),
                     convertNumberOfError(error));
-        }
-        if(currentBehavior.equals("ENGAGED")){
 
+            codeRiddleData.add(new ArrayList<String>());
+            codeRiddleData.get(dataCounter).add(checkTimeConsumption(timer));
+            codeRiddleData.get(dataCounter).add(convertNumberOfError(error));
+            codeRiddleData.get(dataCounter).add(currentBehavior);
+            dataCounter++;
+            System.out.println("CODE RIDDLE NA YUN - " + codeRiddleData);
+
+            if(currentBehavior.equals("ENGAGED")){
+                System.out.println("WOW keep it up my dudes!!");
+            }
+            else{
+                System.out.println("Haha lungkot mo naman!!");
+            }
         }
     }
 

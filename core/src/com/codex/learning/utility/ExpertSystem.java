@@ -138,18 +138,17 @@ public class ExpertSystem {
 
     // Stage #, Stage Topic, Cookie Number, Dataset (5), Behavior
     // Input after the game too
-    public void writeDataGathering(int stageNumber, String stageTopic, int numberOfCookie){
+    public void writeDataGathering(int stageNumber, String stageTopic, String expertiseLevel, int numberOfCookie){
         try {
             int counter = 0;
             int length = 0;
-            ArrayList<String> replace = new ArrayList<>(Arrays.asList(String.valueOf(stageNumber), stageTopic, String.valueOf(numberOfCookie), "YES", "HIGH", "MEDIUM", "LOW", "LOW", "ENGAGED"));
+            ArrayList<String> replace = new ArrayList<>(Arrays.asList(String.valueOf(stageNumber), stageTopic, expertiseLevel, String.valueOf(numberOfCookie), "ENGAGED", "HIGH", "MEDIUM", "LOW", "LOW", "ENGAGED"));
             File file = new File(Constants.DATA_GATHERED_FILE_PATH);
             if (file.createNewFile()) {
                 System.out.println("File created: " + file.getName());
             }
             else {
                 ArrayList<ArrayList<String>> data = readDataFirst();
-                System.out.println(data);
 
                 for(ArrayList<String> i: data){
                     if(i.get(0).equals(String.valueOf(stageNumber))){
