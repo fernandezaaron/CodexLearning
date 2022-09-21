@@ -319,7 +319,7 @@ public class PlayState extends State{
             }
             manager.getMinigameChecker().setNumberOfAttempts(0);
             manager.getMinigameChecker().setDone(false);
-            manager.getMinigame().fuzzyReset();
+            manager.getMinigame().reset();
             manager.set(new StageSelectState(manager));
         }
 

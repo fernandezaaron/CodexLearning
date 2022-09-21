@@ -150,7 +150,7 @@ public class PauseState extends State {
                     }
                     manager.getMinigameChecker().setNumberOfAttempts(0);
                     manager.getMinigameChecker().setDone(false);
-                    manager.getMinigame().fuzzyReset();
+                    manager.getMinigame().reset();
                     manager.set(new PlayState(manager));
                 }
                 if(stageBounds.contains(coords.x, coords.y)){
@@ -173,7 +173,7 @@ public class PauseState extends State {
                     }
                     manager.getMinigameChecker().setNumberOfAttempts(0);
                     manager.getMinigameChecker().setDone(false);
-                    manager.getMinigame().fuzzyReset();
+                    manager.getMinigame().reset();
                     manager.set(new StageSelectState(manager));
 
                 }
