@@ -121,7 +121,7 @@ public class Minigame extends State {
         String movement = (manager.isMoving()) ? "0":"1";
         String numberOfAttempt = convertNumberOfAttempt(manager.getMinigameChecker().getNumberOfAttempts());
         String numberOfBlockInteraction = (checkNumberOfBlockInteractionRule(jedisaur.getNumberOfBlockInteraction()));
-        if(timer > 0 && timer % 10 == 0){
+        if(timer > 0 && timer % 30 == 0){
             System.out.println("XD - " + manager.getDtree().minigameML(movement, checkTimeConsumption(timer),
                     numberOfAttempt, numberOfBlockInteraction));
             currentBehavior = manager.getDtree().minigameML(movement, checkTimeConsumption(timer),
