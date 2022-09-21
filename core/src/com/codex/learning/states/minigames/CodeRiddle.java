@@ -433,4 +433,20 @@ public class CodeRiddle extends State {
     public void setResultFeedBackOpen(boolean resultFeedBackOpen) {
         this.resultFeedBackOpen = resultFeedBackOpen;
     }
+
+    public ArrayList<ArrayList<String>> getCodeRiddleData() {
+        return codeRiddleData;
+    }
+
+    public void setCodeRiddleData(ArrayList<ArrayList<String>> codeRiddleData) {
+        this.codeRiddleData = codeRiddleData;
+    }
+
+    public int getDataCounter() {
+        return dataCounter;
+    }
+
+    public void setDataCounter(int dataCounter) {
+        this.dataCounter = dataCounter;
+    }
 }

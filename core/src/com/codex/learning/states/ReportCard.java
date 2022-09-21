@@ -94,7 +94,6 @@ public class ReportCard extends State{
         for(int i=0; i<3; i++){
             cookies.add(new Image(manager.getSkin(),"nocookie"));
         }
-        int numberofcookies = 2;
         for(int i=0; i<manager.getMinigame().getCookies(); i++){
             cookies.set(i, new Image(manager.getSkin(), "cookie"));
         }
@@ -145,6 +144,24 @@ public class ReportCard extends State{
                 else {
                     manager.getOfficeMap().dispose();
                 }
+                System.out.println("CODE RIDDLE - " + manager.getCodeRiddle().getCodeRiddleData());
+                System.out.println("MINIGAME - " + manager.getMinigame().getMinigameData());
+
+                //codeRiddleData.txt
+                manager.getExpertSystem().writeGameDataGathered(manager.getStageSelector().getStageMap(),
+                        manager.getQuestionnaire().getMinigameTopic(), manager.getCodeRiddle().getCodeRiddleData());
+
+                //minigameData.txt
+                manager.getExpertSystem().writeGameDataGathered(manager.getStageSelector().getStageMap(),
+                        manager.getQuestionnaire().getMinigameTopic(), manager.getMinigame().getMinigameData());
+
+                //data.txt
+                manager.getExpertSystem().writeDataGathering(manager.getStageSelector().getStageMap(),
+                        manager.getQuestionnaire().getMinigameTopic(), manager.getExpertSystem().getExpertiseLevel(),
+                        manager.getMinigame().getCookies(), manager.getCodeRiddle().getCodeRiddleData(),
+                        manager.getMinigame().getMinigameData());
+
+                manager.setCodeRiddle(null);
                 manager.getMinigameChecker().setDone(false);
                 manager.getMinigame().reset();
                 manager.set(new StageSelectState(manager));

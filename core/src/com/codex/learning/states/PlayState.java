@@ -144,6 +144,7 @@ public class PlayState extends State{
 
                     if(computer.isDone() && computerOnce){
                         computer.getCodeRiddle().resultFeedback();
+                        manager.setCodeRiddle(computer.getCodeRiddle());
                         computerOnce = false;
                     }
 
@@ -236,13 +237,9 @@ public class PlayState extends State{
         sprite.setProjectionMatrix(manager.getCamera().combined);
         if(isInStartArea()){
             checkDoor(sprite, atDoor);
-
         }
         sprite.end();
         pause.render(sprite);
-
-
-
     }
 
     @Override
@@ -350,5 +347,13 @@ public class PlayState extends State{
 
     public void setInStartArea(boolean inStartArea) {
         this.inStartArea = inStartArea;
+    }
+
+    public Computer getComputer() {
+        return computer;
+    }
+
+    public void setComputer(Computer computer) {
+        this.computer = computer;
     }
 }
