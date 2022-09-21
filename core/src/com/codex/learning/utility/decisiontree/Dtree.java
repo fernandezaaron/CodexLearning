@@ -7,6 +7,13 @@ import java.io.InputStreamReader;
 import java.lang.ProcessBuilder;
 
 public class Dtree {
+    private ProcessBuilder codeRiddleBuilder;
+    public Dtree(){
+
+        codeRiddleBuilder = new ProcessBuilder("python",
+                System.getProperty("user.dir") + "\\assets\\model\\codeRiddleScript.py");
+
+    }
     public String removeBracket(String string){
         StringBuilder stringBuilder = new StringBuilder(string);
 
@@ -24,7 +31,6 @@ public class Dtree {
                     System.getProperty("user.dir") + "\\assets\\model\\minigameScript.py",
                     movementDetected, timeConsumption, numberOfAttempt, numberOfBlockInteraction);
 
-
             Process process = processBuilder.start();
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String s = null;
@@ -39,10 +45,8 @@ public class Dtree {
 
     public String codeRiddleML(String timeConsumption, String numberOfError){
         try {
-            ProcessBuilder processBuilder = new ProcessBuilder("python",
-                    System.getProperty("user.dir") + "\\assets\\model\\codeRiddleScript.py",
-                    timeConsumption, numberOfError);
-            Process process = processBuilder.start();
+            codeRiddleBuilder.command(timeConsumption, numberOfError);
+            Process process = codeRiddleBuilder.start();
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String s = null;
             while ((s = reader.readLine()) != null) {
