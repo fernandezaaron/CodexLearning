@@ -1,8 +1,12 @@
 package com.codex.learning.utility;
 
+import com.badlogic.gdx.files.FileHandle;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class ExpertSystem {
 
@@ -12,7 +16,6 @@ public class ExpertSystem {
     private int totalUserCookies;
     private int overAllCookies;
     private boolean start;
-
 
     private String expertiseLevel;
     private String currentBehavior;
@@ -116,10 +119,10 @@ public class ExpertSystem {
     }
 
 
-    public ArrayList<ArrayList<String>> readDataFirst(){
+    public ArrayList<ArrayList<String>> readDataFirst(String path){
         try {
             ArrayList<ArrayList<String>> data = new ArrayList<>();
-            FileReader fileReader = new FileReader(Constants.DATA_GATHERED_FILE_PATH);
+            FileReader fileReader = new FileReader(path);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             boolean header = true;
             String line;
@@ -142,14 +145,14 @@ public class ExpertSystem {
         try {
             int counter = 0;
             int length = 0;
-            String codeRiddleListSize = String.valueOf(codeRiddleData.size());
-            String minigameListSize = String.valueOf(minigameData.size());
+            String codeRiddleListSize = String.valueOf(codeRiddleData.size() - 1);
+            String minigameListSize = String.valueOf(minigameData.size() - 1);
             String codeRiddleEngagedPercentage = String.valueOf(calculateEngagedPercentage(codeRiddleData));
             String minigameEngagedPercentage = String.valueOf(calculateEngagedPercentage(minigameData));
             ArrayList<String> replace = new ArrayList<>(Arrays.asList(String.valueOf(stageNumber), stageTopic,
                     expertiseLevel, String.valueOf(numberOfCookie),
-                    "ENGAGED", codeRiddleEngagedPercentage, codeRiddleListSize,
-                    "ENGAGED", minigameEngagedPercentage, minigameListSize));
+                    "ENGAGED", codeRiddleEngagedPercentage + "%", codeRiddleListSize,
+                    "ENGAGED", minigameEngagedPercentage + "%", minigameListSize));
 
 
             File file = new File(Constants.DATA_GATHERED_FILE_PATH);
@@ -157,7 +160,7 @@ public class ExpertSystem {
                 System.out.println("File created: " + file.getName());
             }
             else {
-                ArrayList<ArrayList<String>> data = readDataFirst();
+                ArrayList<ArrayList<String>> data = readDataFirst(Constants.DATA_GATHERED_FILE_PATH);
 
                 for(ArrayList<String> i: data){
                     if(i.get(0).equals(String.valueOf(stageNumber))){
@@ -196,22 +199,86 @@ public class ExpertSystem {
         }
     }
 
-    public void writeGameDataGathered(int stageNumber, String topic, ArrayList<ArrayList<String>> data){
+    public void writeGameDataGathered(String path, int stageNumber, String topic, ArrayList<ArrayList<String>> newData) {
+        try {
+            int length = 0;
 
+            File file = new File(path);
+            if (file.createNewFile()) {
+                System.out.println("File created: " + file.getName());
+            } else {
+
+                ArrayList<ArrayList<String>> data = readDataFirst(path);
+                for(int i = 0; i < newData.size(); i++){
+                    newData.get(i).add(0, String.valueOf(stageNumber));
+                    newData.get(i).add(1, topic);
+                    newData.get(i).add(2, String.valueOf(i + 1));
+                }
+                if(!data.isEmpty()){
+                    for(ArrayList<String> i: data){
+                        if(i.get(0).equals(String.valueOf(stageNumber))){
+                            i.clear();
+                        }
+                    }
+                }
+                for(int i = 0; i < data.size(); i++){
+                    if(data.get(i).isEmpty()){
+                        continue;
+                    }
+                    else{
+                        newData.add(data.get(i));
+                    }
+                }
+
+                Collections.sort(newData, new Comparator<ArrayList<String>>() {
+                    @Override
+                    public int compare(ArrayList<String> a, ArrayList<String> b) {
+                        return a.get(0).compareTo(b.get(0));
+                    }
+                });
+                FileWriter fileWriter = new FileWriter(path, false);
+
+                for (ArrayList<String> arrayList : newData) {
+                    for (String i : arrayList) {
+                        if(length == arrayList.size()){
+                            fileWriter.write("\n");
+                            length = 0;
+                        }
+                        length++;
+                        fileWriter.write(i + ",");
+                    }
+                }
+                fileWriter.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public int calculateEngagedPercentage(ArrayList<ArrayList<String>> data){
         int total = 0;
         int current = 0;
         float percent;
+<<<<<<< HEAD
         if(data.size() == 1){
             if(data.get(0).get(data.get(0).size()-1).equals("ENGAGED"))
+=======
+        if(data.size() == 2){
+            if(data.get(1).get(data.get(0).size() - 1).equals("ENGAGED"))
+>>>>>>> Paul
                 return 100;
             return 0;
         }
         for(int i = 0; i < data.size(); i++){
+<<<<<<< HEAD
             System.out.println("I = " + i);
             if(data.get(i).get(data.get(i).size()-1).equals("ENGAGED")){
+=======
+            if(i == 0){
+                continue;
+            }
+            else if(data.get(i).get(data.get(i).size() - 1).equals("ENGAGED")){
+>>>>>>> Paul
                 total++;
                 current++;
                 System.out.println(total + " " + current);

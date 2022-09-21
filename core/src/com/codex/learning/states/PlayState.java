@@ -51,7 +51,11 @@ public class PlayState extends State{
         rand = new Random();
 
 
+
 //        randomMinigame = rand.nextInt(4-1)+1;
+
+        randomMinigame = rand.nextInt(4-1)+1;
+
         randomMinigame = 2;
 
         playroomMap = new PlayroomMapS1(manager);
@@ -145,6 +149,7 @@ public class PlayState extends State{
                     if(computer.isDone() && computerOnce){
                         computer.getCodeRiddle().resultFeedback();
                         manager.setCodeRiddle(computer.getCodeRiddle());
+                        System.out.println("COMPUTER IS DONE - " + manager.getCodeRiddle().getCodeRiddleData());
                         computerOnce = false;
                     }
 
