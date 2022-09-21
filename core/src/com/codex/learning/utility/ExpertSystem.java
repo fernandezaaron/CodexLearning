@@ -214,8 +214,6 @@ public class ExpertSystem {
                     newData.get(i).add(1, topic);
                     newData.get(i).add(2, String.valueOf(i + 1));
                 }
-
-                System.out.println("OLD - " + data);
                 if(!data.isEmpty()){
                     for(ArrayList<String> i: data){
                         if(i.get(0).equals(String.valueOf(stageNumber))){
@@ -223,8 +221,6 @@ public class ExpertSystem {
                         }
                     }
                 }
-                System.out.println("NEW - " + data);
-
                 for(int i = 0; i < data.size(); i++){
                     if(data.get(i).isEmpty()){
                         continue;
@@ -240,9 +236,6 @@ public class ExpertSystem {
                         return a.get(0).compareTo(b.get(0));
                     }
                 });
-
-                System.out.println("DATA - " + newData);
-
                 FileWriter fileWriter = new FileWriter(path, false);
 
                 for (ArrayList<String> arrayList : newData) {
@@ -266,14 +259,16 @@ public class ExpertSystem {
         int total = 0;
         int current = 0;
         float percent;
-        if(data.size() == 1){
-            if(data.get(0).get(data.get(0).size() - 1).equals("ENGAGED"))
+        if(data.size() == 2){
+            if(data.get(1).get(data.get(0).size() - 1).equals("ENGAGED"))
                 return 100;
             return 0;
         }
         for(int i = 0; i < data.size(); i++){
-            System.out.println("I = " + i);
-            if(data.get(i).get(data.get(i).size() - 1).equals("ENGAGED")){
+            if(i == 0){
+                continue;
+            }
+            else if(data.get(i).get(data.get(i).size() - 1).equals("ENGAGED")){
                 total++;
                 current++;
             }
