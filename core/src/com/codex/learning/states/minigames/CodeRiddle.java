@@ -354,6 +354,9 @@ public class CodeRiddle extends State {
             currentBehavior = manager.getDtree().codeRiddleML(checkTimeConsumption(timer),
                     convertNumberOfError(error));
         }
+        if(currentBehavior.equals("ENGAGED")){
+
+        }
     }
 
     public String convertNumberOfError(int numberOfError){

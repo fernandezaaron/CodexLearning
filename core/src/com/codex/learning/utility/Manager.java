@@ -395,21 +395,6 @@ public class Manager {
 //        behavior.clear();
 //    }
 
-    public String checkNumberOfBlockInteractionRule(int numberOfBlockInteraction){
-        if(numberOfBlockInteraction == 0){
-            return "";
-        }
-        else if(numberOfBlockInteraction <= 10){
-            return "1";
-        }
-        else if(numberOfBlockInteraction <= 20){
-            return "2";
-        }
-        else{
-            return "3";
-        }
-    }
-
     public void checkIfMoving(Character character){
         if(character.isMoving()){
             setMoving(true);

@@ -32,7 +32,7 @@ public class CodeIT extends State {
     private ArrayList<ArrayList<Blocks>> blocksArrayList;
     private float AnsPoolY, AnsPoolX, currentStringLength, xStartingPoint;
     private int currentAnsCell, ansPoolSize, totalLineLength, yStartingPoint, currentCell, stage;
-    private int timer;
+    private float timer;
 //    private int blockCount;
 //    private boolean blockSpawn;
 //    private BlockDispenser[] blockDispensers;
@@ -123,6 +123,7 @@ public class CodeIT extends State {
     public void update(float delta) {
         if(!manager.getMinigameChecker().isDone()){
             timer += Gdx.graphics.getDeltaTime();
+            manager.getMinigame().checkBehavior((int) timer, jedisaur);
         }
 
         for (int i = 0; i < minigameContainer.size(); i++) {
@@ -229,6 +230,7 @@ public class CodeIT extends State {
                 answerBlocks[i].update(delta);
             }
         }
+        itIsCorrect();
     }
 
 
