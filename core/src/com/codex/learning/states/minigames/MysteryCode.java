@@ -84,7 +84,8 @@ public class MysteryCode extends State {
                 if(minigameContainer.get(i).get(j) != null) {
                     currentStringLength = (float) String.valueOf(minigameContainer.get(i).get(j)).length();
                     if (banishCells.contains(currentCell)) {
-                        blockHolders[i][j] = new BlockHolder(manager, "\"" + minigameContainer.get(i).get(j) + "\"");
+//                        System.out.println(currentCell + " asd");
+                        blockHolders[i][j] = new BlockHolder(manager, minigameContainer.get(i).get(j));
                         blockHolders[i][j].create(new Vector2(xStartingPoint, yStartingPoint - 0.5f), new Vector2(Constants.BLOCK_HOLDER_WIDTH, Constants.BLOCK_HOLDER_HEIGHT), 0);
                         blocksArrayList.get(i).add(blockHolders[i][j].getCopyBlock());
                         answerPoolContainer.add(minigameContainer.get(i).get(j));
@@ -94,7 +95,7 @@ public class MysteryCode extends State {
 //                        }
                     }
                     else {
-                        questionBlocks[i][j] = new Blocks(manager, "\"" + minigameContainer.get(i).get(j) + "\"", minigameContainer.get(i).get(j), true);
+                        questionBlocks[i][j] = new Blocks(manager, minigameContainer.get(i).get(j), minigameContainer.get(i).get(j), true);
                         if (currentStringLength <= 3){
                             questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.4f), Constants.BLOCKS_HEIGHT), 0);
                         }
@@ -199,7 +200,7 @@ public class MysteryCode extends State {
                             }
                             if(jedisaur.isDropped()) {
                                 setBlockToCheck(blockHolders[i][j].getCopyBlock(), i, j);
-//                                setToCheck(blockHolders);
+                                setToCheck(blockHolders);
                             }
                         }
                     }
