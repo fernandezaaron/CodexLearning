@@ -145,6 +145,7 @@ public class PlayState extends State{
                     if(computer.isDone() && computerOnce){
                         computer.getCodeRiddle().resultFeedback();
                         manager.setCodeRiddle(computer.getCodeRiddle());
+                        System.out.println("COMPUTER IS DONE - " + manager.getCodeRiddle().getCodeRiddleData());
                         computerOnce = false;
                     }
 

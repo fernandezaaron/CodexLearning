@@ -27,7 +27,6 @@ public class Minigame extends State {
 
     public Minigame(Manager manager){
         super(manager);
-
     }
 
     public void create(int currentMinigame, Character jedisaur, FuzzyLogic fuzzyLogic){
@@ -163,17 +162,40 @@ public class Minigame extends State {
         return "3";
     }
 
-    public String checkTimeConsumption(int timeConsumption){
-        if(timeConsumption <= 150)
-            return "1";
-        else if(timeConsumption <= 240)
-            return "2";
-        return "3";
+    public String checkTimeConsumption(int timer){
+        switch(manager.getExpertSystem().getExpertiseLevel()){
+            case "Expert":
+                if(timer <= 50)
+                    return "1";
+                else if(timer <= 100)
+                    return "2";
+                return "3";
+            case "Average":
+                if(timer <= 60)
+                    return "1";
+                else if(timer <= 120)
+                    return "2";
+                return "3";
+            case "Novice":
+                if(timer <= 70)
+                    return "1";
+                else if(timer <= 140)
+                    return "2";
+                return "3";
+            case "Poor":
+                if(timer <= 80)
+                    return "1";
+                else if(timer <= 160)
+                    return "2";
+                return "3";
+        }
+        return "2";
     }
+
 
     public void reset(){
         fuzzyLogic.fuzzyReset();
-        minigameData.clear();
+        minigameData = null;
         dataCounter = 0;
     }
 

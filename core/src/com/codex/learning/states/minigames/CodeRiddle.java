@@ -49,6 +49,8 @@ public class CodeRiddle extends State {
 
     private ArrayList<ArrayList<String>> codeRiddleData;
     private int dataCounter;
+    private boolean once;
+    private boolean twice;
 
     public CodeRiddle(Manager manager, FuzzyLogic fuzzyLogic) {
         super(manager);
@@ -66,7 +68,8 @@ public class CodeRiddle extends State {
         resultFeedbackTable = new Table(manager.getSkin());
         avatarImage = new Table(manager.getSkin());
         group = new Group();
-
+        once = false;
+        twice = false;
 
 
         dialogueBox = new DialogueBox(manager.getSkin(), "dialogbox3", 0.5f);
@@ -354,7 +357,11 @@ public class CodeRiddle extends State {
 
     public void checkBehavior(int timer){
         String currentBehavior = "";
-        if(timer > 0 && timer % 15 == 0){
+        if(isDone && !twice){
+            once = true;
+            twice = true;
+        }
+        if((timer > 0 && timer % 15 == 0) || once){
             System.out.println(manager.getDtree().codeRiddleML(checkTimeConsumption(timer),
                     convertNumberOfError(error)));
             currentBehavior = manager.getDtree().codeRiddleML(checkTimeConsumption(timer),
@@ -366,11 +373,14 @@ public class CodeRiddle extends State {
             codeRiddleData.get(dataCounter).add(currentBehavior);
             dataCounter++;
             System.out.println("CODE RIDDLE NA YUN - " + codeRiddleData);
+            once = false;
 
             if(currentBehavior.equals("ENGAGED")){
+                //Yung behavior na dialogue na engaged
                 System.out.println("WOW keep it up my dudes!!");
             }
             else{
+                //Yung behavior na dialogue na not engaged
                 System.out.println("Haha lungkot mo naman!!");
             }
         }
@@ -378,19 +388,71 @@ public class CodeRiddle extends State {
 
     public String convertNumberOfError(int numberOfError){
         float result = (float) (fuzzyLogic.getTotalQuestions() - numberOfError) / fuzzyLogic.getTotalQuestions();
-        if(result <= .7)
+        if(result <= .5)
+            return "5";
+        else if(result <= .6)
+            return "4";
+        else if(result <= .7)
             return "3";
         else if(result <= .8)
             return "2";
-        return "1";
+        else if(result <= .9)
+            return "1";
+        return "0";
     }
 
     public String checkTimeConsumption(int timer){
-        if(timer <= 90)
-            return "1";
-        else if(timer <= 180)
-            return "2";
-        return "3";
+        switch(manager.getExpertSystem().getExpertiseLevel()){
+            case "Expert":
+                if(timer <= 15)
+                    return "0";
+                else if(timer <= 30)
+                    return "1";
+                else if(timer <= 45)
+                    return "2";
+                else if(timer <= 60)
+                    return "3";
+                else if(timer <= 75)
+                    return "4";
+                return "5";
+            case "Average":
+                if(timer <= 20)
+                    return "0";
+                else if(timer <= 40)
+                    return "1";
+                else if(timer <= 60)
+                    return "2";
+                else if(timer <= 80)
+                    return "3";
+                else if(timer <= 100)
+                    return "4";
+                return "5";
+            case "Novice":
+                if(timer <= 30)
+                    return "0";
+                else if(timer <= 60)
+                    return "1";
+                else if(timer <= 90)
+                    return "2";
+                else if(timer <= 120)
+                    return "3";
+                else if(timer <= 150)
+                    return "4";
+                return "5";
+            case "Poor":
+                if(timer <= 40)
+                    return "0";
+                else if(timer <= 80)
+                    return "1";
+                else if(timer <= 120)
+                    return "2";
+                else if(timer <= 160)
+                    return "3";
+                else if(timer <= 200)
+                    return "4";
+                return "5";
+        }
+        return "2";
     }
 
 
