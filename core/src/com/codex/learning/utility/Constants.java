@@ -42,6 +42,8 @@ public class Constants {
     // SAVE FILE ASSET PATH
     public static final String SAVE_FILE_PATH = "assets/text/SaveFile.txt";
     public static final String DATA_GATHERED_FILE_PATH = "assets/text/data.txt";
+    public static final String CODE_RIDDLE_DATA_FILE_PATH = "assets/text/codeRiddleData.txt";
+    public static final String MINIGAME_DATA_FILE_PATH = "assets/text/minigameData.txt";
 
     // EXCEL FILE ASSET PATH
     public static final String EXCEL_FILE_PATH = "assets/excel/Minigames.xlsx";

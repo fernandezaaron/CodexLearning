@@ -22,6 +22,7 @@ import com.codex.learning.entity.maps.OfficeMap;
 import com.codex.learning.entity.maps.PlayroomMapS1;
 import com.codex.learning.entity.maps.SchoolMap;
 import com.codex.learning.states.State;
+import com.codex.learning.states.minigames.CodeRiddle;
 import com.codex.learning.states.minigames.Minigame;
 import com.codex.learning.utility.decisiontree.Behavior;
 import com.codex.learning.utility.decisiontree.DecisionTree;
@@ -50,7 +51,7 @@ public class Manager {
     private TextureRegion reportCardSheet;
     private TextureRegion pcStateSheet;
     private TextureRegion settingsStateSheet;
-
+    private CodeRiddle codeRiddle;
 
     private TextureRegion pauseStateSheet;
     private Skin skin;
@@ -395,21 +396,6 @@ public class Manager {
 //        behavior.clear();
 //    }
 
-    public String checkNumberOfBlockInteractionRule(int numberOfBlockInteraction){
-        if(numberOfBlockInteraction == 0){
-            return "";
-        }
-        else if(numberOfBlockInteraction <= 10){
-            return "1";
-        }
-        else if(numberOfBlockInteraction <= 20){
-            return "2";
-        }
-        else{
-            return "3";
-        }
-    }
-
     public void checkIfMoving(Character character){
         if(character.isMoving()){
             setMoving(true);
@@ -458,5 +444,13 @@ public class Manager {
 
     public void setDtree(Dtree dtree) {
         this.dtree = dtree;
+    }
+
+    public CodeRiddle getCodeRiddle() {
+        return codeRiddle;
+    }
+
+    public void setCodeRiddle(CodeRiddle codeRiddle) {
+        this.codeRiddle = codeRiddle;
     }
 }

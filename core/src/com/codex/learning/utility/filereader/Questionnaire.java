@@ -52,7 +52,7 @@ public class Questionnaire extends DatabaseReader {
         questionLimit = 0;
         questionID = 0;
 
-        excelQuestionLimit = 335;
+        excelQuestionLimit = 338;
         excelMinigameLimit = 93;
         minigameElementLimit = 0;
         answerPoolLimit = 200;
@@ -315,13 +315,13 @@ public class Questionnaire extends DatabaseReader {
             case "Novice":
                 levels.add("Easy");
                 levels.add("Medium");
-                questionLimit = 5;
+                questionLimit = 8;
                 hints = 3;
                 break;
             case "Average":
                 levels.add("Medium");
                 levels.add("Hard");
-                questionLimit = 2;
+                questionLimit = 5;
                 hints = 2;
                 break;
             case "Expert":

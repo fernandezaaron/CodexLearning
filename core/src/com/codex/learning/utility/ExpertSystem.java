@@ -138,18 +138,26 @@ public class ExpertSystem {
 
     // Stage #, Stage Topic, Cookie Number, Dataset (5), Behavior
     // Input after the game too
-    public void writeDataGathering(int stageNumber, String stageTopic, int numberOfCookie){
+    public void writeDataGathering(int stageNumber, String stageTopic, String expertiseLevel, int numberOfCookie, ArrayList<ArrayList<String>> codeRiddleData, ArrayList<ArrayList<String>> minigameData){
         try {
             int counter = 0;
             int length = 0;
-            ArrayList<String> replace = new ArrayList<>(Arrays.asList(String.valueOf(stageNumber), stageTopic, String.valueOf(numberOfCookie), "YES", "HIGH", "MEDIUM", "LOW", "LOW", "ENGAGED"));
+            String codeRiddleListSize = String.valueOf(codeRiddleData.size());
+            String minigameListSize = String.valueOf(minigameData.size());
+            String codeRiddleEngagedPercentage = String.valueOf(calculateEngagedPercentage(codeRiddleData));
+            String minigameEngagedPercentage = String.valueOf(calculateEngagedPercentage(minigameData));
+            ArrayList<String> replace = new ArrayList<>(Arrays.asList(String.valueOf(stageNumber), stageTopic,
+                    expertiseLevel, String.valueOf(numberOfCookie),
+                    "ENGAGED", codeRiddleEngagedPercentage, codeRiddleListSize,
+                    "ENGAGED", minigameEngagedPercentage, minigameListSize));
+
+
             File file = new File(Constants.DATA_GATHERED_FILE_PATH);
             if (file.createNewFile()) {
                 System.out.println("File created: " + file.getName());
             }
             else {
                 ArrayList<ArrayList<String>> data = readDataFirst();
-                System.out.println(data);
 
                 for(ArrayList<String> i: data){
                     if(i.get(0).equals(String.valueOf(stageNumber))){
@@ -186,6 +194,33 @@ public class ExpertSystem {
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void writeGameDataGathered(int stageNumber, String topic, ArrayList<ArrayList<String>> data){
+
+    }
+
+    public int calculateEngagedPercentage(ArrayList<ArrayList<String>> data){
+        int total = 0;
+        int current = 0;
+        float percent;
+        if(data.size() == 1){
+            if(data.get(0).get(data.size()).equals("ENGAGED"))
+                return 100;
+            return 0;
+        }
+        for(int i = 0; i < data.size(); i++){
+            System.out.println("I = " + i);
+            if(data.get(i).get(data.size()).equals("ENGAGED")){
+                total++;
+                current++;
+            }
+            else{
+                total++;
+            }
+        }
+        percent = ((float) current/total) * 100;
+        return (int) percent;
     }
 
     public int[] getCookies() {

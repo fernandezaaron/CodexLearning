@@ -47,6 +47,9 @@ public class CodeRiddle extends State {
 
     private float timer, dialogTimer;
 
+    private ArrayList<ArrayList<String>> codeRiddleData;
+    private int dataCounter;
+
     public CodeRiddle(Manager manager, FuzzyLogic fuzzyLogic) {
         super(manager);
 
@@ -113,6 +116,9 @@ public class CodeRiddle extends State {
 
         getAQuestion(manager.getStageSelector().map());
         currentQuestion = 0;
+
+        codeRiddleData = new ArrayList<>();
+        dataCounter = 0;
     }
 
     @Override
@@ -351,8 +357,22 @@ public class CodeRiddle extends State {
         if(timer > 0 && timer % 15 == 0){
             System.out.println(manager.getDtree().codeRiddleML(checkTimeConsumption(timer),
                     convertNumberOfError(error)));
-            manager.getDtree().codeRiddleML(checkTimeConsumption(timer),
+            currentBehavior = manager.getDtree().codeRiddleML(checkTimeConsumption(timer),
                     convertNumberOfError(error));
+
+            codeRiddleData.add(new ArrayList<String>());
+            codeRiddleData.get(dataCounter).add(checkTimeConsumption(timer));
+            codeRiddleData.get(dataCounter).add(convertNumberOfError(error));
+            codeRiddleData.get(dataCounter).add(currentBehavior);
+            dataCounter++;
+            System.out.println("CODE RIDDLE NA YUN - " + codeRiddleData);
+
+            if(currentBehavior.equals("ENGAGED")){
+                System.out.println("WOW keep it up my dudes!!");
+            }
+            else{
+                System.out.println("Haha lungkot mo naman!!");
+            }
         }
     }
 
@@ -363,29 +383,6 @@ public class CodeRiddle extends State {
         else if(result <= .8)
             return "2";
         return "1";
-    }
-
-    // Time Consumption, Number of Error
-    public void updateBehavior(){
-        String currentBehavior = "";
-        String time = checkTimeConsumption((int) timer);
-        behavior.add("");
-        behavior.add(time);
-        behavior.add("");
-        behavior.add(fuzzyLogic.getNumberOfErrorsRules());
-        behavior.add("");
-        currentBehavior = String.valueOf(manager.getDecisionTree().classify(behavior, manager.getDecisionTree().getTree()));
-
-        if(currentBehavior.equals("ENGAGED") || currentBehavior.equals("NEUTRAL") || currentBehavior.equals("BORED")){
-            //GIVE FEEDBACK
-
-
-        }
-        else{
-            //GIVE HINTS
-
-        }
-        behavior.clear();
     }
 
     public String checkTimeConsumption(int timer){
@@ -435,5 +432,21 @@ public class CodeRiddle extends State {
 
     public void setResultFeedBackOpen(boolean resultFeedBackOpen) {
         this.resultFeedBackOpen = resultFeedBackOpen;
+    }
+
+    public ArrayList<ArrayList<String>> getCodeRiddleData() {
+        return codeRiddleData;
+    }
+
+    public void setCodeRiddleData(ArrayList<ArrayList<String>> codeRiddleData) {
+        this.codeRiddleData = codeRiddleData;
+    }
+
+    public int getDataCounter() {
+        return dataCounter;
+    }
+
+    public void setDataCounter(int dataCounter) {
+        this.dataCounter = dataCounter;
     }
 }

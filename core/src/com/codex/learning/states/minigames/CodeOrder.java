@@ -33,7 +33,7 @@ public class CodeOrder extends State {
     private ArrayList<Integer> banishCells;
     private ArrayList<String> originalAnswerPoolContainer, answerPoolContainer;
     private String mergeResult;
-    private int timer;
+    private float timer;
 
     public CodeOrder(Manager manager, Character jedisaur, FuzzyLogic fuzzyLogic) {
         super(manager);
@@ -84,7 +84,7 @@ public class CodeOrder extends State {
             currentStringLength = (float) String.valueOf(answerPoolContainer.get(i)).length();
             answerBlocks[i] = new Blocks(manager, "\"" + answerPoolContainer.get(i) + "\"", answerPoolContainer.get(i), true);
             if (answerPoolContainer.get(i) != null) {
-                answerBlocks[i].create(new Vector2(AnsPoolX, AnsPoolY), new Vector2((currentStringLength * 0.2f), Constants.BLOCKS_HEIGHT), 0);
+                answerBlocks[i].create(new Vector2(AnsPoolX, AnsPoolY), new Vector2((currentStringLength * 0.22f), Constants.BLOCKS_HEIGHT), 0);
             }
             AnsPoolY -= 2.5f;
         }
@@ -107,6 +107,7 @@ public class CodeOrder extends State {
     public void update(float delta) {
         if(!manager.getMinigameChecker().isDone()){
             timer += Gdx.graphics.getDeltaTime();
+            manager.getMinigame().checkBehavior((int) timer, jedisaur);
         }
 
         for (int i = 0; i < minigameContainer.size(); i++) {

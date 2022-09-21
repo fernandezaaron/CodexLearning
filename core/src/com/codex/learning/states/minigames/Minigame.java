@@ -1,22 +1,24 @@
 package com.codex.learning.states.minigames;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.codex.learning.entity.blocks.Blocks;
 import com.codex.learning.entity.characters.Character;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.FuzzyLogic;
 import com.codex.learning.utility.Manager;
 
+import java.util.ArrayList;
+
 public class Minigame extends State {
     private FuzzyLogic fuzzyLogic;
     private int currentMinigame;
     private FillInTheBlock fillInTheBlock;
-    private sample sample;
     private CodeOrder codeOrder;
     private boolean fillInTheBlockFlag, mysteryCodeFlag, codeOrderFlag, codeITFlag;
     private Character jedisaur;
     private MysteryCode mysteryCode;
     private CodeIT codeIT;
+    private ArrayList<ArrayList<String>> minigameData;
+    private int dataCounter;
 
 //    public Minigame(Manager manager, int currentMinigame, Character jedisaur, FuzzyLogic fuzzyLogic){
 //        super(manager);
@@ -36,6 +38,8 @@ public class Minigame extends State {
         codeOrderFlag = false;
         codeITFlag = false;
         this.jedisaur = jedisaur;
+        minigameData = new ArrayList<>();
+        dataCounter = 0;
     }
 
 
@@ -113,28 +117,64 @@ public class Minigame extends State {
     public void checkBehavior(int timer, Character jedisaur){
         String currentBehavior = "";
         String movement = (manager.isMoving()) ? "0":"1";
-        String numberOfBlockInteraction = (manager.checkNumberOfBlockInteractionRule(jedisaur.getNumberOfBlockInteraction()));
-        if(timer > 0 && timer % 15 == 0){
-            System.out.println(manager.getDtree().minigameRiddle(movement, String.valueOf(timer),
-                    convertNumberOfAttempt(fuzzyLogic.getNumberOfAttempts()),numberOfBlockInteraction));
+        String numberOfAttempt = convertNumberOfAttempt(manager.getMinigameChecker().getNumberOfAttempts());
+        String numberOfBlockInteraction = (checkNumberOfBlockInteractionRule(jedisaur.getNumberOfBlockInteraction()));
+        if(timer > 0 && timer % 10 == 0){
+            System.out.println("XD - " + manager.getDtree().minigameML(movement, checkTimeConsumption(timer),
+                    numberOfAttempt, numberOfBlockInteraction));
+            currentBehavior = manager.getDtree().minigameML(movement, checkTimeConsumption(timer),
+                    numberOfAttempt, numberOfBlockInteraction);
+
+            minigameData.add(new ArrayList<String>());
+            minigameData.get(dataCounter).add(movement);
+            minigameData.get(dataCounter).add(checkTimeConsumption(timer));
+            minigameData.get(dataCounter).add(numberOfAttempt);
+            minigameData.get(dataCounter).add(numberOfBlockInteraction);
+            minigameData.get(dataCounter).add(currentBehavior);
+            dataCounter++;
+
+            System.out.println("MINIGAME DATA NA YUN - " + minigameData);
+
+            if(currentBehavior.equals("ENGAGED")){
+                System.out.println("WOW keep it up my dudes!!");
+            }
+            else{
+                System.out.println("Haha lungkot mo naman!!");
+            }
         }
+
+
+    }
+
+    public String checkNumberOfBlockInteractionRule(int numberOfBlockInteraction){
+
+        if(numberOfBlockInteraction <= 10)
+            return "1";
+        else if(numberOfBlockInteraction <= 20)
+            return "2";
+        return "3";
     }
 
     public String convertNumberOfAttempt(int numberOfAttempt){
-        if(numberOfAttempt <= 1){
+        if(numberOfAttempt <= 1)
             return "1";
-        }
-        else if(numberOfAttempt <= 3){
+        else if(numberOfAttempt <= 3)
             return "2";
-        }
-        else if(numberOfAttempt <= 5){
-            return "3";
-        }
-        return "1";
+        return "3";
     }
 
-    public void fuzzyReset(){
+    public String checkTimeConsumption(int timeConsumption){
+        if(timeConsumption <= 150)
+            return "1";
+        else if(timeConsumption <= 240)
+            return "2";
+        return "3";
+    }
+
+    public void reset(){
         fuzzyLogic.fuzzyReset();
+        minigameData.clear();
+        dataCounter = 0;
     }
 
     public int getCurrentMinigame() {
@@ -171,4 +211,11 @@ public class Minigame extends State {
 //        }
 //    }
 
+    public ArrayList<ArrayList<String>> getMinigameData() {
+        return minigameData;
+    }
+
+    public void setMinigameData(ArrayList<ArrayList<String>> minigameData) {
+        this.minigameData = minigameData;
+    }
 }

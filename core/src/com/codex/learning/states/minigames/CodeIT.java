@@ -21,7 +21,6 @@ import java.util.Random;
 public class CodeIT extends State {
     private Character jedisaur;
     private FuzzyLogic fuzzyLogic;
-    private PlayroomMapS1 playroom;
     private Blocks[][] questionBlocks;
     private BlockHolder[][] blockHolders;
     private Blocks[] answerBlocks;
@@ -32,7 +31,7 @@ public class CodeIT extends State {
     private ArrayList<ArrayList<Blocks>> blocksArrayList;
     private float AnsPoolY, AnsPoolX, currentStringLength, xStartingPoint;
     private int currentAnsCell, ansPoolSize, totalLineLength, yStartingPoint, currentCell, stage;
-    private int timer;
+    private float timer;
 //    private int blockCount;
 //    private boolean blockSpawn;
 //    private BlockDispenser[] blockDispensers;
@@ -45,7 +44,6 @@ public class CodeIT extends State {
         super(manager);
         timer = 0;
         pause = new PauseState(manager);
-        playroom = new PlayroomMapS1(manager);
         getAnswerPool = new ArrayList<>();
         blocksArrayList = new ArrayList<>();
 //        duplicatePool = new ArrayList<Integer>();
@@ -123,6 +121,7 @@ public class CodeIT extends State {
     public void update(float delta) {
         if(!manager.getMinigameChecker().isDone()){
             timer += Gdx.graphics.getDeltaTime();
+            manager.getMinigame().checkBehavior((int) timer, jedisaur);
         }
 
         for (int i = 0; i < minigameContainer.size(); i++) {
@@ -196,6 +195,8 @@ public class CodeIT extends State {
                         }
 
                         if(jedisaur.isPickedUp()){
+                            blocksArrayList.get(i).set(j, null);
+
                             for(int k=j-1; k>=0; k--){
                                 blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x + blockSize-0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
                             }
@@ -229,6 +230,7 @@ public class CodeIT extends State {
                 answerBlocks[i].update(delta);
             }
         }
+        itIsCorrect();
     }
 
 
@@ -240,7 +242,6 @@ public class CodeIT extends State {
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.end();
-        playroom.render(sprite);
 
         for(int i = 0; i < minigameContainer.size(); i++) {
             for (int j = 0; j < minigameContainer.get(i).size(); j++) {
@@ -259,20 +260,35 @@ public class CodeIT extends State {
 
     @Override
     public void dispose() {
-        for(int i = 0; i < minigameContainer.size(); i++) {
-            for (int j = 0; j < minigameContainer.get(i).size(); j++) {
-                if (minigameContainer.get(i).get(j) != null) {
-                    blockHolders[i][j].disposeBody();
-                }
-            }
-        }
+//        for(int i = 0; i < minigameContainer.size(); i++) {
+//            for (int j = 0; j < minigameContainer.get(i).size(); j++) {
+//                if (minigameContainer.get(i).get(j) != null) {
+//                    blockHolders[i][j].disposeBody();
+//                }
+//            }
+//        }
 
         for(int i = 0; i < getAnswerPool.size(); i++) {
             if(answerBlocks[i] != null) {
                 answerBlocks[i].disposeBody();
             }
         }
-        playroom.dispose();
+
+        for(BlockHolder[] b: blockHolders){
+            for(BlockHolder i: b){
+                if(i != null){
+                    i.disposeBody();
+                }
+            }
+        }
+//        for (Blocks[] q: questionBlocks) {
+//            for (Blocks i : q) {
+//                if(i != null){
+//                    i.disposeBody();
+//                }
+//            }
+//        }
+
     }
 
     public void getAMinigame(String stage, String expertiseLevel){

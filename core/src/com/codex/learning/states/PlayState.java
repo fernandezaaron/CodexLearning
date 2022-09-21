@@ -144,6 +144,7 @@ public class PlayState extends State{
 
                     if(computer.isDone() && computerOnce){
                         computer.getCodeRiddle().resultFeedback();
+                        manager.setCodeRiddle(computer.getCodeRiddle());
                         computerOnce = false;
                     }
 
@@ -236,13 +237,9 @@ public class PlayState extends State{
         sprite.setProjectionMatrix(manager.getCamera().combined);
         if(isInStartArea()){
             checkDoor(sprite, atDoor);
-
         }
         sprite.end();
         pause.render(sprite);
-
-
-
     }
 
     @Override
@@ -292,8 +289,7 @@ public class PlayState extends State{
 
     public void exitDoor(Character character){
         if(character.getBody().getPosition().x > -9.0f && character.getBody().getPosition().x < -3.0f && character.getBody().getPosition().y < -11){
-            manager.getMusic().stop();
-            manager.set(new StageSelectState(manager));
+
         }
 
         atDoor = character.getBody().getPosition().x > -9.5f && character.getBody().getPosition().x < -3.0f && character.getBody().getPosition().y < -10;
@@ -302,7 +298,28 @@ public class PlayState extends State{
     private void checkDoor(SpriteBatch sprite, boolean atDoor){
         if(atDoor){
             sprite.draw(door, -330, -450);
+            manager.getMusic().stop();
+            manager.getQuestionnaire().dispose();
+            if (manager.getQuestionnaire().getMinigameHolder() != null){
+                manager.getQuestionnaire().clearMinigames();
+                manager.getMinigame().dispose();
+            }
+            manager.getPlayroomMap().dispose();
+            if(manager.getStageSelector().map().equals("1")){
+                manager.getHouseMap().dispose();
+            }
+            else if(manager.getStageSelector().map().equals("2")){
+                manager.getSchoolMap().dispose();
+            }
+            else {
+                manager.getOfficeMap().dispose();
+            }
+            manager.getMinigameChecker().setNumberOfAttempts(0);
+            manager.getMinigameChecker().setDone(false);
+            manager.getMinigame().reset();
+            manager.set(new StageSelectState(manager));
         }
+
     }
 
     public void enterPlayRoom(Character character){
@@ -325,6 +342,7 @@ public class PlayState extends State{
                 jedisaur.getBody().getPosition().set(-20, 1);
             }
             else {
+                jediGrandpa.setDirection("east");
                 jediGrandpa.noToPlayroom(jedisaur);
 
             }
@@ -350,5 +368,13 @@ public class PlayState extends State{
 
     public void setInStartArea(boolean inStartArea) {
         this.inStartArea = inStartArea;
+    }
+
+    public Computer getComputer() {
+        return computer;
+    }
+
+    public void setComputer(Computer computer) {
+        this.computer = computer;
     }
 }
