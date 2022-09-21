@@ -259,30 +259,18 @@ public class ExpertSystem {
         int total = 0;
         int current = 0;
         float percent;
-<<<<<<< HEAD
-        if(data.size() == 1){
-            if(data.get(0).get(data.get(0).size()-1).equals("ENGAGED"))
-=======
         if(data.size() == 2){
             if(data.get(1).get(data.get(0).size() - 1).equals("ENGAGED"))
->>>>>>> Paul
                 return 100;
             return 0;
         }
         for(int i = 0; i < data.size(); i++){
-<<<<<<< HEAD
-            System.out.println("I = " + i);
-            if(data.get(i).get(data.get(i).size()-1).equals("ENGAGED")){
-=======
             if(i == 0){
                 continue;
             }
             else if(data.get(i).get(data.get(i).size() - 1).equals("ENGAGED")){
->>>>>>> Paul
                 total++;
                 current++;
-                System.out.println(total + " " + current);
-
             }
             else{
                 total++;
