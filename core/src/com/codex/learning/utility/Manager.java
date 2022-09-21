@@ -346,37 +346,6 @@ public class Manager {
         this.moving = moving;
     }
 
-//    public void updateBehavior(int timer){
-//        String currentBehavior = "";
-//        String movement = (isMoving()) ? "YES":"NO";
-//        String time = checkTimeConsumption(timer);
-//        ArrayList<String> behavior = new ArrayList<>();
-//
-//        if(timer > 0 && timer % 10 == 0){
-//            behavior.add(movement);
-//            behavior.add(time);
-//            behavior.add("");
-//            behavior.add("");
-//            behavior.add("");
-//            currentBehavior = String.valueOf(getDecisionTree().classify(behavior, getDecisionTree().getTree()));
-//            currentBehavior = currentBehavior;
-//
-//            if(currentBehavior.equals("ENGAGED")){
-//                //GIVE FEEDBACK REGARDING ENGAGED
-//                System.out.println(currentBehavior);
-//                System.out.println("ENGAGED");
-//            }
-//            else{
-//                //GIVE FEEDBACK REGARING NOT ENGAGED
-//                System.out.println(behavior);
-//                System.out.println(currentBehavior);
-//                System.out.println("NOT ENGAGED");
-//                hintsIndex++;
-//            }
-//        }
-//        behavior.clear();
-//    }
-
     public void checkIfMoving(Character character){
         if(character.isMoving()){
             setMoving(true);
