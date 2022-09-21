@@ -7,13 +7,7 @@ import java.io.InputStreamReader;
 import java.lang.ProcessBuilder;
 
 public class Dtree {
-    private ProcessBuilder codeRiddleBuilder;
-    public Dtree(){
 
-        codeRiddleBuilder = new ProcessBuilder("python",
-                System.getProperty("user.dir") + "\\assets\\model\\codeRiddleScript.py");
-
-    }
     public String removeBracket(String string){
         StringBuilder stringBuilder = new StringBuilder(string);
 
@@ -25,13 +19,13 @@ public class Dtree {
         return stringBuilder.toString();
     }
 
-    public String minigameRiddle(String movementDetected, String timeConsumption, String numberOfAttempt, String numberOfBlockInteraction){
+    public String minigameML(String movementDetected, String timeConsumption, String numberOfAttempt, String numberOfBlockInteraction){
         try {
-            ProcessBuilder processBuilder = new ProcessBuilder("python",
+            ProcessBuilder minigameBuilder = new ProcessBuilder("python",
                     System.getProperty("user.dir") + "\\assets\\model\\minigameScript.py",
                     movementDetected, timeConsumption, numberOfAttempt, numberOfBlockInteraction);
 
-            Process process = processBuilder.start();
+            Process process = minigameBuilder.start();
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String s = null;
             while ((s = reader.readLine()) != null) {
@@ -45,7 +39,10 @@ public class Dtree {
 
     public String codeRiddleML(String timeConsumption, String numberOfError){
         try {
-            codeRiddleBuilder.command(timeConsumption, numberOfError);
+            ProcessBuilder codeRiddleBuilder = new ProcessBuilder("python",
+                    System.getProperty("user.dir") + "\\assets\\model\\codeRiddleScript.py",
+                    timeConsumption, numberOfError);
+
             Process process = codeRiddleBuilder.start();
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String s = null;

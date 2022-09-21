@@ -165,6 +165,7 @@ public class MysteryCode extends State {
     public void update(float delta) {
         if(!manager.getMinigameChecker().isDone()){
             timer += Gdx.graphics.getDeltaTime();
+            manager.getMinigame().checkBehavior((int) timer, jedisaur);
         }
 
         currentCell = 0;
@@ -452,20 +453,7 @@ public class MysteryCode extends State {
         }
     }
 
-    public String checkTimeConsumption(int timer){
-        if(timer <= 120){
-            return "LOW";
-        }
-        else if(timer <= 240){
-            return "MEDIUM";
-        }
-        else if(timer <= 360){
-            return "HIGH";
-        }
-        else{
-            return "";
-        }
-    }
+
 
     public void setBlockToCheck(Blocks block, int i, int j) {
         if(jedisaur.isPickedUp()) {

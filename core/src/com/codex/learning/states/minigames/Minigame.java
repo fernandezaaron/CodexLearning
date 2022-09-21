@@ -11,7 +11,6 @@ public class Minigame extends State {
     private FuzzyLogic fuzzyLogic;
     private int currentMinigame;
     private FillInTheBlock fillInTheBlock;
-    private sample sample;
     private CodeOrder codeOrder;
     private boolean fillInTheBlockFlag, mysteryCodeFlag, codeOrderFlag, codeITFlag;
     private Character jedisaur;
@@ -113,11 +112,29 @@ public class Minigame extends State {
     public void checkBehavior(int timer, Character jedisaur){
         String currentBehavior = "";
         String movement = (manager.isMoving()) ? "0":"1";
-        String numberOfBlockInteraction = (manager.checkNumberOfBlockInteractionRule(jedisaur.getNumberOfBlockInteraction()));
-        if(timer > 0 && timer % 15 == 0){
-            System.out.println(manager.getDtree().minigameRiddle(movement, String.valueOf(timer),
-                    convertNumberOfAttempt(fuzzyLogic.getNumberOfAttempts()),numberOfBlockInteraction));
+        String numberOfBlockInteraction = (checkNumberOfBlockInteractionRule(jedisaur.getNumberOfBlockInteraction()));
+        if(timer > 0 && timer % 10 == 0){
+            System.out.println("XD - " + manager.getDtree().minigameML(movement, checkTimeConsumption(timer),
+                    convertNumberOfAttempt(manager.getMinigameChecker().getNumberOfAttempts()), numberOfBlockInteraction));
+            currentBehavior = manager.getDtree().minigameML(movement, checkTimeConsumption(timer),
+                    convertNumberOfAttempt(manager.getMinigameChecker().getNumberOfAttempts()), numberOfBlockInteraction);
         }
+
+//        if(currentBehavior.equals("ENGAGED")){
+//            manager.getExpertSystem()
+//        }
+//        else{
+//
+//        }
+    }
+
+    public String checkNumberOfBlockInteractionRule(int numberOfBlockInteraction){
+
+        if(numberOfBlockInteraction <= 10)
+            return "1";
+        else if(numberOfBlockInteraction <= 20)
+            return "2";
+        return "3";
     }
 
     public String convertNumberOfAttempt(int numberOfAttempt){
@@ -125,14 +142,13 @@ public class Minigame extends State {
             return "1";
         else if(numberOfAttempt <= 3)
             return "2";
-        else
-            return "3";
+        return "3";
     }
 
     public String checkTimeConsumption(int timeConsumption){
-        if(timeConsumption <= 180)
+        if(timeConsumption <= 150)
             return "1";
-        else if(timeConsumption <= 180)
+        else if(timeConsumption <= 240)
             return "2";
         return "3";
     }
