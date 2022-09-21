@@ -315,13 +315,13 @@ public class Questionnaire extends DatabaseReader {
             case "Novice":
                 levels.add("Easy");
                 levels.add("Medium");
-                questionLimit = 5;
+                questionLimit = 8;
                 hints = 3;
                 break;
             case "Average":
                 levels.add("Medium");
                 levels.add("Hard");
-                questionLimit = 2;
+                questionLimit = 5;
                 hints = 2;
                 break;
             case "Expert":
