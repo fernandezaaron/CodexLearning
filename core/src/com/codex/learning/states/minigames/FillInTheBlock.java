@@ -313,6 +313,7 @@ public class FillInTheBlock extends State {
                             }
 
                             if (jedisaur.isPickedUp()) {
+                                blocksArrayList.get(i).set(j, null);
                                 for (int k = j - 1; k >= 0; k--) {
                                     if (dispenserPoolContainer.contains(minigameContainer.get(i).get(k)) || banishPoolContainer.contains(minigameContainer.get(i).get(k))) {
                                         blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x + blockSize - 0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
@@ -397,17 +398,33 @@ public class FillInTheBlock extends State {
 
     @Override
     public void dispose() {
-        for(int i = 0; i < minigameContainer.size(); i++) {
-            for (int j = 0; j < minigameContainer.get(i).size(); j++) {
-                if (minigameContainer.get(i).get(j) != null) {
-                    if(banishPoolContainer.contains(minigameContainer.get(i).get(j))) {
-                        blockHolders[i][j].disposeBody();
-                    }
-                    else
-                        questionBlocks[i][j].disposeBody();
+//        for(int i = 0; i < minigameContainer.size(); i++) {
+//            for (int j = 0; j < minigameContainer.get(i).size(); j++) {
+//                if (minigameContainer.get(i).get(j) != null) {
+//                    if(banishPoolContainer.contains(minigameContainer.get(i).get(j))) {
+//                        blockHolders[i][j].disposeBody();
+//                    }
+//                    else
+//                        questionBlocks[i][j].disposeBody();
+//                }
+//            }
+//        }
+
+        for(BlockHolder[] b: blockHolders){
+            for(BlockHolder i: b){
+                if(i != null){
+                    i.disposeBody();
                 }
             }
         }
+        for (Blocks[] q: questionBlocks) {
+            for (Blocks i : q) {
+                if(i != null){
+                    i.disposeBody();
+                }
+            }
+        }
+
 
         for(int i = 0; i < banishPoolContainer.size() + dispenserPoolContainer.size(); i++){
             blockDispensers[i].disposeBody();
