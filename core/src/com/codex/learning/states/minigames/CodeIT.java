@@ -61,7 +61,7 @@ public class CodeIT extends State {
             xStartingPoint = -15.0f;
             for(int j = 0; j < minigameContainer.get(i).size(); j++) {
                 if(minigameContainer.get(i).get(j) != null) {
-                    blockHolders[i][j] = new BlockHolder(manager, "\"" + minigameContainer.get(i).get(j) + "\"");
+                    blockHolders[i][j] = new BlockHolder(manager, minigameContainer.get(i).get(j));
                     blockHolders[i][j].create(new Vector2(xStartingPoint, yStartingPoint - 0.5f), new Vector2(Constants.BLOCK_HOLDER_WIDTH, Constants.BLOCK_HOLDER_HEIGHT), 0);
                     blocksArrayList.get(i).add(blockHolders[i][j].getCopyBlock());
                     getAnswerPool.add(minigameContainer.get(i).get(j));
@@ -86,7 +86,7 @@ public class CodeIT extends State {
             while (totalLineLength <= 12) {
                 currentStringLength = (float) String.valueOf(getAnswerPool.get(currentAnsCell)).length();
                 totalLineLength += currentStringLength + (AnsPoolX - 11);
-                answerBlocks[currentAnsCell] = new Blocks(manager, "\"" + getAnswerPool.get(currentAnsCell) + "\"", getAnswerPool.get(currentAnsCell), false);
+                answerBlocks[currentAnsCell] = new Blocks(manager, getAnswerPool.get(currentAnsCell), getAnswerPool.get(currentAnsCell), false);
                 if (getAnswerPool.get(currentAnsCell) != null) {
                     if (currentStringLength <= 3)
                         answerBlocks[currentAnsCell].create(new Vector2(AnsPoolX, AnsPoolY), new Vector2((currentStringLength * 0.5f), Constants.BLOCKS_HEIGHT), 0);
@@ -150,6 +150,7 @@ public class CodeIT extends State {
                         }
                         if(jedisaur.isDropped()) {
                             setBlockToCheck(blockHolders[i][j].getCopyBlock(), i, j);
+                            setToCheck(blockHolders);
                         }
                     }
                 }
