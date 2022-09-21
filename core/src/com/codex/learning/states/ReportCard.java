@@ -10,7 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
-import org.apache.poi.ss.formula.functions.T;
 
 import java.util.ArrayList;
 
@@ -147,7 +146,7 @@ public class ReportCard extends State{
                     manager.getOfficeMap().dispose();
                 }
                 manager.getMinigameChecker().setDone(false);
-                manager.getMinigame().fuzzyReset();
+                manager.getMinigame().reset();
                 manager.set(new StageSelectState(manager));
                 return true;
             }

@@ -218,32 +218,6 @@ public class Contact implements ContactListener {
             objective.setInContact(true);
         }
 
-        if(isBlockDispenserV2Contact(fa, fb)){
-            BlockDispenserV2 blockDispenserV2;
-            Character jedisaur;
-
-            if(fa.getUserData() instanceof BlockDispenserV2){
-                blockDispenserV2 = (BlockDispenserV2) fa.getUserData();
-                jedisaur = (Character) fb.getUserData();
-            }
-            else{
-                jedisaur = (Character) fa.getUserData();
-                blockDispenserV2 = (BlockDispenserV2) fb.getUserData();
-            }
-            if(jedisaur.isCarrying()){
-                jedisaur.setPickUpAble(false);
-                blockDispenserV2.setInContact(false);
-            }
-            else{
-                if(blockDispenserV2.getCurrentBlock() == 0){
-                    jedisaur.setPickUpAble(false);
-                    blockDispenserV2.setInContact(false);
-                }else {
-                    jedisaur.setPickUpAble(true);
-                    blockDispenserV2.setInContact(true);
-                }
-            }
-        }
 
         if(isHowToPlayContact(fa, fb)){
             HowToPlay howToPlay;
@@ -399,20 +373,6 @@ public class Contact implements ContactListener {
             objective.setInContact(false);
         }
 
-        if(isBlockDispenserV2Contact(fa, fb)){
-            BlockDispenserV2 blockDispenserV2;
-            Character jedisaur;
-
-            if(fa.getUserData() instanceof BlockDispenserV2){
-                blockDispenserV2 = (BlockDispenserV2) fa.getUserData();
-                jedisaur = (Character) fb.getUserData();
-            }
-            else{
-                jedisaur = (Character) fa.getUserData();
-                blockDispenserV2 = (BlockDispenserV2) fb.getUserData();
-            }
-            blockDispenserV2.setInContact(false);
-        }
 
         if(isHowToPlayContact(fa, fb)){
             HowToPlay howToPlay;
@@ -505,14 +465,6 @@ public class Contact implements ContactListener {
         return false;
     }
 
-    private boolean isBlockDispenserV2Contact(Fixture a, Fixture b){
-        if(a.getUserData() instanceof Character || b.getUserData() instanceof Character){
-            if(a.getUserData() instanceof BlockDispenserV2 || b.getUserData() instanceof BlockDispenserV2){
-                return true;
-            }
-        }
-        return false;
-    }
 
     private boolean isHowToPlayContact(Fixture a, Fixture b){
         if(a.getUserData() instanceof Character || b.getUserData() instanceof Character){
