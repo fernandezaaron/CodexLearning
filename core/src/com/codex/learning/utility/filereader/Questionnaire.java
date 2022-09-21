@@ -523,4 +523,12 @@ public class Questionnaire extends DatabaseReader {
     public void setMinigameTopic(String minigameTopic) {
         this.minigameTopic = minigameTopic;
     }
+
+    public int getHints() {
+        return hints;
+    }
+
+    public void setHints(int hints) {
+        this.hints = hints;
+    }
 }

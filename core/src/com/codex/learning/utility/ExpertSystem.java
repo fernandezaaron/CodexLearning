@@ -205,15 +205,17 @@ public class ExpertSystem {
         int current = 0;
         float percent;
         if(data.size() == 1){
-            if(data.get(0).get(data.size()).equals("ENGAGED"))
+            if(data.get(0).get(data.get(0).size()-1).equals("ENGAGED"))
                 return 100;
             return 0;
         }
         for(int i = 0; i < data.size(); i++){
             System.out.println("I = " + i);
-            if(data.get(i).get(data.size()).equals("ENGAGED")){
+            if(data.get(i).get(data.get(i).size()-1).equals("ENGAGED")){
                 total++;
                 current++;
+                System.out.println(total + " " + current);
+
             }
             else{
                 total++;

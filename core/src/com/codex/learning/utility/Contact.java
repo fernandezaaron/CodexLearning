@@ -12,6 +12,8 @@ import com.codex.learning.entity.characters.NPC;
 //This class will allow the player to have collision detection
 public class Contact implements ContactListener {
     private int numberOfCollision = 0;
+    private int blockCollision = 0;
+    private int blockHolderCollision = 0;
     @Override
     public void beginContact(com.badlogic.gdx.physics.box2d.Contact contact) {
         Fixture fa = contact.getFixtureA();
@@ -58,7 +60,6 @@ public class Contact implements ContactListener {
                 }
             }
             else {
-                jedisaur.setPickUpAble(true);
                 if(blocks.isPreDefinedContact()){
                     blocks.setInContact(false);
                     jedisaur.setPickUpAble(false);
@@ -69,18 +70,18 @@ public class Contact implements ContactListener {
                         jedisaur.setDropped(false);
                     }
                     numberOfCollision++;
+                    blockCollision++;
                     System.out.println(numberOfCollision + " else ++");
-                    jedisaur.setPickUpAble(true);
                 }
                 if(numberOfCollision>1){
                     blocks.setInContact(false);
                     jedisaur.setPickUpAble(false);
                 }
+                else {
+                    jedisaur.setPickUpAble(true);
 
+                }
             }
-
-
-
         }
 
         if(isDispenserContact(fa, fb)){
@@ -107,6 +108,7 @@ public class Contact implements ContactListener {
                     blockDispenser.setInteracting(false);
 
                 }else {
+                    System.out.println("IM HERE DISPENSER CONTACT");
                     jedisaur.setPickUpAble(true);
                     blockDispenser.setInContact(true);
                     blockDispenser.setInteracting(true);
@@ -126,16 +128,39 @@ public class Contact implements ContactListener {
                 jedisaur = (Character) fa.getUserData();
                 blockHolder = (BlockHolder) fb.getUserData();
             }
+            blockHolderCollision++;
+            System.out.println(blockHolderCollision + " blockholder collision ++");
+
+
             blockHolder.setInContact(true);
             if(jedisaur.isCarrying()){
                 jedisaur.setPickUpAble(false);
             }
             else{
+                if(blockHolderCollision >= 3){
+                    System.out.println("trueueueue");
+                    jedisaur.setPickUpAble(false);
+                    jedisaur.setBlockHolderCollision(true);
+                }else {
+                    System.out.println("IM HERE ELSE NG BLOCKHOLDER");
+                    jedisaur.setPickUpAble(true);
+                }
+            }
+            if(blockHolderCollision>=3 && blockCollision >= 1){
+                jedisaur.setPickUpAble(false);
+            } else{
+                System.out.println("I AM HERE 1");
                 jedisaur.setPickUpAble(true);
             }
+
             if(blockHolder.isOccupied()){
                 numberOfCollision = 0;
             }
+
+
+
+
+
         }
 
         if(isComputerContact(fa, fb)){
@@ -264,11 +289,13 @@ public class Contact implements ContactListener {
             if(!jedisaur.isCarrying()){
                 if(!blocks.isPreDefinedContact()){
                     numberOfCollision--;
+                    blockCollision--;
                     System.out.println(numberOfCollision + " collision");
                 }
 
             }
             if(numberOfCollision < 0){
+                blockCollision = 0;
                 numberOfCollision = 0;
             }
 
@@ -308,6 +335,13 @@ public class Contact implements ContactListener {
                 jedisaur = (Character) fa.getUserData();
                 blockHolder = (BlockHolder) fb.getUserData();
             }
+            blockHolderCollision--;
+            if(blockHolderCollision < 2){
+                System.out.println("pickupableeeeee");
+                jedisaur.setPickUpAble(true);
+                jedisaur.setBlockHolderCollision(false);
+            }
+            System.out.println(blockHolderCollision + " blockholder collision --");
             blockHolder.setInContact(false);
             jedisaur.setPickUpAble(false);
         }
