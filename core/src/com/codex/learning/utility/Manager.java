@@ -24,14 +24,9 @@ import com.codex.learning.entity.maps.SchoolMap;
 import com.codex.learning.states.State;
 import com.codex.learning.states.minigames.CodeRiddle;
 import com.codex.learning.states.minigames.Minigame;
-import com.codex.learning.utility.decisiontree.Behavior;
-import com.codex.learning.utility.decisiontree.DecisionTree;
 import com.codex.learning.utility.decisiontree.Dtree;
 import com.codex.learning.utility.filereader.Questionnaire;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Stack;
 //This class is used to initiate all once a used assets to prevent multiple calls.
 public class Manager {
@@ -71,8 +66,6 @@ public class Manager {
     private SchoolMap schoolMap;
     private OfficeMap officeMap;
 
-    private DecisionTree decisionTree;
-
     private boolean moving;
     private boolean newPlayer;
     private int numberOfBlockInteraction;
@@ -102,7 +95,6 @@ public class Manager {
         minigameChecker = new MinigameChecker();
         minigame = new Minigame(this);
 
-
         background = new TextureRegion(new Texture(Constants.BACKGROUND_PATH));
         mainMenu = new TextureRegion(new Texture(Constants.MENU_TEXT_PATH));
 
@@ -127,10 +119,6 @@ public class Manager {
 
         font = new BitmapFont(Gdx.files.internal(Constants.FONT_STYLE));
         font.getData().setScale(1.3f);
-
-
-        decisionTree = new DecisionTree();
-        decisionTree.createTree();
 
         camera = new OrthographicCamera(Constants.SCREEN_WIDTH, Constants.SCREEN_WIDTH);
         camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
@@ -341,13 +329,6 @@ public class Manager {
         this.questionnaire = questionnaire;
     }
 
-    public DecisionTree getDecisionTree() {
-        return decisionTree;
-    }
-
-    public void setDecisionTree(DecisionTree decisionTree) {
-        this.decisionTree = decisionTree;
-    }
 
     public StageSelector getStageSelector() {
         return stageSelector;

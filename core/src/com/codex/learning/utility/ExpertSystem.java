@@ -255,7 +255,7 @@ public class ExpertSystem {
         }
     }
 
-        public int calculateEngagedPercentage(ArrayList<ArrayList<String>> data){
+    public int calculateEngagedPercentage(ArrayList<ArrayList<String>> data){
         int total = 0;
         int current = 0;
         float percent;

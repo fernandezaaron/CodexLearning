@@ -8,6 +8,12 @@ import java.lang.ProcessBuilder;
 
 public class Dtree {
 
+    private MLThread mlThread;
+
+    public Dtree(){
+        mlThread = new MLThread();
+    }
+
     public String removeBracket(String string){
         StringBuilder stringBuilder = new StringBuilder(string);
 
