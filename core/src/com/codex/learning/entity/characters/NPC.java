@@ -391,6 +391,8 @@ public class NPC extends Entity {
             else {
                 db.textAnimation(manager.getDialogue().reader(nextStatement, "finishCheck", 2));
                 manager.getDialogue().setStatementEnd(true);
+                setTalking(false);
+
             }
             setReadiness(false);
         }
@@ -459,6 +461,7 @@ public class NPC extends Entity {
 
     public void hintsDialog(){
         if(isInPlayroom() && manager.getMinigame().isEngaged()){
+            doneChecker = true;
             dialogBoxContainer.setVisible(true);
             if(!db.isOpen()){
                 behaviorIndex = rand.nextInt(10-1)+1;
@@ -473,8 +476,10 @@ public class NPC extends Entity {
         }
 
         if(isInPlayroom() && manager.getMinigame().isNotEngaged()){
+            doneChecker = true;
             dialogBoxContainer.setVisible(true);
             if(!db.isOpen()){
+                System.out.println("true ditooo");
                 db.textAnimation(manager.getDialogue().reader(hintIndex, "hints", manager.getDialogue().getTopic(manager.getQuestionnaire().getMinigameTopic())));
                 if(hintIndex < manager.getQuestionnaire().getHints()){
                     hintIndex++;
@@ -482,11 +487,11 @@ public class NPC extends Entity {
                 else {
                     hintIndex = 0;
                 }
-                if(!dialogBoxContainer.hasChildren()){
-                    table.add(image).align(Align.left).height(120).padRight(5f);
-                    table.add(db).align(Align.left).grow();
-                    dialogBoxContainer.add(table);
-                }
+//                if(!dialogBoxContainer.hasChildren()){
+//                    table.add(image).align(Align.left).height(120).padRight(5f);
+//                    table.add(db).align(Align.left).grow();
+//                    dialogBoxContainer.add(table);
+//                }
             }
             setHintFlag(false);
 
@@ -494,7 +499,7 @@ public class NPC extends Entity {
 
 
 
-        if((!isHintFlag() || behaviorFlag)&& isTableTouched() && (manager.getMinigame().isNotEngaged() || manager.getMinigame().isEngaged())){
+        if((!isHintFlag() || behaviorFlag) && isTableTouched() && (manager.getMinigame().isNotEngaged() || manager.getMinigame().isEngaged())){
             doneChecker = false;
             manager.getDialogue().setStatementEnd(true);
 

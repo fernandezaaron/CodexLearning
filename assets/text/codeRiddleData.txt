@@ -1,2 +1,3 @@
 0Stage Number,Topic,Iteration,Time Consumption,Number of Error,Behavior,
 2,Variables,1,0,5,NOT ENGAGED,
+4,Operators,1,0,5,NOT ENGAGED,
