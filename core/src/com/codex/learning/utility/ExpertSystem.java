@@ -145,14 +145,14 @@ public class ExpertSystem {
         try {
             int counter = 0;
             int length = 0;
-            String codeRiddleListSize = String.valueOf(codeRiddleData.size());
-            String minigameListSize = String.valueOf(minigameData.size());
+            String codeRiddleListSize = String.valueOf(codeRiddleData.size() - 1);
+            String minigameListSize = String.valueOf(minigameData.size() - 1);
             String codeRiddleEngagedPercentage = String.valueOf(calculateEngagedPercentage(codeRiddleData));
             String minigameEngagedPercentage = String.valueOf(calculateEngagedPercentage(minigameData));
             ArrayList<String> replace = new ArrayList<>(Arrays.asList(String.valueOf(stageNumber), stageTopic,
                     expertiseLevel, String.valueOf(numberOfCookie),
-                    "ENGAGED", codeRiddleEngagedPercentage, codeRiddleListSize,
-                    "ENGAGED", minigameEngagedPercentage, minigameListSize));
+                    "ENGAGED", codeRiddleEngagedPercentage + "%", codeRiddleListSize,
+                    "ENGAGED", minigameEngagedPercentage + "%", minigameListSize));
 
 
             File file = new File(Constants.DATA_GATHERED_FILE_PATH);
@@ -212,43 +212,50 @@ public class ExpertSystem {
                 for(int i = 0; i < newData.size(); i++){
                     newData.get(i).add(0, String.valueOf(stageNumber));
                     newData.get(i).add(1, topic);
-                    newData.get(i).add(2, String.valueOf(i));
+                    newData.get(i).add(2, String.valueOf(i + 1));
                 }
 
+                System.out.println("OLD - " + data);
                 if(!data.isEmpty()){
                     for(ArrayList<String> i: data){
-                        if(i.get(0).equals(stageNumber)){
-                            i = null;
+                        if(i.get(0).equals(String.valueOf(stageNumber))){
+                            i.clear();
                         }
                     }
                 }
-                for(ArrayList<String> i: newData)
-                    data.add(i);
+                System.out.println("NEW - " + data);
 
-                Collections.sort(data, new Comparator<ArrayList<String>>() {
+                for(int i = 0; i < data.size(); i++){
+                    if(data.get(i).isEmpty()){
+                        continue;
+                    }
+                    else{
+                        newData.add(data.get(i));
+                    }
+                }
+
+                Collections.sort(newData, new Comparator<ArrayList<String>>() {
                     @Override
                     public int compare(ArrayList<String> a, ArrayList<String> b) {
                         return a.get(0).compareTo(b.get(0));
                     }
                 });
 
+                System.out.println("DATA - " + newData);
+
                 FileWriter fileWriter = new FileWriter(path, false);
 
-                System.out.println("DATA - " + data);
-                for (ArrayList<String> arrayList : data) {
-                    if (arrayList.isEmpty()) {
-                        continue;
-                    } else {
-                        for (String i : arrayList) {
-                            if(length == arrayList.size()){
-                                fileWriter.write("\n");
-                                length = 0;
-                            }
-                            length++;
-                            fileWriter.write(i + ",");
+                for (ArrayList<String> arrayList : newData) {
+                    for (String i : arrayList) {
+                        if(length == arrayList.size()){
+                            fileWriter.write("\n");
+                            length = 0;
                         }
+                        length++;
+                        fileWriter.write(i + ",");
                     }
                 }
+                fileWriter.close();
             }
         } catch (IOException e) {
             e.printStackTrace();

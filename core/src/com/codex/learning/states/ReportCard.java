@@ -166,7 +166,7 @@ public class ReportCard extends State{
                             manager.getMinigame().getCookies(), manager.getCodeRiddle().getCodeRiddleData(),
                             manager.getMinigame().getMinigameData());
 
-                    manager.setCodeRiddle(null);
+                    manager.getCodeRiddle().setCodeRiddleData(null);
                     manager.getMinigameChecker().setDone(false);
                     manager.getMinigame().reset();
                     manager.set(new StageSelectState(manager));
