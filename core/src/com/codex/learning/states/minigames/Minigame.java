@@ -117,35 +117,35 @@ public class Minigame extends State {
     }
 
     public void checkBehavior(int timer, Character jedisaur){
-        String currentBehavior = "";
-        String movement = (manager.isMoving()) ? "0":"1";
-        String numberOfAttempt = convertNumberOfAttempt(manager.getMinigameChecker().getNumberOfAttempts());
-        String numberOfBlockInteraction = (checkNumberOfBlockInteractionRule(jedisaur.getNumberOfBlockInteraction()));
-        if(timer > 0 && timer % 30 == 0){
-            System.out.println("XD - " + manager.getDtree().minigameML(movement, checkTimeConsumption(timer),
-                    numberOfAttempt, numberOfBlockInteraction));
-            currentBehavior = manager.getDtree().minigameML(movement, checkTimeConsumption(timer),
-                    numberOfAttempt, numberOfBlockInteraction);
-
-            minigameData.add(new ArrayList<String>());
-            minigameData.get(dataCounter).add(movement);
-            minigameData.get(dataCounter).add(checkTimeConsumption(timer));
-            minigameData.get(dataCounter).add(numberOfAttempt);
-            minigameData.get(dataCounter).add(numberOfBlockInteraction);
-            minigameData.get(dataCounter).add(currentBehavior);
-            dataCounter++;
-
-            System.out.println("MINIGAME DATA NA YUN - " + minigameData);
-
-            if(currentBehavior.equals("ENGAGED")){
-                System.out.println("WOW keep it up my dudes!!");
-                setEngaged(true);
-            }
-            else{
-                System.out.println("Haha lungkot mo naman!!");
-                setNotEngaged(true);
-            }
-        }
+//        String currentBehavior = "";
+//        String movement = (manager.isMoving()) ? "0":"1";
+//        String numberOfAttempt = convertNumberOfAttempt(manager.getMinigameChecker().getNumberOfAttempts());
+//        String numberOfBlockInteraction = (checkNumberOfBlockInteractionRule(jedisaur.getNumberOfBlockInteraction()));
+//        if(timer > 0 && timer % 30 == 0){
+//            System.out.println("XD - " + manager.getDtree().minigameML(movement, checkTimeConsumption(timer),
+//                    numberOfAttempt, numberOfBlockInteraction));
+//            currentBehavior = manager.getDtree().minigameML(movement, checkTimeConsumption(timer),
+//                    numberOfAttempt, numberOfBlockInteraction);
+//
+//            minigameData.add(new ArrayList<String>());
+//            minigameData.get(dataCounter).add(movement);
+//            minigameData.get(dataCounter).add(checkTimeConsumption(timer));
+//            minigameData.get(dataCounter).add(numberOfAttempt);
+//            minigameData.get(dataCounter).add(numberOfBlockInteraction);
+//            minigameData.get(dataCounter).add(currentBehavior);
+//            dataCounter++;
+//
+//            System.out.println("MINIGAME DATA NA YUN - " + minigameData);
+//
+//            if(currentBehavior.equals("ENGAGED")){
+//                System.out.println("WOW keep it up my dudes!!");
+//                setEngaged(true);
+//            }
+//            else{
+//                System.out.println("Haha lungkot mo naman!!");
+//                setNotEngaged(true);
+//            }
+//        }
     }
 
     public String checkNumberOfBlockInteractionRule(int numberOfBlockInteraction){

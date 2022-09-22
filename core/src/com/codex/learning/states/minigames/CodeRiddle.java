@@ -356,34 +356,34 @@ public class CodeRiddle extends State {
 
 
     public void checkBehavior(int timer){
-        String currentBehavior = "";
-        if(isDone && !twice){
-            once = true;
-            twice = true;
-        }
-        if((timer > 0 && timer % 15 == 0) || once){
-            System.out.println(manager.getDtree().codeRiddleML(checkTimeConsumption(timer),
-                    convertNumberOfError(error)));
-            currentBehavior = manager.getDtree().codeRiddleML(checkTimeConsumption(timer),
-                    convertNumberOfError(error));
-
-            codeRiddleData.add(new ArrayList<String>());
-            codeRiddleData.get(dataCounter).add(checkTimeConsumption(timer));
-            codeRiddleData.get(dataCounter).add(convertNumberOfError(error));
-            codeRiddleData.get(dataCounter).add(currentBehavior);
-            dataCounter++;
-            System.out.println("CODE RIDDLE NA YUN - " + codeRiddleData);
-            once = false;
-
-            if(currentBehavior.equals("ENGAGED")){
-                //Yung behavior na dialogue na engaged
-                System.out.println("WOW keep it up my dudes!!");
-            }
-            else{
-                //Yung behavior na dialogue na not engaged
-                System.out.println("Haha lungkot mo naman!!");
-            }
-        }
+//        String currentBehavior = "";
+//        if(isDone && !twice){
+//            once = true;
+//            twice = true;
+//        }
+//        if((timer > 0 && timer % 15 == 0) || once){
+//            System.out.println(manager.getDtree().codeRiddleML(checkTimeConsumption(timer),
+//                    convertNumberOfError(error)));
+//            currentBehavior = manager.getDtree().codeRiddleML(checkTimeConsumption(timer),
+//                    convertNumberOfError(error));
+//
+//            codeRiddleData.add(new ArrayList<String>());
+//            codeRiddleData.get(dataCounter).add(checkTimeConsumption(timer));
+//            codeRiddleData.get(dataCounter).add(convertNumberOfError(error));
+//            codeRiddleData.get(dataCounter).add(currentBehavior);
+//            dataCounter++;
+//            System.out.println("CODE RIDDLE NA YUN - " + codeRiddleData);
+//            once = false;
+//
+//            if(currentBehavior.equals("ENGAGED")){
+//                //Yung behavior na dialogue na engaged
+//                System.out.println("WOW keep it up my dudes!!");
+//            }
+//            else{
+//                //Yung behavior na dialogue na not engaged
+//                System.out.println("Haha lungkot mo naman!!");
+//            }
+//        }
     }
 
     public String convertNumberOfError(int numberOfError){

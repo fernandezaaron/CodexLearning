@@ -1,9 +1,7 @@
 package com.codex.learning.utility.decisiontree;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import javax.print.attribute.standard.OutputDeviceAssigned;
+import java.io.*;
 import java.lang.ProcessBuilder;
 
 public class Dtree {
@@ -27,11 +25,13 @@ public class Dtree {
 
     public String minigameML(String movementDetected, String timeConsumption, String numberOfAttempt, String numberOfBlockInteraction){
         try {
+
             ProcessBuilder minigameBuilder = new ProcessBuilder("python",
                     System.getProperty("user.dir") + "\\assets\\model\\minigameScript.py",
                     movementDetected, timeConsumption, numberOfAttempt, numberOfBlockInteraction);
 
             Process process = minigameBuilder.start();
+
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String s = null;
             while ((s = reader.readLine()) != null) {
@@ -48,16 +48,30 @@ public class Dtree {
             ProcessBuilder codeRiddleBuilder = new ProcessBuilder("python",
                     System.getProperty("user.dir") + "\\assets\\model\\codeRiddleScript.py",
                     timeConsumption, numberOfError);
-
             Process process = codeRiddleBuilder.start();
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            BufferedReader reader1 = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+//            BufferedReader reader2 = new BufferedReader(new OutputStreamWriter(process.getOutputStream()));
+//            System.out.println(reader.readLine());
             String s = null;
+
+            if(process.isAlive()){
+                System.out.println("ERROR - " + reader1);
+//                System.out.println("OUTPUT - " + reader2);
+            }
+            System.out.println("qweqeqwe" + process.isAlive());
+
+
             while ((s = reader.readLine()) != null) {
+//                System.out.println(process.exitValue());
                 return removeBracket(s);
             }
+
+
         }catch(IOException e){
             e.printStackTrace();
         }
+
         return "";
     }
 }

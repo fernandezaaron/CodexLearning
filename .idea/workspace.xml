@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d6fe2c7-098b-4435-9d5a-8917e2b9dfa3" name="Changes" comment="gege">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/model/codeRiddleScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/assets/model/codeRiddleScript.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/text/codeRiddleData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/text/codeRiddleData.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/text/data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/text/data.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/text/minigameData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/text/minigameData.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeRiddle.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeRiddle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/Minigame.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/Minigame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Contact.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Contact.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/decisiontree/Dtree.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/decisiontree/Dtree.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +91,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/core/src/com/codex/learning/utility" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/block" />
-    <property name="project.structure.last.edited" value="Problems" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="configurable.group.build" />
