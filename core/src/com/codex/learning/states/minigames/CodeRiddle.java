@@ -358,44 +358,15 @@ public class CodeRiddle extends State {
     }
 
 
-<<<<<<< HEAD
-    public void checkBehavior(int timer){
-//        String currentBehavior = "";
-//        if(isDone && !twice){
-//            once = true;
-//            twice = true;
-//        }
-//        if((timer > 0 && timer % 15 == 0) || once){
-//            System.out.println(manager.getDtree().codeRiddleML(checkTimeConsumption(timer),
-//                    convertNumberOfError(error)));
-//            currentBehavior = manager.getDtree().codeRiddleML(checkTimeConsumption(timer),
-//                    convertNumberOfError(error));
-//
-//            codeRiddleData.add(new ArrayList<String>());
-//            codeRiddleData.get(dataCounter).add(checkTimeConsumption(timer));
-//            codeRiddleData.get(dataCounter).add(convertNumberOfError(error));
-//            codeRiddleData.get(dataCounter).add(currentBehavior);
-//            dataCounter++;
-//            System.out.println("CODE RIDDLE NA YUN - " + codeRiddleData);
-//            once = false;
-//
-//            if(currentBehavior.equals("ENGAGED")){
-//                //Yung behavior na dialogue na engaged
-//                System.out.println("WOW keep it up my dudes!!");
-//            }
-//            else{
-//                //Yung behavior na dialogue na not engaged
-//                System.out.println("Haha lungkot mo naman!!");
-//            }
-//        }
-=======
-    public void checkBehavior(float timer, float fuzzyTimer){
+
+
+    public void checkBehavior(float timer, float fuzzyTimer) {
         String currentBehavior = "";
-        if(isDone && !twice){
+        if (isDone && !twice) {
             once = true;
             twice = true;
         }
-        if((timer > maxTimer) || once){
+        if ((timer > maxTimer) || once) {
             try {
                 System.out.println(manager.getServer().calculateMLResult(checkTimeConsumption((int) fuzzyTimer) +
                         convertNumberOfError(error)));
@@ -414,16 +385,14 @@ public class CodeRiddle extends State {
             once = false;
             this.timer = 0;
 
-            if(currentBehavior.equals("ENGAGED")){
+            if (currentBehavior.equals("ENGAGED")) {
                 //Yung behavior na dialogue na engaged
                 System.out.println("WOW keep it up my dudes!!");
-            }
-            else{
+            } else {
                 //Yung behavior na dialogue na not engaged
                 System.out.println("Haha lungkot mo naman!!");
             }
         }
->>>>>>> Paul
     }
 
     public String convertNumberOfError(int numberOfError){
