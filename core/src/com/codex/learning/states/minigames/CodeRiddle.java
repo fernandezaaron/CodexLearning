@@ -21,6 +21,7 @@ import com.codex.learning.utility.Manager;
 
 
 import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class CodeRiddle extends State {
@@ -29,6 +30,7 @@ public class CodeRiddle extends State {
     private Table table, optionsTable, codeRiddleFeedbackTable, resultFeedbackTable, avatarImage, textTable;
     private DialogueBox dialogueBox;;
     private Group group;
+    private float maxTimer;
     private List.ListStyle listStyle;
     private com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle labelStyle;
 
@@ -45,7 +47,7 @@ public class CodeRiddle extends State {
     private FuzzyLogic fuzzyLogic;
     private ArrayList<String> behavior;
 
-    private float timer, dialogTimer;
+    private float timer, dialogTimer, fuzzyTimer;
 
     private ArrayList<ArrayList<String>> codeRiddleData;
     private int dataCounter;
@@ -60,6 +62,8 @@ public class CodeRiddle extends State {
         timer = 0;
         dialogTimer = 0;
         error = 0;
+        maxTimer = 15;
+        fuzzyTimer = 0;
 
         table = new Table();
         optionsTable = new Table();
@@ -136,7 +140,8 @@ public class CodeRiddle extends State {
 
         if(isInComputer()){
             timer += Gdx.graphics.getDeltaTime();
-            checkBehavior((int) timer);
+            fuzzyTimer += Gdx.graphics.getDeltaTime();
+            checkBehavior(timer, fuzzyTimer);
         }
 
         sprite.setProjectionMatrix(manager.getCamera().combined);
@@ -353,6 +358,7 @@ public class CodeRiddle extends State {
     }
 
 
+<<<<<<< HEAD
     public void checkBehavior(int timer){
 //        String currentBehavior = "";
 //        if(isDone && !twice){
@@ -382,6 +388,42 @@ public class CodeRiddle extends State {
 //                System.out.println("Haha lungkot mo naman!!");
 //            }
 //        }
+=======
+    public void checkBehavior(float timer, float fuzzyTimer){
+        String currentBehavior = "";
+        if(isDone && !twice){
+            once = true;
+            twice = true;
+        }
+        if((timer > maxTimer) || once){
+            try {
+                System.out.println(manager.getServer().calculateMLResult(checkTimeConsumption((int) fuzzyTimer) +
+                        convertNumberOfError(error)));
+                currentBehavior = manager.getServer().calculateMLResult(checkTimeConsumption((int) fuzzyTimer) +
+                        convertNumberOfError(error));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            codeRiddleData.add(new ArrayList<String>());
+            codeRiddleData.get(dataCounter).add(checkTimeConsumption((int) fuzzyTimer));
+            codeRiddleData.get(dataCounter).add(convertNumberOfError(error));
+            codeRiddleData.get(dataCounter).add(currentBehavior);
+            dataCounter++;
+            System.out.println("CODE RIDDLE NA YUN - " + codeRiddleData);
+            once = false;
+            this.timer = 0;
+
+            if(currentBehavior.equals("ENGAGED")){
+                //Yung behavior na dialogue na engaged
+                System.out.println("WOW keep it up my dudes!!");
+            }
+            else{
+                //Yung behavior na dialogue na not engaged
+                System.out.println("Haha lungkot mo naman!!");
+            }
+        }
+>>>>>>> Paul
     }
 
     public String convertNumberOfError(int numberOfError){
