@@ -28,8 +28,8 @@ public abstract class DatabaseReader {
             e.printStackTrace();
         }
         minigameSheet = workbook.getSheet("Minigame");
-        questionSheet = workbook.getSheet("CodeRiddle2");
-        answerPoolSheet = workbook.getSheet("AnswerPool2");
+        questionSheet = workbook.getSheet("CodeRiddle");
+        answerPoolSheet = workbook.getSheet("AnswerPool");
         responseSheet = workbook.getSheet("Response");
     }
 

@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="9e1ffec6-95cd-41a9-9600-9b0f8877f8a2" name="Changes" comment="gege">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/excel/Minigames.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/excel/Minigames.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/excel/Trial.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/filereader/DatabaseReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/filereader/DatabaseReader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,19 +57,19 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/Game.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/MenuState.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/filereader/Questionnaire.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/Blocks.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Constants.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/PauseState.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Contact.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/Computer.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeRiddle.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/FuzzyLogic.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/maps/HouseMap.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Contact.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Constants.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/MenuState.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/Blocks.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/PauseState.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/Character.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/filereader/Questionnaire.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/FuzzyLogic.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeRiddle.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/Computer.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -160,7 +163,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="7d6fe2c7-098b-4435-9d5a-8917e2b9dfa3" name="Changes" comment="gege" />
+      <changelist id="9e1ffec6-95cd-41a9-9600-9b0f8877f8a2" name="Changes" comment="gege" />
       <created>1650520661994</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -207,6 +210,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="ads" />
