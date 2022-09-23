@@ -71,6 +71,7 @@ public class Constants {
     public static final String CODE_ORDER = "map/codeOrder.png";
     public static final String MYSTERY_CODE = "map/mysteryCode.png";
     public static final String FILL_IN_THE_BLOCKS = "map/fillInTheBlocks.png";
+    public static final String START_AREA = "background/startingAreaHowToPlay.png";
 
 
 
@@ -396,6 +397,18 @@ public class Constants {
     public static final int COOKIES_THREE_Y = 2;
     public static final int COOKIES_WIDTH = 95;
     public static final int COOKIES_HEIGHT = 43;
+
+
+    public static final int DOWN_ARROW_x = 16;
+    public static final int DOWN_ARROW_Y = 127;
+    public static final int DOWN_ARROW_WIDTH = 63;
+    public static final int DOWN_ARROW_HEIGHT = 110;
+
+    public static final int RIGHT_ARROW_x = 79;
+    public static final int RIGHT_ARROW_Y = 159;
+    public static final int RIGHT_ARROW_WIDTH = 110;
+    public static final int RIGHT_ARROW_HEIGHT = 63;
+
 
 
     //END OF UTILITY SHEET

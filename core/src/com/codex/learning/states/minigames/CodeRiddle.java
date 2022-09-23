@@ -33,7 +33,7 @@ public class CodeRiddle extends State {
     private com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle labelStyle;
 
     private TextButton[] textButtons;
-
+    private ImageTextButton[] imageTextButton;
 
     private ArrayList<String> questions;
     private ArrayList<ArrayList<String>> options;
@@ -71,9 +71,7 @@ public class CodeRiddle extends State {
         once = false;
         twice = false;
 
-
         dialogueBox = new DialogueBox(manager.getSkin(), "dialogbox3", 0.5f);
-
 
         if(manager.getStageSelector().map().equals("1")){
             avatarImage.setBackground("jediGrandpaAvatar");
@@ -83,8 +81,8 @@ public class CodeRiddle extends State {
             avatarImage.setBackground("jediOfficeAvatar");
         }
 
-
         textButtons = new TextButton[4];
+        imageTextButton = new ImageTextButton[4];
 
         optionsTable.setSkin(manager.getSkin());
         optionsTable.setBackground("optionScreen");
@@ -94,6 +92,7 @@ public class CodeRiddle extends State {
 
         text = new Label("\n", manager.getSkin());
         text.setFontScale(0.7f);
+
 
         Drawable dr = manager.getSkin().getDrawable("dialogbox1");
         listStyle = new List.ListStyle();
@@ -128,7 +127,6 @@ public class CodeRiddle extends State {
     public void update(float delta) {
         castToTable();
         manager.getStage().act(delta);
-
     }
 
 
@@ -191,8 +189,13 @@ public class CodeRiddle extends State {
                    text.setAlignment(Align.center);
 
                    for(int i=0; i<4; i++){
-                       textButtons[i] = new TextButton(options.get(currentQuestion).get(i), manager.getSkin());
-                       optionsTable.add(textButtons[i]).grow().padLeft(10f).center();
+                       imageTextButton[i] = new ImageTextButton("",manager.getSkin());
+                       imageTextButton[i].getLabel().setWrap(true);
+                       imageTextButton[i].getLabel().setFontScale(0.55f);
+                       imageTextButton[i].setText(options.get(currentQuestion).get(i));
+
+//                       textButtons[i] = new TextButton(options.get(currentQuestion).get(i), manager.getSkin());
+                       optionsTable.add(imageTextButton[i]).width(358).height(45).center();
                        optionsTable.row();
                    }
 
@@ -200,14 +203,12 @@ public class CodeRiddle extends State {
                        final int tempI = i;
                        final int finalRight = right;
                        final int finalWrong = wrong;
-                       textButtons[i].addListener(new InputListener(){
+                       imageTextButton[i].addListener(new InputListener(){
 
                            @Override
                            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-
                                if(currentQuestion <= manager.getQuestionnaire().getQuestionLimit()-1){
                                    if(manager.getQuestionnaire().answerChecker(options.get(currentQuestion).get(tempI), currentQuestion)){
-
                                        currentQuestion++;
                                        createFeedBackTable(manager.getDialogue().codeRiddleFeedback(finalRight));
 
@@ -225,7 +226,7 @@ public class CodeRiddle extends State {
                                if(currentQuestion<= manager.getQuestionnaire().getQuestionLimit()-1){
                                    text.setText(questions.get(currentQuestion));
                                    for(int j=0; j<4; j++){
-                                       textButtons[j].setText(options.get(currentQuestion).get(j));
+                                       imageTextButton[j].setText(options.get(currentQuestion).get(j));
                                    }
                                }else{
                                    fuzzyLogic.setNumberOfErrors(error);
@@ -234,15 +235,13 @@ public class CodeRiddle extends State {
                                    text.setText("Your score is: " + (manager.getQuestionnaire().getQuestionLimit() - error) + "/" + manager.getQuestionnaire().getQuestionLimit() + "\n PRESS F TO CLOSE");
                                    setDone(true);
                                    for(int j=0; j<4; j++){
-                                       textButtons[j].setText(" ");
+                                       imageTextButton[j].setText(" ");
                                    }
                                }
                            }
-
                        });
                    }
                }
-
            }
 
            if(!table.hasChildren()){
@@ -252,15 +251,14 @@ public class CodeRiddle extends State {
                scrollPane.setScrollbarsOnTop(true);
                scrollPane.setForceScroll(false,true);
                scrollPane.setSmoothScrolling(true);
-               optionsTable.layout();
+
                table.add(scrollPane).height(200);
                table.row();
-               table.add(optionsTable).height(200).width(780).padBottom(15f);
+               table.add(optionsTable).height(200).width(500).padBottom(15f);
                table.pack();
 
            }
             manager.getStage().addActor(table);
-
         }
     }
 

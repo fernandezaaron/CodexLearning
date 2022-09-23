@@ -2,6 +2,7 @@ package com.codex.learning.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -30,8 +31,8 @@ public class PlayState extends State{
     private PauseState pause;
     private FuzzyLogic fuzzyLogic;
 
-    private boolean inStartArea, atDoor;
-    private TextureRegion door;
+    private boolean inStartArea, atDoor, inHowToPlay;
+    private TextureRegion door, downArrow, rightArrow, howToPlayScreen;
     private int stage;
 
     private boolean computerOnce;
@@ -104,8 +105,14 @@ public class PlayState extends State{
         computerOnce = true;
 
         door = new TextureRegion(manager.getReportCardSheet(), 48,195, 263, 119);
+        downArrow = new TextureRegion(manager.getUtility(), Constants.DOWN_ARROW_x, Constants.DOWN_ARROW_Y, Constants.DOWN_ARROW_WIDTH, Constants.DOWN_ARROW_HEIGHT);
+        rightArrow = new TextureRegion(manager.getUtility(), Constants.RIGHT_ARROW_x, Constants.RIGHT_ARROW_Y, Constants.RIGHT_ARROW_WIDTH, Constants.RIGHT_ARROW_HEIGHT);
+        howToPlayScreen = new TextureRegion(new Texture(Constants.START_AREA), 0,0,1600,900);
+
         inStartArea = true;
         atDoor = false;
+        inHowToPlay = false;
+
         if(manager.getStageSelector().getStageMap() == 1){
             manager.setNewPlayer(true);
         }
@@ -241,6 +248,31 @@ public class PlayState extends State{
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         if(isInStartArea()){
+            if(jediGrandpa.isComputerReady() && !computer.getCodeRiddle().isInComputer() && !computer.isDone()){
+                sprite.draw(downArrow, manager.getCamera().position.x - computer.getBody().getPosition().x - 260,manager.getCamera().position.y - computer.getBody().getPosition().y + 115);
+
+            }
+
+            if(!jediGrandpa.isComputerReady()) {
+                sprite.draw(downArrow, manager.getCamera().position.x - jediGrandpa.getBody().getPosition().x - 55,manager.getCamera().position.y - jediGrandpa.getBody().getPosition().y + 35);
+
+            }
+
+            if(computer.isDone()){
+                sprite.draw(rightArrow,manager.getCamera().position.x + 150,manager.getCamera().position.y - 90);
+            }
+
+            if(jediGrandpa.isNewPlayerDialogueDone()){
+                sprite.draw(howToPlayScreen,
+                        (manager.getCamera().position.x / Constants.PPM - howToPlayScreen.getRegionWidth() / 2) + 25,
+                        (manager.getCamera().position.y / Constants.PPM - howToPlayScreen.getRegionHeight() / 2) + 15);
+                inHowToPlay = true;
+            }
+
+            if(inHowToPlay && jediGrandpa.isNewPlayerDialogueDone() && Gdx.input.isKeyJustPressed(Input.Keys.F)){
+                inHowToPlay = false;
+                jediGrandpa.setNewPlayerDialogueDone(false);
+            }
             checkDoor(sprite, atDoor);
         }
         sprite.end();

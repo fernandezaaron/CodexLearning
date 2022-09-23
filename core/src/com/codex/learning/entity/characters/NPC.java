@@ -299,6 +299,7 @@ public class NPC extends Entity {
             nextStatement = 0;
             setTableTouched(false);
             manager.setNewPlayer(false);
+            setNewPlayerDialogueDone(true);
         }
 
 

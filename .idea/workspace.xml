@@ -5,7 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e1ffec6-95cd-41a9-9600-9b0f8877f8a2" name="Changes" comment="gege">
+      <change afterPath="$PROJECT_DIR$/assets/background/startingAreaHowToPlay.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/block/BlockSheet.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/block/blocksheet.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/block/utilitysheet.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/block/utilitysheet.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/text/DialogBox.atlas" beforeDir="false" afterPath="$PROJECT_DIR$/assets/text/DialogBox.atlas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/text/DialogBox.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/text/DialogBox.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/text/DialogBox.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/text/DialogBox.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/Objective.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/Objective.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/NPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/NPC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/entity/maps/PlayroomMapS1.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/entity/maps/PlayroomMapS1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeRiddle.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeRiddle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Constants.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,25 +94,25 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/core/src/com/codex/learning/utility" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/block" />
-    <property name="project.structure.last.edited" value="Problems" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="configurable.group.build" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\block" />
+      <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\background" />
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\map" />
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\font" />
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\character" />
-      <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\background" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\music" />
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\text" />
+      <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\block" />
+      <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\music" />
       <recent name="C:\Users\OEM\Documents\GitHub\CodexLearning\assets\model" />
       <recent name="C:\Users\OEM\Documents\GitHub\CodexLearning\core\src\com\codex\learning\utility\decisiontree" />
-      <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\map" />
     </key>
   </component>
   <component name="RunManager" selected="Application.DesktopLauncher">
@@ -160,7 +173,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="7d6fe2c7-098b-4435-9d5a-8917e2b9dfa3" name="Changes" comment="gege" />
+      <changelist id="9e1ffec6-95cd-41a9-9600-9b0f8877f8a2" name="Changes" comment="gege" />
       <created>1650520661994</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />

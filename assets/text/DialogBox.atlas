@@ -1,5 +1,5 @@
 DialogBox.png
-size: 2006, 3123
+size: 1919, 3380
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -12,35 +12,35 @@ choices
   index: -1
 cookie
   rotate: false
-  xy: 0, 96
+  xy: 267, 169
   size: 73, 100
   orig: 73, 100
   offset: 0, 0
   index: -1
 dialogbox1
   rotate: false
-  xy: 662, 533
+  xy: 662, 790
   size: 1115, 351
   orig: 1115, 351
   offset: 0, 0
   index: -1
 dialogbox2
   rotate: false
-  xy: 0, 299
+  xy: 0, 556
   size: 1000, 231
   orig: 1000, 231
   offset: 0, 0
   index: -1
 dialogbox3
   rotate: false
-  xy: 1000, 299
+  xy: 1000, 556
   size: 919, 234
   orig: 919, 234
   offset: 0, 0
   index: -1
 exit
   rotate: false
-  xy: 0, 533
+  xy: 0, 790
   size: 662, 326
   orig: 662, 326
   offset: 0, 0
@@ -61,91 +61,112 @@ horizontalScrollKnob
   index: -1
 jediGrandpaAvatar
   rotate: false
-  xy: 159, 96
+  xy: 1051, 169
   size: 184, 184
   orig: 184, 184
   offset: 0, 0
   index: -1
 jediOfficeAvatar
   rotate: false
-  xy: 343, 96
+  xy: 1235, 169
   size: 184, 184
   orig: 184, 184
   offset: 0, 0
   index: -1
 jediProfAvatar
   rotate: false
-  xy: 527, 96
+  xy: 1419, 169
   size: 184, 184
   orig: 184, 184
   offset: 0, 0
   index: -1
 jedisaurAvatar
   rotate: false
-  xy: 711, 96
+  xy: 1603, 169
   size: 184, 184
   orig: 184, 184
   offset: 0, 0
   index: -1
 nocookie
   rotate: false
-  xy: 73, 96
+  xy: 340, 169
   size: 73, 100
   orig: 73, 100
   offset: 0, 0
   index: -1
 objectives
   rotate: false
-  xy: 656, 1335
+  xy: 656, 1592
   size: 800, 888
   orig: 800, 888
   offset: 0, 0
   index: -1
+objectivesTitle
+  rotate: false
+  xy: 413, 169
+  size: 625, 107
+  orig: 625, 107
+  offset: 0, 0
+  index: -1
 optionScreen
   rotate: false
-  xy: 0, 884
+  xy: 0, 1141
   size: 920, 390
   orig: 920, 390
   offset: 0, 0
   index: -1
 PCSCREEN
   rotate: false
-  xy: 0, 2223
+  xy: 0, 2480
   size: 1600, 900
   orig: 1600, 900
   offset: 0, 0
   index: -1
 questions
   rotate: false
-  xy: 895, 96
+  xy: 0, 353
   size: 1111, 203
   orig: 1111, 203
   offset: 0, 0
   index: -1
 questionsScreen
   rotate: false
-  xy: 920, 884
+  xy: 920, 1141
   size: 921, 451
   orig: 921, 451
   offset: 0, 0
   index: -1
 REPORTCARD
   rotate: false
-  xy: 0, 1335
+  xy: 0, 1592
   size: 656, 836
   orig: 656, 836
   offset: 0, 0
   index: -1
 saveandquit
   rotate: false
-  xy: 1730, 0
+  xy: 0, 169
   size: 267, 96
   orig: 267, 96
   offset: 0, 0
   index: -1
+textButtonHighlight
+  rotate: false
+  xy: 0, 76
+  size: 920, 84
+  orig: 920, 84
+  offset: 0, 0
+  index: -1
+textButtonNormal
+  rotate: false
+  xy: 920, 76
+  size: 920, 84
+  orig: 920, 84
+  offset: 0, 0
+  index: -1
 verticalScroll
   rotate: false
-  xy: 146, 96
+  xy: 1038, 169
   size: 13, 169
   orig: 13, 169
   offset: 0, 0
@@ -155,5 +176,12 @@ verticalScrollKnob
   xy: 603, 0
   size: 12, 69
   orig: 12, 69
+  offset: 0, 0
+  index: -1
+XbuttonObjectives
+  rotate: false
+  xy: 1840, 76
+  size: 77, 93
+  orig: 77, 93
   offset: 0, 0
   index: -1
