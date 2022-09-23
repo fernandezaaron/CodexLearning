@@ -123,39 +123,39 @@ public class Minigame extends State {
     }
 
     public void checkBehavior(float timer, Character jedisaur){
-        fuzzyTimer = timer % 14;
-        String currentBehavior = "";
-        String movement = (manager.isMoving()) ? "0":"1";
-        String numberOfAttempt = convertNumberOfAttempt(manager.getMinigameChecker().getNumberOfAttempts());
-        String numberOfBlockInteraction = (checkNumberOfBlockInteractionRule(jedisaur.getNumberOfBlockInteraction()));
-        if(fuzzyTimer > maxTimer && timer > 1){
-            fuzzyTimer = 0;
-            try {
-            System.out.println("XD - " + manager.getServer().calculateMLResult(movement + checkTimeConsumption((int) timer) +
-                    numberOfAttempt + numberOfBlockInteraction));
-            currentBehavior = manager.getServer().calculateMLResult(movement + checkTimeConsumption((int) timer) +
-                        numberOfAttempt + numberOfBlockInteraction);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            minigameData.add(new ArrayList<String>());
-            minigameData.get(dataCounter).add(movement);
-            minigameData.get(dataCounter).add(checkTimeConsumption((int) timer));
-            minigameData.get(dataCounter).add(numberOfAttempt);
-            minigameData.get(dataCounter).add(numberOfBlockInteraction);
-            minigameData.get(dataCounter).add(currentBehavior);
-            dataCounter++;
-
-            System.out.println("MINIGAME DATA NA YUN - " + minigameData);
-
-            if(currentBehavior.equals("ENGAGED")){
-                System.out.println("WOW keep it up my dudes!!");
-            }
-            else{
-                System.out.println("Haha lungkot mo naman!!");
-            }
-        }
+//        fuzzyTimer = timer % 14;
+//        String currentBehavior = "";
+//        String movement = (manager.isMoving()) ? "0":"1";
+//        String numberOfAttempt = convertNumberOfAttempt(manager.getMinigameChecker().getNumberOfAttempts());
+//        String numberOfBlockInteraction = (checkNumberOfBlockInteractionRule(jedisaur.getNumberOfBlockInteraction()));
+//        if(fuzzyTimer > maxTimer && timer > 1){
+//            fuzzyTimer = 0;
+//            try {
+//            System.out.println("XD - " + manager.getServer().calculateMLResult(movement + checkTimeConsumption((int) timer) +
+//                    numberOfAttempt + numberOfBlockInteraction));
+//            currentBehavior = manager.getServer().calculateMLResult(movement + checkTimeConsumption((int) timer) +
+//                        numberOfAttempt + numberOfBlockInteraction);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//            minigameData.add(new ArrayList<String>());
+//            minigameData.get(dataCounter).add(movement);
+//            minigameData.get(dataCounter).add(checkTimeConsumption((int) timer));
+//            minigameData.get(dataCounter).add(numberOfAttempt);
+//            minigameData.get(dataCounter).add(numberOfBlockInteraction);
+//            minigameData.get(dataCounter).add(currentBehavior);
+//            dataCounter++;
+//
+//            System.out.println("MINIGAME DATA NA YUN - " + minigameData);
+//
+//            if(currentBehavior.equals("ENGAGED")){
+//                System.out.println("WOW keep it up my dudes!!");
+//            }
+//            else{
+//                System.out.println("Haha lungkot mo naman!!");
+//            }
+//        }
     }
 
     public String checkNumberOfBlockInteractionRule(int numberOfBlockInteraction){
