@@ -6,8 +6,3 @@
 2,Variables,5,0,1,1,1,ENGAGED,
 2,Variables,6,0,1,1,1,ENGAGED,
 2,Variables,7,0,1,1,1,ENGAGED,
-4,Operators,1,0,1,1,1,ENGAGED,
-4,Operators,2,0,1,1,1,ENGAGED,
-4,Operators,3,0,1,1,1,ENGAGED,
-4,Operators,4,0,1,1,1,ENGAGED,
-4,Operators,5,0,1,1,1,ENGAGED,
