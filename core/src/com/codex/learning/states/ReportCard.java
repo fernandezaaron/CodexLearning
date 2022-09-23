@@ -165,7 +165,7 @@ public class ReportCard extends State{
                             manager.getQuestionnaire().getMinigameTopic(), manager.getExpertSystem().getExpertiseLevel(),
                             manager.getMinigame().getCookies(), manager.getCodeRiddle().getCodeRiddleData(),
                             manager.getMinigame().getMinigameData());
-
+                    manager.getMinigameChecker().setNumberOfAttempts(0);
                     manager.getCodeRiddle().setCodeRiddleData(null);
                     manager.getMinigameChecker().setDone(false);
                     manager.getMinigame().reset();
