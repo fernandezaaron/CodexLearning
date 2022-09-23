@@ -33,11 +33,12 @@ public class FillInTheBlock extends State {
     private ArrayList<String> banishPoolContainer, dispenserPoolContainer, dispenserGraphics;
     private int currentCell, minigameContainerLimit, ansPoolSize, xposition, yposition, ansPoolIterator, yStartingPoint;
     private String randomDispenser;
-    private float timer;
+    private float timer, fuzzyTimer;
 
     public FillInTheBlock(Manager manager, Character character, FuzzyLogic fuzzyLogic) {
         super(manager);
         timer = 0;
+        fuzzyTimer = 0;
         randomizer = new Random();
         banishCells = new ArrayList<>();
         duplicatePool = new ArrayList<>();
@@ -198,7 +199,9 @@ public class FillInTheBlock extends State {
     public void update(float delta) {
         if(!manager.getMinigameChecker().isDone()){
             timer += Gdx.graphics.getDeltaTime();
+            fuzzyTimer += Gdx.graphics.getDeltaTime();
             manager.getMinigame().checkBehavior((int) timer, jedisaur);
+
         }
          for(int i = 0; i < minigameContainer.size(); i++) {
              for (int j = 0; j < minigameContainer.get(i).size(); j++) {

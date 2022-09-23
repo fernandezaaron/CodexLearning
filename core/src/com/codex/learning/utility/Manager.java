@@ -25,6 +25,7 @@ import com.codex.learning.states.State;
 import com.codex.learning.states.minigames.CodeRiddle;
 import com.codex.learning.states.minigames.Minigame;
 import com.codex.learning.utility.decisiontree.Dtree;
+import com.codex.learning.utility.decisiontree.Server;
 import com.codex.learning.utility.filereader.Questionnaire;
 
 import java.util.Stack;
@@ -75,6 +76,8 @@ public class Manager {
     private Dtree dtree;
 
     private Dialogue dialogue;
+    private Server server;
+
     public Manager(){
         expertSystem = new ExpertSystem();
         expertSystem.readFile();
@@ -83,6 +86,7 @@ public class Manager {
         questionnaire = new Questionnaire(expertSystem.getExpertiseLevel());
 
         dtree = new Dtree();
+
 
         b2dr = new Box2DDebugRenderer();
 
@@ -134,7 +138,11 @@ public class Manager {
 
         hintsIndex = 0;
 
-
+        try {
+            server = new Server();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -402,5 +410,13 @@ public class Manager {
 
     public void setCodeRiddle(CodeRiddle codeRiddle) {
         this.codeRiddle = codeRiddle;
+    }
+
+    public Server getServer() {
+        return server;
+    }
+
+    public void setServer(Server server) {
+        this.server = server;
     }
 }
