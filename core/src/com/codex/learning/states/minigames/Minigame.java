@@ -1,5 +1,6 @@
 package com.codex.learning.states.minigames;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.codex.learning.entity.characters.Character;
 import com.codex.learning.states.State;
@@ -45,8 +46,8 @@ public class Minigame extends State {
         dataCounter = 0;
         isEngaged = false;
         isNotEngaged = false;
-        maxTimer = 1;
-        fuzzyTimer = 1;
+        maxTimer = 10;
+        fuzzyTimer = 0;
 
     }
 
@@ -123,7 +124,7 @@ public class Minigame extends State {
     }
 
     public void checkBehavior(float timer, Character jedisaur){
-        fuzzyTimer = timer % 14;
+        fuzzyTimer += Gdx.graphics.getDeltaTime();
         String currentBehavior = "";
         String movement = (manager.isMoving()) ? "0":"1";
         String numberOfAttempt = convertNumberOfAttempt(manager.getMinigameChecker().getNumberOfAttempts());
@@ -131,8 +132,6 @@ public class Minigame extends State {
         if(fuzzyTimer > maxTimer && timer > 1){
             fuzzyTimer = 0;
             try {
-            System.out.println("XD - " + manager.getServer().calculateMLResult(movement + checkTimeConsumption((int) timer) +
-                    numberOfAttempt + numberOfBlockInteraction));
             currentBehavior = manager.getServer().calculateMLResult(movement + checkTimeConsumption((int) timer) +
                         numberOfAttempt + numberOfBlockInteraction);
             } catch (IOException e) {
@@ -146,8 +145,6 @@ public class Minigame extends State {
             minigameData.get(dataCounter).add(numberOfBlockInteraction);
             minigameData.get(dataCounter).add(currentBehavior);
             dataCounter++;
-
-            System.out.println("MINIGAME DATA NA YUN - " + minigameData);
 
             if(currentBehavior.equals("ENGAGED")){
                 System.out.println("WOW keep it up my dudes!!");
