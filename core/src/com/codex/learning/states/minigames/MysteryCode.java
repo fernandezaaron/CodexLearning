@@ -131,7 +131,11 @@ public class MysteryCode extends State {
                 }
                 currentStringLength = (float) String.valueOf(answerPoolContainer.get(currentAnsCell)).length();
                 totalLineLength += currentStringLength + (AnsPoolX - 11);
+<<<<<<< HEAD
                 answerBlocks[currentAnsCell] = new Blocks(manager,  answerPoolContainer.get(currentAnsCell), answerPoolContainer.get(currentAnsCell), false);
+=======
+                answerBlocks[currentAnsCell] = new Blocks(manager, answerPoolContainer.get(currentAnsCell), answerPoolContainer.get(currentAnsCell), false);
+>>>>>>> jy_test
                 if (answerPoolContainer.get(currentAnsCell) != null) {
                     if (currentStringLength <= 3) {
                         answerBlocks[currentAnsCell].create(new Vector2(AnsPoolX, AnsPoolY), new Vector2((currentStringLength * 0.5f), Constants.BLOCKS_HEIGHT), 0);
