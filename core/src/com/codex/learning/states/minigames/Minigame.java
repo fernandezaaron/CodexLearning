@@ -148,9 +148,11 @@ public class Minigame extends State {
 
             if(currentBehavior.equals("ENGAGED")){
                 System.out.println("WOW keep it up my dudes!!");
+                setEngaged(true);
             }
             else{
                 System.out.println("Haha lungkot mo naman!!");
+                setNotEngaged(true);
             }
         }
     }

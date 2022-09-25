@@ -421,7 +421,7 @@ public class Character extends Entity {
                 getCopyBlock() != null && blockHolder.getCopyBlock() == null){
             // Blocks Adjustment
             getCopyBlock().getBody().setTransform(
-                    blockHolder.getBody().getPosition().x + Constants.BLOCK_HOLDER_WIDTH*1.5f,
+                    blockHolder.getBody().getPosition().x,
                     Constants.BLOCK_HOLDER_HEIGHT + blockHolder.getBody().getPosition().y,
                     0);
             getCopyBlock().setInContact(false);
