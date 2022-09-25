@@ -134,11 +134,11 @@ public class Manager {
 
         hintsIndex = 0;
 
-//        try {
-//            server = new Server();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        try {
+            server = new Server();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
