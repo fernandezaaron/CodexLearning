@@ -91,8 +91,8 @@ public class BlockHolder extends Entity {
 
     public void createFixture(float x, float y){
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(x, y / 0.78f,
-                new Vector2(0, (y - y / 1.2f)), 0);
+        shape.setAsBox(x, y / 0,
+                new Vector2(Constants.BLOCK_HOLDER_WIDTH*1.5f, (y - y / 1.2f)), 0);
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.density = density;
