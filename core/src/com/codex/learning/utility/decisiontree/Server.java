@@ -4,7 +4,7 @@ import java.net.*;
 
 public class Server {
     private String messageFromClient;
-    private ServerSocket Server;
+    private ServerSocket server;
     private Socket connected;
     private DataOutputStream output;
     private DataInputStream input;
@@ -12,9 +12,14 @@ public class Server {
 
 
     public Server() throws Exception{
-        Server = new ServerSocket (1800);
+        server = new ServerSocket (1800);
         System.out.println("Waiting for client on port 1800");
-        connected = Server.accept();
+
+        Runtime.getRuntime().exec("cmd /c start " + System.getProperty("user.dir") + "\\assets\\model\\main.exe");
+
+        connected = server.accept();
+
+
         System.out.println("The client is connected...");
         output = new DataOutputStream(connected.getOutputStream());
         input = new DataInputStream(connected.getInputStream());
