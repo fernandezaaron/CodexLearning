@@ -19,7 +19,6 @@ import com.badlogic.gdx.utils.Align;
 import com.codex.learning.entity.Entity;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
-import sun.tools.jconsole.Tab;
 
 public class Objective extends Entity {
 
