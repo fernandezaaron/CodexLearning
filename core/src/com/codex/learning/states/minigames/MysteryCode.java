@@ -240,10 +240,10 @@ public class MysteryCode extends State {
                                     tempCurrentCell--;
                                     /** checks if the index is a blockholder or if it is inside the arraylist **/
                                     if(banishCells.contains(tempCurrentCell)){
-                                        blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+                                        blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize/1.75f +0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
                                     }
                                     else{
-                                        questionBlocks[i][k].getBody().setTransform(questionBlocks[i][k].getBody().getPosition().x - blockSize+0.5f, questionBlocks[i][k].getBody().getPosition().y, 0);
+                                        questionBlocks[i][k].getBody().setTransform(questionBlocks[i][k].getBody().getPosition().x - blockSize/1.75f +0.5f, questionBlocks[i][k].getBody().getPosition().y, 0);
                                     }
                                 }
 
@@ -256,7 +256,7 @@ public class MysteryCode extends State {
                                         tempCurrentCell--;
                                         if(banishCells.contains(tempCurrentCell)){
                                             if(blockHolders[i][k].isOccupied()){
-                                                blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x - blockSize + 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
+                                                blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x - blockSize/1.75f + 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
                                             }
                                         }
                                     }
@@ -267,7 +267,7 @@ public class MysteryCode extends State {
                                     tempCurrentCell++;
                                     if(banishCells.contains(tempCurrentCell)){
                                             if(blockHolders[i][k].isOccupied()){
-                                                blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x + blockSize - 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
+                                                blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x + blockSize*1.2f - 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
                                             }
 
                                     }
@@ -278,10 +278,10 @@ public class MysteryCode extends State {
                                 for(int k=j+1; k<minigameContainer.get(i).size(); k++){
                                     tempCurrentCell++;
                                     if(banishCells.contains(tempCurrentCell)){
-                                        blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x + blockSize-0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+                                        blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x + blockSize*1.2f-0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
                                     }
                                     else{
-                                        questionBlocks[i][k].getBody().setTransform(questionBlocks[i][k].getBody().getPosition().x + blockSize-0.5f , questionBlocks[i][k].getBody().getPosition().y, 0);
+                                        questionBlocks[i][k].getBody().setTransform(questionBlocks[i][k].getBody().getPosition().x + blockSize*1.2f-0.5f , questionBlocks[i][k].getBody().getPosition().y, 0);
                                     }
                                 }
                             jedisaur.setDropped(false);
@@ -302,10 +302,10 @@ public class MysteryCode extends State {
                                 for(int k=j-1; k>=0; k--){
                                     tempCurrentCell--;
                                     if(banishCells.contains(tempCurrentCell)){
-                                        blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x + blockSize-0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+                                        blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x + blockSize/1.75f - 0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
                                     }
                                     else{
-                                        questionBlocks[i][k].getBody().setTransform(questionBlocks[i][k].getBody().getPosition().x + blockSize-0.5f, questionBlocks[i][k].getBody().getPosition().y, 0);
+                                        questionBlocks[i][k].getBody().setTransform(questionBlocks[i][k].getBody().getPosition().x + blockSize/1.75f - 0.5f, questionBlocks[i][k].getBody().getPosition().y, 0);
                                     }
                                 }
 
@@ -314,10 +314,10 @@ public class MysteryCode extends State {
                                 for(int k=j+1; k<minigameContainer.get(i).size(); k++){
                                     tempCurrentCell++;
                                     if(banishCells.contains(tempCurrentCell)){
-                                        blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+                                        blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize*1.2f + 0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
                                     }
                                     else{
-                                        questionBlocks[i][k].getBody().setTransform(questionBlocks[i][k].getBody().getPosition().x - blockSize+0.5f , questionBlocks[i][k].getBody().getPosition().y, 0);
+                                        questionBlocks[i][k].getBody().setTransform(questionBlocks[i][k].getBody().getPosition().x - blockSize*1.2f + 0.5f , questionBlocks[i][k].getBody().getPosition().y, 0);
                                     }
                                 }
 
@@ -330,7 +330,7 @@ public class MysteryCode extends State {
                                     tempCurrentCell--;
                                     if(banishCells.contains(tempCurrentCell)){
                                         if(blockHolders[i][k].isOccupied()){
-                                            blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x + blockSize - 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
+                                            blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x + blockSize/1.75f - 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
                                         }
                                     }
                                 }
@@ -341,7 +341,7 @@ public class MysteryCode extends State {
                                     tempCurrentCell++;
                                     if(banishCells.contains(tempCurrentCell)){
                                         if(blockHolders[i][k].isOccupied()){
-                                                blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x - blockSize + 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
+                                                blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x - blockSize*1.2f + 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
                                         }
                                     }
                                 }
