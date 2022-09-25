@@ -39,7 +39,7 @@ public class Character extends Entity {
     private boolean atBot;
     private boolean atLeft;
     private boolean atRight;
-    private boolean isDropped, pickedUp;
+    private boolean isDropped, pickedUp, blockHolderCollision;
 
     private Box2DDebugRenderer b2dr;
 
@@ -74,6 +74,7 @@ public class Character extends Entity {
         shape.dispose();
 
         numberOfBlockInteraction = 0;
+        blockHolderCollision = false;
 
         // Used to check if the character is in the border of the map
         atTop = false;
@@ -441,7 +442,8 @@ public class Character extends Entity {
             setCarrying(false);
             setPickedUp(false);
         }
-        else if(Gdx.input.isKeyJustPressed(Input.Keys.E) && isFixture() && blockHolder.isOccupied()){
+        else if(Gdx.input.isKeyJustPressed(Input.Keys.E) && isFixture() && blockHolder.isOccupied() && isPickUpAble() && !isBlockHolderCollision()){
+            System.out.println("picked up");
             blockHolder.setCopyBlock(null);
             if(!isCarrying()){
                 blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().first());
@@ -579,5 +581,13 @@ public class Character extends Entity {
 
     public void setNumberOfBlockInteraction(int numberOfBlockInteraction) {
         this.numberOfBlockInteraction = numberOfBlockInteraction;
+    }
+
+    public boolean isBlockHolderCollision() {
+        return blockHolderCollision;
+    }
+
+    public void setBlockHolderCollision(boolean blockHolderCollision) {
+        this.blockHolderCollision = blockHolderCollision;
     }
 }

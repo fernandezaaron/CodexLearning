@@ -21,7 +21,7 @@ import com.codex.learning.utility.Manager;
 public class PlayroomMapS1 extends State {
     private Collisions upBorder, downBorder;
     private boolean atDoor;
-    private TextureRegion door;
+    private TextureRegion door, downArrow, rightArrow;
     private int stage;
     private boolean inPlayroom;
     private NPC npc;
@@ -62,6 +62,8 @@ public class PlayroomMapS1 extends State {
         reportCard = new ReportCard(manager);
 
         door = new TextureRegion(manager.getReportCardSheet(), 48,195, 263, 119);
+        downArrow = new TextureRegion(manager.getUtility(), Constants.DOWN_ARROW_x, Constants.DOWN_ARROW_Y, Constants.DOWN_ARROW_WIDTH, Constants.DOWN_ARROW_HEIGHT);
+        rightArrow = new TextureRegion(manager.getUtility(), Constants.RIGHT_ARROW_x, Constants.RIGHT_ARROW_Y, Constants.RIGHT_ARROW_WIDTH, Constants.RIGHT_ARROW_HEIGHT);
     }
 
     @Override
@@ -100,6 +102,14 @@ public class PlayroomMapS1 extends State {
         }
         else if(manager.getStageSelector().map().equals("3")){
             sprite.draw(manager.getPlayroomStage3(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        }
+
+        if(!objective.isObjectiveInteracted()){
+            sprite.draw(rightArrow, manager.getCamera().position.x - objective.getBody().getPosition().x - 75, manager.getCamera().position.y + 350);
+        }
+
+        if(npc.isReady()){
+            sprite.draw(downArrow, manager.getCamera().position.x - npc.getBody().getPosition().x - 10, manager.getCamera().position.y - npc.getBody().getPosition().y + 50);
         }
         sprite.end();
         npc.render(sprite);

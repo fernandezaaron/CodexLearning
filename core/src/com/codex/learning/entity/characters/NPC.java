@@ -18,6 +18,8 @@ import com.badlogic.gdx.utils.Align;
 import com.codex.learning.entity.Entity;
 import com.codex.learning.utility.*;
 
+import java.util.Random;
+
 public class NPC extends Entity {
 
     private TextureRegion jediGrandpaDown, jediProfDown, jediOfficeDown;
@@ -33,10 +35,11 @@ public class NPC extends Entity {
     private Label.LabelStyle labelStyle;
     private Dialogue dialogue;
     private String dialogSet;
-    private int index, hintIndex;
+    private int index, hintIndex, behaviorIndex;
     private int nextStatement;
     private boolean inPlayroom, readiness, introDialogFlag, doneChecker, tableTouched, hintFlag, autoDialogDone, inPlayroomCarpet, computerReady;
-    private boolean newPlayerDialogueDone;
+    private boolean newPlayerDialogueDone, behaviorFlag;
+    private Random rand;
 
     public NPC(Manager manager, String dialogSet, int index, boolean inPlayroom) {
         super(manager);
@@ -50,6 +53,8 @@ public class NPC extends Entity {
 //        Create a body without collision yet.
         this.position = position;
         this.size = size;
+        rand = new Random();
+
 
         //initialize a table(just like how JPANEL works)
         table = new Table();
@@ -99,6 +104,7 @@ public class NPC extends Entity {
         computerReady = false;
         newPlayerDialogueDone = false;
         inContact = false;
+        behaviorFlag = false;
 
 
         BodyDef def = new BodyDef();
@@ -123,6 +129,7 @@ public class NPC extends Entity {
         nextStatement = 0;
         index = 0;
         hintIndex = 0;
+        behaviorIndex = 0;
 
         this.size.x /= Constants.PPM;
         this.size.y /= Constants.PPM;
@@ -157,6 +164,7 @@ public class NPC extends Entity {
         if(manager.getStageSelector().getStageMap() == 1){
             newPlayerDialogue();
         }
+        hintsDialog();
         autoDialog();
         npcInteraction(delta);
         db.act(delta);
@@ -291,6 +299,7 @@ public class NPC extends Entity {
             nextStatement = 0;
             setTableTouched(false);
             manager.setNewPlayer(false);
+            setNewPlayerDialogueDone(true);
         }
 
 
@@ -383,6 +392,8 @@ public class NPC extends Entity {
             else {
                 db.textAnimation(manager.getDialogue().reader(nextStatement, "finishCheck", 2));
                 manager.getDialogue().setStatementEnd(true);
+                setTalking(false);
+
             }
             setReadiness(false);
         }
@@ -390,10 +401,6 @@ public class NPC extends Entity {
         if(isInPlayroom() && isHintFlag()){
             System.out.println(hintIndex);
             db.textAnimation(manager.getDialogue().reader(hintIndex, "hints", 0));
-            hintIndex++;
-            if(hintIndex == 4){
-                hintIndex = 0;
-            }
             setHintFlag(false);
         }
 
@@ -409,7 +416,6 @@ public class NPC extends Entity {
             setTableTouched(false);
         }
 
-
         if((manager.getDialogue().isStatementEnd() && db.isOpen() && !isIntroDialogFlag() && !doneChecker && !isInPlayroomCarpet())){
             setTalking(false);
             //if at the end resets the table and the statement to the first index
@@ -417,10 +423,7 @@ public class NPC extends Entity {
             db.setOpen(false);
             nextStatement = 0;
             setTableTouched(false);
-
         }
-
-
     }
 
     public void autoDialog(){
@@ -455,6 +458,64 @@ public class NPC extends Entity {
             nextStatement = 0;
             setAutoDialogDone(true);
         }
+    }
+
+    public void hintsDialog(){
+        if(isInPlayroom() && manager.getMinigame().isEngaged()){
+            doneChecker = true;
+            dialogBoxContainer.setVisible(true);
+            if(!db.isOpen()){
+                behaviorIndex = rand.nextInt(10-1)+1;
+                db.textAnimation(manager.getDialogue().reader(behaviorIndex, "behavior", 0));
+                if(!dialogBoxContainer.hasChildren()){
+                    table.add(image).align(Align.left).height(120).padRight(5f);
+                    table.add(db).align(Align.left).grow();
+                    dialogBoxContainer.add(table);
+                }
+            }
+            behaviorFlag = true;
+        }
+
+        if(isInPlayroom() && manager.getMinigame().isNotEngaged()){
+            doneChecker = true;
+            dialogBoxContainer.setVisible(true);
+            if(!db.isOpen()){
+                System.out.println("true ditooo");
+                db.textAnimation(manager.getDialogue().reader(hintIndex, "hints", manager.getDialogue().getTopic(manager.getQuestionnaire().getMinigameTopic())));
+                if(hintIndex < manager.getQuestionnaire().getHints()){
+                    hintIndex++;
+                }
+                else {
+                    hintIndex = 0;
+                }
+//                if(!dialogBoxContainer.hasChildren()){
+//                    table.add(image).align(Align.left).height(120).padRight(5f);
+//                    table.add(db).align(Align.left).grow();
+//                    dialogBoxContainer.add(table);
+//                }
+            }
+            setHintFlag(false);
+
+        }
+
+
+
+        if((!isHintFlag() || behaviorFlag) && isTableTouched() && (manager.getMinigame().isNotEngaged() || manager.getMinigame().isEngaged())){
+            doneChecker = false;
+            manager.getDialogue().setStatementEnd(true);
+
+        }
+
+        if((manager.getDialogue().isStatementEnd() && !doneChecker && db.isOpen()  && (manager.getMinigame().isNotEngaged() || manager.getMinigame().isEngaged()))){
+            db.setOpen(false);
+            setTableTouched(false);
+            dialogBoxContainer.setVisible(false);
+            manager.getMinigame().setNotEngaged(false);
+            manager.getMinigame().setEngaged(false);
+
+        }
+
+
     }
 
     public void noToPlayroom(Character character){
@@ -493,6 +554,8 @@ public class NPC extends Entity {
         }
 
     }
+
+
 
     public boolean isReady() {
         return readiness;

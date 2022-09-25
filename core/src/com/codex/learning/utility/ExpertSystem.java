@@ -1,8 +1,12 @@
 package com.codex.learning.utility;
 
+import com.badlogic.gdx.files.FileHandle;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class ExpertSystem {
 
@@ -12,7 +16,6 @@ public class ExpertSystem {
     private int totalUserCookies;
     private int overAllCookies;
     private boolean start;
-
 
     private String expertiseLevel;
     private String currentBehavior;
@@ -116,10 +119,10 @@ public class ExpertSystem {
     }
 
 
-    public ArrayList<ArrayList<String>> readDataFirst(){
+    public ArrayList<ArrayList<String>> readDataFirst(String path){
         try {
             ArrayList<ArrayList<String>> data = new ArrayList<>();
-            FileReader fileReader = new FileReader(Constants.DATA_GATHERED_FILE_PATH);
+            FileReader fileReader = new FileReader(path);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             boolean header = true;
             String line;
@@ -138,18 +141,26 @@ public class ExpertSystem {
 
     // Stage #, Stage Topic, Cookie Number, Dataset (5), Behavior
     // Input after the game too
-    public void writeDataGathering(int stageNumber, String stageTopic, int numberOfCookie){
+    public void writeDataGathering(int stageNumber, String stageTopic, String expertiseLevel, int numberOfCookie, ArrayList<ArrayList<String>> codeRiddleData, ArrayList<ArrayList<String>> minigameData){
         try {
             int counter = 0;
             int length = 0;
-            ArrayList<String> replace = new ArrayList<>(Arrays.asList(String.valueOf(stageNumber), stageTopic, String.valueOf(numberOfCookie), "YES", "HIGH", "MEDIUM", "LOW", "LOW", "ENGAGED"));
+            String codeRiddleListSize = String.valueOf(codeRiddleData.size() - 1);
+            String minigameListSize = String.valueOf(minigameData.size() - 1);
+            String codeRiddleEngagedPercentage = String.valueOf(calculateEngagedPercentage(codeRiddleData));
+            String minigameEngagedPercentage = String.valueOf(calculateEngagedPercentage(minigameData));
+            ArrayList<String> replace = new ArrayList<>(Arrays.asList(String.valueOf(stageNumber), stageTopic,
+                    expertiseLevel, String.valueOf(numberOfCookie),
+                    "ENGAGED", codeRiddleEngagedPercentage + "%", codeRiddleListSize,
+                    "ENGAGED", minigameEngagedPercentage + "%", minigameListSize));
+
+
             File file = new File(Constants.DATA_GATHERED_FILE_PATH);
             if (file.createNewFile()) {
                 System.out.println("File created: " + file.getName());
             }
             else {
-                ArrayList<ArrayList<String>> data = readDataFirst();
-                System.out.println(data);
+                ArrayList<ArrayList<String>> data = readDataFirst(Constants.DATA_GATHERED_FILE_PATH);
 
                 for(ArrayList<String> i: data){
                     if(i.get(0).equals(String.valueOf(stageNumber))){
@@ -186,6 +197,87 @@ public class ExpertSystem {
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void writeGameDataGathered(String path, int stageNumber, String topic, ArrayList<ArrayList<String>> newData) {
+        try {
+            int length = 0;
+
+            File file = new File(path);
+            if (file.createNewFile()) {
+                System.out.println("File created: " + file.getName());
+            } else {
+
+                ArrayList<ArrayList<String>> data = readDataFirst(path);
+                for(int i = 0; i < newData.size(); i++){
+                    newData.get(i).add(0, String.valueOf(stageNumber));
+                    newData.get(i).add(1, topic);
+                    newData.get(i).add(2, String.valueOf(i + 1));
+                }
+                if(!data.isEmpty()){
+                    for(ArrayList<String> i: data){
+                        if(i.get(0).equals(String.valueOf(stageNumber))){
+                            i.clear();
+                        }
+                    }
+                }
+                for(int i = 0; i < data.size(); i++){
+                    if(data.get(i).isEmpty()){
+                        continue;
+                    }
+                    else{
+                        newData.add(data.get(i));
+                    }
+                }
+
+                Collections.sort(newData, new Comparator<ArrayList<String>>() {
+                    @Override
+                    public int compare(ArrayList<String> a, ArrayList<String> b) {
+                        return a.get(0).compareTo(b.get(0));
+                    }
+                });
+                FileWriter fileWriter = new FileWriter(path, false);
+
+                for (ArrayList<String> arrayList : newData) {
+                    for (String i : arrayList) {
+                        if(length == arrayList.size()){
+                            fileWriter.write("\n");
+                            length = 0;
+                        }
+                        length++;
+                        fileWriter.write(i + ",");
+                    }
+                }
+                fileWriter.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public int calculateEngagedPercentage(ArrayList<ArrayList<String>> data){
+        int total = 0;
+        int current = 0;
+        float percent;
+        if(data.size() == 2){
+            if(data.get(1).get(data.get(0).size() - 1).equals("ENGAGED"))
+                return 100;
+            return 0;
+        }
+        for(int i = 0; i < data.size(); i++){
+            if(i == 0){
+                continue;
+            }
+            else if(data.get(i).get(data.get(i).size() - 1).equals("ENGAGED")){
+                total++;
+                current++;
+            }
+            else{
+                total++;
+            }
+        }
+        percent = ((float) current/total) * 100;
+        return (int) percent;
     }
 
     public int[] getCookies() {

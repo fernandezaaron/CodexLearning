@@ -12,7 +12,7 @@ public class Dialogue {
                     "The first topic is Syntax", "The syntax of Java refers to the set of rules defining how a Java program is written and interpreted.",
                     "The syntax is mostly derived from C and C++. Unlike in C++, in Java there are no global functions or variables" ,
                     "But there are data members which are also regarded as global variables.",
-                    "For example this is a proper syntax declaration" + "\n\npublic class Main {\n" + "  public static void main(String[] args) {\n" + "    System.out.println(\"Hello World\");\n" + "  }\n" + "}",
+                    "For example this is a proper syntax declaration" + "\npublic class Main {\n" + "  public static void main(String[] args) {\n" + "    System.out.println(\"Hello World\");\n" + "  }\n" + "}",
                     "Every line of code that runs in Java must be inside a class.", "In our example, we named the class Main. A class should always start with an uppercase first letter.",
                     "Java is case-sensitive: \"MyClass\" and \"myclass\" has different meaning.", "The main() method is required and you will see it in every Java program:",
                     "Any code inside the main() method will be executed.", "For now, just remember that every Java program has a class name which must match the filename, and that every program must contain the main() method.",
@@ -20,48 +20,58 @@ public class Dialogue {
                     "Our second topic is Comments", "Comments can be used to explain Java code, and to make it more readable.", "It can also be used to prevent execution when testing alternative code.",
                     "Single-line comments start with two forward slashes (//).", "Any text between // and the end of the line is ignored by Java (will not be executed).",
                     "This example uses a single-line comment before a line of code:" + "\n// This is a comment", "Multi-line comments start with /* and ends with */.", "Any text between /* and */ will be ignored by Java.",
-                    "This example uses a multi-line comment (a comment block) to explain the code:" + "\n\n/* The code below will print the words Hello World\n" +"to the screen, and it is amazing */",
-                    "As for your task, you will be going to the COMPUTER beside me.", "After finishing all the questions in the COMPUTER, you can now proceed to the PLAYROOM on my RIGHT",
+                    "This example uses a multi-line comment (a comment block) to explain the code:" + "\n/* The code below will print the words Hello World\n" +"to the screen, and it is amazing */",
+                    "As for your task, you will be going to the COMPUTER beside me and answer the questions.", "After finishing all the questions in the COMPUTER, you can now proceed to the PLAYROOM on my LEFT",
                     "The PLAYROOM however contains a random MINI-GAME that will test your CODING CAPABILITIES")),
             new ArrayList<>(Arrays.asList(
                     //variables
-                    "Welcome on your 2nd day,", "I have a task for you to do", "But first lets study on the topic",
-                    "Our topic for this stage will be Variables", "Variables are containers for storing data values.", "In Java, there are different types of variables",
-                    "String - stores text, such as \"Hello\". String values are surrounded by double quotes", "For example: " + "\n\nString name =\"Hello\";",
-                    "int - stores integers (whole numbers), without decimals, such as 123 or -123", "For example:" + "\n\nint num = 123;",
-                    "double - stores point numbers, with decimals, such as 19.99 or -19.99", "For example:" + "\n\ndouble num = 19.99;",
-                    "char - stores single characters, such as 'a' or 'B'. Char values are surrounded by single quotes", "For example:" + "\n\nchar letter = 'a';",
-                    "boolean - stores values with two states: true or false", "For example:" + "\n\nboolean bool = true;",
-                    "If you don't want others (or yourself) to overwrite existing values, use the final keyword (this will declare the variable as \"final\" or \"constant\", which means unchangeable and read-only):",
-                    "For example" + "\n\nfinal int myNum = 15;",
+                    "Welcome on your 2nd day,",
+                    "Our topic for this day will be Variables, Data Types, and Type Casting", "Variables are containers for storing data values.", "In Java, there are different types of variables",
+                    "String - stores text, such as \"Hello\".\nString values are surrounded by double quotes", "An example of declaring a string value: " + "\nString name =\"Hello\";",
+                    "int - stores integers (whole numbers), without decimals, such as 123 or -123", "An example of declaring an integer value:" + "\nint num = 123;",
+                    "double - stores point numbers, with decimals, such as 19.99 or -19.99", "An example of declaring a double value:" + "\ndouble num = 19.99;",
+                    "char - stores single characters, such as 'a' or 'B'. Char values are surrounded by single quotes", "An example of declaring a char value:" + "\nchar letter = 'a';",
+                    "boolean - stores values with two states: true or false", "An example of declaring a boolean value:" + "\nboolean bool = true;",
+                    "If you don't want others (or yourself) to overwrite existing values, use the final keyword","This will declare the variable as \"final\" or \"constant\", which means unchangeable and read-only",
+                    "For example:" + "\nfinal int myNum = 15; \nIf you tried to reassign the value of myNum lets say for example: 10, it won't change at all as 15 should be the final and constant value",
                     //data types
-                    "Our fourth topic is Data types","Data types are divided into two groups:" + "\n\nPrimitive data types - includes byte, short, int, long, float, double, boolean and char" + "\n\nNon-primitive data types - such as String, Arrays and Classes",
-                    "A primitive data type specifies the size and type of variable values, and it has no additional methods.", "There are eight primitive data types in Java:" + "\n\nData Type     " + " Size" +
-                            "\nbyte " + "              1 byte" + "\nshort " + "            2 bytes" + "\nint " + "                  4 bytes" +"\nlong " + "               8 bytes" +
-                            "\nfloat " + "             4 bytes" + "\ndouble " + "          8 bytes" + "\nboolean " + "        1 bit" + "\nchar " + "              2 bytes",
-                    "Non-primitive data types are called reference types because they refer to objects.", "Non-primitive types are created by the programmer and is not defined by Java (except for String).",
-                    "Non-primitive types can be used to call methods to perform certain operations, while primitive types cannot.", "non-primitive types have all the same size.",
+                    "For the next topic of the day! Data types","Data types are divided into two groups: Primitive and Non-Primitve Data Types", "Primitive data types - includes byte, short, int, long, float, double, boolean and char",
+                    "A primitive data type specifies the size and type of variable values, and it has no additional methods.", "There are eight primitive data types in Java which are: byte, float, short, double, int, boolean, long, and char",
+                    "Then their corresponding sizes will be:   ", "byte - 1 byte - min/max value: -128 to 127 \nfloat - 4 bytes \nshort - 2 bytes \ndouble - 8 bytes", "int - 4 bytes\nboolean - 1 bit\nlong - 8 bytes\nchar - 2 bytes",
+                    "Non-primitive data types - such as String, Arrays and Classes", "Non-primitive data types are called reference types because they refer to objects.", "They are created by the programmer and is not defined by Java (except for String).",
+                    "It can be used to call methods to perform certain operations, while primitive types cannot.", "Lastly non-primitive types have all the same size.",
                     // type casting
-                    "Proceeding to the next topic, Type Casting", "Type casting is when you assign a value of one primitive data type to another type.", "In Java, there are two types of casting:",
+                    "Proceeding to the last topic of the day, Type Casting", "Type casting is when you assign a value of one primitive data type to another type.", "In Java, there are two types of casting:",
                     "Widening Casting (automatically) - converting a smaller type to a larger type size\n" +
-                            "byte -> short -> char -> int -> long -> float -> double", "For example:" + "\n\n int myInt = 9;\n" + "double myDouble = myInt;",
+                            "byte -> short -> char -> int -> long -> float -> double", "For example:" + "\n int myInt = 9;\n" + "double myDouble = myInt;",
                     "Narrowing Casting (manually) - converting a larger type to a smaller size type\n" +
                             "double -> float -> long -> int -> char -> short -> byte", "For example:" + "double myDouble = 9.78d;\n" + "int myInt = (int) myDouble")),
             new ArrayList<>(Arrays.asList(
                     //operators
-                    "You may know who I am already and I have a task for you to do again", "This is for you to master the topic do not complain", "now then, lets study on the next topic",
-                    "Our fifth topic is Operators", "Operators are used to perform operations on variables and values.", "Java divides the operators into the following groups:" +
-                            "\n\nArithmetic operators" + "\nAssignment operators" + "\nComparison operators" + "\nLogical operators" + "\nBitwise operators",
-                    "Arithmetic operators are used to perform common mathematical operations." + "\n\n+ Addition - Adds together two values " + "\n- Subtraction - Subtracts one value from another" +
-                            "\n* Multiplication - Multiplies two values" + "\n/ Division - Divides one value by another" + "\n% Modulus - Returns the division remainder" + "\n++ Increment - Increases the value of a variable by 1" +
-                            "\n-- Decrement - Decreases the value of a variable by 1", "Assignment operators are used to assign values to variables." +
-                            "\nOperator       Example     Same As" + "\n        =                  x = 5               x = 5" + "\n        +=                x += 3             x = x + 3" +
-                            "\n        -=                x -= 3             x = x - 3" + "\n        *=                x *= 3             x = x * 3" + "\n        /=               x /= 3             x = x / 3",
-                    "Operator       Example     Same As" + "\n        %=               x %= 3             x = x % 3" + "\n        &=               x &= 3             x = x & 3" +
-                            "\n        |=                 x |= 3               x = x | 3" + "\n        ^=               x ^= 3             x = x ^ 3" + "\n        >>=              x >>= 3            x = x >> 3" +
-                            "\n        <<=              x <<= 3            x = x << 3", "Comparison operators are used to compare two values:" + "\n\n== -> Equal to -> x == y" + "\n!= -> Not equal -> x != y" +
+                    "Are you still doing good? It's your 3rd day already! Kidding aside we will discuss Operators today"
+                    ,
+                    "Jedisaur remember that Operators are used to perform operations on variables and values.", "Java divides the operators into the following groups:",
+                    "Arithmetic operators, Assignment operators, Comparison operators, Logical operators, and Bitwise operators",
+                    "Arithmetic operators are used to perform common mathematical operations like:","+ Addition - Adds together two values " + "\n- Subtraction - Subtracts one value from another" +
+                    "\n* Multiplication - Multiplies two values" +
+                            "\n/ Division - Divides one value by another",
+                    "% Modulus - Returns the division remainder" + "\n++ Increment - Increases the value of a variable by 1" +
+                            "\n-- Decrement - Decreases the value of a variable by 1",
+                    "Assignment operators are used to assign values to variables. Your usual operator is literally '=' but it may also vary from: '+=', '-=', '*=', '/=', and many more! I will discuss every assignment operators there are don't worry Jedisaur!",
+                    "The following are examples of assignment operators: ",
+                    "x = 5\nI think we already know how this works as x is an empty variable and then assigning constant with the value of 5 in it, makes x store the value of 5",
+                    "x += 3\nThis is read as same as x = x + 3 whereas you are assigning the sum of the current x value and the constant value of 3, which makes the variable store a new value",
+                    "x -= 7\nThis is read as same as x = x - 7 this is similar to assigning the sum of the current x value and the constant value but you're just getting the difference",
+                    "x *= 5\nIn this case it is x = x * 5, this assigns the product of the current x value and the constant value",
+                    "lastly for the basic operators: x /= 3\nIt is read as x = x/3, similar to the previous three this just gets the quotient of the values in the equation", "I know you don't quite get how this works, let me provide an example for you",
+                    "Let's say you have an integer variable called X, and it has a constant value of 6 so that makes it\nX = 6, please take note of this variable."
+                    ,"Now that we have X = 6, I want to add the current and existing value to another 6, which will make the equation go\nX = X + 6 or simpler code: X += 6",
+                    "X = X + 6 or simpler code: X += 6\nSo this line of code will compute like this: X = 6 + 6, and then will return the new value of X = 12",
+
+                    "Comparison operators are used to compare two values:" + "\n== -> Equal to -> x == y" + "\n!= -> Not equal -> x != y" +
                             "\n> -> Greater than -> x > y" + "\n< -> Less than -> x < y" + "\n>= -> Greater than or equal to -> x >= y" + "\n<= -> Less than or equal to -> x <= y",
-                    "Logical operators are used to determine the logic between variables or values:" + "\n\n&& - Logical and - Returns true if both statements are true" + "\n|| - Logical or - Returns true if one of the statements is true" +
+
+                    "Logical operators are used to determine the logic between variables or values:" + "\n&& - Logical and - Returns true if both statements are true" + "\n|| - Logical or - Returns true if one of the statements is true" +
                             "\n! - Logical not - Reverse the result, returns false if the result is true"
             )),
             new ArrayList<>(Arrays.asList(
@@ -152,7 +162,11 @@ public class Dialogue {
             new ArrayList<>(Arrays.asList(
                     //classes
                     "Our first topic is Classes", "Everything in Java is associated with classes and objects, along with its attributes and methods.", "For example: in real life, a car is an object. The car has attributes, such as weight and color, and methods, such as drive and brake.",
-                    "A Class is like an object constructor, or a \"blueprint\" for creating objects.", "To create a class, use the keyword class:" + "\n\nExample" + "\npublic class Main {\n" + "  int x = 5;\n" + "}" + "\n\nRemember that a class should always start with an uppercase first letter, and that the name of the java file should match the class name.",
+                    "A Class is like an object constructor, or a \"blueprint\" for creating objects.", "To create a class, use the keyword class:" + "\n\nExample" + "\npublic class Main {\n" + "  int x = 5;\n" + "}" + "\n\nRemember that a class should always start with an uppercase first letter, and that the name of the java file should match the class name."
+
+            )),
+
+            new ArrayList<>(Arrays.asList(
                     // Objects
                     "Our last topic is Objects", "In Java, an object is created from a class. We have already created the class named Main, so now we can use this to create objects", "To create an object of Main, specify the class name, followed by the object name, and use the keyword new:" + "\n\nFor example:" +
                             "\npublic class Main {\n" + "  int x = 5;\n" + "\n" + "  public static void main(String[] args) {\n" + "    Main myObj = new Main();\n" + "    System.out.println(myObj.x);\n" + "  }\n" + "}",
@@ -467,7 +481,7 @@ public class Dialogue {
                     new ArrayList<>(Arrays.asList(
                             // Loops
                             "Try to remember the output of the program",
-                            "Don't forget to check the closing statement",
+                            "Iterations must be always at the end of the loop",
                             "Remember that each loops have different syntax",
                             "Loops always initialize an iterator first",
                             "When the iterator is in the output, it will show its value"
@@ -1226,6 +1240,7 @@ public class Dialogue {
                             "Data Type: int \n" +
                             "Variable name: i \n" +
                             "Initialized value: 0 \n" +
+                            "Final iteration: 5 \n" +
                             "For loop: \n" +
                             "Print \"Hello World\" "
                     )),
@@ -1236,6 +1251,7 @@ public class Dialogue {
                             "Data Type: int \n" +
                             "Variable name: i \n" +
                             "Initialized value: 0 \n" +
+                            "Final iteration: 5 \n" +
                             "While loop: \n" +
                             "Print \"Hello World\" "
                     )),
@@ -1246,6 +1262,7 @@ public class Dialogue {
                             "Data Type: int \n" +
                             "Variable name: i \n" +
                             "Initialized value: 0 \n" +
+                            "Final iteration: 5 \n" +
                             "Do-While loop: \n" +
                             "Print \"Hello World\" "
                     )),
@@ -1256,6 +1273,7 @@ public class Dialogue {
                             "Data Type: int \n" +
                             "Variable name: i \n" +
                             "Initialized value: 0 \n" +
+                            "Final iteration: 5 \n" +
                             "For loop: \n" +
                             "Print the value of \"i\" \n" +
                             "Print \"Hello World\" "
@@ -1267,6 +1285,7 @@ public class Dialogue {
                             "Data Type: int \n" +
                             "Variable name: i \n" +
                             "Initialized value: 0 \n" +
+                            "Final iteration: 5 \n" +
                             "While loop: \n" +
                             "Print the value of \"i\" \n" +
                             "Print \"Hello World\" "
@@ -1278,6 +1297,7 @@ public class Dialogue {
                             "Data Type: int \n" +
                             "Variable name: i \n" +
                             "Initialized value: 0 \n" +
+                            "Final iteration: 5 \n" +
                             "Do-While loop: \n" +
                             "Print the value of \"i\" \n" +
                             "Print \"Hello World\" "
@@ -1289,6 +1309,7 @@ public class Dialogue {
                             "Data Type: int \n" +
                             "Variable name: i \n" +
                             "Initialized value: 0 \n" +
+                            "Final iteration: 5 \n" +
                             "For loop: Break if i is 2\n" +
                             "Print the value of \"i\" \n" +
                             "Print \"Hello World\" "
@@ -1300,6 +1321,7 @@ public class Dialogue {
                             "Data Type: int \n" +
                             "Variable name: i \n" +
                             "Initialized value: 0 \n" +
+                            "Final iteration: 5 \n" +
                             "While loop: Break if i is 2\n" +
                             "Print the value of \"i\" \n" +
                             "Print \"Hello World\" "
@@ -1311,6 +1333,7 @@ public class Dialogue {
                             "Data Type: int \n" +
                             "Variable name: i \n" +
                             "Initialized value: 0 \n" +
+                            "Final iteration: 5 \n" +
                             "Do-While loop: Break if i is 2\n" +
                             "Print the value of \"i\" \n" +
                             "Print \"Hello World\" "
@@ -2579,6 +2602,81 @@ public class Dialogue {
             )
     );
 
+    private ArrayList<ArrayList<String>> behaviorFeedback = new ArrayList<>(
+            Arrays.asList(
+                    new ArrayList<>(Arrays.asList(
+                            // Player Engaged
+                            "Keep doing what you are doing",
+                            "Keep up the good work",
+                            "Wow, you seem to already mastered this topic",
+                            "Do you find the question Exciting?",
+                            "Do these question even challenge you?",
+                            "You certainly are an expert on this topic",
+                            "How come you answer this question faster than others?",
+                            "Wow you're more interested in this topic than others",
+                            "You've put in a lot of effort to answer the question",
+                            "I can tell you have been paying attention and answering the questions. Nicely done!" // 10
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Player Neutral
+                            "Sounds like you've got it under control",
+                            "Trust your ability to answer the question",
+                            "Keep answering, you can do it!",
+                            "Just take one step at a time in answering",
+                            "You can still do better than the last time",
+                            "You've come prepared in this topic",
+                            "Wow, you're answering the question better than I thought",
+                            "Your progress is truly inspiring",
+                            "Never doubt yourself when answering the question",
+                            "So far you've done well in this topic" // 10
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Player Bored
+                            "Do these question not challenge you?",
+                            "Is the question too long for you?",
+                            "Is the question too simple for you?",
+                            "Do the questions not stimulate your brain?",
+                            "Maybe you don't find the topic interesting",
+                            "You can listen to your favorite music while playing",
+                            "Maybe try another type of mini-game if it becomes interesting to you",
+                            "Have you found a topic that intrigues you?",
+                            "Maybe you need some motivation to answer these questions",
+                            "Maybe drink some coffee so that you can be energized" // 10
+
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Player Confused
+                            "Take a deep breathe and recall the lesson",
+                            "Read the topic carefully until you understand it",
+                            "Read the question carefully and try to understand it",
+                            "Don't give up!",
+                            "Is the question too difficult for you?",
+                            "Maybe you just need a different perspective to answer it",
+                            "Go back to the topic that you're having difficulty with",
+                            "Maybe you need to use a hint to help you overcome this question",
+                            "If you can address the problem, you can answer it!",
+                            "Trust your gut if you don't know the answer" // 10
+                    )),
+
+                    new ArrayList<>(Arrays.asList(
+                            // Player Frustrated
+                            "Take it easy, you can figure it out",
+                            "Clear your mind and look at the question again",
+                            "Take a few minutes break",
+                            "Relax and review the lesson",
+                            "Don't be mad and use a hint so that you can move on from this question" ,
+                            "Maybe you just need to take a break",
+                            "When you are having trouble answering the question try to listen on light music",
+                            "Maybe take a break and do some stretches before going back to the question and answering it",
+                            "Maybe think outside of the box when you are answering this question",
+                            "Consider the outcomes of all possible answers to the questions." // 10
+                    ))
+            )
+    );
+
     private ArrayList<ArrayList<String>> askIfFinished = new ArrayList<>(
             Arrays.asList(
                     new ArrayList<>(Arrays.asList(
@@ -2589,7 +2687,7 @@ public class Dialogue {
                             "Uy tama!!!"
                     )),
                     new ArrayList<>(Arrays.asList(
-                            "BOBO KA MALE!!!"
+                            "Try once more son, you got this!"
                     ))
             )
     );
@@ -2617,6 +2715,7 @@ public class Dialogue {
             case "done" : return statementMover(nextStatement, askIfFinished, 0);
             case "noplayroom": return statementMover(nextStatement, noToPlayRoomDialogue, index - 1);
             case "newPlayer": return statementMover(nextStatement, newPlayerIntro, 0);
+            case "behavior": return statementMover(nextStatement, behaviorFeedback, 0);
 
 
         }

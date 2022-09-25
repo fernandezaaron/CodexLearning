@@ -7,8 +7,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
-import com.codex.learning.utility.decisiontree.Behavior;
-import org.apache.poi.ss.formula.functions.T;
 
 import java.awt.*;
 
@@ -148,6 +146,9 @@ public class PauseState extends State {
                     else {
                         manager.getOfficeMap().dispose();
                     }
+                    manager.getMinigameChecker().setNumberOfAttempts(0);
+                    manager.getMinigameChecker().setDone(false);
+                    manager.getMinigame().reset();
                     manager.set(new PlayState(manager));
                 }
                 if(stageBounds.contains(coords.x, coords.y)){
@@ -168,6 +169,9 @@ public class PauseState extends State {
                     else {
                         manager.getOfficeMap().dispose();
                     }
+                    manager.getMinigameChecker().setNumberOfAttempts(0);
+                    manager.getMinigameChecker().setDone(false);
+                    manager.getMinigame().reset();
                     manager.set(new StageSelectState(manager));
 
                 }

@@ -10,7 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
-import org.apache.poi.ss.formula.functions.T;
 
 import java.util.ArrayList;
 
@@ -21,12 +20,14 @@ public class ReportCard extends State{
     private ArrayList<Image> cookies;
     private Label timeConsumed, numberOfErrors, numberOfAttempts, correctOutput;
     private boolean inReportCard;
+    private boolean resetFlag;
 
     public ReportCard(Manager manager){
         super(manager);
         reportCardTable = new Table(manager.getSkin());
         reportCardTable.setBackground("REPORTCARD");
 
+        resetFlag = false;
 
         reportCardContainerTable = new Table(manager.getSkin());
 
@@ -95,7 +96,6 @@ public class ReportCard extends State{
         for(int i=0; i<3; i++){
             cookies.add(new Image(manager.getSkin(),"nocookie"));
         }
-        int numberofcookies = 2;
         for(int i=0; i<manager.getMinigame().getCookies(); i++){
             cookies.set(i, new Image(manager.getSkin(), "cookie"));
         }
@@ -146,9 +146,31 @@ public class ReportCard extends State{
                 else {
                     manager.getOfficeMap().dispose();
                 }
-                manager.getMinigameChecker().setDone(false);
-                manager.getMinigame().fuzzyReset();
-                manager.set(new StageSelectState(manager));
+
+                if(!resetFlag){
+                    resetFlag = true;
+                    System.out.println("CODE RIDDLE - " + manager.getCodeRiddle().getCodeRiddleData());
+                    System.out.println("MINIGAME - " + manager.getMinigame().getMinigameData());
+
+                    //codeRiddleData.txt
+                    manager.getExpertSystem().writeGameDataGathered(Constants.CODE_RIDDLE_DATA_FILE_PATH, manager.getStageSelector().getStageMap(),
+                            manager.getQuestionnaire().getMinigameTopic(), manager.getCodeRiddle().getCodeRiddleData());
+
+                    //minigameData.txt
+                    manager.getExpertSystem().writeGameDataGathered(Constants.MINIGAME_DATA_FILE_PATH, manager.getStageSelector().getStageMap(),
+                            manager.getQuestionnaire().getMinigameTopic(), manager.getMinigame().getMinigameData());
+
+                    //data.txt
+                    manager.getExpertSystem().writeDataGathering(manager.getStageSelector().getStageMap(),
+                            manager.getQuestionnaire().getMinigameTopic(), manager.getExpertSystem().getExpertiseLevel(),
+                            manager.getMinigame().getCookies(), manager.getCodeRiddle().getCodeRiddleData(),
+                            manager.getMinigame().getMinigameData());
+                    manager.getMinigameChecker().setNumberOfAttempts(0);
+                    manager.getCodeRiddle().setCodeRiddleData(null);
+                    manager.getMinigameChecker().setDone(false);
+                    manager.getMinigame().reset();
+                    manager.set(new StageSelectState(manager));
+                }
                 return true;
             }
             @Override

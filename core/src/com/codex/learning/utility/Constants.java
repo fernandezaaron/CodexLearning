@@ -42,6 +42,8 @@ public class Constants {
     // SAVE FILE ASSET PATH
     public static final String SAVE_FILE_PATH = "assets/text/SaveFile.txt";
     public static final String DATA_GATHERED_FILE_PATH = "assets/text/data.txt";
+    public static final String CODE_RIDDLE_DATA_FILE_PATH = "assets/text/codeRiddleData.txt";
+    public static final String MINIGAME_DATA_FILE_PATH = "assets/text/minigameData.txt";
 
     // EXCEL FILE ASSET PATH
     public static final String EXCEL_FILE_PATH = "assets/excel/Minigames.xlsx";
@@ -69,6 +71,7 @@ public class Constants {
     public static final String CODE_ORDER = "map/codeOrder.png";
     public static final String MYSTERY_CODE = "map/mysteryCode.png";
     public static final String FILL_IN_THE_BLOCKS = "map/fillInTheBlocks.png";
+    public static final String START_AREA = "background/startingAreaHowToPlay.png";
 
 
 
@@ -394,6 +397,18 @@ public class Constants {
     public static final int COOKIES_THREE_Y = 2;
     public static final int COOKIES_WIDTH = 95;
     public static final int COOKIES_HEIGHT = 43;
+
+
+    public static final int DOWN_ARROW_x = 16;
+    public static final int DOWN_ARROW_Y = 127;
+    public static final int DOWN_ARROW_WIDTH = 63;
+    public static final int DOWN_ARROW_HEIGHT = 110;
+
+    public static final int RIGHT_ARROW_x = 79;
+    public static final int RIGHT_ARROW_Y = 159;
+    public static final int RIGHT_ARROW_WIDTH = 110;
+    public static final int RIGHT_ARROW_HEIGHT = 63;
+
 
 
     //END OF UTILITY SHEET

@@ -22,15 +22,11 @@ import com.codex.learning.entity.maps.OfficeMap;
 import com.codex.learning.entity.maps.PlayroomMapS1;
 import com.codex.learning.entity.maps.SchoolMap;
 import com.codex.learning.states.State;
+import com.codex.learning.states.minigames.CodeRiddle;
 import com.codex.learning.states.minigames.Minigame;
-import com.codex.learning.utility.decisiontree.Behavior;
-import com.codex.learning.utility.decisiontree.DecisionTree;
-import com.codex.learning.utility.decisiontree.Dtree;
+import com.codex.learning.utility.decisiontree.Server;
 import com.codex.learning.utility.filereader.Questionnaire;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Stack;
 //This class is used to initiate all once a used assets to prevent multiple calls.
 public class Manager {
@@ -50,7 +46,7 @@ public class Manager {
     private TextureRegion reportCardSheet;
     private TextureRegion pcStateSheet;
     private TextureRegion settingsStateSheet;
-
+    private CodeRiddle codeRiddle;
 
     private TextureRegion pauseStateSheet;
     private Skin skin;
@@ -70,17 +66,16 @@ public class Manager {
     private SchoolMap schoolMap;
     private OfficeMap officeMap;
 
-    private DecisionTree decisionTree;
-
     private boolean moving;
     private boolean newPlayer;
     private int numberOfBlockInteraction;
     private int hintsIndex;
 
     private ExpertSystem expertSystem;
-    private Dtree dtree;
 
     private Dialogue dialogue;
+    private Server server;
+
     public Manager(){
         expertSystem = new ExpertSystem();
         expertSystem.readFile();
@@ -88,7 +83,6 @@ public class Manager {
         System.out.println("LEVEL - " + expertSystem.getExpertiseLevel());
         questionnaire = new Questionnaire(expertSystem.getExpertiseLevel());
 
-        dtree = new Dtree();
 
         b2dr = new Box2DDebugRenderer();
 
@@ -100,7 +94,6 @@ public class Manager {
         stageSelector = new StageSelector();
         minigameChecker = new MinigameChecker();
         minigame = new Minigame(this);
-
 
         background = new TextureRegion(new Texture(Constants.BACKGROUND_PATH));
         mainMenu = new TextureRegion(new Texture(Constants.MENU_TEXT_PATH));
@@ -127,10 +120,6 @@ public class Manager {
         font = new BitmapFont(Gdx.files.internal(Constants.FONT_STYLE));
         font.getData().setScale(1.3f);
 
-
-        decisionTree = new DecisionTree();
-        decisionTree.createTree();
-
         camera = new OrthographicCamera(Constants.SCREEN_WIDTH, Constants.SCREEN_WIDTH);
         camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 
@@ -145,7 +134,11 @@ public class Manager {
 
         hintsIndex = 0;
 
-
+        try {
+            server = new Server();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -340,13 +333,6 @@ public class Manager {
         this.questionnaire = questionnaire;
     }
 
-    public DecisionTree getDecisionTree() {
-        return decisionTree;
-    }
-
-    public void setDecisionTree(DecisionTree decisionTree) {
-        this.decisionTree = decisionTree;
-    }
 
     public StageSelector getStageSelector() {
         return stageSelector;
@@ -362,99 +348,6 @@ public class Manager {
 
     public void setMoving(boolean moving) {
         this.moving = moving;
-    }
-
-    public void updateBehavior(int timer){
-        String currentBehavior = "";
-        String movement = (isMoving()) ? "YES":"NO";
-        String time = checkTimeConsumption(timer);
-        ArrayList<String> behavior = new ArrayList<>();
-
-        if(timer > 0 && timer % 10 == 0){
-            behavior.add(movement);
-            behavior.add(time);
-            behavior.add("");
-            behavior.add("");
-            behavior.add("");
-            currentBehavior = String.valueOf(getDecisionTree().classify(behavior, getDecisionTree().getTree()));
-            currentBehavior = currentBehavior;
-
-            if(currentBehavior.equals("ENGAGED")){
-                //GIVE FEEDBACK REGARDING ENGAGED
-                System.out.println(currentBehavior);
-                System.out.println("ENGAGED");
-            }
-            else{
-                //GIVE FEEDBACK REGARING NOT ENGAGED
-                System.out.println(behavior);
-                System.out.println(currentBehavior);
-                System.out.println("NOT ENGAGED");
-                hintsIndex++;
-            }
-        }
-        behavior.clear();
-    }
-
-//    public void checkBehavior(int timer, int numberOfBlockInteract, boolean computerDone, FuzzyLogic fuzzyLogic){
-//        String behavior = "";
-//        String movement = (isMoving()) ? "YES":"NO";
-//        String interact = checkNumberOfBlockInteractionRule(numberOfBlockInteract, computerDone);
-//
-//        ArrayList<String> dataset = new ArrayList<String>(Arrays.asList(new String[]{"YES", "HIGH", "LOW", "", ""}));
-//        if(timer % 4333 == 0 && timer > 0){
-//            Behavior.currentDataSet.add(movement);
-//            Behavior.currentDataSet.add(fuzzyLogic.getTimeConsumptionRules());
-//            Behavior.currentDataSet.add(fuzzyLogic.getNumberOfErrorsRules());
-//            Behavior.currentDataSet.add(fuzzyLogic.getNumberOfAttemptsRules());
-//            Behavior.currentDataSet.add(interact);
-//            behavior = String.valueOf(getDecisionTree().classify(Behavior.currentDataSet, getDecisionTree().getTree()));
-////            System.out.println(getDecisionTree().classify(Behavior.currentDataSet, getDecisionTree().getTree()));
-//            if(behavior.equals("ENGAGED")){
-//                System.out.println(Behavior.currentDataSet);
-//                System.out.println("BEHAVIOR = " + behavior);
-//                //file write
-//            }
-//            else{
-//                System.out.println(Behavior.currentDataSet);
-//                System.out.println("BEHAVIOR = " + behavior);
-//                //file write
-//            }
-//            Behavior.currentDataSet.clear();
-//        }
-////        System.out.println(getDecisionTree().classify(dataset, getDecisionTree().getTree()));
-//    }
-
-    public String checkTimeConsumption(int timer){
-        if (timer <= 180){
-            return "LOW";
-        }
-        else if(timer <= 300){
-            return "MEDIUM";
-        }
-        else if(timer >= 300){
-            return "HIGH";
-        }
-        else{
-            return "";
-        }
-    }
-
-    public String checkNumberOfBlockInteractionRule(int numberOfBlockInteraction, boolean computerDone){
-        if(computerDone){
-            if(numberOfBlockInteraction == 0){
-                return "";
-            }
-            else if(numberOfBlockInteraction <= 10){
-                return "LOW";
-            }
-            else if(numberOfBlockInteraction <= 20){
-                return "MEDIUM";
-            }
-            else{
-                return "HIGH";
-            }
-        }
-        return "";
     }
 
     public void checkIfMoving(Character character){
@@ -497,5 +390,21 @@ public class Manager {
 
     public void setNewPlayer(boolean newPlayer) {
         this.newPlayer = newPlayer;
+    }
+
+    public CodeRiddle getCodeRiddle() {
+        return codeRiddle;
+    }
+
+    public void setCodeRiddle(CodeRiddle codeRiddle) {
+        this.codeRiddle = codeRiddle;
+    }
+
+    public Server getServer() {
+        return server;
+    }
+
+    public void setServer(Server server) {
+        this.server = server;
     }
 }

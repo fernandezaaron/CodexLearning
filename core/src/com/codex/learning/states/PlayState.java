@@ -2,6 +2,7 @@ package com.codex.learning.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -30,8 +31,8 @@ public class PlayState extends State{
     private PauseState pause;
     private FuzzyLogic fuzzyLogic;
 
-    private boolean inStartArea, atDoor;
-    private TextureRegion door;
+    private boolean inStartArea, atDoor, inHowToPlay;
+    private TextureRegion door, downArrow, rightArrow, howToPlayScreen;
     private int stage;
 
     private boolean computerOnce;
@@ -51,8 +52,12 @@ public class PlayState extends State{
         rand = new Random();
 
 
+
+//        randomMinigame = rand.nextInt(4-1)+1;
+
         randomMinigame = rand.nextInt(4-1)+1;
-//        randomMinigame = 2;
+
+        randomMinigame = 2;
 
         playroomMap = new PlayroomMapS1(manager);
         manager.setPlayroomMap(playroomMap);
@@ -100,8 +105,14 @@ public class PlayState extends State{
         computerOnce = true;
 
         door = new TextureRegion(manager.getReportCardSheet(), 48,195, 263, 119);
+        downArrow = new TextureRegion(manager.getUtility(), Constants.DOWN_ARROW_x, Constants.DOWN_ARROW_Y, Constants.DOWN_ARROW_WIDTH, Constants.DOWN_ARROW_HEIGHT);
+        rightArrow = new TextureRegion(manager.getUtility(), Constants.RIGHT_ARROW_x, Constants.RIGHT_ARROW_Y, Constants.RIGHT_ARROW_WIDTH, Constants.RIGHT_ARROW_HEIGHT);
+        howToPlayScreen = new TextureRegion(new Texture(Constants.START_AREA), 0,0,1600,900);
+
         inStartArea = true;
         atDoor = false;
+        inHowToPlay = false;
+
         if(manager.getStageSelector().getStageMap() == 1){
             manager.setNewPlayer(true);
         }
@@ -115,6 +126,7 @@ public class PlayState extends State{
         manager.getWorld().step(1/60f,6,2);
         if(!isInStartArea()){
             activeBody(false);
+            manager.checkIfMoving(jedisaur);
             playroomMap.setActive(true);
             playroomMap.update(delta);
             manager.getMinigame().update(delta);
@@ -143,6 +155,8 @@ public class PlayState extends State{
 
                     if(computer.isDone() && computerOnce){
                         computer.getCodeRiddle().resultFeedback();
+                        manager.setCodeRiddle(computer.getCodeRiddle());
+                        System.out.println("COMPUTER IS DONE - " + manager.getCodeRiddle().getCodeRiddleData());
                         computerOnce = false;
                     }
 
@@ -151,7 +165,6 @@ public class PlayState extends State{
                     }
 
                     // CHECK THE BEHAVIOR IN STATE
-//                    manager.checkIfMoving(jedisaur);
 //                    manager.updateBehavior((int) timer);
 //                manager.checkBehavior((int) timer, jedisaur.getNumberOfBlockInteraction(), computer.isDone(), fuzzyLogic);
                     
@@ -235,14 +248,35 @@ public class PlayState extends State{
         sprite.begin();
         sprite.setProjectionMatrix(manager.getCamera().combined);
         if(isInStartArea()){
-            checkDoor(sprite, atDoor);
+            if(jediGrandpa.isComputerReady() && !computer.getCodeRiddle().isInComputer() && !computer.isDone()){
+                sprite.draw(downArrow, manager.getCamera().position.x - computer.getBody().getPosition().x - 260,manager.getCamera().position.y - computer.getBody().getPosition().y + 115);
 
+            }
+
+            if(!jediGrandpa.isComputerReady()) {
+                sprite.draw(downArrow, manager.getCamera().position.x - jediGrandpa.getBody().getPosition().x - 55,manager.getCamera().position.y - jediGrandpa.getBody().getPosition().y + 35);
+
+            }
+
+            if(computer.isDone()){
+                sprite.draw(rightArrow,manager.getCamera().position.x + 150,manager.getCamera().position.y - 90);
+            }
+
+            if(jediGrandpa.isNewPlayerDialogueDone()){
+                sprite.draw(howToPlayScreen,
+                        (manager.getCamera().position.x / Constants.PPM - howToPlayScreen.getRegionWidth() / 2) + 25,
+                        (manager.getCamera().position.y / Constants.PPM - howToPlayScreen.getRegionHeight() / 2) + 15);
+                inHowToPlay = true;
+            }
+
+            if(inHowToPlay && jediGrandpa.isNewPlayerDialogueDone() && Gdx.input.isKeyJustPressed(Input.Keys.F)){
+                inHowToPlay = false;
+                jediGrandpa.setNewPlayerDialogueDone(false);
+            }
+            checkDoor(sprite, atDoor);
         }
         sprite.end();
         pause.render(sprite);
-
-
-
     }
 
     @Override
@@ -292,8 +326,7 @@ public class PlayState extends State{
 
     public void exitDoor(Character character){
         if(character.getBody().getPosition().x > -9.0f && character.getBody().getPosition().x < -3.0f && character.getBody().getPosition().y < -11){
-            manager.getMusic().stop();
-            manager.set(new StageSelectState(manager));
+
         }
 
         atDoor = character.getBody().getPosition().x > -9.5f && character.getBody().getPosition().x < -3.0f && character.getBody().getPosition().y < -10;
@@ -302,7 +335,28 @@ public class PlayState extends State{
     private void checkDoor(SpriteBatch sprite, boolean atDoor){
         if(atDoor){
             sprite.draw(door, -330, -450);
+            manager.getMusic().stop();
+            manager.getQuestionnaire().dispose();
+            if (manager.getQuestionnaire().getMinigameHolder() != null){
+                manager.getQuestionnaire().clearMinigames();
+                manager.getMinigame().dispose();
+            }
+            manager.getPlayroomMap().dispose();
+            if(manager.getStageSelector().map().equals("1")){
+                manager.getHouseMap().dispose();
+            }
+            else if(manager.getStageSelector().map().equals("2")){
+                manager.getSchoolMap().dispose();
+            }
+            else {
+                manager.getOfficeMap().dispose();
+            }
+            manager.getMinigameChecker().setNumberOfAttempts(0);
+            manager.getMinigameChecker().setDone(false);
+            manager.getMinigame().reset();
+            manager.set(new StageSelectState(manager));
         }
+
     }
 
     public void enterPlayRoom(Character character){
@@ -325,6 +379,7 @@ public class PlayState extends State{
                 jedisaur.getBody().getPosition().set(-20, 1);
             }
             else {
+                jediGrandpa.setDirection("east");
                 jediGrandpa.noToPlayroom(jedisaur);
 
             }
@@ -350,5 +405,13 @@ public class PlayState extends State{
 
     public void setInStartArea(boolean inStartArea) {
         this.inStartArea = inStartArea;
+    }
+
+    public Computer getComputer() {
+        return computer;
+    }
+
+    public void setComputer(Computer computer) {
+        this.computer = computer;
     }
 }

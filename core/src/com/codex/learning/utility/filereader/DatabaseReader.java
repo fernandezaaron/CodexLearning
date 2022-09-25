@@ -1,8 +1,10 @@
 package com.codex.learning.utility.filereader;
 
+import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.Buffer;
 
 import com.codex.learning.utility.Constants;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -18,8 +20,8 @@ public abstract class DatabaseReader {
 
     public DatabaseReader() {
         try {
-            FileInputStream fs = new FileInputStream(Constants.EXCEL_FILE_PATH);
-            workbook = new XSSFWorkbook(fs);
+            FileInputStream fis = new FileInputStream(Constants.EXCEL_FILE_PATH);
+            workbook = new XSSFWorkbook(fis);
         }
         catch(FileNotFoundException e) {
             e.printStackTrace();
@@ -28,7 +30,7 @@ public abstract class DatabaseReader {
             e.printStackTrace();
         }
         minigameSheet = workbook.getSheet("Minigame");
-        questionSheet = workbook.getSheet("CodeRiddle");
+        questionSheet = workbook.getSheet("CodeRiddle2");
         answerPoolSheet = workbook.getSheet("AnswerPool2");
         responseSheet = workbook.getSheet("Response");
     }
