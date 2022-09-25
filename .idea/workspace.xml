@@ -6,11 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="2998b361-0cf3-41aa-8b4b-04ee9357f240" name="Changes" comment="gege">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/BlockHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/BlockHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/Blocks.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/Blocks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/Character.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/entity/maps/PlayroomMapS1.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/entity/maps/PlayroomMapS1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/MysteryCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/MysteryCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/model/main.exe" beforeDir="false" afterPath="$PROJECT_DIR$/assets/model/main.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/decisiontree/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/decisiontree/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktop/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,12 +24,29 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$/desktop">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="CodexLearning" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CodexLearning" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CodexLearning" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -85,19 +101,19 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/core/src/com/codex/learning/utility" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/block" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/model" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="configurable.group.build" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\model" />
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\block" />
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\background" />
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\map" />
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\font" />
-      <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\character" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\text" />
@@ -107,12 +123,13 @@
       <recent name="C:\Users\OEM\Documents\GitHub\CodexLearning\core\src\com\codex\learning\utility\decisiontree" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DesktopLauncher">
+  <component name="RunManager" selected="Gradle.CodexLearning [dist]">
     <configuration name="DesktopLauncher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="15" />
+      <option name="ALTERNATIVE_JRE_PATH" value="corretto-1.8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.codex.learning.DesktopLauncher" />
       <module name="CodexLearning.desktop.main" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/assets" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.codex.learning.*" />
@@ -149,13 +166,59 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CodexLearning [dist]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="dist" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="CodexLearning [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="run" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Application.DesktopLauncher" />
       <item itemvalue="Application.Test" />
       <item itemvalue="Application.Dtree" />
+      <item itemvalue="Gradle.CodexLearning [run]" />
+      <item itemvalue="Gradle.CodexLearning [dist]" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.CodexLearning [dist]" />
+        <item itemvalue="Gradle.CodexLearning [run]" />
         <item itemvalue="Application.DesktopLauncher" />
         <item itemvalue="Application.Dtree" />
         <item itemvalue="Application.Test" />
