@@ -361,6 +361,7 @@ public class CodeRiddle extends State {
 
 
     public void checkBehavior(float timer, float fuzzyTimer) {
+<<<<<<< HEAD
 //        String currentBehavior = "";
 //        if (isDone && !twice) {
 //            once = true;
@@ -393,6 +394,37 @@ public class CodeRiddle extends State {
 //                System.out.println("Haha lungkot mo naman!!");
 //            }
 //        }
+=======
+        String currentBehavior = "";
+        if (isDone && !twice) {
+            once = true;
+            twice = true;
+        }
+        if ((timer > maxTimer) || once) {
+            try {
+                currentBehavior = manager.getServer().calculateMLResult(checkTimeConsumption((int) fuzzyTimer) +
+                        convertNumberOfError(error));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            codeRiddleData.add(new ArrayList<String>());
+            codeRiddleData.get(dataCounter).add(checkTimeConsumption((int) fuzzyTimer));
+            codeRiddleData.get(dataCounter).add(convertNumberOfError(error));
+            codeRiddleData.get(dataCounter).add(currentBehavior);
+            dataCounter++;
+            once = false;
+            this.timer = 0;
+
+            if (currentBehavior.equals("ENGAGED")) {
+                //Yung behavior na dialogue na engaged
+                System.out.println("WOW keep it up my dudes!!");
+            } else {
+                //Yung behavior na dialogue na not engaged
+                System.out.println("Haha lungkot mo naman!!");
+            }
+        }
+>>>>>>> Paul
     }
 
     public String convertNumberOfError(int numberOfError){

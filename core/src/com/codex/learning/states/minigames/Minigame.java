@@ -1,5 +1,6 @@
 package com.codex.learning.states.minigames;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.codex.learning.entity.characters.Character;
 import com.codex.learning.states.State;
@@ -45,8 +46,8 @@ public class Minigame extends State {
         dataCounter = 0;
         isEngaged = false;
         isNotEngaged = false;
-        maxTimer = 1;
-        fuzzyTimer = 1;
+        maxTimer = 10;
+        fuzzyTimer = 0;
 
     }
 
@@ -123,6 +124,7 @@ public class Minigame extends State {
     }
 
     public void checkBehavior(float timer, Character jedisaur){
+<<<<<<< HEAD
 //        fuzzyTimer = timer % 14;
 //        String currentBehavior = "";
 //        String movement = (manager.isMoving()) ? "0":"1";
@@ -156,6 +158,37 @@ public class Minigame extends State {
 //                System.out.println("Haha lungkot mo naman!!");
 //            }
 //        }
+=======
+        fuzzyTimer += Gdx.graphics.getDeltaTime();
+        String currentBehavior = "";
+        String movement = (manager.isMoving()) ? "0":"1";
+        String numberOfAttempt = convertNumberOfAttempt(manager.getMinigameChecker().getNumberOfAttempts());
+        String numberOfBlockInteraction = (checkNumberOfBlockInteractionRule(jedisaur.getNumberOfBlockInteraction()));
+        if(fuzzyTimer > maxTimer && timer > 1){
+            fuzzyTimer = 0;
+            try {
+            currentBehavior = manager.getServer().calculateMLResult(movement + checkTimeConsumption((int) timer) +
+                        numberOfAttempt + numberOfBlockInteraction);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            minigameData.add(new ArrayList<String>());
+            minigameData.get(dataCounter).add(movement);
+            minigameData.get(dataCounter).add(checkTimeConsumption((int) timer));
+            minigameData.get(dataCounter).add(numberOfAttempt);
+            minigameData.get(dataCounter).add(numberOfBlockInteraction);
+            minigameData.get(dataCounter).add(currentBehavior);
+            dataCounter++;
+
+            if(currentBehavior.equals("ENGAGED")){
+                System.out.println("WOW keep it up my dudes!!");
+            }
+            else{
+                System.out.println("Haha lungkot mo naman!!");
+            }
+        }
+>>>>>>> Paul
     }
 
     public String checkNumberOfBlockInteractionRule(int numberOfBlockInteraction){
