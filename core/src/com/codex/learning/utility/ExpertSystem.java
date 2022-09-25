@@ -96,8 +96,11 @@ public class ExpertSystem {
     // Read the save file of the user
     public void readFile(){
         try {
-            FileReader fileReader = new FileReader(Constants.SAVE_FILE_PATH);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            InputStream inputStream = getClass().getResourceAsStream("/"+Constants.SAVE_FILE_PATH);
+//            FileReader fileReader = new FileReader(inputStream);
+//            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+
             String line;
             int counter = 0;
             while ((line = bufferedReader.readLine()) != null) {
@@ -111,7 +114,7 @@ public class ExpertSystem {
 
             setExpertiseLevel(updateExpertiseLevel());
             bufferedReader.close();
-            fileReader.close();
+//            fileReader.close();
         }
         catch (IOException e) {
             e.printStackTrace();

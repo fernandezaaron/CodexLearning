@@ -16,7 +16,7 @@ public class Constants {
 
     public static final String STAGE1_PATH = "map/playmap1.png";
     public static final String STAGE2_PATH = "map/jedischoolplayroom.png";
-    public static final String STAGE3_PATH = "map/jediofficePlayroom.png";
+    public static final String STAGE3_PATH = "map/jediofficeplayroom.png";
 
     // BACKGROUND ASSET PATH
     public static final String CLOUD_PATH = "background/clouds.png";
