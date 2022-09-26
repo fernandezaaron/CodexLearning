@@ -12,8 +12,10 @@ public class MinigameChecker {
     private int numberOfErrors;
     private boolean correctOutput;
     private int numberOfAttempts;
+    private int numberOfBlockInteraction;
 
     public MinigameChecker() {
+        numberOfBlockInteraction = 0;
         numberOfErrors = 0;
         correctOutput = false;
         done = false;
@@ -59,23 +61,13 @@ public class MinigameChecker {
         return correctOutput;
     }
 
-//    public void dropCopyBlock(Blocks blocks) {
-//        for(int i = 0; i < blockHolders.length; i++) {
-//            for (int j = 0; j < blockHolders[i].length; j++) {
-//                if(blockHolders[i][j] != null) {
-//                    if(blockHolders[i][j].getCopyBlock() != null) {
-//                        updateBlocks[i][j] = blocks;
-//                    }
-//                }
-//            }
-//        }
-//    }
-
     public void pickUpCopyBlock(Blocks blocks, int i, int j) {
+        numberOfBlockInteraction++;
         updateBlocks[i][j] = blocks;
     }
 
     public void dropCopyBlock(Blocks blocks, int i, int j) {
+        numberOfBlockInteraction++;
         updateBlocks[i][j] = blocks;
     }
 
@@ -137,5 +129,13 @@ public class MinigameChecker {
 
     public void setDone(boolean done) {
         this.done = done;
+    }
+
+    public int getNumberOfBlockInteraction() {
+        return numberOfBlockInteraction;
+    }
+
+    public void setNumberOfBlockInteraction(int numberOfBlockInteraction) {
+        this.numberOfBlockInteraction = numberOfBlockInteraction;
     }
 }
