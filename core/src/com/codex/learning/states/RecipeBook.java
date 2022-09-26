@@ -192,7 +192,6 @@ public class RecipeBook extends State{
 
         index = 0;
         j=0;
-
     }
 
     @Override
