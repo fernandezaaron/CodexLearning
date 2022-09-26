@@ -1,9 +1,15 @@
 package com.codex.learning.utility.filereader;
 
+<<<<<<< HEAD
 import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.Buffer;
+=======
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+>>>>>>> parent of b736b76 (Minigames.xlsx cleaned WIP)
 
 import com.badlogic.gdx.files.FileHandle;
 import com.codex.learning.utility.Constants;
@@ -20,6 +26,7 @@ public abstract class DatabaseReader {
 
     public DatabaseReader() {
         try {
+<<<<<<< HEAD
 
             InputStream inputStream = getClass().getResourceAsStream("/"+Constants.EXCEL_FILE_PATH);
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
@@ -28,6 +35,10 @@ public abstract class DatabaseReader {
 //            FileInputStream fis = new FileInputStream(file);
 
             workbook = new XSSFWorkbook(inputStream);
+=======
+            FileInputStream fs = new FileInputStream(Constants.EXCEL_FILE_PATH);
+            workbook = new XSSFWorkbook(fs);
+>>>>>>> parent of b736b76 (Minigames.xlsx cleaned WIP)
         }
         catch(FileNotFoundException e) {
             e.printStackTrace();
