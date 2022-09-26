@@ -107,7 +107,7 @@ public class MysteryCode extends State {
                         }
                         questionBlocks[i][j].setPreDefinedContact(true);
                         blocksArrayList.get(i).add(questionBlocks[i][j]);
-                        xStartingPoint =  questionBlocks[i][j].getDupliSize().x + (questionBlocks[i][j].getBody().getPosition().x) + 1.5f;
+                        xStartingPoint =  questionBlocks[i][j].getDupliSize().x + (questionBlocks[i][j].getBody().getPosition().x) + 1.65f;
                     }
                     currentCell++;
                 }
@@ -131,13 +131,8 @@ public class MysteryCode extends State {
                 }
                 currentStringLength = (float) String.valueOf(answerPoolContainer.get(currentAnsCell)).length();
                 totalLineLength += currentStringLength + (AnsPoolX - 11);
-<<<<<<< HEAD
-
                 answerBlocks[currentAnsCell] = new Blocks(manager,  answerPoolContainer.get(currentAnsCell), answerPoolContainer.get(currentAnsCell), false);
 
-=======
-                answerBlocks[currentAnsCell] = new Blocks(manager, "\"" + answerPoolContainer.get(currentAnsCell) + "\"", answerPoolContainer.get(currentAnsCell), false);
->>>>>>> parent of b736b76 (Minigames.xlsx cleaned WIP)
                 if (answerPoolContainer.get(currentAnsCell) != null) {
                     if (currentStringLength <= 3) {
                         answerBlocks[currentAnsCell].create(new Vector2(AnsPoolX, AnsPoolY), new Vector2((currentStringLength * 0.5f), Constants.BLOCKS_HEIGHT), 0);

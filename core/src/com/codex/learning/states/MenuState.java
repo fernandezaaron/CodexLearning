@@ -109,6 +109,8 @@ public class MenuState extends State {
 
             }
             if(recipeBounds.contains(touchpoint.x, touchpoint.y)){
+                manager.getMusic().stop();
+                manager.set(new RecipeBook(manager));
                 System.out.println("You clicked at JediGrandpa's Recipe!");
                 System.out.println(touchpoint.x + " " + touchpoint.y);
                 System.out.println(recipeBounds.x + " " + recipeBounds.y);

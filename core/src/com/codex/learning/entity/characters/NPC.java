@@ -11,6 +11,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -30,7 +31,7 @@ public class NPC extends Entity {
     private boolean inContact;
     private boolean talking;
     private Table table, image, choiceTable, choiceTableContainer, dialogBoxContainer;
-    private TextButton[] textButtons;
+    private ImageTextButton[] textButtons;
     private DialogueBox db;
     private Label.LabelStyle labelStyle;
     private Dialogue dialogue;
@@ -67,9 +68,12 @@ public class NPC extends Entity {
         choiceTableContainer = new Table(manager.getSkin());
         dialogBoxContainer = new Table(manager.getSkin());
 
-        textButtons = new TextButton[2];
-        textButtons[0] = new TextButton("Yes", manager.getSkin());
-        textButtons[1] = new TextButton("No", manager.getSkin());
+        textButtons = new ImageTextButton[2];
+        textButtons[0] = new ImageTextButton("Yes", manager.getSkin(), "Choices");
+        textButtons[1] = new ImageTextButton("No", manager.getSkin(), "Choices");
+        textButtons[0].getLabel().setFontScale(1.1f);
+        textButtons[1].getLabel().setFontScale(1.1f);
+
 
         if(manager.getStageSelector().map().equals("1")){
             image.setBackground("jediGrandpaAvatar");
@@ -89,7 +93,7 @@ public class NPC extends Entity {
         manager.getSkin().add("pokemon", manager.getFont());
 
         //animates the text
-        db = new DialogueBox(manager.getSkin(), "dialogbox3", 0.8f);
+        db = new DialogueBox(manager.getSkin(), "dialogbox3", 1.15f);
         //dialogue of the NPC
         manager.getDialogue().setStage(manager.getStageSelector().getStageMap());
 
@@ -160,7 +164,8 @@ public class NPC extends Entity {
 
     @Override
     public void update(float delta) {
-        dialogBoxContainer.defaults().size(700,120);
+        dialogBoxContainer.setFillParent(true);
+        dialogBoxContainer.defaults().height(200);
         if(manager.getStageSelector().getStageMap() == 1){
             newPlayerDialogue();
         }
@@ -168,9 +173,9 @@ public class NPC extends Entity {
         autoDialog();
         npcInteraction(delta);
         db.act(delta);
-        dialogBoxContainer.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/Constants.PPM/2 + 400, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/Constants.PPM/2  + 75);
+        dialogBoxContainer.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/Constants.PPM/2 , manager.getCamera().position.y - Constants.SCREEN_HEIGHT/Constants.PPM/2 - 300);
         manager.getStage().addActor(dialogBoxContainer);
-
+        manager.getStage().setDebugAll(true);
     }
 
     @Override
@@ -276,8 +281,8 @@ public class NPC extends Entity {
                 db.textAnimation(manager.getDialogue().reader(nextStatement, "newPlayer", 0));
                 if(!dialogBoxContainer.hasChildren()){
                     System.out.println("creating table");
-                    table.add(image).align(Align.left).height(120).padRight(5f);
-                    table.add(db).align(Align.left).grow();
+                    table.add(image).align(Align.left).height(200).padRight(5f);
+                    table.add(db).align(Align.left);
                     dialogBoxContainer.add(table);
                 }
             }
@@ -301,8 +306,6 @@ public class NPC extends Entity {
             manager.setNewPlayer(false);
             setNewPlayerDialogueDone(true);
         }
-
-
     }
 
     public void npcInteraction(float delta){
@@ -325,8 +328,6 @@ public class NPC extends Entity {
                                 if(finalTempindex == 0){
                                     choiceTableContainer.setVisible(false);
                                     setReadiness(true);
-
-
                                 }
                                 else{
                                     setHintFlag(true);
@@ -346,20 +347,19 @@ public class NPC extends Entity {
 
                 if(!choiceTableContainer.hasChildren()){
                     choiceTable.center();
-                    choiceTable.add(textButtons[0]).padBottom(15f);
-                    choiceTable.row().pad(15f);
-                    choiceTable.add(textButtons[1]).padTop(15f);
-                    choiceTableContainer.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/Constants.PPM/2 + 700, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/Constants.PPM/2 + 180);
-                    choiceTableContainer.add(choiceTable).size(100,100);
+                    choiceTable.add(textButtons[0]).height(75).width(150);
+                    choiceTable.row();
+                    choiceTable.add(textButtons[1]).height(75).width(150);
+                    choiceTableContainer.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/Constants.PPM/2 + 1250, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/Constants.PPM/2 + 350 );
+                    choiceTableContainer.add(choiceTable).size(150,150);
                 }
 
                 manager.getStage().addActor(choiceTableContainer);
                 }
                 db.textAnimation(manager.getDialogue().reader(nextStatement, dialogSet, index));
                 if(!dialogBoxContainer.hasChildren()){
-//                    dialogBoxContainer.defaults().size(700,100);
-                    table.add(image).align(Align.left).height(120).padRight(5f);
-                    table.add(db).align(Align.left).grow();
+                    table.add(image).align(Align.left).height(200).padRight(5f);
+                    table.add(db).align(Align.left);
                     dialogBoxContainer.add(table);
                 }
                 setComputerReady(true);
@@ -434,8 +434,8 @@ public class NPC extends Entity {
                 System.out.println(manager.getQuestionnaire().getMinigameTopic() + "asd");
                 db.textAnimation(manager.getDialogue().reader(nextStatement, "minigameintrodialogue", manager.getDialogue().getTopic(manager.getQuestionnaire().getMinigameTopic())));
                 if(!dialogBoxContainer.hasChildren()){
-                    table.add(image).align(Align.left).height(120).padRight(5f);
-                    table.add(db).align(Align.left).grow();
+                    table.add(image).align(Align.left).height(200).padRight(5f);
+                    table.add(db).align(Align.left);
                     dialogBoxContainer.add(table);
                 }
             }
@@ -468,8 +468,8 @@ public class NPC extends Entity {
                 behaviorIndex = rand.nextInt(10-1)+1;
                 db.textAnimation(manager.getDialogue().reader(behaviorIndex, "behavior", 0));
                 if(!dialogBoxContainer.hasChildren()){
-                    table.add(image).align(Align.left).height(120).padRight(5f);
-                    table.add(db).align(Align.left).grow();
+                    table.add(image).align(Align.left).height(200).padRight(5f);
+                    table.add(db).align(Align.left);
                     dialogBoxContainer.add(table);
                 }
             }
@@ -488,22 +488,14 @@ public class NPC extends Entity {
                 else {
                     hintIndex = 0;
                 }
-//                if(!dialogBoxContainer.hasChildren()){
-//                    table.add(image).align(Align.left).height(120).padRight(5f);
-//                    table.add(db).align(Align.left).grow();
-//                    dialogBoxContainer.add(table);
-//                }
             }
             setHintFlag(false);
-
         }
-
 
 
         if((!isHintFlag() || behaviorFlag) && isTableTouched() && (manager.getMinigame().isNotEngaged() || manager.getMinigame().isEngaged())){
             doneChecker = false;
             manager.getDialogue().setStatementEnd(true);
-
         }
 
         if((manager.getDialogue().isStatementEnd() && !doneChecker && db.isOpen()  && (manager.getMinigame().isNotEngaged() || manager.getMinigame().isEngaged()))){
@@ -512,22 +504,18 @@ public class NPC extends Entity {
             dialogBoxContainer.setVisible(false);
             manager.getMinigame().setNotEngaged(false);
             manager.getMinigame().setEngaged(false);
-
         }
-
-
     }
 
     public void noToPlayroom(Character character){
-
         if(!isInPlayroom() && isInPlayroomCarpet()){
             setTalking(true);
             dialogBoxContainer.setVisible(true);
             if(!db.isOpen()) {
                 db.textAnimation(manager.getDialogue().reader(nextStatement, "noplayroom", Integer.parseInt(manager.getStageSelector().map())));
                 if(!dialogBoxContainer.hasChildren()){
-                    table.add(image).align(Align.left).height(120).padRight(5f);
-                    table.add(db).align(Align.left).grow();
+                    table.add(image).align(Align.left).height(200).padRight(5f);
+                    table.add(db).align(Align.left);
                     dialogBoxContainer.add(table);
                 }
             }

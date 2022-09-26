@@ -21,8 +21,17 @@ public class Dialogue {
                     "Single-line comments start with two forward slashes (//).", "Any text between // and the end of the line is ignored by Java (will not be executed).",
                     "This example uses a single-line comment before a line of code:" + "\n// This is a comment", "Multi-line comments start with /* and ends with */.", "Any text between /* and */ will be ignored by Java.",
                     "This example uses a multi-line comment (a comment block) to explain the code:" + "\n/* The code below will print the words Hello World\n" +"to the screen, and it is amazing */",
-                    "As for your task, you will be going to the COMPUTER beside me and answer the questions.", "After finishing all the questions in the COMPUTER, you can now proceed to the PLAYROOM on my LEFT",
-                    "The PLAYROOM however contains a random MINI-GAME that will test your CODING CAPABILITIES")),
+
+                    //Scanner Input
+                    "Actually I have another syntax to tell you, this is more of a bonus knowledge", "This syntax lets you get the user input on run time. It is actually a class called Scanner",
+                    "To use this class you will need to import java.util.Scanner on the top of your program.", "After importing you will then call the class into your working class which is the public static void main",
+                    "To call and make the Scanner object you must do it like this: Scanner objectname = new Scanner(System.in); remember that you can have any name for the objectname",
+                    "Now in order to get the user input, you must make a variable and pass the scanner object to it just like this: String name = objectname.nextLine()",
+                    "Make sure to remember that piece of knowledge, as I for myself struggled to teach that to myself when I was learning the language."
+
+                    ,"As for your task, you will be going to the COMPUTER beside me and answer the questions.", "After finishing all the questions in the COMPUTER, you can now proceed to the PLAYROOM on my LEFT",
+                    "The PLAYROOM however contains a random MINI-GAME that will test your CODING CAPABILITIES"
+            )),
             new ArrayList<>(Arrays.asList(
                     //variables
                     "Welcome on your 2nd day,",

@@ -171,12 +171,12 @@ public class CodeIT extends State {
 
                             /** left iteration of blocks **/
                             for(int k=j-1; k>=0; k--){
-                                blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+                                blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize/1.75f +0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
                             }
 
                             for(int k=j-1; k>=0; k--){
                                 if(blockHolders[i][k].isOccupied()){
-                                    blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x - blockSize + 0.5f, blockHolders[i][k].getBody().getPosition().y + 0.5f, 0);
+                                    blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x - blockSize/1.75f + 0.5f, blockHolders[i][k].getBody().getPosition().y + 0.5f, 0);
                                 }
                             }
 
@@ -184,13 +184,13 @@ public class CodeIT extends State {
                             for(int k=j+1; k<minigameContainer.get(i).size(); k++){
                                 if(blockHolders[i][k].isOccupied()){
                                     System.out.println(" wtf ");
-                                    blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x + blockSize - 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
+                                    blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x + blockSize*2 - 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
                                 }
                             }
 
                             /** right iteration of blocks **/
                             for(int k=j+1; k<minigameContainer.get(i).size(); k++){
-                                blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x + blockSize-0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+                                blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x + blockSize*2 -0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
                             }
                             jedisaur.setDropped(false);
                         }
@@ -199,22 +199,22 @@ public class CodeIT extends State {
                             blocksArrayList.get(i).set(j, null);
 
                             for(int k=j-1; k>=0; k--){
-                                blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x + blockSize-0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+                                blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x + blockSize/1.75f-0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
                             }
 
                             for(int k=j+1; k<minigameContainer.get(i).size(); k++){
-                                blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize+0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+                                blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize*2 +0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
                             }
 
                             for(int k=j-1; k>=0; k--){
                                 if(blockHolders[i][k].isOccupied()){
-                                    blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x + blockSize - 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
+                                    blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x + blockSize/1.75f - 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
                                 }
                             }
                             /** right blocks in the blockholders **/
                             for(int k=j+1; k<minigameContainer.get(i).size(); k++){
                                 if(blockHolders[i][k].isOccupied()){
-                                    blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x - blockSize + 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
+                                    blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x - blockSize*2 + 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
                                 }
                             }
                             setBlockToCheck(null, i, j);

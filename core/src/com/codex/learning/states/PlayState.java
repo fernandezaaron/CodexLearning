@@ -32,7 +32,8 @@ public class PlayState extends State{
     private FuzzyLogic fuzzyLogic;
 
     private boolean inStartArea, atDoor, inHowToPlay;
-    private TextureRegion door, downArrow, rightArrow, howToPlayScreen;
+    private TextureRegion door,  howToPlayScreen;
+    private Animation downArrow, rightArrow, smallDownArrow, smallRightArrow;
     private int stage;
 
     private boolean computerOnce;
@@ -105,8 +106,9 @@ public class PlayState extends State{
         computerOnce = true;
 
         door = new TextureRegion(manager.getReportCardSheet(), 48,195, 263, 119);
-        downArrow = new TextureRegion(manager.getUtility(), Constants.DOWN_ARROW_x, Constants.DOWN_ARROW_Y, Constants.DOWN_ARROW_WIDTH, Constants.DOWN_ARROW_HEIGHT);
-        rightArrow = new TextureRegion(manager.getUtility(), Constants.RIGHT_ARROW_x, Constants.RIGHT_ARROW_Y, Constants.RIGHT_ARROW_WIDTH, Constants.RIGHT_ARROW_HEIGHT);
+
+        rightArrow = new Animation(manager.getUtility(), Constants.RIGHT_ARROW_x, Constants.RIGHT_ARROW_Y, Constants.RIGHT_ARROW_WIDTH, Constants.RIGHT_ARROW_HEIGHT, 2, 0.75f);
+        downArrow = new Animation(manager.getUtility(), Constants.DOWN_ARROW_x, Constants.DOWN_ARROW_Y, Constants.DOWN_ARROW_WIDTH, Constants.DOWN_ARROW_HEIGHT, 2, 0.75f);
         howToPlayScreen = new TextureRegion(new Texture(Constants.START_AREA), 0,0,1600,900);
 
         inStartArea = true;
@@ -136,6 +138,8 @@ public class PlayState extends State{
 
 
         }else {
+            downArrow.update(delta);
+            rightArrow.update(delta);
             activeBody(true);
             exitDoor(jedisaur);
             playroomMap.setActive(false);
@@ -249,17 +253,31 @@ public class PlayState extends State{
         sprite.setProjectionMatrix(manager.getCamera().combined);
         if(isInStartArea()){
             if(jediGrandpa.isComputerReady() && !computer.getCodeRiddle().isInComputer() && !computer.isDone()){
-                sprite.draw(downArrow, manager.getCamera().position.x - computer.getBody().getPosition().x - 260,manager.getCamera().position.y - computer.getBody().getPosition().y + 115);
+
+                if(manager.getStageSelector().map().equals("1")){
+                    sprite.draw(downArrow.getFrame(), manager.getCamera().position.x  - computer.getBody().getPosition().x - 260,
+                            manager.getCamera().position.y  - computer.getBody().getPosition().y + 115);
+                }
+                else if(manager.getStageSelector().map().equals("2")){
+                    sprite.draw(downArrow.getFrame(), manager.getCamera().position.x  - computer.getBody().getPosition().x - 200,
+                            manager.getCamera().position.y  - computer.getBody().getPosition().y + 230);
+                }
+                else {
+                    sprite.draw(downArrow.getFrame(), manager.getCamera().position.x  - computer.getBody().getPosition().x - 280,
+                            manager.getCamera().position.y  - computer.getBody().getPosition().y + 350);
+                }
 
             }
 
             if(!jediGrandpa.isComputerReady()) {
-                sprite.draw(downArrow, manager.getCamera().position.x - jediGrandpa.getBody().getPosition().x - 55,manager.getCamera().position.y - jediGrandpa.getBody().getPosition().y + 35);
+
+                sprite.draw(downArrow.getFrame(), manager.getCamera().position.x - jediGrandpa.getBody().getPosition().x - 55,manager.getCamera().position.y - jediGrandpa.getBody().getPosition().y + 35);
 
             }
 
+
             if(computer.isDone()){
-                sprite.draw(rightArrow,manager.getCamera().position.x + 150,manager.getCamera().position.y - 90);
+                sprite.draw(rightArrow.getFrame(),manager.getCamera().position.x + 150 ,manager.getCamera().position.y - 90 );
             }
 
             if(jediGrandpa.isNewPlayerDialogueDone()){

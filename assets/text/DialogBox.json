@@ -64,6 +64,11 @@
       "up": "textButtonNormal",
       "over": textButtonHighlight
     }
+    "Choices": {
+      "font": "default-font",
+      "up": "choiceButton",
+      "over": "choiceButtonHl"
+    }
   }
 
   "com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle": {
@@ -76,6 +81,24 @@
     "Objective": {
       "imageDown": "XbuttonObjectives",
       "imageUp": "XbuttonObjectives",
+      "pressedOffsetX": 3,
+      "pressedOffsetY": -1
+    }
+    "LeftArrow": {
+      "imageDown": "leftArrow",
+      "imageUp": "leftArrow",
+      "pressedOffsetX": 3,
+      "pressedOffsetY": -1
+    }
+    "RightArrow": {
+      "imageDown": "rightArrow",
+      "imageUp": "rightArrow",
+      "pressedOffsetX": 3,
+      "pressedOffsetY": -1
+    }
+    "PauseButton": {
+      "imageDown": "pauseButton",
+      "imageUp": "pauseButton",
       "pressedOffsetX": 3,
       "pressedOffsetY": -1
     }
