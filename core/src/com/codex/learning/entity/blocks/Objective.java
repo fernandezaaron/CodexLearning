@@ -56,7 +56,7 @@ public class Objective extends Entity {
 
         label = new Label("", manager.getSkin());
         label.setWrap(true);
-        label.setFontScale(0.7f);
+        label.setFontScale(1.2f);
         label.getStyle().font.getData().setLineHeight(35);
 
 
@@ -86,7 +86,6 @@ public class Objective extends Entity {
         inObjective = false;
         objectiveInteracted = false;
 //        manager.getFont().getData().setScale(1.5f);
-        textureRegion = new TextureRegion(new Texture(Constants.OBJECTIVE_SHEET_PATH), 0, 0, 800, 720);
     }
 
     @Override
@@ -94,8 +93,6 @@ public class Objective extends Entity {
         createTable();
         if (isInObjective()) {
             manager.getStage().addActor(containerTable);
-//            System.out.println(manager.getStage().getActors());
-//            manager.getStage().getActors();
 
         }
         checkIfClicked();
@@ -108,17 +105,6 @@ public class Objective extends Entity {
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.enableBlending();
 
-        if(isInObjective()){
-//            objectiveTable.draw(sprite, 1);
-//            manager.getStage().act();
-//            manager.getStage().draw();
-//            manager.getStage().draw();
-//            objectiveTable.draw(sprite, 1);
-//            sprite.draw(textureRegion,
-//                    (body.getPosition().x * Constants.PPM - textureRegion.getRegionWidth() / 1.35f),
-//                    (body.getPosition().y * Constants.PPM - textureRegion.getRegionHeight() / 0.9f) + 50);
-//            manager.getFont().draw(sprite, manager.getDialogue().getObjectiveDialogue(manager.getQuestionnaire().getQuestionID() - 1),-280, 200);
-        }
         sprite.end();
     }
 
@@ -139,20 +125,20 @@ public class Objective extends Entity {
         });
 
         if(!containerTable.hasChildren()){
-            headerTable.add(xTable).size(50).left().padRight(50f);
-            headerTable.add(titleObjective).height(50).width(250).padRight(50f);
+            headerTable.add(xTable).size(75).left().padRight(50f);
+            headerTable.add(titleObjective).height(75).padRight(50f);
             label.setText(manager.getDialogue().getObjectiveDialogue(manager.getQuestionnaire().getQuestionID()-1));
-            textTable.add(label).width(350).align(Align.left);
+            textTable.add(label).growX().align(Align.left);
 
 
-            containerTable.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/Constants.PPM/2 + 400 , manager.getCamera().position.y - Constants.SCREEN_HEIGHT/Constants.PPM/2 + 230);
-            containerTable.defaults().size(600,700);
+            containerTable.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/Constants.PPM/2 + 800 , manager.getCamera().position.y - Constants.SCREEN_HEIGHT/Constants.PPM/2 + 350);
+            containerTable.defaults().size(800,900);
             objectiveTable.left().top();
-            objectiveTable.add(headerTable).height(75).padBottom(50f);
+            objectiveTable.add(headerTable).height(75).padBottom(50f).padTop(50f);
             objectiveTable.row();
-            objectiveTable.add(textTable).left().padLeft(52f);
+            objectiveTable.add(textTable).left().padLeft(100f);
 
-            containerTable.add(objectiveTable).size(450,400);
+            containerTable.add(objectiveTable).size(800,900);
         }
     }
 

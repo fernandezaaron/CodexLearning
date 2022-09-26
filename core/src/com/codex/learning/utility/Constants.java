@@ -16,7 +16,7 @@ public class Constants {
 
     public static final String STAGE1_PATH = "map/playmap1.png";
     public static final String STAGE2_PATH = "map/jedischoolplayroom.png";
-    public static final String STAGE3_PATH = "map/jediofficePlayroom.png";
+    public static final String STAGE3_PATH = "map/jediofficeplayroom.png";
 
     // BACKGROUND ASSET PATH
     public static final String CLOUD_PATH = "background/clouds.png";
@@ -40,13 +40,13 @@ public class Constants {
     public static final String JSON_DIALOG_BOX_SKIN_PATH = "text/DialogBox.json";
 
     // SAVE FILE ASSET PATH
-    public static final String SAVE_FILE_PATH = "assets/text/SaveFile.txt";
-    public static final String DATA_GATHERED_FILE_PATH = "assets/text/data.txt";
-    public static final String CODE_RIDDLE_DATA_FILE_PATH = "assets/text/codeRiddleData.txt";
-    public static final String MINIGAME_DATA_FILE_PATH = "assets/text/minigameData.txt";
+    public static final String SAVE_FILE_PATH = "text/SaveFile.txt";
+    public static final String DATA_GATHERED_FILE_PATH = "text/data.txt";
+    public static final String CODE_RIDDLE_DATA_FILE_PATH = "text/codeRiddleData.txt";
+    public static final String MINIGAME_DATA_FILE_PATH = "text/minigameData.txt";
 
     // EXCEL FILE ASSET PATH
-    public static final String EXCEL_FILE_PATH = "assets/excel/Minigames.xlsx";
+    public static final String EXCEL_FILE_PATH = "excel/Minigames.xlsx";
 
     // ATLAS ASSET PATH
     public static final String ATLAS_UTILITY_PATH = "text/DialogBox.atlas";
@@ -399,15 +399,25 @@ public class Constants {
     public static final int COOKIES_HEIGHT = 43;
 
 
-    public static final int DOWN_ARROW_x = 16;
-    public static final int DOWN_ARROW_Y = 127;
-    public static final int DOWN_ARROW_WIDTH = 63;
-    public static final int DOWN_ARROW_HEIGHT = 110;
+    public static final int DOWN_ARROW_x = 15;
+    public static final int DOWN_ARROW_Y = 126;
+    public static final int DOWN_ARROW_WIDTH = 125;
+    public static final int DOWN_ARROW_HEIGHT = 120;
 
-    public static final int RIGHT_ARROW_x = 79;
-    public static final int RIGHT_ARROW_Y = 159;
-    public static final int RIGHT_ARROW_WIDTH = 110;
-    public static final int RIGHT_ARROW_HEIGHT = 63;
+    public static final int RIGHT_ARROW_x = 8;
+    public static final int RIGHT_ARROW_Y = 277;
+    public static final int RIGHT_ARROW_WIDTH = 219;
+    public static final int RIGHT_ARROW_HEIGHT = 64;
+//
+//    public static final int SMALL_DOWN_ARROW_x = 16;
+//    public static final int SMALL_DOWN_ARROW_Y = 262;
+//    public static final int SMALL_DOWN_ARROW_WIDTH = 63;
+//    public static final int SMALL_DOWN_ARROW_HEIGHT = 93;
+//
+//    public static final int SMALL_RIGHT_ARROW_x = 96;
+//    public static final int SMALL_RIGHT_ARROW_Y = 277;
+//    public static final int SMALL_RIGHT_ARROW_WIDTH = 93;
+//    public static final int SMALL_RIGHT_ARROW_HEIGHT = 63;
 
 
 

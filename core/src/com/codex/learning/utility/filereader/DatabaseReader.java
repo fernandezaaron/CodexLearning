@@ -1,11 +1,14 @@
 package com.codex.learning.utility.filereader;
 
-import java.io.BufferedInputStream;
+
+import java.io.*;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.Buffer;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.Buffer;
-
+import com.badlogic.gdx.files.FileHandle;
 import com.codex.learning.utility.Constants;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -20,8 +23,15 @@ public abstract class DatabaseReader {
 
     public DatabaseReader() {
         try {
-            FileInputStream fis = new FileInputStream(Constants.EXCEL_FILE_PATH);
-            workbook = new XSSFWorkbook(fis);
+            InputStream inputStream = getClass().getResourceAsStream("/"+Constants.EXCEL_FILE_PATH);
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+//            File file = new File()
+//            FileInputStream fis = new FileInputStream(Constants.EXCEL_FILE_PATH);
+//            FileInputStream fis = new FileInputStream(file);
+
+            workbook = new XSSFWorkbook(inputStream);
+
+
         }
         catch(FileNotFoundException e) {
             e.printStackTrace();

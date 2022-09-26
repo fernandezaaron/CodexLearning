@@ -49,10 +49,27 @@ public class Blocks extends Entity {
         fixtureDef.friction = 5;
         fixtureDef.isSensor = true;
 
+        PolygonShape shape2 = new PolygonShape();
+
+        shape2.setAsBox(this.size.x, this.size.y,
+                new Vector2( 0, -(this.size.y - this.size.y / 3)), 3);
+
+        FixtureDef fixtureDef2 = new FixtureDef();
+        fixtureDef2.density = density;
+        fixtureDef2.shape = shape2;
+        fixtureDef2.friction = 5;
+        fixtureDef2.isSensor = true;
+
+
+
         body = manager.getWorld().createBody(def);
         body.createFixture(fixtureDef).setUserData(this);
+//        body.createFixture(fixtureDef2).setUserData("try");
+
         body.setLinearVelocity(0, 0);
+        shape2.dispose();
         shape.dispose();
+
 
         shadowColor = new ShapeRenderer();
         shadowColor.translate((-(this.size.x * Constants.PPM) * 1.22f), 0, 0);
@@ -90,7 +107,6 @@ public class Blocks extends Entity {
 
         mainColor.setProjectionMatrix(manager.getCamera().combined);
         if(inContact && !isPreDefinedContact()){
-            System.out.println("asjgksakjhnaksjbnjk");
             mainColor.setColor(213 / 255f, 245 / 255f, 209 / 255f, 0.0f);
         }else{
             mainColor.setColor(246 / 255f, 228 / 255f, 216 / 255f, 0.0f);

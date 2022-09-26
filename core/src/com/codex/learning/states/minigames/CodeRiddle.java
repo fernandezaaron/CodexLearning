@@ -75,7 +75,7 @@ public class CodeRiddle extends State {
         once = false;
         twice = false;
 
-        dialogueBox = new DialogueBox(manager.getSkin(), "dialogbox3", 0.5f);
+        dialogueBox = new DialogueBox(manager.getSkin(), "dialogbox3", 1f);
 
         if(manager.getStageSelector().map().equals("1")){
             avatarImage.setBackground("jediGrandpaAvatar");
@@ -95,7 +95,7 @@ public class CodeRiddle extends State {
         table.setBackground("PCSCREEN");
 
         text = new Label("\n", manager.getSkin());
-        text.setFontScale(0.7f);
+        text.setFontScale(1.4f);
 
 
         Drawable dr = manager.getSkin().getDrawable("dialogbox1");
@@ -174,7 +174,7 @@ public class CodeRiddle extends State {
                     break;
             }
             table.setFillParent(true);
-            table.defaults().size(500, 180);
+            table.defaults().size(1000, 800);
             table.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM - 10);
 
 
@@ -196,11 +196,11 @@ public class CodeRiddle extends State {
                    for(int i=0; i<4; i++){
                        imageTextButton[i] = new ImageTextButton("",manager.getSkin());
                        imageTextButton[i].getLabel().setWrap(true);
-                       imageTextButton[i].getLabel().setFontScale(0.55f);
+                       imageTextButton[i].getLabel().setFontScale(1f);
                        imageTextButton[i].setText(options.get(currentQuestion).get(i));
 
 //                       textButtons[i] = new TextButton(options.get(currentQuestion).get(i), manager.getSkin());
-                       optionsTable.add(imageTextButton[i]).width(358).height(45).center();
+                       optionsTable.add(imageTextButton[i]).width(1180).height(100).center();
                        optionsTable.row();
                    }
 
@@ -250,16 +250,16 @@ public class CodeRiddle extends State {
            }
 
            if(!table.hasChildren()){
-               textTable.add(text).width(420).pad(25f);
+               textTable.add(text).width(800).pad(25f);
                scrollPane = new ScrollPane(textTable, manager.getSkin());
                scrollPane.layout();
                scrollPane.setScrollbarsOnTop(true);
                scrollPane.setForceScroll(false,true);
                scrollPane.setSmoothScrolling(true);
 
-               table.add(scrollPane).height(200);
+               table.add(scrollPane).height(400);
                table.row();
-               table.add(optionsTable).height(200).width(500).padBottom(15f);
+               table.add(optionsTable).height(400).width(1200).padBottom(15f);
                table.pack();
 
            }
@@ -268,7 +268,7 @@ public class CodeRiddle extends State {
     }
 
     public void resultFeedback(){
-        resultFeedbackTable.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM + 200,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM + 400);
+        resultFeedbackTable.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM + 300,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM + 820);
         dialogueBox.setOpen(false);
 
         if(isGivingHints){
@@ -282,9 +282,9 @@ public class CodeRiddle extends State {
                 }
 
                 if(!resultFeedbackTable.hasChildren()) {
-                    resultFeedbackTable.defaults().width(600).height(50);
-                    resultFeedbackTable.add(avatarImage).width(50).height(50).padRight(15f);
-                    resultFeedbackTable.add(dialogueBox).align(Align.left).width(300);
+                    resultFeedbackTable.defaults().width(1000).height(75);
+                    resultFeedbackTable.add(avatarImage).width(75).height(75).padRight(15f);
+                    resultFeedbackTable.add(dialogueBox).align(Align.left).width(500);
                 }
             }
         }
@@ -315,7 +315,7 @@ public class CodeRiddle extends State {
     }
 
     public void createFeedBackTable(String text){
-        codeRiddleFeedbackTable.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM + 200,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM + 400);
+        codeRiddleFeedbackTable.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM + 300,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM + 820);
         dialogueBox.setOpen(false);
 
         //if is giving hints open a dialogue box
@@ -323,9 +323,9 @@ public class CodeRiddle extends State {
             if(!dialogueBox.isOpen()){
                 dialogueBox.textAnimation(text);
                 if(!codeRiddleFeedbackTable.hasChildren()) {
-                    codeRiddleFeedbackTable.defaults().width(600).height(50);
-                    codeRiddleFeedbackTable.add(avatarImage).width(50).height(50).padRight(15f);
-                    codeRiddleFeedbackTable.add(dialogueBox).align(Align.right).width(300);
+                    codeRiddleFeedbackTable.defaults().width(600).height(75);
+                    codeRiddleFeedbackTable.add(avatarImage).width(75).height(75).padRight(15f);
+                    codeRiddleFeedbackTable.add(dialogueBox).align(Align.right).width(500);
                 }
             }
         }

@@ -15,7 +15,7 @@ public class Server {
         server = new ServerSocket (1800);
         System.out.println("Waiting for client on port 1800");
 
-        Runtime.getRuntime().exec("cmd /c start " + System.getProperty("user.dir") + "\\assets\\model\\main.exe");
+        Runtime.getRuntime().exec("cmd /c start " + System.getProperty("user.dir") + "\\model\\main.exe");
 
         connected = server.accept();
 

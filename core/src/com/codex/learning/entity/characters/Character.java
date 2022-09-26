@@ -420,8 +420,9 @@ public class Character extends Entity {
         if(Gdx.input.isKeyJustPressed(Input.Keys.E) &&
                 getCopyBlock() != null && blockHolder.getCopyBlock() == null){
             // Blocks Adjustment
+            System.out.println(getCopyBlock().getBody().getLocalCenter().x + getCopyBlock().getDupliSize().x/2);
             getCopyBlock().getBody().setTransform(
-                    blockHolder.getBody().getPosition().x,
+                    blockHolder.getBody().getPosition().x + Constants.BLOCK_HOLDER_WIDTH*getCopyBlock().getDupliSize().x - 0.75f,
                     Constants.BLOCK_HOLDER_HEIGHT + blockHolder.getBody().getPosition().y,
                     0);
             getCopyBlock().setInContact(false);
@@ -430,7 +431,7 @@ public class Character extends Entity {
             // BlockHolder Adjustment
             blockHolder.setOccupied(true);
             if(!isFixture()){
-                blockHolder.createFixture(getCopyBlock().getDupliSize().x, getCopyBlock().getDupliSize().y);
+                blockHolder.createFixture(getCopyBlock().getDupliSize().x, getCopyBlock().getDupliSize().y, Constants.BLOCK_HOLDER_WIDTH * getCopyBlock().getDupliSize().x - 0.75f);
             }
 
             blockHolder.setCopyBlock(getCopyBlock());
