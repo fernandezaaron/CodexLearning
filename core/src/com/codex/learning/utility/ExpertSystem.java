@@ -230,6 +230,7 @@ public class ExpertSystem {
                 else{
                     fileWriter.write("0Stage Number,Topic,Iteration,Movement,Time Consumption,Number of Attempts,Number of Block Interaction,Behavior,\n");
                 }
+                fileWriter.close();
             }
             ArrayList<ArrayList<String>> data = readDataFirst(path);
             for(int i = 0; i < newData.size(); i++){
