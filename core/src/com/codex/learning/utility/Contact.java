@@ -59,6 +59,13 @@ public class Contact implements ContactListener {
                 }
             }
             else {
+//                if(blockholderCollision > 2) {
+//                    jedisaur.setPickUpAble(false);
+//                    System.out.println(blockholderCollision + "dapat di carry");
+//                }
+//                else {
+//                    jedisaur.setPickUpAble(true);
+//                }
                 jedisaur.setPickUpAble(true);
                 if(blocks.isPreDefinedContact()){
                     blocks.setInContact(false);
@@ -71,6 +78,14 @@ public class Contact implements ContactListener {
                     }
                     numberOfCollision++;
                     System.out.println(numberOfCollision + " else ++");
+//                    if(blockholderCollision > 2) {
+//                        blocks.setInContact(false);
+//                        jedisaur.setPickUpAble(false);
+//                        System.out.println(blockholderCollision + "dapat di carry");
+//                    }
+//                    else {
+//                        jedisaur.setPickUpAble(true);
+//                    }
                     jedisaur.setPickUpAble(true);
                 }
 //                if(blockholderCollision>1){
@@ -126,12 +141,14 @@ public class Contact implements ContactListener {
             }
             blockHolder.setInContact(true);
             blockholderCollision++;
+//            if(blockholderCollision > 1) {
+//                jedisaur.setPickUpAble(false);
+//            }
             if(jedisaur.isCarrying()){
                 jedisaur.setPickUpAble(false);
             }
             else{
-                if(blockholderCollision<=1)
-                    jedisaur.setPickUpAble(true);
+                jedisaur.setPickUpAble(true);
             }
             if(blockHolder.isOccupied()){
                 numberOfCollision = 0;

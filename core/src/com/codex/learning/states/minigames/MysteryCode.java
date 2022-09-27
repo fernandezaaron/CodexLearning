@@ -28,10 +28,10 @@ public class MysteryCode extends State {
     private Blocks[][] questionBlocks, answerBlocksArray;
     private BlockHolder[][] blockHolders;
     private ArrayList<ArrayList<Blocks>> blocksArrayList;
-    private float blockSize, xStartingPoint, AnsPoolY, currentStringLength, AnsPoolX;
+    private float blockSize, xStartingPoint, yStartingPoint, AnsPoolY, currentStringLength, AnsPoolX;
     private ArrayList<ArrayList<String>> minigameContainer;
 //    private int minigameContainerLimit;
-    private int currentCell, stage, banishNumberIterator, numberRepeat, banishNumber, yStartingPoint, currentAnsCell, ansPoolSize, totalLineLength;
+    private int currentCell, stage, banishNumberIterator, numberRepeat, banishNumber, currentAnsCell, ansPoolSize, totalLineLength;
     private Random randomizer;
     private ArrayList<Integer> banishCells;
     private ArrayList<String> answerPoolContainer;

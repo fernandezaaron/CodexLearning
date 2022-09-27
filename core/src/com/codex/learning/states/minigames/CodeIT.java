@@ -24,34 +24,68 @@ public class CodeIT extends State {
     private Blocks[][] questionBlocks;
     private BlockHolder[][] blockHolders;
     private Blocks[] answerBlocks;
+    private BlockDispenser[] blockDispensers;
     private PauseState pause;
     float blockSize;
     private ArrayList<ArrayList<String>> minigameContainer;
-    private ArrayList<String> getAnswerPool;
+    private ArrayList<String> getAnswerPool, dispenserPoolContainer;
     private ArrayList<ArrayList<Blocks>> blocksArrayList;
-    private float AnsPoolY, AnsPoolX, currentStringLength, xStartingPoint;
-    private int currentAnsCell, ansPoolSize, totalLineLength, yStartingPoint, currentCell, stage;
+    private float AnsPoolY, AnsPoolX, DispenserY, DispenserX, currentStringLength, xStartingPoint, yStartingPoint;
+    private int currentAnsCell, ansPoolSize, totalLineLength, currentCell, stage;
+    private String dispenserGraphics;
     private float timer;
-//    private int blockCount;
-//    private boolean blockSpawn;
-//    private BlockDispenser[] blockDispensers;
-//    private ArrayList<Integer> duplicatePool;
-//    private int currentCell;
-//    private int minigameContainerLimit;
-//    private Random randomizer;
 
-    public CodeIT(Manager manager, Character character, FuzzyLogic fuzzyLogic) {
+    public CodeIT(Manager manager, Character jedisaur, FuzzyLogic fuzzyLogic) {
         super(manager);
         timer = 0;
         pause = new PauseState(manager);
         getAnswerPool = new ArrayList<>();
         blocksArrayList = new ArrayList<>();
-//        duplicatePool = new ArrayList<Integer>();
-//        randomizer = new Random();
+        dispenserPoolContainer = new ArrayList<>();
+
         this.stage = manager.getStageSelector().getStageMap();
-        getAMinigame(manager.getStageSelector().map(), manager.getExpertSystem().getExpertiseLevel());
+        getAMinigame(manager.getStageSelector().map());
         questionBlocks = new Blocks[20][20];
         blockHolders = new BlockHolder[20][20];
+
+        /** SET UP DUPES **/
+        for(int i = 0; i < minigameContainer.size(); i++) {
+            for(int j = 0; j < minigameContainer.get(i).size(); j++) {
+                if(minigameContainer.get(i).get(j) != null) {
+                    dispenserPoolContainer.add(minigameContainer.get(i).get(j));
+                }
+            }
+        }
+
+        /** BANISH SIMILAR CELLS **/
+        for(int i = 0; i < dispenserPoolContainer.size(); i++) {
+            String banished = dispenserPoolContainer.get(i);
+            int dupes = 1;
+            for(int j = 0; j < dispenserPoolContainer.size(); j++) {
+                if(dispenserPoolContainer.get(j).equals(banished) && i != j) {
+                    dupes += 1;
+                    dispenserPoolContainer.remove(j);
+                    j = 0;
+                }
+            }
+            if(dupes == 1) {
+                System.out.println(dispenserPoolContainer.get(i) + " added to ansblocks");
+                getAnswerPool.add(dispenserPoolContainer.get(i));
+            }
+        }
+
+        /** REMOVE ANSWERPOOLBLOCKS FROM DISPENSERPOOL **/
+        for(int i = 0; i < dispenserPoolContainer.size(); i++) {
+            for(int j = 0; j < dispenserPoolContainer.size(); j++) {
+                if (dispenserPoolContainer.get(j) != null) {
+                    if (getAnswerPool.contains(dispenserPoolContainer.get(j))) {
+                        System.out.println(dispenserPoolContainer.get(j) + " removed from ansblocks");
+                        dispenserPoolContainer.remove(j);
+                        j = 0;
+                    }
+                }
+            }
+        }
 
         /** START OF MINIGAME CREATION **/
         yStartingPoint = 10;
@@ -64,10 +98,7 @@ public class CodeIT extends State {
                     blockHolders[i][j] = new BlockHolder(manager, minigameContainer.get(i).get(j));
                     blockHolders[i][j].create(new Vector2(xStartingPoint, yStartingPoint - 0.5f), new Vector2(Constants.BLOCK_HOLDER_WIDTH, Constants.BLOCK_HOLDER_HEIGHT), 0);
                     blocksArrayList.get(i).add(blockHolders[i][j].getCopyBlock());
-                    getAnswerPool.add(minigameContainer.get(i).get(j));
                     xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 1.75f;
-                    System.out.println(xStartingPoint + " " + minigameContainer.get(i).get(j));
-                    System.out.println(String.valueOf(minigameContainer.get(i).get(j)).length() + "     " + (float) String.valueOf(minigameContainer.get(i).get(j)).length());
                 }
             }
             yStartingPoint -= 2.5f;
@@ -80,16 +111,21 @@ public class CodeIT extends State {
         AnsPoolY = 10;
         currentAnsCell = 0;
         ansPoolSize = getAnswerPool.size();
+        System.out.println(getAnswerPool);
         for(int i = 0; i < ansPoolSize; i++) {
             AnsPoolX = 13;
             totalLineLength = 0;
             while (totalLineLength <= 12) {
+                if (currentAnsCell == ansPoolSize) {
+                    break;
+                }
                 currentStringLength = (float) String.valueOf(getAnswerPool.get(currentAnsCell)).length();
                 totalLineLength += currentStringLength + (AnsPoolX - 11);
                 answerBlocks[currentAnsCell] = new Blocks(manager, getAnswerPool.get(currentAnsCell), getAnswerPool.get(currentAnsCell), false);
                 if (getAnswerPool.get(currentAnsCell) != null) {
-                    if (currentStringLength <= 3)
+                    if (currentStringLength <= 3) {
                         answerBlocks[currentAnsCell].create(new Vector2(AnsPoolX, AnsPoolY), new Vector2((currentStringLength * 0.5f), Constants.BLOCKS_HEIGHT), 0);
+                    }
                     else{
                         if(currentStringLength>7){
                             AnsPoolX += 2;
@@ -97,23 +133,43 @@ public class CodeIT extends State {
                         answerBlocks[currentAnsCell].create(new Vector2(AnsPoolX, AnsPoolY), new Vector2((currentStringLength * 0.23f), Constants.BLOCKS_HEIGHT), 0);
                     }
                     AnsPoolX = answerBlocks[currentAnsCell].getDupliSize().x + answerBlocks[currentAnsCell].getBody().getPosition().x + 2.25f;
-                    if (currentAnsCell == ansPoolSize - 1) {
-                        break;
-                    } else {
-                        currentAnsCell++;
-                    }
+                    currentAnsCell++;
                 }
             }
-            if(currentAnsCell == ansPoolSize - 1) {
-                break;
-            }
-            AnsPoolY -= 2.5;
+            AnsPoolY -= 2;
         }
         /** END OF ANSWER POOL CREATION **/
 
+        /** START OF DISPENSER POOL CREATION **/
+        blockDispensers = new BlockDispenser[dispenserPoolContainer.size()];
+        System.out.println(dispenserPoolContainer);
+        ansPoolSize = dispenserPoolContainer.size();
+        DispenserX = 24;
+        DispenserY = 10;
+        dispenserGraphics = "Left";
+        for(int i = 0; i < ansPoolSize; i++) {
+            currentStringLength = (float) String.valueOf(dispenserPoolContainer.get(i)).length();
+            if (currentStringLength <= 3){
+                blockDispensers[i] = new BlockDispenser(manager, dispenserGraphics, dispenserPoolContainer.get(i), dispenserPoolContainer.get(i),
+                        10, new Vector2(currentStringLength * 0.5f, Constants.BLOCKS_HEIGHT));
+            }
+            else {
+                blockDispensers[i] = new BlockDispenser(manager, dispenserGraphics, dispenserPoolContainer.get(i), dispenserPoolContainer.get(i),
+                        10, new Vector2(currentStringLength * 0.23f, Constants.BLOCKS_HEIGHT));
+            }
+            blockDispensers[i].create(new Vector2(DispenserX, DispenserY), new Vector2(0.3f, 1.3f), 0);
+            System.out.println(dispenserPoolContainer.get(i) + " many " + 10);
+            DispenserY -= 6;
+            if(DispenserY == -14) {
+                dispenserGraphics = "Right";
+                DispenserY = 10;
+                DispenserX = -22;
+            }
+        }
+
         setToCheck(blockHolders);
 
-        this.jedisaur = character;
+        this.jedisaur = jedisaur;
         this.fuzzyLogic = fuzzyLogic;
     }
 
@@ -140,6 +196,28 @@ public class CodeIT extends State {
             }
         }
 
+        for(int i = 0; i < dispenserPoolContainer.size(); i++) {
+            blockDispensers[i].createBlock(new Vector2(jedisaur.getBody().getPosition().x, jedisaur.getBody().getPosition().y));
+            blockDispensers[i].update(delta);
+        }
+
+
+        for(int i = 0; i < dispenserPoolContainer.size(); i++) {
+            if(blockDispensers[i].isCloned()){
+                for (Blocks b : blockDispensers[i].getBlocks()) {
+                    if (b != null) {
+                        b.update(delta);
+                        if(b.isInContact()){
+                            jedisaur.carryBlock(b);
+                        }
+                    }
+                    else{
+                        continue;
+                    }
+                }
+            }
+        }
+
         for (int i = 0; i < minigameContainer.size(); i++) {
             for (int j = 0; j < minigameContainer.get(i).size(); j++) {
                 if (minigameContainer.get(i).get(j) != null) {
@@ -154,6 +232,12 @@ public class CodeIT extends State {
                         }
                     }
                 }
+            }
+        }
+
+        for (int i = 0; i < getAnswerPool.size(); i++) {
+            if (answerBlocks[i] != null) {
+                answerBlocks[i].update(delta);
             }
         }
 
@@ -184,13 +268,13 @@ public class CodeIT extends State {
                             for(int k=j+1; k<minigameContainer.get(i).size(); k++){
                                 if(blockHolders[i][k].isOccupied()){
                                     System.out.println(" wtf ");
-                                    blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x + blockSize*2 - 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
+                                    blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x + blockSize*1.2f - 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
                                 }
                             }
 
                             /** right iteration of blocks **/
                             for(int k=j+1; k<minigameContainer.get(i).size(); k++){
-                                blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x + blockSize*2 -0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+                                blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x + blockSize*1.2f -0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
                             }
                             jedisaur.setDropped(false);
                         }
@@ -203,7 +287,7 @@ public class CodeIT extends State {
                             }
 
                             for(int k=j+1; k<minigameContainer.get(i).size(); k++){
-                                blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize*2 +0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
+                                blockHolders[i][k].getBody().setTransform(blockHolders[i][k].getBody().getPosition().x - blockSize*1.2f +0.5f, blockHolders[i][k].getBody().getPosition().y, 0);
                             }
 
                             for(int k=j-1; k>=0; k--){
@@ -214,7 +298,7 @@ public class CodeIT extends State {
                             /** right blocks in the blockholders **/
                             for(int k=j+1; k<minigameContainer.get(i).size(); k++){
                                 if(blockHolders[i][k].isOccupied()){
-                                    blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x - blockSize*2 + 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
+                                    blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x - blockSize*1.2f + 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
                                 }
                             }
                             setBlockToCheck(null, i, j);
@@ -223,12 +307,6 @@ public class CodeIT extends State {
                         }
                     }
                 }
-            }
-        }
-
-        for (int i = 0; i < getAnswerPool.size(); i++) {
-            if (answerBlocks[i] != null) {
-                answerBlocks[i].update(delta);
             }
         }
         itIsCorrect();
@@ -257,18 +335,24 @@ public class CodeIT extends State {
                 answerBlocks[i].render(sprite);
             }
         }
+
+        for(int i = 0; i < dispenserPoolContainer.size(); i++){
+            blockDispensers[i].render(sprite);
+            if(blockDispensers[i].isCloned()){
+                for (Blocks b : blockDispensers[i].getBlocks()) {
+                    if (b != null) {
+                        b.render(sprite);
+                    }
+                    else{
+                        continue;
+                    }
+                }
+            }
+        }
     }
 
     @Override
     public void dispose() {
-//        for(int i = 0; i < minigameContainer.size(); i++) {
-//            for (int j = 0; j < minigameContainer.get(i).size(); j++) {
-//                if (minigameContainer.get(i).get(j) != null) {
-//                    blockHolders[i][j].disposeBody();
-//                }
-//            }
-//        }
-
         for(int i = 0; i < getAnswerPool.size(); i++) {
             if(answerBlocks[i] != null) {
                 answerBlocks[i].disposeBody();
@@ -282,17 +366,48 @@ public class CodeIT extends State {
                 }
             }
         }
-//        for (Blocks[] q: questionBlocks) {
-//            for (Blocks i : q) {
-//                if(i != null){
-//                    i.disposeBody();
-//                }
-//            }
-//        }
 
+        for(int i = 0; i < dispenserPoolContainer.size(); i++){
+            blockDispensers[i].disposeBody();
+            if(blockDispensers[i].isCloned()){
+                for (Blocks b : blockDispensers[i].getBlocks()) {
+                    if (b != null) {
+                        b.disposeBody();
+                    }
+                    else{
+                        continue;
+                    }
+                }
+            }
+        }
     }
 
-    public void getAMinigame(String stage, String expertiseLevel){
+    public void setActive(boolean active){
+        System.out.println(minigameContainer.size());
+        for(int i = 0; i < minigameContainer.size(); i++) {
+            for (int j = 0; j < minigameContainer.get(i).size(); j++) {
+                if (minigameContainer.get(i).get(j) != null) {
+                    blockHolders[i][j].setActive(false);
+                }
+            }
+        }
+
+        for(int i = 0; i < dispenserPoolContainer.size(); i++){
+            blockDispensers[i].disposeBody();
+            if(blockDispensers[i].isCloned()){
+                for (Blocks b : blockDispensers[i].getBlocks()) {
+                    if (b != null) {
+                        b.setActive(active);
+                    }
+                    else{
+                        continue;
+                    }
+                }
+            }
+        }
+    }
+
+    public void getAMinigame(String stage){
         manager.getQuestionnaire().minigameDisplay(stage,String.valueOf(manager.getStageSelector().getStageMap()));
         minigameContainer = manager.getQuestionnaire().getMinigameHolder();
     }
