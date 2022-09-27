@@ -168,6 +168,10 @@ public class PlayState extends State{
                         computer.getCodeRiddle().closeDialogBox();
                     }
 
+                    if(computer.getCodeRiddle().isBehaviorTableOpen()){
+                        computer.getCodeRiddle().closeBehaviorTable();
+                    }
+
                     // CHECK THE BEHAVIOR IN STATE
 //                    manager.updateBehavior((int) timer);
 //                manager.checkBehavior((int) timer, jedisaur.getNumberOfBlockInteraction(), computer.isDone(), fuzzyLogic);
@@ -276,7 +280,7 @@ public class PlayState extends State{
             }
 
 
-            if(computer.isDone()){
+            if(computer.isDone() && !computer.getCodeRiddle().isInComputer()){
                 sprite.draw(rightArrow.getFrame(),manager.getCamera().position.x + 150 ,manager.getCamera().position.y - 90 );
             }
 

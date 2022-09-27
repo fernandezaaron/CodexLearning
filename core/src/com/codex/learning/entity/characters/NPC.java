@@ -183,7 +183,6 @@ public class NPC extends Entity {
 
 
         manager.getStage().addActor(dialogBoxContainer);
-        manager.getStage().setDebugAll(true);
     }
 
     @Override

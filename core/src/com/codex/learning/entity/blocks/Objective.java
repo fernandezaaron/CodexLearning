@@ -135,7 +135,7 @@ public class Objective extends Entity {
             objectiveTable.left().top();
             objectiveTable.add(headerTable).height(manager.getStage().getHeight()*.09f).padBottom(50f).padTop(10f);
             objectiveTable.row();
-            objectiveTable.add(textTable).left().padLeft(100f);
+            objectiveTable.add(textTable).left().padLeft(110f);
 
             containerTable.add(objectiveTable).size(manager.getStage().getWidth()*.5f,manager.getStage().getHeight()*.95f);
         }

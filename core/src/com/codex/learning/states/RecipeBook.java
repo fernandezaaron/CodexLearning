@@ -204,8 +204,8 @@ public class RecipeBook extends State{
         System.out.println(index + " " + j);
 
         if(!backgroundTable.hasChildren()){
-            backgroundTable.defaults().size(manager.getStage().getViewport().getScreenWidth(),manager.getStage().getViewport().getScreenHeight());
-            backgroundTable.setPosition(Constants.SCREEN_WIDTH/2/Constants.PPM - 25, Constants.SCREEN_HEIGHT/2/Constants.PPM - 25);
+            backgroundTable.defaults().size(manager.getStage().getWidth(),manager.getStage().getHeight());
+            backgroundTable.setPosition(0, 0);
 
             bookTable.add(pauseButton).top().left().row();
             bookTable.add(leftButton).padRight(15f);
@@ -285,7 +285,6 @@ public class RecipeBook extends State{
 
         manager.getStage().addActor(backgroundTable);
         manager.getStage().draw();
-        manager.getStage().setDebugAll(true);
     }
 
     @Override

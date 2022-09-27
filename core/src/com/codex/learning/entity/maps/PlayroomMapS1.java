@@ -114,6 +114,7 @@ public class PlayroomMapS1 extends State {
         }
         sprite.end();
         npc.render(sprite);
+
     }
 
     public void npcRender(SpriteBatch sprite){
@@ -129,6 +130,7 @@ public class PlayroomMapS1 extends State {
         }
         if(manager.getMinigameChecker().isDone()){
             reportCard.render(sprite);
+
         }
     }
 

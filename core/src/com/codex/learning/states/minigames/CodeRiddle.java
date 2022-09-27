@@ -23,11 +23,12 @@ import com.codex.learning.utility.Manager;
 import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class CodeRiddle extends State {
     private ScrollPane scrollPane;
     private Label text;
-    private Table table, optionsTable, codeRiddleFeedbackTable, resultFeedbackTable, avatarImage, textTable;
+    private Table table, optionsTable, codeRiddleFeedbackTable, resultFeedbackTable, avatarImage, textTable, behaviorTable;
     private DialogueBox dialogueBox;;
     private Group group;
     private float maxTimer;
@@ -46,12 +47,14 @@ public class CodeRiddle extends State {
 
     private FuzzyLogic fuzzyLogic;
     private ArrayList<String> behavior;
+    private int behaviorIndex;
+    private Random rand;
 
-    private float timer, dialogTimer, fuzzyTimer;
+    private float timer, dialogTimer, fuzzyTimer, behaviorTimer;
 
     private ArrayList<ArrayList<String>> codeRiddleData;
     private int dataCounter;
-    private boolean once;
+    private boolean once, isEngaged, isNotEngaged, behaviorTableOpen;
     private boolean twice;
 
     public CodeRiddle(Manager manager, FuzzyLogic fuzzyLogic) {
@@ -64,14 +67,19 @@ public class CodeRiddle extends State {
         error = 0;
         maxTimer = 15;
         fuzzyTimer = 0;
+        behaviorIndex = 0;
+        behaviorTimer = 0;
+
 
         table = new Table();
         optionsTable = new Table();
         textTable = new Table();
         codeRiddleFeedbackTable = new Table(manager.getSkin());
         resultFeedbackTable = new Table(manager.getSkin());
+        behaviorTable = new Table(manager.getSkin());
         avatarImage = new Table(manager.getSkin());
         group = new Group();
+        rand = new Random();
         once = false;
         twice = false;
 
@@ -119,6 +127,8 @@ public class CodeRiddle extends State {
         inComputer = false;
         isDone = false;
         isGivingHints = true;
+        behaviorTableOpen = false;
+        isEngaged = false;
 
         getAQuestion(manager.getStageSelector().map());
         currentQuestion = 0;
@@ -142,6 +152,10 @@ public class CodeRiddle extends State {
             timer += Gdx.graphics.getDeltaTime();
             fuzzyTimer += Gdx.graphics.getDeltaTime();
             checkBehavior(timer, fuzzyTimer);
+            if (isBehaviorTableOpen()) {
+                closeBehaviorTable();
+
+            }
         }
 
         sprite.setProjectionMatrix(manager.getCamera().combined);
@@ -181,7 +195,7 @@ public class CodeRiddle extends State {
                text.setWrap(true);
                text.setText("Press \"F\" t to close the Computer");
                for(int j=0; j<4; j++){
-                   textButtons[j].setText(" ");
+                   imageTextButton[j].setText(" ");
                }
 
            }
@@ -342,6 +356,55 @@ public class CodeRiddle extends State {
         manager.getStage().addActor(codeRiddleFeedbackTable);
     }
 
+    public void behaviorTable(){
+        behaviorTable.setPosition(manager.getStage().getWidth()/1.3f,
+                manager.getStage().getHeight()/1.13f);
+        dialogueBox.setOpen(false);
+        System.out.println(isEngaged());
+        //if is giving hints open a dialogue box
+        if(isEngaged() && isInComputer()){
+            if(!dialogueBox.isOpen()){
+
+                    System.out.println("true");
+                    behaviorIndex = rand.nextInt(10-1)+1;
+                    dialogueBox.textAnimation(manager.getDialogue().reader(behaviorIndex, "behavior", 0));
+                    if(!behaviorTable.hasChildren()) {
+                        behaviorTable.defaults().width(0.4f*manager.getStage().getWidth()).height(0.08f*manager.getStage().getHeight());
+                        behaviorTable.add(avatarImage).width(75).height(75).padRight(15f);
+                        behaviorTable.add(dialogueBox).align(Align.right).width(0.3f*manager.getStage().getWidth());
+                    }
+                setEngaged(false);
+            }
+        }
+
+
+        behaviorTable.addListener(new ClickListener(){
+
+            @Override
+            public void clicked(InputEvent ie, float x, float y){
+                //resets closes the table
+                behaviorTable.reset();
+
+            }
+        });
+
+
+        manager.getStage().addActor(behaviorTable);
+    }
+
+    public void closeBehaviorTable(){
+        System.out.println("here");
+        behaviorTimer += Gdx.graphics.getDeltaTime();
+        System.out.println(behaviorTimer);
+        if(behaviorTimer >= 4){
+            behaviorTable.setVisible(false);
+            dialogueBox.setOpen(false);
+            setBehaviorTableOpen(false);
+            behaviorTable.reset();
+            dialogTimer = 0;
+        }
+    }
+
     @Override
     public void dispose() {
         manager.getQuestionnaire().dispose();
@@ -382,10 +445,16 @@ public class CodeRiddle extends State {
 
             if (currentBehavior.equals("ENGAGED")) {
                 //Yung behavior na dialogue na engaged
-                System.out.println("WOW keep it up my dudes!!");
+                System.out.println("true");
+                setEngaged(true);
+                behaviorTable();
+                setBehaviorTableOpen(true);
+
+
             } else {
                 //Yung behavior na dialogue na not engaged
-                System.out.println("Haha lungkot mo naman!!");
+                setNotEngaged(true);
+
             }
         }
     }
@@ -514,5 +583,29 @@ public class CodeRiddle extends State {
 
     public void setDataCounter(int dataCounter) {
         this.dataCounter = dataCounter;
+    }
+
+    public boolean isEngaged() {
+        return isEngaged;
+    }
+
+    public void setEngaged(boolean engaged) {
+        isEngaged = engaged;
+    }
+
+    public boolean isNotEngaged() {
+        return isNotEngaged;
+    }
+
+    public void setNotEngaged(boolean notEngaged) {
+        isNotEngaged = notEngaged;
+    }
+
+    public boolean isBehaviorTableOpen() {
+        return behaviorTableOpen;
+    }
+
+    public void setBehaviorTableOpen(boolean behaviorTableOpen) {
+        this.behaviorTableOpen = behaviorTableOpen;
     }
 }
