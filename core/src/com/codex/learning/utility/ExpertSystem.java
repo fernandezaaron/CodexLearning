@@ -46,10 +46,6 @@ public class ExpertSystem {
                 overAllCookies = overAllCookies + 3;
             }
         }
-
-        System.out.println("START = " + start);
-        System.out.println("USER COOKIES - " + totalUserCookies);
-        System.out.println("OVERALL COOKIES - " + overAllCookies);
         if(start){
             return "Novice";
         }
@@ -78,6 +74,11 @@ public class ExpertSystem {
             File file = new File(Constants.SAVE_FILE_PATH);
             if (file.createNewFile()) {
                 System.out.println("File created: " + file.getName());
+                FileWriter fileWriter = new FileWriter(Constants.SAVE_FILE_PATH, false);
+                for(int i = 0; i < cookies.length; i++){
+                    fileWriter.write(0 + ",");
+                }
+                fileWriter.close();
             }
             else {
                 FileWriter fileWriter = new FileWriter(Constants.SAVE_FILE_PATH, false);
@@ -96,10 +97,17 @@ public class ExpertSystem {
     // Read the save file of the user
     public void readFile(){
         try {
-            InputStream inputStream = getClass().getResourceAsStream("/"+Constants.SAVE_FILE_PATH);
-//            FileReader fileReader = new FileReader(inputStream);
-//            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            File file = new File(Constants.SAVE_FILE_PATH);
+            if (file.createNewFile()) {
+                System.out.println("File created: " + file.getName());
+                FileWriter fileWriter = new FileWriter(Constants.SAVE_FILE_PATH, false);
+                for(int i = 0; i < cookies.length; i++){
+                    fileWriter.write(0 + ",");
+                }
+                fileWriter.close();
+            }
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             String line;
             int counter = 0;
@@ -161,88 +169,37 @@ public class ExpertSystem {
             File file = new File(Constants.DATA_GATHERED_FILE_PATH);
             if (file.createNewFile()) {
                 System.out.println("File created: " + file.getName());
-            }
-            else {
-                ArrayList<ArrayList<String>> data = readDataFirst(Constants.DATA_GATHERED_FILE_PATH);
-
-                for(ArrayList<String> i: data){
-                    if(i.get(0).equals(String.valueOf(stageNumber))){
-                        i.clear();
-                        break;
-                    }
-                    else{
-                        counter++;
-                    }
-                }
-
-                data.add(counter, replace);
-
                 FileWriter fileWriter = new FileWriter(Constants.DATA_GATHERED_FILE_PATH, false);
-
-                for(ArrayList<String> arrayList: data){
-                    if(arrayList.isEmpty()){
-                        continue;
+                boolean header = true;
+                for(int i = 0; i < 17; i++){
+                    if(header){
+                        fileWriter.write("Stage Number,Topic,Expertise Level,Number of Cookies,Engaged,Percentage,CodeRiddle Total Data,Engaged,Percentage, Minigame Total Data,\n");
+                        header = false;
                     }
                     else{
-                        for(String i: arrayList){
-                            if(length == arrayList.size()){
-                                fileWriter.write("\n");
-                                length = 0;
-                            }
-                            length++;
-                            fileWriter.write(i + ",");
-                        }
+                        fileWriter.write(i + ",-,-,-,-,-,-,-,-,-,\n");
                     }
                 }
                 fileWriter.close();
             }
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void writeGameDataGathered(String path, int stageNumber, String topic, ArrayList<ArrayList<String>> newData) {
-        try {
-            int length = 0;
-
-            File file = new File(path);
-            if (file.createNewFile()) {
-                System.out.println("File created: " + file.getName());
-            } else {
-
-                ArrayList<ArrayList<String>> data = readDataFirst(path);
-                for(int i = 0; i < newData.size(); i++){
-                    newData.get(i).add(0, String.valueOf(stageNumber));
-                    newData.get(i).add(1, topic);
-                    newData.get(i).add(2, String.valueOf(i + 1));
+            ArrayList<ArrayList<String>> data = readDataFirst(Constants.DATA_GATHERED_FILE_PATH);
+            for(ArrayList<String> i: data){
+                if(i.get(0).equals(String.valueOf(stageNumber))){
+                    i.clear();
+                    break;
                 }
-                if(!data.isEmpty()){
-                    for(ArrayList<String> i: data){
-                        if(i.get(0).equals(String.valueOf(stageNumber))){
-                            i.clear();
-                        }
-                    }
+                else{
+                    counter++;
                 }
-                for(int i = 0; i < data.size(); i++){
-                    if(data.get(i).isEmpty()){
-                        continue;
-                    }
-                    else{
-                        newData.add(data.get(i));
-                    }
+            }
+            data.add(counter, replace);
+            FileWriter fileWriter = new FileWriter(Constants.DATA_GATHERED_FILE_PATH, false);
+            for(ArrayList<String> arrayList: data){
+                if(arrayList.isEmpty()){
+                    continue;
                 }
-
-                Collections.sort(newData, new Comparator<ArrayList<String>>() {
-                    @Override
-                    public int compare(ArrayList<String> a, ArrayList<String> b) {
-                        return a.get(0).compareTo(b.get(0));
-                    }
-                });
-                FileWriter fileWriter = new FileWriter(path, false);
-
-                for (ArrayList<String> arrayList : newData) {
-                    for (String i : arrayList) {
+                else{
+                    for(String i: arrayList){
                         if(length == arrayList.size()){
                             fileWriter.write("\n");
                             length = 0;
@@ -251,8 +208,68 @@ public class ExpertSystem {
                         fileWriter.write(i + ",");
                     }
                 }
-                fileWriter.close();
             }
+            fileWriter.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void writeGameDataGathered(boolean flag, String path, int stageNumber, String topic, ArrayList<ArrayList<String>> newData) {
+        try {
+            int length = 0;
+
+            File file = new File(path);
+            if (file.createNewFile()) {
+                System.out.println("File created: " + file.getName());
+                FileWriter fileWriter = new FileWriter(path, false);
+                if(flag){
+                    fileWriter.write("0Stage Number,Topic,Iteration,Time Consumption,Number of Error,Behavior,\n");
+                }
+                else{
+                    fileWriter.write("0Stage Number,Topic,Iteration,Movement,Time Consumption,Number of Attempts,Number of Block Interaction,Behavior,\n");
+                }
+            }
+            ArrayList<ArrayList<String>> data = readDataFirst(path);
+            for(int i = 0; i < newData.size(); i++){
+                newData.get(i).add(0, String.valueOf(stageNumber));
+                newData.get(i).add(1, topic);
+                newData.get(i).add(2, String.valueOf(i + 1));
+            }
+            if(!data.isEmpty()){
+                for(ArrayList<String> i: data){
+                    if(i.get(0).equals(String.valueOf(stageNumber))){
+                        i.clear();
+                    }
+                }
+            }
+            for(int i = 0; i < data.size(); i++){
+                if(data.get(i).isEmpty()){
+                    continue;
+                }
+                else{
+                    newData.add(data.get(i));
+                }
+            }
+            Collections.sort(newData, new Comparator<ArrayList<String>>() {
+                @Override
+                public int compare(ArrayList<String> a, ArrayList<String> b) {
+                    return a.get(0).compareTo(b.get(0));
+                }
+            });
+            FileWriter fileWriter = new FileWriter(path, false);
+            for (ArrayList<String> arrayList : newData) {
+                for (String i : arrayList) {
+                    if(length == arrayList.size()){
+                        fileWriter.write("\n");
+                        length = 0;
+                    }
+                    length++;
+                    fileWriter.write(i + ",");
+                }
+            }
+            fileWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
