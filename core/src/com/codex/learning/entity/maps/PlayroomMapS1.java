@@ -48,7 +48,7 @@ public class PlayroomMapS1 extends State {
 
         npcDialog = "done";
         npc = new NPC(manager, npcDialog, 0, true);
-        npc.create(new Vector2(9, 12f), new Vector2(1, 1.4f), 0);
+        npc.create(new Vector2(10, 10f), new Vector2(1, 1.4f), 0);
         npc.setIntroDialogFlag(true);
 
         playMat = new PlayMat(manager);
@@ -86,9 +86,7 @@ public class PlayroomMapS1 extends State {
         howToPlay.update(delta);
         rightArrow.update(delta);
         downArrow.update(delta);
-
         manager.getStage().act();
-
     }
 
     @Override
@@ -116,7 +114,6 @@ public class PlayroomMapS1 extends State {
         }
         sprite.end();
         npc.render(sprite);
-
     }
 
     public void npcRender(SpriteBatch sprite){

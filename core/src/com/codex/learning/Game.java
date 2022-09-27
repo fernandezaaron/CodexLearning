@@ -11,9 +11,12 @@ import com.codex.learning.states.StageSelectState;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
+import java.awt.*;
+
 public class Game extends ApplicationAdapter {
 	SpriteBatch batch;
 	Manager manager;
+	Toolkit toolkit;
 
 	Texture img;
 	
@@ -47,6 +50,9 @@ public class Game extends ApplicationAdapter {
 	public void resize(int width, int height){
 //		manager.getCamera().setToOrtho(false, width, height);
 		manager.getStage().getViewport().update(width, height, true);
+//		toolkit.getScreenSize().setSize(width,height);
+
+
 	}
 	
 	@Override

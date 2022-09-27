@@ -110,11 +110,11 @@ public class ReportCard extends State{
             reportCardTable.add(correctOutput).grow().colspan(3);
             reportCardTable.row().grow();
             for(Image i: cookies){
-                cookieTable.add(i).size(35,45).padRight(15f);
+                cookieTable.add(i).size(75,90).padRight(15f);
             }
             reportCardTable.add(cookieTable).grow().padTop(20f);
             reportCardTable.row().grow();
-            reportCardTable.add(saveAndQuit).height(80).width(150);
+            reportCardTable.add(saveAndQuit).height(120).width(150);
 
             reportCardTable.padRight(25f);
             reportCardTable.padLeft(25f);
@@ -122,8 +122,8 @@ public class ReportCard extends State{
             reportCardTable.layout();
 
 
-            reportCardContainerTable.add(reportCardTable).height(400).width(350);
-            reportCardContainerTable.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/Constants.PPM/2 + 400, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/Constants.PPM/2 + 220);
+            reportCardContainerTable.add(reportCardTable).height(800).width(850);
+            reportCardContainerTable.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/Constants.PPM/2 + 800, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/Constants.PPM/2 + 450);
 
         }
 

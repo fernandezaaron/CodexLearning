@@ -174,14 +174,12 @@ public class CodeRiddle extends State {
                     break;
             }
             table.setFillParent(true);
-            table.defaults().size(1000, 800);
-            table.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM - 10);
-
+            table.defaults().size(manager.getStage().getWidth()*.65f, manager.getStage().getHeight()*.9f);
+            table.setPosition(manager.getCamera().position.x - manager.getStage().getWidth()/2/Constants.PPM,manager.getCamera().position.x - manager.getStage().getHeight()/2/Constants.PPM - 10);
 
            if(currentQuestion == manager.getQuestionnaire().getQuestionLimit()){
                text.setWrap(true);
                text.setText("Press \"F\" t to close the Computer");
-
                for(int j=0; j<4; j++){
                    textButtons[j].setText(" ");
                }
@@ -199,8 +197,8 @@ public class CodeRiddle extends State {
                        imageTextButton[i].getLabel().setFontScale(1f);
                        imageTextButton[i].setText(options.get(currentQuestion).get(i));
 
-//                       textButtons[i] = new TextButton(options.get(currentQuestion).get(i), manager.getSkin());
-                       optionsTable.add(imageTextButton[i]).width(1180).height(100).center();
+//                      textButtons[i] = new TextButton(options.get(currentQuestion).get(i), manager.getSkin());
+                       optionsTable.add(imageTextButton[i]).width(manager.getStage().getWidth()*.73f).height(manager.getStage().getHeight()*.11f).center();
                        optionsTable.row();
                    }
 
@@ -209,7 +207,6 @@ public class CodeRiddle extends State {
                        final int finalRight = right;
                        final int finalWrong = wrong;
                        imageTextButton[i].addListener(new InputListener(){
-
                            @Override
                            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
                                if(currentQuestion <= manager.getQuestionnaire().getQuestionLimit()-1){
@@ -250,25 +247,25 @@ public class CodeRiddle extends State {
            }
 
            if(!table.hasChildren()){
-               textTable.add(text).width(800).pad(25f);
+               textTable.add(text).width(manager.getStage().getWidth()*.5f).pad(25f);
                scrollPane = new ScrollPane(textTable, manager.getSkin());
                scrollPane.layout();
                scrollPane.setScrollbarsOnTop(true);
                scrollPane.setForceScroll(false,true);
                scrollPane.setSmoothScrolling(true);
 
-               table.add(scrollPane).height(400);
+               table.add(scrollPane).height(manager.getStage().getHeight()*.45f);
                table.row();
-               table.add(optionsTable).height(400).width(1200).padBottom(15f);
+               table.add(optionsTable).height(manager.getStage().getHeight()*.45f).width(manager.getStage().getWidth()*.75f).padBottom(15f);
                table.pack();
-
            }
             manager.getStage().addActor(table);
         }
     }
 
     public void resultFeedback(){
-        resultFeedbackTable.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM + 300,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM + 820);
+        resultFeedbackTable.setPosition(manager.getStage().getWidth()/5.2f,
+                manager.getStage().getHeight()/1.13f);
         dialogueBox.setOpen(false);
 
         if(isGivingHints){
@@ -282,9 +279,9 @@ public class CodeRiddle extends State {
                 }
 
                 if(!resultFeedbackTable.hasChildren()) {
-                    resultFeedbackTable.defaults().width(1000).height(75);
-                    resultFeedbackTable.add(avatarImage).width(75).height(75).padRight(15f);
-                    resultFeedbackTable.add(dialogueBox).align(Align.left).width(500);
+                    resultFeedbackTable.defaults().width(0.38f*manager.getStage().getWidth()).height(0.08f*manager.getStage().getHeight());
+                    resultFeedbackTable.add(avatarImage).width(0.045f*manager.getStage().getWidth()).height(0.08f*manager.getStage().getHeight()).padRight(15f);
+                    resultFeedbackTable.add(dialogueBox).align(Align.left).width(0.3f*manager.getStage().getWidth());
                 }
             }
         }
@@ -315,7 +312,8 @@ public class CodeRiddle extends State {
     }
 
     public void createFeedBackTable(String text){
-        codeRiddleFeedbackTable.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/2/Constants.PPM + 300,manager.getCamera().position.x - Constants.SCREEN_HEIGHT/2/Constants.PPM + 820);
+        codeRiddleFeedbackTable.setPosition(manager.getStage().getWidth()/5.2f,
+                manager.getStage().getHeight()/1.13f);
         dialogueBox.setOpen(false);
 
         //if is giving hints open a dialogue box
@@ -323,9 +321,9 @@ public class CodeRiddle extends State {
             if(!dialogueBox.isOpen()){
                 dialogueBox.textAnimation(text);
                 if(!codeRiddleFeedbackTable.hasChildren()) {
-                    codeRiddleFeedbackTable.defaults().width(600).height(75);
+                    codeRiddleFeedbackTable.defaults().width(0.38f*manager.getStage().getWidth()).height(0.08f*manager.getStage().getHeight());
                     codeRiddleFeedbackTable.add(avatarImage).width(75).height(75).padRight(15f);
-                    codeRiddleFeedbackTable.add(dialogueBox).align(Align.right).width(500);
+                    codeRiddleFeedbackTable.add(dialogueBox).align(Align.right).width(0.3f*manager.getStage().getWidth());
                 }
             }
         }
