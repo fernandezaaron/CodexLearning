@@ -71,8 +71,8 @@ public class NPC extends Entity {
         textButtons = new ImageTextButton[2];
         textButtons[0] = new ImageTextButton("Yes", manager.getSkin(), "Choices");
         textButtons[1] = new ImageTextButton("No", manager.getSkin(), "Choices");
-        textButtons[0].getLabel().setFontScale(1.1f);
-        textButtons[1].getLabel().setFontScale(1.1f);
+        textButtons[0].getLabel().setFontScale((manager.getStage().getWidth()/Constants.PPM)*0.022f);
+        textButtons[1].getLabel().setFontScale((manager.getStage().getWidth()/Constants.PPM)*0.022f);
 
 
         if(manager.getStageSelector().map().equals("1")){
@@ -93,7 +93,7 @@ public class NPC extends Entity {
         manager.getSkin().add("pokemon", manager.getFont());
 
         //animates the text
-        db = new DialogueBox(manager.getSkin(), "dialogbox3", 1.15f);
+        db = new DialogueBox(manager.getSkin(), "dialogbox3", (manager.getStage().getWidth()/Constants.PPM)*0.024f);
         //dialogue of the NPC
         manager.getDialogue().setStage(manager.getStageSelector().getStageMap());
 

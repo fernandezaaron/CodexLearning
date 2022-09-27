@@ -56,7 +56,7 @@ public class Objective extends Entity {
 
         label = new Label("", manager.getSkin());
         label.setWrap(true);
-        label.setFontScale(1.2f);
+        label.setFontScale((manager.getStage().getWidth()/Constants.PPM)*0.024f);
         label.getStyle().font.getData().setLineHeight(35);
 
 

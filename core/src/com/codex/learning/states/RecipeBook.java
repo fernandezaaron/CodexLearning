@@ -185,7 +185,7 @@ public class RecipeBook extends State{
         textTableLeft = new Table(manager.getSkin());
 
         label = new Label("", manager.getSkin());
-        label.setFontScale(1.2f);
+        label.setFontScale((manager.getStage().getWidth()/Constants.PPM)*0.024f);
         label.getStyle().font.getData().setLineHeight(35);
         label.setAlignment(Align.left);
         label.setWrap(true);

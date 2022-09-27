@@ -103,7 +103,7 @@ public class CodeRiddle extends State {
         table.setBackground("PCSCREEN");
 
         text = new Label("\n", manager.getSkin());
-        text.setFontScale(1.4f);
+        text.setFontScale((manager.getStage().getWidth()/Constants.PPM)*0.024f);
 
 
         Drawable dr = manager.getSkin().getDrawable("dialogbox1");
@@ -208,7 +208,7 @@ public class CodeRiddle extends State {
                    for(int i=0; i<4; i++){
                        imageTextButton[i] = new ImageTextButton("",manager.getSkin());
                        imageTextButton[i].getLabel().setWrap(true);
-                       imageTextButton[i].getLabel().setFontScale(1f);
+                       imageTextButton[i].getLabel().setFontScale((manager.getStage().getWidth()/Constants.PPM)*0.03f);
                        imageTextButton[i].setText(options.get(currentQuestion).get(i));
 
 //                      textButtons[i] = new TextButton(options.get(currentQuestion).get(i), manager.getSkin());

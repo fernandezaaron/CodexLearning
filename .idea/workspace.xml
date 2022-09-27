@@ -6,17 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2998b361-0cf3-41aa-8b4b-04ee9357f240" name="Changes" comment="gege">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/SaveFile.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/codeRiddleData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/codeRiddleData.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/data.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/minigameData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/minigameData.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/Objective.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/Objective.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/NPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/NPC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/entity/maps/PlayroomMapS1.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/entity/maps/PlayroomMapS1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/RecipeBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/RecipeBook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/ReportCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/ReportCard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeRiddle.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeRiddle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/desktop/src/com/codex/learning/DesktopLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/src/com/codex/learning/DesktopLauncher.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

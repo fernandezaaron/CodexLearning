@@ -41,21 +41,21 @@ public class ReportCard extends State{
 
         timeConsumed = new Label("", manager.getSkin());
         timeConsumed.setAlignment(Align.right);
-        timeConsumed.setFontScale(0.8f);
+        timeConsumed.setFontScale((manager.getStage().getWidth()/Constants.PPM)*0.024f);
 
         numberOfErrors = new Label("", manager.getSkin());
         numberOfErrors.setAlignment(Align.right);
-        numberOfErrors.setFontScale(0.8f);
+        numberOfErrors.setFontScale((manager.getStage().getWidth()/Constants.PPM)*0.024f);
 
 
         numberOfAttempts = new Label("", manager.getSkin());
         numberOfAttempts.setAlignment(Align.right);
-        numberOfAttempts.setFontScale(0.8f);
+        numberOfAttempts.setFontScale((manager.getStage().getWidth()/Constants.PPM)*0.024f);
 
 
         correctOutput = new Label("", manager.getSkin());
         correctOutput.setAlignment(Align.right);
-        correctOutput.setFontScale(0.8f);
+        correctOutput.setFontScale((manager.getStage().getWidth()/Constants.PPM)*0.024f);
 
 
         inReportCard = true;
