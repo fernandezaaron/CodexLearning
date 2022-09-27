@@ -15,13 +15,14 @@ import com.codex.learning.states.ReportCard;
 import com.codex.learning.states.StageSelectState;
 import com.codex.learning.states.State;
 import com.codex.learning.states.minigames.Minigame;
+import com.codex.learning.utility.Animation;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
 public class PlayroomMapS1 extends State {
     private Collisions upBorder, downBorder;
     private boolean atDoor;
-    private TextureRegion door, downArrow, rightArrow;
+    private Animation downArrow, rightArrow;
     private int stage;
     private boolean inPlayroom;
     private NPC npc;
@@ -47,7 +48,7 @@ public class PlayroomMapS1 extends State {
 
         npcDialog = "done";
         npc = new NPC(manager, npcDialog, 0, true);
-        npc.create(new Vector2(0, -8), new Vector2(1, 1.4f), 0);
+        npc.create(new Vector2(9, 12f), new Vector2(1, 1.4f), 0);
         npc.setIntroDialogFlag(true);
 
         playMat = new PlayMat(manager);
@@ -61,9 +62,9 @@ public class PlayroomMapS1 extends State {
 
         reportCard = new ReportCard(manager);
 
-        door = new TextureRegion(manager.getReportCardSheet(), 48,195, 263, 119);
-        downArrow = new TextureRegion(manager.getUtility(), Constants.DOWN_ARROW_x, Constants.DOWN_ARROW_Y, Constants.DOWN_ARROW_WIDTH, Constants.DOWN_ARROW_HEIGHT);
-        rightArrow = new TextureRegion(manager.getUtility(), Constants.RIGHT_ARROW_x, Constants.RIGHT_ARROW_Y, Constants.RIGHT_ARROW_WIDTH, Constants.RIGHT_ARROW_HEIGHT);
+//        door = new TextureRegion(manager.getReportCardSheet(), 48,195, 263, 119);
+        downArrow = new Animation(manager.getUtility(), Constants.DOWN_ARROW_x, Constants.DOWN_ARROW_Y, Constants.DOWN_ARROW_WIDTH, Constants.DOWN_ARROW_HEIGHT, 2, 0.75f);
+        rightArrow = new Animation(manager.getUtility(), Constants.RIGHT_ARROW_x, Constants.RIGHT_ARROW_Y, Constants.RIGHT_ARROW_WIDTH, Constants.RIGHT_ARROW_HEIGHT, 2, 0.75f);
     }
 
     @Override
@@ -83,6 +84,8 @@ public class PlayroomMapS1 extends State {
         npc.update(delta);
         objective.update(delta);
         howToPlay.update(delta);
+        rightArrow.update(delta);
+        downArrow.update(delta);
 
         manager.getStage().act();
 
@@ -95,7 +98,7 @@ public class PlayroomMapS1 extends State {
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.enableBlending();
         if(manager.getStageSelector().map().equals("1")){
-//            sprite.draw(manager.getPlayroomStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+            sprite.draw(manager.getPlayroomStage1(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         }
         else if(manager.getStageSelector().map().equals("2")){
             sprite.draw(manager.getPlayroomStage2(), manager.getCamera().position.x - Constants.SCREEN_WIDTH/2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
@@ -105,11 +108,11 @@ public class PlayroomMapS1 extends State {
         }
 
         if(!objective.isObjectiveInteracted()){
-            sprite.draw(rightArrow, manager.getCamera().position.x - objective.getBody().getPosition().x - 75, manager.getCamera().position.y + 350);
+            sprite.draw(rightArrow.getFrame(), manager.getCamera().position.x - objective.getBody().getPosition().x - 75, manager.getCamera().position.y + 350);
         }
 
         if(npc.isReady()){
-            sprite.draw(downArrow, manager.getCamera().position.x - npc.getBody().getPosition().x - 10, manager.getCamera().position.y - npc.getBody().getPosition().y + 50);
+            sprite.draw(downArrow.getFrame(), manager.getCamera().position.x - npc.getBody().getPosition().x - 10, manager.getCamera().position.y - npc.getBody().getPosition().y + 50);
         }
         sprite.end();
         npc.render(sprite);

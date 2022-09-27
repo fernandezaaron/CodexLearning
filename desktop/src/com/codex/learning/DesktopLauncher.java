@@ -14,9 +14,10 @@ public class DesktopLauncher {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 
 		config.setTitle(Constants.GAME_TITLE);
-		config.setWindowedMode(Constants.SCREEN_WIDTH - Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 2);
-//		config.setWindowedMode(1600,900);
+//		config.setWindowedMode(Constants.SCREEN_WIDTH - Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 2);
+		config.setWindowedMode(1600,900);
 		config.setForegroundFPS(60);
+		config.setWindowIcon("background/icon32.png");
 
 		//config.setResizable(false);
 

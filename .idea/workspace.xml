@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2998b361-0cf3-41aa-8b4b-04ee9357f240" name="Changes" comment="excel and numberofinteractions rework">
+    <list default="true" id="2998b361-0cf3-41aa-8b4b-04ee9357f240" name="Changes" comment="gege">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Contact.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Contact.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/filereader/DatabaseReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/filereader/DatabaseReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/filereader/LexicalAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/filereader/deleteLexicalAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/filereader/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/filereader/deleteResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/background/mainmenu2.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/background/mainmenu2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/MenuState.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/MenuState.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,19 +73,19 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/Game.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/maps/HouseMap.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Contact.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Constants.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/MenuState.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/Blocks.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/PauseState.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/Character.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/filereader/Questionnaire.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/FuzzyLogic.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeRiddle.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/Computer.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/Blocks.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Constants.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Manager.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/PauseState.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/Contact.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/Computer.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeRiddle.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/utility/FuzzyLogic.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/maps/HouseMap.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/Character.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -101,7 +99,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/core/src/com/codex/learning/utility" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/excel" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/background" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -109,15 +107,15 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Users\Ryoshu\Documents\GitHub\CodexLearning2\assets\excel" />
-      <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\model" />
-      <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\block" />
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\background" />
+      <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\text" />
+      <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\block" />
+      <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\model" />
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\map" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\core" />
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\text" />
+      <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\core" />
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\block" />
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\music" />
       <recent name="C:\Users\OEM\Documents\GitHub\CodexLearning\assets\model" />
@@ -125,10 +123,10 @@
   </component>
   <component name="RunManager" selected="Application.DesktopLauncher">
     <configuration name="DesktopLauncher" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-15" />
+      <option name="ALTERNATIVE_JRE_PATH" value="corretto-1.8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.codex.learning.DesktopLauncher" />
-      <module name="CodexLearning2.desktop.main" />
+      <module name="CodexLearning.desktop.main" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/assets" />
       <extension name="coverage">
         <pattern>
@@ -217,8 +215,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.CodexLearning [run]" />
         <item itemvalue="Gradle.CodexLearning [dist]" />
+        <item itemvalue="Gradle.CodexLearning [run]" />
         <item itemvalue="Application.Dtree" />
         <item itemvalue="Application.Test" />
       </list>
@@ -261,14 +259,7 @@
       <option name="project" value="LOCAL" />
       <updated>1663315733703</updated>
     </task>
-    <task id="LOCAL-00005" summary="excel and numberofinteractions rework">
-      <created>1664174561263</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1664174561263</updated>
-    </task>
-    <option name="localTasksCounter" value="6" />
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -281,14 +272,12 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="ads" />
     <MESSAGE value="implemented sa mysterycode yung banishperrow" />
     <MESSAGE value="CodeIT bugfix&#10;FillInTheBlock dispenser reposition" />
-    <MESSAGE value="excel and numberofinteractions rework" />
-    <option name="LAST_COMMIT_MESSAGE" value="excel and numberofinteractions rework" />
+    <option name="LAST_COMMIT_MESSAGE" value="CodeIT bugfix&#10;FillInTheBlock dispenser reposition" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

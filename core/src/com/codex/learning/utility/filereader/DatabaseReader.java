@@ -1,9 +1,12 @@
 package com.codex.learning.utility.filereader;
 
+import java.io.*;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.Buffer;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
 import com.badlogic.gdx.files.FileHandle;
 import com.codex.learning.utility.Constants;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -19,8 +22,10 @@ public abstract class DatabaseReader {
 
     public DatabaseReader() {
         try {
-            FileInputStream fs = new FileInputStream(Constants.EXCEL_FILE_PATH);
-            workbook = new XSSFWorkbook(fs);
+            InputStream inputStream = getClass().getResourceAsStream("/"+Constants.EXCEL_FILE_PATH);
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+
+            workbook = new XSSFWorkbook(inputStream);
         }
         catch(FileNotFoundException e) {
             e.printStackTrace();
