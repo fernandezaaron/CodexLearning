@@ -4,19 +4,18 @@ import org.apache.poi.ss.usermodel.*;
 
 import java.util.Random;
 
-public class Response extends DatabaseReader {
+public class deleteResponse extends DatabaseReader {
     private String response, responseValue;
     private int responseID, findCell, excelResponseLimit;
     private Random randomizer;
     private DataFormatter formatter;
     private Sheet responseSheet;
 
-    public Response() {
+    public deleteResponse() {
         response = null;
         randomizer = new Random();
         excelResponseLimit = 175;
         formatter = new DataFormatter();
-        responseSheet = getResponseSheet();
     }
 
     // for minigames

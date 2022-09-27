@@ -1,15 +1,8 @@
 package com.codex.learning.utility.filereader;
 
-<<<<<<< HEAD
-import java.io.*;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.Buffer;
-=======
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
->>>>>>> parent of b736b76 (Minigames.xlsx cleaned WIP)
 
 import com.badlogic.gdx.files.FileHandle;
 import com.codex.learning.utility.Constants;
@@ -26,19 +19,8 @@ public abstract class DatabaseReader {
 
     public DatabaseReader() {
         try {
-<<<<<<< HEAD
-
-            InputStream inputStream = getClass().getResourceAsStream("/"+Constants.EXCEL_FILE_PATH);
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-//            File file = new File()
-//            FileInputStream fis = new FileInputStream(Constants.EXCEL_FILE_PATH);
-//            FileInputStream fis = new FileInputStream(file);
-
-            workbook = new XSSFWorkbook(inputStream);
-=======
             FileInputStream fs = new FileInputStream(Constants.EXCEL_FILE_PATH);
             workbook = new XSSFWorkbook(fs);
->>>>>>> parent of b736b76 (Minigames.xlsx cleaned WIP)
         }
         catch(FileNotFoundException e) {
             e.printStackTrace();
@@ -47,9 +29,8 @@ public abstract class DatabaseReader {
             e.printStackTrace();
         }
         minigameSheet = workbook.getSheet("Minigame");
-        questionSheet = workbook.getSheet("CodeRiddle2");
-        answerPoolSheet = workbook.getSheet("AnswerPool2");
-        responseSheet = workbook.getSheet("Response");
+        questionSheet = workbook.getSheet("CodeRiddle");
+        answerPoolSheet = workbook.getSheet("AnswerPool");
     }
 
     public Sheet getMinigameSheet() {
@@ -62,10 +43,6 @@ public abstract class DatabaseReader {
 
     public Sheet getAnswerPoolSheet() {
         return answerPoolSheet;
-    }
-
-    public Sheet getResponseSheet() {
-        return responseSheet;
     }
 
     public Workbook getWorkbook() {
