@@ -40,10 +40,10 @@ public class Constants {
     public static final String JSON_DIALOG_BOX_SKIN_PATH = "text/DialogBox.json";
 
     // SAVE FILE ASSET PATH
-    public static final String SAVE_FILE_PATH = "text/SaveFile.txt";
-    public static final String DATA_GATHERED_FILE_PATH = "text/data.txt";
-    public static final String CODE_RIDDLE_DATA_FILE_PATH = "text/codeRiddleData.txt";
-    public static final String MINIGAME_DATA_FILE_PATH = "text/minigameData.txt";
+    public static final String SAVE_FILE_PATH = "SaveFile.txt";
+    public static final String DATA_GATHERED_FILE_PATH = "data.txt";
+    public static final String CODE_RIDDLE_DATA_FILE_PATH = "codeRiddleData.txt";
+    public static final String MINIGAME_DATA_FILE_PATH = "minigameData.txt";
 
     // EXCEL FILE ASSET PATH
     public static final String EXCEL_FILE_PATH = "excel/Minigames.xlsx";
