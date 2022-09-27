@@ -46,7 +46,7 @@ public class Minigame extends State {
         dataCounter = 0;
         isEngaged = false;
         isNotEngaged = false;
-        maxTimer = 10;
+        maxTimer = 30;
         fuzzyTimer = 0;
 
     }

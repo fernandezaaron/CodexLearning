@@ -2,6 +2,7 @@ package com.codex.learning;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -10,6 +11,8 @@ import com.codex.learning.states.PlayState;
 import com.codex.learning.states.StageSelectState;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
+
+import java.awt.*;
 
 public class Game extends ApplicationAdapter {
 	SpriteBatch batch;
@@ -24,7 +27,6 @@ public class Game extends ApplicationAdapter {
 
 		manager.push(new MenuState(manager));
 		Gdx.input.setInputProcessor(manager.getStage());
-
 //		img = new Texture(Constants.BACKGROUND_PATH);
 	}
 
@@ -35,8 +37,6 @@ public class Game extends ApplicationAdapter {
 		float delta = Gdx.graphics.getDeltaTime();
 		manager.update(delta);
 		manager.render(batch);
-
-
 
 //		batch.begin();
 //		batch.draw(img, 0, 0);
