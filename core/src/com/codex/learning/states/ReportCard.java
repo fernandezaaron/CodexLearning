@@ -153,11 +153,11 @@ public class ReportCard extends State{
                     System.out.println("MINIGAME - " + manager.getMinigame().getMinigameData());
 
                     //codeRiddleData.txt
-                    manager.getExpertSystem().writeGameDataGathered(true, Constants.CODE_RIDDLE_DATA_FILE_PATH, manager.getStageSelector().getStageMap(),
+                    manager.getExpertSystem().writeGameDataGathered(0, Constants.CODE_RIDDLE_DATA_FILE_PATH, manager.getStageSelector().getStageMap(),
                             manager.getQuestionnaire().getMinigameTopic(), manager.getCodeRiddle().getCodeRiddleData());
 
                     //minigameData.txt
-                    manager.getExpertSystem().writeGameDataGathered(false, Constants.MINIGAME_DATA_FILE_PATH, manager.getStageSelector().getStageMap(),
+                    manager.getExpertSystem().writeGameDataGathered(1, Constants.MINIGAME_DATA_FILE_PATH, manager.getStageSelector().getStageMap(),
                             manager.getQuestionnaire().getMinigameTopic(), manager.getMinigame().getMinigameData());
 
                     //data.txt

@@ -216,7 +216,7 @@ public class ExpertSystem {
         }
     }
 
-    public void writeGameDataGathered(boolean flag, String path, int stageNumber, String topic, ArrayList<ArrayList<String>> newData) {
+    public void writeGameDataGathered(int num, String path, int stageNumber, String topic, ArrayList<ArrayList<String>> newData) {
         try {
             int length = 0;
 
@@ -224,7 +224,7 @@ public class ExpertSystem {
             if (file.createNewFile()) {
                 System.out.println("File created: " + file.getName());
                 FileWriter fileWriter = new FileWriter(path, false);
-                if(flag){
+                if(num == 0){
                     fileWriter.write("0Stage Number,Topic,Iteration,Time Consumption,Number of Error,Behavior,\n");
                 }
                 else{
