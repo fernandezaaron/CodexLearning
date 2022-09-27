@@ -5,6 +5,4 @@
 3,Operators,1,0,1,1,1,ENGAGED,
 3,Operators,2,0,1,1,1,ENGAGED,
 3,Operators,3,1,1,1,1,ENGAGED,
-4,Data Types,1,1,1,1,1,ENGAGED,
-4,Data Types,2,0,1,1,1,ENGAGED,
-4,Data Types,3,0,2,1,1,ENGAGED,
+4,Operators,1,0,1,1,1,ENGAGED,

@@ -2,4 +2,5 @@
 1,Syntax,1,0,5,BORED,
 2,Variables,1,0,5,BORED,
 3,Operators,1,0,5,BORED,
-4,Data Types,1,0,5,BORED,
+4,Operators,1,0,5,BORED,
+4,Operators,2,0,5,BORED,
