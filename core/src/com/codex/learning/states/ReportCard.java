@@ -41,21 +41,21 @@ public class ReportCard extends State{
 
         timeConsumed = new Label("", manager.getSkin());
         timeConsumed.setAlignment(Align.right);
-        timeConsumed.setFontScale(0.8f);
+        timeConsumed.setFontScale((manager.getStage().getWidth()/Constants.PPM)*0.024f);
 
         numberOfErrors = new Label("", manager.getSkin());
         numberOfErrors.setAlignment(Align.right);
-        numberOfErrors.setFontScale(0.8f);
+        numberOfErrors.setFontScale((manager.getStage().getWidth()/Constants.PPM)*0.024f);
 
 
         numberOfAttempts = new Label("", manager.getSkin());
         numberOfAttempts.setAlignment(Align.right);
-        numberOfAttempts.setFontScale(0.8f);
+        numberOfAttempts.setFontScale((manager.getStage().getWidth()/Constants.PPM)*0.024f);
 
 
         correctOutput = new Label("", manager.getSkin());
         correctOutput.setAlignment(Align.right);
-        correctOutput.setFontScale(0.8f);
+        correctOutput.setFontScale((manager.getStage().getWidth()/Constants.PPM)*0.024f);
 
 
         inReportCard = true;
@@ -110,20 +110,20 @@ public class ReportCard extends State{
             reportCardTable.add(correctOutput).grow().colspan(3);
             reportCardTable.row().grow();
             for(Image i: cookies){
-                cookieTable.add(i).size(35,45).padRight(15f);
+                cookieTable.add(i).size(manager.getStage().getWidth()*.047f,manager.getStage().getHeight()*0.1f).padRight(15f);
             }
             reportCardTable.add(cookieTable).grow().padTop(20f);
             reportCardTable.row().grow();
-            reportCardTable.add(saveAndQuit).height(80).width(150);
+            reportCardTable.add(saveAndQuit).size(manager.getStage().getHeight()*.22f);
 
             reportCardTable.padRight(25f);
             reportCardTable.padLeft(25f);
-            reportCardTable.padTop(85f);
+            reportCardTable.padTop(manager.getStage().getHeight()*0.2f);
             reportCardTable.layout();
 
 
-            reportCardContainerTable.add(reportCardTable).height(400).width(350);
-            reportCardContainerTable.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/Constants.PPM/2 + 400, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/Constants.PPM/2 + 220);
+            reportCardContainerTable.add(reportCardTable).size(manager.getStage().getWidth()*.5f,manager.getStage().getHeight()*.95f);
+            reportCardContainerTable.setPosition(manager.getStage().getWidth()*0.5f, manager.getStage().getHeight()*.5f);
 
         }
 
@@ -153,11 +153,11 @@ public class ReportCard extends State{
                     System.out.println("MINIGAME - " + manager.getMinigame().getMinigameData());
 
                     //codeRiddleData.txt
-                    manager.getExpertSystem().writeGameDataGathered(Constants.CODE_RIDDLE_DATA_FILE_PATH, manager.getStageSelector().getStageMap(),
+                    manager.getExpertSystem().writeGameDataGathered(0, Constants.CODE_RIDDLE_DATA_FILE_PATH, manager.getStageSelector().getStageMap(),
                             manager.getQuestionnaire().getMinigameTopic(), manager.getCodeRiddle().getCodeRiddleData());
 
                     //minigameData.txt
-                    manager.getExpertSystem().writeGameDataGathered(Constants.MINIGAME_DATA_FILE_PATH, manager.getStageSelector().getStageMap(),
+                    manager.getExpertSystem().writeGameDataGathered(1, Constants.MINIGAME_DATA_FILE_PATH, manager.getStageSelector().getStageMap(),
                             manager.getQuestionnaire().getMinigameTopic(), manager.getMinigame().getMinigameData());
 
                     //data.txt

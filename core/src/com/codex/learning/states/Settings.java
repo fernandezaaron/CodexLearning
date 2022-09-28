@@ -7,8 +7,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
-import com.sun.org.apache.bcel.internal.Const;
-import org.apache.poi.ss.formula.functions.T;
 
 public class Settings extends State{
 

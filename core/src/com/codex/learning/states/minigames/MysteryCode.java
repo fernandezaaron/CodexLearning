@@ -89,7 +89,7 @@ public class MysteryCode extends State {
                         blockHolders[i][j].create(new Vector2(xStartingPoint, yStartingPoint - 0.5f), new Vector2(Constants.BLOCK_HOLDER_WIDTH, Constants.BLOCK_HOLDER_HEIGHT), 0);
                         blocksArrayList.get(i).add(blockHolders[i][j].getCopyBlock());
                         answerPoolContainer.add(minigameContainer.get(i).get(j));
-                        xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 2f;
+                        xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 2.05f;
 //                        if(currentStringLength >7){
 //                            xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 2.75f;
 //                        }

@@ -19,7 +19,6 @@ import com.badlogic.gdx.utils.Align;
 import com.codex.learning.entity.Entity;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
-import sun.tools.jconsole.Tab;
 
 public class Objective extends Entity {
 
@@ -57,7 +56,7 @@ public class Objective extends Entity {
 
         label = new Label("", manager.getSkin());
         label.setWrap(true);
-        label.setFontScale(1.2f);
+        label.setFontScale((manager.getStage().getWidth()/Constants.PPM)*0.024f);
         label.getStyle().font.getData().setLineHeight(35);
 
 
@@ -126,20 +125,19 @@ public class Objective extends Entity {
         });
 
         if(!containerTable.hasChildren()){
-            headerTable.add(xTable).size(75).left().padRight(50f);
-            headerTable.add(titleObjective).height(75).padRight(50f);
+            headerTable.add(xTable).size(manager.getStage().getWidth()*.05f).left().padRight(50f);
+            headerTable.add(titleObjective).height(manager.getStage().getWidth()*.05f).padRight(50f);
             label.setText(manager.getDialogue().getObjectiveDialogue(manager.getQuestionnaire().getQuestionID()-1));
             textTable.add(label).growX().align(Align.left);
 
-
-            containerTable.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/Constants.PPM/2 + 800 , manager.getCamera().position.y - Constants.SCREEN_HEIGHT/Constants.PPM/2 + 350);
-            containerTable.defaults().size(800,900);
+            containerTable.setPosition(manager.getStage().getWidth()*.5f , manager.getStage().getHeight()*.5f);
+            containerTable.defaults().size(manager.getStage().getWidth()*.5f,manager.getStage().getHeight()*.95f);
             objectiveTable.left().top();
-            objectiveTable.add(headerTable).height(75).padBottom(50f).padTop(50f);
+            objectiveTable.add(headerTable).height(manager.getStage().getHeight()*.09f).padBottom(50f).padTop(10f);
             objectiveTable.row();
-            objectiveTable.add(textTable).left().padLeft(100f);
+            objectiveTable.add(textTable).left().padLeft(110f);
 
-            containerTable.add(objectiveTable).size(800,900);
+            containerTable.add(objectiveTable).size(manager.getStage().getWidth()*.5f,manager.getStage().getHeight()*.95f);
         }
     }
 

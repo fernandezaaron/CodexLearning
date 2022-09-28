@@ -185,7 +185,7 @@ public class RecipeBook extends State{
         textTableLeft = new Table(manager.getSkin());
 
         label = new Label("", manager.getSkin());
-        label.setFontScale(1.2f);
+        label.setFontScale((manager.getStage().getWidth()/Constants.PPM)*0.024f);
         label.getStyle().font.getData().setLineHeight(35);
         label.setAlignment(Align.left);
         label.setWrap(true);
@@ -204,8 +204,8 @@ public class RecipeBook extends State{
         System.out.println(index + " " + j);
 
         if(!backgroundTable.hasChildren()){
-            backgroundTable.defaults().size(manager.getStage().getViewport().getScreenWidth(),manager.getStage().getViewport().getScreenHeight());
-            backgroundTable.setPosition(Constants.SCREEN_WIDTH/2/Constants.PPM - 25, Constants.SCREEN_HEIGHT/2/Constants.PPM - 25);
+            backgroundTable.defaults().size(manager.getStage().getWidth(),manager.getStage().getHeight());
+            backgroundTable.setPosition(0, 0);
 
             bookTable.add(pauseButton).top().left().row();
             bookTable.add(leftButton).padRight(15f);
@@ -285,7 +285,6 @@ public class RecipeBook extends State{
 
         manager.getStage().addActor(backgroundTable);
         manager.getStage().draw();
-        manager.getStage().setDebugAll(true);
     }
 
     @Override
