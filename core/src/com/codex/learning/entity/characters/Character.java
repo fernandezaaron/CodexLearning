@@ -33,8 +33,6 @@ public class Character extends Entity {
     private boolean fixture;
     private int carry;
 
-    private int numberOfBlockInteraction;
-
     private boolean atTop;
     private boolean atBot;
     private boolean atLeft;
@@ -73,7 +71,6 @@ public class Character extends Entity {
         body.createFixture(fixtureDef).setUserData(this);
         shape.dispose();
 
-        numberOfBlockInteraction = 0;
         blockHolderCollision = false;
 
         // Used to check if the character is in the border of the map
@@ -387,7 +384,6 @@ public class Character extends Entity {
         if(isCarrying() && carry == 0){
             setPickUpAble(true);
             carry = 1;
-            numberOfBlockInteraction++;
             setCopyBlock(block);
         }
         if(getCopyBlock() != null){
@@ -574,14 +570,6 @@ public class Character extends Entity {
 
     public void setPickedUp(boolean pickedUp) {
         this.pickedUp = pickedUp;
-    }
-
-    public int getNumberOfBlockInteraction() {
-        return numberOfBlockInteraction;
-    }
-
-    public void setNumberOfBlockInteraction(int numberOfBlockInteraction) {
-        this.numberOfBlockInteraction = numberOfBlockInteraction;
     }
 
     public boolean isBlockHolderCollision() {

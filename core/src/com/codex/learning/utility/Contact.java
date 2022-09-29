@@ -12,6 +12,7 @@ import com.codex.learning.entity.characters.NPC;
 //This class will allow the player to have collision detection
 public class Contact implements ContactListener {
     private int numberOfCollision = 0;
+    private int blockholderCollision = 0;
     @Override
     public void beginContact(com.badlogic.gdx.physics.box2d.Contact contact) {
         Fixture fa = contact.getFixtureA();
@@ -58,6 +59,13 @@ public class Contact implements ContactListener {
                 }
             }
             else {
+//                if(blockholderCollision > 2) {
+//                    jedisaur.setPickUpAble(false);
+//                    System.out.println(blockholderCollision + "dapat di carry");
+//                }
+//                else {
+//                    jedisaur.setPickUpAble(true);
+//                }
                 jedisaur.setPickUpAble(true);
                 if(blocks.isPreDefinedContact()){
                     blocks.setInContact(false);
@@ -70,17 +78,22 @@ public class Contact implements ContactListener {
                     }
                     numberOfCollision++;
                     System.out.println(numberOfCollision + " else ++");
+//                    if(blockholderCollision > 2) {
+//                        blocks.setInContact(false);
+//                        jedisaur.setPickUpAble(false);
+//                        System.out.println(blockholderCollision + "dapat di carry");
+//                    }
+//                    else {
+//                        jedisaur.setPickUpAble(true);
+//                    }
                     jedisaur.setPickUpAble(true);
                 }
+//                if(blockholderCollision>1){
                 if(numberOfCollision>1){
                     blocks.setInContact(false);
                     jedisaur.setPickUpAble(false);
                 }
-
             }
-
-
-
         }
 
         if(isDispenserContact(fa, fb)){
@@ -127,6 +140,10 @@ public class Contact implements ContactListener {
                 blockHolder = (BlockHolder) fb.getUserData();
             }
             blockHolder.setInContact(true);
+            blockholderCollision++;
+//            if(blockholderCollision > 1) {
+//                jedisaur.setPickUpAble(false);
+//            }
             if(jedisaur.isCarrying()){
                 jedisaur.setPickUpAble(false);
             }
@@ -271,15 +288,10 @@ public class Contact implements ContactListener {
             if(numberOfCollision < 0){
                 numberOfCollision = 0;
             }
-
 //            if(numberOfCollision == 1){
 //                blocks.setInContact(true);
 //                jedisaur.setPickUpAble(true);
 //            }
-
-
-
-
         }
 
         if(isDispenserContact(fa, fb)){
@@ -310,6 +322,8 @@ public class Contact implements ContactListener {
             }
             blockHolder.setInContact(false);
             jedisaur.setPickUpAble(false);
+            blockholderCollision--;
+            System.out.println(blockholderCollision + " end holder ");
         }
 
         if(isComputerContact(fa, fb)){

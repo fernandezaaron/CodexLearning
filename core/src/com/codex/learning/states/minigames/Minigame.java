@@ -128,7 +128,7 @@ public class Minigame extends State {
         String currentBehavior = "";
         String movement = (manager.isMoving()) ? "0":"1";
         String numberOfAttempt = convertNumberOfAttempt(manager.getMinigameChecker().getNumberOfAttempts());
-        String numberOfBlockInteraction = (checkNumberOfBlockInteractionRule(jedisaur.getNumberOfBlockInteraction()));
+        String numberOfBlockInteraction = (checkNumberOfBlockInteractionRule(manager.getMinigameChecker().getNumberOfBlockInteraction()));
         if(fuzzyTimer > maxTimer && timer > 1){
             fuzzyTimer = 0;
             try {

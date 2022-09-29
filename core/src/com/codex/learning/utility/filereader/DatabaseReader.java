@@ -1,6 +1,5 @@
 package com.codex.learning.utility.filereader;
 
-
 import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -25,13 +24,8 @@ public abstract class DatabaseReader {
         try {
             InputStream inputStream = getClass().getResourceAsStream("/"+Constants.EXCEL_FILE_PATH);
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-//            File file = new File()
-//            FileInputStream fis = new FileInputStream(Constants.EXCEL_FILE_PATH);
-//            FileInputStream fis = new FileInputStream(file);
 
             workbook = new XSSFWorkbook(inputStream);
-
-
         }
         catch(FileNotFoundException e) {
             e.printStackTrace();
@@ -40,9 +34,8 @@ public abstract class DatabaseReader {
             e.printStackTrace();
         }
         minigameSheet = workbook.getSheet("Minigame");
-        questionSheet = workbook.getSheet("CodeRiddle2");
-        answerPoolSheet = workbook.getSheet("AnswerPool2");
-        responseSheet = workbook.getSheet("Response");
+        questionSheet = workbook.getSheet("CodeRiddle");
+        answerPoolSheet = workbook.getSheet("AnswerPool");
     }
 
     public Sheet getMinigameSheet() {
@@ -55,10 +48,6 @@ public abstract class DatabaseReader {
 
     public Sheet getAnswerPoolSheet() {
         return answerPoolSheet;
-    }
-
-    public Sheet getResponseSheet() {
-        return responseSheet;
     }
 
     public Workbook getWorkbook() {

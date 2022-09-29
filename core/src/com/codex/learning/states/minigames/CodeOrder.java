@@ -23,28 +23,20 @@ public class CodeOrder extends State {
     private FuzzyLogic fuzzyLogic;
     private Blocks[] answerBlocks;
     private BlockHolder[] blockHolders;
-//    private BlockDispenser blockDispensers;
     private PauseState pause;
     private ArrayList<ArrayList<String>> minigameContainer;
-//    private int minigameContainerLimit;
-    private int currentCell;
-    private float xStartingPoint, AnsPoolY, AnsPoolX, currentStringLength, yStartingPoint;
-    private Random randomizer;
-    private ArrayList<Integer> banishCells;
+    private float xStartingPoint, AnsPoolY, AnsPoolX, currentStringLength, yStartingPoint, timer;
     private ArrayList<String> originalAnswerPoolContainer, answerPoolContainer;
     private String mergeResult;
-    private float timer;
+    private int stage;
 
     public CodeOrder(Manager manager, Character jedisaur, FuzzyLogic fuzzyLogic) {
         super(manager);
         timer = 0;
         pause = new PauseState(manager);
-        randomizer = new Random();
-        banishCells = new ArrayList<>();
 
-
-
-        getAMinigame(manager.getStageSelector().map(), "Poor");
+        this.stage = manager.getStageSelector().getStageMap();
+        getAMinigame(manager.getStageSelector().map());
 
         blockHolders = new BlockHolder[minigameContainer.size()];
         answerPoolContainer = new ArrayList<>();
@@ -52,7 +44,6 @@ public class CodeOrder extends State {
 
         /** START OF MINIGAME CREATION **/
         yStartingPoint = 10;
-        currentCell = 0;
         xStartingPoint = -10.0f;
         for(int i = 0; i < minigameContainer.size(); i++) {
             if(minigameContainer.get(i) != null) {
@@ -152,7 +143,6 @@ public class CodeOrder extends State {
         sprite.setProjectionMatrix(manager.getCamera().combined);
         sprite.end();
 
-        currentCell = 0;
         for(int i = 0; i < minigameContainer.size(); i++) {
             for (int j = 0; j < minigameContainer.get(i).size(); j++) {
                 if (minigameContainer.get(i).get(j) != null) {
@@ -188,13 +178,13 @@ public class CodeOrder extends State {
         }
     }
 
-    public void getAMinigame(String stage, String expertiseLevel){
+    public void getAMinigame(String stage){
         manager.getQuestionnaire().minigameDisplay(stage,String.valueOf(manager.getStageSelector().getStageMap()));
         minigameContainer = manager.getQuestionnaire().getMinigameHolder();
         System.out.println(minigameContainer.size() + " size here ");
         if(minigameContainer.size() > 9){
             manager.getQuestionnaire().clearMinigames();
-            getAMinigame(stage, expertiseLevel);
+            getAMinigame(stage);
         }
     }
 
