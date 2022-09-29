@@ -1,8 +1,15 @@
 DialogBox.png
-size: 4000, 2365
+size: 3703, 2677
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+behaviorbox
+  rotate: false
+  xy: 1111, 278
+  size: 919, 221
+  orig: 919, 221
+  offset: 0, 0
+  index: -1
 choiceButton
   rotate: false
   xy: 1855, 0
@@ -33,14 +40,14 @@ cookie
   index: -1
 dialogbox1
   rotate: false
-  xy: 2773, 278
+  xy: 1662, 499
   size: 1115, 351
   orig: 1115, 351
   offset: 0, 0
   index: -1
 dialogbox2
   rotate: false
-  xy: 1111, 278
+  xy: 0, 499
   size: 1000, 231
   orig: 1000, 231
   offset: 0, 0
@@ -54,7 +61,7 @@ dialogbox3
   index: -1
 exit
   rotate: false
-  xy: 2111, 278
+  xy: 1000, 499
   size: 662, 326
   orig: 662, 326
   offset: 0, 0
@@ -82,7 +89,7 @@ jediGrandpaAvatar
   index: -1
 jedigrandparecipe
   rotate: false
-  xy: 2400, 1465
+  xy: 1600, 1777
   size: 1600, 900
   orig: 1600, 900
   offset: 0, 0
@@ -117,7 +124,7 @@ leftArrow
   index: -1
 leftPage
   rotate: false
-  xy: 1841, 629
+  xy: 921, 889
   size: 620, 738
   orig: 620, 738
   offset: 0, 0
@@ -129,9 +136,16 @@ nocookie
   orig: 73, 100
   offset: 0, 0
   index: -1
+notengaged
+  rotate: false
+  xy: 2030, 278
+  size: 919, 221
+  orig: 919, 221
+  offset: 0, 0
+  index: -1
 objectives
   rotate: false
-  xy: 0, 1465
+  xy: 2821, 889
   size: 800, 888
   orig: 800, 888
   offset: 0, 0
@@ -145,7 +159,7 @@ objectivesTitle
   index: -1
 optionScreen
   rotate: false
-  xy: 0, 629
+  xy: 2777, 499
   size: 920, 390
   orig: 920, 390
   offset: 0, 0
@@ -159,7 +173,7 @@ pauseButton
   index: -1
 PCSCREEN
   rotate: false
-  xy: 800, 1465
+  xy: 0, 1777
   size: 1600, 900
   orig: 1600, 900
   offset: 0, 0
@@ -173,14 +187,14 @@ questions
   index: -1
 questionsScreen
   rotate: false
-  xy: 920, 629
+  xy: 0, 889
   size: 921, 451
   orig: 921, 451
   offset: 0, 0
   index: -1
 REPORTCARD
   rotate: false
-  xy: 3085, 629
+  xy: 2165, 889
   size: 656, 836
   orig: 656, 836
   offset: 0, 0
@@ -194,7 +208,7 @@ rightArrow
   index: -1
 rightPage
   rotate: false
-  xy: 2461, 629
+  xy: 1541, 889
   size: 624, 738
   orig: 624, 738
   offset: 0, 0

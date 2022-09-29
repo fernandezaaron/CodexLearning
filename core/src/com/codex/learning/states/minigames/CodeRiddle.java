@@ -29,7 +29,7 @@ public class CodeRiddle extends State {
     private ScrollPane scrollPane;
     private Label text;
     private Table table, optionsTable, codeRiddleFeedbackTable, resultFeedbackTable, avatarImage, textTable, behaviorTable;
-    private DialogueBox dialogueBox;;
+    private DialogueBox dialogueBox, behaviorBox;
     private Group group;
     private float maxTimer;
     private List.ListStyle listStyle;
@@ -83,8 +83,9 @@ public class CodeRiddle extends State {
         once = false;
         twice = false;
 
-        dialogueBox = new DialogueBox(manager.getSkin(), "dialogbox3", 1f);
-
+        dialogueBox = new DialogueBox(manager.getSkin(), "dialogbox3", (manager.getStage().getWidth()/Constants.PPM)*0.02f);
+        behaviorBox = new DialogueBox(manager.getSkin(), "behaviorbox", (manager.getStage().getWidth()/Constants.PPM)*0.02f)
+;
         if(manager.getStageSelector().map().equals("1")){
             avatarImage.setBackground("jediGrandpaAvatar");
         }else if(manager.getStageSelector().map().equals("2")){
@@ -359,22 +360,39 @@ public class CodeRiddle extends State {
     public void behaviorTable(){
         behaviorTable.setPosition(manager.getStage().getWidth()/1.3f,
                 manager.getStage().getHeight()/1.13f);
-        dialogueBox.setOpen(false);
-        System.out.println(isEngaged());
+        behaviorBox.setOpen(false);
         //if is giving hints open a dialogue box
         if(isEngaged() && isInComputer()){
-            if(!dialogueBox.isOpen()){
+            if(!behaviorBox.isOpen()){
+                behaviorTable.setVisible(true);
 
-                    System.out.println("true");
+                System.out.println("true");
                     behaviorIndex = rand.nextInt(10-1)+1;
-                    dialogueBox.textAnimation(manager.getDialogue().reader(behaviorIndex, "behavior", 0));
+                    behaviorBox.changeSkin(manager.getSkin(),"behaviorbox");
+                    behaviorBox.textAnimation(manager.getDialogue().reader(behaviorIndex, "behavior", 0));
                     if(!behaviorTable.hasChildren()) {
                         behaviorTable.defaults().width(0.4f*manager.getStage().getWidth()).height(0.08f*manager.getStage().getHeight());
                         behaviorTable.add(avatarImage).width(75).height(75).padRight(15f);
-                        behaviorTable.add(dialogueBox).align(Align.right).width(0.3f*manager.getStage().getWidth());
+                        behaviorTable.add(behaviorBox).align(Align.right).width(0.3f*manager.getStage().getWidth());
                     }
                 setEngaged(false);
             }
+        }
+
+        if(isNotEngaged() && isInComputer()){
+            if(!behaviorBox.isOpen()) {
+                behaviorTable.setVisible(true);
+                System.out.println("not engaged");
+                behaviorIndex = rand.nextInt(10-1)+1;
+                behaviorBox.changeSkin(manager.getSkin(), "notengaged");
+                behaviorBox.textAnimation(manager.getDialogue().reader(behaviorIndex, "notengaged", 0));
+                if(!behaviorTable.hasChildren()) {
+                    behaviorTable.defaults().width(0.4f*manager.getStage().getWidth()).height(0.08f*manager.getStage().getHeight());
+                    behaviorTable.add(avatarImage).width(75).height(75).padRight(15f);
+                    behaviorTable.add(behaviorBox).align(Align.right).width(0.3f*manager.getStage().getWidth());
+                }
+            }
+            setNotEngaged(false);
         }
 
 
@@ -401,7 +419,7 @@ public class CodeRiddle extends State {
             dialogueBox.setOpen(false);
             setBehaviorTableOpen(false);
             behaviorTable.reset();
-            dialogTimer = 0;
+            behaviorTimer = 0;
         }
     }
 
@@ -453,7 +471,10 @@ public class CodeRiddle extends State {
 
             } else {
                 //Yung behavior na dialogue na not engaged
+                System.out.println("false");
                 setNotEngaged(true);
+                behaviorTable();
+                setBehaviorTableOpen(true);
 
             }
         }

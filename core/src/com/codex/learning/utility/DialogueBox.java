@@ -34,6 +34,10 @@ public class DialogueBox extends Table {
 
     }
 
+    public void changeSkin(Skin skin, String name){
+        this.setBackground(skin.getDrawable(name));
+    }
+
     public void textAnimation(String t){
         text = t;
         animationTotalTime = t.length()*TEXT_SPEED;
