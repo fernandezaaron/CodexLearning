@@ -2,3 +2,7 @@
 1,Syntax,1,0,5,BORED,
 2,Variables,1,0,5,BORED,
 3,Operators,1,0,5,BORED,
+4,Type Casting,1,0,0,ENGAGED,
+4,Type Casting,2,0,3,BORED,
+4,Type Casting,3,0,0,ENGAGED,
+4,Type Casting,4,0,1,ENGAGED,
