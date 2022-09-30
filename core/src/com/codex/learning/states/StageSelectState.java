@@ -4,8 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.codex.learning.states.minigames.CodeOrder;
 
@@ -25,6 +29,8 @@ public class StageSelectState extends State {
     private Circle[] stages;
     private Table contentTable;
     private DialogueBox dialogueBox;
+    private Rectangle pauseButtonBounds;
+    private ImageButton pauseButton;
     private boolean isTouched;
     private int stageNumber;
 
@@ -91,6 +97,9 @@ public class StageSelectState extends State {
         contentTable = new Table(manager.getSkin());
         dialogueBox = new DialogueBox(manager.getSkin(), "dialogbox3", manager.getStage().getWidth() / 32 * 0.024f);
         isTouched = false;
+        pauseButton = new ImageButton(manager.getSkin(), "PauseButton");
+        pauseButtonBounds = new Rectangle(manager.getCamera().position.x - Constants.SCREEN_WIDTH / 2f + 50, manager.getCamera().position.y - Constants.SCREEN_HEIGHT / 2f + 795, 49,60);
+
 
         if (!manager.isMusicPaused()) {
             manager.setMusic(Constants.STAGE_SELECT_MUSIC);
@@ -113,6 +122,19 @@ public class StageSelectState extends State {
     public void render(SpriteBatch sprite) {
         sprite.begin();
         sprite.draw(manager.getStageSelect(), manager.getCamera().position.x - Constants.SCREEN_WIDTH / 2f, manager.getCamera().position.y - Constants.SCREEN_HEIGHT / 2f, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+//        pauseButton.draw(sprite, 1);
+//        pauseButton.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH / 2f + 500, manager.getCamera().position.y - Constants.SCREEN_HEIGHT / 2f + 600);
+//        pauseButton.addListener(new InputListener(){
+//            @Override
+//            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+//                manager.set(new MenuState(manager));
+//                return true;
+//            }
+//            @Override
+//            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+//
+//            }
+//        });
         drawCookies(sprite);
         drawObject(sprite);
 
@@ -138,7 +160,8 @@ public class StageSelectState extends State {
         if (!contentTable.hasChildren()) {
             contentTable.defaults().width(0.38f * manager.getStage().getWidth()).height(0.08f * manager.getStage().getHeight());
             contentTable.add(dialogueBox).width(0.38f * manager.getStage().getWidth()).height(0.08f * manager.getStage().getHeight());
-            contentTable.setPosition(manager.getCamera().viewportWidth/3f,manager.getCamera().viewportHeight/2);
+            contentTable.setPosition(manager.getCamera().position.x - manager.getCamera().viewportWidth/3f + 500,
+                    manager.getCamera().position.y - manager.getCamera().viewportHeight/2 + 500);
         }
 
 
@@ -172,7 +195,11 @@ public class StageSelectState extends State {
         if (Gdx.input.justTouched()) {
             manager.getCamera().unproject(touchpoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
-            // LATEST ZERO COOKIES MUST BE PLAYABLE
+            if(pauseButtonBounds.contains(touchpoint.x, touchpoint.y)){
+                manager.getMusic().stop();
+                manager.set(new MenuState(manager));
+            }
+              // LATEST ZERO COOKIES MUST BE PLAYABLE
             for (int i = 0; i < stages.length; i++) {
 
                 if (manager.getStageSelector().getAllowToPlay(i)) {
@@ -194,6 +221,7 @@ public class StageSelectState extends State {
 
     public void drawObject(SpriteBatch sprite) {
         manager.getCamera().unproject(touchpoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
+
         for (int i = 0; i < stages.length; i++) {
             sprite.draw(orangeCircle, stages[i].x - Constants.ORANGE_CIRCLE_R / 2,
                     stages[i].y - Constants.ORANGE_CIRCLE_R / 2, Constants.ORANGE_CIRCLE_R, Constants.ORANGE_CIRCLE_R);

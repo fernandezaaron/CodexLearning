@@ -325,7 +325,7 @@ public class NPC extends Entity {
 
     public void npcInteraction(float delta){
 
-        if(isInContact() && Gdx.input.isKeyJustPressed(Input.Keys.E)){
+        if(isInContact() && Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
             dialogBoxContainer.setVisible(true);
             setTalking(true);
             if(!db.isOpen()){
