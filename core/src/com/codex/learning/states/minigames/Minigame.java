@@ -6,6 +6,7 @@ import com.codex.learning.entity.characters.Character;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.FuzzyLogic;
 import com.codex.learning.utility.Manager;
+import com.codex.learning.utility.decisiontree.MLDataSet;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class Minigame extends State {
     private int dataCounter;
     private boolean isEngaged, isNotEngaged;
     private float maxTimer, fuzzyTimer;
+    private MLDataSet mlDataSet;
 
 
 //    public Minigame(Manager manager, int currentMinigame, Character jedisaur, FuzzyLogic fuzzyLogic){
@@ -37,6 +39,7 @@ public class Minigame extends State {
     public void create(int currentMinigame, Character jedisaur, FuzzyLogic fuzzyLogic){
         this.currentMinigame = currentMinigame;
         this.fuzzyLogic = fuzzyLogic;
+        mlDataSet = new MLDataSet();
         fillInTheBlockFlag = false;
         mysteryCodeFlag = false;
         codeOrderFlag = false;
@@ -46,7 +49,7 @@ public class Minigame extends State {
         dataCounter = 0;
         isEngaged = false;
         isNotEngaged = false;
-        maxTimer = 30;
+        maxTimer = 60;
         fuzzyTimer = 0;
 
     }
@@ -126,23 +129,29 @@ public class Minigame extends State {
     public void checkBehavior(float timer, Character jedisaur){
         fuzzyTimer += Gdx.graphics.getDeltaTime();
         String currentBehavior = "";
-        String movement = (manager.isMoving()) ? "0":"1";
-        String numberOfAttempt = convertNumberOfAttempt(manager.getMinigameChecker().getNumberOfAttempts());
-        String numberOfBlockInteraction = (checkNumberOfBlockInteractionRule(manager.getMinigameChecker().getNumberOfBlockInteraction()));
-        if(fuzzyTimer > maxTimer && timer > 1){
+        mlDataSet.setCurrentTime(timer - mlDataSet.getCurrentTime());
+        mlDataSet.setMovement((manager.isMoving()) ? "0":"1");
+        mlDataSet.setNumberOfAttempts(mlDataSet.convertNumberOfAttempt(manager.getMinigameChecker().getNumberOfAttempts() - mlDataSet.getCurrentNumberOfAttempts()));
+        mlDataSet.setNumberOfBlockInteraction(mlDataSet.checkNumberOfBlockInteractionRule(jedisaur.getNumberOfBlockInteraction() - mlDataSet.getCurrentNumberOfBlockInteraction()));
+        if(fuzzyTimer > mlDataSet.getMaxTimer()){
+            mlDataSet.setCurrentNumberOfAttempts(manager.getMinigameChecker().getNumberOfAttempts());
+            mlDataSet.setCurrentNumberOfBlockInteraction(jedisaur.getNumberOfBlockInteraction());
             fuzzyTimer = 0;
             try {
-            currentBehavior = manager.getServer().calculateMLResult(movement + checkTimeConsumption((int) timer) +
-                        numberOfAttempt + numberOfBlockInteraction);
+            currentBehavior = manager.getServer().calculateMLResult(
+                    mlDataSet.getMovement() +
+                    mlDataSet.checkTimeConsumption((int) timer) +
+                    mlDataSet.getNumberOfAttempts() +
+                    mlDataSet.getNumberOfBlockInteraction());
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
             minigameData.add(new ArrayList<String>());
-            minigameData.get(dataCounter).add(movement);
-            minigameData.get(dataCounter).add(checkTimeConsumption((int) timer));
-            minigameData.get(dataCounter).add(numberOfAttempt);
-            minigameData.get(dataCounter).add(numberOfBlockInteraction);
+            minigameData.get(dataCounter).add(mlDataSet.getMovement());
+            minigameData.get(dataCounter).add(mlDataSet.checkTimeConsumption((int) timer));
+            minigameData.get(dataCounter).add(mlDataSet.getNumberOfAttempts());
+            minigameData.get(dataCounter).add(mlDataSet.getNumberOfBlockInteraction());
             minigameData.get(dataCounter).add(currentBehavior);
             dataCounter++;
 
@@ -157,51 +166,7 @@ public class Minigame extends State {
         }
     }
 
-    public String checkNumberOfBlockInteractionRule(int numberOfBlockInteraction){
-        if(numberOfBlockInteraction <= 10)
-            return "1";
-        else if(numberOfBlockInteraction <= 20)
-            return "2";
-        return "3";
-    }
 
-    public String convertNumberOfAttempt(int numberOfAttempt){
-        if(numberOfAttempt <= 1)
-            return "1";
-        else if(numberOfAttempt <= 3)
-            return "2";
-        return "3";
-    }
-
-    public String checkTimeConsumption(int timer){
-        switch(manager.getExpertSystem().getExpertiseLevel()){
-            case "Expert":
-                if(timer <= 50)
-                    return "1";
-                else if(timer <= 100)
-                    return "2";
-                return "3";
-            case "Average":
-                if(timer <= 60)
-                    return "1";
-                else if(timer <= 120)
-                    return "2";
-                return "3";
-            case "Novice":
-                if(timer <= 70)
-                    return "1";
-                else if(timer <= 140)
-                    return "2";
-                return "3";
-            case "Poor":
-                if(timer <= 80)
-                    return "1";
-                else if(timer <= 160)
-                    return "2";
-                return "3";
-        }
-        return "2";
-    }
 
 
     public void reset(){

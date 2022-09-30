@@ -2,7 +2,6 @@ package com.codex.learning.states.minigames;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
@@ -12,12 +11,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
-import com.codex.learning.entity.characters.Character;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.DialogueBox;
 import com.codex.learning.utility.FuzzyLogic;
 import com.codex.learning.utility.Manager;
+import com.codex.learning.utility.decisiontree.MLDataSet;
 
 
 import java.awt.*;
@@ -54,8 +53,9 @@ public class CodeRiddle extends State {
 
     private ArrayList<ArrayList<String>> codeRiddleData;
     private int dataCounter;
-    private boolean once, isEngaged, isNotEngaged, behaviorTableOpen;
-    private boolean twice;
+    private boolean isEngaged, isNotEngaged, behaviorTableOpen;
+
+    private MLDataSet mlDataSet;
 
     public CodeRiddle(Manager manager, FuzzyLogic fuzzyLogic) {
         super(manager);
@@ -80,12 +80,10 @@ public class CodeRiddle extends State {
         avatarImage = new Table(manager.getSkin());
         group = new Group();
         rand = new Random();
-        once = false;
-        twice = false;
+
 
         dialogueBox = new DialogueBox(manager.getSkin(), "dialogbox3", (manager.getStage().getWidth()/Constants.PPM)*0.02f);
-        behaviorBox = new DialogueBox(manager.getSkin(), "behaviorbox", (manager.getStage().getWidth()/Constants.PPM)*0.02f)
-;
+        behaviorBox = new DialogueBox(manager.getSkin(), "behaviorbox", (manager.getStage().getWidth()/Constants.PPM)*0.02f);
         if(manager.getStageSelector().map().equals("1")){
             avatarImage.setBackground("jediGrandpaAvatar");
         }else if(manager.getStageSelector().map().equals("2")){
@@ -136,6 +134,8 @@ public class CodeRiddle extends State {
 
         codeRiddleData = new ArrayList<>();
         dataCounter = 0;
+
+        mlDataSet = new MLDataSet();
     }
 
     @Override
@@ -436,29 +436,24 @@ public class CodeRiddle extends State {
         fuzzyLogic.setTotalQuestions(manager.getQuestionnaire().getQuestionLimit());
     }
 
-
-
-
     public void checkBehavior(float timer, float fuzzyTimer) {
         String currentBehavior = "";
-        if (isDone && !twice) {
-            once = true;
-            twice = true;
-        }
-        if ((timer > maxTimer) || once) {
+        mlDataSet.setNumberOfErrors(convertNumberOfError(error - mlDataSet.getCurrentNumberOfErrors()));
+        if ((timer > mlDataSet.getMaxTimer()) && !isDone()) {
             try {
-                currentBehavior = manager.getServer().calculateMLResult(checkTimeConsumption((int) fuzzyTimer) +
-                        convertNumberOfError(error));
+                mlDataSet.setCurrentNumberOfErrors(error);
+                currentBehavior = manager.getServer().calculateMLResult(
+                        checkTimeConsumption((int) fuzzyTimer) +
+                        mlDataSet.getNumberOfErrors());
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
             codeRiddleData.add(new ArrayList<String>());
             codeRiddleData.get(dataCounter).add(checkTimeConsumption((int) fuzzyTimer));
-            codeRiddleData.get(dataCounter).add(convertNumberOfError(error));
+            codeRiddleData.get(dataCounter).add(mlDataSet.getNumberOfErrors());
             codeRiddleData.get(dataCounter).add(currentBehavior);
             dataCounter++;
-            once = false;
             this.timer = 0;
 
             if (currentBehavior.equals("ENGAGED")) {
@@ -467,8 +462,6 @@ public class CodeRiddle extends State {
                 setEngaged(true);
                 behaviorTable();
                 setBehaviorTableOpen(true);
-
-
             } else {
                 //Yung behavior na dialogue na not engaged
                 System.out.println("false");
@@ -629,4 +622,5 @@ public class CodeRiddle extends State {
     public void setBehaviorTableOpen(boolean behaviorTableOpen) {
         this.behaviorTableOpen = behaviorTableOpen;
     }
+
 }
