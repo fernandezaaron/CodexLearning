@@ -69,7 +69,7 @@ public class CodeIT extends State {
                 }
             }
             if(dupes == 1) {
-                System.out.println(dispenserPoolContainer.get(i) + " added to ansblocks");
+//                System.out.println(dispenserPoolContainer.get(i) + " added to ansblocks");
                 getAnswerPool.add(dispenserPoolContainer.get(i));
             }
         }
@@ -79,7 +79,7 @@ public class CodeIT extends State {
             for(int j = 0; j < dispenserPoolContainer.size(); j++) {
                 if (dispenserPoolContainer.get(j) != null) {
                     if (getAnswerPool.contains(dispenserPoolContainer.get(j))) {
-                        System.out.println(dispenserPoolContainer.get(j) + " removed from ansblocks");
+//                        System.out.println(dispenserPoolContainer.get(j) + " removed from ansblocks");
                         dispenserPoolContainer.remove(j);
                         j = 0;
                     }
@@ -111,7 +111,7 @@ public class CodeIT extends State {
         AnsPoolY = 10;
         currentAnsCell = 0;
         ansPoolSize = getAnswerPool.size();
-        System.out.println(getAnswerPool);
+//        System.out.println(getAnswerPool);
         for(int i = 0; i < ansPoolSize; i++) {
             AnsPoolX = 13;
             totalLineLength = 0;
@@ -142,7 +142,7 @@ public class CodeIT extends State {
 
         /** START OF DISPENSER POOL CREATION **/
         blockDispensers = new BlockDispenser[dispenserPoolContainer.size()];
-        System.out.println(dispenserPoolContainer);
+//        System.out.println(dispenserPoolContainer);
         ansPoolSize = dispenserPoolContainer.size();
         DispenserX = 24;
         DispenserY = 10;
@@ -158,7 +158,7 @@ public class CodeIT extends State {
                         10, new Vector2(currentStringLength * 0.23f, Constants.BLOCKS_HEIGHT));
             }
             blockDispensers[i].create(new Vector2(DispenserX, DispenserY), new Vector2(0.3f, 1.3f), 0);
-            System.out.println(dispenserPoolContainer.get(i) + " many " + 10);
+//            System.out.println(dispenserPoolContainer.get(i) + " many " + 10);
             DispenserY -= 6;
             if(DispenserY == -14) {
                 dispenserGraphics = "Right";
@@ -267,7 +267,7 @@ public class CodeIT extends State {
                             /** right blocks in the blockholders **/
                             for(int k=j+1; k<minigameContainer.get(i).size(); k++){
                                 if(blockHolders[i][k].isOccupied()){
-                                    System.out.println(" wtf ");
+//                                    System.out.println(" wtf ");
                                     blocksArrayList.get(i).get(k).getBody().setTransform(blocksArrayList.get(i).get(k).getBody().getPosition().x + blockSize*1.2f - 0.5f, blockHolders[i][k].getBody().getPosition().y+0.5f, 0);
                                 }
                             }
@@ -383,7 +383,7 @@ public class CodeIT extends State {
     }
 
     public void setActive(boolean active){
-        System.out.println(minigameContainer.size());
+//        System.out.println(minigameContainer.size());
         for(int i = 0; i < minigameContainer.size(); i++) {
             for (int j = 0; j < minigameContainer.get(i).size(); j++) {
                 if (minigameContainer.get(i).get(j) != null) {

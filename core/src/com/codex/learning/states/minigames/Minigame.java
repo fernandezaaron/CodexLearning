@@ -113,7 +113,7 @@ public class Minigame extends State {
             fillInTheBlock.dispose();
         }
         else if(mysteryCodeFlag){
-            System.out.println("disposing mc");
+//            System.out.println("disposing mc");
             mysteryCode.dispose();
         }else if(codeOrderFlag){
             codeOrder.dispose();
@@ -147,11 +147,11 @@ public class Minigame extends State {
             dataCounter++;
 
             if(currentBehavior.equals("ENGAGED")){
-                System.out.println("WOW keep it up my dudes!!");
+//                System.out.println("WOW keep it up my dudes!!");
                 setEngaged(true);
             }
             else{
-                System.out.println("Haha lungkot mo naman!!");
+//                System.out.println("Haha lungkot mo naman!!");
                 setNotEngaged(true);
             }
         }

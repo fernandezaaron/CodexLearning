@@ -416,7 +416,7 @@ public class Character extends Entity {
         if(Gdx.input.isKeyJustPressed(Input.Keys.E) &&
                 getCopyBlock() != null && blockHolder.getCopyBlock() == null){
             // Blocks Adjustment
-            System.out.println(getCopyBlock().getBody().getLocalCenter().x + getCopyBlock().getDupliSize().x/2);
+//            System.out.println(getCopyBlock().getBody().getLocalCenter().x + getCopyBlock().getDupliSize().x/2);
             getCopyBlock().getBody().setTransform(
                     blockHolder.getBody().getPosition().x + Constants.BLOCK_HOLDER_WIDTH*getCopyBlock().getDupliSize().x - 0.75f,
                     Constants.BLOCK_HOLDER_HEIGHT + blockHolder.getBody().getPosition().y,
@@ -440,7 +440,7 @@ public class Character extends Entity {
             setPickedUp(false);
         }
         else if(Gdx.input.isKeyJustPressed(Input.Keys.E) && isFixture() && blockHolder.isOccupied() && isPickUpAble() && !isBlockHolderCollision()){
-            System.out.println("picked up");
+//            System.out.println("picked up");
             blockHolder.setCopyBlock(null);
             if(!isCarrying()){
                 blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().first());

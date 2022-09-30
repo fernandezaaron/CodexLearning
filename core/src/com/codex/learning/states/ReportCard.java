@@ -149,8 +149,8 @@ public class ReportCard extends State{
 
                 if(!resetFlag){
                     resetFlag = true;
-                    System.out.println("CODE RIDDLE - " + manager.getCodeRiddle().getCodeRiddleData());
-                    System.out.println("MINIGAME - " + manager.getMinigame().getMinigameData());
+//                    System.out.println("CODE RIDDLE - " + manager.getCodeRiddle().getCodeRiddleData());
+//                    System.out.println("MINIGAME - " + manager.getMinigame().getMinigameData());
 
                     //codeRiddleData.txt
                     manager.getExpertSystem().writeGameDataGathered(0, Constants.CODE_RIDDLE_DATA_FILE_PATH, manager.getStageSelector().getStageMap(),

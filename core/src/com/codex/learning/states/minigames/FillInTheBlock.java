@@ -158,7 +158,7 @@ public class FillInTheBlock extends State {
                         duplicatePool.get(i), new Vector2(currentStringLength * 0.23f, Constants.BLOCKS_HEIGHT));
             }
             blockDispensers[i].create(new Vector2(xposition, yposition), new Vector2(0.3f, 1.3f), 0);
-            System.out.println(banishPoolContainer.get(i) + " many " + duplicatePool.get(i));
+//            System.out.println(banishPoolContainer.get(i) + " many " + duplicatePool.get(i));
             yposition -= 6;
             if(yposition == -14) {
                 yposition = 10;
@@ -448,7 +448,7 @@ public class FillInTheBlock extends State {
     }
 
     public void setActive(boolean active){
-        System.out.println(minigameContainer.size());
+//        System.out.println(minigameContainer.size());
         for(int i = 0; i < minigameContainer.size(); i++) {
             for (int j = 0; j < minigameContainer.get(i).size(); j++) {
                 if (minigameContainer.get(i).get(j) != null) {
