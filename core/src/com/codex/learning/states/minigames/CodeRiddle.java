@@ -277,7 +277,6 @@ public class CodeRiddle extends State {
                table.pack();
            }
             manager.getStage().addActor(table);
-           manager.getStage().setDebugAll(true);
         }
     }
 
