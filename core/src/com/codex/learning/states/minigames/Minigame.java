@@ -156,17 +156,13 @@ public class Minigame extends State {
             dataCounter++;
 
             if(currentBehavior.equals("ENGAGED")){
-                System.out.println("WOW keep it up my dudes!!");
                 setEngaged(true);
             }
             else{
-                System.out.println("Haha lungkot mo naman!!");
                 setNotEngaged(true);
             }
         }
     }
-
-
 
 
     public void reset(){
@@ -203,11 +199,6 @@ public class Minigame extends State {
         return fuzzyLogic.getCookies();
     }
 
-    //    public void setActive(boolean active){
-//        if(fib){
-//            s.setActive(active);
-//        }
-//    }
 
     public ArrayList<ArrayList<String>> getMinigameData() {
         return minigameData;

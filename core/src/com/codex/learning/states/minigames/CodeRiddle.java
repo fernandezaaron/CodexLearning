@@ -366,7 +366,6 @@ public class CodeRiddle extends State {
             if(!behaviorBox.isOpen()){
                 behaviorTable.setVisible(true);
 
-                System.out.println("true");
                     behaviorIndex = rand.nextInt(10-1)+1;
                     behaviorBox.changeSkin(manager.getSkin(),"behaviorbox");
                     behaviorBox.textAnimation(manager.getDialogue().reader(behaviorIndex, "behavior", 0));
@@ -382,7 +381,6 @@ public class CodeRiddle extends State {
         if(isNotEngaged() && isInComputer()){
             if(!behaviorBox.isOpen()) {
                 behaviorTable.setVisible(true);
-                System.out.println("not engaged");
                 behaviorIndex = rand.nextInt(10-1)+1;
                 behaviorBox.changeSkin(manager.getSkin(), "notengaged");
                 behaviorBox.textAnimation(manager.getDialogue().reader(behaviorIndex, "notengaged", 0));
@@ -411,9 +409,7 @@ public class CodeRiddle extends State {
     }
 
     public void closeBehaviorTable(){
-        System.out.println("here");
         behaviorTimer += Gdx.graphics.getDeltaTime();
-        System.out.println(behaviorTimer);
         if(behaviorTimer >= 4){
             behaviorTable.setVisible(false);
             dialogueBox.setOpen(false);
@@ -458,13 +454,11 @@ public class CodeRiddle extends State {
 
             if (currentBehavior.equals("ENGAGED")) {
                 //Yung behavior na dialogue na engaged
-                System.out.println("true");
                 setEngaged(true);
                 behaviorTable();
                 setBehaviorTableOpen(true);
             } else {
                 //Yung behavior na dialogue na not engaged
-                System.out.println("false");
                 setNotEngaged(true);
                 behaviorTable();
                 setBehaviorTableOpen(true);
