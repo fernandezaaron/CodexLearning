@@ -6,10 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="2998b361-0cf3-41aa-8b4b-04ee9357f240" name="Changes" comment="gege">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/SaveFile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/SaveFile.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/codeRiddleData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/codeRiddleData.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/data.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/minigameData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/minigameData.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/map/jediofficeplayroom.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/map/jedischoolplayroom.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/jedischoolplayroom.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/map/playmap1.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/playmap1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/NPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/NPC.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +101,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/core/src/com/codex/learning/utility" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/background" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/map" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -109,18 +109,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\map" />
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\background" />
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\text" />
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\block" />
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\model" />
-      <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\map" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\map" />
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\model" />
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\text" />
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\core" />
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\block" />
-      <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\music" />
     </key>
   </component>
   <component name="RunManager" selected="Application.DesktopLauncher">
