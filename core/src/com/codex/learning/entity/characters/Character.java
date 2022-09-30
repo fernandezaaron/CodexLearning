@@ -32,6 +32,7 @@ public class Character extends Entity {
     protected boolean pickUpAble;
     private boolean fixture;
     private int carry;
+    private int numberOfBlockInteraction;
 
     private boolean atTop;
     private boolean atBot;
@@ -93,6 +94,7 @@ public class Character extends Entity {
         direction = "south";
 
         fixture = false;
+        numberOfBlockInteraction = 0;
 
         this.size.x /= Constants.PPM;
         this.size.y /= Constants.PPM;
@@ -384,6 +386,7 @@ public class Character extends Entity {
         if(isCarrying() && carry == 0){
             setPickUpAble(true);
             carry = 1;
+            numberOfBlockInteraction++;
             setCopyBlock(block);
         }
         if(getCopyBlock() != null){
@@ -578,5 +581,13 @@ public class Character extends Entity {
 
     public void setBlockHolderCollision(boolean blockHolderCollision) {
         this.blockHolderCollision = blockHolderCollision;
+    }
+
+    public int getNumberOfBlockInteraction() {
+        return numberOfBlockInteraction;
+    }
+
+    public void setNumberOfBlockInteraction(int numberOfBlockInteraction) {
+        this.numberOfBlockInteraction = numberOfBlockInteraction;
     }
 }

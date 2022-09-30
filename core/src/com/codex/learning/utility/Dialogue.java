@@ -278,6 +278,8 @@ public class Dialogue {
             )
     );
 
+
+
 //
 //    private ArrayList<ArrayList<String>> behaviorFeedback = new ArrayList<>(
 //            Arrays.asList());
@@ -2701,6 +2703,26 @@ public class Dialogue {
             )
     );
 
+    private ArrayList<ArrayList<String>> notEngaged = new ArrayList<>(
+            Arrays.asList(
+                    new ArrayList<> (Arrays.asList(
+                            "Are you okay?",
+                            "Don't give up!",
+                            "Is the question too difficult for you?",
+                            "Maybe you just need a different perspective to answer it",
+                            "Go back to the topic that you're having difficulty with",
+                            "Maybe you need to use a hint to help you overcome this question",
+                            "Hello, are you having trouble in the task?",
+                            "Come see me (NPC) for some juicy hints just press NO after talking with me",
+                            "Are you still there?",
+                            "You must be either confused right now or just bored",
+                            "Do you want a cookie?",
+                            "Well if you're confused you can just look at the objectives board again"
+
+                    ))
+            )
+    );
+
     private boolean statementEnd;
     float myFloatNum = 5.99f;
     private String npcName;
@@ -2725,6 +2747,7 @@ public class Dialogue {
             case "noplayroom": return statementMover(nextStatement, noToPlayRoomDialogue, index - 1);
             case "newPlayer": return statementMover(nextStatement, newPlayerIntro, 0);
             case "behavior": return statementMover(nextStatement, behaviorFeedback, 0);
+            case "notengaged": return statementMover(nextStatement, notEngaged, 0);
 
 
         }
