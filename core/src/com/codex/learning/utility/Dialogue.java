@@ -2601,7 +2601,7 @@ public class Dialogue {
                        "I am JediGrandpa, obviously your grandfather",
                             "I am here to guide you all the way to success and learn coding in a more efficient and fun way!",
                             "First, I will show you how to play this game", "For the first step, you will need to talk to me again after this tutorial.",
-                            "To do that, PRESS E when you are in contact with me.\n Then I will teach you the topic of the day!",
+                            "To do that, PRESS SPACE when you are in contact with me.\n Then I will teach you the topic of the day!",
                             "After I discuss the topic for today, You are required to go to the computer.\nThat computer will serve as the ticket to the next area!",
                             "The computer is a Question and Answer portion, You must choose the correct answers from the bottom table in order to proceed!",
                             "To access the computer you must PRESS E and after answering all the questions, You may PRESS F to close the window",
@@ -2723,6 +2723,32 @@ public class Dialogue {
             )
     );
 
+    private ArrayList<ArrayList<String>> afterSubmittingFeedback = new ArrayList<>(Arrays.asList(
+            new ArrayList<> (Arrays.asList(
+               "Not gonna lie you did good to receive such scores but I guess get more of that cookie next time!"
+            )),
+            new ArrayList<> (Arrays.asList(
+                  //High Time Consumption
+                  "Atleast try to do it faster next time jedisaur! It's fine though as long as you're learning"
+            )),
+            new ArrayList<>(Arrays.asList(
+                    //NOT CORRECT OUTPUT
+                    "Try harder next time, you'll surely get it! second times the charm!"
+            )),
+            new ArrayList<String>(Arrays.asList(
+                    //High Number of attempts
+                    "Honestly it's okay to talk to me as much as you can but submitting everytime you try is actually affecting your grade!"
+            )),
+            new ArrayList<String>(Arrays.asList(
+                    //High number of errors
+                    "You have a high number of errors, next time try to review the topic and listen to me while I talk >:("
+            )),
+
+            new ArrayList<String>(Arrays.asList(
+                    "Its okay grandson this is a learning experience, focus on reviewing the topic and the objective next time!"
+            ))
+    ));
+
     private boolean statementEnd;
     float myFloatNum = 5.99f;
     private String npcName;
@@ -2748,7 +2774,7 @@ public class Dialogue {
             case "newPlayer": return statementMover(nextStatement, newPlayerIntro, 0);
             case "behavior": return statementMover(nextStatement, behaviorFeedback, 0);
             case "notengaged": return statementMover(nextStatement, notEngaged, 0);
-
+            case "postfeedback": return statementMover(nextStatement, afterSubmittingFeedback, index);
 
         }
         return "";

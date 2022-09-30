@@ -85,7 +85,7 @@ public class CodeRiddle extends State {
 
 
         dialogueBox = new DialogueBox(manager.getSkin(), "dialogbox3", (manager.getStage().getWidth()/Constants.PPM)*0.02f);
-        behaviorBox = new DialogueBox(manager.getSkin(), "behaviorbox", (manager.getStage().getWidth()/Constants.PPM)*0.02f);
+        behaviorBox = new DialogueBox(manager.getSkin(), "behaviorbox", (manager.getStage().getWidth()/Constants.PPM)*0.015f);
         if(manager.getStageSelector().map().equals("1")){
             avatarImage.setBackground("jediGrandpaAvatar");
         }else if(manager.getStageSelector().map().equals("2")){

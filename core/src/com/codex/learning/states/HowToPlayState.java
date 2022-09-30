@@ -90,6 +90,7 @@ public class HowToPlayState extends State{
                 @Override
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
                     manager.set(new MenuState(manager));
+                    manager.getStage().clear();
                     return true;
                 }
                 @Override

@@ -42,6 +42,7 @@ public class NPC extends Entity {
     private boolean inPlayroom, readiness, introDialogFlag, doneChecker, tableTouched, hintFlag, autoDialogDone, inPlayroomCarpet, computerReady;
     private boolean newPlayerDialogueDone, behaviorFlag, choicesOpen;
     private Random rand;
+    private float behaviorTimer;
 
     public NPC(Manager manager, String dialogSet, int index, boolean inPlayroom) {
         super(manager);
@@ -140,6 +141,7 @@ public class NPC extends Entity {
         index = 0;
         hintIndex = 0;
         behaviorIndex = 0;
+        behaviorTimer = 0;
 
         this.size.x /= Constants.PPM;
         this.size.y /= Constants.PPM;
@@ -185,6 +187,7 @@ public class NPC extends Entity {
 
         behaviorBox.act(delta);
         db.act(delta);
+        closeBehavior();
 
         dialogBoxContainer.setPosition(manager.getCamera().position.x - manager.getStage().getWidth()/Constants.PPM/2 , manager.getCamera().position.y - manager.getStage().getHeight()/2.6f );
         behaviorTableContainer.setPosition(manager.getCamera().position.x - manager.getStage().getWidth()/Constants.PPM/2 , manager.getCamera().position.y - manager.getStage().getHeight()/2.6f);
@@ -541,6 +544,21 @@ public class NPC extends Entity {
             manager.getMinigame().setNotEngaged(false);
             manager.getMinigame().setEngaged(false);
         }
+    }
+
+    public void closeBehavior(){
+        if(behaviorBox.isOpen()){
+            behaviorTimer += Gdx.graphics.getDeltaTime();
+
+            if(behaviorTimer >= 5){
+                behaviorTimer =0;
+                behaviorBox.setOpen(false);
+                behaviorTableContainer.setVisible(false);
+                manager.getMinigame().setNotEngaged(false);
+                manager.getMinigame().setEngaged(false);
+            }
+        }
+
     }
 
     public void noToPlayroom(Character character){
