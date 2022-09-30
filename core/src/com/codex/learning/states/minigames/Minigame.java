@@ -129,7 +129,6 @@ public class Minigame extends State {
     public void checkBehavior(float timer, Character jedisaur){
         fuzzyTimer += Gdx.graphics.getDeltaTime();
         String currentBehavior = "";
-        mlDataSet.setCurrentTime(timer - mlDataSet.getCurrentTime());
         mlDataSet.setMovement((manager.isMoving()) ? "0":"1");
         mlDataSet.setNumberOfAttempts(mlDataSet.convertNumberOfAttempt(manager.getMinigameChecker().getNumberOfAttempts() - mlDataSet.getCurrentNumberOfAttempts()));
         mlDataSet.setNumberOfBlockInteraction(mlDataSet.checkNumberOfBlockInteractionRule(jedisaur.getNumberOfBlockInteraction() - mlDataSet.getCurrentNumberOfBlockInteraction()));

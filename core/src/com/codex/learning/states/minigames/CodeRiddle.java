@@ -40,7 +40,7 @@ public class CodeRiddle extends State {
     private ArrayList<String> questions;
     private ArrayList<ArrayList<String>> options;
 
-    private boolean inComputer, isDone, isGivingHints, resultFeedBackOpen;
+    private boolean once, twice, inComputer, isDone, isGivingHints, resultFeedBackOpen;
     private int currentQuestion;
     private int error;
 
@@ -69,6 +69,8 @@ public class CodeRiddle extends State {
         fuzzyTimer = 0;
         behaviorIndex = 0;
         behaviorTimer = 0;
+        once = false;
+        twice = false;
 
 
         table = new Table();
@@ -439,7 +441,11 @@ public class CodeRiddle extends State {
     public void checkBehavior(float timer, float fuzzyTimer) {
         String currentBehavior = "";
         mlDataSet.setNumberOfErrors(convertNumberOfError(error - mlDataSet.getCurrentNumberOfErrors()));
-        if ((timer > mlDataSet.getMaxTimer()) && !isDone()) {
+        if(isDone && !twice){
+            once = true;
+            twice = true;
+        }
+        if ((timer > mlDataSet.getMaxTimer()) || once) {
             try {
                 mlDataSet.setCurrentNumberOfErrors(error);
                 currentBehavior = manager.getServer().calculateMLResult(
@@ -448,6 +454,8 @@ public class CodeRiddle extends State {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            once = false;
 
             codeRiddleData.add(new ArrayList<String>());
             codeRiddleData.get(dataCounter).add(checkTimeConsumption((int) fuzzyTimer));
