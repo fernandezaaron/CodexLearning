@@ -6,18 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="2998b361-0cf3-41aa-8b4b-04ee9357f240" name="Changes" comment="gege">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/SaveFile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/SaveFile.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/codeRiddleData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/codeRiddleData.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/data.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/map/housemap.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/housemap.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/map/jedischool.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/jedischool.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/minigameData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/minigameData.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/NPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/entity/characters/NPC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/HowToPlayState.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/HowToPlayState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/MenuState.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/MenuState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/ReportCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/ReportCard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeRiddle.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeRiddle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/Minigame.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/Minigame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Dialogue.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Dialogue.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

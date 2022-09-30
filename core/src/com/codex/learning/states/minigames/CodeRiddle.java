@@ -264,7 +264,7 @@ public class CodeRiddle extends State {
            }
 
            if(!table.hasChildren()){
-               textTable.add(text).width(manager.getStage().getWidth()*.5f).pad(25f);
+               textTable.add(text).height(manager.getStage().getHeight()*.2f).width(manager.getStage().getWidth()*.5f).pad(25f);
                scrollPane = new ScrollPane(textTable, manager.getSkin());
                scrollPane.layout();
                scrollPane.setScrollbarsOnTop(true);
@@ -277,6 +277,7 @@ public class CodeRiddle extends State {
                table.pack();
            }
             manager.getStage().addActor(table);
+           manager.getStage().setDebugAll(true);
         }
     }
 
