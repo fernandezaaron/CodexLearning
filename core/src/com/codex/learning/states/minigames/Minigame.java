@@ -27,11 +27,6 @@ public class Minigame extends State {
     private MLDataSet mlDataSet;
 
 
-//    public Minigame(Manager manager, int currentMinigame, Character jedisaur, FuzzyLogic fuzzyLogic){
-//        super(manager);
-//
-//    }
-
     public Minigame(Manager manager){
         super(manager);
     }
@@ -221,5 +216,21 @@ public class Minigame extends State {
 
     public void setNotEngaged(boolean notEngaged) {
         isNotEngaged = notEngaged;
+    }
+
+    public String getNumberOfAttemptsRule(){
+        return fuzzyLogic.getNumberOfAttemptsRules();
+    }
+
+    public String getTimeConsumptionRules(){
+        return fuzzyLogic.getTimeConsumptionRules();
+    }
+
+    public String getCorrectOutputRulles(){
+        return fuzzyLogic.getCorrectOutputRules();
+    }
+
+    public String getNumberOfErrorsRules(){
+        return fuzzyLogic.getNumberOfErrorsRules();
     }
 }

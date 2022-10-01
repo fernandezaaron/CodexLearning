@@ -119,6 +119,7 @@ public class MenuState extends State {
             }
 
             if(helpBounds.contains(touchpoint.x, touchpoint.y)){
+                manager.getMusic().stop();
                 manager.set(new HowToPlayState(manager));
             }
             if(quitGameBounds.contains(touchpoint.x, touchpoint.y)){
