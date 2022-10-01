@@ -54,9 +54,9 @@ public class PlayState extends State{
 
 
 
-//        randomMinigame = rand.nextInt(4-1)+1;
+        randomMinigame = rand.nextInt(4-1)+1;
 
-        randomMinigame = 3;
+//        randomMinigame = 3;
 
         playroomMap = new PlayroomMapS1(manager);
         manager.setPlayroomMap(playroomMap);
