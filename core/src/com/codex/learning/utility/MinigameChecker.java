@@ -142,7 +142,7 @@ public class MinigameChecker {
     public void dispose() {
         setNumberOfAttempts(0);
         setDone(false);
-        updateBlocks = null;
-        updateOrder = null;
+        updateBlocks = new Blocks[20][20];
+        updateOrder = new Blocks[20];
     }
 }

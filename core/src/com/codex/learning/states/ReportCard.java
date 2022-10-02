@@ -208,6 +208,8 @@ public class ReportCard extends State{
                     manager.getCodeRiddle().setCodeRiddleData(null);
                     manager.getMinigameChecker().setDone(false);
                     manager.getMinigame().reset();
+
+                    manager.getStage().clear();
                     manager.set(new StageSelectState(manager));
                 }
                 return true;
