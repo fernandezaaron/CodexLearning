@@ -6,12 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="2998b361-0cf3-41aa-8b4b-04ee9357f240" name="Changes" comment="gege">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/SaveFile.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/codeRiddleData.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/data.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/minigameData.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/codeRiddleData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/codeRiddleData.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/data.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/minigameData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/minigameData.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/Blocks.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/entity/blocks/Blocks.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/PlayState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/states/minigames/CodeOrder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Dialogue.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/codex/learning/utility/Dialogue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktop/src/com/codex/learning/DesktopLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/src/com/codex/learning/DesktopLauncher.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -14,5 +14,5 @@
 2,Variables,7,1,1,ENGAGED,
 2,Variables,8,1,1,ENGAGED,
 3,Operators,1,0,5,BORED,
-4,Syntax,1,0,5,BORED,
+4,Type Casting,1,0,5,BORED,
 5,Conditional,1,0,5,BORED,

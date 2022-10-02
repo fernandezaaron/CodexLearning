@@ -44,7 +44,7 @@ public class CodeOrder extends State {
 
         /** START OF MINIGAME CREATION **/
         yStartingPoint = 10;
-        xStartingPoint = -10.0f;
+        xStartingPoint = -15.0f;
         for(int i = 0; i < minigameContainer.size(); i++) {
             if(minigameContainer.get(i) != null) {
                 mergeResult = "";
@@ -74,7 +74,7 @@ public class CodeOrder extends State {
             currentStringLength = (float) String.valueOf(answerPoolContainer.get(i)).length();
             answerBlocks[i] = new Blocks(manager, answerPoolContainer.get(i), answerPoolContainer.get(i), true);
             if (answerPoolContainer.get(i) != null) {
-                answerBlocks[i].create(new Vector2(AnsPoolX, AnsPoolY), new Vector2((currentStringLength * 0.225f), Constants.BLOCKS_HEIGHT), 0);
+                answerBlocks[i].create(new Vector2(AnsPoolX, AnsPoolY), new Vector2((currentStringLength * 0.24f), Constants.BLOCKS_HEIGHT), 0);
             }
             AnsPoolY -= 2.5f;
         }

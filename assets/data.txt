@@ -2,7 +2,7 @@ Stage Number,Topic,Expertise Level,Number of Cookies,Engaged,Percentage,CodeRidd
 1,Comments,Poor,2,ENGAGED,100%,6,ENGAGED,100%,4,
 2,Variables,Poor,2,ENGAGED,100%,14,ENGAGED,100%,7,
 3,Operators,Poor,2,ENGAGED,93%,15,ENGAGED,100%,12,
-4,Syntax,Poor,2,ENGAGED,87%,16,ENGAGED,100%,13,
+4,Type Casting,Poor,2,ENGAGED,82%,17,ENGAGED,100%,30,
 5,Conditional,Poor,1,ENGAGED,82%,17,ENGAGED,100%,22,
 6,-,-,-,-,-,-,-,-,-,
 7,-,-,-,-,-,-,-,-,-,

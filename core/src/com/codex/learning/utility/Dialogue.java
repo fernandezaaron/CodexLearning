@@ -108,17 +108,17 @@ public class Dialogue {
             new ArrayList<>(Arrays.asList(
                     // Looping Statements
                     "Our second topic is Looping Statements", "Loops can execute a block of code as long as a specified condition is reached.", "Loops are handy because they save time, reduce errors, and they make code more readable.", "The while loop loops through a block of code as long as a specified condition is true:",
-                    "Example:" + "\n\nint i = 0;\n" + "while (i < 5) {\n" + "  System.out.println(i);\n" + "  i++;\n" + "}",
+                    "Example:" + "\nint i = 0;\n" + "while (i < 5) {\n" + "  System.out.println(i);\n" + "  i++;\n" + "}",
                     "The do/while loop is a variant of the while loop. This loop will execute the code block once, before checking if the condition is true, then it will repeat the loop as long as the condition is true.",
-                    "Example:" + "\n\nint i = 0;\n" + "do {\n" + "  System.out.println(i);\n" + "  i++;\n" + "}\n" + "while (i < 5);",
+                    "Example:" + "\nint i = 0;\n" + "do {\n" + "  System.out.println(i);\n" + "  i++;\n" + "}\n" + "while (i < 5);",
                     "When you know exactly how many times you want to loop through a block of code, use the for loop instead of a while loop:", "Syntax\n" + "for (statement 1; statement 2; statement 3) {" + "}" + "\nStatement 1 is executed (one time) before the execution of the code block.\n" + "Statement 2 defines the condition for executing the code block.\n" + "Statement 3 is executed (every time) after the code block has been executed.",
-                    "Example" + "\n\nfor (int i = 0; i < 5; i++) {\n" + "  System.out.println(i);\n" + "}",
+                    "Example" + "\nfor (int i = 0; i < 5; i++) {\n" + "  System.out.println(i);\n" + "}",
                     "There is also a \"for-each\" loop, which is used exclusively to loop through elements in an array:", "Example" + "\n\nString[] cars = {\"Volvo\", \"BMW\", \"Ford\", \"Mazda\"};\n" + "for (String i : cars) {\n" + "  System.out.println(i);\n" + "}",
                     "You have already seen the break statement used in an earlier chapter of this tutorial. It was used to \"jump out\" of a switch statement.", "The break statement can also be used to jump out of a loop.",
-                    "Example" + "\n\nfor (int i = 0; i < 10; i++) {\n" + "  if (i == 4) {\n" + "    break;\n" + "  }\n" + "  System.out.println(i);\n" + "}",
+                    "Example" + "\nfor (int i = 0; i < 10; i++) {\n" + "  if (i == 4) {\n" + "    break;\n" + "  }\n" + "  System.out.println(i);\n" + "}",
                     "You can also use break in while loops:", "Example" + "\n\nint i = 0;\n" + "while (i < 10) {\n" + "  System.out.println(i);\n" + "  i++;\n" + "  if (i == 4) {\n" + "    break;\n" + "  }\n" + "}",
                     "The continue statement breaks one iteration (in the loop), if a specified condition occurs, and continues with the next iteration in the loop.",
-                    "Example" + "\n\nfor (int i = 0; i < 10; i++) {\n" + "  if (i == 4) {\n" + "    continue;\n" + "  }\n" + "  System.out.println(i);\n" + "}",
+                    "Example" + "\nfor (int i = 0; i < 10; i++) {\n" + "  if (i == 4) {\n" + "    continue;\n" + "  }\n" + "  System.out.println(i);\n" + "}",
                     "You can also use continue in while loops:", "Example" + "int i = 0;\n" + "while (i < 10) {\n" + "  if (i == 4) {\n" + "    i++;\n" + "    continue;\n" + "  }\n" + "  System.out.println(i);\n" + "  i++;\n" + "}"
             )),
 
@@ -2602,8 +2602,8 @@ public class Dialogue {
                        "I am JediGrandpa, obviously your grandfather",
                             "I am here to guide you all the way to success and learn coding in a more efficient and fun way!",
                             "First, I will show you how to play this game", "For the first step, you will need to talk to me again after this tutorial.",
-                            "To do that, PRESS SPACE when you are in contact with me.\n Then I will teach you the topic of the day!",
-                            "After I discuss the topic for today, You are required to go to the computer.\nThat computer will serve as the ticket to the next area!",
+                            "To do that, PRESS SPACE when you are in contact with me. Then I will teach you the topic of the day!",
+                            "After I discuss the topic for today, You are required to go to the computer. That computer will serve as the ticket to the next area!",
                             "The computer is a Question and Answer portion, You must choose the correct answers from the bottom table in order to proceed!",
                             "To access the computer you must PRESS E and after answering all the questions, You may PRESS F to close the window",
                             "Rest assured after answering all the questions you will be able to proceed to the next area.",
@@ -2656,7 +2656,6 @@ public class Dialogue {
                             "Have you found a topic that intrigues you?",
                             "Maybe you need some motivation to answer these questions",
                             "Maybe drink some coffee so that you can be energized" // 10
-
                     )),
 
                     new ArrayList<>(Arrays.asList(
