@@ -15,12 +15,13 @@ import java.util.ArrayList;
 
 public class ReportCard extends State{
 
-    private Table reportCardTable, reportCardContainerTable, cookieTable;
+    private Table reportCardTable, reportCardContainerTable, cookieTable, feedbackTable;
     private ImageButton saveAndQuit;
     private ArrayList<Image> cookies;
-    private Label timeConsumed, numberOfErrors, numberOfAttempts, correctOutput;
+    private Label timeConsumed, numberOfErrors, numberOfAttempts, correctOutput, feedback;
     private boolean inReportCard;
     private boolean resetFlag;
+    private int index;
 
     public ReportCard(Manager manager){
         super(manager);
@@ -34,8 +35,10 @@ public class ReportCard extends State{
         saveAndQuit = new ImageButton(manager.getSkin());
         saveAndQuit.setBackground("saveandquit");
 
-        cookies = new ArrayList<>();
+        feedbackTable = new Table(manager.getSkin());
+        feedback = new Label("",manager.getSkin());
 
+        cookies = new ArrayList<>();
 
         cookieTable = new Table(manager.getSkin());
 
@@ -59,6 +62,7 @@ public class ReportCard extends State{
 
 
         inReportCard = true;
+        index = 0;
 
 
 
@@ -68,6 +72,8 @@ public class ReportCard extends State{
     public void update(float delta) {
         createTable();
         manager.getStage().act();
+        getRuleIndex();
+
     }
 
     @Override
@@ -78,6 +84,33 @@ public class ReportCard extends State{
         sprite.enableBlending();
         manager.getStage().draw();
         sprite.end();
+
+    }
+
+    public int getRuleIndex(){
+        System.out.println(manager.getMinigame().getTimeConsumptionRules());
+        System.out.println(manager.getMinigame().getCorrectOutputRulles());
+        System.out.println(manager.getMinigame().getNumberOfAttemptsRule());
+        System.out.println(manager.getMinigame().getNumberOfErrorsRules());
+
+        if(manager.getMinigame().getTimeConsumptionRules().equals("HIGH")){
+            return 1;
+        }
+        if(manager.getMinigame().getCorrectOutputRulles().equals("NO")){
+            return 2;
+        }
+        if(manager.getMinigame().getNumberOfAttemptsRule().equals("HIGH")){
+            return 3;
+        }
+        if(manager.getMinigame().getNumberOfErrorsRules().equals("HIGH")){
+            return 4;
+        }
+
+        if(manager.getMinigame().getTimeConsumptionRules().equals("HIGH") && (manager.getMinigame().getNumberOfErrorsRules().equals("HIGH") || manager.getMinigame().getNumberOfAttemptsRule().equals("HIGH"))){
+            return 5;
+        }
+        return 0;
+
 
     }
 
@@ -101,6 +134,9 @@ public class ReportCard extends State{
         }
 
         if(!reportCardContainerTable.hasChildren()){
+            reportCardTable.add(saveAndQuit).size(manager.getStage().getHeight()*.18f).top().right();
+
+            reportCardTable.row();
             reportCardTable.add(timeConsumed).grow().colspan(3).center();
             reportCardTable.row().grow().colspan(2);
             reportCardTable.add(numberOfErrors).grow().colspan(3);
@@ -111,14 +147,17 @@ public class ReportCard extends State{
             reportCardTable.row().grow();
             for(Image i: cookies){
                 cookieTable.add(i).size(manager.getStage().getWidth()*.047f,manager.getStage().getHeight()*0.1f).padRight(15f);
+
             }
             reportCardTable.add(cookieTable).grow().padTop(20f);
             reportCardTable.row().grow();
-            reportCardTable.add(saveAndQuit).size(manager.getStage().getHeight()*.22f);
+            feedback.setText(manager.getDialogue().reader(0, "postfeedback", getRuleIndex()));
+            feedback.setWrap(true);
+            feedbackTable.add(feedback).height(manager.getStage().getHeight()*.21f).width(manager.getStage().getWidth()*.42f);
+            reportCardTable.add(feedbackTable).height(manager.getStage().getHeight()*.21f);
 
             reportCardTable.padRight(25f);
             reportCardTable.padLeft(25f);
-            reportCardTable.padTop(manager.getStage().getHeight()*0.2f);
             reportCardTable.layout();
 
 

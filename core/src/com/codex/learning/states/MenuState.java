@@ -117,6 +117,11 @@ public class MenuState extends State {
 //                System.out.println("clicked at settings");
                 settings.setSettings(true);
             }
+
+            if(helpBounds.contains(touchpoint.x, touchpoint.y)){
+                manager.getMusic().stop();
+                manager.set(new HowToPlayState(manager));
+            }
             if(quitGameBounds.contains(touchpoint.x, touchpoint.y)){
 //                System.out.println("You clicked at Quit Game!");
                 Gdx.app.exit();
