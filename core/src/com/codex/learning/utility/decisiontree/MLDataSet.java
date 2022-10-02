@@ -12,7 +12,7 @@ public class MLDataSet {
     private int currentNumberOfBlockInteraction;
     private String numberOfBlockInteraction;
     public MLDataSet(){
-        maxTimer = 10f;
+        maxTimer = 30f;
         currentTime = 0;
         time = null;
         currentNumberOfErrors = 0;
@@ -22,6 +22,7 @@ public class MLDataSet {
         numberOfAttempts = null;
         currentNumberOfBlockInteraction = 0;
         numberOfBlockInteraction = null;
+
     }
 
     public String checkNumberOfBlockInteractionRule(int numberOfBlockInteraction){

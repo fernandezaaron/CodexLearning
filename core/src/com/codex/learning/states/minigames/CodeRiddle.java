@@ -59,6 +59,7 @@ public class CodeRiddle extends State {
 
     public CodeRiddle(Manager manager, FuzzyLogic fuzzyLogic) {
         super(manager);
+        
 
         this.fuzzyLogic = fuzzyLogic;
         behavior = new ArrayList<>();
