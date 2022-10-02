@@ -201,7 +201,7 @@ public class RecipeBook extends State{
 
     @Override
     public void render(SpriteBatch sprite) {
-        System.out.println(index + " " + j);
+//        System.out.println(index + " " + j);
 
         if(!backgroundTable.hasChildren()){
             backgroundTable.defaults().size(manager.getStage().getWidth(),manager.getStage().getHeight());

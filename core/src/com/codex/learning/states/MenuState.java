@@ -108,13 +108,13 @@ public class MenuState extends State {
             if(recipeBounds.contains(touchpoint.x, touchpoint.y)){
                 manager.getMusic().stop();
                 manager.set(new RecipeBook(manager));
-                System.out.println("You clicked at JediGrandpa's Recipe!");
-                System.out.println(touchpoint.x + " " + touchpoint.y);
-                System.out.println(recipeBounds.x + " " + recipeBounds.y);
+//                System.out.println("You clicked at JediGrandpa's Recipe!");
+//                System.out.println(touchpoint.x + " " + touchpoint.y);
+//                System.out.println(recipeBounds.x + " " + recipeBounds.y);
             }
 
             if(settingsBounds.contains(touchpoint.x, touchpoint.y)){
-                System.out.println("clicked at settings");
+//                System.out.println("clicked at settings");
                 settings.setSettings(true);
             }
 
@@ -123,7 +123,7 @@ public class MenuState extends State {
                 manager.set(new HowToPlayState(manager));
             }
             if(quitGameBounds.contains(touchpoint.x, touchpoint.y)){
-                System.out.println("You clicked at Quit Game!");
+//                System.out.println("You clicked at Quit Game!");
                 Gdx.app.exit();
                 System.exit(-1);
             }

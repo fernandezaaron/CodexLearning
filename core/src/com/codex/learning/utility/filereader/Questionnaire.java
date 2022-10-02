@@ -497,7 +497,7 @@ public class Questionnaire extends DatabaseReader {
     }
 
     public void clearMinigames(){
-        System.out.println("clearing");
+//        System.out.println("clearing");
         minigameHolder = null;
         minigameElementLimit = 0;
         minigameGetter = null;

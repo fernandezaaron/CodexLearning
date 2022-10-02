@@ -2783,7 +2783,7 @@ public class Dialogue {
     public String statementMover(int nextStatement, ArrayList<ArrayList<String>> arrayLists, int index){
         setArrayLists(arrayLists);
         if(nextStatement == arrayLists.get(index).size()){
-            System.out.println(nextStatement + " + " + arrayLists.get(index).size());
+//            System.out.println(nextStatement + " + " + arrayLists.get(index).size());
             setStatementEnd(true);
         }else{
             setStatementEnd(false);

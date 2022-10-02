@@ -73,7 +73,7 @@ public class ExpertSystem {
         try {
             File file = new File(Constants.SAVE_FILE_PATH);
             if (file.createNewFile()) {
-                System.out.println("File created: " + file.getName());
+//                System.out.println("File created: " + file.getName());
                 FileWriter fileWriter = new FileWriter(Constants.SAVE_FILE_PATH, false);
                 for(int i = 0; i < cookies.length; i++){
                     fileWriter.write(0 + ",");
@@ -99,7 +99,7 @@ public class ExpertSystem {
         try {
             File file = new File(Constants.SAVE_FILE_PATH);
             if (file.createNewFile()) {
-                System.out.println("File created: " + file.getName());
+//                System.out.println("File created: " + file.getName());
                 FileWriter fileWriter = new FileWriter(Constants.SAVE_FILE_PATH, false);
                 for(int i = 0; i < cookies.length; i++){
                     fileWriter.write(0 + ",");
@@ -168,7 +168,7 @@ public class ExpertSystem {
 
             File file = new File(Constants.DATA_GATHERED_FILE_PATH);
             if (file.createNewFile()) {
-                System.out.println("File created: " + file.getName());
+//                System.out.println("File created: " + file.getName());
                 FileWriter fileWriter = new FileWriter(Constants.DATA_GATHERED_FILE_PATH, false);
                 boolean header = true;
                 for(int i = 0; i < 17; i++){
@@ -222,7 +222,7 @@ public class ExpertSystem {
 
             File file = new File(path);
             if (file.createNewFile()) {
-                System.out.println("File created: " + file.getName());
+//                System.out.println("File created: " + file.getName());
                 FileWriter fileWriter = new FileWriter(path, false);
                 if(num == 0){
                     fileWriter.write("0Stage Number,Topic,Iteration,Time Consumption,Number of Error,Behavior,\n");

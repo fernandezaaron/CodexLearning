@@ -64,7 +64,10 @@ public class Constants {
     //MUSIC ASSET PATH
     public static final String MENU_MUSIC = "music/vibecheck1.wav";
     public static final String STAGE_SELECT_MUSIC = "music/stageselect.wav";
-    public static final String HOUSE_MUSIC = "music/house.wav";
+    public static final String HOUSE_MUSIC = "music/house-new.wav";
+    public static final String SCHOOL_MUSIC = "music/school.wav";
+    public static final String OFFICE_MUSIC = "music/office.wav";
+    public static final String CREDITS_MUSIC = "music/credits.wav";
 
     //HOW TO PLAY ASSET PATH
     public static final String CODE_IT = "map/codeIT.png";

@@ -146,8 +146,7 @@ public class PauseState extends State {
                     else {
                         manager.getOfficeMap().dispose();
                     }
-                    manager.getMinigameChecker().setNumberOfAttempts(0);
-                    manager.getMinigameChecker().setDone(false);
+                    manager.getMinigameChecker().dispose();
                     manager.getMinigame().reset();
                     manager.set(new PlayState(manager));
                 }
@@ -169,8 +168,7 @@ public class PauseState extends State {
                     else {
                         manager.getOfficeMap().dispose();
                     }
-                    manager.getMinigameChecker().setNumberOfAttempts(0);
-                    manager.getMinigameChecker().setDone(false);
+                    manager.getMinigameChecker().dispose();
                     manager.getMinigame().reset();
                     manager.set(new StageSelectState(manager));
 

@@ -26,7 +26,72 @@ public class Contact implements ContactListener {
             return;
         }
 
+        if(isBlockContact(fa, fb) && isBlockHolderContact(fa,fb)) {
+            System.out.println(" IN BLOCK AND BLOCKHOLDER CONTACT");
+            Blocks blocks;
+            BlockHolder blockHolder;
+            Character jedisaur;
+            if(fa.getUserData() instanceof Blocks && fa.getUserData() instanceof BlockHolder) {
+                blocks = (Blocks) fa.getUserData();
+                blockHolder = (BlockHolder) fa.getUserData();
+                jedisaur = (Character) fb.getUserData();
+            } else {
+                jedisaur = (Character) fa.getUserData();
+                blocks = (Blocks) fb.getUserData();
+                blockHolder = (BlockHolder) fb.getUserData();
+            }
+
+            blocks.setInContact(true);
+            blockHolder.setInContact(true);
+
+            if (jedisaur.isCarrying()) {
+                if (blocks.isPreDefinedContact() ) {
+                    blocks.setInContact(false);
+                    jedisaur.setPickUpAble(false);
+                }
+                else {
+                    blocks.setInContact(true);
+                    if (jedisaur.isCarrying()) {
+                        jedisaur.setPickUpAble(false);
+                    }
+                    else {
+                        if(blockHolder.isInContact()) {
+                            if (blockHolder.isOccupied()) {
+                                blockholderCollision++;
+                                jedisaur.setPickUpAble(false);
+                            } else {
+                                jedisaur.setPickUpAble(true);
+                            }
+                        }
+                    }
+                }
+            }
+            else {
+                jedisaur.setPickUpAble(true);
+                if(blocks.isPreDefinedContact()){
+                    blocks.setInContact(false);
+                    jedisaur.setPickUpAble(false);
+                }
+                else{
+                    if(blockHolder.isInContact()) {
+                        blockholderCollision++;
+                        if (blockHolder.isOccupied()) {
+                            jedisaur.setPickUpAble(false);
+                        }
+                        else {
+                            jedisaur.setPickUpAble(true);
+                        }
+                    }
+                    if(jedisaur.isDropped()){
+                        numberOfCollision++;
+                        jedisaur.setDropped(false);
+                    }
+                }
+            }
+        }
+
         if(isBlockContact(fa, fb)) {
+            System.out.println(" IN BLOCK CONTACT");
             Blocks blocks;
             Character jedisaur;
             if (fa.getUserData() instanceof Blocks) {
@@ -129,6 +194,7 @@ public class Contact implements ContactListener {
         }
 
         if(isBlockHolderContact(fa, fb)){
+            System.out.println(" IN BLOCKHOLDER CONTACT ");
             BlockHolder blockHolder;
             Character jedisaur;
             if(fa.getUserData() instanceof BlockHolder){
@@ -140,7 +206,7 @@ public class Contact implements ContactListener {
                 blockHolder = (BlockHolder) fb.getUserData();
             }
             blockHolder.setInContact(true);
-            blockholderCollision++;
+//            blockholderCollision++;
 //            if(blockholderCollision > 1) {
 //                jedisaur.setPickUpAble(false);
 //            }
@@ -201,11 +267,11 @@ public class Contact implements ContactListener {
             else{
                 npc.setDirection("south");
             }
-            System.out.println("NPC CONTACT");
+//            System.out.println("NPC CONTACT");
         }
 
         if(isPlayMatContact(fa,fb)){
-            System.out.println("playmat contact");
+//            System.out.println("playmat contact");
             PlayMat playMat;
             Character jedisaur;
 
@@ -356,7 +422,7 @@ public class Contact implements ContactListener {
         }
 
         if(isPlayMatContact(fa,fb)){
-            System.out.println("playmat end contact");
+//            System.out.println("playmat end contact");
             PlayMat playMat;
             Character jedisaur;
 

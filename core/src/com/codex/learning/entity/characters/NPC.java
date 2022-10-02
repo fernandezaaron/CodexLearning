@@ -192,6 +192,7 @@ public class NPC extends Entity {
         dialogBoxContainer.setPosition(manager.getCamera().position.x - manager.getStage().getWidth()/Constants.PPM/2 , manager.getCamera().position.y - manager.getStage().getHeight()/2.6f );
         behaviorTableContainer.setPosition(manager.getCamera().position.x - manager.getStage().getWidth()/Constants.PPM/2 , manager.getCamera().position.y - manager.getStage().getHeight()/2.6f);
 
+
         manager.getStage().addActor(behaviorTableContainer);
         manager.getStage().addActor(dialogBoxContainer);
     }
@@ -295,10 +296,10 @@ public class NPC extends Entity {
             dialogBoxContainer.setVisible(true);
             setTalking(true);
             if(!db.isOpen()) {
-                System.out.println(nextStatement + " " + index);
+//                System.out.println(nextStatement + " " + index);
                 db.textAnimation(manager.getDialogue().reader(nextStatement, "newPlayer", 0));
                 if(!dialogBoxContainer.hasChildren()){
-                    System.out.println("creating table");
+//                    System.out.println("creating table");
                     table.add(image).align(Align.left).height(0.2f*manager.getStage().getHeight()).padRight(5f);
                     table.add(db).align(Align.left);
                     dialogBoxContainer.add(table);
@@ -420,7 +421,7 @@ public class NPC extends Entity {
         }
 
         if(isInPlayroom() && isHintFlag()){
-            System.out.println(hintIndex);
+//            System.out.println(hintIndex);
             db.textAnimation(manager.getDialogue().reader(hintIndex, "hints", 0));
             setHintFlag(false);
             setTalking(false);
@@ -453,7 +454,7 @@ public class NPC extends Entity {
             setTalking(true);
             dialogBoxContainer.setVisible(true);
             if(!db.isOpen()) {
-                System.out.println(manager.getQuestionnaire().getMinigameTopic() + "asd");
+//                System.out.println(manager.getQuestionnaire().getMinigameTopic() + "asd");
                 db.textAnimation(manager.getDialogue().reader(nextStatement, "minigameintrodialogue", manager.getDialogue().getTopic(manager.getQuestionnaire().getMinigameTopic())));
                 if(!dialogBoxContainer.hasChildren()){
                     table.add(image).align(Align.left).height(0.2f*manager.getStage().getHeight()).padRight(5f);

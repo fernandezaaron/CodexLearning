@@ -37,7 +37,7 @@ public class PlayState extends State{
     private int stage;
 
     private boolean computerOnce;
-
+    private String music;
 
     private int count;
     private float hintTimer;
@@ -67,20 +67,27 @@ public class PlayState extends State{
             house = new HouseMap(manager);
 
             manager.setHouseMap(house);
+            music = Constants.HOUSE_MUSIC;
             computer = new Computer(manager, fuzzyLogic);
             computer.create(new Vector2(-6, 2.8f), new Vector2(0.6f, 0.6f), 0);
         }
         else if(manager.getStageSelector().map().equals("2")){
             schoolMap = new SchoolMap(manager);
             manager.setSchoolMap(schoolMap);
+            music = Constants.SCHOOL_MUSIC;
             computer = new Computer(manager, fuzzyLogic);
             computer.create(new Vector2(-4, 6.5f), new Vector2(0.6f, 0.6f), 0);
         }
         else if(manager.getStageSelector().map().equals("3")){
             officeMap = new OfficeMap(manager);
             manager.setOfficeMap(officeMap);
+            music = Constants.OFFICE_MUSIC;
             computer = new Computer(manager, fuzzyLogic);
             computer.create(new Vector2(-6.5f, 10.2f), new Vector2(0.6f, 0.6f), 0);
+        }
+
+        if(stage == 4 || stage == 10 || stage == 13){
+            music = Constants.CREDITS_MUSIC;
         }
 
         jedisaur = new Character(manager);
@@ -94,11 +101,11 @@ public class PlayState extends State{
         manager.getMinigame().create(randomMinigame, jedisaur, fuzzyLogic);
 
         if(!manager.isMusicPaused()){
-            manager.setMusic(Constants.HOUSE_MUSIC);
+            manager.setMusic(music);
             manager.getMusic().play();
             manager.getMusic().setLooping(true);
         }else {
-            manager.setMusic(Constants.HOUSE_MUSIC);
+            manager.setMusic(music);
         }
 
         computerOnce = true;
@@ -158,7 +165,7 @@ public class PlayState extends State{
                     if(computer.isDone() && computerOnce){
                         computer.getCodeRiddle().resultFeedback();
                         manager.setCodeRiddle(computer.getCodeRiddle());
-                        System.out.println("COMPUTER IS DONE - " + manager.getCodeRiddle().getCodeRiddleData());
+//                        System.out.println("COMPUTER IS DONE - " + manager.getCodeRiddle().getCodeRiddleData());
                         computerOnce = false;
                     }
 

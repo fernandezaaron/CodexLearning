@@ -122,7 +122,7 @@ public class BlockHolder extends Entity {
             numberOfErrors = 1;
         }
         if(isOccupied()) {
-            System.out.println(getCopyBlock().getId() + " " + getCorrectID());
+//            System.out.println(getCopyBlock().getId() + " " + getCorrectID());
             if(!getCopyBlock().getId().equals(getCorrectID())) {
                 numberOfErrors = 1;
             }
