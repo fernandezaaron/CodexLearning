@@ -48,7 +48,7 @@ public class Blocks extends Entity {
         fixtureDef.shape = shape;
         fixtureDef.friction = 5;
 
-        if(isPreDefinedContact()){
+        if(isPredefined){
             fixtureDef.isSensor = true;
         }else {
             fixtureDef.isSensor = false;

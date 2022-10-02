@@ -378,7 +378,8 @@ public class Character extends Entity {
 
     private void checkIfStuck(){
         if(Gdx.input.isKeyJustPressed(Input.Keys.R)){
-            body.getPosition().set(10, 10);
+            body.getPosition().set(0, 0);
+            body.setTransform(0, 0, 0);
         }
     }
 

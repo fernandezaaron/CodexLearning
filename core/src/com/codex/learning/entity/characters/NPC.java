@@ -301,7 +301,7 @@ public class NPC extends Entity {
                 if(!dialogBoxContainer.hasChildren()){
 //                    System.out.println("creating table");
                     table.add(image).align(Align.left).height(0.2f*manager.getStage().getHeight()).padRight(5f);
-                    table.add(db).align(Align.left);
+                    table.add(db).align(Align.left).height(0.23f*manager.getStage().getHeight());
                     dialogBoxContainer.add(table);
                 }
             }
@@ -381,7 +381,7 @@ public class NPC extends Entity {
                 db.textAnimation(manager.getDialogue().reader(nextStatement, dialogSet, index));
                 if(!dialogBoxContainer.hasChildren()){
                     table.add(image).align(Align.left).height(0.2f*manager.getStage().getHeight()).padRight(5f);
-                    table.add(db).align(Align.left).height(0.2f*manager.getStage().getHeight());
+                    table.add(db).align(Align.left).growY();
                     dialogBoxContainer.add(table);
                 }
                 setComputerReady(true);
@@ -458,7 +458,7 @@ public class NPC extends Entity {
                 db.textAnimation(manager.getDialogue().reader(nextStatement, "minigameintrodialogue", manager.getDialogue().getTopic(manager.getQuestionnaire().getMinigameTopic())));
                 if(!dialogBoxContainer.hasChildren()){
                     table.add(image).align(Align.left).height(0.2f*manager.getStage().getHeight()).padRight(5f);
-                    table.add(db).align(Align.left).height(0.2f*manager.getStage().getHeight());
+                    table.add(db).align(Align.left).height(0.23f*manager.getStage().getHeight());
                     dialogBoxContainer.add(table);
                 }
             }
@@ -495,7 +495,7 @@ public class NPC extends Entity {
                 behaviorBox.textAnimation(manager.getDialogue().reader(behaviorIndex, "behavior", 0));
                 if(!behaviorTableContainer.hasChildren()){
 //                    table.add(image).align(Align.left).height(0.2f*manager.getStage().getHeight()).padRight(5f);
-                    behaviorTable.add(behaviorBox).align(Align.left).height(0.2f*manager.getStage().getHeight());
+                    behaviorTable.add(behaviorBox).align(Align.left).height(0.23f*manager.getStage().getHeight());
                     behaviorTableContainer.add(behaviorTable);
                 }
             }
@@ -570,7 +570,7 @@ public class NPC extends Entity {
                 db.textAnimation(manager.getDialogue().reader(nextStatement, "noplayroom", Integer.parseInt(manager.getStageSelector().map())));
                 if(!dialogBoxContainer.hasChildren()){
                     table.add(image).align(Align.left).height(0.2f*manager.getStage().getHeight()).padRight(5f);
-                    table.add(db).align(Align.left).height(0.2f*manager.getStage().getHeight());
+                    table.add(db).align(Align.left).height(0.23f*manager.getStage().getHeight());
                     dialogBoxContainer.add(table);
                 }
             }
