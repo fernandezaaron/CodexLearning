@@ -138,4 +138,11 @@ public class MinigameChecker {
     public void setNumberOfBlockInteraction(int numberOfBlockInteraction) {
         this.numberOfBlockInteraction = numberOfBlockInteraction;
     }
+
+    public void dispose() {
+        setNumberOfAttempts(0);
+        setDone(false);
+        updateBlocks = null;
+        updateOrder = null;
+    }
 }
