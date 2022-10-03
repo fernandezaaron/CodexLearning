@@ -399,6 +399,73 @@ public class Character extends Entity {
 
     }
 
+//    public void dropBlock(BlockHolder blockHolder){
+//        if(blockHolder.isOccupied() && !isCarrying()){
+//            setPickUpAble(true);
+//        }
+//        else{
+//            setPickUpAble(false);
+//        }
+//
+//        if(blockHolder.isOccupied()){
+//            if(!isFixture()){
+//                blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().first());
+//                for(int i = 0; i < blockHolder.getBody().getFixtureList().size; i++){
+//                    blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().removeIndex(i));
+//                }
+//                setFixture(true);
+//            }
+//            blockHolder.createFixture(getCopyBlock().getDupliSize().x, getCopyBlock().getDupliSize().y, Constants.BLOCK_HOLDER_WIDTH * getCopyBlock().getDupliSize().x - 0.75f);
+//            setCopyBlock(null);
+//        }
+//        else{
+//            if(isFixture()){
+//                blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().first());
+//                for(int i = 0; i < blockHolder.getBody().getFixtureList().size; i++){
+//                    blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().removeIndex(i));
+//                }
+//                setFixture(false);
+//            }
+//            blockHolder.createDefaultFixture();
+//        }
+//
+//        if(Gdx.input.isKeyJustPressed(Input.Keys.E) &&
+//                getCopyBlock() != null && blockHolder.getCopyBlock() == null) {
+//            getCopyBlock().getBody().setTransform(
+//                    blockHolder.getBody().getPosition().x + Constants.BLOCK_HOLDER_WIDTH*getCopyBlock().getDupliSize().x - 0.75f,
+//                    Constants.BLOCK_HOLDER_HEIGHT + blockHolder.getBody().getPosition().y,
+//                    0);
+//            getCopyBlock().setInContact(false);
+//            getCopyBlock().getBody().setType(BodyDef.BodyType.StaticBody);
+//
+//            // BlockHolder Adjustment
+//            blockHolder.setOccupied(true);
+//            blockHolder.setCopyBlock(getCopyBlock());
+//
+//            // Character Adjustment
+//            setDropped(true);
+//            carry = 0;
+//            setPickUpAble(false);
+//            setCarrying(false);
+//            setPickedUp(false);
+//        }
+//        else if(Gdx.input.isKeyJustPressed(Input.Keys.E) &&
+//                blockHolder.isOccupied() && isPickUpAble() && !isBlockHolderCollision()){
+//            blockHolder.setCopyBlock(null);
+//            if(isCarrying()){
+//                blockHolder.setOccupied(true);
+//                setPickUpAble(false);
+//            }
+//            else{
+//                blockHolder.setOccupied(false);
+//                setPickUpAble(true);
+//            }
+//            setDropped(false);
+//            setPickedUp(true);
+//
+//        }
+//    }
+
     public void dropBlock(BlockHolder blockHolder){
         // To prevent pickup in an empty block holder
         if(blockHolder.isOccupied() && !isCarrying()){

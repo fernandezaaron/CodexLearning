@@ -66,7 +66,6 @@ public class BlockHolder extends Entity {
 
     @Override
     public void update(float delta) {
-
     }
 
     @Override
