@@ -15,7 +15,7 @@
 2,Variables,7,1,1,ENGAGED,
 2,Variables,8,1,1,ENGAGED,
 3,Operators,1,0,5,BORED,
-4,Operators,1,0,5,BORED,
+4,Variables,1,0,5,BORED,
 5,Conditional,1,0,5,BORED,
 6,Loops,1,0,5,BORED,
 7,Arrays,1,0,5,BORED,

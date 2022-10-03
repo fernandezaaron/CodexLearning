@@ -402,12 +402,19 @@ public class Character extends Entity {
 
     public void dropBlock(BlockHolder blockHolder){
         // To prevent pickup in an empty block holder
-        if(isFixture() && !isCarrying()){
-            setPickUpAble(true);
+        if(blockHolder.isOccupied() && !isCarrying()){
+            if(manager.getCl().getBlockholderCollision() > 2){
+                setPickUpAble(false);
+            }
+            else {
+                setPickUpAble(true);
+            }
         }
         else{
             setPickUpAble(false);
         }
+
+
 
         if(blockHolder.isOccupied()){
             blockHolder.setCopyBlock(getCopyBlock());
@@ -419,7 +426,7 @@ public class Character extends Entity {
         }
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.E) &&
-                getCopyBlock() != null && blockHolder.getCopyBlock() == null){
+                getCopyBlock() != null && blockHolder.getCopyBlock() == null && !blockHolder.isOccupied()){
             // Blocks Adjustment
 //            System.out.println(getCopyBlock().getBody().getLocalCenter().x + getCopyBlock().getDupliSize().x/2);
             getCopyBlock().getBody().setTransform(

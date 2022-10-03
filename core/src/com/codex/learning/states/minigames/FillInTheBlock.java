@@ -239,7 +239,7 @@ public class FillInTheBlock extends State {
                     if (banishPoolContainer.contains(minigameContainer.get(i).get(j))) {
                         if (blockHolders[i][j].isInContact()) {
                             jedisaur.dropBlock(blockHolders[i][j]);
-                            if(jedisaur.isDropped() && !blocksArrayList.get(i).contains(blockHolders[i][j].getCopyBlock())){
+                            if(jedisaur.isDropped() && !blocksArrayList.get(i).contains(blockHolders[i][j].getCopyBlock()) && blocksArrayList.get(i).get(j) == null){
                                 blocksArrayList.get(i).set(j, blockHolders[i][j].getCopyBlock());
                             }
                             if(jedisaur.isDropped()) {

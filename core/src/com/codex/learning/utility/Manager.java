@@ -180,6 +180,8 @@ public class Manager {
     public World getWorld() {
         return world;
     }
+
+
     public OrthographicCamera getCamera() {
         return camera;
     }
@@ -191,6 +193,8 @@ public class Manager {
     public Skin getSkin() {
         return skin;
     }
+
+
 
     public TextureAtlas getAtlas() {
         return atlas;
@@ -269,6 +273,7 @@ public class Manager {
     public Music getMusic(){
         return music;
     }
+
 
     public boolean isMusicPaused() {
         return musicPaused;

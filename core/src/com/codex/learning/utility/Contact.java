@@ -26,69 +26,70 @@ public class Contact implements ContactListener {
             return;
         }
 
-        if(isBlockContact(fa, fb) && isBlockHolderContact(fa,fb)) {
-            System.out.println(" IN BLOCK AND BLOCKHOLDER CONTACT");
-            Blocks blocks;
-            BlockHolder blockHolder;
-            Character jedisaur;
-            if(fa.getUserData() instanceof Blocks && fa.getUserData() instanceof BlockHolder) {
-                blocks = (Blocks) fa.getUserData();
-                blockHolder = (BlockHolder) fa.getUserData();
-                jedisaur = (Character) fb.getUserData();
-            } else {
-                jedisaur = (Character) fa.getUserData();
-                blocks = (Blocks) fb.getUserData();
-                blockHolder = (BlockHolder) fb.getUserData();
-            }
-
-            blocks.setInContact(true);
-            blockHolder.setInContact(true);
-
-            if (jedisaur.isCarrying()) {
-                if (blocks.isPreDefinedContact() ) {
-                    blocks.setInContact(false);
-                    jedisaur.setPickUpAble(false);
-                }
-                else {
-                    blocks.setInContact(true);
-                    if (jedisaur.isCarrying()) {
-                        jedisaur.setPickUpAble(false);
-                    }
-                    else {
-                        if(blockHolder.isInContact()) {
-                            if (blockHolder.isOccupied()) {
-                                blockholderCollision++;
-                                jedisaur.setPickUpAble(false);
-                            } else {
-                                jedisaur.setPickUpAble(true);
-                            }
-                        }
-                    }
-                }
-            }
-            else {
-                jedisaur.setPickUpAble(true);
-                if(blocks.isPreDefinedContact()){
-                    blocks.setInContact(false);
-                    jedisaur.setPickUpAble(false);
-                }
-                else{
-                    if(blockHolder.isInContact()) {
-                        blockholderCollision++;
-                        if (blockHolder.isOccupied()) {
-                            jedisaur.setPickUpAble(false);
-                        }
-                        else {
-                            jedisaur.setPickUpAble(true);
-                        }
-                    }
-                    if(jedisaur.isDropped()){
-                        numberOfCollision++;
-                        jedisaur.setDropped(false);
-                    }
-                }
-            }
-        }
+//        if(isBlockContact(fa, fb) && isBlockHolderContact(fa,fb)) {
+//            System.out.println(" IN BLOCK AND BLOCKHOLDER CONTACT");
+//            Blocks blocks;
+//            BlockHolder blockHolder;
+//            Character jedisaur;
+//            if(fa.getUserData() instanceof Blocks && fa.getUserData() instanceof BlockHolder) {
+//                blocks = (Blocks) fa.getUserData();
+//                blockHolder = (BlockHolder) fa.getUserData();
+//                jedisaur = (Character) fb.getUserData();
+//            } else {
+//                jedisaur = (Character) fa.getUserData();
+//                blocks = (Blocks) fb.getUserData();
+//                blockHolder = (BlockHolder) fb.getUserData();
+//            }
+//
+//            blocks.setInContact(true);
+//            blockHolder.setInContact(true);
+//
+//
+//            if (jedisaur.isCarrying()) {
+//                if (blocks.isPreDefinedContact() ) {
+//                    blocks.setInContact(false);
+//                    jedisaur.setPickUpAble(false);
+//                }
+//                else {
+//                    blocks.setInContact(true);
+//                    if (jedisaur.isCarrying()) {
+//                        jedisaur.setPickUpAble(false);
+//                    }
+//                    else {
+//                        if(blockHolder.isInContact()) {
+//                            if (blockHolder.isOccupied()) {
+//                                blockholderCollision++;
+//                                jedisaur.setPickUpAble(false);
+//                            } else {
+//                                jedisaur.setPickUpAble(true);
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            else {
+//                jedisaur.setPickUpAble(true);
+//                if(blocks.isPreDefinedContact()){
+//                    blocks.setInContact(false);
+//                    jedisaur.setPickUpAble(false);
+//                }
+//                else{
+//                    if(blockHolder.isInContact()) {
+//                        blockholderCollision++;
+//                        if (blockHolder.isOccupied()) {
+//                            jedisaur.setPickUpAble(false);
+//                        }
+//                        else {
+//                            jedisaur.setPickUpAble(true);
+//                        }
+//                    }
+//                    if(jedisaur.isDropped()){
+//                        numberOfCollision++;
+//                        jedisaur.setDropped(false);
+//                    }
+//                }
+//            }
+//        }
 
         if(isBlockContact(fa, fb)) {
             System.out.println(" IN BLOCK CONTACT");
@@ -193,19 +194,36 @@ public class Contact implements ContactListener {
                 blockHolder = (BlockHolder) fb.getUserData();
             }
             blockHolder.setInContact(true);
-//            blockholderCollision++;
-//            if(blockholderCollision > 1) {
+            blockholderCollision++;
+            System.out.println(blockholderCollision + " bhc");
+//            if(blockholderCollision > 2) {
+//                System.out.println("in here");
+//                jedisaur.setPickUpAble(false);
+//                System.out.println(jedisaur.isPickUpAble() + "sadasf");
+//            }else{
+//                if(jedisaur.isCarrying()){
+//                    jedisaur.setPickUpAble(false);
+//                }
+//                else {
+//                    jedisaur.setPickUpAble(true);
+//
+//                }
+//            }
+
+//            if(blockHolder.isOccupied() && blockholderCollision > 1){
+//                blockHolder.setInContact(false);
+//            }else {
+//                blockHolder.setInContact(true);
+//            }
+//            if(jedisaur.isCarrying()){
 //                jedisaur.setPickUpAble(false);
 //            }
-            if(jedisaur.isCarrying()){
-                jedisaur.setPickUpAble(false);
-            }
-            else{
-                jedisaur.setPickUpAble(true);
-            }
+//            else{
+//                jedisaur.setPickUpAble(true);
+//            }
+
             if(blockHolder.isDropped()){
                 numberOfCollision = 0;
-
             }
         }
 
@@ -376,6 +394,17 @@ public class Contact implements ContactListener {
             }
             blockHolder.setInContact(false);
             jedisaur.setPickUpAble(false);
+
+            blockholderCollision--;
+//            if(blockholderCollision > 1) {
+//                jedisaur.setPickUpAble(false);
+//            }
+//
+//            if(blockHolder.isOccupied() && blockholderCollision > 1){
+//                blockHolder.setInContact(false);
+//            }else {
+//                blockHolder.setInContact(true);
+//            }
 //            blockholderCollision--;
 //            System.out.println(blockholderCollision + " end holder ");
         }
@@ -542,7 +571,25 @@ public class Contact implements ContactListener {
         }
         return false;
     }
+
+    public int getNumberOfCollision() {
+        return numberOfCollision;
+    }
+
+    public void setNumberOfCollision(int numberOfCollision) {
+        this.numberOfCollision = numberOfCollision;
+    }
+
+    public int getBlockholderCollision() {
+        return blockholderCollision;
+    }
+
+    public void setBlockholderCollision(int blockholderCollision) {
+        this.blockholderCollision = blockholderCollision;
+    }
 }
+
+
 
 
 //package com.codex.learning.utility;

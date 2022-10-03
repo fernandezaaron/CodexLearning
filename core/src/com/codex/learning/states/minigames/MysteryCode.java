@@ -152,16 +152,31 @@ public class MysteryCode extends State {
 
         this.jedisaur = jedisaur;
         this.fuzzyLogic = fuzzyLogic;
+        for(int i=0; i<blocksArrayList.size(); i++){
+            for (int j=0; j<blocksArrayList.get(i).size(); j++){
+                System.out.println(i+" " + j + " " + blocksArrayList.get(i).get(j));
+
+            }
+        }
 
     }
 
 
     @Override
     public void update(float delta) {
+
         if(!manager.getMinigameChecker().isDone()){
             timer += Gdx.graphics.getDeltaTime();
             manager.getMinigame().checkBehavior((int) timer, jedisaur);
         }
+
+
+            for(int i=0; i<blocksArrayList.size(); i++){
+                for (int j=0; j<blocksArrayList.get(i).size(); j++){
+                    System.out.println(i+" " + j + " " + blocksArrayList.get(i).get(j));
+
+                }
+            }
 
         currentCell = 0;
         for (int i = 0; i < minigameContainer.size(); i++) {
@@ -193,8 +208,10 @@ public class MysteryCode extends State {
                     if (banishCells.contains(currentCell)) {
                         if (blockHolders[i][j].isInContact()) {
                             jedisaur.dropBlock(blockHolders[i][j]);
-                            if(jedisaur.isDropped() && !blocksArrayList.get(i).contains(blockHolders[i][j].getCopyBlock())){
+                            if(jedisaur.isDropped()  && !blocksArrayList.get(i).contains(blockHolders[i][j].getCopyBlock()) && blocksArrayList.get(i).get(j) == null){
+                                System.out.println(j + " " + blockHolders[i][j].getCopyBlock());
                                 blocksArrayList.get(i).set(j, blockHolders[i][j].getCopyBlock());
+
                             }
                             if(jedisaur.isDropped()) {
                                 setBlockToCheck(blockHolders[i][j].getCopyBlock(), i, j);
@@ -210,6 +227,7 @@ public class MysteryCode extends State {
         /** below this is used for padding **/
         if(jedisaur.isCarrying() && jedisaur.getCopyBlock() != null){
             blockSize = jedisaur.getCopyBlock().getDupliSize().x;
+//            blockSize = 1.5f;
         }
 
         for (int i = 0; i < answerPoolContainer.size(); i++) {
@@ -294,6 +312,7 @@ public class MysteryCode extends State {
 
                             if(jedisaur.isPickedUp()){
                                 blocksArrayList.get(i).set(j, null);
+
                                 int tempCurrentCell = currentCell;
                                 for(int k=j-1; k>=0; k--){
                                     tempCurrentCell--;
@@ -343,6 +362,8 @@ public class MysteryCode extends State {
                                 }
                                 setBlockToCheck(null, i, j);
                                 setToCheck(blockHolders);
+
+
                                 jedisaur.setPickedUp(false);
                             }
                         }
