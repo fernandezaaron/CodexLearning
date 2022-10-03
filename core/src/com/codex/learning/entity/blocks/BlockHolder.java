@@ -17,12 +17,13 @@ import com.codex.learning.utility.Manager;
 
 public class BlockHolder extends Entity {
     private boolean inContact;
-    private boolean occupied;
+    private boolean occupied, dropped;
     private boolean isBlockHolder;
     private Blocks copyBlock;
     private TextureRegion normalBlock, highlightBlock;
     private String correctID;
     private int numberOfErrors;
+
 
 
     public BlockHolder(Manager manager, String correctID) {
@@ -57,6 +58,7 @@ public class BlockHolder extends Entity {
         inContact = false;
         occupied = false;
         isBlockHolder = true;
+        dropped = false;
         setCopyBlock(null);
 
         normalBlock = new TextureRegion(new Texture(Constants.BLOCK_SHEET_PATH), Constants.BLOCK_X, Constants.BLOCK_Y_NORMAL, Constants.BLOCK_WIDTH, Constants.BLOCK_HEIGHT/2);
@@ -90,7 +92,7 @@ public class BlockHolder extends Entity {
 
     public void createFixture(float x, float y, float posX){
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(x, y / 0.78f,
+        shape.setAsBox(x, y / 0.72f,//0.95
                 new Vector2(posX, (y - y / 1.2f)), 0);
 
         FixtureDef fixtureDef = new FixtureDef();
@@ -181,5 +183,13 @@ public class BlockHolder extends Entity {
 
     public void setCorrectID(String correctID) {
         this.correctID = correctID;
+    }
+
+    public boolean isDropped() {
+        return dropped;
+    }
+
+    public void setDropped(boolean dropped) {
+        this.dropped = dropped;
     }
 }

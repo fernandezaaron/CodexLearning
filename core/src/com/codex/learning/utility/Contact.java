@@ -124,37 +124,24 @@ public class Contact implements ContactListener {
                 }
             }
             else {
-//                if(blockholderCollision > 2) {
-//                    jedisaur.setPickUpAble(false);
-//                    System.out.println(blockholderCollision + "dapat di carry");
-//                }
-//                else {
-//                    jedisaur.setPickUpAble(true);
-//                }
                 jedisaur.setPickUpAble(true);
                 if(blocks.isPreDefinedContact()){
                     blocks.setInContact(false);
                     jedisaur.setPickUpAble(false);
                 }
                 else{
-                    if(jedisaur.isDropped()){
-                        numberOfCollision = 0;
-                        jedisaur.setDropped(false);
-                    }
                     numberOfCollision++;
                     System.out.println(numberOfCollision + " else ++");
-//                    if(blockholderCollision > 2) {
-//                        blocks.setInContact(false);
-//                        jedisaur.setPickUpAble(false);
-//                        System.out.println(blockholderCollision + "dapat di carry");
-//                    }
-//                    else {
-//                        jedisaur.setPickUpAble(true);
-//                    }
-                    jedisaur.setPickUpAble(true);
+                    if(numberOfCollision>1){
+                        blocks.setInContact(false);
+                        jedisaur.setPickUpAble(false);
+                    }else {
+                        jedisaur.setPickUpAble(true);
+
+                    }
                 }
-//                if(blockholderCollision>1){
                 if(numberOfCollision>1){
+                    System.out.println("more than 1");
                     blocks.setInContact(false);
                     jedisaur.setPickUpAble(false);
                 }
@@ -216,8 +203,9 @@ public class Contact implements ContactListener {
             else{
                 jedisaur.setPickUpAble(true);
             }
-            if(blockHolder.isOccupied()){
+            if(blockHolder.isDropped()){
                 numberOfCollision = 0;
+
             }
         }
 
@@ -388,8 +376,8 @@ public class Contact implements ContactListener {
             }
             blockHolder.setInContact(false);
             jedisaur.setPickUpAble(false);
-            blockholderCollision--;
-            System.out.println(blockholderCollision + " end holder ");
+//            blockholderCollision--;
+//            System.out.println(blockholderCollision + " end holder ");
         }
 
         if(isComputerContact(fa, fb)){

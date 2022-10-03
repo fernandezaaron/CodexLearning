@@ -34,6 +34,7 @@ public class Character extends Entity {
     private int carry;
     private int numberOfBlockInteraction;
 
+
     private boolean atTop;
     private boolean atBot;
     private boolean atLeft;
@@ -468,7 +469,7 @@ public class Character extends Entity {
 
     public void dropBlock(BlockHolder blockHolder){
         // To prevent pickup in an empty block holder
-        if(blockHolder.isOccupied() && !isCarrying()){
+        if(isFixture() && !isCarrying()){
             setPickUpAble(true);
         }
         else{
@@ -497,6 +498,7 @@ public class Character extends Entity {
 
             // BlockHolder Adjustment
             blockHolder.setOccupied(true);
+            blockHolder.setDropped(true);
             if(!isFixture()){
                 blockHolder.createFixture(getCopyBlock().getDupliSize().x, getCopyBlock().getDupliSize().y, Constants.BLOCK_HOLDER_WIDTH * getCopyBlock().getDupliSize().x - 0.75f);
             }
@@ -510,10 +512,11 @@ public class Character extends Entity {
             setCarrying(false);
             setPickedUp(false);
         }
-        else if(Gdx.input.isKeyJustPressed(Input.Keys.E) && isFixture() && blockHolder.isOccupied() && isPickUpAble() && !isBlockHolderCollision()){
+        else if(Gdx.input.isKeyJustPressed(Input.Keys.E) && isFixture() && blockHolder.isOccupied() && isPickUpAble()){
 //            System.out.println("picked up");
             blockHolder.setCopyBlock(null);
-            if(!isCarrying()){
+            if(!isCarrying() ){
+                System.out.println("destroying fixture");
                 blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().first());
                 for(int i = 0; i < blockHolder.getBody().getFixtureList().size; i++){
                     blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().removeIndex(i));
@@ -531,6 +534,8 @@ public class Character extends Entity {
             }
             setDropped(false);
             setPickedUp(true);
+            blockHolder.setDropped(false);
+
 
         }
     }
