@@ -47,7 +47,13 @@ public class Blocks extends Entity {
         fixtureDef.density = density;
         fixtureDef.shape = shape;
         fixtureDef.friction = 5;
-        fixtureDef.isSensor = true;
+
+        if(isPredefined){
+            fixtureDef.isSensor = true;
+        }else {
+            fixtureDef.isSensor = false;
+
+        }
 
         PolygonShape shape2 = new PolygonShape();
 

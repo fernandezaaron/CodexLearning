@@ -80,7 +80,7 @@ public class Manager {
         expertSystem = new ExpertSystem();
         expertSystem.readFile();
 
-        System.out.println("LEVEL - " + expertSystem.getExpertiseLevel());
+//        System.out.println("LEVEL - " + expertSystem.getExpertiseLevel());
         questionnaire = new Questionnaire(expertSystem.getExpertiseLevel());
 
 
@@ -144,7 +144,7 @@ public class Manager {
 
 
     public void push(State state){
-        System.out.println(state + " is pushed");
+//        System.out.println(state + " is pushed");
         states.push(state);
     }
     public void pop(){

@@ -44,7 +44,7 @@ public class CodeOrder extends State {
 
         /** START OF MINIGAME CREATION **/
         yStartingPoint = 10;
-        xStartingPoint = -10.0f;
+        xStartingPoint = -15.0f;
         for(int i = 0; i < minigameContainer.size(); i++) {
             if(minigameContainer.get(i) != null) {
                 mergeResult = "";
@@ -60,7 +60,7 @@ public class CodeOrder extends State {
             blockHolders[i] = new BlockHolder(manager, answerPoolContainer.get(i));
             blockHolders[i].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2(Constants.BLOCK_HOLDER_WIDTH, Constants.BLOCK_HOLDER_HEIGHT), 0);
             yStartingPoint -= 2.5f;
-            System.out.println(yStartingPoint);
+//            System.out.println(yStartingPoint);
         }
         answerBlocks = new Blocks[answerPoolContainer.size()];
         Collections.shuffle(answerPoolContainer);
@@ -74,7 +74,7 @@ public class CodeOrder extends State {
             currentStringLength = (float) String.valueOf(answerPoolContainer.get(i)).length();
             answerBlocks[i] = new Blocks(manager, answerPoolContainer.get(i), answerPoolContainer.get(i), true);
             if (answerPoolContainer.get(i) != null) {
-                answerBlocks[i].create(new Vector2(AnsPoolX, AnsPoolY), new Vector2((currentStringLength * 0.225f), Constants.BLOCKS_HEIGHT), 0);
+                answerBlocks[i].create(new Vector2(AnsPoolX, AnsPoolY), new Vector2((currentStringLength * 0.24f), Constants.BLOCKS_HEIGHT), 0);
             }
             AnsPoolY -= 2.5f;
         }
@@ -181,7 +181,7 @@ public class CodeOrder extends State {
     public void getAMinigame(String stage){
         manager.getQuestionnaire().minigameDisplay(stage,String.valueOf(manager.getStageSelector().getStageMap()));
         minigameContainer = manager.getQuestionnaire().getMinigameHolder();
-        System.out.println(minigameContainer.size() + " size here ");
+//        System.out.println(minigameContainer.size() + " size here ");
         if(minigameContainer.size() > 9){
             manager.getQuestionnaire().clearMinigames();
             getAMinigame(stage);

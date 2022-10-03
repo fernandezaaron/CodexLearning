@@ -146,8 +146,7 @@ public class PauseState extends State {
                     else {
                         manager.getOfficeMap().dispose();
                     }
-                    manager.getMinigameChecker().setNumberOfAttempts(0);
-                    manager.getMinigameChecker().setDone(false);
+                    manager.getMinigameChecker().dispose();
                     manager.getMinigame().reset();
                     manager.set(new PlayState(manager));
                 }
@@ -169,10 +168,12 @@ public class PauseState extends State {
                     else {
                         manager.getOfficeMap().dispose();
                     }
-                    manager.getMinigameChecker().setNumberOfAttempts(0);
-                    manager.getMinigameChecker().setDone(false);
+                    manager.getMinigameChecker().dispose();
                     manager.getMinigame().reset();
+                    manager.getStage().clear();
+
                     manager.set(new StageSelectState(manager));
+
 
                 }
                 if(settingsBounds.contains(coords.x, coords.y)){
@@ -184,6 +185,7 @@ public class PauseState extends State {
                     if (manager.getQuestionnaire().getMinigameHolder() != null){
                         manager.getQuestionnaire().clearMinigames();
                         manager.getMinigame().dispose();
+                        manager.getStage().clear();
                     }
                     manager.getPlayroomMap().dispose();
                     manager.set(new MenuState(manager));

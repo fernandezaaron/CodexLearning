@@ -55,6 +55,7 @@ public class Minigame extends State {
             case 1:
                 fillInTheBlockFlag = true;
                 fillInTheBlock = new FillInTheBlock(manager, jedisaur, fuzzyLogic);
+
                 break;
             case 2:
                 mysteryCodeFlag = true;
@@ -64,10 +65,10 @@ public class Minigame extends State {
                 codeOrderFlag = true;
                 codeOrder = new CodeOrder(manager, jedisaur, fuzzyLogic);
                 break;
-            case 4:
-                codeITFlag = true;
-                codeIT = new CodeIT(manager,jedisaur, fuzzyLogic);
-                break;
+//            case 4:
+//                codeITFlag = true;
+//                codeIT = new CodeIT(manager,jedisaur, fuzzyLogic);
+//                break;
         }
     }
 
@@ -81,9 +82,9 @@ public class Minigame extends State {
         }else if(codeOrderFlag){
             codeOrder.update(delta);
         }
-        else if(codeITFlag){
-            codeIT.update(delta);
-        }
+//        else if(codeITFlag){
+//            codeIT.update(delta);
+//        }
 
     }
 
@@ -97,9 +98,9 @@ public class Minigame extends State {
         }else if(codeOrderFlag){
             codeOrder.render(sprite);
         }
-        else if(codeITFlag){
-            codeIT.render(sprite);
-        }
+//        else if(codeITFlag){
+//            codeIT.render(sprite);
+//        }
 
     }
 
@@ -111,14 +112,14 @@ public class Minigame extends State {
             fillInTheBlock.dispose();
         }
         else if(mysteryCodeFlag){
-            System.out.println("disposing mc");
+//            System.out.println("disposing mc");
             mysteryCode.dispose();
         }else if(codeOrderFlag){
             codeOrder.dispose();
         }
-        else if(codeITFlag){
-            codeIT.dispose();
-        }
+//        else if(codeITFlag){
+//            codeIT.dispose();
+//        }
     }
 
     public void checkBehavior(float timer, Character jedisaur){

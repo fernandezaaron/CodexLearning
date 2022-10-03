@@ -200,15 +200,15 @@ public class FuzzyLogic {
         else{
             setCookies(0);
         }
-        System.out.println("TIME CONSUMPTION - " + getTimeConsumptions());
-        System.out.println("NUMBER OF Attempts- " + getNumberOfAttempts());
-        System.out.println("NUMBER OF ERROR - " + getNumberOfErrors());
-        System.out.println("Correct ouutput - " + getCorrectOutput());
-        System.out.println("NUMBER OF COOKIES - " + getCookies());
+//        System.out.println("TIME CONSUMPTION - " + getTimeConsumptions());
+//        System.out.println("NUMBER OF Attempts- " + getNumberOfAttempts());
+//        System.out.println("NUMBER OF ERROR - " + getNumberOfErrors());
+//        System.out.println("Correct ouutput - " + getCorrectOutput());
+//        System.out.println("NUMBER OF COOKIES - " + getCookies());
     }
 
     public void fuzzyReset(){
-        System.out.println("fuzzy reset");
+//        System.out.println("fuzzy reset");
         fuzzyDone = false;
         numberOfErrors = 0;
         timeConsumptions = 0;

@@ -30,7 +30,7 @@ public class MinigameChecker {
                 if(blockOrder[i] != null) {
                     blockOrder[i].setCopyBlock(updateOrder[i]);
                     numberOfErrors += blockOrder[i].checkErrors();
-                    System.out.println(numberOfErrors + " errors ");
+//                    System.out.println(numberOfErrors + " errors ");
                 }
             }
         }
@@ -40,7 +40,7 @@ public class MinigameChecker {
                     if (blockHolders[i][j] != null) {
                         blockHolders[i][j].setCopyBlock(updateBlocks[i][j]);
                         numberOfErrors += blockHolders[i][j].checkErrors();
-                        System.out.println(numberOfErrors + " errors ");
+//                        System.out.println(numberOfErrors + " errors ");
                     }
                 }
             }
@@ -137,5 +137,12 @@ public class MinigameChecker {
 
     public void setNumberOfBlockInteraction(int numberOfBlockInteraction) {
         this.numberOfBlockInteraction = numberOfBlockInteraction;
+    }
+
+    public void dispose() {
+        setNumberOfAttempts(0);
+        setDone(false);
+        updateBlocks = new Blocks[20][20];
+        updateOrder = new Blocks[20];
     }
 }

@@ -59,6 +59,7 @@ public class CodeRiddle extends State {
 
     public CodeRiddle(Manager manager, FuzzyLogic fuzzyLogic) {
         super(manager);
+        
 
         this.fuzzyLogic = fuzzyLogic;
         behavior = new ArrayList<>();
@@ -367,7 +368,6 @@ public class CodeRiddle extends State {
         if(isEngaged() && isInComputer()){
             if(!behaviorBox.isOpen()){
                 behaviorTable.setVisible(true);
-
                     behaviorIndex = rand.nextInt(10-1)+1;
                     behaviorBox.changeSkin(manager.getSkin(),"behaviorbox");
                     behaviorBox.textAnimation(manager.getDialogue().reader(behaviorIndex, "behavior", 0));
