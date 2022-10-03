@@ -62,7 +62,7 @@ public class MysteryCode extends State {
         for(int i = 0; i < banishPerRow.size(); i++) {
             banishNumberIterator = (banishPerRow.get(i).size() == 1)? 1:randomizer.nextInt(2) + 1;
             for (int j = 0; j < banishPerRow.get(i).size(); j++) {
-                System.out.println(banishPerRow.get(i).get(0) + " asasfasfa");
+//                System.out.println(banishPerRow.get(i).get(0) + " asasfasfa");
                 banishNumber = randomizer.nextInt(banishPerRow.get(i).size() - 1) + banishPerRow.get(i).get(0);
                 if (banishNumberIterator == 0) {
                     break;
