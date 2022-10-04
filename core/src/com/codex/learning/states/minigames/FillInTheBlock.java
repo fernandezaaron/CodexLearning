@@ -127,8 +127,15 @@ public class FillInTheBlock extends State {
                             questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.4f), Constants.BLOCKS_HEIGHT), 0);
                         }
                         else{
-                            if(currentStringLength>7){
-                                xStartingPoint += 2.75f;
+                            if(currentStringLength>7 && currentStringLength<=15){
+                                xStartingPoint += 2.95f;
+                            }
+                            if(j != 0 && currentStringLength > 15){
+                                xStartingPoint += 4.5f;
+                            }
+
+                            if(j == 0){
+                                xStartingPoint = -18.0f;
                             }
                             questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.23f), Constants.BLOCKS_HEIGHT), 0);
                         }

@@ -54,9 +54,9 @@ public class PlayState extends State{
 
 
 
-//        randomMinigame = rand.nextInt(3-1)+1;
+        randomMinigame = rand.nextInt(3-1)+1;
 
-        randomMinigame = 2;
+//        randomMinigame = 2;
 
         playroomMap = new PlayroomMapS1(manager);
         manager.setPlayroomMap(playroomMap);
@@ -139,6 +139,10 @@ public class PlayState extends State{
             manager.getMinigame().update(delta);
             if(playroomMap.getPlayMat().isInContact()){
                 jedisaur.dropBlock(playroomMap.getPlayMat());
+                if(jedisaur.isDropped()){
+                    manager.getCl().setNumberOfCollision(0);
+                    jedisaur.setDropped(false);
+                }
             }
 
 

@@ -95,13 +95,20 @@ public class MysteryCode extends State {
                         questionBlocks[i][j] = new Blocks(manager, minigameContainer.get(i).get(j), minigameContainer.get(i).get(j), true);
                         if (currentStringLength <= 3){
                             questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.43f), Constants.BLOCKS_HEIGHT), 0);
-
                         }
                         else{
-                            if(currentStringLength>7){
+                            if(currentStringLength>7 && currentStringLength<=15){
                                 xStartingPoint += 2.95f;
                             }
-                            questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.24f), Constants.BLOCKS_HEIGHT), 0);
+                            if(j != 0 && currentStringLength > 15){
+                                xStartingPoint += 4.5f;
+                            }
+
+                            if(j == 0){
+                                xStartingPoint = -18.0f;
+                            }
+
+                            questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.22f), Constants.BLOCKS_HEIGHT), 0);
                         }
                         questionBlocks[i][j].setPreDefinedContact(true);
                         blocksArrayList.get(i).add(questionBlocks[i][j]);
@@ -152,12 +159,6 @@ public class MysteryCode extends State {
 
         this.jedisaur = jedisaur;
         this.fuzzyLogic = fuzzyLogic;
-        for(int i=0; i<blocksArrayList.size(); i++){
-            for (int j=0; j<blocksArrayList.get(i).size(); j++){
-                System.out.println(i+" " + j + " " + blocksArrayList.get(i).get(j));
-
-            }
-        }
 
     }
 
@@ -170,13 +171,6 @@ public class MysteryCode extends State {
             manager.getMinigame().checkBehavior((int) timer, jedisaur);
         }
 
-
-            for(int i=0; i<blocksArrayList.size(); i++){
-                for (int j=0; j<blocksArrayList.get(i).size(); j++){
-                    System.out.println(i+" " + j + " " + blocksArrayList.get(i).get(j));
-
-                }
-            }
 
         currentCell = 0;
         for (int i = 0; i < minigameContainer.size(); i++) {
@@ -211,7 +205,6 @@ public class MysteryCode extends State {
                             if(jedisaur.isDropped()  && !blocksArrayList.get(i).contains(blockHolders[i][j].getCopyBlock()) && blocksArrayList.get(i).get(j) == null){
                                 System.out.println(j + " " + blockHolders[i][j].getCopyBlock());
                                 blocksArrayList.get(i).set(j, blockHolders[i][j].getCopyBlock());
-
                             }
                             if(jedisaur.isDropped()) {
                                 setBlockToCheck(blockHolders[i][j].getCopyBlock(), i, j);
@@ -227,7 +220,6 @@ public class MysteryCode extends State {
         /** below this is used for padding **/
         if(jedisaur.isCarrying() && jedisaur.getCopyBlock() != null){
             blockSize = jedisaur.getCopyBlock().getDupliSize().x;
-//            blockSize = 1.5f;
         }
 
         for (int i = 0; i < answerPoolContainer.size(); i++) {

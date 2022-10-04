@@ -26,71 +26,6 @@ public class Contact implements ContactListener {
             return;
         }
 
-//        if(isBlockContact(fa, fb) && isBlockHolderContact(fa,fb)) {
-//            System.out.println(" IN BLOCK AND BLOCKHOLDER CONTACT");
-//            Blocks blocks;
-//            BlockHolder blockHolder;
-//            Character jedisaur;
-//            if(fa.getUserData() instanceof Blocks && fa.getUserData() instanceof BlockHolder) {
-//                blocks = (Blocks) fa.getUserData();
-//                blockHolder = (BlockHolder) fa.getUserData();
-//                jedisaur = (Character) fb.getUserData();
-//            } else {
-//                jedisaur = (Character) fa.getUserData();
-//                blocks = (Blocks) fb.getUserData();
-//                blockHolder = (BlockHolder) fb.getUserData();
-//            }
-//
-//            blocks.setInContact(true);
-//            blockHolder.setInContact(true);
-//
-//
-//            if (jedisaur.isCarrying()) {
-//                if (blocks.isPreDefinedContact() ) {
-//                    blocks.setInContact(false);
-//                    jedisaur.setPickUpAble(false);
-//                }
-//                else {
-//                    blocks.setInContact(true);
-//                    if (jedisaur.isCarrying()) {
-//                        jedisaur.setPickUpAble(false);
-//                    }
-//                    else {
-//                        if(blockHolder.isInContact()) {
-//                            if (blockHolder.isOccupied()) {
-//                                blockholderCollision++;
-//                                jedisaur.setPickUpAble(false);
-//                            } else {
-//                                jedisaur.setPickUpAble(true);
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//            else {
-//                jedisaur.setPickUpAble(true);
-//                if(blocks.isPreDefinedContact()){
-//                    blocks.setInContact(false);
-//                    jedisaur.setPickUpAble(false);
-//                }
-//                else{
-//                    if(blockHolder.isInContact()) {
-//                        blockholderCollision++;
-//                        if (blockHolder.isOccupied()) {
-//                            jedisaur.setPickUpAble(false);
-//                        }
-//                        else {
-//                            jedisaur.setPickUpAble(true);
-//                        }
-//                    }
-//                    if(jedisaur.isDropped()){
-//                        numberOfCollision++;
-//                        jedisaur.setDropped(false);
-//                    }
-//                }
-//            }
-//        }
-
         if(isBlockContact(fa, fb)) {
             System.out.println(" IN BLOCK CONTACT");
             Blocks blocks;
@@ -106,7 +41,6 @@ public class Contact implements ContactListener {
             blocks.setInContact(true);
 
             if (jedisaur.isCarrying()) {
-                System.out.println("Block yes");
                 numberOfCollision = 1;
                 System.out.println(numberOfCollision + " if --");
                 if (blocks.isPreDefinedContact() ) {
@@ -133,19 +67,13 @@ public class Contact implements ContactListener {
                 else{
                     numberOfCollision++;
                     System.out.println(numberOfCollision + " else ++");
-                    if(numberOfCollision>1){
-                        blocks.setInContact(false);
-                        jedisaur.setPickUpAble(false);
-                    }else {
-                        jedisaur.setPickUpAble(true);
-
-                    }
                 }
                 if(numberOfCollision>1){
                     System.out.println("more than 1");
                     blocks.setInContact(false);
                     jedisaur.setPickUpAble(false);
                 }
+
             }
         }
 
@@ -222,9 +150,9 @@ public class Contact implements ContactListener {
 //                jedisaur.setPickUpAble(true);
 //            }
 
-            if(blockHolder.isDropped()){
-                numberOfCollision = 0;
-            }
+//            if(blockHolder.isDropped()){
+//                numberOfCollision = 0;
+//            }
         }
 
         if(isComputerContact(fa, fb)){
