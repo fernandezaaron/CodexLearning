@@ -119,7 +119,7 @@ public class FillInTheBlock extends State {
                         blocksArrayList.get(i).add(blockHolders[i][j].getCopyBlock());
                         xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 1.75f;
                         if(currentStringLength >7){
-                            xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 2.5f;
+                            xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 2.15f;
                         }
                     } else {
                         questionBlocks[i][j] = new Blocks(manager, minigameContainer.get(i).get(j), minigameContainer.get(i).get(j), true);
