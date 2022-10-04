@@ -59,11 +59,14 @@ public class MysteryCode extends State {
         getAMinigame(manager.getStageSelector().map());
 
         /** BANISH 1 OR 2 CELLS PER ROW **/
+        System.out.println(banishPerRow);
         for(int i = 0; i < banishPerRow.size(); i++) {
-            banishNumberIterator = (banishPerRow.get(i).size() == 1)? 1:randomizer.nextInt(2) + 1;
+            banishNumberIterator = (banishPerRow.get(i).size() <= 2)? 1:randomizer.nextInt(2) + 1;
+            System.out.println(banishPerRow.get(i).size() + " this size " + banishNumberIterator);
             for (int j = 0; j < banishPerRow.get(i).size(); j++) {
 //                System.out.println(banishPerRow.get(i).get(0) + " asasfasfa");
-                banishNumber = randomizer.nextInt(banishPerRow.get(i).size() - 1) + banishPerRow.get(i).get(0);
+                banishNumber = randomizer.nextInt(banishPerRow.get(i).size()) + banishPerRow.get(i).get(0);
+                System.out.println(banishNumber + " number - bound " + (banishPerRow.get(i).size() - 1) + " plus " + banishPerRow.get(i).get(0));
                 if (banishNumberIterator == 0) {
                     break;
                 }
@@ -154,7 +157,7 @@ public class MysteryCode extends State {
         this.fuzzyLogic = fuzzyLogic;
         for(int i=0; i<blocksArrayList.size(); i++){
             for (int j=0; j<blocksArrayList.get(i).size(); j++){
-                System.out.println(i+" " + j + " " + blocksArrayList.get(i).get(j));
+//                System.out.println(i+" " + j + " " + blocksArrayList.get(i).get(j));
 
             }
         }
@@ -173,7 +176,7 @@ public class MysteryCode extends State {
 
             for(int i=0; i<blocksArrayList.size(); i++){
                 for (int j=0; j<blocksArrayList.get(i).size(); j++){
-                    System.out.println(i+" " + j + " " + blocksArrayList.get(i).get(j));
+//                    System.out.println(i+" " + j + " " + blocksArrayList.get(i).get(j));
 
                 }
             }
@@ -209,7 +212,7 @@ public class MysteryCode extends State {
                         if (blockHolders[i][j].isInContact()) {
                             jedisaur.dropBlock(blockHolders[i][j]);
                             if(jedisaur.isDropped()  && !blocksArrayList.get(i).contains(blockHolders[i][j].getCopyBlock()) && blocksArrayList.get(i).get(j) == null){
-                                System.out.println(j + " " + blockHolders[i][j].getCopyBlock());
+//                                System.out.println(j + " " + blockHolders[i][j].getCopyBlock());
                                 blocksArrayList.get(i).set(j, blockHolders[i][j].getCopyBlock());
 
                             }
