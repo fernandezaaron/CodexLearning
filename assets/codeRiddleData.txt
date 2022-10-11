@@ -1,2 +1,6 @@
 0Stage Number,Topic,Iteration,Time Consumption,Number of Error,Behavior,Accuracy,
 1,Syntax,1,0,5,NOT ENGAGED,100.00%,
+2,Data Types,1,0,5,NOT ENGAGED,100.00%,
+3,Operators,1,0,0,ENGAGED,100.00%,
+3,Operators,2,1,0,ENGAGED,100.00%,
+4,Syntax,1,0,5,NOT ENGAGED,100.00%,
