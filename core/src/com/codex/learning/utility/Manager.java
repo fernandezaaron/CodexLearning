@@ -122,7 +122,7 @@ public class Manager {
         pcStateSheet = new TextureRegion(new Texture(Constants.PC_SHEET_PATH));
 
         font = new BitmapFont(Gdx.files.internal(Constants.FONT_STYLE));
-        font.getData().setScale((stage.getWidth()/Constants.PPM)*0.024f);
+        font.getData().setScale((stage.getWidth()/Constants.PPM)*0.022f);
 
         camera = new OrthographicCamera(Constants.SCREEN_WIDTH, Constants.SCREEN_WIDTH);
         camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
@@ -180,6 +180,8 @@ public class Manager {
     public World getWorld() {
         return world;
     }
+
+
     public OrthographicCamera getCamera() {
         return camera;
     }
@@ -191,6 +193,8 @@ public class Manager {
     public Skin getSkin() {
         return skin;
     }
+
+
 
     public TextureAtlas getAtlas() {
         return atlas;
@@ -269,6 +273,7 @@ public class Manager {
     public Music getMusic(){
         return music;
     }
+
 
     public boolean isMusicPaused() {
         return musicPaused;

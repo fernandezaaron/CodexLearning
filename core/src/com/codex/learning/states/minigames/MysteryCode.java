@@ -59,11 +59,14 @@ public class MysteryCode extends State {
         getAMinigame(manager.getStageSelector().map());
 
         /** BANISH 1 OR 2 CELLS PER ROW **/
+        System.out.println(banishPerRow);
         for(int i = 0; i < banishPerRow.size(); i++) {
-            banishNumberIterator = (banishPerRow.get(i).size() == 1)? 1:randomizer.nextInt(2) + 1;
+            banishNumberIterator = (banishPerRow.get(i).size() <= 2)? 1:randomizer.nextInt(2) + 1;
+            System.out.println(banishPerRow.get(i).size() + " this size " + banishNumberIterator);
             for (int j = 0; j < banishPerRow.get(i).size(); j++) {
 //                System.out.println(banishPerRow.get(i).get(0) + " asasfasfa");
-                banishNumber = randomizer.nextInt(banishPerRow.get(i).size() - 1) + banishPerRow.get(i).get(0);
+                banishNumber = randomizer.nextInt(banishPerRow.get(i).size()) + banishPerRow.get(i).get(0);
+                System.out.println(banishNumber + " number - bound " + (banishPerRow.get(i).size() - 1) + " plus " + banishPerRow.get(i).get(0));
                 if (banishNumberIterator == 0) {
                     break;
                 }
@@ -95,13 +98,20 @@ public class MysteryCode extends State {
                         questionBlocks[i][j] = new Blocks(manager, minigameContainer.get(i).get(j), minigameContainer.get(i).get(j), true);
                         if (currentStringLength <= 3){
                             questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.43f), Constants.BLOCKS_HEIGHT), 0);
-
                         }
                         else{
-                            if(currentStringLength>7){
+                            if(currentStringLength>7 && currentStringLength<=15){
                                 xStartingPoint += 2.95f;
                             }
-                            questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.24f), Constants.BLOCKS_HEIGHT), 0);
+                            if(j != 0 && currentStringLength > 15){
+                                xStartingPoint += 4.5f;
+                            }
+
+                            if(j == 0){
+                                xStartingPoint = -18.0f;
+                            }
+
+                            questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.22f), Constants.BLOCKS_HEIGHT), 0);
                         }
                         questionBlocks[i][j].setPreDefinedContact(true);
                         blocksArrayList.get(i).add(questionBlocks[i][j]);
@@ -153,15 +163,18 @@ public class MysteryCode extends State {
         this.jedisaur = jedisaur;
         this.fuzzyLogic = fuzzyLogic;
 
+
     }
 
 
     @Override
     public void update(float delta) {
+
         if(!manager.getMinigameChecker().isDone()){
             timer += Gdx.graphics.getDeltaTime();
             manager.getMinigame().checkBehavior((int) timer, jedisaur);
         }
+
 
         currentCell = 0;
         for (int i = 0; i < minigameContainer.size(); i++) {
@@ -193,7 +206,8 @@ public class MysteryCode extends State {
                     if (banishCells.contains(currentCell)) {
                         if (blockHolders[i][j].isInContact()) {
                             jedisaur.dropBlock(blockHolders[i][j]);
-                            if(jedisaur.isDropped() && !blocksArrayList.get(i).contains(blockHolders[i][j].getCopyBlock())){
+                            if(jedisaur.isDropped()  && !blocksArrayList.get(i).contains(blockHolders[i][j].getCopyBlock()) && blocksArrayList.get(i).get(j) == null){
+//                                System.out.println(j + " " + blockHolders[i][j].getCopyBlock());
                                 blocksArrayList.get(i).set(j, blockHolders[i][j].getCopyBlock());
                             }
                             if(jedisaur.isDropped()) {
@@ -294,6 +308,7 @@ public class MysteryCode extends State {
 
                             if(jedisaur.isPickedUp()){
                                 blocksArrayList.get(i).set(j, null);
+
                                 int tempCurrentCell = currentCell;
                                 for(int k=j-1; k>=0; k--){
                                     tempCurrentCell--;
@@ -343,6 +358,8 @@ public class MysteryCode extends State {
                                 }
                                 setBlockToCheck(null, i, j);
                                 setToCheck(blockHolders);
+
+
                                 jedisaur.setPickedUp(false);
                             }
                         }

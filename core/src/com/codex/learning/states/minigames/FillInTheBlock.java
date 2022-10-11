@@ -119,7 +119,7 @@ public class FillInTheBlock extends State {
                         blocksArrayList.get(i).add(blockHolders[i][j].getCopyBlock());
                         xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 1.75f;
                         if(currentStringLength >7){
-                            xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 2.5f;
+                            xStartingPoint += Constants.BLOCK_HOLDER_WIDTH + 2.15f;
                         }
                     } else {
                         questionBlocks[i][j] = new Blocks(manager, minigameContainer.get(i).get(j), minigameContainer.get(i).get(j), true);
@@ -127,8 +127,15 @@ public class FillInTheBlock extends State {
                             questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.4f), Constants.BLOCKS_HEIGHT), 0);
                         }
                         else{
-                            if(currentStringLength>7){
-                                xStartingPoint += 2.75f;
+                            if(currentStringLength>7 && currentStringLength<=15){
+                                xStartingPoint += 2.95f;
+                            }
+                            if(j != 0 && currentStringLength > 15){
+                                xStartingPoint += 4.5f;
+                            }
+
+                            if(j == 0){
+                                xStartingPoint = -18.0f;
                             }
                             questionBlocks[i][j].create(new Vector2(xStartingPoint, yStartingPoint), new Vector2((currentStringLength * 0.23f), Constants.BLOCKS_HEIGHT), 0);
                         }
@@ -239,7 +246,7 @@ public class FillInTheBlock extends State {
                     if (banishPoolContainer.contains(minigameContainer.get(i).get(j))) {
                         if (blockHolders[i][j].isInContact()) {
                             jedisaur.dropBlock(blockHolders[i][j]);
-                            if(jedisaur.isDropped() && !blocksArrayList.get(i).contains(blockHolders[i][j].getCopyBlock())){
+                            if(jedisaur.isDropped() && !blocksArrayList.get(i).contains(blockHolders[i][j].getCopyBlock()) && blocksArrayList.get(i).get(j) == null){
                                 blocksArrayList.get(i).set(j, blockHolders[i][j].getCopyBlock());
                             }
                             if(jedisaur.isDropped()) {
