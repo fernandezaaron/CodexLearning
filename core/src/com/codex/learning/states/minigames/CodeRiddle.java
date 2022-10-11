@@ -447,30 +447,32 @@ public class CodeRiddle extends State {
                 currentBehavior = manager.getServer().calculateMLResult(
                         checkTimeConsumption((int) fuzzyTimer) +
                         mlDataSet.getNumberOfErrors());
+                String[] data = currentBehavior.split(",");
+
+                once = false;
+
+                codeRiddleData.add(new ArrayList<String>());
+                codeRiddleData.get(dataCounter).add(checkTimeConsumption((int) fuzzyTimer));
+                codeRiddleData.get(dataCounter).add(mlDataSet.getNumberOfErrors());
+                codeRiddleData.get(dataCounter).add(data[0]);
+                codeRiddleData.get(dataCounter).add(data[1]);
+                dataCounter++;
+                this.timer = 0;
+
+                if (currentBehavior.equals("ENGAGED")) {
+                    //Yung behavior na dialogue na engaged
+                    setEngaged(true);
+                    behaviorTable();
+                    setBehaviorTableOpen(true);
+                } else {
+                    //Yung behavior na dialogue na not engaged
+                    setNotEngaged(true);
+                    behaviorTable();
+                    setBehaviorTableOpen(true);
+
+                }
             } catch (IOException e) {
                 e.printStackTrace();
-            }
-
-            once = false;
-
-            codeRiddleData.add(new ArrayList<String>());
-            codeRiddleData.get(dataCounter).add(checkTimeConsumption((int) fuzzyTimer));
-            codeRiddleData.get(dataCounter).add(mlDataSet.getNumberOfErrors());
-            codeRiddleData.get(dataCounter).add(currentBehavior);
-            dataCounter++;
-            this.timer = 0;
-
-            if (currentBehavior.equals("ENGAGED")) {
-                //Yung behavior na dialogue na engaged
-                setEngaged(true);
-                behaviorTable();
-                setBehaviorTableOpen(true);
-            } else {
-                //Yung behavior na dialogue na not engaged
-                setNotEngaged(true);
-                behaviorTable();
-                setBehaviorTableOpen(true);
-
             }
         }
     }

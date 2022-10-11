@@ -133,28 +133,30 @@ public class Minigame extends State {
             mlDataSet.setCurrentNumberOfBlockInteraction(jedisaur.getNumberOfBlockInteraction());
             fuzzyTimer = 0;
             try {
-            currentBehavior = manager.getServer().calculateMLResult(
-                    mlDataSet.getMovement() +
-                    mlDataSet.checkTimeConsumption((int) timer) +
-                    mlDataSet.getNumberOfAttempts() +
-                    mlDataSet.getNumberOfBlockInteraction());
+                currentBehavior = manager.getServer().calculateMLResult(
+                        mlDataSet.getMovement() +
+                        mlDataSet.checkTimeConsumption((int) timer) +
+                        mlDataSet.getNumberOfAttempts() +
+                        mlDataSet.getNumberOfBlockInteraction());
+                String[] data = currentBehavior.split(",");
+
+                minigameData.add(new ArrayList<String>());
+                minigameData.get(dataCounter).add(mlDataSet.getMovement());
+                minigameData.get(dataCounter).add(mlDataSet.checkTimeConsumption((int) timer));
+                minigameData.get(dataCounter).add(mlDataSet.getNumberOfAttempts());
+                minigameData.get(dataCounter).add(mlDataSet.getNumberOfBlockInteraction());
+                minigameData.get(dataCounter).add(data[0]);
+                minigameData.get(dataCounter).add(data[1]);
+                dataCounter++;
+
+                if(currentBehavior.equals("ENGAGED")){
+                    setEngaged(true);
+                }
+                else{
+                    setNotEngaged(true);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
-            }
-
-            minigameData.add(new ArrayList<String>());
-            minigameData.get(dataCounter).add(mlDataSet.getMovement());
-            minigameData.get(dataCounter).add(mlDataSet.checkTimeConsumption((int) timer));
-            minigameData.get(dataCounter).add(mlDataSet.getNumberOfAttempts());
-            minigameData.get(dataCounter).add(mlDataSet.getNumberOfBlockInteraction());
-            minigameData.get(dataCounter).add(currentBehavior);
-            dataCounter++;
-
-            if(currentBehavior.equals("ENGAGED")){
-                setEngaged(true);
-            }
-            else{
-                setNotEngaged(true);
             }
         }
     }
