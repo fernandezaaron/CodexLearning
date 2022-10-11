@@ -205,12 +205,6 @@ public class ReportCard extends State{
                             manager.getMinigame().getCookies(), manager.getCodeRiddle().getCodeRiddleData(),
                             manager.getMinigame().getMinigameData());
 
-
-                    manager.getExpertSystem().writeDataAccuracy(Constants.DATA_ACCURACY_FILE_PATH, manager.getStageSelector().getStageMap(),
-                            manager.getQuestionnaire().getMinigameTopic(), manager.getCodeRiddle().getCodeRiddleData());
-                    manager.getExpertSystem().writeDataAccuracy(Constants.DATA_ACCURACY_FILE_PATH, manager.getStageSelector().getStageMap(),
-                            manager.getQuestionnaire().getMinigameTopic(), manager.getMinigame().getMinigameData());
-
                     manager.getMinigameChecker().setNumberOfAttempts(0);
                     manager.getCodeRiddle().setCodeRiddleData(null);
                     manager.getMinigameChecker().setDone(false);

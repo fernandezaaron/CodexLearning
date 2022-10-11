@@ -151,62 +151,6 @@ public class ExpertSystem {
         return null;
     }
 
-    //DataAccuracy.txt
-    public void writeDataAccuracy(String path, int stageNumber, String stageTopic, ArrayList<ArrayList<String>> newData){
-        try {
-            int length = 0;
-
-            File file = new File(path);
-            if (file.createNewFile()) {
-//                System.out.println("File created: " + file.getName());
-                FileWriter fileWriter = new FileWriter(path, false);
-                fileWriter.write("0Stage Number,Topic,Data Set,Behavior,Accuracy\n");
-                fileWriter.close();
-            }
-            ArrayList<ArrayList<String>> data = readDataFirst(path);
-            for(int i = 0; i < newData.size(); i++){
-                newData.get(i).add(0, String.valueOf(stageNumber));
-                newData.get(i).add(1, stageTopic);
-                newData.get(i).add(2, String.valueOf(i + 1));
-            }
-            if(!data.isEmpty()){
-                for(ArrayList<String> i: data){
-                    if(i.get(0).equals(String.valueOf(stageNumber))){
-                        i.clear();
-                    }
-                }
-            }
-            for(int i = 0; i < data.size(); i++){
-                if(data.get(i).isEmpty()){
-                    continue;
-                }
-                else{
-                    newData.add(data.get(i));
-                }
-            }
-            Collections.sort(newData, new Comparator<ArrayList<String>>() {
-                @Override
-                public int compare(ArrayList<String> a, ArrayList<String> b) {
-                    return a.get(0).compareTo(b.get(0));
-                }
-            });
-            FileWriter fileWriter = new FileWriter(path, false);
-            for (ArrayList<String> arrayList : newData) {
-                for (String i : arrayList) {
-                    if(length == arrayList.size()){
-                        fileWriter.write("\n");
-                        length = 0;
-                    }
-                    length++;
-                    fileWriter.write(i + ",");
-                }
-            }
-            fileWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     //Data.txt
     public void writeDataGathering(int stageNumber, String stageTopic, String expertiseLevel, int numberOfCookie, ArrayList<ArrayList<String>> codeRiddleData, ArrayList<ArrayList<String>> minigameData){
         try {
@@ -256,7 +200,7 @@ public class ExpertSystem {
                 }
                 else{
                     for(String i: arrayList){
-                        if(length == arrayList.size() - 1){
+                        if(length == arrayList.size()){
                             fileWriter.write("\n");
                             length = 0;
                         }
@@ -282,10 +226,10 @@ public class ExpertSystem {
 //                System.out.println("File created: " + file.getName());
                 FileWriter fileWriter = new FileWriter(path, false);
                 if(num == 0){
-                    fileWriter.write("0Stage Number,Topic,Iteration,Time Consumption,Number of Error,Behavior,\n");
+                    fileWriter.write("0Stage Number,Topic,Iteration,Time Consumption,Number of Error,Behavior,Accuracy,\n");
                 }
                 else{
-                    fileWriter.write("0Stage Number,Topic,Iteration,Movement,Time Consumption,Number of Attempts,Number of Block Interaction,Behavior,\n");
+                    fileWriter.write("0Stage Number,Topic,Iteration,Movement,Time Consumption,Number of Attempts,Number of Block Interaction,Behavior,Accuracy,\n");
                 }
                 fileWriter.close();
             }
@@ -319,7 +263,7 @@ public class ExpertSystem {
             FileWriter fileWriter = new FileWriter(path, false);
             for (ArrayList<String> arrayList : newData) {
                 for (String i : arrayList) {
-                    if(length == arrayList.size() - 1){
+                    if(length == arrayList.size()){
                         fileWriter.write("\n");
                         length = 0;
                     }
