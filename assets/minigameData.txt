@@ -1,5 +1,0 @@
-0Stage Number,Topic,Iteration,Movement,Time Consumption,Number of Attempts,Number of Block Interaction,Behavior,Accuracy,
-1,Syntax,1,0,1,1,1,ENGAGED,99.90%,
-2,Data Types,1,0,1,1,1,ENGAGED,99.90%,
-3,Operators,1,0,1,1,1,ENGAGED,99.90%,
-4,Syntax,1,0,1,1,1,ENGAGED,99.90%,

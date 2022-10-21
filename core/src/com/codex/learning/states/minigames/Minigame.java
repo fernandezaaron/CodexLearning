@@ -139,6 +139,8 @@ public class Minigame extends State {
                         mlDataSet.getNumberOfAttempts() +
                         mlDataSet.getNumberOfBlockInteraction());
                 String[] data = currentBehavior.split(",");
+                System.out.println(currentBehavior + " CURRENT BEHAVIOR ");
+                System.out.println("INSIDE TRY");
 
                 minigameData.add(new ArrayList<String>());
                 minigameData.get(dataCounter).add(mlDataSet.getMovement());
@@ -149,10 +151,12 @@ public class Minigame extends State {
                 minigameData.get(dataCounter).add(data[1]);
                 dataCounter++;
 
-                if(currentBehavior.equals("ENGAGED")){
+                if(data[0].equals("ENGAGED")){
+                    System.out.println("IS ENGAGED");
                     setEngaged(true);
                 }
                 else{
+                    System.out.println("NOT ENGAGED");
                     setNotEngaged(true);
                 }
             } catch (IOException e) {

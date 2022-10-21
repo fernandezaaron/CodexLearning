@@ -10,7 +10,7 @@ public class ReportCardState extends State{
 
     private Table backgroundTable, textButtonContainer, reportCardTable, containerTable;
     private TextButton[] textButtons;
-    private Label
+//    private Label
 
     public ReportCardState(Manager manager){
         super(manager);
