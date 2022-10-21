@@ -6,6 +6,7 @@ import com.codex.learning.entity.characters.Character;
 import com.codex.learning.states.State;
 import com.codex.learning.utility.FuzzyLogic;
 import com.codex.learning.utility.Manager;
+import com.codex.learning.utility.decisiontree.MLDataSet;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,12 +24,8 @@ public class Minigame extends State {
     private int dataCounter;
     private boolean isEngaged, isNotEngaged;
     private float maxTimer, fuzzyTimer;
+    private MLDataSet mlDataSet;
 
-
-//    public Minigame(Manager manager, int currentMinigame, Character jedisaur, FuzzyLogic fuzzyLogic){
-//        super(manager);
-//
-//    }
 
     public Minigame(Manager manager){
         super(manager);
@@ -37,6 +34,7 @@ public class Minigame extends State {
     public void create(int currentMinigame, Character jedisaur, FuzzyLogic fuzzyLogic){
         this.currentMinigame = currentMinigame;
         this.fuzzyLogic = fuzzyLogic;
+        mlDataSet = new MLDataSet();
         fillInTheBlockFlag = false;
         mysteryCodeFlag = false;
         codeOrderFlag = false;
@@ -46,7 +44,7 @@ public class Minigame extends State {
         dataCounter = 0;
         isEngaged = false;
         isNotEngaged = false;
-        maxTimer = 10;
+        maxTimer = 60;
         fuzzyTimer = 0;
 
     }
@@ -57,6 +55,7 @@ public class Minigame extends State {
             case 1:
                 fillInTheBlockFlag = true;
                 fillInTheBlock = new FillInTheBlock(manager, jedisaur, fuzzyLogic);
+
                 break;
             case 2:
                 mysteryCodeFlag = true;
@@ -66,10 +65,10 @@ public class Minigame extends State {
                 codeOrderFlag = true;
                 codeOrder = new CodeOrder(manager, jedisaur, fuzzyLogic);
                 break;
-            case 4:
-                codeITFlag = true;
-                codeIT = new CodeIT(manager,jedisaur, fuzzyLogic);
-                break;
+//            case 4:
+//                codeITFlag = true;
+//                codeIT = new CodeIT(manager,jedisaur, fuzzyLogic);
+//                break;
         }
     }
 
@@ -83,9 +82,9 @@ public class Minigame extends State {
         }else if(codeOrderFlag){
             codeOrder.update(delta);
         }
-        else if(codeITFlag){
-            codeIT.update(delta);
-        }
+//        else if(codeITFlag){
+//            codeIT.update(delta);
+//        }
 
     }
 
@@ -99,9 +98,9 @@ public class Minigame extends State {
         }else if(codeOrderFlag){
             codeOrder.render(sprite);
         }
-        else if(codeITFlag){
-            codeIT.render(sprite);
-        }
+//        else if(codeITFlag){
+//            codeIT.render(sprite);
+//        }
 
     }
 
@@ -113,94 +112,57 @@ public class Minigame extends State {
             fillInTheBlock.dispose();
         }
         else if(mysteryCodeFlag){
-            System.out.println("disposing mc");
+//            System.out.println("disposing mc");
             mysteryCode.dispose();
         }else if(codeOrderFlag){
             codeOrder.dispose();
         }
-        else if(codeITFlag){
-            codeIT.dispose();
-        }
+//        else if(codeITFlag){
+//            codeIT.dispose();
+//        }
     }
 
     public void checkBehavior(float timer, Character jedisaur){
         fuzzyTimer += Gdx.graphics.getDeltaTime();
         String currentBehavior = "";
-        String movement = (manager.isMoving()) ? "0":"1";
-        String numberOfAttempt = convertNumberOfAttempt(manager.getMinigameChecker().getNumberOfAttempts());
-        String numberOfBlockInteraction = (checkNumberOfBlockInteractionRule(jedisaur.getNumberOfBlockInteraction()));
-        if(fuzzyTimer > maxTimer && timer > 1){
+        mlDataSet.setMovement((manager.isMoving()) ? "0":"1");
+        mlDataSet.setNumberOfAttempts(mlDataSet.convertNumberOfAttempt(manager.getMinigameChecker().getNumberOfAttempts() - mlDataSet.getCurrentNumberOfAttempts()));
+        mlDataSet.setNumberOfBlockInteraction(mlDataSet.checkNumberOfBlockInteractionRule(jedisaur.getNumberOfBlockInteraction() - mlDataSet.getCurrentNumberOfBlockInteraction()));
+        if(fuzzyTimer > mlDataSet.getMaxTimer()){
+            mlDataSet.setCurrentNumberOfAttempts(manager.getMinigameChecker().getNumberOfAttempts());
+            mlDataSet.setCurrentNumberOfBlockInteraction(jedisaur.getNumberOfBlockInteraction());
             fuzzyTimer = 0;
             try {
-            currentBehavior = manager.getServer().calculateMLResult(movement + checkTimeConsumption((int) timer) +
-                        numberOfAttempt + numberOfBlockInteraction);
+                currentBehavior = manager.getServer().calculateMLResult(
+                        mlDataSet.getMovement() +
+                        mlDataSet.checkTimeConsumption((int) timer) +
+                        mlDataSet.getNumberOfAttempts() +
+                        mlDataSet.getNumberOfBlockInteraction());
+                String[] data = currentBehavior.split(",");
+                System.out.println(currentBehavior + " CURRENT BEHAVIOR ");
+                System.out.println("INSIDE TRY");
+
+                minigameData.add(new ArrayList<String>());
+                minigameData.get(dataCounter).add(mlDataSet.getMovement());
+                minigameData.get(dataCounter).add(mlDataSet.checkTimeConsumption((int) timer));
+                minigameData.get(dataCounter).add(mlDataSet.getNumberOfAttempts());
+                minigameData.get(dataCounter).add(mlDataSet.getNumberOfBlockInteraction());
+                minigameData.get(dataCounter).add(data[0]);
+                minigameData.get(dataCounter).add(data[1]);
+                dataCounter++;
+
+                if(data[0].equals("ENGAGED")){
+                    System.out.println("IS ENGAGED");
+                    setEngaged(true);
+                }
+                else{
+                    System.out.println("NOT ENGAGED");
+                    setNotEngaged(true);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            minigameData.add(new ArrayList<String>());
-            minigameData.get(dataCounter).add(movement);
-            minigameData.get(dataCounter).add(checkTimeConsumption((int) timer));
-            minigameData.get(dataCounter).add(numberOfAttempt);
-            minigameData.get(dataCounter).add(numberOfBlockInteraction);
-            minigameData.get(dataCounter).add(currentBehavior);
-            dataCounter++;
-
-            if(currentBehavior.equals("ENGAGED")){
-                System.out.println("WOW keep it up my dudes!!");
-                setEngaged(true);
-            }
-            else{
-                System.out.println("Haha lungkot mo naman!!");
-                setNotEngaged(true);
-            }
         }
-    }
-
-    public String checkNumberOfBlockInteractionRule(int numberOfBlockInteraction){
-        if(numberOfBlockInteraction <= 10)
-            return "1";
-        else if(numberOfBlockInteraction <= 20)
-            return "2";
-        return "3";
-    }
-
-    public String convertNumberOfAttempt(int numberOfAttempt){
-        if(numberOfAttempt <= 1)
-            return "1";
-        else if(numberOfAttempt <= 3)
-            return "2";
-        return "3";
-    }
-
-    public String checkTimeConsumption(int timer){
-        switch(manager.getExpertSystem().getExpertiseLevel()){
-            case "Expert":
-                if(timer <= 50)
-                    return "1";
-                else if(timer <= 100)
-                    return "2";
-                return "3";
-            case "Average":
-                if(timer <= 60)
-                    return "1";
-                else if(timer <= 120)
-                    return "2";
-                return "3";
-            case "Novice":
-                if(timer <= 70)
-                    return "1";
-                else if(timer <= 140)
-                    return "2";
-                return "3";
-            case "Poor":
-                if(timer <= 80)
-                    return "1";
-                else if(timer <= 160)
-                    return "2";
-                return "3";
-        }
-        return "2";
     }
 
 
@@ -238,11 +200,6 @@ public class Minigame extends State {
         return fuzzyLogic.getCookies();
     }
 
-    //    public void setActive(boolean active){
-//        if(fib){
-//            s.setActive(active);
-//        }
-//    }
 
     public ArrayList<ArrayList<String>> getMinigameData() {
         return minigameData;
@@ -266,5 +223,21 @@ public class Minigame extends State {
 
     public void setNotEngaged(boolean notEngaged) {
         isNotEngaged = notEngaged;
+    }
+
+    public String getNumberOfAttemptsRule(){
+        return fuzzyLogic.getNumberOfAttemptsRules();
+    }
+
+    public String getTimeConsumptionRules(){
+        return fuzzyLogic.getTimeConsumptionRules();
+    }
+
+    public String getCorrectOutputRulles(){
+        return fuzzyLogic.getCorrectOutputRules();
+    }
+
+    public String getNumberOfErrorsRules(){
+        return fuzzyLogic.getNumberOfErrorsRules();
     }
 }

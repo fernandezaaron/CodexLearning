@@ -32,11 +32,12 @@ public class PlayState extends State{
     private FuzzyLogic fuzzyLogic;
 
     private boolean inStartArea, atDoor, inHowToPlay;
-    private TextureRegion door, downArrow, rightArrow, howToPlayScreen;
+    private TextureRegion door,  howToPlayScreen;
+    private Animation downArrow, rightArrow, smallDownArrow, smallRightArrow;
     private int stage;
 
     private boolean computerOnce;
-
+    private String music;
 
     private int count;
     private float hintTimer;
@@ -53,11 +54,9 @@ public class PlayState extends State{
 
 
 
-//        randomMinigame = rand.nextInt(4-1)+1;
+        randomMinigame = rand.nextInt(3-1)+1;
 
-        randomMinigame = rand.nextInt(4-1)+1;
-
-        randomMinigame = 2;
+//        randomMinigame = 2;
 
         playroomMap = new PlayroomMapS1(manager);
         manager.setPlayroomMap(playroomMap);
@@ -68,20 +67,27 @@ public class PlayState extends State{
             house = new HouseMap(manager);
 
             manager.setHouseMap(house);
+            music = Constants.HOUSE_MUSIC;
             computer = new Computer(manager, fuzzyLogic);
             computer.create(new Vector2(-6, 2.8f), new Vector2(0.6f, 0.6f), 0);
         }
         else if(manager.getStageSelector().map().equals("2")){
             schoolMap = new SchoolMap(manager);
             manager.setSchoolMap(schoolMap);
+            music = Constants.SCHOOL_MUSIC;
             computer = new Computer(manager, fuzzyLogic);
             computer.create(new Vector2(-4, 6.5f), new Vector2(0.6f, 0.6f), 0);
         }
         else if(manager.getStageSelector().map().equals("3")){
             officeMap = new OfficeMap(manager);
             manager.setOfficeMap(officeMap);
+            music = Constants.OFFICE_MUSIC;
             computer = new Computer(manager, fuzzyLogic);
             computer.create(new Vector2(-6.5f, 10.2f), new Vector2(0.6f, 0.6f), 0);
+        }
+
+        if(stage == 4 || stage == 10 || stage == 13){
+            music = Constants.CREDITS_MUSIC;
         }
 
         jedisaur = new Character(manager);
@@ -95,18 +101,19 @@ public class PlayState extends State{
         manager.getMinigame().create(randomMinigame, jedisaur, fuzzyLogic);
 
         if(!manager.isMusicPaused()){
-            manager.setMusic(Constants.HOUSE_MUSIC);
+            manager.setMusic(music);
             manager.getMusic().play();
             manager.getMusic().setLooping(true);
         }else {
-            manager.setMusic(Constants.HOUSE_MUSIC);
+            manager.setMusic(music);
         }
 
         computerOnce = true;
 
         door = new TextureRegion(manager.getReportCardSheet(), 48,195, 263, 119);
-        downArrow = new TextureRegion(manager.getUtility(), Constants.DOWN_ARROW_x, Constants.DOWN_ARROW_Y, Constants.DOWN_ARROW_WIDTH, Constants.DOWN_ARROW_HEIGHT);
-        rightArrow = new TextureRegion(manager.getUtility(), Constants.RIGHT_ARROW_x, Constants.RIGHT_ARROW_Y, Constants.RIGHT_ARROW_WIDTH, Constants.RIGHT_ARROW_HEIGHT);
+
+        rightArrow = new Animation(manager.getUtility(), Constants.RIGHT_ARROW_x, Constants.RIGHT_ARROW_Y, Constants.RIGHT_ARROW_WIDTH, Constants.RIGHT_ARROW_HEIGHT, 2, 0.75f);
+        downArrow = new Animation(manager.getUtility(), Constants.DOWN_ARROW_x, Constants.DOWN_ARROW_Y, Constants.DOWN_ARROW_WIDTH, Constants.DOWN_ARROW_HEIGHT, 2, 0.75f);
         howToPlayScreen = new TextureRegion(new Texture(Constants.START_AREA), 0,0,1600,900);
 
         inStartArea = true;
@@ -132,10 +139,16 @@ public class PlayState extends State{
             manager.getMinigame().update(delta);
             if(playroomMap.getPlayMat().isInContact()){
                 jedisaur.dropBlock(playroomMap.getPlayMat());
+                if(jedisaur.isDropped()){
+                    manager.getCl().setNumberOfCollision(0);
+                    jedisaur.setDropped(false);
+                }
             }
 
 
         }else {
+            downArrow.update(delta);
+            rightArrow.update(delta);
             activeBody(true);
             exitDoor(jedisaur);
             playroomMap.setActive(false);
@@ -156,12 +169,16 @@ public class PlayState extends State{
                     if(computer.isDone() && computerOnce){
                         computer.getCodeRiddle().resultFeedback();
                         manager.setCodeRiddle(computer.getCodeRiddle());
-                        System.out.println("COMPUTER IS DONE - " + manager.getCodeRiddle().getCodeRiddleData());
+//                        System.out.println("COMPUTER IS DONE - " + manager.getCodeRiddle().getCodeRiddleData());
                         computerOnce = false;
                     }
 
                     if(computer.isDone() && computer.getCodeRiddle().isResultFeedBackOpen()){
                         computer.getCodeRiddle().closeDialogBox();
+                    }
+
+                    if(computer.getCodeRiddle().isBehaviorTableOpen()){
+                        computer.getCodeRiddle().closeBehaviorTable();
                     }
 
                     // CHECK THE BEHAVIOR IN STATE
@@ -249,17 +266,31 @@ public class PlayState extends State{
         sprite.setProjectionMatrix(manager.getCamera().combined);
         if(isInStartArea()){
             if(jediGrandpa.isComputerReady() && !computer.getCodeRiddle().isInComputer() && !computer.isDone()){
-                sprite.draw(downArrow, manager.getCamera().position.x - computer.getBody().getPosition().x - 260,manager.getCamera().position.y - computer.getBody().getPosition().y + 115);
+
+                if(manager.getStageSelector().map().equals("1")){
+                    sprite.draw(downArrow.getFrame(), manager.getCamera().position.x  - computer.getBody().getPosition().x - 260,
+                            manager.getCamera().position.y  - computer.getBody().getPosition().y + 115);
+                }
+                else if(manager.getStageSelector().map().equals("2")){
+                    sprite.draw(downArrow.getFrame(), manager.getCamera().position.x  - computer.getBody().getPosition().x - 200,
+                            manager.getCamera().position.y  - computer.getBody().getPosition().y + 230);
+                }
+                else {
+                    sprite.draw(downArrow.getFrame(), manager.getCamera().position.x  - computer.getBody().getPosition().x - 280,
+                            manager.getCamera().position.y  - computer.getBody().getPosition().y + 350);
+                }
 
             }
 
             if(!jediGrandpa.isComputerReady()) {
-                sprite.draw(downArrow, manager.getCamera().position.x - jediGrandpa.getBody().getPosition().x - 55,manager.getCamera().position.y - jediGrandpa.getBody().getPosition().y + 35);
+
+                sprite.draw(downArrow.getFrame(), manager.getCamera().position.x - jediGrandpa.getBody().getPosition().x - 55,manager.getCamera().position.y - jediGrandpa.getBody().getPosition().y + 35);
 
             }
 
-            if(computer.isDone()){
-                sprite.draw(rightArrow,manager.getCamera().position.x + 150,manager.getCamera().position.y - 90);
+
+            if(computer.isDone() && !computer.getCodeRiddle().isInComputer()){
+                sprite.draw(rightArrow.getFrame(),manager.getCamera().position.x + 150 ,manager.getCamera().position.y - 90 );
             }
 
             if(jediGrandpa.isNewPlayerDialogueDone()){

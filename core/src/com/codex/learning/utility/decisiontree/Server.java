@@ -13,14 +13,14 @@ public class Server {
 
     public Server() throws Exception{
         server = new ServerSocket (1800);
-        System.out.println("Waiting for client on port 1800");
+//        System.out.println("Waiting for client on port 1800");
 
-        Runtime.getRuntime().exec("cmd /c start " + System.getProperty("user.dir") + "\\assets\\model\\main.exe");
+        Runtime.getRuntime().exec("cmd /c start " + System.getProperty("user.dir") + "\\model\\main.exe");
 
         connected = server.accept();
 
 
-        System.out.println("The client is connected...");
+//        System.out.println("The client is connected...");
         output = new DataOutputStream(connected.getOutputStream());
         input = new DataInputStream(connected.getInputStream());
         inputFromUser = new BufferedReader(new InputStreamReader(System.in));

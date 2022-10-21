@@ -15,12 +15,13 @@ import java.util.ArrayList;
 
 public class ReportCard extends State{
 
-    private Table reportCardTable, reportCardContainerTable, cookieTable;
+    private Table reportCardTable, reportCardContainerTable, cookieTable, feedbackTable;
     private ImageButton saveAndQuit;
     private ArrayList<Image> cookies;
-    private Label timeConsumed, numberOfErrors, numberOfAttempts, correctOutput;
+    private Label timeConsumed, numberOfErrors, numberOfAttempts, correctOutput, feedback;
     private boolean inReportCard;
     private boolean resetFlag;
+    private int index;
 
     public ReportCard(Manager manager){
         super(manager);
@@ -34,31 +35,34 @@ public class ReportCard extends State{
         saveAndQuit = new ImageButton(manager.getSkin());
         saveAndQuit.setBackground("saveandquit");
 
-        cookies = new ArrayList<>();
+        feedbackTable = new Table(manager.getSkin());
+        feedback = new Label("",manager.getSkin());
 
+        cookies = new ArrayList<>();
 
         cookieTable = new Table(manager.getSkin());
 
         timeConsumed = new Label("", manager.getSkin());
         timeConsumed.setAlignment(Align.right);
-        timeConsumed.setFontScale(0.8f);
+        timeConsumed.setFontScale((manager.getStage().getWidth()/Constants.PPM)*0.024f);
 
         numberOfErrors = new Label("", manager.getSkin());
         numberOfErrors.setAlignment(Align.right);
-        numberOfErrors.setFontScale(0.8f);
+        numberOfErrors.setFontScale((manager.getStage().getWidth()/Constants.PPM)*0.024f);
 
 
         numberOfAttempts = new Label("", manager.getSkin());
         numberOfAttempts.setAlignment(Align.right);
-        numberOfAttempts.setFontScale(0.8f);
+        numberOfAttempts.setFontScale((manager.getStage().getWidth()/Constants.PPM)*0.024f);
 
 
         correctOutput = new Label("", manager.getSkin());
         correctOutput.setAlignment(Align.right);
-        correctOutput.setFontScale(0.8f);
+        correctOutput.setFontScale((manager.getStage().getWidth()/Constants.PPM)*0.024f);
 
 
         inReportCard = true;
+        index = 0;
 
 
 
@@ -68,6 +72,8 @@ public class ReportCard extends State{
     public void update(float delta) {
         createTable();
         manager.getStage().act();
+        getRuleIndex();
+
     }
 
     @Override
@@ -78,6 +84,33 @@ public class ReportCard extends State{
         sprite.enableBlending();
         manager.getStage().draw();
         sprite.end();
+
+    }
+
+    public int getRuleIndex(){
+        System.out.println(manager.getMinigame().getTimeConsumptionRules());
+        System.out.println(manager.getMinigame().getCorrectOutputRulles());
+        System.out.println(manager.getMinigame().getNumberOfAttemptsRule());
+        System.out.println(manager.getMinigame().getNumberOfErrorsRules());
+
+        if(manager.getMinigame().getTimeConsumptionRules().equals("HIGH")){
+            return 1;
+        }
+        if(manager.getMinigame().getCorrectOutputRulles().equals("NO")){
+            return 2;
+        }
+        if(manager.getMinigame().getNumberOfAttemptsRule().equals("HIGH")){
+            return 3;
+        }
+        if(manager.getMinigame().getNumberOfErrorsRules().equals("HIGH")){
+            return 4;
+        }
+
+        if(manager.getMinigame().getTimeConsumptionRules().equals("HIGH") && (manager.getMinigame().getNumberOfErrorsRules().equals("HIGH") || manager.getMinigame().getNumberOfAttemptsRule().equals("HIGH"))){
+            return 5;
+        }
+        return 0;
+
 
     }
 
@@ -101,6 +134,9 @@ public class ReportCard extends State{
         }
 
         if(!reportCardContainerTable.hasChildren()){
+            reportCardTable.add(saveAndQuit).size(manager.getStage().getHeight()*.18f).top().right();
+
+            reportCardTable.row();
             reportCardTable.add(timeConsumed).grow().colspan(3).center();
             reportCardTable.row().grow().colspan(2);
             reportCardTable.add(numberOfErrors).grow().colspan(3);
@@ -110,20 +146,23 @@ public class ReportCard extends State{
             reportCardTable.add(correctOutput).grow().colspan(3);
             reportCardTable.row().grow();
             for(Image i: cookies){
-                cookieTable.add(i).size(35,45).padRight(15f);
+                cookieTable.add(i).size(manager.getStage().getWidth()*.047f,manager.getStage().getHeight()*0.1f).padRight(15f);
+
             }
             reportCardTable.add(cookieTable).grow().padTop(20f);
             reportCardTable.row().grow();
-            reportCardTable.add(saveAndQuit).height(80).width(150);
+            feedback.setText(manager.getDialogue().reader(0, "postfeedback", getRuleIndex()));
+            feedback.setWrap(true);
+            feedbackTable.add(feedback).height(manager.getStage().getHeight()*.21f).width(manager.getStage().getWidth()*.42f);
+            reportCardTable.add(feedbackTable).height(manager.getStage().getHeight()*.21f);
 
             reportCardTable.padRight(25f);
             reportCardTable.padLeft(25f);
-            reportCardTable.padTop(85f);
             reportCardTable.layout();
 
 
-            reportCardContainerTable.add(reportCardTable).height(400).width(350);
-            reportCardContainerTable.setPosition(manager.getCamera().position.x - Constants.SCREEN_WIDTH/Constants.PPM/2 + 400, manager.getCamera().position.y - Constants.SCREEN_HEIGHT/Constants.PPM/2 + 220);
+            reportCardContainerTable.add(reportCardTable).size(manager.getStage().getWidth()*.5f,manager.getStage().getHeight()*.95f);
+            reportCardContainerTable.setPosition(manager.getStage().getWidth()*0.5f, manager.getStage().getHeight()*.5f);
 
         }
 
@@ -149,15 +188,15 @@ public class ReportCard extends State{
 
                 if(!resetFlag){
                     resetFlag = true;
-                    System.out.println("CODE RIDDLE - " + manager.getCodeRiddle().getCodeRiddleData());
-                    System.out.println("MINIGAME - " + manager.getMinigame().getMinigameData());
+//                    System.out.println("CODE RIDDLE - " + manager.getCodeRiddle().getCodeRiddleData());
+//                    System.out.println("MINIGAME - " + manager.getMinigame().getMinigameData());
 
                     //codeRiddleData.txt
-                    manager.getExpertSystem().writeGameDataGathered(Constants.CODE_RIDDLE_DATA_FILE_PATH, manager.getStageSelector().getStageMap(),
+                    manager.getExpertSystem().writeGameDataGathered(0, Constants.CODE_RIDDLE_DATA_FILE_PATH, manager.getStageSelector().getStageMap(),
                             manager.getQuestionnaire().getMinigameTopic(), manager.getCodeRiddle().getCodeRiddleData());
 
                     //minigameData.txt
-                    manager.getExpertSystem().writeGameDataGathered(Constants.MINIGAME_DATA_FILE_PATH, manager.getStageSelector().getStageMap(),
+                    manager.getExpertSystem().writeGameDataGathered(1, Constants.MINIGAME_DATA_FILE_PATH, manager.getStageSelector().getStageMap(),
                             manager.getQuestionnaire().getMinigameTopic(), manager.getMinigame().getMinigameData());
 
                     //data.txt
@@ -165,10 +204,13 @@ public class ReportCard extends State{
                             manager.getQuestionnaire().getMinigameTopic(), manager.getExpertSystem().getExpertiseLevel(),
                             manager.getMinigame().getCookies(), manager.getCodeRiddle().getCodeRiddleData(),
                             manager.getMinigame().getMinigameData());
+
                     manager.getMinigameChecker().setNumberOfAttempts(0);
                     manager.getCodeRiddle().setCodeRiddleData(null);
                     manager.getMinigameChecker().setDone(false);
                     manager.getMinigame().reset();
+
+                    manager.getStage().clear();
                     manager.set(new StageSelectState(manager));
                 }
                 return true;

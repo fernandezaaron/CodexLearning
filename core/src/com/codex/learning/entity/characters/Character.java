@@ -32,8 +32,8 @@ public class Character extends Entity {
     protected boolean pickUpAble;
     private boolean fixture;
     private int carry;
-
     private int numberOfBlockInteraction;
+
 
     private boolean atTop;
     private boolean atBot;
@@ -73,7 +73,6 @@ public class Character extends Entity {
         body.createFixture(fixtureDef).setUserData(this);
         shape.dispose();
 
-        numberOfBlockInteraction = 0;
         blockHolderCollision = false;
 
         // Used to check if the character is in the border of the map
@@ -96,6 +95,7 @@ public class Character extends Entity {
         direction = "south";
 
         fixture = false;
+        numberOfBlockInteraction = 0;
 
         this.size.x /= Constants.PPM;
         this.size.y /= Constants.PPM;
@@ -379,7 +379,8 @@ public class Character extends Entity {
 
     private void checkIfStuck(){
         if(Gdx.input.isKeyJustPressed(Input.Keys.R)){
-            body.getPosition().set(10, 10);
+            body.getPosition().set(0, 0);
+            body.setTransform(0, 0, 0);
         }
     }
 
@@ -394,15 +395,88 @@ public class Character extends Entity {
             setPickUpAble(false);
             getCopyBlock().getBody().setType(BodyDef.BodyType.DynamicBody);
             getCopyBlock().getBody().setTransform(body.getPosition().x - (block.getDupliSize().x * 0.1f), body.getPosition().y + 3f, 0);
+            setDropped(false);
         }
         block.getBody().setType(BodyDef.BodyType.StaticBody);
 
     }
 
+//    public void dropBlock(BlockHolder blockHolder){
+//        if(blockHolder.isOccupied() && !isCarrying()){
+//            setPickUpAble(true);
+//        }
+//        else{
+//            setPickUpAble(false);
+//        }
+//
+//        if(blockHolder.isOccupied()){
+//            if(!isFixture()){
+//                blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().first());
+//                for(int i = 0; i < blockHolder.getBody().getFixtureList().size; i++){
+//                    blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().removeIndex(i));
+//                }
+//                setFixture(true);
+//            }
+//            blockHolder.createFixture(getCopyBlock().getDupliSize().x, getCopyBlock().getDupliSize().y, Constants.BLOCK_HOLDER_WIDTH * getCopyBlock().getDupliSize().x - 0.75f);
+//            setCopyBlock(null);
+//        }
+//        else{
+//            if(isFixture()){
+//                blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().first());
+//                for(int i = 0; i < blockHolder.getBody().getFixtureList().size; i++){
+//                    blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().removeIndex(i));
+//                }
+//                setFixture(false);
+//            }
+//            blockHolder.createDefaultFixture();
+//        }
+//
+//        if(Gdx.input.isKeyJustPressed(Input.Keys.E) &&
+//                getCopyBlock() != null && blockHolder.getCopyBlock() == null) {
+//            getCopyBlock().getBody().setTransform(
+//                    blockHolder.getBody().getPosition().x + Constants.BLOCK_HOLDER_WIDTH*getCopyBlock().getDupliSize().x - 0.75f,
+//                    Constants.BLOCK_HOLDER_HEIGHT + blockHolder.getBody().getPosition().y,
+//                    0);
+//            getCopyBlock().setInContact(false);
+//            getCopyBlock().getBody().setType(BodyDef.BodyType.StaticBody);
+//
+//            // BlockHolder Adjustment
+//            blockHolder.setOccupied(true);
+//            blockHolder.setCopyBlock(getCopyBlock());
+//
+//            // Character Adjustment
+//            setDropped(true);
+//            carry = 0;
+//            setPickUpAble(false);
+//            setCarrying(false);
+//            setPickedUp(false);
+//        }
+//        else if(Gdx.input.isKeyJustPressed(Input.Keys.E) &&
+//                blockHolder.isOccupied() && isPickUpAble() && !isBlockHolderCollision()){
+//            blockHolder.setCopyBlock(null);
+//            if(isCarrying()){
+//                blockHolder.setOccupied(true);
+//                setPickUpAble(false);
+//            }
+//            else{
+//                blockHolder.setOccupied(false);
+//                setPickUpAble(true);
+//            }
+//            setDropped(false);
+//            setPickedUp(true);
+//
+//        }
+//    }
+
     public void dropBlock(BlockHolder blockHolder){
         // To prevent pickup in an empty block holder
         if(blockHolder.isOccupied() && !isCarrying()){
-            setPickUpAble(true);
+            if(manager.getCl().getBlockholderCollision() > 2 || manager.getCl().getNumberOfCollision() > 1){
+                setPickUpAble(false);
+            }
+            else {
+                setPickUpAble(true);
+            }
         }
         else{
             setPickUpAble(false);
@@ -418,10 +492,11 @@ public class Character extends Entity {
         }
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.E) &&
-                getCopyBlock() != null && blockHolder.getCopyBlock() == null){
+                getCopyBlock() != null && blockHolder.getCopyBlock() == null && !blockHolder.isOccupied() && (manager.getCl().getBlockholderCollision() < 2 || manager.getCl().getNumberOfCollision() > 1)){
             // Blocks Adjustment
+//            System.out.println(getCopyBlock().getBody().getLocalCenter().x + getCopyBlock().getDupliSize().x/2);
             getCopyBlock().getBody().setTransform(
-                    blockHolder.getBody().getPosition().x,
+                    blockHolder.getBody().getPosition().x + Constants.BLOCK_HOLDER_WIDTH*getCopyBlock().getDupliSize().x - 0.75f,
                     Constants.BLOCK_HOLDER_HEIGHT + blockHolder.getBody().getPosition().y,
                     0);
             getCopyBlock().setInContact(false);
@@ -429,23 +504,27 @@ public class Character extends Entity {
 
             // BlockHolder Adjustment
             blockHolder.setOccupied(true);
+            blockHolder.setDropped(true);
             if(!isFixture()){
-                blockHolder.createFixture(getCopyBlock().getDupliSize().x, getCopyBlock().getDupliSize().y);
+                blockHolder.createFixture(getCopyBlock().getDupliSize().x, getCopyBlock().getDupliSize().y, Constants.BLOCK_HOLDER_WIDTH * getCopyBlock().getDupliSize().x - 0.75f);
             }
 
             blockHolder.setCopyBlock(getCopyBlock());
             // Character Adjustment
+            System.out.println("in dropblock E");
             setDropped(true);
             setCopyBlock(null);
             carry = 0;
+            manager.getCl().setNumberOfCollision(0);
             setPickUpAble(false);
             setCarrying(false);
             setPickedUp(false);
         }
-        else if(Gdx.input.isKeyJustPressed(Input.Keys.E) && isFixture() && blockHolder.isOccupied() && isPickUpAble() && !isBlockHolderCollision()){
-            System.out.println("picked up");
+        else if(Gdx.input.isKeyJustPressed(Input.Keys.E) && isFixture() && blockHolder.isOccupied() && isPickUpAble()){
+//            System.out.println("picked up");
             blockHolder.setCopyBlock(null);
-            if(!isCarrying()){
+            if(!isCarrying() ){
+                System.out.println("destroying fixture");
                 blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().first());
                 for(int i = 0; i < blockHolder.getBody().getFixtureList().size; i++){
                     blockHolder.getBody().destroyFixture(blockHolder.getBody().getFixtureList().removeIndex(i));
@@ -463,13 +542,15 @@ public class Character extends Entity {
             }
             setDropped(false);
             setPickedUp(true);
+            blockHolder.setDropped(false);
+
 
         }
     }
 
     public void dropBlock(PlayMat playmat){
         if(playmat.isInContact() && Gdx.input.isKeyJustPressed(Input.Keys.E) && getCopyBlock() != null && isCarrying()){
-
+            System.out.println("in playmat");
             switch (direction){
                 case "north":
                     getCopyBlock().getBody().setTransform(
@@ -575,19 +656,19 @@ public class Character extends Entity {
         this.pickedUp = pickedUp;
     }
 
-    public int getNumberOfBlockInteraction() {
-        return numberOfBlockInteraction;
-    }
-
-    public void setNumberOfBlockInteraction(int numberOfBlockInteraction) {
-        this.numberOfBlockInteraction = numberOfBlockInteraction;
-    }
-
     public boolean isBlockHolderCollision() {
         return blockHolderCollision;
     }
 
     public void setBlockHolderCollision(boolean blockHolderCollision) {
         this.blockHolderCollision = blockHolderCollision;
+    }
+
+    public int getNumberOfBlockInteraction() {
+        return numberOfBlockInteraction;
+    }
+
+    public void setNumberOfBlockInteraction(int numberOfBlockInteraction) {
+        this.numberOfBlockInteraction = numberOfBlockInteraction;
     }
 }

@@ -80,7 +80,7 @@ public class Manager {
         expertSystem = new ExpertSystem();
         expertSystem.readFile();
 
-        System.out.println("LEVEL - " + expertSystem.getExpertiseLevel());
+//        System.out.println("LEVEL - " + expertSystem.getExpertiseLevel());
         questionnaire = new Questionnaire(expertSystem.getExpertiseLevel());
 
 
@@ -90,6 +90,10 @@ public class Manager {
         world = new World(new Vector2(0,0),false);
         world.setContactListener(cl);
 
+        stage = new Stage();
+        atlas = new TextureAtlas(Gdx.files.internal(Constants.ATLAS_UTILITY_PATH));
+        skin = new Skin(Gdx.files.internal(Constants.JSON_DIALOG_BOX_SKIN_PATH));
+        skin.addRegions(atlas);
 
         stageSelector = new StageSelector();
         minigameChecker = new MinigameChecker();
@@ -118,15 +122,12 @@ public class Manager {
         pcStateSheet = new TextureRegion(new Texture(Constants.PC_SHEET_PATH));
 
         font = new BitmapFont(Gdx.files.internal(Constants.FONT_STYLE));
-        font.getData().setScale(1.3f);
+        font.getData().setScale((stage.getWidth()/Constants.PPM)*0.022f);
 
         camera = new OrthographicCamera(Constants.SCREEN_WIDTH, Constants.SCREEN_WIDTH);
         camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 
-        stage = new Stage();
-        atlas = new TextureAtlas(Gdx.files.internal(Constants.ATLAS_UTILITY_PATH));
-        skin = new Skin(Gdx.files.internal(Constants.JSON_DIALOG_BOX_SKIN_PATH));
-        skin.addRegions(atlas);
+
 
         states = new Stack<State>();
 
@@ -143,7 +144,7 @@ public class Manager {
 
 
     public void push(State state){
-        System.out.println(state + " is pushed");
+//        System.out.println(state + " is pushed");
         states.push(state);
     }
     public void pop(){
@@ -179,6 +180,8 @@ public class Manager {
     public World getWorld() {
         return world;
     }
+
+
     public OrthographicCamera getCamera() {
         return camera;
     }
@@ -190,6 +193,8 @@ public class Manager {
     public Skin getSkin() {
         return skin;
     }
+
+
 
     public TextureAtlas getAtlas() {
         return atlas;
@@ -268,6 +273,7 @@ public class Manager {
     public Music getMusic(){
         return music;
     }
+
 
     public boolean isMusicPaused() {
         return musicPaused;
