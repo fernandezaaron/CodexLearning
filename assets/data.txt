@@ -1,5 +1,5 @@
 Stage Number,Topic,Expertise Level,Number of Cookies,Engaged,Percentage,CodeRiddle Total Data,Engaged,Percentage, Minigame Total Data,
-1,Comments,Poor,2,ENGAGED,66%,3,ENGAGED,100%,4,
+1,Syntax,Poor,1,ENGAGED,0%,1,ENGAGED,100%,15,
 2,-,-,-,-,-,-,-,-,-,
 3,-,-,-,-,-,-,-,-,-,
 4,-,-,-,-,-,-,-,-,-,
