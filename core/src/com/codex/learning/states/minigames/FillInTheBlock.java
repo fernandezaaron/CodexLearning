@@ -260,7 +260,7 @@ public class FillInTheBlock extends State {
         }
 
         /** below this is used for padding **/
-        if(jedisaur.isCarrying()){
+        if(jedisaur.isCarrying() && jedisaur.getCopyBlock() != null){
             blockSize = jedisaur.getCopyBlock().getDupliSize().x;
         }
 

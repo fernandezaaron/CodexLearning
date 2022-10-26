@@ -166,6 +166,8 @@ public class Minigame extends State {
     }
 
 
+
+
     public void reset(){
         fuzzyLogic.fuzzyReset();
         minigameData = null;

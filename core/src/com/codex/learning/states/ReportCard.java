@@ -12,6 +12,7 @@ import com.codex.learning.utility.Constants;
 import com.codex.learning.utility.Manager;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ReportCard extends State{
 
@@ -199,11 +200,24 @@ public class ReportCard extends State{
                     manager.getExpertSystem().writeGameDataGathered(1, Constants.MINIGAME_DATA_FILE_PATH, manager.getStageSelector().getStageMap(),
                             manager.getQuestionnaire().getMinigameTopic(), manager.getMinigame().getMinigameData());
 
+                    manager.getExpertSystem().writeResults(manager.getStageSelector().getStageMap(),
+                            manager.getQuestionnaire().getMinigameTopic(), manager.getExpertSystem().getExpertiseLevel(),
+                            manager.getMinigame().getCookies(),new ArrayList<ArrayList<String>>(Arrays.asList(
+                                    new ArrayList<>(Arrays.asList(
+                                            String.valueOf(manager.getMinigame().getTimeConsumption()),
+                                            String.valueOf(manager.getMinigame().getNumberofError()),
+                                            String.valueOf(manager.getMinigame().getNumberOfAttempts()),
+                                            String.valueOf(manager.getMinigame().getCorrectOutput())
+//                                            String.valueOf(manager.getMinigame().getCookies())
+                                    )))));
+
                     //data.txt
                     manager.getExpertSystem().writeDataGathering(manager.getStageSelector().getStageMap(),
                             manager.getQuestionnaire().getMinigameTopic(), manager.getExpertSystem().getExpertiseLevel(),
                             manager.getMinigame().getCookies(), manager.getCodeRiddle().getCodeRiddleData(),
                             manager.getMinigame().getMinigameData());
+
+
 
                     manager.getMinigameChecker().setNumberOfAttempts(0);
                     manager.getCodeRiddle().setCodeRiddleData(null);

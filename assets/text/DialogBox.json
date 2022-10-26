@@ -46,6 +46,13 @@
         "vScrollKnob": "verticalScrollKnob",
         "hScrollKnob": "horizontalScrollKnob"
     }
+    "Reportcard": {
+      "vScroll": "verticalScroll",
+      "hScroll": "horizontalScroll",
+      "background": "objectives",
+      "vScrollKnob": "verticalScrollKnob",
+      "hScrollKnob": "horizontalScrollKnob"
+    }
   }
 
   "com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {

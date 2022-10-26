@@ -216,6 +216,68 @@ public class ExpertSystem {
         }
     }
 
+    public void writeResults(int stageNumber, String stageTopic, String expertiseLevel, int numberOfCookie, ArrayList<ArrayList<String>> minigameData){
+        try {
+            int counter = 0;
+            int length = 0;
+            String minigameListSize = String.valueOf(minigameData.size() - 1);
+            String minigameEngagedPercentage = String.valueOf(calculateEngagedPercentage(minigameData));
+            ArrayList<String> replace = new ArrayList<>(Arrays.asList(String.valueOf(stageNumber), stageTopic,
+                    expertiseLevel, String.valueOf(numberOfCookie),
+                    minigameData.get(counter).get(0), minigameData.get(counter).get(1),
+                    minigameData.get(counter).get(2), minigameData.get(counter).get(3)));
+
+
+            File file = new File(Constants.MINIGAME_RESULTS_FILE_PATH);
+            if (file.createNewFile()) {
+//                System.out.println("File created: " + file.getName());
+                FileWriter fileWriter = new FileWriter(Constants.MINIGAME_RESULTS_FILE_PATH, false);
+                boolean header = true;
+                for(int i = 0; i < 17; i++){
+                    if(header){
+                        fileWriter.write("Stage Number,Topic,Expertise Level,Number of Cookies,Time Consumed,Number of Errors,Number of Attempts,Correct Output,\n");
+                        header = false;
+                    }
+                    else{
+                        fileWriter.write(i + ",-,-,-,-,-,-,-,\n");
+                    }
+                }
+                fileWriter.close();
+            }
+            ArrayList<ArrayList<String>> data = readDataFirst(Constants.MINIGAME_RESULTS_FILE_PATH);
+            for(ArrayList<String> i: data){
+                if(i.get(0).equals(String.valueOf(stageNumber))){
+                    i.clear();
+                    break;
+                }
+                else{
+                    counter++;
+                }
+            }
+            data.add(counter, replace);
+            FileWriter fileWriter = new FileWriter(Constants.MINIGAME_RESULTS_FILE_PATH, false);
+            for(ArrayList<String> arrayList: data){
+                if(arrayList.isEmpty()){
+                    continue;
+                }
+                else{
+                    for(String i: arrayList){
+                        if(length == arrayList.size()){
+                            fileWriter.write("\n");
+                            length = 0;
+                        }
+                        length++;
+                        fileWriter.write(i + ",");
+                    }
+                }
+            }
+            fileWriter.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     //Minigames File Handling
     public void writeGameDataGathered(int num, String path, int stageNumber, String topic, ArrayList<ArrayList<String>> newData) {
         try {

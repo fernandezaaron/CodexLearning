@@ -117,6 +117,10 @@ public class MenuState extends State {
 //                System.out.println("clicked at settings");
                 settings.setSettings(true);
             }
+            if(reportCardBounds.contains(touchpoint.x, touchpoint.y)){
+                manager.getMusic().stop();
+                manager.set(new ReportCardState(manager));
+            }
 
             if(helpBounds.contains(touchpoint.x, touchpoint.y)){
                 manager.getMusic().stop();
