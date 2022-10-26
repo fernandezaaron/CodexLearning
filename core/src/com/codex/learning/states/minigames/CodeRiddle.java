@@ -459,7 +459,7 @@ public class CodeRiddle extends State {
                 dataCounter++;
                 this.timer = 0;
 
-                if (currentBehavior.equals("ENGAGED")) {
+                if (data[0].equals("ENGAGED")) {
                     //Yung behavior na dialogue na engaged
                     setEngaged(true);
                     behaviorTable();

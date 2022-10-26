@@ -149,7 +149,7 @@ public class Minigame extends State {
                 minigameData.get(dataCounter).add(data[1]);
                 dataCounter++;
 
-                if(currentBehavior.equals("ENGAGED")){
+                if(data[0].equals("ENGAGED")){
                     setEngaged(true);
                 }
                 else{
