@@ -14,6 +14,7 @@ public class ReportCardState extends State{
     private com.badlogic.gdx.scenes.scene2d.ui.Table backgroundTable, textButtonContainer, reportCardTable, containerTable;
     private ScrollPane scrollPane;
     private ImageTextButton[] textButtons;
+    private ImageTextButton quit;
     private ArrayList<ArrayList<String>> results;
     private Label label;
 
@@ -25,12 +26,14 @@ public class ReportCardState extends State{
         reportCardTable = new Table(manager.getSkin());
         containerTable = new Table(manager.getSkin());
 
-        textButtons = new ImageTextButton[15];
+        textButtons = new ImageTextButton[16];
+        quit = new ImageTextButton("Exit",manager.getSkin(), "Choices");
         results = manager.getExpertSystem().readDataFirst(Constants.MINIGAME_RESULTS_FILE_PATH);
         label = new Label("", manager.getSkin());
         label.setWrap(true);
+        label.getStyle().font.getData().setLineHeight(35);
 
-        for(int i=0; i<15; i++){
+        for(int i=0; i<16; i++){
             textButtons[i] = new ImageTextButton("Stage " + (i+1), manager.getSkin(), "Choices");
         }
     }
@@ -47,7 +50,7 @@ public class ReportCardState extends State{
         containerTable.setBackground("PCSCREEN");
         reportCardTable.setBackground("objectives");
         if(!backgroundTable.hasChildren()){
-            for(int i=0; i<15; i++){
+            for(int i=0; i<16; i++){
                 textButtonContainer.add(textButtons[i]).padBottom(10f).padRight(10f).padLeft(10f).padTop(15f).row();
                 final int index = i+1;
                 textButtons[i].addListener(new InputListener(){
@@ -79,9 +82,24 @@ public class ReportCardState extends State{
             scrollPane.setSmoothScrolling(true);
 
             containerTable.add(scrollPane).padTop(15f).padBottom(15f).padRight(20f);
-            reportCardTable.add(label);
-            containerTable.add(reportCardTable).padTop(15f).padBottom(15f);
+            reportCardTable.add(label).padRight(250f);
+            containerTable.add(reportCardTable).padTop(15f).padBottom(15f).row();
+            containerTable.add(quit).padTop(2f).padBottom(2f).padLeft(150f).right();
+            quit.addListener(new InputListener(){
+                @Override
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                    manager.set(new MenuState(manager));
+                    manager.getStage().clear();
+                    return true;
+                }
+                @Override
+                public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+
+                }
+            });
+
             backgroundTable.add(containerTable);
+
             backgroundTable.pack();
         }
 
@@ -90,7 +108,7 @@ public class ReportCardState extends State{
 
         manager.getStage().addActor(backgroundTable);
         manager.getStage().draw();
-        manager.getStage().setDebugAll(true);
+//        manager.getStage().setDebugAll(true);
 
 
 
