@@ -157,6 +157,7 @@ public class PlayState extends State{
 
 
         if(pause.isRunning()){
+            manager.getMinigame().setPaused(false);
             if(jediGrandpa.isTalking() || playroomMap.getNpc().isTalking() || playroomMap.inHowToPlay() || playroomMap.inObjective()){
                 jedisaurStop(delta);
                 if(isInStartArea()){
@@ -164,6 +165,7 @@ public class PlayState extends State{
                 }
             }
             else{
+
                 if(!computer.getCodeRiddle().isInComputer()){
 
                     if(computer.isDone() && computerOnce){
@@ -221,6 +223,7 @@ public class PlayState extends State{
             }
 
         }else{
+            manager.getMinigame().setPaused(true);
             jedisaurStop(delta);
             computer.getCodeRiddle().setInComputer(false);
             manager.getStage().clear();

@@ -171,8 +171,11 @@ public class MysteryCode extends State {
     public void update(float delta) {
 
         if(!manager.getMinigameChecker().isDone()){
-            timer += Gdx.graphics.getDeltaTime();
-            manager.getMinigame().checkBehavior((int) timer, jedisaur);
+            if(!manager.getMinigame().isPaused()){
+//                System.out.println("is paused");
+                timer += Gdx.graphics.getDeltaTime();
+                manager.getMinigame().checkBehavior((int) timer, jedisaur);
+            }
         }
 
 

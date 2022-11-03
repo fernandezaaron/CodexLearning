@@ -203,9 +203,11 @@ public class FillInTheBlock extends State {
     @Override
     public void update(float delta) {
         if(!manager.getMinigameChecker().isDone()){
-            timer += Gdx.graphics.getDeltaTime();
-            manager.getMinigame().checkBehavior((int) timer, jedisaur);
-
+            if(!manager.getMinigame().isPaused()){
+//                System.out.println("is paused");
+                timer += Gdx.graphics.getDeltaTime();
+                manager.getMinigame().checkBehavior((int) timer, jedisaur);
+            }
         }
          for(int i = 0; i < minigameContainer.size(); i++) {
              for (int j = 0; j < minigameContainer.get(i).size(); j++) {

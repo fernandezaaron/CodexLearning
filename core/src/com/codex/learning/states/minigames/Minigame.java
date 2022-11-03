@@ -25,6 +25,7 @@ public class Minigame extends State {
     private boolean isEngaged, isNotEngaged;
     private float maxTimer, fuzzyTimer;
     private MLDataSet mlDataSet;
+    private boolean isPaused;
 
 
     public Minigame(Manager manager){
@@ -46,6 +47,7 @@ public class Minigame extends State {
         isNotEngaged = false;
         maxTimer = 60;
         fuzzyTimer = 0;
+        isPaused = false;
 
     }
 
@@ -172,6 +174,14 @@ public class Minigame extends State {
         fuzzyLogic.fuzzyReset();
         minigameData = null;
         dataCounter = 0;
+    }
+
+    public boolean isPaused() {
+        return isPaused;
+    }
+
+    public void setPaused(boolean paused) {
+        isPaused = paused;
     }
 
     public int getCurrentMinigame() {
