@@ -98,7 +98,7 @@ public class NPC extends Entity {
 
         //animates the text
         behaviorBox = new DialogueBox(manager.getSkin(), "behaviorbox", (manager.getStage().getWidth()/Constants.PPM)*0.024f);
-        db = new DialogueBox(manager.getSkin(), "dialogbox3", (manager.getStage().getWidth()/Constants.PPM)*0.024f);
+        db = new DialogueBox(manager.getSkin(), "dialogbox3", (manager.getStage().getWidth()/Constants.PPM)*0.021f);
         //dialogue of the NPC
         manager.getDialogue().setStage(manager.getStageSelector().getStageMap());
 
@@ -372,7 +372,7 @@ public class NPC extends Entity {
                     choiceTable.add(textButtons[0]).height(75).width(150);
                     choiceTable.row();
                     choiceTable.add(textButtons[1]).height(75).width(150);
-                    choiceTableContainer.setPosition(manager.getStage().getWidth()/1.3f,  manager.getStage().getHeight()/3.2f);
+                    choiceTableContainer.setPosition(manager.getStage().getWidth()/1.3f,  manager.getStage().getHeight()/2.9f);
                     choiceTableContainer.add(choiceTable).size(150,150);
                 }
 

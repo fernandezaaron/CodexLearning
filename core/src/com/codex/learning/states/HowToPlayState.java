@@ -50,8 +50,8 @@ public class HowToPlayState extends State{
         imageTextButtons[0] = new ImageTextButton("BASICS", manager.getSkin(), "Choices");
         imageTextButtons[1] = new ImageTextButton("FILL IN THE BLOCKS", manager.getSkin(), "Choices");
         imageTextButtons[2] = new ImageTextButton("MYSTERY CODE", manager.getSkin(), "Choices");
-        imageTextButtons[3] = new ImageTextButton("CODE ORDER", manager.getSkin(), "Choices");
-        imageTextButtons[4] = new ImageTextButton("CODE IT", manager.getSkin(), "Choices");
+//        imageTextButtons[3] = new ImageTextButton("CODE ORDER", manager.getSkin(), "Choices");
+//        imageTextButtons[4] = new ImageTextButton("CODE IT", manager.getSkin(), "Choices");
 
     }
 
@@ -69,7 +69,7 @@ public class HowToPlayState extends State{
         containerTable.setBackground("dialogbox1");
         if(!backgroundTable.hasChildren()){
             photoTable.add(placeholder);
-            for(int i=0; i<5; i++){
+            for(int i=0; i<3; i++){
                 textButtonContainer.add(imageTextButtons[i]).padBottom(20f).padRight(10f).padLeft(10f).row();
                 final int index = i;
                 imageTextButtons[i].addListener(new InputListener(){

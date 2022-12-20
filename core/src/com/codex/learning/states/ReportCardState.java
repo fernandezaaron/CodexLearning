@@ -56,14 +56,20 @@ public class ReportCardState extends State{
                 textButtons[i].addListener(new InputListener(){
                     @Override
                     public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                        System.out.println("stage " + index);
-                        System.out.println(results.get(index).get(1));
-                        label.setText("Topic: " + results.get(index).get(1) + "\n" +
-                                "Number of Cookies: " + results.get(index).get(3) + "\n" +
-                                "Time Consumed: " + results.get(index).get(4) + "\n" +
-                                "Number of Errors: " + results.get(index).get(5) + "\n" +
-                                "Number of Attempts: " + results.get(index).get(6) + "\n" +
-                                "Correct Output: " + results.get(index).get(7));
+                        if(manager.getExpertSystem().readDataFirst(Constants.MINIGAME_RESULTS_FILE_PATH) != null){
+                            System.out.println("stage " + index);
+                            System.out.println(results.get(index).get(1));
+                            label.setText("Stage " + index + ": \n" +
+                                    "Topic: " + results.get(index).get(1) + "\n" +
+                                    "Number of Cookies: " + results.get(index).get(3) + "\n" +
+                                    "Time Consumed: " + results.get(index).get(4) + "\n" +
+                                    "Number of Errors: " + results.get(index).get(5) + "\n" +
+                                    "Number of Attempts: " + results.get(index).get(6) + "\n" +
+                                    "Correct Output: " + results.get(index).get(7));
+
+                        }else{
+                            label.setText("Stage " +index+": \n" + "No data yet");
+                        }
 
                         return true;
                     }
