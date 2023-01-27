@@ -34,7 +34,7 @@ public class Constants {
     public static final String CHARACTER_SHEET_PATH = "character/jedisaurspritesheet.png";
 
     // FONT ASSET PATH
-    public static final String FONT_STYLE = "font/TheFont.fnt";
+    public static final String FONT_STYLE = "font/Atlantis.fnt";
 
     // JSON ASSET PATH
     public static final String JSON_DIALOG_BOX_SKIN_PATH = "text/DialogBox.json";
