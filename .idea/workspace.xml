@@ -6,11 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2998b361-0cf3-41aa-8b4b-04ee9357f240" name="Changes" comment="gege">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/SaveFile.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/codeRiddleData.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/data.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/minigameData.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/minigameResults.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +121,7 @@
       <recent name="D:\1-SCHOOL\1-Prog\CodexLearning\assets\music" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DesktopLauncher">
+  <component name="RunManager" selected="Gradle.CodexLearning [dist]">
     <configuration name="DesktopLauncher" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="C:\Users\Aaron\.jdks\corretto-1.8.0_342\jre" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
